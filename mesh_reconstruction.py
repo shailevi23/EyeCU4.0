@@ -21,14 +21,23 @@ class PoseEstimator3D:
         self.mesh_dir.mkdir(parents=True, exist_ok=True)
         
         # Initialize MediaPipe Pose (provides 3D landmarks)
-        self.mp_pose = mp.solutions.pose
-        self.pose = self.mp_pose.Pose(
-            static_image_mode=False,
-            model_complexity=2,  # 0, 1, or 2 (2 is most accurate)
-            enable_segmentation=True,
-            min_detection_confidence=0.5,
-            min_tracking_confidence=0.5
-        )
+        self.pose_detection_available = True
+        self.is_new_api = False
+        
+        # Directly use legacy MediaPipe API
+        try:
+            self.mp_pose = mp.solutions.pose
+            self.pose = self.mp_pose.Pose(
+                static_image_mode=False,
+                model_complexity=2,  # 0, 1, or 2 (2 is most accurate)
+                enable_segmentation=True,
+                min_detection_confidence=0.5,
+                min_tracking_confidence=0.5
+            )
+            print("  - Using MediaPipe legacy API for pose estimation")
+        except Exception as e:
+            print(f"  - WARNING: Pose detection unavailable: {str(e)}")
+            self.pose_detection_available = False
         
     def extract_pose_landmarks(self, player_crop: np.ndarray) -> Optional[Dict]:
         """
@@ -38,39 +47,50 @@ class PoseEstimator3D:
         Returns:
             Dictionary with 2D and 3D landmarks, or None
         """
-        rgb = cv2.cvtColor(player_crop, cv2.COLOR_BGR2RGB)
-        results = self.pose.process(rgb)
-        
-        if not results.pose_landmarks:
+        # Check if pose detection is available
+        if not hasattr(self, 'pose_detection_available') or not self.pose_detection_available:
             return None
-        
-        h, w = player_crop.shape[:2]
-        
-        # Extract landmarks in multiple formats
-        landmarks_2d = []
-        landmarks_3d = []
-        visibility = []
-        
-        for lm in results.pose_landmarks.landmark:
-            # 2D normalized coordinates
-            landmarks_2d.append([lm.x, lm.y])
             
-            # 3D coordinates (z is depth relative to hips)
-            landmarks_3d.append([lm.x, lm.y, lm.z])
+        try:
+            # Legacy MediaPipe API
+            rgb = cv2.cvtColor(player_crop, cv2.COLOR_BGR2RGB)
+            results = self.pose.process(rgb)
             
-            # Visibility score
-            visibility.append(lm.visibility)
-        
-        pose_data = {
-            'landmarks_2d': np.array(landmarks_2d),
-            'landmarks_3d': np.array(landmarks_3d),
-            'visibility': np.array(visibility),
-            'world_landmarks': self._extract_world_landmarks(results)
-        }
-        
-        # Extract body segmentation mask
-        if results.segmentation_mask is not None:
-            pose_data['segmentation'] = results.segmentation_mask
+            if not results.pose_landmarks:
+                return None
+            
+            h, w = player_crop.shape[:2]
+            
+            # Extract landmarks in multiple formats
+            landmarks_2d = []
+            landmarks_3d = []
+            visibility = []
+            
+            for lm in results.pose_landmarks.landmark:
+                # 2D normalized coordinates
+                landmarks_2d.append([lm.x, lm.y])
+                
+                # 3D coordinates (z is depth relative to hips)
+                landmarks_3d.append([lm.x, lm.y, lm.z])
+                
+                # Visibility score
+                visibility.append(lm.visibility)
+            
+            pose_data = {
+                'landmarks_2d': np.array(landmarks_2d),
+                'landmarks_3d': np.array(landmarks_3d),
+                'visibility': np.array(visibility),
+                'world_landmarks': self._extract_world_landmarks(results)
+            }
+            
+            # Extract body segmentation mask
+            if results.segmentation_mask is not None:
+                pose_data['segmentation'] = results.segmentation_mask
+                
+            return pose_data
+        except Exception as e:
+            print(f"Error in pose detection: {str(e)}")
+            return None
         
         return pose_data
     

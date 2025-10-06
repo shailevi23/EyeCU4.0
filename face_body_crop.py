@@ -21,12 +21,27 @@ class FaceBodyExtractor:
         self.faces_dir.mkdir(parents=True, exist_ok=True)
         self.bodies_dir.mkdir(parents=True, exist_ok=True)
         
+        # Default is that face detection is available
+        self.face_detection_available = True
+        
         # Initialize MediaPipe Face Detection
-        self.mp_face = mp.solutions.face_detection
-        self.face_detector = self.mp_face.FaceDetection(
-            model_selection=1,  # 1 for full range (better for sports)
-            min_detection_confidence=0.5
-        )
+        self.is_new_api = False  # Default to legacy mode
+        
+        # Directly use legacy API to avoid model loading issues
+        try:
+            print("  - Using MediaPipe legacy API for face detection")
+            self.mp_face = mp.solutions.face_detection
+            self.face_detector = self.mp_face.FaceDetection(
+                model_selection=1,  # 1 for full range (better for sports)
+                min_detection_confidence=0.5
+            )
+            self.is_new_api = False
+            self.face_detection_available = True
+        except Exception as e:
+            # If API fails, print a warning but continue without face detection
+            print(f"  - WARNING: Face detection unavailable: {str(e)}")
+            # Set a flag to indicate face detection is disabled
+            self.face_detection_available = False
         
     def detect_face_in_crop(self, player_crop: np.ndarray) -> Optional[Tuple[int, int, int, int]]:
         """
@@ -36,21 +51,52 @@ class FaceBodyExtractor:
         Returns:
             Face bbox as (x1, y1, x2, y2) or None
         """
-        rgb = cv2.cvtColor(player_crop, cv2.COLOR_BGR2RGB)
-        results = self.face_detector.process(rgb)
-        
-        if not results.detections:
+        # Check if face detection is available
+        if not hasattr(self, 'face_detection_available') or not self.face_detection_available:
             return None
+            
+        rgb = cv2.cvtColor(player_crop, cv2.COLOR_BGR2RGB)
         
-        # Get first (most confident) detection
-        detection = results.detections[0]
-        bbox = detection.location_data.relative_bounding_box
-        
-        h, w = player_crop.shape[:2]
-        x1 = int(bbox.xmin * w)
-        y1 = int(bbox.ymin * h)
-        x2 = int((bbox.xmin + bbox.width) * w)
-        y2 = int((bbox.ymin + bbox.height) * h)
+        if self.is_new_api:
+            # New MediaPipe 0.10+ API
+            try:
+                # Create MP image and detect
+                mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb)
+                detection_result = self.face_detector.detect(mp_image)
+                
+                if not detection_result.detections:
+                    return None
+                
+                # Get first (most confident) detection
+                detection = detection_result.detections[0]
+                bbox = detection.bounding_box
+                
+                # Convert to coordinates
+                h, w = player_crop.shape[:2]
+                x1 = bbox.origin_x
+                y1 = bbox.origin_y
+                x2 = x1 + bbox.width
+                y2 = y1 + bbox.height
+                
+            except Exception as e:
+                print(f"Error in face detection with new API: {str(e)}")
+                return None
+        else:
+            # Legacy MediaPipe API
+            results = self.face_detector.process(rgb)
+            
+            if not results.detections:
+                return None
+            
+            # Get first (most confident) detection
+            detection = results.detections[0]
+            bbox = detection.location_data.relative_bounding_box
+            
+            h, w = player_crop.shape[:2]
+            x1 = int(bbox.xmin * w)
+            y1 = int(bbox.ymin * h)
+            x2 = int((bbox.xmin + bbox.width) * w)
+            y2 = int((bbox.ymin + bbox.height) * h)
         
         # Clamp to image bounds
         x1, y1 = max(0, x1), max(0, y1)
