@@ -32,8 +32,6 @@ def main():
                         help="Use cached detections/tracks if available")
     parser.add_argument("--no-roboflow", action="store_false", dest="use_roboflow", 
                         help="Disable Roboflow API (use local YOLO only)")
-    parser.add_argument("--api-key", default="bzHGvvsL4gjqNOHIPR5J", 
-                        help="Custom Roboflow API key")
     parser.add_argument("--yolo-model", default="yolov8x.pt", 
                         help="YOLO model path (yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt)")
     parser.add_argument("--show-speed", action="store_true", 
