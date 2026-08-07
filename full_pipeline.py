@@ -36,7 +36,10 @@ class FootballAnalysisPipeline:
                  api_key: Optional[str] = None,
                  use_cache: bool = True,
                  show_speed: bool = False,
-                 show_distance: bool = False):
+                 show_distance: bool = False,
+                 imgsz: int = 960,
+                 confidence: float = 0.25,
+                 max_ball_gap: int = 15):
         """
         Initialize complete pipeline
         Args:
@@ -71,7 +74,10 @@ class FootballAnalysisPipeline:
             use_roboflow=use_roboflow,
             api_key=api_key,
             persist_cache=use_cache,
-            cache_dir=str(cache_dir)
+            cache_dir=str(cache_dir),
+            confidence=confidence,
+            imgsz=imgsz,
+            max_ball_gap=max_ball_gap,
         )
 
         self.team_assigner = TeamAssigner(num_teams=2)

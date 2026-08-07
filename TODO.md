@@ -136,16 +136,29 @@ local detector
 
 ## 5. Detector refactor
 
-* [ ] Replace `roboflow_detector.py` with a generic detector interface.
-* [ ] Add `LocalDetector`.
-* [ ] Keep Roboflow only as an optional labelling/benchmark tool.
-* [ ] Preserve four classes:
+* [x] Replace `roboflow_detector.py` with a generic detector interface.
+  New `trackers/detector.py`: `BaseDetector` ABC + `create_detector()` factory.
+  The old 634-line file mixed cloud, local and jersey OCR in one class; deleted.
+* [x] Add `LocalDetector`. Ultralytics YOLO, no network, the production path.
+* [x] Keep Roboflow only as an optional labelling/benchmark tool.
+  `RoboflowDetector` is opt-in and takes a `LocalDetector` fallback, so a failed
+  request degrades instead of aborting the run.
+* [x] Preserve four classes:
 
   * `player`
   * `goalkeeper`
   * `referee`
   * `ball`
-* [ ] Do not convert `goalkeeper` into `player`.
+* [x] Do not convert `goalkeeper` into `player`.
+  The old code did exactly this (`class_name = 'player'  # Normalize goalkeeper`).
+  Goalkeepers now get their own `tracks["goalkeepers"]` list, their own colour,
+  and stay out of jersey-colour team clustering.
+
+Also dropped here: the EasyOCR jersey-number code and `process_video_batch()`,
+both dead and both on the section 7 "do not work on" list.
+
+**Known gap:** `player_ball_assigner` still only considers `tracks["players"]`,
+so a goalkeeper holding the ball is not credited with possession. Revisit in Phase 4.
 
 ## 6. Fix bugs
 
@@ -160,8 +173,13 @@ local detector
 effective_fps = source_fps / skip_frames
 ```
 
-* [ ] Stop copying the last ball box indefinitely.
-* [ ] Limit ball interpolation to a configurable frame gap.
+* [x] Stop copying the last ball box indefinitely.
+* [x] Limit ball interpolation to a configurable frame gap.
+  `--max-ball-gap` (default 15 frames). Past the cap the ball is reported unknown
+  instead of frozen. Verified with `--max-ball-gap 3`: max consecutive hold was
+  exactly 3, then the ball went unknown for the remaining frames.
+  (Same run also showed COCO `yolov8n` detecting the ball in **1 of 60 frames** —
+  this is the ball-recall problem the fine-tuned model has to solve.)
 * [ ] Create cache keys from:
 
   * video hash

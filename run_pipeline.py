@@ -42,8 +42,16 @@ def main():
                         help="Roboflow API key (defaults to the ROBOFLOW_API_KEY "
                              "environment variable; without it Roboflow is disabled "
                              "and the local YOLO model is used)")
-    parser.add_argument("--yolo-model", default="yolov8x.pt", 
+    parser.add_argument("--yolo-model", default="yolov8x.pt",
                         help="YOLO model path (yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt)")
+    parser.add_argument("--imgsz", type=int, default=960,
+                        help="Detector inference image size (default: 960)")
+    parser.add_argument("--conf", type=float, default=0.25,
+                        help="Detection confidence threshold (default: 0.25)")
+    parser.add_argument("--max-ball-gap", type=int, default=15,
+                        help="Frames the last known ball box may be held while the "
+                             "ball is undetected, before it is reported unknown "
+                             "(default: 15)")
     parser.add_argument("--show-speed", action="store_true", 
                         help="Show player speed in visualization")
     parser.add_argument("--show-distance", action="store_true", 
@@ -72,7 +80,10 @@ def main():
         'use_cache': args.use_cache,
         'roboflow_api_key': args.api_key,
         'show_speed': args.show_speed,
-        'show_distance': args.show_distance
+        'show_distance': args.show_distance,
+        'imgsz': args.imgsz,
+        'confidence': args.conf,
+        'max_ball_gap': args.max_ball_gap,
     }
     
     print("\n🏆 EyeCU Football Analysis Pipeline 🏆")
@@ -109,7 +120,10 @@ def main():
         api_key=CONFIG['roboflow_api_key'],
         use_cache=CONFIG['use_cache'],
         show_speed=CONFIG['show_speed'],
-        show_distance=CONFIG['show_distance']
+        show_distance=CONFIG['show_distance'],
+        imgsz=CONFIG['imgsz'],
+        confidence=CONFIG['confidence'],
+        max_ball_gap=CONFIG['max_ball_gap'],
     )
     
     # Process video
