@@ -93,6 +93,18 @@ class RoboflowBackend:
             import requests
         except ImportError:
             sys.exit('The requests package is required: pip install requests')
+
+        # Networks that terminate TLS (corporate proxies, some AV suites) present
+        # a certificate signed by a private root CA. Windows trusts it; certifi's
+        # bundle does not, so every request fails CERTIFICATE_VERIFY_FAILED.
+        # truststore makes Python use the OS trust store instead. Optional --
+        # without it, behaviour is unchanged.
+        try:
+            import truststore
+            truststore.inject_into_ssl()
+        except ImportError:
+            pass
+
         self._requests = requests
 
         key = os.environ.get('ROBOFLOW_API_KEY')
@@ -144,8 +156,13 @@ class RoboflowBackend:
             except Exception as e:
                 last = e
                 time.sleep(1.5 * (attempt + 1))
-        print(f'  ! failed on {image_path.name}: {last}')
+        # The key travels as a query parameter, so it appears verbatim in
+        # requests' exception text. Never let it reach a console or a log file.
+        print(f'  ! failed on {image_path.name}: {self._redact(last)}')
         return None
+
+    def _redact(self, value) -> str:
+        return str(value).replace(self.api_key, '<REDACTED>')
 
 
 def load_targets(args):

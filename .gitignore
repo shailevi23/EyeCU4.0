@@ -9,6 +9,7 @@ YouTubeVideoSegmentDownloader/
 data/dataset/
 data/football_dataset.zip
 data/pseudo_meta/
+.env
 
 # Frames/labels/datasets stay local, but the batch assignments and the
 # frame manifest are decisions worth sharing.
