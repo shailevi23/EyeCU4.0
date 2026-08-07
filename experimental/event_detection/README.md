@@ -1,17 +1,17 @@
 # Experimental — Event Detection
 
 `event_detector.py` detects match events (goals, shots, sprints) from tracking
-data. It is the one piece of unique functionality salvaged from the old
-`HamzaIntegration/` (later renamed `Code/`) MVP; everything else there either
-duplicated `trackers/`/`full_pipeline.py` or was on the TODO.md section 7
-"do not work on" list.
+data.
 
-**Not wired into the production pipeline.** The active path is unchanged:
+**Not production code.** The active pipeline is unchanged:
 
 ```text
 run_pipeline.py → full_pipeline.py → trackers/
 ```
 
-Nothing here is imported by it. The module is self-contained (numpy, cv2,
-stdlib only) and is kept for later evaluation, not current use. Integrating it
-is explicitly out of scope for now.
+Nothing there imports this module. It is self-contained (numpy, cv2, stdlib
+only) and kept for later evaluation. Integrating it is out of scope — see
+TODO.md section 7.
+
+It has never been run against real tracking data; it imports cleanly, which is
+not the same as it working.

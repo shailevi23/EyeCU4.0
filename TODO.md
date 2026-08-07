@@ -199,6 +199,20 @@ Do not work on:
 * [ ] Cross-match ReID
 * [ ] Streamlit / UI
 * [ ] Highlight generation
+* [ ] Event detection — see `experimental/` below
+
+### Preserved experimental code (NOT production)
+
+`experimental/event_detection/event_detector.py` — goal/shot/sprint event
+detection. The one unique piece kept from the retired standalone MVP; the rest
+of it either duplicated production code or was on the "do not work on" list.
+
+* Not imported by `run_pipeline.py`, `full_pipeline.py` or `trackers/`.
+* Self-contained: numpy, cv2, stdlib only.
+* Preserved for later evaluation. Integrating it is **out of scope** — it is
+  covered by the "do not work on" list above.
+* Never executed against real tracking data; it imports, which is not the same
+  as it working.
 
 ## 8. Regression tests
 
@@ -211,16 +225,23 @@ file so they run on every change.
 * [x] Output video is created.
 * [x] `final_report.json` is created.
 * [x] `player_statistics.json` is created.
-* [ ] Four detector classes survive the full pipeline.
+* [x] Four detector classes survive the full pipeline.
+  `tracks` carries `players` / `goalkeepers` / `referees` / `ball` end to end.
 * [ ] Referees are never assigned to a team.
 * [ ] One detector inference occurs per processed frame.
+  The duplicate detector pass is gone, but this is not yet asserted by a test.
 * [ ] Different videos/models cannot reuse incompatible cache files.
-* [ ] Ball becomes unknown after the configured missing-frame limit.
+* [x] Ball becomes unknown after the configured missing-frame limit.
+  Verified with `--max-ball-gap 3`: max consecutive hold was exactly 3.
 * [ ] Speed remains consistent when `skip_frames` changes.
 * [ ] Team-assignment accuracy does not regress.
 * [ ] Duplicate-box rate does not regress.
 * [ ] ID-switch count does not regress.
-* [ ] Local processing remains near or above the existing FPS baseline.
+* [x] Local processing remains near or above the existing FPS baseline.
+  300-frame benchmark (`yolov8n.pt`, `--imgsz 640`, `--skip-frames 2`), 3 runs:
+  8.96 / 7.80 / 8.41 FPS — avg **8.39**, min 7.80, max 8.96 (14% spread).
+  Earlier 15-frame figures (3.6–7.1) were dominated by model-load overhead and
+  are not a usable baseline; this replaces them.
 
 ## 9. Final architecture requirement
 
@@ -233,6 +254,17 @@ Final project must contain:
 * One evaluation suite
 
 `full_pipeline.py` must not import legacy OCR, face, mesh, database or custom ReID modules.
+
+Status:
+
+* [x] One CLI — `run_pipeline.py`.
+* [x] One main pipeline — `full_pipeline.py`. Both duplicate orchestrators are
+  gone: `trackers/football_analysis.py` and the retired MVP's second class,
+  which was also named `FootballAnalysisPipeline`.
+* [x] One detector interface — `trackers/detector.py`.
+* [x] One tracker interface — `sv.ByteTrack` via `trackers/football_tracker.py`.
+* [ ] One evaluation suite — still to build; see "Model Evaluation" below.
+* [x] `full_pipeline.py` imports no OCR, face, mesh, database or ReID module.
 
 ---
 
