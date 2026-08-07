@@ -41,7 +41,8 @@ class FootballTracker:
                 cache_dir='tracker_cache',
                 confidence=0.25,
                 imgsz=960,
-                max_ball_gap=15):
+                max_ball_gap=15,
+                detector=None):
         """
         Initialize the football tracker
 
@@ -56,6 +57,8 @@ class FootballTracker:
             max_ball_gap: How many consecutive frames the last known ball box may
                 be held for while the ball is undetected. After that the ball is
                 reported as unknown rather than frozen in place.
+            detector: Pre-built detector to use instead of constructing one.
+                Only for tests, which must not load real YOLO weights.
         """
         self.model_path = model_path
         self.max_ball_gap = max_ball_gap
@@ -67,7 +70,7 @@ class FootballTracker:
         if persist_cache:
             os.makedirs(self.cache_dir, exist_ok=True)
 
-        self.detector = create_detector(
+        self.detector = detector if detector is not None else create_detector(
             model_path=model_path,
             use_roboflow=use_roboflow,
             api_key=api_key,

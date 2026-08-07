@@ -165,13 +165,24 @@ so a goalkeeper holding the ball is not credited with possession. Revisit in Pha
 * [x] Store returned tracks in `FootballTracker.tracks`.
 * [x] Ensure `player_statistics.json` is generated. (needed a second fix too: numpy
   `int64` track ids are not valid JSON keys, so `json.dump` was still failing)
-* [ ] Calculate unique player IDs instead of using first-frame count.
-* [ ] Read real video FPS.
-* [ ] Use:
+* [~] Calculate unique player IDs instead of using first-frame count.
+  Half done. The report no longer claims a player count: it reports
+  `unique_track_ids` and `track_statistics`, which is honest about being a
+  count of tracks. The true physical-player count stays **unresolved** — with
+  current ID churn (145 ids / 300 frames) any number derived from tracks would
+  be wrong. Blocked on the fine-tuned detector and tracker work.
+* [x] Read real video FPS.
+  `get_video_info()` supplies it; reported as `source_fps`. Falls back to 30
+  with a warning only if the container has no usable rate.
+* [x] Use:
 
 ```text
 effective_fps = source_fps / skip_frames
 ```
+
+  Was hardcoded `fps = 30` in two places, so every speed was inflated by
+  `skip_frames` (at the default skip=2, exactly 2x). Tested across
+  skip_frames 1/2/3/5.
 
 * [x] Stop copying the last ball box indefinitely.
 * [x] Limit ball interpolation to a configurable frame gap.
@@ -180,13 +191,19 @@ effective_fps = source_fps / skip_frames
   exactly 3, then the ball went unknown for the remaining frames.
   (Same run also showed COCO `yolov8n` detecting the ball in **1 of 60 frames** —
   this is the ball-recall problem the fine-tuned model has to solve.)
-* [ ] Create cache keys from:
+* [x] Create cache keys from:
 
   * video hash
   * model hash
   * detector settings
   * tracker settings
   * `skip_frames`
+
+  `trackers/cache_utils.py`. The key is part of the filename
+  (`tracks_<key>.pkl`), so incompatible caches coexist rather than overwrite.
+  `max_frames` is included too — it changes which frames are in the run.
+  Video identity is size + mtime + 1 MiB head/tail rather than a full hash;
+  hashing a whole match would cost more than the run it protects.
 
 ## 7. Ignore for now
 
@@ -216,24 +233,34 @@ of it either duplicated production code or was on the "do not work on" list.
 
 ## 8. Regression tests
 
-Verified manually so far; **not yet automated** — these need to become a real test
-file so they run on every change.
+Now **automated** under `tests/` (pytest). 41 tests, ~5s.
+`pytest` runs everything; `pytest -m "not slow"` skips the 9 that load real
+YOLO weights and decode video (~2s for the remaining 32).
 
-* [x] Pipeline runs locally without network access.
+* [x] Pipeline runs locally without network access. `test_runs_without_network`
 * [x] Pipeline runs without Roboflow, EasyOCR or MediaPipe.
-* [x] 30-frame smoke test completes.
+* [x] 30-frame smoke test completes. (integration run, 12 frames)
 * [x] Output video is created.
-* [x] `final_report.json` is created.
-* [x] `player_statistics.json` is created.
+* [x] `final_report.json` is created. `test_final_report_is_created`
+* [x] `player_statistics.json` is created. `test_player_statistics_is_created`
 * [x] Four detector classes survive the full pipeline.
-  `tracks` carries `players` / `goalkeepers` / `referees` / `ball` end to end.
-* [ ] Referees are never assigned to a team.
-* [ ] One detector inference occurs per processed frame.
-  The duplicate detector pass is gone, but this is not yet asserted by a test.
-* [ ] Different videos/models cannot reuse incompatible cache files.
+  `test_all_four_classes_survive_the_pipeline`,
+  `test_four_classes_survive_a_real_run`,
+  `test_goalkeeper_is_not_merged_into_players`
+* [x] Referees are never assigned to a team.
+  `test_referees_are_never_assigned_a_team`, plus the same for goalkeepers and
+  a counter-test that outfield players *do* get one, so it cannot pass by
+  assigning nothing.
+* [x] One detector inference occurs per processed frame.
+  `test_exactly_one_inference_per_processed_frame`, `test_no_duplicate_detector_pass`
+* [x] Different videos/models cannot reuse incompatible cache files.
+  `tests/test_cache_safety.py` (12 tests) + two integration tests that assert
+  two distinct cache files are actually written.
 * [x] Ball becomes unknown after the configured missing-frame limit.
-  Verified with `--max-ball-gap 3`: max consecutive hold was exactly 3.
-* [ ] Speed remains consistent when `skip_frames` changes.
+  `test_ball_becomes_unknown_after_max_gap`, parametrised over gaps 1/3/8.
+* [x] Speed remains consistent when `skip_frames` changes.
+  `test_speed_is_consistent_across_skip_frames` over 1/2/3/5, plus a guard test
+  that the old hardcoded-FPS behaviour really was 2x wrong.
 * [ ] Team-assignment accuracy does not regress.
 * [ ] Duplicate-box rate does not regress.
 * [ ] ID-switch count does not regress.

@@ -19,7 +19,8 @@ from trackers.team_assigner import TeamAssigner
 from trackers.camera_movement import CameraMovementEstimator
 from trackers.speed_distance import SpeedDistanceEstimator
 from trackers.player_ball_assigner import PlayerBallAssigner
-from trackers.video_utils import read_video, save_video
+from trackers.video_utils import read_video, save_video, get_video_info
+from trackers.cache_utils import compute_cache_key, cache_path_for
 
 
 class FootballAnalysisPipeline:
@@ -57,6 +58,15 @@ class FootballAnalysisPipeline:
         self.output_dir.mkdir(exist_ok=True)
         self.match_id = match_id
         self.use_roboflow = use_roboflow
+        # Kept for the cache key: every one of these changes the result.
+        self.yolo_model = yolo_model
+        self.imgsz = imgsz
+        self.confidence = confidence
+        self.max_ball_gap = max_ball_gap
+        # Set per run in _process_video_advanced().
+        self.source_fps = None
+        self.effective_fps = None
+        self.cache_key = None
         self.api_key = api_key
         self.use_cache = use_cache
         self.show_speed = show_speed
@@ -128,6 +138,36 @@ class FootballAnalysisPipeline:
         cache_dir = self.output_dir / 'cache'
         cache_dir.mkdir(exist_ok=True)
         
+        # Read the real source frame rate. Speed/distance are meaningless if
+        # this is guessed: every value scales linearly with it.
+        info = get_video_info(video_path)
+        source_fps = float(info.get('fps') or 0)
+        if source_fps <= 0:
+            source_fps = 30.0
+            print("Warning: could not read source FPS; assuming 30.0")
+
+        # Only every skip_frames-th frame reaches the estimator, so the interval
+        # between the frames it sees is skip_frames times longer.
+        effective_fps = source_fps / max(1, skip_frames)
+        self.source_fps = source_fps
+        self.effective_fps = effective_fps
+        print(f"Source FPS: {source_fps:.2f}  ->  effective FPS: {effective_fps:.2f} "
+              f"(skip_frames={skip_frames})")
+
+        # Cache keys cover everything that changes the result, so a cache from a
+        # different video/model/setting cannot be reused.
+        cache_key = compute_cache_key(
+            video_path=video_path,
+            model_path=self.yolo_model,
+            detector_settings={'imgsz': self.imgsz, 'confidence': self.confidence,
+                               'use_roboflow': self.use_roboflow},
+            tracker_settings={'max_ball_gap': self.max_ball_gap,
+                              'tracker': 'bytetrack'},
+            skip_frames=skip_frames,
+            max_frames=max_frames,
+        )
+        self.cache_key = cache_key
+
         # 1. Load video frames
         print("Loading video frames...")
         frames = read_video(
@@ -135,18 +175,18 @@ class FootballAnalysisPipeline:
             max_frames=max_frames,
             start_frame=0  # Start from beginning
         )
-        
+
         if skip_frames > 1:
             # Skip frames if needed
             frames = frames[::skip_frames]
             print(f"Skipped frames, now processing {len(frames)} frames")
-        
+
         # Update frame count
         self.frame_count = len(frames)
-        
+
         # 2. Get object tracks
         print("Detecting and tracking objects...")
-        cache_path = str(cache_dir / 'tracks.pkl')
+        cache_path = cache_path_for(cache_dir, 'tracks', cache_key)
         tracks = self.adv_tracker.get_object_tracks(
             frames,
             read_from_cache=self.use_cache,
@@ -164,7 +204,7 @@ class FootballAnalysisPipeline:
         # 5. Estimate camera movement
         print("Estimating camera movement...")
         camera_estimator = CameraMovementEstimator(frames[0])
-        camera_cache = str(cache_dir / 'camera_movement.pkl')
+        camera_cache = cache_path_for(cache_dir, 'camera_movement', cache_key)
         camera_movement = camera_estimator.get_camera_movement(
             frames,
             read_from_cache=self.use_cache,
@@ -181,8 +221,7 @@ class FootballAnalysisPipeline:
         
         # 8. Calculate speed and distance
         print("Calculating speed and distance...")
-        fps = 30  # Assume 30fps if not known
-        speed_estimator = SpeedDistanceEstimator(frame_rate=fps)
+        speed_estimator = SpeedDistanceEstimator(frame_rate=effective_fps)
         speed_estimator.add_speed_and_distance_to_tracks(tracks)
         
         # 9. Determine ball possession and team control
@@ -338,19 +377,23 @@ class FootballAnalysisPipeline:
         report = {
             'match_id': self.match_id,
             'frames_processed': self.frame_count,
+            'source_fps': self.source_fps,
+            'effective_fps': self.effective_fps,
+            'cache_key': self.cache_key,
             'processing_stats': self._generate_statistics(self.frame_count),
             'advanced_tracking': True
         }
-        
-        # Add player statistics if available
+
+        # Add per-track statistics if available
         if hasattr(self, 'adv_tracker'):
             try:
                 # Create detailed player reports
                 reports_dir = self.output_dir / 'reports'
                 os.makedirs(reports_dir, exist_ok=True)
-                
-                # Generate player statistics
-                speed_estimator = SpeedDistanceEstimator(frame_rate=30)
+
+                # Reuse the run's real effective frame rate, not a guess.
+                speed_estimator = SpeedDistanceEstimator(
+                    frame_rate=self.effective_fps or 30.0)
                 player_stats = {}
                 
                 # If we have tracks available
@@ -358,14 +401,24 @@ class FootballAnalysisPipeline:
                     tracks = self.adv_tracker.tracks
                     player_stats = speed_estimator.get_player_statistics(tracks)
                     
-                    # Save player statistics
+                    # These are TRACK ids, not people. Tracking currently
+                    # fragments identities, so the count of entries here is an
+                    # upper bound on the number of physical players, not a
+                    # measurement of it. Reporting it as a player count would be
+                    # wrong; the real count stays unresolved until tracking/ReID
+                    # is stable (TODO.md section 6).
+                    report['unique_track_ids'] = len(player_stats)
+
+                    # Save per-track statistics
                     players_report_path = reports_dir / 'player_statistics.json'
                     with open(players_report_path, 'w') as f:
                         json.dump(player_stats, f, indent=2)
-                    print(f"Player statistics saved to {players_report_path}")
-                    
+                    print(f"Per-track statistics saved to {players_report_path} "
+                          f"({len(player_stats)} unique track ids -- track count, "
+                          f"not player count)")
+
                     # Add to main report
-                    report['player_statistics'] = player_stats
+                    report['track_statistics'] = player_stats
             except Exception as e:
                 print(f"Warning: Could not generate player statistics: {str(e)}")
         

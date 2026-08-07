@@ -5,3 +5,4 @@ input-videos/
 roboflow_api_key.env
 data/
 YouTubeVideoSegmentDownloader/
+.pytest_cache/
