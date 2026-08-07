@@ -8,3 +8,4 @@ YouTubeVideoSegmentDownloader/
 .pytest_cache/
 data/dataset/
 data/football_dataset.zip
+data/pseudo_meta/
