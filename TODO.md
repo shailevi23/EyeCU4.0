@@ -205,6 +205,19 @@ effective_fps = source_fps / skip_frames
   Video identity is size + mtime + 1 MiB head/tail rather than a full hash;
   hashing a whole match would cost more than the run it protects.
 
+### ⚠️ Speed / distance are UNCALIBRATED
+
+`pixels_per_meter=12.0` in `trackers/speed_distance.py` is a guess, and it is
+applied as one constant for the whole frame — which cannot hold for broadcast
+footage, where perspective and zoom change the pixels-per-metre ratio across the
+image and over time.
+
+* Every km/h and metre figure is currently **relative only**, not real-world.
+* Marked in the output: fields are named `*_UNCALIBRATED`, and
+  `final_report.json` carries `speed_distance_calibrated: false`.
+* Fixing it needs pitch homography from known line markings. Out of scope for
+  now; do not quote these numbers until it is done.
+
 ## 7. Ignore for now
 
 Do not work on:

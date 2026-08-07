@@ -1,6 +1,18 @@
 """
 Speed and Distance Estimation for Football Players
 Calculates player movement speed and total distance covered
+
+⚠️ UNCALIBRATED — every km/h and metre figure produced here is unvalidated.
+
+`pixels_per_meter` defaults to 12.0, which is a guess, not a measurement. It is
+also treated as a single constant for the whole frame, which cannot be right for
+broadcast footage: perspective makes a metre near the far touchline span far
+fewer pixels than a metre near the camera, and the value changes again whenever
+the camera zooms or pans.
+
+Speeds are therefore usable only as relative comparisons within one clip, not as
+real-world values. Calibration (pitch homography from known line markings) is a
+separate, still-open task -- see TODO.md.
 """
 
 import cv2
@@ -302,8 +314,10 @@ class SpeedDistanceEstimator:
             stats[str(int(track_id))] = {
                 'track_id': int(track_id),
                 'team': int(team) if team is not None else None,
-                'max_speed': float(max_speed),
-                'total_distance': float(max_distance),
+                # Marked on every record so these numbers cannot be lifted out
+                # of the JSON and quoted as real speeds.
+                'max_speed_kmh_UNCALIBRATED': float(max_speed),
+                'total_distance_m_UNCALIBRATED': float(max_distance),
                 'appearances': int(appearances)
             }
 
