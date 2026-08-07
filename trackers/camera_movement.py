@@ -6,9 +6,8 @@ Tracks camera movement between frames for accurate position tracking
 import cv2
 import numpy as np
 import os
-from typing import List, Dict, Tuple, Optional
+from typing import List, Dict, Optional
 import pickle
-from pathlib import Path
 
 class CameraMovementEstimator:
     """
@@ -215,31 +214,3 @@ class CameraMovementEstimator:
             output_frames.append(frame)
         
         return output_frames
-
-# Example usage
-if __name__ == "__main__":
-    import sys
-    from trackers.video_utils import read_video
-    
-    # Load video
-    video_frames = read_video('input_video.mp4', max_frames=100)
-    
-    # Initialize camera movement estimator
-    estimator = CameraMovementEstimator(video_frames[0])
-    
-    # Get camera movement
-    camera_movement = estimator.get_camera_movement(
-        video_frames,
-        read_from_cache=False,
-        cache_path='cache/camera_movement.pkl'
-    )
-    
-    # Visualize
-    output_frames = estimator.draw_camera_movement(video_frames, camera_movement)
-    
-    # Display first few frames
-    for i in range(min(5, len(output_frames))):
-        cv2.imshow(f"Frame {i}", output_frames[i])
-        cv2.waitKey(0)
-    
-    cv2.destroyAllWindows()

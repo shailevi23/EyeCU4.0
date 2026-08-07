@@ -16,9 +16,8 @@ NOTE: API keys must start with "RF-" (new format) or "rf_" (older format)
 import cv2
 import numpy as np
 from roboflow import Roboflow
-from typing import List, Dict, Optional, Union
+from typing import List, Dict, Optional
 import os
-from pathlib import Path
 import time
 
 # Quick way to test if API key works
@@ -151,7 +150,6 @@ class RoboflowDetector:
                 
                 # Get Roboflow version
                 try:
-                    import roboflow
                     import pkg_resources
                     try:
                         roboflow_version = pkg_resources.get_distribution("roboflow").version
@@ -634,27 +632,3 @@ class RoboflowDetector:
         cap.release()
         print(f"Completed batch processing: {processed_count} frames")
         return all_detections
-
-# Example usage
-if __name__ == "__main__":
-    # Initialize detector
-    detector = RoboflowDetector(
-        api_key=None,  # Use environment variable or pass key directly
-        model_id="football-players-detection/1",
-        confidence=0.5,
-        use_local=True
-    )
-    
-    # Process a single image
-    image = cv2.imread("test_image.jpg")
-    detections = detector.detect(image)
-    print(f"Found {len(detections)} objects")
-    
-    # Visualize results
-    for det in detections:
-        x1, y1, x2, y2 = map(int, det['bbox'])
-        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-        cv2.putText(image, f"{det['class']} {det['confidence']:.2f}", 
-                   (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-    
-    cv2.imwrite("output.jpg", image)

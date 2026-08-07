@@ -3,9 +3,7 @@ Utility functions for video processing
 """
 
 import cv2
-import numpy as np
 import os
-from pathlib import Path
 
 def read_video(video_path, max_frames=None, start_frame=0):
     """

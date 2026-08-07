@@ -48,14 +48,13 @@ python run_pipeline.py --input INPUT_VIDEO --output OUTPUT_FILENAME [OPTIONS]
 
 #### Optional Arguments
 - `--output`: Output video filename (default: tracked_output.mp4)
-- `--mode`: Processing mode - "advanced" or "legacy" (default: advanced)
 - `--output-dir`: Output directory for all results (default: match_analysis_output)
 - `--max-frames`: Maximum frames to process (default: all frames)
 - `--skip-frames`: Process every N frames (default: 2)
 - `--display`: Display real-time visualization (default: False)
 - `--use-cache`: Use cached detections/tracks if available (default: False)
-- `--no-roboflow`: Disable Roboflow API (use local YOLO only) (default: use Roboflow)
-- `--api-key`: Custom Roboflow API key
+- `--use-roboflow`: Opt in to the Roboflow cloud detector (default: off — local YOLO only)
+- `--api-key`: Roboflow API key (defaults to the `ROBOFLOW_API_KEY` environment variable)
 - `--yolo-model`: YOLO model path (default: yolov8x.pt)
 - `--show-speed`: Show player speed in visualization
 - `--show-distance`: Show distance traveled in visualization
@@ -65,7 +64,7 @@ python run_pipeline.py --input INPUT_VIDEO --output OUTPUT_FILENAME [OPTIONS]
 
 Process a complete video with advanced tracking:
 ```
-python run_pipeline.py --input input-videos/match.mp4 --output tracked_output.mp4 --mode advanced
+python run_pipeline.py --input input-videos/match.mp4 --output tracked_output.mp4
 ```
 
 Process with limited frames for faster testing:

@@ -1,0 +1,19 @@
+# EyeCU 4.0 — core pipeline + dataset tooling
+# Install:  pip install -r requirements.txt
+
+# Detection / tracking
+ultralytics>=8.3.0
+supervision>=0.20.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Vision / numerics
+opencv-python>=4.8.0
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+scikit-learn>=1.3.0          # KMeans jersey-colour clustering in trackers/team_assigner.py
+
+# Optional: hosted detector used only for pseudo-labelling (tools/pseudo_label.py).
+# Requires the ROBOFLOW_API_KEY environment variable — never hardcode the key.
+requests>=2.31.0

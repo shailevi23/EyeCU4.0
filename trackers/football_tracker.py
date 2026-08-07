@@ -8,16 +8,12 @@ import numpy as np
 import supervision as sv
 import os
 from pathlib import Path
-import time
 import pickle
-from typing import List, Dict, Tuple, Optional, Any
 import pandas as pd
-from collections import defaultdict
 
 # Import from local modules
 from trackers.roboflow_detector import RoboflowDetector
-from trackers.video_utils import read_video, save_video
-from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, measure_distance, measure_xy_distance, get_foot_position
+from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, get_foot_position
 
 class FootballTracker:
     """
@@ -54,7 +50,6 @@ class FootballTracker:
             print(f"Initializing detector with api_key={'present' if api_key else 'None'}, use_roboflow={use_roboflow}")
             
             # Don't try to use Roboflow if API key is not provided
-            use_local = True
             if not api_key:
                 use_roboflow = False
                 print("No API key provided, falling back to local model only")
@@ -84,6 +79,9 @@ class FootballTracker:
         
         # Initialize tracker using supervision
         self.tracker = sv.ByteTrack()
+
+        # Populated by get_object_tracks(); read by the pipeline's final report.
+        self.tracks = None
         
         # Color map for visualization
         self.colors = {
@@ -196,7 +194,8 @@ class FootballTracker:
         if read_from_cache and cache_path and os.path.exists(cache_path):
             print(f"Loading tracks from cache: {cache_path}")
             with open(cache_path, 'rb') as f:
-                return pickle.load(f)
+                self.tracks = pickle.load(f)
+            return self.tracks
         
         # Initialize tracks structure
         tracks = {
@@ -295,7 +294,9 @@ class FootballTracker:
             print(f"Saving tracks to cache: {cache_path}")
             with open(cache_path, 'wb') as f:
                 pickle.dump(tracks, f)
-        
+
+        # Cached so generate_final_report() can write player_statistics.json.
+        self.tracks = tracks
         return tracks
     
     def draw_ellipse(self, frame, bbox, color, track_id=None):
@@ -518,32 +519,3 @@ class FootballTracker:
     
     # Utility functions
     # Helper functions are now imported from bbox_utils.py
-
-
-# Example usage
-if __name__ == "__main__":
-    import sys
-    from trackers.video_utils import read_video, save_video
-    
-    # Initialize tracker
-    tracker = FootballTracker(model_path='yolov8s.pt', use_roboflow=False)
-    
-    # Load video
-    video_frames = read_video('input_video.mp4')
-    
-    # Get object tracks
-    tracks = tracker.get_object_tracks(video_frames, 
-                                     read_from_cache=True,
-                                     cache_path='tracker_cache/tracks.pkl')
-    
-    # Add position information
-    tracker.add_position_to_tracks(tracks)
-    
-    # Interpolate ball positions
-    tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
-    
-    # Draw annotations
-    output_frames = tracker.draw_annotations(video_frames, tracks)
-    
-    # Save output video
-    save_video(output_frames, 'output_video.mp4')

@@ -5,7 +5,7 @@ Calculates player movement speed and total distance covered
 
 import cv2
 import numpy as np
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 import math
 
 def measure_distance(p1, p2):
@@ -297,60 +297,14 @@ class SpeedDistanceEstimator:
                     team = frame_tracks[track_id]['team']
                     break
             
-            # Store player statistics
-            stats[track_id] = {
-                'track_id': track_id,
-                'team': team,
-                'max_speed': max_speed,
-                'total_distance': max_distance,
-                'appearances': appearances
+            # Cast out of numpy types: track ids arrive from ByteTrack as int64,
+            # which json.dump rejects as a dict key.
+            stats[str(int(track_id))] = {
+                'track_id': int(track_id),
+                'team': int(team) if team is not None else None,
+                'max_speed': float(max_speed),
+                'total_distance': float(max_distance),
+                'appearances': int(appearances)
             }
-        
-        return stats
 
-# Example usage
-if __name__ == "__main__":
-    import sys
-    from trackers.video_utils import read_video
-    from trackers.football_tracker import FootballTracker
-    from trackers.camera_movement import CameraMovementEstimator
-    
-    # Load video
-    video_frames = read_video('input_video.mp4', max_frames=100)
-    
-    # Initialize tracker
-    tracker = FootballTracker()
-    
-    # Get object tracks
-    tracks = tracker.get_object_tracks(video_frames, read_from_cache=False)
-    
-    # Add position information
-    tracker.add_position_to_tracks(tracks)
-    
-    # Estimate camera movement
-    camera_estimator = CameraMovementEstimator(video_frames[0])
-    camera_movement = camera_estimator.get_camera_movement(video_frames)
-    
-    # Add adjusted positions
-    camera_estimator.add_adjusted_positions_to_tracks(tracks, camera_movement)
-    
-    # Calculate speed and distance
-    speed_estimator = SpeedDistanceEstimator(frame_rate=30, pixels_per_meter=12)
-    speed_estimator.add_speed_and_distance_to_tracks(tracks)
-    
-    # Visualize
-    output_frames = speed_estimator.draw_speed_and_distance(video_frames, tracks)
-    
-    # Display first few frames
-    for i in range(min(5, len(output_frames))):
-        cv2.imshow(f"Frame {i}", output_frames[i])
-        cv2.waitKey(0)
-    
-    cv2.destroyAllWindows()
-    
-    # Print statistics
-    stats = speed_estimator.get_player_statistics(tracks)
-    for player_id, player_stats in stats.items():
-        print(f"Player {player_id} (Team {player_stats['team']}):")
-        print(f"  Max Speed: {player_stats['max_speed']:.2f} km/h")
-        print(f"  Distance: {player_stats['total_distance']:.2f} m")
+        return stats

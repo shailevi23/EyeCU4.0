@@ -3,3 +3,5 @@ __pycache__/
 *.pt
 input-videos/
 roboflow_api_key.env
+data/
+YouTubeVideoSegmentDownloader/
