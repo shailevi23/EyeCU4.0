@@ -8,90 +8,87 @@ import numpy as np
 import supervision as sv
 import os
 from pathlib import Path
-import time
 import pickle
-from typing import List, Dict, Tuple, Optional, Any
 import pandas as pd
-from collections import defaultdict
 
 # Import from local modules
-from trackers.roboflow_detector import RoboflowDetector
-from trackers.video_utils import read_video, save_video
-from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, measure_distance, measure_xy_distance, get_foot_position
+from trackers.detector import CLASS_IDS, create_detector
+from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, get_foot_position
+
+# tracks[] key for each detector class. Goalkeepers are kept separate from
+# players so team assignment can exclude them (their kit deliberately differs
+# from their own team's) -- see TODO.md section 5.
+TRACK_KEY = {
+    'player': 'players',
+    'goalkeeper': 'goalkeepers',
+    'referee': 'referees',
+    'ball': 'ball',
+}
+TRACK_KEYS = list(TRACK_KEY.values())
+CLASS_ID_TO_KEY = {CLASS_IDS[name]: key for name, key in TRACK_KEY.items()}
+
 
 class FootballTracker:
     """
     Comprehensive football video analysis tracker based on ByteTrack
-    Handles player tracking, ball tracking, and referee tracking
+    Tracks players, goalkeepers, referees and the ball as distinct classes
     """
-    
-    def __init__(self, model_path='yolov8s.pt', 
-                use_roboflow=True, 
+
+    def __init__(self, model_path='yolov8s.pt',
+                use_roboflow=False,
                 api_key=None,
                 persist_cache=True,
-                cache_dir='tracker_cache'):
+                cache_dir='tracker_cache',
+                confidence=0.25,
+                imgsz=960,
+                max_ball_gap=15):
         """
         Initialize the football tracker
-        
+
         Args:
-            model_path: Path to YOLO model
-            use_roboflow: Whether to use Roboflow API
-            api_key: Roboflow API key
+            model_path: Path to the local YOLO model (the production detector)
+            use_roboflow: Opt in to the hosted Roboflow detector (labelling/benchmark only)
+            api_key: Roboflow API key; falls back to ROBOFLOW_API_KEY
             persist_cache: Whether to save cache to disk
             cache_dir: Directory for cache files
+            confidence: Detection confidence threshold
+            imgsz: Inference image size for the local detector
+            max_ball_gap: How many consecutive frames the last known ball box may
+                be held for while the ball is undetected. After that the ball is
+                reported as unknown rather than frozen in place.
         """
         self.model_path = model_path
+        self.max_ball_gap = max_ball_gap
         self.use_roboflow = use_roboflow
         self.api_key = api_key
         self.persist_cache = persist_cache
         self.cache_dir = Path(cache_dir)
-        
+
         if persist_cache:
             os.makedirs(self.cache_dir, exist_ok=True)
-        
-        # Initialize the detector
-        try:
-            print(f"Initializing detector with api_key={'present' if api_key else 'None'}, use_roboflow={use_roboflow}")
-            
-            # Don't try to use Roboflow if API key is not provided
-            use_local = True
-            if not api_key:
-                use_roboflow = False
-                print("No API key provided, falling back to local model only")
-            
-            self.detector = RoboflowDetector(
-                api_key=api_key,
-                model_id="football-players-detection/1", 
-                confidence=0.25,  # Lower confidence threshold to detect more objects
-                use_local=True,   # Always enable local model as fallback
-                local_model=model_path
-            )
-        except Exception as e:
-            print(f"Error initializing detector: {e}")
-            print("Falling back to local YOLO model only")
-            
-            # Retry with local model only
-            try:
-                self.detector = RoboflowDetector(
-                    api_key=None,
-                    confidence=0.25,
-                    use_local=True,
-                    local_model=model_path
-                )
-            except Exception as e2:
-                print(f"Critical error initializing detector: {e2}")
-                raise
-        
+
+        self.detector = create_detector(
+            model_path=model_path,
+            use_roboflow=use_roboflow,
+            api_key=api_key,
+            confidence=confidence,
+            imgsz=imgsz,
+        )
+
         # Initialize tracker using supervision
         self.tracker = sv.ByteTrack()
-        
+
+        # Populated by get_object_tracks(); read by the pipeline's final report.
+        self.tracks = None
+
         # Color map for visualization
         self.colors = {
-            'player': (0, 255, 0),  # Green
-            'ball': (0, 0, 255),    # Red
-            'referee': (255, 255, 0),  # Yellow
-            'team1': (255, 50, 50),    # Light red
-            'team2': (50, 50, 255)     # Light blue
+            'player': (0, 255, 0),      # Green
+            'goalkeeper': (0, 165, 255),  # Orange
+            'ball': (0, 0, 255),        # Red
+            'referee': (255, 255, 0),   # Yellow
+            'team1': (255, 50, 50),     # Light red
+            'team2': (50, 50, 255)      # Light blue
         }
         
     def add_position_to_tracks(self, tracks):
@@ -196,106 +193,90 @@ class FootballTracker:
         if read_from_cache and cache_path and os.path.exists(cache_path):
             print(f"Loading tracks from cache: {cache_path}")
             with open(cache_path, 'rb') as f:
-                return pickle.load(f)
+                self.tracks = pickle.load(f)
+            return self.tracks
         
-        # Initialize tracks structure
-        tracks = {
-            "players": [],
-            "referees": [],
-            "ball": []
-        }
-        
+        # Initialize tracks structure -- one list per detector class
+        tracks = {key: [] for key in TRACK_KEYS}
+
         # Get detections for all frames
         detections_list = self.detect_objects_in_frames(frames)
-        
+
+        frames_since_ball = 0
+
         # Process each frame
         for frame_idx, frame_detections in enumerate(detections_list):
             # Prepare detection objects for supervision ByteTrack
             boxes = []
             class_ids = []
             confidences = []
-            
+
             for det in frame_detections:
-                bbox = det['bbox']
-                class_name = det.get('class', 'unknown')
-                conf = det.get('confidence', 0.5)
-                
-                # Convert class name to ID
-                if class_name == 'player':
-                    class_id = 0
-                elif class_name == 'referee':
-                    class_id = 1
-                elif class_name == 'ball':
-                    class_id = 2
-                else:
-                    class_id = 3  # Other objects
-                
-                boxes.append(bbox)
-                class_ids.append(class_id)
-                confidences.append(conf)
-            
-            # Create Detections object for ByteTrack
+                class_name = det.get('class')
+                if class_name not in CLASS_IDS:
+                    continue  # detector already normalised; anything else is noise
+                boxes.append(det['bbox'])
+                class_ids.append(CLASS_IDS[class_name])
+                confidences.append(det.get('confidence', 0.5))
+
+            # Start this frame's slot for every class
+            for key in TRACK_KEYS:
+                tracks[key].append({})
+
             if boxes:
-                boxes = np.array(boxes)
-                class_ids = np.array(class_ids)
-                confidences = np.array(confidences)
-                
                 detections = sv.Detections(
-                    xyxy=boxes,
-                    class_id=class_ids,
-                    confidence=confidences
+                    xyxy=np.array(boxes),
+                    class_id=np.array(class_ids),
+                    confidence=np.array(confidences)
                 )
-                
+
                 # Update tracker
                 tracked_detections = self.tracker.update_with_detections(detections)
-                
-                # Initialize frame tracks
-                tracks["players"].append({})
-                tracks["referees"].append({})
-                tracks["ball"].append({})
-                
-                # Process tracked detections
-                if len(tracked_detections) > 0:
-                    for i in range(len(tracked_detections.xyxy)):
-                        bbox = tracked_detections.xyxy[i].tolist()
-                        class_id = tracked_detections.class_id[i]
-                        confidence = tracked_detections.confidence[i]
-                        track_id = tracked_detections.tracker_id[i]
-                        
-                        if class_id == 0:  # Player
-                            tracks["players"][frame_idx][track_id] = {"bbox": bbox, "confidence": confidence}
-                        elif class_id == 1:  # Referee
-                            tracks["referees"][frame_idx][track_id] = {"bbox": bbox, "confidence": confidence}
-                        elif class_id == 2:  # Ball
-                            tracks["ball"][frame_idx][track_id] = {"bbox": bbox, "confidence": confidence}
-            else:
-                # Empty frame
-                tracks["players"].append({})
-                tracks["referees"].append({})
-                tracks["ball"].append({})
-                
-            # Process untracked ball (common in ByteTrack since ball moves erratically)
+
+                for i in range(len(tracked_detections.xyxy)):
+                    key = CLASS_ID_TO_KEY.get(int(tracked_detections.class_id[i]))
+                    if key is None:
+                        continue
+                    track_id = int(tracked_detections.tracker_id[i])
+                    tracks[key][frame_idx][track_id] = {
+                        "bbox": tracked_detections.xyxy[i].tolist(),
+                        "confidence": float(tracked_detections.confidence[i]),
+                    }
+
+            # The ball moves erratically and ByteTrack often drops it, so take the
+            # raw detection directly. ID 1 keeps it stable for downstream code.
             ball_found = False
             for det in frame_detections:
                 if det.get('class') == 'ball':
-                    bbox = det['bbox']
-                    conf = det.get('confidence', 0.5)
-                    # Use ID 1 for consistency
-                    tracks["ball"][frame_idx][1] = {"bbox": bbox, "confidence": conf}
+                    tracks["ball"][frame_idx][1] = {
+                        "bbox": det['bbox'],
+                        "confidence": det.get('confidence', 0.5),
+                    }
                     ball_found = True
                     break
-            
-            if not ball_found and frame_idx > 0:
-                # If no ball detected, copy from previous frame
-                for ball_id, ball_info in tracks["ball"][frame_idx-1].items():
-                    tracks["ball"][frame_idx][ball_id] = ball_info.copy()
-        
+
+            if ball_found:
+                frames_since_ball = 0
+            else:
+                frames_since_ball += 1
+                # Hold the last known box for a bounded number of frames only.
+                # Copying it indefinitely used to freeze a stale ball on screen
+                # for the rest of the video and corrupt possession statistics.
+                if 0 < frames_since_ball <= self.max_ball_gap and frame_idx > 0:
+                    for ball_id, ball_info in tracks["ball"][frame_idx - 1].items():
+                        held = ball_info.copy()
+                        held['held_for'] = frames_since_ball
+                        tracks["ball"][frame_idx][ball_id] = held
+                # Beyond max_ball_gap the ball is simply unknown: leave it empty.
+
         # Save to cache if requested
         if self.persist_cache and cache_path:
             print(f"Saving tracks to cache: {cache_path}")
             with open(cache_path, 'wb') as f:
                 pickle.dump(tracks, f)
-        
+
+        # Cached so generate_final_report() can write player_statistics.json.
+        self.tracks = tracks
         return tracks
     
     def draw_ellipse(self, frame, bbox, color, track_id=None):
@@ -464,18 +445,21 @@ class FootballTracker:
             
             # Add detection counts at the top
             player_count = len(tracks["players"][frame_num])
+            keeper_count = len(tracks["goalkeepers"][frame_num])
             referee_count = len(tracks["referees"][frame_num])
             ball_count = len(tracks["ball"][frame_num])
-            
+
             # Draw info bar
-            cv2.rectangle(frame, (0, 0), (400, 80), (0, 0, 0), -1)
-            cv2.putText(frame, f"Players: {player_count}", (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 
+            cv2.rectangle(frame, (0, 0), (400, 105), (0, 0, 0), -1)
+            cv2.putText(frame, f"Players: {player_count}", (10, 25), cv2.FONT_HERSHEY_SIMPLEX,
                         0.8, (0, 255, 0), 2)
-            cv2.putText(frame, f"Referees: {referee_count}", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 
+            cv2.putText(frame, f"Goalkeepers: {keeper_count}", (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                        0.8, self.colors['goalkeeper'], 2)
+            cv2.putText(frame, f"Referees: {referee_count}", (10, 75), cv2.FONT_HERSHEY_SIMPLEX,
                         0.8, (255, 255, 0), 2)
-            cv2.putText(frame, f"Ball: {ball_count}", (10, 75), cv2.FONT_HERSHEY_SIMPLEX, 
+            cv2.putText(frame, f"Ball: {ball_count}", (10, 100), cv2.FONT_HERSHEY_SIMPLEX,
                         0.8, (0, 0, 255), 2)
-            
+
             # Draw players
             player_dict = tracks["players"][frame_num]
             for track_id, player in player_dict.items():
@@ -490,6 +474,16 @@ class FootballTracker:
                 if player.get('has_ball', False):
                     frame = self.draw_triangle(frame, player["bbox"], (0, 0, 255))
             
+            # Draw goalkeepers -- kept visually distinct from outfield players
+            # because their kit deliberately differs from their own team's.
+            for track_id, keeper in tracks["goalkeepers"][frame_num].items():
+                bbox = keeper["bbox"]
+                cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])),
+                              self.colors['goalkeeper'], 2)
+                frame = self.draw_ellipse(frame, bbox, self.colors['goalkeeper'], track_id)
+                if keeper.get('has_ball', False):
+                    frame = self.draw_triangle(frame, bbox, (0, 0, 255))
+
             # Draw referees
             referee_dict = tracks["referees"][frame_num]
             for track_id, referee in referee_dict.items():
@@ -518,32 +512,3 @@ class FootballTracker:
     
     # Utility functions
     # Helper functions are now imported from bbox_utils.py
-
-
-# Example usage
-if __name__ == "__main__":
-    import sys
-    from trackers.video_utils import read_video, save_video
-    
-    # Initialize tracker
-    tracker = FootballTracker(model_path='yolov8s.pt', use_roboflow=False)
-    
-    # Load video
-    video_frames = read_video('input_video.mp4')
-    
-    # Get object tracks
-    tracks = tracker.get_object_tracks(video_frames, 
-                                     read_from_cache=True,
-                                     cache_path='tracker_cache/tracks.pkl')
-    
-    # Add position information
-    tracker.add_position_to_tracks(tracks)
-    
-    # Interpolate ball positions
-    tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
-    
-    # Draw annotations
-    output_frames = tracker.draw_annotations(video_frames, tracks)
-    
-    # Save output video
-    save_video(output_frames, 'output_video.mp4')

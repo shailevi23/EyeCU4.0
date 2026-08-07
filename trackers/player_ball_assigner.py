@@ -5,7 +5,7 @@ Determines which player has possession of the ball
 
 import numpy as np
 import math
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 
 def get_center_of_bbox(bbox):
     """
@@ -116,32 +116,3 @@ class PlayerBallAssigner:
             team_ball_control.append(team_id)
         
         return np.array(team_ball_control)
-
-# Example usage
-if __name__ == "__main__":
-    import sys
-    from trackers.video_utils import read_video
-    from trackers.football_tracker import FootballTracker
-    from trackers.team_assigner import TeamAssigner
-    
-    # Load video
-    video_frames = read_video('input_video.mp4', max_frames=100)
-    
-    # Initialize tracker
-    tracker = FootballTracker()
-    
-    # Get object tracks
-    tracks = tracker.get_object_tracks(video_frames, read_from_cache=False)
-    
-    # Assign teams
-    team_assigner = TeamAssigner()
-    team_assigner.assign_teams_to_tracks(video_frames, tracks)
-    
-    # Assign ball possession
-    ball_assigner = PlayerBallAssigner(max_distance=70)
-    team_ball_control = ball_assigner.compute_team_ball_control(tracks)
-    
-    # Print results
-    print("Team ball control:")
-    for frame_idx in range(min(20, len(team_ball_control))):
-        print(f"Frame {frame_idx}: Team {team_ball_control[frame_idx]}")

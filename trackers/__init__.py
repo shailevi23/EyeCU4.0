@@ -3,10 +3,33 @@ Football Analysis Trackers Package
 """
 
 from trackers.football_tracker import FootballTracker
-from trackers.roboflow_detector import RoboflowDetector
+from trackers.detector import (
+    CLASSES, CLASS_IDS, HUMAN_CLASSES,
+    BaseDetector, LocalDetector, RoboflowDetector, create_detector,
+)
 from trackers.team_assigner import TeamAssigner
 from trackers.camera_movement import CameraMovementEstimator
 from trackers.speed_distance import SpeedDistanceEstimator
 from trackers.player_ball_assigner import PlayerBallAssigner
 from trackers.video_utils import read_video, save_video, get_video_info
-from trackers.football_analysis import FootballAnalysis
+
+# trackers.football_analysis was a duplicate orchestrator and has been removed
+# (TODO.md section 2). full_pipeline.py is the single orchestrator.
+
+__all__ = [
+    'CLASSES',
+    'CLASS_IDS',
+    'HUMAN_CLASSES',
+    'BaseDetector',
+    'LocalDetector',
+    'RoboflowDetector',
+    'create_detector',
+    'FootballTracker',
+    'TeamAssigner',
+    'CameraMovementEstimator',
+    'SpeedDistanceEstimator',
+    'PlayerBallAssigner',
+    'read_video',
+    'save_video',
+    'get_video_info',
+]

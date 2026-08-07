@@ -3,11 +3,10 @@ Team Assignment based on Jersey Colors
 Uses KMeans clustering to assign players to teams based on jersey colors
 """
 
-import cv2
 import numpy as np
 from sklearn.cluster import KMeans
-from typing import Dict, List, Tuple, Optional
-import time
+from typing import Dict, List
+
 
 class TeamAssigner:
     """
@@ -25,29 +24,15 @@ class TeamAssigner:
         """
         self.num_teams = num_teams
         self.use_top_half = use_top_half
-        self.team_colors = {}  # Will contain team colors as RGB values
+        self.team_colors = {}  # Detected jersey colors (BGR), used only for clustering
+        # Fixed, mutually distinct colors for on-screen annotation (BGR) - the real jersey
+        # color is often low-contrast against itself (e.g. white-on-white, yellow-on-yellow),
+        # so drawing overlays never reuse it.
+        self.display_colors = {1: (255, 60, 60), 2: (60, 60, 255)}  # blue, red
         self.player_team_dict = {}  # Maps player_id to team_id
         self.kmeans = None
     
-    def get_clustering_model(self, image: np.ndarray) -> KMeans:
-        """
-        Get KMeans clustering model for an image
-        
-        Args:
-            image: Input image
-            
-        Returns:
-            Trained KMeans model
-        """
-        # Reshape the image to 2D array of pixels
-        image_2d = image.reshape(-1, 3)
-        
-        # Perform K-means with specified clusters
-        kmeans = KMeans(n_clusters=2, init="k-means++", n_init=1)
-        kmeans.fit(image_2d)
-        
-        return kmeans
-    
+
     def get_player_color(self, frame: np.ndarray, 
                         bbox: List[float]) -> np.ndarray:
         """
@@ -68,77 +53,88 @@ class TeamAssigner:
             # Return default color if crop is empty
             return np.array([128, 128, 128])
         
-        # Use top half of player for better jersey color detection
-        if self.use_top_half:
-            h = player_img.shape[0]
-            player_img = player_img[0:int(h/2), :]
+        # Sample a central chest ROI instead of clustering the whole crop: on tight
+        # bounding boxes the old corner-based background heuristic often picked the
+        # wrong cluster (arms/shorts/grass), making different jerseys average to the
+        # same color. The chest region is almost always pure jersey fabric.
+        h, w = player_img.shape[:2]
+        y_start, y_end = int(h * 0.15), int(h * 0.50)
+        x_start, x_end = int(w * 0.25), int(w * 0.75)
+        torso = player_img[y_start:y_end, x_start:x_end]
         
-        # Get clustering model
-        try:
-            kmeans = self.get_clustering_model(player_img)
-            
-            # Get cluster labels for each pixel
-            labels = kmeans.labels_
-            
-            # Reshape labels to image shape
-            h, w = player_img.shape[:2]
-            clustered_image = labels.reshape(h, w)
-            
-            # Determine which cluster represents the jersey (not background)
-            # Assume background appears in corners, jersey in middle
-            corner_clusters = [
-                clustered_image[0, 0],      # Top-left
-                clustered_image[0, -1],     # Top-right
-                clustered_image[-1, 0],     # Bottom-left
-                clustered_image[-1, -1]     # Bottom-right
-            ]
-            
-            # Most common cluster in corners is likely background
-            background_cluster = max(set(corner_clusters), key=corner_clusters.count)
-            jersey_cluster = 1 - background_cluster  # For binary clustering (2 clusters)
-            
-            # Get jersey color (centroid of jersey cluster)
-            jersey_color = kmeans.cluster_centers_[jersey_cluster]
-            
-            return jersey_color
-            
-        except Exception as e:
-            print(f"Error in color clustering: {str(e)}")
-            return np.array([128, 128, 128])  # Default gray
+        if torso.size == 0:
+            torso = player_img
+        
+        return np.median(torso.reshape(-1, 3), axis=0)
     
-    def assign_team_colors(self, frame: np.ndarray, 
-                          player_detections: Dict) -> None:
+    @staticmethod
+    def _bbox_overlap_ratio(box_a: List[float], box_b: List[float]) -> float:
+        """Fraction of box_a's own area covered by box_b - directional, so a player
+        whose box is mostly swallowed by a neighbor's box is flagged even if the
+        neighbor (larger) box isn't."""
+        ax1, ay1, ax2, ay2 = box_a
+        bx1, by1, bx2, by2 = box_b
+        ix1, iy1 = max(ax1, bx1), max(ay1, by1)
+        ix2, iy2 = min(ax2, bx2), min(ay2, by2)
+        iw, ih = max(0.0, ix2 - ix1), max(0.0, iy2 - iy1)
+        inter = iw * ih
+        area_a = max(1e-6, (ax2 - ax1) * (ay2 - ay1))
+        return inter / area_a
+    
+    def _collect_color_samples(self, frames: List[np.ndarray], tracks: Dict,
+                              frame_indices: range, skip_overlaps: bool) -> Dict[int, List[np.ndarray]]:
+        """Sample each player's chest color per frame. When skip_overlaps is True,
+        frames where a player's box is heavily covered by a neighbor's box are
+        excluded - those crops are usually contaminated with the neighbor's jersey
+        color, which corrupts both the team-color fit and any per-player average."""
+        samples: Dict[int, List[np.ndarray]] = {}
+        for frame_idx in frame_indices:
+            if frame_idx >= len(tracks['players']):
+                continue
+            frame = frames[frame_idx]
+            players = tracks['players'][frame_idx]
+            for player_id, player_data in players.items():
+                bbox = player_data.get('bbox', [0, 0, 0, 0])
+                if skip_overlaps:
+                    overlapped = any(
+                        self._bbox_overlap_ratio(bbox, other_data.get('bbox', [0, 0, 0, 0])) > 0.25
+                        for other_id, other_data in players.items() if other_id != player_id
+                    )
+                    if overlapped:
+                        continue
+                samples.setdefault(player_id, []).append(self.get_player_color(frame, bbox))
+        return samples
+    
+    def _fit_team_colors(self, player_colors: np.ndarray) -> None:
         """
-        Assign team colors based on player detections
+        Fit the team-color model on a pool of sampled player colors
         
         Args:
-            frame: Video frame
-            player_detections: Dictionary of player detections with bboxes
+            player_colors: Nx3 array of BGR player colors
         """
-        # Extract player colors
-        player_colors = []
+        # Referees/goalkeepers often get mislabeled as generic "player" detections and end
+        # up mixed into this sample pool. Officials in this footage wear a solid dark/black
+        # kit, which is much darker than either real team's (bright) jersey, so we filter
+        # out very dark samples before fitting - this is more reliable than trying to
+        # separate outliers via over-clustering, since a naive nearest-pair merge can just
+        # as easily merge the two real (both bright) team colors together and isolate the
+        # outlier as its own "team" instead.
+        brightness = player_colors.max(axis=1)
+        is_dark_outlier = brightness < 100
+        fit_colors = player_colors[~is_dark_outlier]
+        if len(fit_colors) < self.num_teams:
+            # Not enough bright samples to trust the filter - fall back to using everything
+            fit_colors = player_colors
         
-        for _, player_detection in player_detections.items():
-            bbox = player_detection.get("bbox", [0, 0, 0, 0])
-            player_color = self.get_player_color(frame, bbox)
-            player_colors.append(player_color)
-        
-        if len(player_colors) < self.num_teams:
-            print(f"Warning: Found only {len(player_colors)} players, need at least {self.num_teams} for team assignment")
-            return
-        
-        # Cluster player colors into teams
         kmeans = KMeans(n_clusters=self.num_teams, init="k-means++", n_init=10)
-        kmeans.fit(np.array(player_colors))
-        
+        kmeans.fit(fit_colors)
         self.kmeans = kmeans
         
         # Store team colors
         for i in range(self.num_teams):
-            # Convert from RGB float to BGR int for OpenCV
-            color_rgb = kmeans.cluster_centers_[i].astype(np.uint8)
-            color_bgr = (int(color_rgb[2]), int(color_rgb[1]), int(color_rgb[0]))
-            self.team_colors[i+1] = color_bgr
+            # frame/player_color are already BGR (frames are never converted to RGB), so no channel reversal needed
+            color_bgr = kmeans.cluster_centers_[i].astype(np.uint8)
+            self.team_colors[i+1] = (int(color_bgr[0]), int(color_bgr[1]), int(color_bgr[2]))
         
         print(f"Team colors assigned: {self.team_colors}")
     
@@ -190,11 +186,54 @@ class TeamAssigner:
             frames: List of video frames
             tracks: Dictionary of tracking data
         """
-        # First, determine team colors from first frame with enough players
-        for frame_idx, frame in enumerate(frames):
-            if len(tracks['players'][frame_idx]) >= self.num_teams:
-                self.assign_team_colors(frame, tracks['players'][frame_idx])
-                break
+        # Fit team colors on samples pooled across many frames (not just one). A single
+        # frame usually only has ~8-12 players, and goalkeepers (normalized to the
+        # generic 'player' class upstream) wear a third, distinctly colored kit - with
+        # so few samples their odd color can hijack a whole cluster and force both real
+        # outfield teams into the other one. Pooling many frames dilutes that outlier.
+        # Overlapping boxes (players standing next to/behind each other) are skipped
+        # since their crops mix in a neighbor's jersey color.
+        num_sample_frames = min(20, len(frames))
+        fit_samples = self._collect_color_samples(frames, tracks, range(num_sample_frames), skip_overlaps=True)
+        sample_colors = [c for colors in fit_samples.values() for c in colors]
+        if len(sample_colors) < self.num_teams * 3:
+            # Not enough non-overlapping samples to trust the filter - fall back to everything
+            fit_samples = self._collect_color_samples(frames, tracks, range(num_sample_frames), skip_overlaps=False)
+            sample_colors = [c for colors in fit_samples.values() for c in colors]
+        
+        if len(sample_colors) < self.num_teams:
+            print(f"Warning: Found only {len(sample_colors)} player color samples, need at least {self.num_teams} for team assignment")
+        else:
+            self._fit_team_colors(np.array(sample_colors))
+        
+        # Decide each player's team from the MEDIAN color across every frame they appear
+        # in, not just the first sighting. get_player_team() caches its result per
+        # player_id forever, so if it were driven frame-by-frame a single occluded/blurry
+        # first frame would permanently mislabel that track for the whole video.
+        # Overlap-contaminated frames are excluded per player, falling back to every
+        # frame only for players that are overlapped in ALL of their appearances.
+        clean_samples = self._collect_color_samples(frames, tracks, range(len(frames)), skip_overlaps=True)
+        all_samples = self._collect_color_samples(frames, tracks, range(len(frames)), skip_overlaps=False)
+        
+        for player_id, colors in all_samples.items():
+            use_colors = clean_samples.get(player_id) or colors
+            # Even non-overlapping crops can be transiently darkened by shadow, motion
+            # blur, or occlusion by something other than a tracked player (the ball,
+            # a limb, camera pan blur). Both real team jerseys here are bright, so a
+            # genuine player's dark readings are noise, not signal - prefer the bright
+            # subset when there is one. A track that's consistently dark in nearly all
+            # its samples (the referee) has no bright subset, so it falls back to using
+            # everything and correctly keeps its dark color.
+            use_colors_arr = np.array(use_colors)
+            bright_mask = use_colors_arr.max(axis=1) >= 150
+            if bright_mask.sum() >= max(3, len(use_colors_arr) * 0.3):
+                use_colors_arr = use_colors_arr[bright_mask]
+            median_color = np.median(use_colors_arr, axis=0)
+            if self.kmeans is None:
+                team_id = 1
+            else:
+                team_id = int(self.kmeans.predict(median_color.reshape(1, -1))[0]) + 1
+            self.player_team_dict[player_id] = team_id
         
         # Then, assign teams to all tracked players
         for frame_idx, frame in enumerate(frames):
@@ -203,36 +242,9 @@ class TeamAssigner:
                 continue
                 
             for player_id, player_data in tracks['players'][frame_idx].items():
-                bbox = player_data.get('bbox', [0, 0, 0, 0])
-                team_id = self.get_player_team(frame, bbox, player_id)
+                team_id = self.player_team_dict.get(player_id, 1)
                 
                 # Store team assignment and color in tracking data
                 tracks['players'][frame_idx][player_id]['team'] = team_id
-                tracks['players'][frame_idx][player_id]['team_color'] = self.team_colors.get(
+                tracks['players'][frame_idx][player_id]['team_color'] = self.display_colors.get(
                     team_id, (0, 255, 0))  # Default green if team color not found
-
-# Example usage
-if __name__ == "__main__":
-    import sys
-    from trackers.video_utils import read_video
-    from trackers.football_tracker import FootballTracker
-    
-    # Load video
-    video_frames = read_video('input_video.mp4', max_frames=100)
-    
-    # Initialize tracker
-    tracker = FootballTracker()
-    
-    # Get object tracks
-    tracks = tracker.get_object_tracks(video_frames, read_from_cache=False)
-    
-    # Assign teams
-    team_assigner = TeamAssigner(num_teams=2)
-    team_assigner.assign_teams_to_tracks(video_frames, tracks)
-    
-    # Check results
-    for frame_idx in range(min(5, len(tracks['players']))):
-        print(f"Frame {frame_idx}:")
-        for player_id, player_data in tracks['players'][frame_idx].items():
-            team = player_data.get('team', 'Unknown')
-            print(f"  Player {player_id}: Team {team}")
