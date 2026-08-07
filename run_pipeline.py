@@ -33,6 +33,7 @@ def main():
                         help="Display real-time visualization")
     parser.add_argument("--use-cache", action="store_true", 
                         help="Use cached detections/tracks if available")
+    
     parser.add_argument("--use-roboflow", action="store_true",
                         help="Opt in to the Roboflow cloud detector. Off by default: "
                              "the local YOLO model is the production path and Roboflow "
@@ -43,7 +44,7 @@ def main():
                              "environment variable; without it Roboflow is disabled "
                              "and the local YOLO model is used)")
     parser.add_argument("--yolo-model", default="yolov8x.pt",
-                        help="YOLO model path (yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt)")
+
     parser.add_argument("--imgsz", type=int, default=960,
                         help="Detector inference image size (default: 960)")
     parser.add_argument("--conf", type=float, default=0.25,
