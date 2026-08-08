@@ -99,7 +99,8 @@ def active_splits(ratios):
     return tuple(s for s, r in zip(SPLITS, ratios) if r > 0)
 
 
-def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int):
+def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int,
+                  force_train=()):
     """
     Greedy, domain-stratified, match-disjoint.
 
@@ -110,8 +111,17 @@ def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int):
     live = active_splits(ratios)
     ratio_of = dict(zip(SPLITS, ratios))
     assigned = {s: [] for s in SPLITS}
+
+    # Pinned sources bypass the split entirely. External datasets go here:
+    # validation and test must stay EyeCU footage, or the only honest
+    # measurement in the project stops measuring what it claims to.
+    forced = [m for m in match_sizes if m in set(force_train)]
+    assigned['train'].extend(forced)
+
     by_domain = defaultdict(list)
     for match_id, size in match_sizes.items():
+        if match_id in set(force_train):
+            continue
         by_domain[domains[match_id]].append(match_id)
 
     rng = random.Random(seed)
@@ -177,6 +187,10 @@ def main():
                    help=f'Match ids to leave out entirely (default: {" ".join(DEFAULT_EXCLUDE)}).')
     p.add_argument('--domains', help='JSON file mapping match_id -> domain, '
                                      'overriding the built-in heuristic.')
+    p.add_argument('--force-train', nargs='*', default=[],
+                   help='Sources pinned to train, never val/test. Use for '
+                        'external datasets. A prefix ending in * matches many, '
+                        'e.g. "rfext_*".')
     p.add_argument('--plan-only', action='store_true',
                    help='Print the split plan and exit without writing files.')
     p.add_argument('--check', action='store_true',
@@ -242,7 +256,17 @@ def main():
     if len(matches) < 3:
         sys.exit(f'Only {len(matches)} match(es); a match-disjoint split needs 3+.')
 
-    splits = assign_splits(sizes, domains, ratios, args.seed)
+    # Expand any trailing-* patterns against the sources actually present.
+    forced = set()
+    for pat in args.force_train:
+        if pat.endswith('*'):
+            forced |= {m for m in sizes if m.startswith(pat[:-1])}
+        elif pat in sizes:
+            forced.add(pat)
+    if forced:
+        print(f'pinned to train (never val/test): {len(forced)} source(s)')
+
+    splits = assign_splits(sizes, domains, ratios, args.seed, force_train=forced)
 
     # --- report --------------------------------------------------------------
     total = sum(sizes.values())
@@ -284,7 +308,8 @@ def main():
     transfer = shutil.move if args.move else shutil.copy2
 
     report = {'classes': CLASSES, 'ratios': list(ratios), 'seed': args.seed,
-              'excluded': args.exclude, 'domains': domains,
+              'excluded': args.exclude, 'forced_to_train': sorted(forced),
+              'domains': domains,
               'match_sizes': sizes, 'splits': {}}
     grand = Counter()
 
