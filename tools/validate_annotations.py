@@ -78,9 +78,21 @@ def pairs_from_mirror_layout(frames_root: Path, labels_root: Path):
                 yield None, lbl, rel.parts[0] if len(rel.parts) > 1 else 'root'
 
 
-def check_label(lbl: Path):
+def iou(a, b):
+    """IoU of two YOLO boxes given as (cx, cy, w, h)."""
+    ax1, ay1, ax2, ay2 = a[0] - a[2] / 2, a[1] - a[3] / 2, a[0] + a[2] / 2, a[1] + a[3] / 2
+    bx1, by1, bx2, by2 = b[0] - b[2] / 2, b[1] - b[3] / 2, b[0] + b[2] / 2, b[1] + b[3] / 2
+    ix, iy = max(0.0, min(ax2, bx2) - max(ax1, bx1)), max(0.0, min(ay2, by2) - max(ay1, by1))
+    inter = ix * iy
+    union = a[2] * a[3] + b[2] * b[3] - inter
+    return inter / union if union > 0 else 0.0
+
+
+def check_label(lbl: Path, dup_iou: float = 0.90):
     """Return (per-class Counter, list of error strings)."""
     counts, errors = Counter(), []
+    seen_rows = set()
+    boxes = []          # (class_id, cx, cy, w, h) for the duplicate scan
     try:
         text = lbl.read_text(encoding='utf-8')
     except OSError as e:
@@ -115,6 +127,25 @@ def check_label(lbl: Path):
         if cx - w / 2 < -1e-6 or cx + w / 2 > 1 + 1e-6 or \
            cy - h / 2 < -1e-6 or cy + h / 2 > 1 + 1e-6:
             errors.append(f'line {lineno}: box extends past the image edge')
+
+        # Two boxes on one object is the failure this project exists to fix, so
+        # it must not survive into the training data. Ultralytics silently drops
+        # exact repeats; near-duplicates it keeps, and they teach the detector
+        # that double-boxing is correct.
+        if line in seen_rows:
+            errors.append(f'line {lineno}: exact duplicate of an earlier box')
+        seen_rows.add(line)
+        boxes.append((cid, cx, cy, w, h))
+
+    for i in range(len(boxes)):
+        for j in range(i + 1, len(boxes)):
+            if boxes[i][0] != boxes[j][0]:
+                continue                      # different classes may overlap
+            overlap = iou(boxes[i][1:], boxes[j][1:])
+            if overlap >= dup_iou:
+                errors.append(
+                    f'near-duplicate {CLASSES[boxes[i][0]]} boxes '
+                    f'(IoU {overlap:.2f}) at #{i + 1} and #{j + 1}')
     return counts, errors
 
 
