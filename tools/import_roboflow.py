@@ -63,14 +63,93 @@ def check_classes(root: Path, problems: list):
             elif line.startswith('- '):                        # "- player"
                 found.append(line[2:].strip().strip('\'"'))
         if found:
-            if [c.lower() for c in found] != CLASSES:
-                problems.append(
-                    f'CLASS ORDER MISMATCH in {yaml_path.name}: export has '
-                    f'{found}, project requires {CLASSES}. Importing would '
-                    f'relabel every box.')
-            return found
+            return [c.lower() for c in found]
     problems.append('No data.yaml with a names list found; class order unverified.')
     return None
+
+
+def build_remap(exported: list, problems: list):
+    """
+    Map exported class ids onto this project's ids, matching by NAME.
+
+    Roboflow alphabetises class names on export, so the ids almost never line
+    up with ours. Remapping by name is correct and safe; trusting the ids is
+    what would silently turn every player into a referee.
+
+    Returns {exported_id: project_id}, or None if the names cannot be matched.
+    """
+    if exported is None:
+        return None
+    if exported == CLASSES:
+        return {i: i for i in range(len(CLASSES))}
+
+    unknown = [n for n in exported if n not in CLASSES]
+    if unknown:
+        problems.append(
+            f'UNKNOWN CLASSES in export: {unknown}. Expected exactly {CLASSES}. '
+            f'A class was renamed or added in the annotation tool.')
+        return None
+    missing = [n for n in CLASSES if n not in exported]
+    if missing:
+        problems.append(
+            f'Export is missing class(es) {missing}; ids for the rest will still '
+            f'be remapped by name.')
+    return {i: CLASSES.index(name) for i, name in enumerate(exported)}
+
+
+def polygon_to_box(coords: list) -> tuple:
+    """
+    Segmentation polygon -> YOLO detection box.
+
+    Roboflow's Smart Polygon tool emits `class x1 y1 x2 y2 ...` instead of
+    `class cx cy w h`. Ultralytics detection training rejects those lines, so
+    the enclosing axis-aligned box is taken. Lossless for detection: the box is
+    exactly what a detector would have been asked to predict anyway.
+    """
+    xs, ys = coords[0::2], coords[1::2]
+    x1, x2 = max(0.0, min(xs)), min(1.0, max(xs))
+    y1, y2 = max(0.0, min(ys)), min(1.0, max(ys))
+    w, h = x2 - x1, y2 - y1
+    if w <= 0 or h <= 0:
+        return None
+    return (x1 + w / 2, y1 + h / 2, w, h)
+
+
+def remap_label_text(text: str, remap: dict, stats: Counter) -> str:
+    out = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split()
+        try:
+            old = int(float(parts[0]))
+            values = [float(v) for v in parts[1:]]
+        except ValueError:
+            stats['dropped_malformed'] += 1
+            continue
+
+        new = remap.get(old)
+        if new is None:
+            stats['dropped_unknown_id'] += 1
+            continue
+
+        if len(values) == 4:
+            cx, cy, w, h = values
+        elif len(values) >= 6 and len(values) % 2 == 0:
+            box = polygon_to_box(values)
+            if box is None:
+                stats['dropped_degenerate_polygon'] += 1
+                continue
+            cx, cy, w, h = box
+            stats['polygons_converted'] += 1
+        else:
+            stats['dropped_malformed'] += 1
+            continue
+
+        stats[CLASSES[new]] += 1
+        out.append(f'{new} {cx:.6f} {cy:.6f} {w:.6f} {h:.6f}')
+    return '\n'.join(out) + ('\n' if out else '')
 
 
 def recover_stem(name: str, known_sources: set) -> tuple[str | None, str | None]:
@@ -122,10 +201,13 @@ def main():
     root, tmp = unpack(export)
     problems = []
     exported_classes = check_classes(root, problems)
+    remap = build_remap(exported_classes, problems)
 
     # Collect every label in the export, whatever split folder it sits in.
+    # Exports ship documentation and class-name files as .txt too.
+    NON_LABEL = {'classes.txt', 'obj.names', 'obj.data'}
     labels = [p for p in root.rglob('*.txt')
-              if p.name not in ('classes.txt', 'obj.names', 'README.txt')]
+              if p.name not in NON_LABEL and not p.name.lower().startswith('readme')]
     images = [p for p in root.rglob('*') if p.suffix.lower() in IMG_EXTS]
     by_stem_img = {}
     for img in images:
@@ -148,7 +230,16 @@ def main():
     total = sum(len(v) for v in mapped.values())
     print(f'export: {export}')
     if exported_classes:
-        print(f'classes in export: {exported_classes}')
+        print(f'classes in export : {exported_classes}')
+        print(f'classes in project: {CLASSES}')
+        if remap and any(k != v for k, v in remap.items()):
+            print('CLASS ID REMAP (by name):')
+            for old, new in sorted(remap.items()):
+                arrow = '  (unchanged)' if old == new else ''
+                print(f'  {old} {exported_classes[old]:<11} -> {new} '
+                      f'{CLASSES[new]}{arrow}')
+        elif remap:
+            print('class ids already match; no remap needed')
     print(f'label files found : {len(labels)}')
     print(f'  mapped to a source: {total}')
     print(f'  unmapped          : {len(unmapped)}')
@@ -192,8 +283,9 @@ def main():
             tmp.cleanup()
         return
 
-    if any('CLASS ORDER MISMATCH' in p for p in problems):
-        sys.exit('\nRefusing to import: fix the class order in Roboflow first.')
+    if remap is None:
+        sys.exit('\nRefusing to import: class names could not be matched, so box '
+                 'classes cannot be trusted.')
 
     labels_root = Path(args.labels)
     if args.backup and labels_root.exists():
@@ -205,14 +297,28 @@ def main():
         print(f'\nbacked up existing labels -> {dest}')
 
     written = 0
+    stats = Counter()
     for src, items in mapped.items():
         out_dir = labels_root / src
         out_dir.mkdir(parents=True, exist_ok=True)
         for stem, lbl in items:
-            shutil.copy2(lbl, out_dir / f'{stem}.txt')
+            text = lbl.read_text(encoding='utf-8', errors='replace')
+            (out_dir / f'{stem}.txt').write_text(
+                remap_label_text(text, remap, stats), encoding='utf-8')
             written += 1
 
     print(f'\nimported {written} label file(s) -> {labels_root}')
+    print('instances by class after remap:')
+    for c in CLASSES:
+        print(f'  {c:<11}{stats.get(c, 0):>7}')
+    if stats.get('polygons_converted'):
+        print(f'  converted {stats["polygons_converted"]} segmentation '
+              f'polygon(s) to bounding boxes')
+    for key, label in (('dropped_unknown_id', 'unmappable class id'),
+                       ('dropped_malformed', 'malformed line'),
+                       ('dropped_degenerate_polygon', 'zero-area polygon')):
+        if stats.get(key):
+            print(f'  ! dropped {stats[key]} annotation(s): {label}')
     print('\nNext:')
     print('  python tools/validate_annotations.py --strict')
     print('  python tools/build_dataset.py --plan-only')
