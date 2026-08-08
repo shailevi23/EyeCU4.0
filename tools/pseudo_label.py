@@ -315,7 +315,7 @@ def main():
         meta_path.parent.mkdir(parents=True, exist_ok=True)
         meta_path.write_text(json.dumps({
             'image': rel,
-            'source': rel.split('/')[0],
+            'source': rel.split('/', encoding='utf-8')[0],
             'model_id': args.model_id,
             'confidence_threshold': args.confidence,
             'overlap': args.overlap,

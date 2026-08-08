@@ -80,13 +80,23 @@ def read_counts(label_path: Path) -> Counter:
     counts = Counter()
     if label_path is None or not label_path.exists():
         return counts
-    for line in label_path.read_text().splitlines():
+    for line in label_path.read_text(encoding='utf-8').splitlines():
         line = line.strip()
         if not line:
             continue
         cid = int(float(line.split()[0]))
         counts[CLASSES[cid] if 0 <= cid < len(CLASSES) else f'INVALID_{cid}'] += 1
     return counts
+
+
+def active_splits(ratios):
+    """
+    Splits with a non-zero share.
+
+    A ratio of 0 is meaningful: before val/test are labelled, a first baseline
+    needs train+val only, with test left out entirely rather than created empty.
+    """
+    return tuple(s for s, r in zip(SPLITS, ratios) if r > 0)
 
 
 def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int):
@@ -97,6 +107,8 @@ def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int):
     split gets a mix. Within a domain the largest match goes to whichever split
     is furthest below its quota.
     """
+    live = active_splits(ratios)
+    ratio_of = dict(zip(SPLITS, ratios))
     assigned = {s: [] for s in SPLITS}
     by_domain = defaultdict(list)
     for match_id, size in match_sizes.items():
@@ -109,13 +121,13 @@ def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int):
         members.sort(key=lambda m: -match_sizes[m])
 
         total = sum(match_sizes[m] for m in members)
-        target = dict(zip(SPLITS, (total * r for r in ratios)))
-        current = {s: 0 for s in SPLITS}
+        target = {s: total * ratio_of[s] for s in live}
+        current = {s: 0 for s in live}
 
         for match_id in members:
             # Only consider splits that can still be reached; with few matches
             # per domain this keeps val/test from being starved entirely.
-            split = max(SPLITS, key=lambda s: target[s] - current[s])
+            split = max(live, key=lambda s: target[s] - current[s])
             assigned[split].append(match_id)
             current[split] += match_sizes[match_id]
 
@@ -129,7 +141,8 @@ def check_leakage(dataset_root: Path) -> list:
     for split in SPLITS:
         img_dir = dataset_root / 'images' / split
         if not img_dir.is_dir():
-            problems.append(f'MISSING SPLIT DIRECTORY: {img_dir}')
+            # A split can be legitimately absent (ratio 0), e.g. no test set
+            # until the held-out matches are labelled.
             continue
         for img in img_dir.iterdir():
             if img.suffix.lower() not in IMG_EXTS:
@@ -172,7 +185,8 @@ def main():
     p.add_argument('--move', action='store_true', help='Move instead of copy.')
     p.add_argument('--zip', action='store_true', help='Also write football_dataset.zip.')
     p.add_argument('--allow-unlabelled', action='store_true',
-                   help='Skip unlabelled frames instead of aborting.')
+                   help='Skip unlabelled frames instead of aborting. Useful for '
+                        'a first baseline while only part of the pool is labelled.')
     args = p.parse_args()
 
     out_root = Path(args.out)
@@ -200,7 +214,12 @@ def main():
     if len(ratios) != 3 or abs(sum(ratios) - 1.0) > 1e-6:
         sys.exit('--ratios must be three fractions summing to 1.0')
 
-    require_labels = not (args.plan_only or args.allow_unlabelled)
+    # A frame with no label file is never written to the dataset: Ultralytics
+    # would read it as a background image with zero objects, silently teaching
+    # the model that real players are not there. --allow-unlabelled only
+    # suppresses the abort; it never lets an unlabelled frame through.
+    # --plan-only keeps them so the plan can show the whole pool.
+    require_labels = not args.plan_only
     matches, unlabelled = collect(frames_root, labels_root, require_labels)
 
     for match_id in args.exclude:
@@ -217,7 +236,7 @@ def main():
 
     domains = {m: infer_domain(m) for m in matches}
     if args.domains:
-        domains.update(json.loads(Path(args.domains).read_text()))
+        domains.update(json.loads(Path(args.domains).read_text(encoding='utf-8')))
 
     sizes = {m: len(v) for m, v in matches.items()}
     if len(matches) < 3:
@@ -234,7 +253,7 @@ def main():
         for m in ids:
             domain_matrix[split][domains[m]] += sizes[m]
 
-    for split in SPLITS:
+    for split in active_splits(ratios):
         n = sum(sizes[m] for m in splits[split])
         print(f'{split:<6} {n:>5} frames ({n / total:>5.1%})  '
               f'{len(splits[split])} matches')
@@ -245,7 +264,7 @@ def main():
 
     missing_domains = {
         s: sorted(set(domains.values()) - set(domain_matrix[s]))
-        for s in SPLITS
+        for s in active_splits(ratios)
     }
     for split, missing in missing_domains.items():
         if missing:
@@ -269,7 +288,7 @@ def main():
               'match_sizes': sizes, 'splits': {}}
     grand = Counter()
 
-    for split in SPLITS:
+    for split in active_splits(ratios):
         img_dir = out_root / 'images' / split
         lbl_dir = out_root / 'labels' / split
         img_dir.mkdir(parents=True, exist_ok=True)
@@ -305,12 +324,12 @@ def main():
         '# Split by match and stratified by domain -- no match appears in\n'
         '# more than one split.\n'
         f'path: {out_root.resolve().as_posix()}\n'
-        'train: images/train\n'
-        'val: images/val\n'
-        'test: images/test\n\n'
-        'names:\n' + ''.join(f'  {i}: {c}\n' for i, c in enumerate(CLASSES))
+        + ''.join(f'{s}: images/{s}\n' for s in active_splits(ratios)) + '\n'
+        + 'names:\n' + ''.join(f'  {i}: {c}\n' for i, c in enumerate(CLASSES)),
+        encoding='utf-8'
     )
-    (out_root / 'split_report.json').write_text(json.dumps(report, indent=2))
+    (out_root / 'split_report.json').write_text(
+        json.dumps(report, indent=2), encoding='utf-8')
 
     problems = check_leakage(out_root)
     if problems:
@@ -323,7 +342,7 @@ def main():
     print(f'\n  totals: ' + '  '.join(f'{c}={report["totals"][c]}' for c in CLASSES))
     print(f'  config: {yaml_path}')
 
-    for split in ('val', 'test'):
+    for split in [s for s in ('val', 'test') if s in active_splits(ratios)]:
         for c in CLASSES:
             if report['splits'][split]['instances'][c] == 0:
                 print(f'! {split} has no `{c}` instances -- '

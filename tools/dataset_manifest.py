@@ -209,7 +209,7 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
         'total_frames': total,
-        'sources': len(per_source),
+        'sources': len(per_source, encoding='utf-8'),
         'frames_per_source': dict(sorted(per_source.items())),
         'problems': problems,
         'images': rows,
