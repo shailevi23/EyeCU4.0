@@ -65,13 +65,31 @@ Watch for: goalkeepers are nearly all missing (37 drafted across 208 frames,
 `women_1` has zero); 15 empty files are close-ups needing labelling from
 scratch; referees badly under-drafted.
 
-**Why first:** goalkeeper val instances go 33 → ~200. Only then can any model
-comparison mean anything.
+**Why first:** goalkeeper val instances go 33 → an estimated **80–150**.
+(Batch 01 correction took goalkeepers 64 → 144, a factor of 2.25; batch 02
+drafts 37, so ~85 from correction alone, plus every keeper the drafter missed
+entirely — `women_1` has zero drafted across 40 frames, so all of those are
+manual additions. An earlier estimate of ~200 in this file was optimistic.)
 
-### 2. Retrain on the merged dataset
+Even 150 leaves a wide confidence interval. It is enough to rank models
+sensibly; it is not enough to call a 2-point difference meaningful.
 
-- [ ] Rebuild and upload `data/football_dataset.zip` (90 MB, includes the
-      external merge)
+### 2. Rebuild the split, then retrain
+
+⚠️ **The current 85-image val is temporary.** It is carved out of *train*
+sources (`chelsea_v_leeds_united`, `chelsea_v_leicester_city`, `youth_4`,
+`youth_7`) because the real val matches had no labels yet. Once batch 02 is
+imported, the split must change shape: those four matches return to train, and
+the four frozen val matches become val.
+
+**Known gap:** `build_dataset.py` has `--force-train` but no `--force-val`, so
+there is currently no way to pin the four frozen matches into val. This must be
+added at import time — it is a mirror of the existing `--force-train` logic.
+
+- [ ] Add `--force-val` to `build_dataset.py` (small, mirrors `--force-train`)
+- [ ] Rebuild with the real split and re-verify leakage
+- [ ] Re-upload `data/football_dataset.zip` — the current 90 MB file is built
+      against the **temporary** val and must not be reused
 - [ ] Re-run Experiment A: `train('A_yolo26s_960', 'yolo26s.pt', imgsz=960, epochs=80)`
 - [ ] Record per-class precision/recall and FPS
 
