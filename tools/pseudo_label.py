@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 """
-Generate DRAFT YOLO labels with the hosted Roboflow football detector.
+Generate DRAFT YOLO labels for frames that have none.
+
+Two backends:
+  local     (default) a fine-tuned model on disk. Once one exists it is
+            strictly better: it knows this footage, emits all four classes,
+            needs no API key and costs nothing per frame. Use the newest
+            checkpoint each active-learning round.
+  roboflow  the hosted model, for bootstrapping before a local one exists.
 
 These are drafts, not truth. Every draft must be reviewed by a human before it
 trains anything -- see LABELING.md.
@@ -85,6 +92,63 @@ def to_yolo(cls_name, cx, cy, w, h, img_w, img_h):
     return (f'{CLASS_ID[cls_name]} {ncx:.6f} {ncy:.6f} {nw:.6f} {nh:.6f}',
             {'class': cls_name, 'cx': round(ncx, 6), 'cy': round(ncy, 6),
              'w': round(nw, 6), 'h': round(nh, 6)})
+
+
+class LocalBackend:
+    """
+    A fine-tuned local model as the drafting teacher.
+
+    Once a model has been trained on this project's own footage it drafts far
+    better than a generic hosted one -- and unlike Roboflow it produces
+    goalkeeper and referee, needs no API key, and costs nothing per frame.
+    Each active-learning round should use the newest checkpoint.
+    """
+
+    def __init__(self, model_path, confidence, overlap, imgsz=960, device=None):
+        from ultralytics import YOLO
+
+        self.model_path = model_path
+        self.model = YOLO(model_path)
+        self.confidence = confidence
+        self.iou = overlap
+        self.imgsz = imgsz
+        self.device = device
+
+        names = {i: str(n).lower() for i, n in self.model.names.items()}
+        # A model trained on this project emits exactly CLASSES in this order.
+        # Anything else gets mapped by name so ids can never silently shift.
+        self._map = {i: (n if n in CLASS_ID else norm_class(n))
+                     for i, n in names.items()}
+        self._map = {i: n for i, n in self._map.items() if n}
+        if not self._map:
+            sys.exit(f'{model_path} has no classes matching {CLASSES}. '
+                     f'Model reports: {list(names.values())[:10]}')
+        missing = [c for c in CLASSES if c not in set(self._map.values())]
+        if missing:
+            print(f'  note: {model_path} cannot produce {missing}; '
+                  f'those must be drawn by hand.')
+
+    def predict(self, image_path: Path):
+        """Returns a list of (class, cx, cy, w, h, conf) or None on failure."""
+        kwargs = dict(conf=self.confidence, iou=self.iou,
+                      imgsz=self.imgsz, verbose=False)
+        if self.device:
+            kwargs['device'] = self.device
+        try:
+            result = self.model.predict(str(image_path), **kwargs)[0]
+        except Exception as e:
+            print(f'  ! failed on {image_path.name}: {e}')
+            return None
+
+        out = []
+        for box in result.boxes:
+            name = self._map.get(int(box.cls))
+            if not name:
+                continue
+            x1, y1, x2, y2 = box.xyxy[0].tolist()
+            out.append((name, (x1 + x2) / 2, (y1 + y2) / 2,
+                        x2 - x1, y2 - y1, float(box.conf)))
+        return out
 
 
 class RoboflowBackend:
@@ -229,7 +293,16 @@ def main():
                    help='Minimum detection confidence (default 0.30).')
     p.add_argument('--overlap', type=float, default=0.50,
                    help='NMS IoU threshold (default 0.50).')
-    p.add_argument('--model-id', default=DEFAULT_MODEL_ID)
+    p.add_argument('--backend', choices=['local', 'roboflow'], default='local',
+                   help='local = a fine-tuned model on disk (default, free, '
+                        'produces all four classes). roboflow = the hosted '
+                        'model, for bootstrapping before one exists.')
+    p.add_argument('--model', default='eyecu_football_v1.pt',
+                   help='Local backend weights.')
+    p.add_argument('--imgsz', type=int, default=960,
+                   help='Local backend inference size; match how it was trained.')
+    p.add_argument('--model-id', default=DEFAULT_MODEL_ID,
+                   help='Roboflow backend model id.')
     p.add_argument('--dry-run', action='store_true',
                    help='Show what would be labelled; no API calls, no writes.')
     p.add_argument('--refresh-drafts', action='store_true',
@@ -277,8 +350,13 @@ def main():
         print('\nNothing to do.')
         return
 
-    backend = RoboflowBackend(args.model_id, args.confidence, args.overlap)
-    print(f'\nBackend: roboflow ({args.model_id}) conf>={args.confidence}\n')
+    if args.backend == 'local':
+        backend = LocalBackend(args.model, args.confidence, args.overlap, args.imgsz)
+        source = f'local {args.model} @ {args.imgsz}px'
+    else:
+        backend = RoboflowBackend(args.model_id, args.confidence, args.overlap)
+        source = f'roboflow {args.model_id}'
+    print(f'\nBackend: {source}  conf>={args.confidence}\n')
 
     counts, per_source = Counter(), Counter()
     written = failed = 0
@@ -315,8 +393,9 @@ def main():
         meta_path.parent.mkdir(parents=True, exist_ok=True)
         meta_path.write_text(json.dumps({
             'image': rel,
-            'source': rel.split('/', encoding='utf-8')[0],
-            'model_id': args.model_id,
+            'source': rel.split('/')[0],
+            'backend': args.backend,
+            'model_id': args.model if args.backend == 'local' else args.model_id,
             'confidence_threshold': args.confidence,
             'overlap': args.overlap,
             'created_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
@@ -332,7 +411,8 @@ def main():
             print(f'  {i}/{len(todo)}  (written {written}, failed {failed})')
 
     summary = {
-        'model_id': args.model_id,
+        'backend': args.backend,
+        'model_id': args.model if args.backend == 'local' else args.model_id,
         'confidence_threshold': args.confidence,
         'generated_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         'frames_written': written,
@@ -357,7 +437,7 @@ def main():
 
     for rare in ('goalkeeper', 'referee', 'ball'):
         if counts.get(rare, 0) == 0:
-            print(f'! the model produced no `{rare}` at all -- check the model id '
+            print(f'! the model produced no `{rare}` at all -- check the model '
                   f'covers all four classes.')
 
     print('\nNEXT: these are DRAFTS. Review every goalkeeper / referee / ball box '

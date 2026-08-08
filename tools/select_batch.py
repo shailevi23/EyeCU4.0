@@ -236,7 +236,7 @@ def main():
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
-        'created_from': str(frames_root, encoding='utf-8'),
+        'created_from': str(frames_root),
         'target_size': args.size,
         'seed': args.seed,
         'split_ratios': list(ratios),
