@@ -22,3 +22,6 @@ data/pseudo_meta/
 !data/temporal_val/manifest.json
 !data/temporal_val/ANNOTATION.md
 !data/temporal_val/SPLIT
+!data/derived_train/
+!data/derived_train/manifest.json
+!data/derived_train/SPLIT

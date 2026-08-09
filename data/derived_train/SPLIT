@@ -1,0 +1,3 @@
+TRAIN_ONLY
+
+Derived views of TRAIN images. Never add to val or test.
