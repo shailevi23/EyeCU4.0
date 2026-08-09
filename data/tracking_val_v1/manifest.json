@@ -164,7 +164,7 @@
   ],
   "version": "1.1",
   "detector_source_commit": "d968e680e17b996dc600ae6049030c86ac05ec3c",
-  "freeze_tool_commit": "fd45d5d29a3721d2dd4de726955b2633f5ca9ed0",
+  "freeze_tool_commit": "0f48ca7a6a9bbaf24a19c08e9e71f7bc82068bfa",
   "accepted_human_threshold": 0.25,
   "candidate_human_floor": 0.01,
   "views": {
@@ -173,5 +173,8 @@
     "relationship": "accepted is exactly the >= 0.25 subset of candidate, verified frame by frame on all 1200 frames"
   },
   "evidence_floor_note": "Modern ByteTrackTracker could theoretically consume detections below 0.01; EyeCU-Tracking-Val-v1 defines 0.01 as its frozen detector evidence floor. 0.01 is not claimed to be algorithmically optimal.",
-  "max_det_mechanism": "YOLO26 is end-to-end (no NMS). trackers head applies a hard top-k: get_topk_index(scores, self.max_det) with max_det=300, across all four classes before confidence filtering."
+  "max_det_mechanism": "YOLO26 is end-to-end (no NMS). The Ultralytics Detect head applies a hard top-k -- get_topk_index(scores, self.max_det) with max_det=300 -- across all four classes before confidence filtering. Measured on all 1,200 frames: maximum 78 raw boxes, no frame at or within 90% of the cap.",
+  "freeze_tool_sha256": "3bf0627284bcf8b62b12953a65400fdecee2cbc60b2bf234e87fe83d7822f505",
+  "freeze_tool_provenance_note": "Corrected after generation. The freezer recorded git HEAD at run time, but its own candidate branch was still uncommitted, so it named fd45d5d29a37 -- a commit whose tool has no freeze_candidates() and could not have produced these artifacts. The tool that ran is the one at 0f48ca7a6a9b; freeze_tool_sha256 is the line-ending-normalised content hash of that tool and is immune to commit timing. Detections were NOT regenerated.",
+  "evidence_completeness": "The frozen detector evidence is complete relative to the declared candidate_human_floor = 0.01, with no max_det/top-k truncation observed."
 }

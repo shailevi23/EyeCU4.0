@@ -140,8 +140,19 @@ def freeze_candidates(args, out, det_dir):
     man = json.loads(mpath.read_text(encoding='utf-8'))
     cand_dir = out / 'candidates'
 
+    # Record the tool's own content hash, not just git HEAD. HEAD names the last
+    # commit, which is wrong whenever the tool itself is still uncommitted -- a
+    # defect this manifest hit once already. The content hash cannot drift from
+    # the code that actually ran.
     freeze_tool_commit = subprocess.run(['git', 'rev-parse', 'HEAD'],
                                         capture_output=True, text=True).stdout.strip()
+    freeze_tool_sha256 = hashlib.sha256(
+        Path(__file__).read_text(encoding='utf-8').encode('utf-8')).hexdigest()
+    dirty = subprocess.run(['git', 'status', '--porcelain', '--', __file__],
+                           capture_output=True, text=True).stdout.strip()
+    if dirty:
+        print('WARNING: this tool has uncommitted changes; freeze_tool_commit will '
+              'name the previous commit. freeze_tool_sha256 records what actually ran.')
     print(f'{"window":<30}{"cand":>8}{"acc":>7}{"maxRaw":>8}{"@cap":>6}{"90%cap":>8}'
           f'{"mismatch":>10}')
 
@@ -207,6 +218,7 @@ def freeze_candidates(args, out, det_dir):
     man['version'] = '1.1'
     man['detector_source_commit'] = man.pop('code_commit', man.get('detector_source_commit'))
     man['freeze_tool_commit'] = freeze_tool_commit
+    man['freeze_tool_sha256'] = freeze_tool_sha256
     man['accepted_human_threshold'] = CONF
     man['candidate_human_floor'] = CANDIDATE_FLOOR
     man['views'] = {
