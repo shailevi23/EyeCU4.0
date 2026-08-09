@@ -21,6 +21,7 @@ from trackers.speed_distance import SpeedDistanceEstimator
 from trackers.player_ball_assigner import PlayerBallAssigner
 from trackers.video_utils import read_video, save_video, get_video_info
 from trackers.cache_utils import compute_cache_key, cache_path_for
+from trackers.detector import HUMAN_ACCEPT_CONF, HUMAN_CANDIDATE_CONF
 
 
 class FootballAnalysisPipeline:
@@ -40,7 +41,8 @@ class FootballAnalysisPipeline:
                  show_distance: bool = False,
                  imgsz: int = 960,
                  confidence: float = 0.25,
-                 max_ball_gap: int = 15):
+                 max_ball_gap: int = 15,
+                 human_candidate_pool: bool = False):
         """
         Initialize complete pipeline
         Args:
@@ -63,6 +65,8 @@ class FootballAnalysisPipeline:
         self.imgsz = imgsz
         self.confidence = confidence
         self.max_ball_gap = max_ball_gap
+        # Changes what the tracker sees, so it must be part of the cache key.
+        self.human_candidate_pool = human_candidate_pool
         # Set per run in _process_video_advanced().
         self.source_fps = None
         self.effective_fps = None
@@ -88,6 +92,7 @@ class FootballAnalysisPipeline:
             confidence=confidence,
             imgsz=imgsz,
             max_ball_gap=max_ball_gap,
+            human_candidate_pool=human_candidate_pool,
         )
 
         self.team_assigner = TeamAssigner(num_teams=2)
@@ -160,7 +165,16 @@ class FootballAnalysisPipeline:
             video_path=video_path,
             model_path=self.yolo_model,
             detector_settings={'imgsz': self.imgsz, 'confidence': self.confidence,
-                               'use_roboflow': self.use_roboflow},
+                               'use_roboflow': self.use_roboflow,
+                               # The pool changes the detections available to
+                               # association, so a cache built with it on must
+                               # never be reused by a run with it off.
+                               'human_candidate_pool': self.human_candidate_pool,
+                               'human_candidate_conf': (HUMAN_CANDIDATE_CONF
+                                                        if self.human_candidate_pool
+                                                        else None),
+                               'human_accept_conf': max(self.confidence,
+                                                        HUMAN_ACCEPT_CONF)},
             tracker_settings={'max_ball_gap': self.max_ball_gap,
                               'tracker': 'bytetrack'},
             skip_frames=skip_frames,

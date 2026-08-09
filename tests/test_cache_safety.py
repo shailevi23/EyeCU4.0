@@ -86,3 +86,57 @@ def test_fingerprint_detects_replaced_file(tmp_path):
 def test_fingerprint_missing_file_raises(tmp_path):
     with pytest.raises(FileNotFoundError):
         file_fingerprint(str(tmp_path / 'nope.mp4'))
+
+
+class TestHumanCandidatePoolKeying:
+    """
+    The pool changes which detections reach association, so a cache produced
+    with it on must never be reused by a run with it off. This is the narrow
+    regression test for that: the flag and both confidence boundaries have to
+    reach the key, not merely the pipeline.
+    """
+
+    def _key(self, video, **overrides):
+        settings = {'imgsz': 960, 'confidence': 0.25, 'use_roboflow': False,
+                    'human_candidate_pool': False, 'human_candidate_conf': None,
+                    'human_accept_conf': 0.25}
+        settings.update(overrides)
+        return compute_cache_key(
+            video_path=str(video), model_path=None,
+            detector_settings=settings,
+            tracker_settings={'max_ball_gap': 15, 'tracker': 'bytetrack'},
+            skip_frames=1, max_frames=None)
+
+    def test_pool_on_and_off_do_not_share_a_cache(self, tmp_path):
+        v = tmp_path / 'v.mp4'; v.write_bytes(b'x' * 4096)
+        off = self._key(v)
+        on = self._key(v, human_candidate_pool=True, human_candidate_conf=0.10)
+        assert off != on, 'a run with the pool off could reuse a cache built with it on'
+
+    def test_candidate_floor_is_part_of_the_key(self, tmp_path):
+        v = tmp_path / 'v.mp4'; v.write_bytes(b'x' * 4096)
+        a = self._key(v, human_candidate_pool=True, human_candidate_conf=0.10)
+        b = self._key(v, human_candidate_pool=True, human_candidate_conf=0.15)
+        assert a != b
+
+    def test_accept_boundary_is_part_of_the_key(self, tmp_path):
+        v = tmp_path / 'v.mp4'; v.write_bytes(b'x' * 4096)
+        a = self._key(v, human_accept_conf=0.25)
+        b = self._key(v, human_accept_conf=0.30)
+        assert a != b
+
+    def test_identical_settings_still_share_a_cache(self, tmp_path):
+        v = tmp_path / 'v.mp4'; v.write_bytes(b'x' * 4096)
+        a = self._key(v, human_candidate_pool=True, human_candidate_conf=0.10)
+        b = self._key(v, human_candidate_pool=True, human_candidate_conf=0.10)
+        assert a == b
+
+    def test_pipeline_actually_puts_the_flag_in_the_key(self):
+        """Guards against the flag existing but never reaching the key."""
+        import inspect
+        from full_pipeline import FootballAnalysisPipeline
+        src = inspect.getsource(FootballAnalysisPipeline._process_video_advanced)
+        assert 'human_candidate_pool' in src
+        assert 'human_accept_conf' in src
+        sig = inspect.signature(FootballAnalysisPipeline.__init__)
+        assert sig.parameters['human_candidate_pool'].default is False
