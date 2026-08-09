@@ -59,8 +59,8 @@ training instances; most of the gap closed with more epochs.
 
 They were measured against a **temporary** 85-image validation set carved from
 training sources, because the real validation matches had no labels yet. That
-set had 33 goalkeeper instances — a 95% confidence interval of ±0.16 on
-goalkeeper recall, far too wide to compare models on.
+set had 33 goalkeeper instances — a 95% confidence interval 0.32 wide (±0.16)
+on goalkeeper recall, far too wide to compare models on.
 
 The real validation set (208 images, 4 frozen matches, 115 goalkeepers) now
 exists. **Experiment A must be re-run against it, and the result will not be
@@ -131,19 +131,24 @@ val set:
 | **ball recall** | **0.486** | **0.486** | **0.000** | identical |
 | ball mAP50-95 | 0.267 | 0.262 | −0.005 | |
 
-Ball recall is identical to seven decimal places — 54 of 111 instances, the
-same 54 — across two independently trained models. Every per-class change sits
-inside its confidence interval.
+Ball recall is identical to three significant figures — 54 of 111 in both runs.
+Note this does **not** establish that the same 54 instances were found; two
+models can share a recall while succeeding and failing on different frames.
+Instance-level agreement has not been measured (see `tools/compare_models.py`).
 
-**Seventy extra epochs bought nothing measurable.** The model converges in ~12
-epochs and then stops improving. That is a statement about the dataset, not the
-schedule: at 823 training images with 673 ball instances, capacity and training
-time are not the binding constraint. More epochs, and probably more resolution,
-cannot manufacture examples that are not there.
+**Training past epoch 12 produced no further improvement**, and the run was
+stopped at 32. Compared with the 10-epoch pilot, the selected checkpoint
+represents about two extra epochs of training. So the accurate claim is
+narrower than "80 epochs bought nothing": *the 20 epochs after the best
+checkpoint bought nothing*, and the pilot had already reached essentially the
+same place.
 
-This is the single most useful negative result in the project so far. It says
-where the remaining effort should go: **more and more varied labelled data**,
-not longer training.
+What this does **not** establish is the cause. A plateau at 960 px says this
+*configuration* stopped improving. It does not isolate which of dataset size,
+dataset diversity, object scale, input resolution or augmentation is binding —
+those are confounded in a single run. Experiment B (1280 px, everything else
+held fixed) is the controlled ablation that separates resolution from the
+rest.
 
 Ball and goalkeeper remain the weak classes. Referee precision (0.646) is still
 the weakest precision, unchanged in character from the pilot — the kit
@@ -153,15 +158,22 @@ confusion is not a training-length problem either.
 
 95% Wilson intervals on recall:
 
-| Class | n | recall | 95% CI | width | old width (85-img val) |
-|---|---|---|---|---|---|
-| player | 2,490 | 0.926 | [0.915, 0.936] | 0.021 | 0.034 |
-| referee | 257 | 0.747 | [0.690, 0.796] | 0.106 | 0.174 |
-| goalkeeper | 115 | 0.574 | [0.483, 0.661] | **0.178** | 0.320 |
-| ball | 111 | 0.486 | [0.395, 0.578] | **0.183** | 0.231 |
+| Class | n | recall | 95% CI | full width | ± | old width |
+|---|---|---|---|---|---|---|
+| player | 2,490 | 0.926 | [0.915, 0.936] | 0.021 | ±0.011 | 0.034 |
+| referee | 257 | 0.747 | [0.690, 0.796] | 0.106 | ±0.053 | 0.174 |
+| goalkeeper | 115 | 0.574 | [0.483, 0.661] | 0.178 | **±0.089** | 0.320 |
+| ball | 111 | 0.486 | [0.395, 0.578] | 0.183 | **±0.092** | 0.231 |
 
-Goalkeeper and ball intervals nearly halved. Still wide enough that a
-difference under ~9 points on those two classes is not a difference.
+Goalkeeper and ball intervals nearly halved.
+
+Two caveats on how to use these. The interval **width** is ~0.18 for ball, so
+the margin either side is ~±0.09, not ±0.18. And these are *independent-sample*
+intervals: when two models are scored on the **same** validation instances, a
+paired comparison is far more sensitive, because the shared instances cancel.
+Comparing models by checking whether one point estimate clears the other's
+independent CI is too conservative and will hide real differences. Use
+`tools/compare_models.py`, which pairs per instance and applies McNemar.
 
 ---
 

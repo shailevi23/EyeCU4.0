@@ -240,7 +240,8 @@ the test set — a project without a held-out result has no result.
 ## The one thing not to do
 
 Do not retrain repeatedly chasing a better validation number. The val set has a
-±0.16 confidence interval on goalkeeper recall; most of the movement between
-runs is noise, and tuning against noise is how a project ends up with an
-impressive figure that means nothing. Fix the measurement first, then measure
-once.
+±0.09 margin on goalkeeper recall; much of the movement between runs is noise,
+and tuning against noise is how a project ends up with an impressive figure
+that means nothing. Where two models must be compared, pair them on the same
+validation instances rather than reading independent intervals — see
+`tools/compare_models.py`.
