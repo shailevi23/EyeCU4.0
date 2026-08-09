@@ -175,9 +175,17 @@ def main():
     # Pair every ground-truth object across the two models.
     tally = {c: Counter_() for c in range(len(CLASSES))}
     iou_sum = {c: [0.0, 0.0, 0] for c in range(len(CLASSES))}  # A, B, n_both
+    # Same, broken out by source match. Frames within a match are strongly
+    # correlated -- adjacent samples of one clip -- so a pooled McNemar treats
+    # non-independent trials as independent and its p-value is optimistic.
+    # Per-match results show whether an effect is consistent or driven by one clip.
+    per_match = defaultdict(lambda: {c: Counter_() for c in range(len(CLASSES))})
+    per_match_iou = defaultdict(
+        lambda: {c: [0.0, 0.0, 0] for c in range(len(CLASSES))})
 
     for img in images:
         w, h = sizes[img.name]
+        src = img.stem.rsplit('_', 1)[0]      # <match>_<frame_index>
         gt = load_gt(lbl_dir / f'{img.stem}.txt', w, h)
         for cid, boxes in gt.items():
             hit_a, iou_a = match(boxes, preds_a[img.name].get(cid, np.empty((0, 4))), args.iou)
@@ -185,26 +193,56 @@ def main():
             for k in range(len(boxes)):
                 if hit_a[k] and hit_b[k]:
                     tally[cid].both += 1
-                    iou_sum[cid][0] += iou_a[k]
-                    iou_sum[cid][1] += iou_b[k]
-                    iou_sum[cid][2] += 1
+                    per_match[src][cid].both += 1
+                    for store in (iou_sum[cid], per_match_iou[src][cid]):
+                        store[0] += iou_a[k]
+                        store[1] += iou_b[k]
+                        store[2] += 1
                 elif hit_a[k]:
                     tally[cid].a_only += 1
+                    per_match[src][cid].a_only += 1
                 elif hit_b[k]:
                     tally[cid].b_only += 1
+                    per_match[src][cid].b_only += 1
                 else:
                     tally[cid].neither += 1
+                    per_match[src][cid].neither += 1
 
-    wanted = [CLASSES.index(args.class_name)] if args.class_name else range(len(CLASSES))
-    report = {'model_a': args.a, 'model_b': args.b, 'split': args.split,
-              'imgsz_a': args.imgsz_a, 'imgsz_b': args.imgsz_b,
-              'iou_threshold': args.iou, 'conf': args.conf,
-              'ms_per_image_a': round(ms_a, 2), 'ms_per_image_b': round(ms_b, 2),
-              'classes': {}}
+    wanted = ([CLASSES.index(args.class_name)] if args.class_name
+              else list(range(len(CLASSES))))
 
-    print(f'\n{"class":<12}{"n":>5}{"both":>7}{"A only":>8}{"B only":>8}{"neither":>9}'
-          f'{"recall A":>10}{"recall B":>10}{"p":>9}')
-    print('-' * 78)
+    fps_a, fps_b = 1000 / ms_a, 1000 / ms_b
+    report = {
+        'model_a': args.a, 'model_b': args.b,
+        'split': args.split,
+        'thresholds': {
+            'confidence': args.conf,
+            'match_iou': args.iou,
+            'note': 'Identical for A and B. Applied without any per-model '
+                    'tuning, and never selected on the test split.',
+        },
+        'imgsz_a': args.imgsz_a, 'imgsz_b': args.imgsz_b,
+        'speed': {
+            'ms_per_image_a': round(ms_a, 2), 'ms_per_image_b': round(ms_b, 2),
+            'fps_a': round(fps_a, 1), 'fps_b': round(fps_b, 1),
+            'fps_ratio_b_over_a': round(fps_b / fps_a, 3),
+            'cost_ratio_b_over_a': round(ms_b / ms_a, 3),
+        },
+        'classes': {}, 'per_match': {},
+    }
+
+    print()
+    print(f'thresholds (identical for both models): '
+          f'confidence {args.conf}, match IoU {args.iou}')
+    print(f'imgsz: A {args.imgsz_a}px, B {args.imgsz_b}px')
+    print()
+
+    print('POOLED')
+    head = (f'{"class":<12}{"n":>5}{"both":>6}{"A only":>7}{"B only":>7}'
+            f'{"neither":>8}{"rec A":>8}{"rec B":>8}{"abs D":>8}{"rel D":>8}'
+            f'{"IoU D":>8}{"p":>8}')
+    print(head)
+    print('-' * len(head))
     for cid in wanted:
         t = tally[cid]
         n = t.both + t.a_only + t.b_only + t.neither
@@ -212,37 +250,97 @@ def main():
             continue
         ra = (t.both + t.a_only) / n
         rb = (t.both + t.b_only) / n
+        abs_d = rb - ra
+        rel_d = (abs_d / ra) if ra else None
+        si = iou_sum[cid]
+        iou_a_m = si[0] / si[2] if si[2] else None
+        iou_b_m = si[1] / si[2] if si[2] else None
+        iou_d = (iou_b_m - iou_a_m) if si[2] else None
         pval, note = mcnemar(t.a_only, t.b_only)
-        print(f'{CLASSES[cid]:<12}{n:>5}{t.both:>7}{t.a_only:>8}{t.b_only:>8}'
-              f'{t.neither:>9}{ra:>10.3f}{rb:>10.3f}{pval:>9.4f}')
+
+        rel_s = f'{rel_d:+.1%}' if rel_d is not None else '-'
+        iou_s = f'{iou_d:+.3f}' if iou_d is not None else '-'
+        print(f'{CLASSES[cid]:<12}{n:>5}{t.both:>6}{t.a_only:>7}{t.b_only:>7}'
+              f'{t.neither:>8}{ra:>8.3f}{rb:>8.3f}{abs_d:>+8.3f}'
+              f'{rel_s:>8}{iou_s:>8}{pval:>8.4f}')
         if note:
             print(f'             {note}')
-        s = iou_sum[cid]
+
         report['classes'][CLASSES[cid]] = {
             'n': n, 'both': t.both, 'a_only': t.a_only, 'b_only': t.b_only,
-            'neither': t.neither, 'recall_a': round(ra, 4), 'recall_b': round(rb, 4),
-            'mcnemar_p': round(pval, 6),
-            'mean_iou_a_on_shared': round(s[0] / s[2], 4) if s[2] else None,
-            'mean_iou_b_on_shared': round(s[1] / s[2], 4) if s[2] else None,
+            'neither': t.neither,
+            'recall_a': round(ra, 4), 'recall_b': round(rb, 4),
+            'recall_delta_absolute': round(abs_d, 4),
+            'recall_delta_relative': (round(rel_d, 4) if rel_d is not None else None),
+            'mean_iou_a_on_shared': round(iou_a_m, 4) if si[2] else None,
+            'mean_iou_b_on_shared': round(iou_b_m, 4) if si[2] else None,
+            'mean_iou_delta_on_shared': round(iou_d, 4) if si[2] else None,
+            'n_shared_for_iou': si[2],
+            'mcnemar_p_pooled': round(pval, 6),
         }
 
-    print(f'\nspeed: A {ms_a:.1f} ms/img ({1000 / ms_a:.1f} FPS)   '
-          f'B {ms_b:.1f} ms/img ({1000 / ms_b:.1f} FPS)   '
-          f'B is {ms_b / ms_a:.2f}x the cost')
-
-    print('\nlocalisation on jointly-found objects (mean IoU):')
+    print()
+    print('PER VALIDATION MATCH')
+    print('Frames within a match are correlated, so the pooled p above is')
+    print('optimistic. A real effect should show up across several matches,')
+    print('not rest on one.')
     for cid in wanted:
-        s = iou_sum[cid]
-        if s[2]:
-            print(f'  {CLASSES[cid]:<12} A {s[0] / s[2]:.3f}   B {s[1] / s[2]:.3f}   '
-                  f'(n={s[2]})')
+        rows = []
+        for m in sorted(per_match):
+            t = per_match[m][cid]
+            if t.both + t.a_only + t.b_only + t.neither:
+                rows.append((m, t))
+        if not rows:
+            continue
+        print()
+        print(f'  {CLASSES[cid]}')
+        h2 = (f'    {"match":<34}{"n":>4}{"both":>6}{"A only":>7}{"B only":>7}'
+              f'{"neither":>8}{"rec A":>7}{"rec B":>7}{"abs D":>8}{"IoU D":>8}')
+        print(h2)
+        print('    ' + '-' * (len(h2) - 4))
+        entries = {}
+        for m, t in rows:
+            n = t.both + t.a_only + t.b_only + t.neither
+            ra = (t.both + t.a_only) / n
+            rb = (t.both + t.b_only) / n
+            si = per_match_iou[m][cid]
+            iou_d = (si[1] - si[0]) / si[2] if si[2] else None
+            iou_s = f'{iou_d:+.3f}' if iou_d is not None else '-'
+            print(f'    {m:<34}{n:>4}{t.both:>6}{t.a_only:>7}{t.b_only:>7}'
+                  f'{t.neither:>8}{ra:>7.3f}{rb:>7.3f}{rb - ra:>+8.3f}{iou_s:>8}')
+            entries[m] = {
+                'n': n, 'both': t.both, 'a_only': t.a_only,
+                'b_only': t.b_only, 'neither': t.neither,
+                'recall_a': round(ra, 4), 'recall_b': round(rb, 4),
+                'recall_delta_absolute': round(rb - ra, 4),
+                'mean_iou_delta_on_shared': round(iou_d, 4) if si[2] else None,
+            }
+        wins = sum(1 for e in entries.values() if e['recall_delta_absolute'] > 0)
+        losses = sum(1 for e in entries.values() if e['recall_delta_absolute'] < 0)
+        ties = len(entries) - wins - losses
+        print(f'    -> B better in {wins}, worse in {losses}, tied in {ties} '
+              f'of {len(entries)} matches')
+        report['per_match'][CLASSES[cid]] = {
+            'matches': entries,
+            'b_better_in': wins, 'b_worse_in': losses, 'tied': ties,
+        }
+
+    print()
+    print(f'SPEED   A {ms_a:.1f} ms/img ({fps_a:.1f} FPS)   '
+          f'B {ms_b:.1f} ms/img ({fps_b:.1f} FPS)')
+    print(f'        FPS ratio B/A = {fps_b / fps_a:.3f}   '
+          f'(B costs {ms_b / ms_a:.2f}x per image)')
 
     Path(args.out).write_text(json.dumps(report, indent=2), encoding='utf-8')
-    print(f'\nwritten: {args.out}')
-    print('\nReading this: "A only" and "B only" are the discordant pairs — the '
-          'only\nevidence about which model is better. p is a two-sided exact '
-          'McNemar test\non those pairs. Concordant outcomes carry no signal '
-          'and are excluded.')
+    print()
+    print(f'written: {args.out}')
+    print()
+    print('Reading this. "A only" and "B only" are the discordant pairs and the')
+    print('only evidence about which model is better; concordant outcomes carry')
+    print('no signal. p is a two-sided exact McNemar on those pairs, POOLED, and')
+    print('is optimistic because frames within a match are correlated -- weigh')
+    print('per-match consistency at least as heavily. Judge adoption on effect')
+    print('size and cost, not on p alone.')
 
 
 class Counter_:
