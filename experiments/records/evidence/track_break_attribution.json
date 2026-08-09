@@ -1,0 +1,184 @@
+{
+  "windows": {
+    "austin_fc_vs__club_tijuana": {
+      "start": 284,
+      "mean_humans": 12.59
+    },
+    "bayern_munich_3-1_chelsea": {
+      "start": 228,
+      "mean_humans": 24.906666666666666
+    },
+    "women_1": {
+      "start": 239,
+      "mean_humans": 11.246666666666666
+    },
+    "youth_premier_league": {
+      "start": 1133,
+      "mean_humans": 12.153333333333334
+    }
+  },
+  "raw": {
+    "austin_fc_vs__club_tijuana": {
+      "mean": 12.6,
+      "std": 3.1,
+      "min": 6,
+      "p10": 8.0,
+      "mean_abs_delta": 1.04,
+      "abrupt_drops": 3,
+      "low_support_runs": 12,
+      "max_low_run": 4,
+      "median_conf": 0.817,
+      "per_class": {
+        "goalkeeper": 167,
+        "player": 3291,
+        "referee": 319
+      }
+    },
+    "bayern_munich_3-1_chelsea": {
+      "mean": 24.9,
+      "std": 1.5,
+      "min": 21,
+      "p10": 23.0,
+      "mean_abs_delta": 1.11,
+      "abrupt_drops": 0,
+      "low_support_runs": 0,
+      "max_low_run": 0,
+      "median_conf": 0.871,
+      "per_class": {
+        "player": 6315,
+        "referee": 1054,
+        "goalkeeper": 103
+      }
+    },
+    "women_1": {
+      "mean": 11.2,
+      "std": 2.8,
+      "min": 3,
+      "p10": 8.0,
+      "mean_abs_delta": 1.28,
+      "abrupt_drops": 17,
+      "low_support_runs": 5,
+      "max_low_run": 8,
+      "median_conf": 0.759,
+      "per_class": {
+        "player": 2642,
+        "referee": 639,
+        "goalkeeper": 93
+      }
+    },
+    "youth_premier_league": {
+      "mean": 12.2,
+      "std": 4.1,
+      "min": 4,
+      "p10": 6.0,
+      "mean_abs_delta": 1.85,
+      "abrupt_drops": 19,
+      "low_support_runs": 13,
+      "max_low_run": 14,
+      "median_conf": 0.604,
+      "per_class": {
+        "player": 3414,
+        "referee": 232
+      }
+    }
+  },
+  "tracking": {
+    "austin_fc_vs__club_tijuana": {
+      "ids": 68,
+      "ids_per_human": 5.4,
+      "median_len": 30,
+      "mean_len": 49.9,
+      "surv_half": 2,
+      "interior_gaps": 81,
+      "mean_humans": 12.6
+    },
+    "bayern_munich_3-1_chelsea": {
+      "ids": 53,
+      "ids_per_human": 2.13,
+      "median_len": 61,
+      "mean_len": 134.9,
+      "surv_half": 24,
+      "interior_gaps": 59,
+      "mean_humans": 24.9
+    },
+    "women_1": {
+      "ids": 62,
+      "ids_per_human": 5.51,
+      "median_len": 12,
+      "mean_len": 45.7,
+      "surv_half": 6,
+      "interior_gaps": 85,
+      "mean_humans": 11.2
+    },
+    "youth_premier_league": {
+      "ids": 101,
+      "ids_per_human": 8.31,
+      "median_len": 9,
+      "mean_len": 27.5,
+      "surv_half": 4,
+      "interior_gaps": 219,
+      "mean_humans": 12.2
+    }
+  },
+  "breaks": {
+    "austin_fc_vs__club_tijuana": {
+      "B association break": 37,
+      "A detection support lost": 12,
+      "C frame edge / legitimate exit": 4
+    },
+    "bayern_munich_3-1_chelsea": {
+      "B association break": 20,
+      "C frame edge / legitimate exit": 6,
+      "A detection support lost": 2
+    },
+    "women_1": {
+      "C frame edge / legitimate exit": 18,
+      "B association break": 28,
+      "A detection support lost": 2
+    },
+    "youth_premier_league": {
+      "C frame edge / legitimate exit": 23,
+      "B association break": 56,
+      "A detection support lost": 2
+    }
+  },
+  "jitter": {
+    "austin_fc_vs__club_tijuana": {
+      "flips_on_consecutive_frames": 90,
+      "flips_across_a_gap": 2,
+      "pairs": {
+        "referee -> player": 39,
+        "player -> referee": 38,
+        "goalkeeper -> player": 5,
+        "player -> goalkeeper": 4,
+        "referee -> goalkeeper": 4,
+        "goalkeeper -> referee": 2
+      }
+    },
+    "bayern_munich_3-1_chelsea": {
+      "flips_on_consecutive_frames": 59,
+      "flips_across_a_gap": 5,
+      "pairs": {
+        "goalkeeper -> player": 18,
+        "player -> goalkeeper": 18,
+        "referee -> player": 15,
+        "player -> referee": 13
+      }
+    },
+    "women_1": {
+      "flips_on_consecutive_frames": 132,
+      "flips_across_a_gap": 10,
+      "pairs": {
+        "player -> referee": 70,
+        "referee -> player": 69,
+        "goalkeeper -> player": 2,
+        "player -> goalkeeper": 1
+      }
+    },
+    "youth_premier_league": {
+      "flips_on_consecutive_frames": 0,
+      "flips_across_a_gap": 0,
+      "pairs": {}
+    }
+  }
+}
