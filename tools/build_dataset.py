@@ -4,20 +4,27 @@ Assemble the Ultralytics YOLO dataset, splitting by MATCH (never by frame).
 
 Adjacent video frames are near-identical, so a random frame split leaks the
 training set into validation and produces meaningless scores. Every frame of a
-match therefore lands in exactly one split (ROADMAP.md section 2).
+match therefore lands in exactly one split.
+
+The split is also stratified by DOMAIN (pro / women / youth / amateur), so each
+of train/val/test sees a spread of footage types. Without that, a 15% test set
+drawn by size alone can easily end up all-youth or all-pro, and the reported
+accuracy then measures something other than intended use.
 
 Input layout (from extract_frames.py + your corrected labels):
     data/frames/<match_id>/<match_id>_000123.jpg
     data/labels/<match_id>/<match_id>_000123.txt
 
-Output:
-    data/dataset/{train,val,test}/{images,labels}/...
+Output (Ultralytics layout):
+    data/dataset/images/{train,val,test}/...
+    data/dataset/labels/{train,val,test}/...
     data/dataset/football.yaml
     data/dataset/split_report.json
 
 Examples:
-    python tools/build_dataset.py --frames data/frames --labels data/labels
-    python tools/build_dataset.py --zip          # also produce football_dataset.zip for Colab
+    python tools/build_dataset.py --plan-only          # show the split, write nothing
+    python tools/build_dataset.py --zip
+    python tools/build_dataset.py --check              # validate an existing dataset
 """
 
 import argparse
@@ -30,10 +37,30 @@ from pathlib import Path
 
 CLASSES = ['player', 'goalkeeper', 'referee', 'ball']
 IMG_EXTS = {'.jpg', '.jpeg', '.png'}
+SPLITS = ('train', 'val', 'test')
+
+# Repo sample clips: also the fixtures the regression tests run against, so they
+# are kept out of training to keep those tests an independent check.
+DEFAULT_EXCLUDE = ('short', '08fd33_4')
 
 
-def collect(frames_root: Path, labels_root: Path):
-    """Return {match_id: [(image_path, label_path), ...]} plus unlabelled images."""
+def infer_domain(match_id: str) -> str:
+    """
+    Coarse footage type from the source name. Heuristic and overridable with
+    --domains; the chosen classification is always printed so it can be checked.
+    """
+    name = match_id.lower()
+    if name.startswith('women') or '_women' in name:
+        return 'women'
+    if name.startswith('youth') or 'youth' in name:
+        return 'youth'
+    if 'sunday_league' in name or 'amateur' in name:
+        return 'amateur'
+    return 'pro'
+
+
+def collect(frames_root: Path, labels_root: Path, require_labels: bool):
+    """{match_id: [(image, label_or_None)]} plus a list of unlabelled images."""
     matches = defaultdict(list)
     unlabelled = []
     for img in sorted(p for p in frames_root.rglob('*') if p.suffix.lower() in IMG_EXTS):
@@ -42,42 +69,131 @@ def collect(frames_root: Path, labels_root: Path):
         label = (labels_root / rel).with_suffix('.txt')
         if not label.exists():
             unlabelled.append(img)
-            continue
+            if require_labels:
+                continue
+            label = None
         matches[match_id].append((img, label))
     return matches, unlabelled
 
 
 def read_counts(label_path: Path) -> Counter:
     counts = Counter()
-    for line in label_path.read_text().splitlines():
+    if label_path is None or not label_path.exists():
+        return counts
+    for line in label_path.read_text(encoding='utf-8').splitlines():
         line = line.strip()
         if not line:
             continue
-        cid = int(line.split()[0])
-        if 0 <= cid < len(CLASSES):
-            counts[CLASSES[cid]] += 1
-        else:
-            counts[f'INVALID_{cid}'] += 1
+        cid = int(float(line.split()[0]))
+        counts[CLASSES[cid] if 0 <= cid < len(CLASSES) else f'INVALID_{cid}'] += 1
     return counts
 
 
-def assign_splits(match_sizes: dict, ratios, seed: int):
-    """Greedy: place the largest match into whichever split is furthest below quota."""
-    total = sum(match_sizes.values())
-    targets = {'train': total * ratios[0], 'val': total * ratios[1], 'test': total * ratios[2]}
-    order = sorted(match_sizes, key=lambda m: (-match_sizes[m], m))
+def active_splits(ratios):
+    """
+    Splits eligible to receive automatically-assigned matches.
+
+    A ratio of 0 is meaningful: it means 'assign nothing here'. The split can
+    still exist if matches are pinned to it explicitly -- see populated_splits.
+    """
+    return tuple(s for s, r in zip(SPLITS, ratios) if r > 0)
+
+
+def populated_splits(assigned):
+    """
+    Splits that actually ended up with matches.
+
+    Ratio alone cannot answer this: `--ratios 1,0,0 --force-val X` assigns
+    nothing to val automatically but still has a val split, and it must be
+    written out.
+    """
+    return tuple(s for s in SPLITS if assigned.get(s))
+
+
+def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int,
+                  force_train=(), force_val=(), force_test=()):
+    """
+    Greedy, domain-stratified, match-disjoint.
+
+    Each domain is distributed across train/val/test independently, so every
+    split gets a mix. Within a domain the largest match goes to whichever split
+    is furthest below its quota.
+    """
+    live = active_splits(ratios)
+    ratio_of = dict(zip(SPLITS, ratios))
+    assigned = {s: [] for s in SPLITS}
+
+    # Pinned sources bypass the split entirely.
+    #   force_train: external datasets. Validation and test must stay EyeCU
+    #     footage, or the only honest measurement stops measuring what it claims.
+    #   force_val / force_test: the frozen EyeCU matches. These are chosen once
+    #     and must not drift when the pool grows, or results stop being
+    #     comparable across runs.
+    pinned = {}
+    for split, group in (('train', force_train), ('val', force_val),
+                         ('test', force_test)):
+        for m in group:
+            if m in match_sizes:
+                if m in pinned:
+                    raise ValueError(f'{m!r} pinned to both {pinned[m]} and {split}')
+                pinned[m] = split
+                assigned[split].append(m)
+
+    by_domain = defaultdict(list)
+    for match_id, size in match_sizes.items():
+        if match_id in pinned:
+            continue
+        by_domain[domains[match_id]].append(match_id)
 
     rng = random.Random(seed)
-    rng.shuffle(order)
-    order.sort(key=lambda m: -match_sizes[m])
+    for domain in sorted(by_domain):
+        members = by_domain[domain]
+        rng.shuffle(members)
+        members.sort(key=lambda m: -match_sizes[m])
 
-    assigned = {'train': [], 'val': [], 'test': []}
-    current = {'train': 0, 'val': 0, 'test': 0}
-    for match in order:
-        split = max(targets, key=lambda s: targets[s] - current[s])
-        assigned[split].append(match)
-        current[split] += match_sizes[match]
+        total = sum(match_sizes[m] for m in members)
+        target = {s: total * ratio_of[s] for s in live}
+        current = {s: 0 for s in live}
+
+        for match_id in members:
+            # Only consider splits that can still be reached; with few matches
+            # per domain this keeps val/test from being starved entirely.
+            split = max(live, key=lambda s: target[s] - current[s])
+            assigned[split].append(match_id)
+            current[split] += match_sizes[match_id]
+
     return assigned
+
+
+def check_leakage(dataset_root: Path) -> list:
+    """Fail loudly if any image or match appears in more than one split."""
+    problems = []
+    stems, sources = {}, {}
+    for split in SPLITS:
+        img_dir = dataset_root / 'images' / split
+        if not img_dir.is_dir():
+            # A split can be legitimately absent (ratio 0), e.g. no test set
+            # until the held-out matches are labelled.
+            continue
+        for img in img_dir.iterdir():
+            if img.suffix.lower() not in IMG_EXTS:
+                continue
+            if img.stem in stems:
+                problems.append(
+                    f'IMAGE LEAK: {img.name} in both {stems[img.stem]} and {split}')
+            stems[img.stem] = split
+
+            source = img.stem.rsplit('_', 1)[0]
+            if source in sources and sources[source] != split:
+                problems.append(
+                    f'MATCH LEAK: source {source!r} in both '
+                    f'{sources[source]} and {split}')
+            sources[source] = split
+
+            label = dataset_root / 'labels' / split / f'{img.stem}.txt'
+            if not label.exists():
+                problems.append(f'MISSING LABEL: {split}/{img.name}')
+    return problems
 
 
 def main():
@@ -86,117 +202,224 @@ def main():
     p.add_argument('--frames', default='data/frames')
     p.add_argument('--labels', default='data/labels')
     p.add_argument('--out', default='data/dataset')
-    p.add_argument('--ratios', default='0.70,0.15,0.15',
-                   help='train,val,test fractions (default 0.70,0.15,0.15).')
+    p.add_argument('--ratios', default='0.70,0.15,0.15')
     p.add_argument('--seed', type=int, default=42)
-    p.add_argument('--move', action='store_true', help='Move files instead of copying.')
-    p.add_argument('--zip', action='store_true',
-                   help='Also write football_dataset.zip next to --out (for Colab upload).')
+    p.add_argument('--exclude', nargs='*', default=list(DEFAULT_EXCLUDE),
+                   help=f'Match ids to leave out entirely (default: {" ".join(DEFAULT_EXCLUDE)}).')
+    p.add_argument('--domains', help='JSON file mapping match_id -> domain, '
+                                     'overriding the built-in heuristic.')
+    p.add_argument('--force-train', nargs='*', default=[],
+                   help='Sources pinned to train, never val/test. Use for '
+                        'external datasets. A prefix ending in * matches many, '
+                        'e.g. "rfext_*".')
+    p.add_argument('--force-val', nargs='*', default=[],
+                   help='Sources pinned to val. Use for the frozen validation '
+                        'matches so the split cannot drift as the pool grows.')
+    p.add_argument('--force-test', nargs='*', default=[],
+                   help='Sources pinned to test. Use for the frozen test '
+                        'matches.')
+    p.add_argument('--plan-only', action='store_true',
+                   help='Print the split plan and exit without writing files.')
+    p.add_argument('--check', action='store_true',
+                   help='Validate an existing --out dataset for leakage; '
+                        'exits non-zero if any is found.')
+    p.add_argument('--move', action='store_true', help='Move instead of copy.')
+    p.add_argument('--zip', action='store_true', help='Also write football_dataset.zip.')
     p.add_argument('--allow-unlabelled', action='store_true',
-                   help='Skip unlabelled frames instead of aborting.')
+                   help='Skip unlabelled frames instead of aborting. Useful for '
+                        'a first baseline while only part of the pool is labelled.')
     args = p.parse_args()
 
-    frames_root, labels_root, out_root = Path(args.frames), Path(args.labels), Path(args.out)
+    out_root = Path(args.out)
+
+    # --- validation-only mode ------------------------------------------------
+    if args.check:
+        if not out_root.exists():
+            sys.exit(f'Nothing to check: {out_root} does not exist.')
+        problems = check_leakage(out_root)
+        if problems:
+            print(f'{len(problems)} problem(s):')
+            for prob in problems[:40]:
+                print(f'  ! {prob}')
+            if len(problems) > 40:
+                print(f'  ... and {len(problems) - 40} more')
+            sys.exit(1)
+        print(f'{out_root}: no leakage. Every image and match is in exactly one split.')
+        return
+
+    frames_root, labels_root = Path(args.frames), Path(args.labels)
     if not frames_root.exists():
         sys.exit(f'Frames not found: {frames_root}')
-    if not labels_root.exists():
-        sys.exit(f'Labels not found: {labels_root}')
 
     ratios = tuple(float(x) for x in args.ratios.split(','))
     if len(ratios) != 3 or abs(sum(ratios) - 1.0) > 1e-6:
         sys.exit('--ratios must be three fractions summing to 1.0')
 
-    matches, unlabelled = collect(frames_root, labels_root)
-    if unlabelled and not args.allow_unlabelled:
-        sys.exit(f'{len(unlabelled)} frames have no label file '
-                 f'(first: {unlabelled[0]}). Run pseudo_label.py, or pass '
-                 f'--allow-unlabelled to drop them.')
+    # A frame with no label file is never written to the dataset: Ultralytics
+    # would read it as a background image with zero objects, silently teaching
+    # the model that real players are not there. --allow-unlabelled only
+    # suppresses the abort; it never lets an unlabelled frame through.
+    # --plan-only keeps them so the plan can show the whole pool.
+    require_labels = not args.plan_only
+    matches, unlabelled = collect(frames_root, labels_root, require_labels)
+
+    for match_id in args.exclude:
+        if matches.pop(match_id, None) is not None:
+            print(f'excluded: {match_id}')
+
     if not matches:
-        sys.exit('No labelled frames found.')
-    if len(matches) < 3:
-        sys.exit(f'Only {len(matches)} match(es) found. A match-disjoint '
-                 f'train/val/test split needs at least 3 (ROADMAP.md targets 4-6).')
+        sys.exit('No frames found (after exclusions).')
+
+    if unlabelled and not args.plan_only and not args.allow_unlabelled:
+        sys.exit(f'{len(unlabelled)} frames have no label file '
+                 f'(first: {unlabelled[0]}). Label them, or use --plan-only to '
+                 f'preview the split, or --allow-unlabelled to drop them.')
+
+    domains = {m: infer_domain(m) for m in matches}
+    if args.domains:
+        domains.update(json.loads(Path(args.domains).read_text(encoding='utf-8')))
 
     sizes = {m: len(v) for m, v in matches.items()}
-    splits = assign_splits(sizes, ratios, args.seed)
+    if len(matches) < 3:
+        sys.exit(f'Only {len(matches)} match(es); a match-disjoint split needs 3+.')
 
+    # Expand any trailing-* patterns against the sources actually present.
+    def expand(patterns):
+        out = set()
+        for pat in patterns:
+            if pat.endswith('*'):
+                out |= {m for m in sizes if m.startswith(pat[:-1])}
+            elif pat in sizes:
+                out.add(pat)
+        return out
+
+    pin_train, pin_val, pin_test = (expand(args.force_train),
+                                    expand(args.force_val),
+                                    expand(args.force_test))
+    for label, group in (('train', pin_train), ('val', pin_val),
+                         ('test', pin_test)):
+        if group:
+            print(f'pinned to {label}: {len(group)} source(s)'
+                  + ('' if label == 'train' else f' -> {sorted(group)}'))
+
+    splits = assign_splits(sizes, domains, ratios, args.seed,
+                           force_train=pin_train, force_val=pin_val,
+                           force_test=pin_test)
+
+    # --- report --------------------------------------------------------------
+    total = sum(sizes.values())
+    print(f'\n{total} frames, {len(matches)} matches, '
+          f'{len(set(domains.values()))} domains\n')
+    domain_matrix = defaultdict(Counter)
+    for split, ids in splits.items():
+        for m in ids:
+            domain_matrix[split][domains[m]] += sizes[m]
+
+    for split in populated_splits(splits):
+        n = sum(sizes[m] for m in splits[split])
+        print(f'{split:<6} {n:>5} frames ({n / total:>5.1%})  '
+              f'{len(splits[split])} matches')
+        print(f'       domains: ' + ', '.join(
+            f'{d}={c}' for d, c in sorted(domain_matrix[split].items())))
+        for m in sorted(splits[split]):
+            print(f'         - {m} ({sizes[m]}, {domains[m]})')
+
+    missing_domains = {
+        s: sorted(set(domains.values()) - set(domain_matrix[s]))
+        for s in populated_splits(splits)
+    }
+    for split, missing in missing_domains.items():
+        if missing:
+            print(f'! {split} contains no {missing} footage')
+
+    if args.plan_only:
+        print('\n--plan-only: nothing written.')
+        kept = {img for pairs in matches.values() for img, _ in pairs}
+        pending = sum(1 for img in unlabelled if img in kept)
+        if pending:
+            print(f'{pending} of {total} frames in this plan are still unlabelled.')
+        return
+
+    # --- write ---------------------------------------------------------------
     if out_root.exists():
         shutil.rmtree(out_root)
     transfer = shutil.move if args.move else shutil.copy2
 
-    report = {'classes': CLASSES, 'splits': {}, 'match_sizes': sizes, 'totals': {}}
+    report = {'classes': CLASSES, 'ratios': list(ratios), 'seed': args.seed,
+              'excluded': args.exclude,
+              'forced_to_train': sorted(pin_train),
+              'forced_to_val': sorted(pin_val),
+              'forced_to_test': sorted(pin_test),
+              'domains': domains,
+              'match_sizes': sizes, 'splits': {}}
     grand = Counter()
 
-    for split, match_ids in splits.items():
-        img_dir = out_root / split / 'images'
-        lbl_dir = out_root / split / 'labels'
+    for split in populated_splits(splits):
+        img_dir = out_root / 'images' / split
+        lbl_dir = out_root / 'labels' / split
         img_dir.mkdir(parents=True, exist_ok=True)
         lbl_dir.mkdir(parents=True, exist_ok=True)
 
-        counts = Counter()
-        empty = 0
-        n_images = 0
-        for match_id in match_ids:
+        counts, empty, n_images = Counter(), 0, 0
+        for match_id in splits[split]:
             for img, lbl in matches[match_id]:
                 transfer(str(img), str(img_dir / img.name))
-                transfer(str(lbl), str(lbl_dir / lbl.name))
-                c = read_counts(lbl)
-                if not c:
-                    empty += 1
-                counts.update(c)
+                if lbl is not None:
+                    transfer(str(lbl), str(lbl_dir / lbl.name))
+                    c = read_counts(lbl)
+                    if not c:
+                        empty += 1
+                    counts.update(c)
                 n_images += 1
         grand.update(counts)
         report['splits'][split] = {
-            'matches': sorted(match_ids),
+            'matches': sorted(splits[split]),
+            'domains': dict(domain_matrix[split]),
             'images': n_images,
-            'share': round(n_images / sum(sizes.values()), 3),
-            'empty_frames': empty,
+            'share': round(n_images / total, 3),
+            'empty_label_files': empty,
             'instances': {c: counts.get(c, 0) for c in CLASSES},
         }
 
     report['totals'] = {c: grand.get(c, 0) for c in CLASSES}
-    report['total_images'] = sum(sizes.values())
-
-    # Match-disjointness is the whole point of this script -- verify it.
-    seen = Counter(m for ids in splits.values() for m in ids)
-    leaked = [m for m, n in seen.items() if n > 1]
-    if leaked:
-        sys.exit(f'BUG: matches in more than one split: {leaked}')
+    report['total_images'] = total
 
     yaml_path = out_root / 'football.yaml'
     yaml_path.write_text(
         '# EyeCU football detector dataset\n'
-        '# Split by match -- no match appears in more than one split.\n'
+        '# Split by match and stratified by domain -- no match appears in\n'
+        '# more than one split.\n'
         f'path: {out_root.resolve().as_posix()}\n'
-        'train: train/images\n'
-        'val: val/images\n'
-        'test: test/images\n\n'
-        'names:\n' + ''.join(f'  {i}: {c}\n' for i, c in enumerate(CLASSES))
+        + ''.join(f'{s}: images/{s}\n' for s in populated_splits(splits)) + '\n'
+        + 'names:\n' + ''.join(f'  {i}: {c}\n' for i, c in enumerate(CLASSES)),
+        encoding='utf-8'
     )
-    (out_root / 'split_report.json').write_text(json.dumps(report, indent=2))
+    (out_root / 'split_report.json').write_text(
+        json.dumps(report, indent=2), encoding='utf-8')
 
-    print(f'\nDataset: {report["total_images"]} images, {len(matches)} matches -> {out_root}')
-    for split in ('train', 'val', 'test'):
-        s = report['splits'][split]
-        print(f'  {split:<5} {s["images"]:>5} imgs ({s["share"]:.0%})  '
-              f'matches={",".join(s["matches"])}')
-        print(f'        instances: ' +
-              '  '.join(f'{c}={s["instances"][c]}' for c in CLASSES))
+    problems = check_leakage(out_root)
+    if problems:
+        print('\nLEAKAGE DETECTED after writing:')
+        for prob in problems[:20]:
+            print(f'  ! {prob}')
+        sys.exit(1)
+    print('\nLeakage check: passed.')
+
     print(f'\n  totals: ' + '  '.join(f'{c}={report["totals"][c]}' for c in CLASSES))
     print(f'  config: {yaml_path}')
 
-    for split in ('val', 'test'):
+    for split in [s for s in ('val', 'test') if s in populated_splits(splits)]:
         for c in CLASSES:
             if report['splits'][split]['instances'][c] == 0:
-                print(f'! {split} split has no `{c}` instances -- '
-                      f'per-class metrics for it will be meaningless.')
+                print(f'! {split} has no `{c}` instances -- '
+                      f'its per-class metrics will be meaningless.')
 
     if args.zip:
         archive = out_root.parent / 'football_dataset'
         shutil.make_archive(str(archive), 'zip', root_dir=out_root)
-        print(f'\n  zip: {archive}.zip  (upload this to Google Drive for Colab)')
-        print('  NOTE: football.yaml `path:` is a local path -- the Colab '
-              'notebook rewrites it after unzipping.')
+        print(f'\n  zip: {archive}.zip  (upload to Google Drive for Colab)')
+        print('  NOTE: football.yaml `path:` is local; the Colab notebook '
+              'rewrites it after unzipping.')
 
 
 if __name__ == '__main__':

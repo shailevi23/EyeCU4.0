@@ -1,0 +1,230 @@
+{
+  "model": "best_B_1280.pt",
+  "split": "val",
+  "imgsz": 1280,
+  "thresholds": {
+    "confidence": 0.25,
+    "match_iou": 0.5
+  },
+  "n_images": 208,
+  "per_class": {
+    "player": {
+      "n": 2490,
+      "tp": 2335,
+      "fp": 269,
+      "precision": 0.8967,
+      "recall": 0.9378
+    },
+    "goalkeeper": {
+      "n": 115,
+      "tp": 47,
+      "fp": 16,
+      "precision": 0.746,
+      "recall": 0.4087
+    },
+    "referee": {
+      "n": 257,
+      "tp": 192,
+      "fp": 77,
+      "precision": 0.7138,
+      "recall": 0.7471
+    },
+    "ball": {
+      "n": 111,
+      "tp": 57,
+      "fp": 16,
+      "precision": 0.7808,
+      "recall": 0.5135
+    }
+  },
+  "any_human": {
+    "matching": "class-agnostic one-to-one over player/goalkeeper/referee",
+    "n": 2862,
+    "correct_role": 2552,
+    "wrong_human_role": 116,
+    "missed_entirely": 194,
+    "located_any_role": 2668,
+    "recall_correct_role": 0.8917,
+    "recall_any_role": 0.9322,
+    "class_aware_tp_sum_not_comparable": 2574
+  },
+  "role_confusion": {
+    "player": {
+      "player": 2328,
+      "goalkeeper": 0,
+      "referee": 20,
+      "MISSED": 142
+    },
+    "goalkeeper": {
+      "player": 34,
+      "goalkeeper": 47,
+      "referee": 5,
+      "MISSED": 29
+    },
+    "referee": {
+      "player": 57,
+      "goalkeeper": 0,
+      "referee": 177,
+      "MISSED": 23
+    }
+  },
+  "ball_threshold_grid": {
+    "0.05": {
+      "tp": 71,
+      "fp": 84,
+      "precision": 0.4581,
+      "recall": 0.6396,
+      "fp_per_image": 0.4038
+    },
+    "0.1": {
+      "tp": 66,
+      "fp": 50,
+      "precision": 0.569,
+      "recall": 0.5946,
+      "fp_per_image": 0.2404
+    },
+    "0.15": {
+      "tp": 61,
+      "fp": 30,
+      "precision": 0.6703,
+      "recall": 0.5495,
+      "fp_per_image": 0.1442
+    },
+    "0.2": {
+      "tp": 59,
+      "fp": 19,
+      "precision": 0.7564,
+      "recall": 0.5315,
+      "fp_per_image": 0.0913
+    },
+    "0.25": {
+      "tp": 57,
+      "fp": 16,
+      "precision": 0.7808,
+      "recall": 0.5135,
+      "fp_per_image": 0.0769
+    }
+  },
+  "ball_per_match": {
+    "austin_fc_vs__club_tijuana": {
+      "n": 28,
+      "by_threshold": {
+        "0.05": {
+          "tp": 19,
+          "fp": 8,
+          "recall": 0.6786
+        },
+        "0.1": {
+          "tp": 16,
+          "fp": 3,
+          "recall": 0.5714
+        },
+        "0.15": {
+          "tp": 14,
+          "fp": 3,
+          "recall": 0.5
+        },
+        "0.2": {
+          "tp": 14,
+          "fp": 1,
+          "recall": 0.5
+        },
+        "0.25": {
+          "tp": 14,
+          "fp": 1,
+          "recall": 0.5
+        }
+      }
+    },
+    "bayern_munich_3-1_chelsea": {
+      "n": 29,
+      "by_threshold": {
+        "0.05": {
+          "tp": 23,
+          "fp": 39,
+          "recall": 0.7931
+        },
+        "0.1": {
+          "tp": 23,
+          "fp": 29,
+          "recall": 0.7931
+        },
+        "0.15": {
+          "tp": 22,
+          "fp": 17,
+          "recall": 0.7586
+        },
+        "0.2": {
+          "tp": 22,
+          "fp": 13,
+          "recall": 0.7586
+        },
+        "0.25": {
+          "tp": 21,
+          "fp": 13,
+          "recall": 0.7241
+        }
+      }
+    },
+    "women_1": {
+      "n": 26,
+      "by_threshold": {
+        "0.05": {
+          "tp": 12,
+          "fp": 15,
+          "recall": 0.4615
+        },
+        "0.1": {
+          "tp": 12,
+          "fp": 10,
+          "recall": 0.4615
+        },
+        "0.15": {
+          "tp": 12,
+          "fp": 5,
+          "recall": 0.4615
+        },
+        "0.2": {
+          "tp": 12,
+          "fp": 2,
+          "recall": 0.4615
+        },
+        "0.25": {
+          "tp": 12,
+          "fp": 1,
+          "recall": 0.4615
+        }
+      }
+    },
+    "youth_premier_league": {
+      "n": 28,
+      "by_threshold": {
+        "0.05": {
+          "tp": 17,
+          "fp": 22,
+          "recall": 0.6071
+        },
+        "0.1": {
+          "tp": 15,
+          "fp": 8,
+          "recall": 0.5357
+        },
+        "0.15": {
+          "tp": 13,
+          "fp": 5,
+          "recall": 0.4643
+        },
+        "0.2": {
+          "tp": 11,
+          "fp": 3,
+          "recall": 0.3929
+        },
+        "0.25": {
+          "tp": 10,
+          "fp": 1,
+          "recall": 0.3571
+        }
+      }
+    }
+  }
+}

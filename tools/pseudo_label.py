@@ -1,43 +1,57 @@
 #!/usr/bin/env python
 """
-Generate first-pass YOLO labels for extracted frames.
+Generate DRAFT YOLO labels for frames that have none.
 
-These are PSEUDO-LABELS, not final labels. Import the frames + labels into
-Roboflow Annotate or CVAT and manually verify every `goalkeeper`, `referee`
-and `ball` box before training (ROADMAP.md section 3).
+Two backends:
+  local     (default) a fine-tuned model on disk. Once one exists it is
+            strictly better: it knows this footage, emits all four classes,
+            needs no API key and costs nothing per frame. Use the newest
+            checkpoint each active-learning round.
+  roboflow  the hosted model, for bootstrapping before a local one exists.
 
-Backends:
-  roboflow  hosted football detector (keeps the goalkeeper class).
-            Requires ROBOFLOW_API_KEY in the environment.
-  local     any local Ultralytics .pt model. A COCO model only produces
-            player/ball (person -> player, sports ball -> ball); a fine-tuned
-            football model produces all four classes.
+These are drafts, not truth. Every draft must be reviewed by a human before it
+trains anything -- see docs/guides/LABELING.md.
+
+Safety properties:
+  * A label file the tool did not write is never touched.
+  * A draft the tool wrote and a human then edited is never touched again
+    (detected by content hash, not timestamps).
+  * Per-box confidence and provenance are stored SEPARATELY from the labels,
+    so the label files stay clean YOLO format.
+
+Classes are fixed project-wide:
+    0 player   1 goalkeeper   2 referee   3 ball
+
+The API key is read only from ROBOFLOW_API_KEY. Nothing is hardcoded and no
+key is ever written to disk.
 
 Examples:
-    $env:ROBOFLOW_API_KEY = "..."
-    python tools/pseudo_label.py --frames data/frames --backend roboflow
-    python tools/pseudo_label.py --frames data/frames --backend local --model yolov8x.pt
+    export ROBOFLOW_API_KEY=...            # PowerShell: $env:ROBOFLOW_API_KEY="..."
+    python tools/pseudo_label.py --dry-run
+    python tools/pseudo_label.py --source youth_3 --limit 20
+    python tools/pseudo_label.py --batch data/batches/batch_01.json
 """
 
 import argparse
 import base64
+import hashlib
 import json
 import os
 import sys
 import time
 from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 
 import cv2
+import numpy as np
 
-# Class order is fixed across the whole project -- see data/football.yaml.
 CLASSES = ['player', 'goalkeeper', 'referee', 'ball']
 CLASS_ID = {name: i for i, name in enumerate(CLASSES)}
 
-# Alias table for whatever a source model happens to call things.
 ALIASES = {
     'player': 'player', 'players': 'player', 'football player': 'player',
-    'person': 'player', 'outfield player': 'player',
+    'outfield player': 'player', 'person': 'player',
     'goalkeeper': 'goalkeeper', 'goal keeper': 'goalkeeper', 'gk': 'goalkeeper',
     'referee': 'referee', 'ref': 'referee', 'main referee': 'referee',
     'side referee': 'referee', 'assistant referee': 'referee',
@@ -45,196 +59,390 @@ ALIASES = {
 }
 
 ROBOFLOW_URL = 'https://detect.roboflow.com'
-DEFAULT_MODEL_ID = os.environ.get('ROBOFLOW_MODEL_ID', 'football-players-detection-3zvbc/12')
+DEFAULT_MODEL_ID = os.environ.get('ROBOFLOW_MODEL_ID',
+                                  'football-players-detection-3zvbc/12')
 
 
-def norm_class(name: str):
+def norm_class(name):
     return ALIASES.get(str(name).strip().lower())
 
 
-def to_yolo_line(cls_name: str, cx, cy, w, h, img_w, img_h):
+def sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode('utf-8')).hexdigest()
+
+
+def imread_unicode(path: Path):
+    """cv2.imread fails on non-ASCII paths on Windows; read the bytes instead."""
+    try:
+        return cv2.imdecode(np.fromfile(path, dtype=np.uint8), cv2.IMREAD_COLOR)
+    except Exception:
+        return None
+
+
+def to_yolo(cls_name, cx, cy, w, h, img_w, img_h):
     """Absolute centre-format box -> normalised YOLO line, clamped to the frame."""
     x1, y1 = max(0.0, cx - w / 2), max(0.0, cy - h / 2)
     x2, y2 = min(float(img_w), cx + w / 2), min(float(img_h), cy + h / 2)
     if x2 <= x1 or y2 <= y1:
-        return None
-    ncx = ((x1 + x2) / 2) / img_w
-    ncy = ((y1 + y2) / 2) / img_h
-    nw = (x2 - x1) / img_w
-    nh = (y2 - y1) / img_h
+        return None, None
+    ncx, ncy = ((x1 + x2) / 2) / img_w, ((y1 + y2) / 2) / img_h
+    nw, nh = (x2 - x1) / img_w, (y2 - y1) / img_h
     if nw <= 0 or nh <= 0:
-        return None
-    return f'{CLASS_ID[cls_name]} {ncx:.6f} {ncy:.6f} {nw:.6f} {nh:.6f}'
+        return None, None
+    return (f'{CLASS_ID[cls_name]} {ncx:.6f} {ncy:.6f} {nw:.6f} {nh:.6f}',
+            {'class': cls_name, 'cx': round(ncx, 6), 'cy': round(ncy, 6),
+             'w': round(nw, 6), 'h': round(nh, 6)})
+
+
+class LocalBackend:
+    """
+    A fine-tuned local model as the drafting teacher.
+
+    Once a model has been trained on this project's own footage it drafts far
+    better than a generic hosted one -- and unlike Roboflow it produces
+    goalkeeper and referee, needs no API key, and costs nothing per frame.
+    Each active-learning round should use the newest checkpoint.
+    """
+
+    def __init__(self, model_path, confidence, overlap, imgsz=960, device=None):
+        from ultralytics import YOLO
+
+        self.model_path = model_path
+        self.model = YOLO(model_path)
+        self.confidence = confidence
+        self.iou = overlap
+        self.imgsz = imgsz
+        self.device = device
+
+        names = {i: str(n).lower() for i, n in self.model.names.items()}
+        # A model trained on this project emits exactly CLASSES in this order.
+        # Anything else gets mapped by name so ids can never silently shift.
+        self._map = {i: (n if n in CLASS_ID else norm_class(n))
+                     for i, n in names.items()}
+        self._map = {i: n for i, n in self._map.items() if n}
+        if not self._map:
+            sys.exit(f'{model_path} has no classes matching {CLASSES}. '
+                     f'Model reports: {list(names.values())[:10]}')
+        missing = [c for c in CLASSES if c not in set(self._map.values())]
+        if missing:
+            print(f'  note: {model_path} cannot produce {missing}; '
+                  f'those must be drawn by hand.')
+
+    def predict(self, image_path: Path):
+        """Returns a list of (class, cx, cy, w, h, conf) or None on failure."""
+        kwargs = dict(conf=self.confidence, iou=self.iou,
+                      imgsz=self.imgsz, verbose=False)
+        if self.device:
+            kwargs['device'] = self.device
+        try:
+            result = self.model.predict(str(image_path), **kwargs)[0]
+        except Exception as e:
+            print(f'  ! failed on {image_path.name}: {e}')
+            return None
+
+        out = []
+        for box in result.boxes:
+            name = self._map.get(int(box.cls))
+            if not name:
+                continue
+            x1, y1, x2, y2 = box.xyxy[0].tolist()
+            out.append((name, (x1 + x2) / 2, (y1 + y2) / 2,
+                        x2 - x1, y2 - y1, float(box.conf)))
+        return out
 
 
 class RoboflowBackend:
-    def __init__(self, model_id, confidence, overlap, retries=3):
-        import requests  # imported lazily so the local backend has no dependency
-        self.requests = requests
-        self.api_key = os.environ.get('ROBOFLOW_API_KEY')
-        if not self.api_key:
-            sys.exit('ROBOFLOW_API_KEY is not set. Export it, or use --backend local.')
+    def __init__(self, model_id, confidence, overlap, retries=3, timeout=30):
+        try:
+            import requests
+        except ImportError:
+            sys.exit('The requests package is required: pip install requests')
+
+        # Networks that terminate TLS (corporate proxies, some AV suites) present
+        # a certificate signed by a private root CA. Windows trusts it; certifi's
+        # bundle does not, so every request fails CERTIFICATE_VERIFY_FAILED.
+        # truststore makes Python use the OS trust store instead. Optional --
+        # without it, behaviour is unchanged.
+        try:
+            import truststore
+            truststore.inject_into_ssl()
+        except ImportError:
+            pass
+
+        self._requests = requests
+
+        key = os.environ.get('ROBOFLOW_API_KEY')
+        if not key:
+            sys.exit(
+                'ROBOFLOW_API_KEY is not set.\n'
+                '  PowerShell : $env:ROBOFLOW_API_KEY = "your-key"\n'
+                '  bash       : export ROBOFLOW_API_KEY="your-key"\n'
+                'Get a key at https://app.roboflow.com/settings/api\n'
+                'The key is read from the environment only and is never stored.'
+            )
+        self.api_key = key
+        self.model_id = model_id
         self.url = f'{ROBOFLOW_URL}/{model_id}'
-        self.params = {
-            'api_key': self.api_key,
-            'confidence': int(confidence * 100),
-            'overlap': int(overlap * 100),
-            'format': 'json',
-        }
+        self.params = {'api_key': key,
+                       'confidence': int(confidence * 100),
+                       'overlap': int(overlap * 100),
+                       'format': 'json'}
         self.retries = retries
+        self.timeout = timeout
 
     def predict(self, image_path: Path):
+        """Returns a list of (class, cx, cy, w, h, conf) or None on failure."""
         payload = base64.b64encode(image_path.read_bytes())
         last = None
         for attempt in range(self.retries):
             try:
-                r = self.requests.post(
+                r = self._requests.post(
                     self.url, params=self.params, data=payload,
                     headers={'Content-Type': 'application/x-www-form-urlencoded'},
-                    timeout=30)
+                    timeout=self.timeout)
+                if r.status_code in (401, 403):
+                    sys.exit(f'Roboflow rejected the API key (HTTP {r.status_code}). '
+                             f'Check ROBOFLOW_API_KEY and that it can access '
+                             f'{self.model_id}.')
+                if r.status_code == 404:
+                    sys.exit(f'Roboflow model not found: {self.model_id}. '
+                             f'Set --model-id or ROBOFLOW_MODEL_ID.')
                 r.raise_for_status()
                 out = []
-                for pred in r.json().get('predictions', []):
-                    name = norm_class(pred.get('class', ''))
+                for p in r.json().get('predictions', []):
+                    name = norm_class(p.get('class', ''))
                     if name:
-                        out.append((name, pred['x'], pred['y'],
-                                    pred['width'], pred['height']))
+                        out.append((name, p['x'], p['y'], p['width'], p['height'],
+                                    float(p.get('confidence', 0.0))))
                 return out
-            except Exception as e:  # network flakiness is expected, see RESULTS.md
+            except SystemExit:
+                raise
+            except Exception as e:
                 last = e
                 time.sleep(1.5 * (attempt + 1))
-        print(f'  ! roboflow failed on {image_path.name}: {last}')
+        # The key travels as a query parameter, so it appears verbatim in
+        # requests' exception text. Never let it reach a console or a log file.
+        print(f'  ! failed on {image_path.name}: {self._redact(last)}')
         return None
 
+    def _redact(self, value) -> str:
+        return str(value).replace(self.api_key, '<REDACTED>')
 
-class LocalBackend:
-    def __init__(self, model_path, confidence, overlap, imgsz):
-        from ultralytics import YOLO
-        self.model = YOLO(model_path)
-        self.conf = confidence
-        self.iou = overlap
-        self.imgsz = imgsz
-        mapped = {i: norm_class(n) for i, n in self.model.names.items()}
-        self.mapped = {i: n for i, n in mapped.items() if n}
-        if not self.mapped:
-            sys.exit(f'{model_path} has no classes that map to {CLASSES}.')
-        print(f'  local model classes in use: '
-              f'{sorted(set(self.mapped.values()))}')
 
-    def predict(self, image_path: Path):
-        res = self.model.predict(str(image_path), conf=self.conf, iou=self.iou,
-                                 imgsz=self.imgsz, verbose=False)[0]
-        out = []
-        for box in res.boxes:
-            name = self.mapped.get(int(box.cls))
-            if not name:
-                continue
-            x1, y1, x2, y2 = box.xyxy[0].tolist()
-            out.append((name, (x1 + x2) / 2, (y1 + y2) / 2, x2 - x1, y2 - y1))
-        return out
+def load_targets(args):
+    """Images to consider, from an explicit batch file or the frame manifest."""
+    frames_root = Path(args.frames)
+
+    if args.batch:
+        batch = json.loads(Path(args.batch).read_text(encoding='utf-8'))
+        rels = batch['images'] if isinstance(batch, dict) else batch
+        return [(frames_root / r, r) for r in rels]
+
+    manifest_path = Path(args.manifest)
+    if not manifest_path.exists():
+        sys.exit(f'Manifest not found: {manifest_path}\n'
+                 f'Run: python tools/dataset_manifest.py')
+    data = json.loads(manifest_path.read_text(encoding='utf-8'))
+
+    rels = []
+    if 'images' in data:                      # data/manifest.json (per-image)
+        rels = [row['image_path'] for row in data['images']]
+    else:                                     # data/frames/manifest.json
+        for m in data.get('matches', []):
+            src = frames_root / m['match_id']
+            rels += [p.relative_to(frames_root).as_posix()
+                     for p in sorted(src.glob('*.jpg'))]
+
+    if args.source:
+        wanted = set(args.source)
+        rels = [r for r in rels if r.split('/')[0] in wanted]
+    return [(frames_root / r, r) for r in rels]
+
+
+def classify_existing(label_path: Path, meta_path: Path):
+    """
+    'absent' | 'draft' (ours, untouched) | 'edited' (ours, human-modified)
+    | 'foreign' (not written by this tool).
+    """
+    if not label_path.exists():
+        return 'absent'
+    if not meta_path.exists():
+        return 'foreign'
+    try:
+        meta = json.loads(meta_path.read_text(encoding='utf-8'))
+    except (json.JSONDecodeError, OSError):
+        return 'foreign'
+    current = sha256_text(label_path.read_text(encoding='utf-8'))
+    return 'draft' if current == meta.get('label_sha256') else 'edited'
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('--frames', default='data/frames',
-                   help='Frames root produced by extract_frames.py.')
+    p.add_argument('--frames', default='data/frames')
     p.add_argument('--labels', default='data/labels',
-                   help='Output root for YOLO .txt labels (mirrors --frames).')
-    p.add_argument('--backend', choices=['roboflow', 'local'], default='roboflow')
-    p.add_argument('--model', default='yolov8x.pt', help='Local backend model path.')
+                   help='YOLO .txt output (drafts, later human-corrected).')
+    p.add_argument('--meta', default='data/pseudo_meta',
+                   help='Confidence/provenance, kept out of the label files.')
+    p.add_argument('--manifest', default='data/manifest.json')
+    p.add_argument('--batch', help='JSON list of image paths (from select_batch.py).')
+    p.add_argument('--source', action='append',
+                   help='Restrict to this source match (repeatable).')
+    p.add_argument('--limit', type=int, help='Stop after N images.')
+    p.add_argument('--confidence', type=float, default=0.30,
+                   help='Minimum detection confidence (default 0.30).')
+    p.add_argument('--overlap', type=float, default=0.50,
+                   help='NMS IoU threshold (default 0.50).')
+    p.add_argument('--backend', choices=['local', 'roboflow'], default='local',
+                   help='local = a fine-tuned model on disk (default, free, '
+                        'produces all four classes). roboflow = the hosted '
+                        'model, for bootstrapping before one exists.')
+    p.add_argument('--model', default='eyecu_football_v1.pt',
+                   help='Local backend weights.')
+    p.add_argument('--imgsz', type=int, default=960,
+                   help='Local backend inference size; match how it was trained.')
     p.add_argument('--model-id', default=DEFAULT_MODEL_ID,
-                   help='Roboflow model id, e.g. "project/version".')
-    p.add_argument('--confidence', type=float, default=0.30)
-    p.add_argument('--overlap', type=float, default=0.50, help='NMS IoU threshold.')
-    p.add_argument('--imgsz', type=int, default=1280, help='Local backend inference size.')
-    p.add_argument('--limit', type=int, help='Only label the first N frames (smoke test).')
-    p.add_argument('--overwrite', action='store_true',
-                   help='Re-label frames that already have a .txt file.')
+                   help='Roboflow backend model id.')
+    p.add_argument('--dry-run', action='store_true',
+                   help='Show what would be labelled; no API calls, no writes.')
+    p.add_argument('--refresh-drafts', action='store_true',
+                   help='Re-generate drafts that are still untouched. '
+                        'Human-edited and foreign labels are still never touched.')
     args = p.parse_args()
 
     frames_root = Path(args.frames)
     labels_root = Path(args.labels)
-    if not frames_root.exists():
-        sys.exit(f'Frames directory not found: {frames_root}. Run extract_frames.py first.')
+    meta_root = Path(args.meta)
 
-    images = sorted(pth for pth in frames_root.rglob('*')
-                    if pth.suffix.lower() in {'.jpg', '.jpeg', '.png'})
+    targets = load_targets(args)
+    if not targets:
+        sys.exit('No images selected.')
+
+    # Decide what to do with each target before touching the network.
+    todo, states = [], Counter()
+    for img, rel in targets:
+        label_path = (labels_root / rel).with_suffix('.txt')
+        meta_path = (meta_root / rel).with_suffix('.json')
+        state = classify_existing(label_path, meta_path)
+        states[state] += 1
+        if state == 'absent' or (state == 'draft' and args.refresh_drafts):
+            todo.append((img, rel, label_path, meta_path))
     if args.limit:
-        images = images[:args.limit]
-    if not images:
-        sys.exit(f'No images under {frames_root}.')
+        todo = todo[:args.limit]
 
-    if args.backend == 'roboflow':
-        backend = RoboflowBackend(args.model_id, args.confidence, args.overlap)
-        print(f'Backend: roboflow ({args.model_id})')
-    else:
+    print(f'{len(targets)} image(s) considered')
+    print(f'  absent (will draft) : {states["absent"]}')
+    print(f'  existing drafts     : {states["draft"]}'
+          f'{"  (will refresh)" if args.refresh_drafts else "  (skipped)"}')
+    print(f'  human-edited        : {states["edited"]}  (never touched)')
+    print(f'  foreign labels      : {states["foreign"]}  (never touched)')
+    print(f'  -> {len(todo)} to send to Roboflow')
+
+    if args.dry_run:
+        print('\n--dry-run: no API calls, nothing written.')
+        for _, rel, _, _ in todo[:15]:
+            print(f'    {rel}')
+        if len(todo) > 15:
+            print(f'    ... and {len(todo) - 15} more')
+        return
+
+    if not todo:
+        print('\nNothing to do.')
+        return
+
+    if args.backend == 'local':
         backend = LocalBackend(args.model, args.confidence, args.overlap, args.imgsz)
-        print(f'Backend: local ({args.model})')
+        source = f'local {args.model} @ {args.imgsz}px'
+    else:
+        backend = RoboflowBackend(args.model_id, args.confidence, args.overlap)
+        source = f'roboflow {args.model_id}'
+    print(f'\nBackend: {source}  conf>={args.confidence}\n')
 
-    counts = Counter()
-    per_match = Counter()
-    labelled = failed = skipped = 0
+    counts, per_source = Counter(), Counter()
+    written = failed = 0
+    conf_by_class = {c: [] for c in CLASSES}
 
-    for i, img_path in enumerate(images, 1):
-        rel = img_path.relative_to(frames_root)
-        out_path = (labels_root / rel).with_suffix('.txt')
-        if out_path.exists() and not args.overwrite:
-            skipped += 1
-            continue
-
-        preds = backend.predict(img_path)
+    for i, (img, rel, label_path, meta_path) in enumerate(todo, 1):
+        preds = backend.predict(img)
         if preds is None:
             failed += 1
             continue
 
-        image = cv2.imread(str(img_path))
+        image = imread_unicode(img)
         if image is None:
-            print(f'  ! unreadable image: {img_path}')
+            print(f'  ! unreadable image: {rel}')
             failed += 1
             continue
         img_h, img_w = image.shape[:2]
 
-        lines = []
-        for name, cx, cy, w, h in preds:
-            line = to_yolo_line(name, cx, cy, w, h, img_w, img_h)
+        lines, boxes = [], []
+        for name, cx, cy, w, h, conf in preds:
+            line, box = to_yolo(name, cx, cy, w, h, img_w, img_h)
             if line:
                 lines.append(line)
+                box['confidence'] = round(conf, 4)
+                boxes.append(box)
                 counts[name] += 1
+                conf_by_class[name].append(conf)
 
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        # An empty file is a valid YOLO label: it marks a hard negative frame.
-        out_path.write_text('\n'.join(lines) + ('\n' if lines else ''))
-        per_match[rel.parts[0] if len(rel.parts) > 1 else 'root'] += 1
-        labelled += 1
+        # An empty file is a valid YOLO label: it marks a hard negative.
+        text = '\n'.join(lines) + ('\n' if lines else '')
+        label_path.parent.mkdir(parents=True, exist_ok=True)
+        label_path.write_text(text, encoding='utf-8')
 
-        if i % 25 == 0 or i == len(images):
-            print(f'  {i}/{len(images)} frames  '
-                  f'(labelled {labelled}, skipped {skipped}, failed {failed})')
+        meta_path.parent.mkdir(parents=True, exist_ok=True)
+        meta_path.write_text(json.dumps({
+            'image': rel,
+            'source': rel.split('/')[0],
+            'backend': args.backend,
+            'model_id': args.model if args.backend == 'local' else args.model_id,
+            'confidence_threshold': args.confidence,
+            'overlap': args.overlap,
+            'created_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
+            'image_size': [img_w, img_h],
+            'status': 'draft',
+            'label_sha256': sha256_text(text),
+            'boxes': boxes,
+        }, indent=2), encoding='utf-8')
+
+        written += 1
+        per_source[rel.split('/')[0]] += 1
+        if i % 25 == 0 or i == len(todo):
+            print(f'  {i}/{len(todo)}  (written {written}, failed {failed})')
 
     summary = {
         'backend': args.backend,
-        'source': args.model_id if args.backend == 'roboflow' else args.model,
-        'confidence': args.confidence,
-        'frames_labelled': labelled,
-        'frames_skipped': skipped,
+        'model_id': args.model if args.backend == 'local' else args.model_id,
+        'confidence_threshold': args.confidence,
+        'generated_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
+        'frames_written': written,
         'frames_failed': failed,
         'instances_per_class': {c: counts.get(c, 0) for c in CLASSES},
-        'frames_per_match': dict(per_match),
+        'mean_confidence_per_class': {
+            c: round(float(np.mean(v)), 4) if v else None
+            for c, v in conf_by_class.items()},
+        'frames_per_source': dict(per_source),
     }
-    labels_root.mkdir(parents=True, exist_ok=True)
-    (labels_root / 'pseudo_label_summary.json').write_text(json.dumps(summary, indent=2))
+    meta_root.mkdir(parents=True, exist_ok=True)
+    (meta_root / 'pseudo_label_summary.json').write_text(
+        json.dumps(summary, indent=2), encoding='utf-8')
 
-    print('\nInstances per class:')
+    print('\ninstances per class (DRAFT, needs review):')
     for c in CLASSES:
-        print(f'  {c:<11} {counts.get(c, 0)}')
-    print(f'\nLabels written to {labels_root}')
+        mean = summary['mean_confidence_per_class'][c]
+        print(f'  {c:<11}{counts.get(c, 0):>7}   mean conf '
+              f'{mean if mean is not None else "-"}')
+    print(f'\nlabels : {labels_root}')
+    print(f'meta   : {meta_root}')
+
     for rare in ('goalkeeper', 'referee', 'ball'):
-        if counts.get(rare, 0) < 100:
-            print(f'! only {counts.get(rare, 0)} `{rare}` instances -- '
-                  f'add frames that contain them before training.')
-    print('\nNEXT: import frames + labels into Roboflow/CVAT and correct every '
-          'goalkeeper / referee / ball box by hand. Do not train on raw output.')
+        if counts.get(rare, 0) == 0:
+            print(f'! the model produced no `{rare}` at all -- check the model '
+                  f'covers all four classes.')
+
+    print('\nNEXT: these are DRAFTS. Review every goalkeeper / referee / ball box '
+          'by hand (docs/guides/LABELING.md), then run:\n'
+          '  python tools/validate_annotations.py --strict')
 
 
 if __name__ == '__main__':

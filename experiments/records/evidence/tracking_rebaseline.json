@@ -1,0 +1,107 @@
+{
+  "continuity": {
+    "austin_fc_vs__club_tijuana": {
+      "mean_simultaneous_humans": 12.6,
+      "unique_human_track_ids": 68,
+      "ids_per_human": 5.4,
+      "track_len_median": 30,
+      "track_len_mean": 49.9,
+      "track_len_p90": 114,
+      "surviving_ge_half": 2,
+      "short_tracks_le5": 18,
+      "interior_gaps": 81,
+      "starts_per_min": 407.6,
+      "tracks_with_role_flip": 16,
+      "role_flip_pct_of_tracks": 0.235,
+      "role_flips_total": 92,
+      "transitions": {
+        "referee -> player": 39,
+        "player -> referee": 38,
+        "goalkeeper -> player": 5,
+        "player -> goalkeeper": 4,
+        "referee -> goalkeeper": 4,
+        "goalkeeper -> referee": 2
+      },
+      "ms_per_frame": 151.5,
+      "start_frame": 284
+    },
+    "bayern_munich_3-1_chelsea": {
+      "mean_simultaneous_humans": 24.9,
+      "unique_human_track_ids": 53,
+      "ids_per_human": 2.13,
+      "track_len_median": 61,
+      "track_len_mean": 134.9,
+      "track_len_p90": 300,
+      "surviving_ge_half": 24,
+      "short_tracks_le5": 14,
+      "interior_gaps": 59,
+      "starts_per_min": 265.0,
+      "tracks_with_role_flip": 9,
+      "role_flip_pct_of_tracks": 0.17,
+      "role_flips_total": 64,
+      "transitions": {
+        "goalkeeper -> player": 18,
+        "player -> goalkeeper": 18,
+        "referee -> player": 15,
+        "player -> referee": 13
+      },
+      "ms_per_frame": 163.3,
+      "start_frame": 228
+    },
+    "women_1": {
+      "mean_simultaneous_humans": 12.3,
+      "unique_human_track_ids": 58,
+      "ids_per_human": 4.71,
+      "track_len_median": 13,
+      "track_len_mean": 54.8,
+      "track_len_p90": 158,
+      "surviving_ge_half": 8,
+      "short_tracks_le5": 19,
+      "interior_gaps": 94,
+      "starts_per_min": 290.0,
+      "tracks_with_role_flip": 18,
+      "role_flip_pct_of_tracks": 0.31,
+      "role_flips_total": 178,
+      "transitions": {
+        "referee -> player": 88,
+        "player -> referee": 85,
+        "goalkeeper -> player": 3,
+        "player -> goalkeeper": 2
+      },
+      "ms_per_frame": 163.9,
+      "start_frame": 389
+    },
+    "youth_premier_league": {
+      "mean_simultaneous_humans": 8.8,
+      "unique_human_track_ids": 56,
+      "ids_per_human": 6.4,
+      "track_len_median": 10,
+      "track_len_mean": 39.9,
+      "track_len_p90": 120,
+      "surviving_ge_half": 7,
+      "short_tracks_le5": 21,
+      "interior_gaps": 149,
+      "starts_per_min": 280.0,
+      "tracks_with_role_flip": 4,
+      "role_flip_pct_of_tracks": 0.071,
+      "role_flips_total": 26,
+      "transitions": {
+        "goalkeeper -> referee": 8,
+        "referee -> goalkeeper": 7,
+        "goalkeeper -> player": 4,
+        "player -> goalkeeper": 3,
+        "referee -> player": 2,
+        "player -> referee": 2
+      },
+      "ms_per_frame": 162.7,
+      "start_frame": 233
+    }
+  },
+  "transition": {
+    "cut_frame": 272,
+    "ids_before": 20,
+    "ids_after_new": 2,
+    "ids_spanning": 0,
+    "frames_to_stable": null
+  }
+}

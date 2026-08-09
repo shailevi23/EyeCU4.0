@@ -1,0 +1,58 @@
+{
+  "bayern_munich_3-1_chelsea": {
+    "frames": 300,
+    "fps": 25.0,
+    "duration_s": 12.0,
+    "mean_simultaneous_humans": 25.0,
+    "unique_human_track_ids": 41,
+    "ids_per_simultaneous_human": 1.64,
+    "track_len_median": 255,
+    "track_len_mean": 177.9,
+    "track_len_p90": 300,
+    "track_len_max": 300,
+    "short_tracks_le5": 10,
+    "short_tracks_le5_pct": 0.244,
+    "tracks_surviving_ge_half": 25,
+    "coverage_ratio_median": 1.0,
+    "interior_gaps": 36,
+    "track_starts_per_min": 205.0,
+    "tracks_with_role_flip": 3,
+    "role_flips_total": 23,
+    "role_flips_per_track_mean": 0.56,
+    "transitions": {
+      "player -> referee": 8,
+      "referee -> player": 8,
+      "player -> goalkeeper": 4,
+      "goalkeeper -> player": 3
+    },
+    "ball_tracker_ids": 9
+  },
+  "youth_premier_league": {
+    "frames": 300,
+    "fps": 25.0,
+    "duration_s": 12.0,
+    "mean_simultaneous_humans": 3.2,
+    "unique_human_track_ids": 21,
+    "ids_per_simultaneous_human": 6.56,
+    "track_len_median": 7,
+    "track_len_mean": 26.5,
+    "track_len_p90": 55,
+    "track_len_max": 215,
+    "short_tracks_le5": 9,
+    "short_tracks_le5_pct": 0.429,
+    "tracks_surviving_ge_half": 1,
+    "coverage_ratio_median": 0.963,
+    "interior_gaps": 60,
+    "track_starts_per_min": 105.0,
+    "tracks_with_role_flip": 3,
+    "role_flips_total": 16,
+    "role_flips_per_track_mean": 0.76,
+    "transitions": {
+      "player -> goalkeeper": 6,
+      "goalkeeper -> player": 6,
+      "referee -> player": 2,
+      "player -> referee": 2
+    },
+    "ball_tracker_ids": 4
+  }
+}

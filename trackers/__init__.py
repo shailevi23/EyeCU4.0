@@ -14,7 +14,7 @@ from trackers.player_ball_assigner import PlayerBallAssigner
 from trackers.video_utils import read_video, save_video, get_video_info
 
 # trackers.football_analysis was a duplicate orchestrator and has been removed
-# (TODO.md section 2). full_pipeline.py is the single orchestrator.
+# (docs/archive/TODO_legacy.md section 2). full_pipeline.py is the single orchestrator.
 
 __all__ = [
     'CLASSES',

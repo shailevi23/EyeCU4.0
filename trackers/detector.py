@@ -5,7 +5,7 @@ One interface, two backends:
 
     LocalDetector      Ultralytics YOLO running locally. The production path.
     RoboflowDetector   Hosted model. Optional, opt-in, used only as a
-                       labelling/benchmark aid (TODO.md section 5).
+                       labelling/benchmark aid (docs/archive/TODO_legacy.md section 5).
 
 Every backend emits the same four classes and never collapses one into
 another -- in particular `goalkeeper` stays `goalkeeper`. Team identity is not
@@ -29,6 +29,67 @@ CLASS_IDS = {name: i for i, name in enumerate(CLASSES)}
 
 # Roles that are people. Used by duplicate suppression and team assignment.
 HUMAN_CLASSES = ('player', 'goalkeeper', 'referee')
+
+# --- ball candidate pool (Patch 0b) -------------------------------------
+# Opt-in via LocalDetector(ball_candidate_pool=True). All measured on the
+# frozen 208-image validation split; see docs/results/RESULTS.md.
+BALL_CANDIDATE_CONF = 0.10   # floor of the low-confidence rescue pool
+BALL_ACCEPT_CONF = 0.25      # at/above this a ball is a high-confidence observation
+BALL_DEDUPE_IOU = 0.70       # prediction-to-prediction IoU for duplicate suppression
+
+
+def _iou(a, b) -> float:
+    ix1, iy1 = max(a[0], b[0]), max(a[1], b[1])
+    ix2, iy2 = min(a[2], b[2]), min(a[3], b[3])
+    inter = max(0.0, ix2 - ix1) * max(0.0, iy2 - iy1)
+    if inter <= 0:
+        return 0.0
+    area_a = max(0.0, a[2] - a[0]) * max(0.0, a[3] - a[1])
+    area_b = max(0.0, b[2] - b[0]) * max(0.0, b[3] - b[1])
+    union = area_a + area_b - inter
+    return inter / union if union > 0 else 0.0
+
+
+def suppress_ball_duplicates(detections: List[Dict],
+                             iou_threshold: float = BALL_DEDUPE_IOU) -> List[Dict]:
+    """
+    Drop second boxes on the same ball. Ball class only.
+
+    YOLO26 is end-to-end and runs no NMS -- the `iou` argument to predict() is
+    inert, verified against this checkpoint. So nothing suppresses a duplicate
+    ball, and on validation half of the false balls at the production threshold
+    were a second box on an already-detected one.
+
+    Humans are deliberately excluded. Players legitimately overlap heavily when
+    they contest a header or stand in a wall, and the end-to-end head is meant
+    to emit those; suppressing them would delete real people.
+
+    0.70 is measured, not guessed: the prediction-to-prediction IoU of observed
+    duplicate pairs has median 0.84, and 0.50/0.60/0.70 all remove the same 12
+    of 13 pairs while 0.80 removes only 10. 0.70 is the top of that plateau --
+    maximum removal with the widest margin against suppressing distinct balls.
+
+    Greedy and confidence-descending, so the surviving box is the most
+    confident one. Note that in 7 of the 13 measured pairs the duplicate
+    outranked the box that best fit the ground truth, so the survivor is not
+    always the tightest box; validation showed no true detection lost by this,
+    but the effect on mean IoU is real and is reported in docs/results/RESULTS.md.
+    """
+    balls = [d for d in detections if d.get('class') == 'ball']
+    if len(balls) < 2:
+        return detections
+
+    # Stable sort: equal confidences keep their original relative order, so the
+    # result does not depend on an unspecified sort.
+    ranked = sorted(balls, key=lambda d: -d.get('confidence', 0.0))
+    kept: List[Dict] = []
+    for det in ranked:
+        if all(_iou(det['bbox'], k['bbox']) < iou_threshold for k in kept):
+            kept.append(det)
+
+    keep_ids = {id(d) for d in kept}
+    return [d for d in detections
+            if d.get('class') != 'ball' or id(d) in keep_ids]
 
 # Whatever a source model happens to call things -> our four classes.
 # `person` maps to `player` because a COCO model cannot tell roles apart; a
@@ -100,7 +161,8 @@ class LocalDetector(BaseDetector):
                  confidence: float = 0.25,
                  iou: float = 0.5,
                  imgsz: int = 960,
-                 device: Optional[str] = None):
+                 device: Optional[str] = None,
+                 ball_candidate_pool: bool = False):
         super().__init__(confidence)
         from ultralytics import YOLO
 
@@ -108,6 +170,10 @@ class LocalDetector(BaseDetector):
         self.iou = iou
         self.imgsz = imgsz
         self.device = device
+        # Off by default: with the flag off this class emits exactly what it
+        # emitted before Patch 0b -- same threshold, no suppression, no extra
+        # keys. BallTemporalSelector will turn it on.
+        self.ball_candidate_pool = ball_candidate_pool
         self.model = YOLO(model_path)
 
         # Resolve the model's own label space once.
@@ -128,7 +194,13 @@ class LocalDetector(BaseDetector):
                   f'Fine-tune on the football dataset to get all four.')
 
     def _predict(self, image: np.ndarray) -> List[Dict]:
-        kwargs = dict(conf=self.confidence, iou=self.iou,
+        # One inference pass. With the pool enabled the floor drops so the ball
+        # candidates exist at all; every class is then filtered back to its own
+        # threshold, so humans are unaffected either way.
+        ball_floor = BALL_CANDIDATE_CONF if self.ball_candidate_pool else self.confidence
+        floor = min(self.confidence, ball_floor)
+
+        kwargs = dict(conf=floor, iou=self.iou,
                       imgsz=self.imgsz, verbose=False)
         if self.device:
             kwargs['device'] = self.device
@@ -139,12 +211,26 @@ class LocalDetector(BaseDetector):
             name = self._class_map.get(int(box.cls))
             if not name:
                 continue  # a COCO class we do not care about
+            conf = float(box.conf)
+            if conf < (ball_floor if name == 'ball' else self.confidence):
+                continue
             x1, y1, x2, y2 = box.xyxy[0].tolist()
-            detections.append({
+            det = {
                 'bbox': [x1, y1, x2, y2],
                 'class': name,
-                'confidence': float(box.conf),
-            })
+                'confidence': conf,
+            }
+            if self.ball_candidate_pool and name == 'ball':
+                # Split the pool, but keep both halves in one list so callers
+                # can audit them separately without a second inference pass.
+                det['state'] = ('observed' if conf >= BALL_ACCEPT_CONF
+                                else 'candidate_low_conf')
+            detections.append(det)
+
+        if self.ball_candidate_pool:
+            # Exactly one suppression pass, over the whole ball pool, before
+            # anything downstream splits it by confidence.
+            detections = suppress_ball_duplicates(detections, BALL_DEDUPE_IOU)
         return detections
 
 
@@ -237,7 +323,8 @@ def create_detector(model_path: str = 'yolov8s.pt',
                     confidence: float = 0.25,
                     iou: float = 0.5,
                     imgsz: int = 960,
-                    model_id: Optional[str] = None) -> BaseDetector:
+                    model_id: Optional[str] = None,
+                    ball_candidate_pool: bool = False) -> BaseDetector:
     """
     Build the detector for a run.
 
@@ -246,7 +333,8 @@ def create_detector(model_path: str = 'yolov8s.pt',
     killing the run.
     """
     local = LocalDetector(model_path=model_path, confidence=confidence,
-                          iou=iou, imgsz=imgsz)
+                          iou=iou, imgsz=imgsz,
+                          ball_candidate_pool=ball_candidate_pool)
     if not use_roboflow:
         return local
 

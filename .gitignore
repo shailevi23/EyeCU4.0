@@ -5,3 +5,41 @@ input-videos/
 roboflow_api_key.env
 data/
 YouTubeVideoSegmentDownloader/
+.pytest_cache/
+data/dataset/
+data/football_dataset.zip
+data/pseudo_meta/
+.env
+
+# Frames/labels/datasets stay local, but the batch assignments and the
+# frame manifest are decisions worth sharing.
+!data/batches/
+!data/batches/*.json
+
+# Temporal-val frames stay local, but the window plan and provenance are
+# decisions worth sharing -- they define the benchmark.
+!data/temporal_val/
+!data/temporal_val/manifest.json
+!data/temporal_val/ANNOTATION.md
+!data/temporal_val/SPLIT
+!data/derived_train/
+!data/derived_train/manifest.json
+!data/derived_train/SPLIT
+!data/dataset_C/
+!data/dataset_C/football_C.yaml
+!data/dataset_C/reproducibility.json
+
+# One-off diagnostic renders land in the repo root and pile up fast. Keepers
+# belong in experiments/records/evidence/, which is tracked normally; this rule
+# only stops scratch renders accumulating at root.
+/*.png
+/*.json
+!/package.json
+
+# Regenerable dataset exports and the assembled Experiment C training set.
+# Rebuild with tools/build_dataset.py --zip and
+# tools/build_experiment_c_dataset.py; the manifests, hashes and yaml are
+# tracked so the rebuild stays verifiable.
+data/football_dataset*.zip
+data/dataset_C/images/
+data/dataset_C/labels/

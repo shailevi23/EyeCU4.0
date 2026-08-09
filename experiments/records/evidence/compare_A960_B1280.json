@@ -1,0 +1,292 @@
+{
+  "model_a": "best_A_960.pt",
+  "model_b": "best_B_1280.pt",
+  "split": "val",
+  "thresholds": {
+    "confidence": 0.25,
+    "match_iou": 0.5,
+    "note": "Identical for A and B. Applied without any per-model tuning, and never selected on the test split."
+  },
+  "imgsz_a": 960,
+  "imgsz_b": 1280,
+  "speed": {
+    "ms_per_image_a": 173.77,
+    "ms_per_image_b": 300.06,
+    "fps_a": 5.8,
+    "fps_b": 3.3,
+    "fps_ratio_b_over_a": 0.579,
+    "cost_ratio_b_over_a": 1.727
+  },
+  "classes": {
+    "player": {
+      "n": 2490,
+      "both": 2233,
+      "a_only": 47,
+      "b_only": 102,
+      "neither": 108,
+      "recall_a": 0.9157,
+      "recall_b": 0.9378,
+      "recall_delta_absolute": 0.0221,
+      "recall_delta_relative": 0.0241,
+      "mean_iou_a_on_shared": 0.8535,
+      "mean_iou_b_on_shared": 0.8597,
+      "mean_iou_delta_on_shared": 0.0062,
+      "n_shared_for_iou": 2233,
+      "mcnemar_p_pooled": 8e-06
+    },
+    "goalkeeper": {
+      "n": 115,
+      "both": 40,
+      "a_only": 19,
+      "b_only": 7,
+      "neither": 49,
+      "recall_a": 0.513,
+      "recall_b": 0.4087,
+      "recall_delta_absolute": -0.1043,
+      "recall_delta_relative": -0.2034,
+      "mean_iou_a_on_shared": 0.8449,
+      "mean_iou_b_on_shared": 0.8569,
+      "mean_iou_delta_on_shared": 0.012,
+      "n_shared_for_iou": 40,
+      "mcnemar_p_pooled": 0.028959
+    },
+    "referee": {
+      "n": 257,
+      "both": 173,
+      "a_only": 35,
+      "b_only": 19,
+      "neither": 30,
+      "recall_a": 0.8093,
+      "recall_b": 0.7471,
+      "recall_delta_absolute": -0.0623,
+      "recall_delta_relative": -0.0769,
+      "mean_iou_a_on_shared": 0.8421,
+      "mean_iou_b_on_shared": 0.852,
+      "mean_iou_delta_on_shared": 0.0099,
+      "n_shared_for_iou": 173,
+      "mcnemar_p_pooled": 0.040224
+    },
+    "ball": {
+      "n": 111,
+      "both": 44,
+      "a_only": 7,
+      "b_only": 13,
+      "neither": 47,
+      "recall_a": 0.4595,
+      "recall_b": 0.5135,
+      "recall_delta_absolute": 0.0541,
+      "recall_delta_relative": 0.1176,
+      "mean_iou_a_on_shared": 0.7576,
+      "mean_iou_b_on_shared": 0.775,
+      "mean_iou_delta_on_shared": 0.0174,
+      "n_shared_for_iou": 44,
+      "mcnemar_p_pooled": 0.263176
+    }
+  },
+  "per_match": {
+    "player": {
+      "matches": {
+        "austin_fc_vs__club_tijuana": {
+          "n": 518,
+          "both": 480,
+          "a_only": 15,
+          "b_only": 12,
+          "neither": 11,
+          "recall_a": 0.9556,
+          "recall_b": 0.9498,
+          "recall_delta_absolute": -0.0058,
+          "mean_iou_delta_on_shared": 0.0063
+        },
+        "bayern_munich_3-1_chelsea": {
+          "n": 861,
+          "both": 843,
+          "a_only": 2,
+          "b_only": 3,
+          "neither": 13,
+          "recall_a": 0.9814,
+          "recall_b": 0.9826,
+          "recall_delta_absolute": 0.0012,
+          "mean_iou_delta_on_shared": 0.0013
+        },
+        "women_1": {
+          "n": 420,
+          "both": 330,
+          "a_only": 5,
+          "b_only": 38,
+          "neither": 47,
+          "recall_a": 0.7976,
+          "recall_b": 0.8762,
+          "recall_delta_absolute": 0.0786,
+          "mean_iou_delta_on_shared": 0.0093
+        },
+        "youth_premier_league": {
+          "n": 691,
+          "both": 580,
+          "a_only": 25,
+          "b_only": 49,
+          "neither": 37,
+          "recall_a": 0.8755,
+          "recall_b": 0.9103,
+          "recall_delta_absolute": 0.0347,
+          "mean_iou_delta_on_shared": 0.0117
+        }
+      },
+      "b_better_in": 3,
+      "b_worse_in": 1,
+      "tied": 0
+    },
+    "goalkeeper": {
+      "matches": {
+        "austin_fc_vs__club_tijuana": {
+          "n": 56,
+          "both": 19,
+          "a_only": 2,
+          "b_only": 4,
+          "neither": 31,
+          "recall_a": 0.375,
+          "recall_b": 0.4107,
+          "recall_delta_absolute": 0.0357,
+          "mean_iou_delta_on_shared": 0.0018
+        },
+        "bayern_munich_3-1_chelsea": {
+          "n": 31,
+          "both": 5,
+          "a_only": 15,
+          "b_only": 0,
+          "neither": 11,
+          "recall_a": 0.6452,
+          "recall_b": 0.1613,
+          "recall_delta_absolute": -0.4839,
+          "mean_iou_delta_on_shared": 0.0125
+        },
+        "women_1": {
+          "n": 4,
+          "both": 2,
+          "a_only": 0,
+          "b_only": 1,
+          "neither": 1,
+          "recall_a": 0.5,
+          "recall_b": 0.75,
+          "recall_delta_absolute": 0.25,
+          "mean_iou_delta_on_shared": 0.1998
+        },
+        "youth_premier_league": {
+          "n": 24,
+          "both": 14,
+          "a_only": 2,
+          "b_only": 2,
+          "neither": 6,
+          "recall_a": 0.6667,
+          "recall_b": 0.6667,
+          "recall_delta_absolute": 0.0,
+          "mean_iou_delta_on_shared": -0.001
+        }
+      },
+      "b_better_in": 2,
+      "b_worse_in": 1,
+      "tied": 1
+    },
+    "referee": {
+      "matches": {
+        "austin_fc_vs__club_tijuana": {
+          "n": 52,
+          "both": 35,
+          "a_only": 5,
+          "b_only": 5,
+          "neither": 7,
+          "recall_a": 0.7692,
+          "recall_b": 0.7692,
+          "recall_delta_absolute": 0.0,
+          "mean_iou_delta_on_shared": 0.0063
+        },
+        "bayern_munich_3-1_chelsea": {
+          "n": 126,
+          "both": 92,
+          "a_only": 14,
+          "b_only": 10,
+          "neither": 10,
+          "recall_a": 0.8413,
+          "recall_b": 0.8095,
+          "recall_delta_absolute": -0.0317,
+          "mean_iou_delta_on_shared": 0.0038
+        },
+        "women_1": {
+          "n": 47,
+          "both": 17,
+          "a_only": 15,
+          "b_only": 3,
+          "neither": 12,
+          "recall_a": 0.6809,
+          "recall_b": 0.4255,
+          "recall_delta_absolute": -0.2553,
+          "mean_iou_delta_on_shared": 0.0289
+        },
+        "youth_premier_league": {
+          "n": 32,
+          "both": 29,
+          "a_only": 1,
+          "b_only": 1,
+          "neither": 1,
+          "recall_a": 0.9375,
+          "recall_b": 0.9375,
+          "recall_delta_absolute": 0.0,
+          "mean_iou_delta_on_shared": 0.0223
+        }
+      },
+      "b_better_in": 0,
+      "b_worse_in": 2,
+      "tied": 2
+    },
+    "ball": {
+      "matches": {
+        "austin_fc_vs__club_tijuana": {
+          "n": 28,
+          "both": 12,
+          "a_only": 0,
+          "b_only": 2,
+          "neither": 14,
+          "recall_a": 0.4286,
+          "recall_b": 0.5,
+          "recall_delta_absolute": 0.0714,
+          "mean_iou_delta_on_shared": -0.0122
+        },
+        "bayern_munich_3-1_chelsea": {
+          "n": 29,
+          "both": 15,
+          "a_only": 2,
+          "b_only": 6,
+          "neither": 6,
+          "recall_a": 0.5862,
+          "recall_b": 0.7241,
+          "recall_delta_absolute": 0.1379,
+          "mean_iou_delta_on_shared": 0.0247
+        },
+        "women_1": {
+          "n": 26,
+          "both": 10,
+          "a_only": 0,
+          "b_only": 2,
+          "neither": 14,
+          "recall_a": 0.3846,
+          "recall_b": 0.4615,
+          "recall_delta_absolute": 0.0769,
+          "mean_iou_delta_on_shared": 0.0226
+        },
+        "youth_premier_league": {
+          "n": 28,
+          "both": 7,
+          "a_only": 5,
+          "b_only": 3,
+          "neither": 13,
+          "recall_a": 0.4286,
+          "recall_b": 0.3571,
+          "recall_delta_absolute": -0.0714,
+          "mean_iou_delta_on_shared": 0.0452
+        }
+      },
+      "b_better_in": 3,
+      "b_worse_in": 1,
+      "tied": 0
+    }
+  }
+}

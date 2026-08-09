@@ -1,0 +1,861 @@
+{
+  "conf": 0.1,
+  "n": 53,
+  "categories": {
+    "bare pitch / line artifact": 15,
+    "on a player/referee body": 16,
+    "duplicate/near-GT ball": 14,
+    "beside a player (feet/shadow)": 6,
+    "upper frame (crowd/graphics)": 2
+  },
+  "items": [
+    {
+      "img": "austin_fc_vs__club_tijuana_000360.jpg",
+      "box": [
+        400.3,
+        287.9,
+        404.1,
+        291.5
+      ],
+      "conf": 0.147,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        3.8,
+        3.7
+      ]
+    },
+    {
+      "img": "austin_fc_vs__club_tijuana_000360.jpg",
+      "box": [
+        248.9,
+        158.5,
+        269.5,
+        174.4
+      ],
+      "conf": 0.121,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        20.6,
+        15.9
+      ]
+    },
+    {
+      "img": "austin_fc_vs__club_tijuana_000394.jpg",
+      "box": [
+        412.6,
+        290.3,
+        451.4,
+        338.3
+      ],
+      "conf": 0.231,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        38.8,
+        48.0
+      ]
+    },
+    {
+      "img": "austin_fc_vs__club_tijuana_000405.jpg",
+      "box": [
+        253.0,
+        200.7,
+        259.3,
+        207.4
+      ],
+      "conf": 0.188,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.713,
+      "wh": [
+        6.3,
+        6.7
+      ]
+    },
+    {
+      "img": "austin_fc_vs__club_tijuana_000660.jpg",
+      "box": [
+        442.2,
+        176.5,
+        447.2,
+        180.2
+      ],
+      "conf": 0.227,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.9,
+        3.6
+      ]
+    },
+    {
+      "img": "austin_fc_vs__club_tijuana_000765.jpg",
+      "box": [
+        295.7,
+        207.8,
+        321.8,
+        240.5
+      ],
+      "conf": 0.139,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        26.2,
+        32.7
+      ]
+    },
+    {
+      "img": "austin_fc_vs__club_tijuana_001620.jpg",
+      "box": [
+        435.1,
+        198.1,
+        440.9,
+        205.2
+      ],
+      "conf": 0.876,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.923,
+      "wh": [
+        5.8,
+        7.1
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_000150.jpg",
+      "box": [
+        50.0,
+        143.8,
+        54.0,
+        147.8
+      ],
+      "conf": 0.286,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.1,
+        4.1
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_000200.jpg",
+      "box": [
+        6.2,
+        146.1,
+        10.8,
+        150.5
+      ],
+      "conf": 0.158,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.6,
+        4.3
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_000250.jpg",
+      "box": [
+        36.2,
+        139.2,
+        40.3,
+        143.1
+      ],
+      "conf": 0.292,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.0,
+        3.9
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_000450.jpg",
+      "box": [
+        211.0,
+        184.3,
+        214.8,
+        187.8
+      ],
+      "conf": 0.154,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.52,
+      "wh": [
+        3.7,
+        3.5
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_000950.jpg",
+      "box": [
+        565.2,
+        247.1,
+        573.7,
+        256.2
+      ],
+      "conf": 0.319,
+      "cat": "beside a player (feet/shadow)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        8.5,
+        9.1
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_000950.jpg",
+      "box": [
+        549.1,
+        117.3,
+        552.9,
+        120.9
+      ],
+      "conf": 0.117,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        3.9,
+        3.5
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001000.jpg",
+      "box": [
+        549.6,
+        119.7,
+        553.6,
+        123.3
+      ],
+      "conf": 0.167,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.0,
+        3.6
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001020.jpg",
+      "box": [
+        549.9,
+        112.0,
+        553.9,
+        116.1
+      ],
+      "conf": 0.149,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        3.9,
+        4.0
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001020.jpg",
+      "box": [
+        265.2,
+        262.7,
+        270.3,
+        267.4
+      ],
+      "conf": 0.123,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.662,
+      "wh": [
+        5.1,
+        4.7
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001040.jpg",
+      "box": [
+        560.4,
+        109.6,
+        564.9,
+        113.7
+      ],
+      "conf": 0.101,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.5,
+        4.1
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001095.jpg",
+      "box": [
+        145.3,
+        214.7,
+        149.7,
+        219.1
+      ],
+      "conf": 0.558,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.46,
+      "wh": [
+        4.5,
+        4.4
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001100.jpg",
+      "box": [
+        159.5,
+        199.4,
+        163.7,
+        203.6
+      ],
+      "conf": 0.128,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.699,
+      "wh": [
+        4.1,
+        4.2
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001110.jpg",
+      "box": [
+        179.2,
+        177.3,
+        183.3,
+        181.5
+      ],
+      "conf": 0.22,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.766,
+      "wh": [
+        4.1,
+        4.2
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001120.jpg",
+      "box": [
+        22.1,
+        124.5,
+        26.2,
+        128.3
+      ],
+      "conf": 0.106,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.1,
+        3.8
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001130.jpg",
+      "box": [
+        209.3,
+        155.8,
+        213.4,
+        159.9
+      ],
+      "conf": 0.792,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.782,
+      "wh": [
+        4.2,
+        4.1
+      ]
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001400.jpg",
+      "box": [
+        628.0,
+        136.6,
+        631.6,
+        139.7
+      ],
+      "conf": 0.256,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        3.6,
+        3.1
+      ]
+    },
+    {
+      "img": "women_1_000150.jpg",
+      "box": [
+        279.2,
+        142.6,
+        292.5,
+        156.7
+      ],
+      "conf": 0.107,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        13.3,
+        14.1
+      ]
+    },
+    {
+      "img": "women_1_000285.jpg",
+      "box": [
+        0.1,
+        157.3,
+        5.0,
+        165.5
+      ],
+      "conf": 0.33,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.9,
+        8.2
+      ]
+    },
+    {
+      "img": "women_1_000305.jpg",
+      "box": [
+        228.0,
+        6.9,
+        233.1,
+        11.5
+      ],
+      "conf": 0.104,
+      "cat": "upper frame (crowd/graphics)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        5.1,
+        4.6
+      ]
+    },
+    {
+      "img": "women_1_000400.jpg",
+      "box": [
+        207.6,
+        133.9,
+        215.6,
+        140.8
+      ],
+      "conf": 0.249,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.613,
+      "wh": [
+        8.0,
+        6.9
+      ]
+    },
+    {
+      "img": "women_1_000550.jpg",
+      "box": [
+        199.6,
+        144.1,
+        206.4,
+        151.6
+      ],
+      "conf": 0.549,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.734,
+      "wh": [
+        6.8,
+        7.4
+      ]
+    },
+    {
+      "img": "women_1_000885.jpg",
+      "box": [
+        395.0,
+        34.1,
+        399.0,
+        37.7
+      ],
+      "conf": 0.119,
+      "cat": "upper frame (crowd/graphics)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        3.9,
+        3.6
+      ]
+    },
+    {
+      "img": "women_1_000895.jpg",
+      "box": [
+        307.2,
+        173.8,
+        319.0,
+        181.9
+      ],
+      "conf": 0.354,
+      "cat": "beside a player (feet/shadow)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        11.7,
+        8.1
+      ]
+    },
+    {
+      "img": "women_1_001200.jpg",
+      "box": [
+        129.4,
+        151.9,
+        141.2,
+        162.6
+      ],
+      "conf": 0.143,
+      "cat": "beside a player (feet/shadow)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        11.9,
+        10.7
+      ]
+    },
+    {
+      "img": "women_1_001405.jpg",
+      "box": [
+        1.3,
+        259.6,
+        16.7,
+        273.4
+      ],
+      "conf": 0.255,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        15.4,
+        13.8
+      ]
+    },
+    {
+      "img": "youth_premier_league_000100.jpg",
+      "box": [
+        164.7,
+        254.7,
+        174.1,
+        263.3
+      ],
+      "conf": 0.228,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.682,
+      "wh": [
+        9.4,
+        8.6
+      ]
+    },
+    {
+      "img": "youth_premier_league_000105.jpg",
+      "box": [
+        250.3,
+        215.8,
+        260.3,
+        223.5
+      ],
+      "conf": 0.212,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        10.0,
+        7.7
+      ]
+    },
+    {
+      "img": "youth_premier_league_000180.jpg",
+      "box": [
+        407.6,
+        225.9,
+        417.4,
+        235.2
+      ],
+      "conf": 0.37,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        9.9,
+        9.3
+      ]
+    },
+    {
+      "img": "youth_premier_league_000190.jpg",
+      "box": [
+        498.2,
+        214.7,
+        505.5,
+        221.5
+      ],
+      "conf": 0.743,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.691,
+      "wh": [
+        7.3,
+        6.8
+      ]
+    },
+    {
+      "img": "youth_premier_league_000215.jpg",
+      "box": [
+        75.5,
+        137.6,
+        79.6,
+        142.9
+      ],
+      "conf": 0.108,
+      "cat": "beside a player (feet/shadow)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.1,
+        5.3
+      ]
+    },
+    {
+      "img": "youth_premier_league_000600.jpg",
+      "box": [
+        155.9,
+        311.5,
+        168.3,
+        319.2
+      ],
+      "conf": 0.196,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        12.5,
+        7.6
+      ]
+    },
+    {
+      "img": "youth_premier_league_000865.jpg",
+      "box": [
+        402.4,
+        160.0,
+        410.1,
+        168.8
+      ],
+      "conf": 0.483,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.861,
+      "wh": [
+        7.7,
+        8.8
+      ]
+    },
+    {
+      "img": "youth_premier_league_000970.jpg",
+      "box": [
+        476.3,
+        167.6,
+        486.9,
+        174.9
+      ],
+      "conf": 0.102,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        10.6,
+        7.4
+      ]
+    },
+    {
+      "img": "youth_premier_league_000980.jpg",
+      "box": [
+        371.7,
+        199.0,
+        378.9,
+        208.8
+      ],
+      "conf": 0.151,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        7.2,
+        9.9
+      ]
+    },
+    {
+      "img": "youth_premier_league_000985.jpg",
+      "box": [
+        336.4,
+        199.1,
+        344.2,
+        204.5
+      ],
+      "conf": 0.181,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        7.8,
+        5.5
+      ]
+    },
+    {
+      "img": "youth_premier_league_000990.jpg",
+      "box": [
+        287.6,
+        195.3,
+        296.9,
+        203.3
+      ],
+      "conf": 0.243,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        9.2,
+        7.9
+      ]
+    },
+    {
+      "img": "youth_premier_league_000990.jpg",
+      "box": [
+        564.6,
+        243.1,
+        574.0,
+        252.3
+      ],
+      "conf": 0.178,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        9.4,
+        9.3
+      ]
+    },
+    {
+      "img": "youth_premier_league_000995.jpg",
+      "box": [
+        446.8,
+        187.9,
+        455.1,
+        195.7
+      ],
+      "conf": 0.149,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        8.3,
+        7.8
+      ]
+    },
+    {
+      "img": "youth_premier_league_001020.jpg",
+      "box": [
+        323.7,
+        219.2,
+        340.8,
+        230.5
+      ],
+      "conf": 0.154,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        17.1,
+        11.3
+      ]
+    },
+    {
+      "img": "youth_premier_league_001025.jpg",
+      "box": [
+        314.5,
+        185.7,
+        323.0,
+        192.6
+      ],
+      "conf": 0.242,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        8.5,
+        6.9
+      ]
+    },
+    {
+      "img": "youth_premier_league_001025.jpg",
+      "box": [
+        88.6,
+        154.0,
+        96.2,
+        160.8
+      ],
+      "conf": 0.1,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        7.6,
+        6.8
+      ]
+    },
+    {
+      "img": "youth_premier_league_001035.jpg",
+      "box": [
+        121.2,
+        147.9,
+        129.4,
+        155.4
+      ],
+      "conf": 0.27,
+      "cat": "on a player/referee body",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        8.2,
+        7.4
+      ]
+    },
+    {
+      "img": "youth_premier_league_001200.jpg",
+      "box": [
+        593.7,
+        138.4,
+        598.6,
+        143.1
+      ],
+      "conf": 0.202,
+      "cat": "beside a player (feet/shadow)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.9,
+        4.7
+      ]
+    },
+    {
+      "img": "youth_premier_league_001275.jpg",
+      "box": [
+        624.2,
+        284.9,
+        637.6,
+        302.9
+      ],
+      "conf": 0.201,
+      "cat": "bare pitch / line artifact",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        13.4,
+        17.9
+      ]
+    },
+    {
+      "img": "youth_premier_league_001350.jpg",
+      "box": [
+        184.8,
+        151.1,
+        204.6,
+        162.1
+      ],
+      "conf": 0.14,
+      "cat": "duplicate/near-GT ball",
+      "iou_gt_ball": 0.303,
+      "wh": [
+        19.8,
+        11.0
+      ]
+    },
+    {
+      "img": "youth_premier_league_001350.jpg",
+      "box": [
+        242.5,
+        181.2,
+        246.7,
+        184.7
+      ],
+      "conf": 0.12,
+      "cat": "beside a player (feet/shadow)",
+      "iou_gt_ball": 0.0,
+      "wh": [
+        4.1,
+        3.6
+      ]
+    }
+  ]
+}

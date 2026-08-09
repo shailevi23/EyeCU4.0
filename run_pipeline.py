@@ -44,7 +44,8 @@ def main():
                              "environment variable; without it Roboflow is disabled "
                              "and the local YOLO model is used)")
     parser.add_argument("--yolo-model", default="yolov8x.pt",
-
+                        help="YOLO model path (yolov8n.pt, yolov8s.pt, yolov8m.pt, "
+                             "yolov8l.pt, yolov8x.pt, or a fine-tuned football model)")
     parser.add_argument("--imgsz", type=int, default=960,
                         help="Detector inference image size (default: 960)")
     parser.add_argument("--conf", type=float, default=0.25,

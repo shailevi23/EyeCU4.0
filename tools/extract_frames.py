@@ -19,8 +19,10 @@ Examples:
 """
 
 import argparse
+import hashlib
 import json
 import shutil
+import unicodedata
 from pathlib import Path
 
 import cv2
@@ -30,8 +32,42 @@ VIDEO_EXTS = {'.mp4', '.mkv', '.avi', '.mov', '.m4v', '.ts', '.webm'}
 
 
 def sanitize(name: str) -> str:
-    keep = [c if (c.isalnum() or c in '-_') else '_' for c in name]
-    return ''.join(keep).strip('_').lower() or 'match'
+    """
+    ASCII-only, filesystem-safe match id.
+
+    Non-ASCII is transliterated where possible (é -> e) and otherwise replaced,
+    because downstream tools, YOLO dataset paths and Colab all behave better
+    with plain ASCII. A name that folds away entirely (e.g. all Hebrew) falls
+    back to a short hash so two such videos still get distinct ids.
+    """
+    folded = unicodedata.normalize('NFKD', name)
+    ascii_only = folded.encode('ascii', 'ignore').decode('ascii')
+    keep = [c if (c.isalnum() or c in '-_') else '_' for c in ascii_only]
+    out = ''.join(keep).strip('_').lower()
+    out = '_'.join(p for p in out.split('_') if p)  # collapse runs of '_'
+    if not out:
+        digest = hashlib.sha1(name.encode('utf-8')).hexdigest()[:8]
+        out = f'match_{digest}'
+    return out
+
+
+def imwrite_unicode(path: Path, image: np.ndarray, quality: int) -> bool:
+    """
+    Write a JPEG, tolerating non-ASCII paths.
+
+    cv2.imwrite goes through a byte-oriented API on Windows and silently
+    returns False for any path outside the system codepage -- which is how 178
+    frames from two matches were reported as saved but never written. Encoding
+    in memory and writing the bytes with Python IO avoids that entirely.
+    """
+    ok, buf = cv2.imencode('.jpg', image, [cv2.IMWRITE_JPEG_QUALITY, quality])
+    if not ok:
+        return False
+    try:
+        path.write_bytes(buf.tobytes())
+    except OSError:
+        return False
+    return True
 
 
 def sharpness(gray: np.ndarray) -> float:
@@ -74,6 +110,7 @@ def extract_one(video_path: Path, out_dir: Path, match_id: str, args) -> dict:
     saved = 0
     dropped_blur = 0
     dropped_dupe = 0
+    write_failures = 0
     burst_left = 0
     prev_gray = None
     motion_history: list[float] = []
@@ -88,14 +125,17 @@ def extract_one(video_path: Path, out_dir: Path, match_id: str, args) -> dict:
 
     def commit(name, frame, gray):
         """Dedupe against recent frames, then write. Returns True if written."""
-        nonlocal saved, dropped_dupe
+        nonlocal saved, dropped_dupe, write_failures
         h = dhash(gray)
         if any(hamming(h, k) <= args.dupe_distance for k in kept_hashes[-args.dupe_window:]):
             dropped_dupe += 1
             return False
         kept_hashes.append(h)
-        cv2.imwrite(str(out_dir / name), frame,
-                    [cv2.IMWRITE_JPEG_QUALITY, args.jpeg_quality])
+        # Count only frames that actually reached disk. Trusting the call here
+        # is what let two matches report 178 saved frames and write none.
+        if not imwrite_unicode(out_dir / name, frame, args.jpeg_quality):
+            write_failures += 1
+            return False
         saved += 1
         return True
 
@@ -177,6 +217,7 @@ def extract_one(video_path: Path, out_dir: Path, match_id: str, args) -> dict:
         'saved': saved,
         'dropped_blur': dropped_blur,
         'dropped_duplicate': dropped_dupe,
+        'write_failures': write_failures,
         'blur_threshold': round(blur_threshold, 2) if blur_threshold else None,
     }
 
@@ -245,13 +286,41 @@ def main():
         manifest.append(info)
         print(f'   saved {info["saved"]}  '
               f'(blur {info["dropped_blur"]}, dupes {info["dropped_duplicate"]})')
+        if info['write_failures']:
+            print(f'   ! {info["write_failures"]} frame(s) FAILED TO WRITE')
 
-    total = sum(m['saved'] for m in manifest)
-    (out_root / 'manifest.json').write_text(
-        json.dumps({'total_frames': total, 'matches': manifest}, indent=2))
+        # The manifest must never claim more than is on disk.
+        on_disk = len(list((out_root / match_id).glob('*.jpg')))
+        if on_disk != info['saved']:
+            print(f'   ! MISMATCH: manifest says {info["saved"]}, '
+                  f'{on_disk} file(s) on disk')
 
-    print(f'\nTotal frames: {total} across {len(manifest)} match(es) -> {out_root}')
-    if len(manifest) < 4:
+    # Merge into any existing manifest rather than replacing it: extracting a
+    # single extra video must not erase the record of every earlier one.
+    manifest_path = out_root / 'manifest.json'
+    merged = {}
+    if manifest_path.exists():
+        try:
+            prev = json.loads(manifest_path.read_text(encoding='utf-8'))
+            merged = {m['match_id']: m for m in prev.get('matches', [])}
+        except (json.JSONDecodeError, OSError):
+            print('! existing manifest.json unreadable; starting a new one')
+    merged.update({m['match_id']: m for m in manifest})
+
+    # Drop entries whose directory no longer exists (renamed or deleted).
+    merged = {k: v for k, v in merged.items() if (out_root / k).is_dir()}
+
+    all_matches = sorted(merged.values(), key=lambda m: m['match_id'])
+    total = sum(m['saved'] for m in all_matches)
+    manifest_path.write_text(
+        json.dumps({'total_frames': total, 'matches': all_matches},
+                   indent=2, ensure_ascii=False), encoding='utf-8')
+
+    print(f'\nThis run: {sum(m["saved"] for m in manifest)} frames from '
+          f'{len(manifest)} video(s)')
+    print(f'Dataset total: {total} frames across {len(all_matches)} match(es) '
+          f'-> {out_root}')
+    if len(all_matches) < 4:
         print('! ROADMAP.md asks for 4-6 different matches. '
               'One or two matches will not generalise.')
     if total < 1000:

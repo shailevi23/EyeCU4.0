@@ -17,3 +17,7 @@ scikit-learn>=1.3.0          # KMeans jersey-colour clustering in trackers/team_
 # Optional: hosted detector used only for pseudo-labelling (tools/pseudo_label.py).
 # Requires the ROBOFLOW_API_KEY environment variable — never hardcode the key.
 requests>=2.31.0
+# Makes Python trust the OS certificate store. Needed on networks that
+# terminate TLS (corporate proxy / AV), where certifi's bundle lacks the
+# intercepting root CA and every HTTPS call fails verification.
+truststore>=0.9.0

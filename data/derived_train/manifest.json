@@ -1,0 +1,3198 @@
+{
+  "seed": 0,
+  "derived_geometry": [
+    640,
+    360
+  ],
+  "inference_geometry": 960.0,
+  "target_band_960": [
+    12.0,
+    25.0
+  ],
+  "target_emphasis_960": [
+    15.0,
+    22.0
+  ],
+  "split": "TRAIN_ONLY",
+  "items": [
+    {
+      "file": "youth_1_dpos0000.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_1_001450.jpg",
+      "source_match": "youth_1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 579.97,
+        "y": 73.06,
+        "w": 1296.77,
+        "h": 729.43,
+        "zoom": 0.4935
+      },
+      "n_labels": 13,
+      "classes": {
+        "player": 10,
+        "referee": 2,
+        "ball": 1
+      },
+      "original_ball_box": [
+        1135.0,
+        448.0,
+        1158.0,
+        470.0
+      ],
+      "original_ball_width_native": 23.0,
+      "derived_ball_box": [
+        273.92,
+        185.04,
+        285.28,
+        195.9
+      ],
+      "derived_ball_width_960": 17.03
+    },
+    {
+      "file": "youth_1_dpos0001.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_1_001215.jpg",
+      "source_match": "youth_1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 56.23,
+        "w": 1048.18,
+        "h": 589.6,
+        "zoom": 0.6106
+      },
+      "n_labels": 4,
+      "classes": {
+        "player": 3,
+        "ball": 1
+      },
+      "original_ball_box": [
+        727.0,
+        511.0,
+        747.0,
+        528.0
+      ],
+      "original_ball_width_native": 20.0,
+      "derived_ball_box": [
+        443.89,
+        277.68,
+        456.1,
+        288.06
+      ],
+      "derived_ball_width_960": 18.32
+    },
+    {
+      "file": "youth_1_dpos0002.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_1_000245.jpg",
+      "source_match": "youth_1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 129.56,
+        "y": 370.39,
+        "w": 1037.66,
+        "h": 583.68,
+        "zoom": 0.6168
+      },
+      "n_labels": 3,
+      "classes": {
+        "player": 2,
+        "ball": 1
+      },
+      "original_ball_box": [
+        943.0,
+        569.0,
+        962.0,
+        588.0
+      ],
+      "original_ball_width_native": 19.0,
+      "derived_ball_box": [
+        501.71,
+        122.5,
+        513.43,
+        134.22
+      ],
+      "derived_ball_width_960": 17.58
+    },
+    {
+      "file": "youth_1_dpos0003.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_1_000265.jpg",
+      "source_match": "youth_1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 293.13,
+        "y": 369.62,
+        "w": 892.4,
+        "h": 501.97,
+        "zoom": 0.7172
+      },
+      "n_labels": 3,
+      "classes": {
+        "player": 2,
+        "ball": 1
+      },
+      "original_ball_box": [
+        693.0,
+        569.0,
+        712.0,
+        587.0
+      ],
+      "original_ball_width_native": 19.0,
+      "derived_ball_box": [
+        286.78,
+        142.99,
+        300.4,
+        155.9
+      ],
+      "derived_ball_width_960": 20.44
+    },
+    {
+      "file": "youth_1_dpos0004.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_1_000550.jpg",
+      "source_match": "youth_1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 311.39,
+        "w": 1180.83,
+        "h": 664.22,
+        "zoom": 0.542
+      },
+      "n_labels": 11,
+      "classes": {
+        "referee": 1,
+        "player": 9,
+        "ball": 1
+      },
+      "original_ball_box": [
+        232.0,
+        714.0,
+        251.0,
+        734.0
+      ],
+      "original_ball_width_native": 19.0,
+      "derived_ball_box": [
+        125.74,
+        218.21,
+        136.04,
+        229.05
+      ],
+      "derived_ball_width_960": 15.45
+    },
+    {
+      "file": "youth_1_dpos0005.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_1_000235.jpg",
+      "source_match": "youth_1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 667.06,
+        "y": 147.93,
+        "w": 917.94,
+        "h": 516.34,
+        "zoom": 0.6972
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 10,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        925.0,
+        549.0,
+        943.0,
+        566.0
+      ],
+      "original_ball_width_native": 18.0,
+      "derived_ball_box": [
+        179.84,
+        279.63,
+        192.39,
+        291.48
+      ],
+      "derived_ball_width_960": 18.82
+    },
+    {
+      "file": "youth_3_dpos0006.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_3_000210.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 38.02,
+        "y": 21.39,
+        "w": 601.98,
+        "h": 338.61,
+        "zoom": 1.0632
+      },
+      "n_labels": 22,
+      "classes": {
+        "player": 18,
+        "referee": 2,
+        "ball": 1,
+        "goalkeeper": 1
+      },
+      "original_ball_box": [
+        461.0,
+        327.0,
+        476.0,
+        339.0
+      ],
+      "original_ball_width_native": 15.0,
+      "derived_ball_box": [
+        449.69,
+        324.92,
+        465.64,
+        337.67
+      ],
+      "derived_ball_width_960": 23.92
+    },
+    {
+      "file": "rfext_40cd38_dpos0007.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_40cd38_000012.jpg",
+      "source_match": "rfext_40cd38",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 160.65,
+        "w": 738.4,
+        "h": 415.35,
+        "zoom": 0.8667
+      },
+      "n_labels": 19,
+      "classes": {
+        "referee": 2,
+        "player": 16,
+        "ball": 1
+      },
+      "original_ball_box": [
+        97.78,
+        334.5,
+        112.0,
+        347.5
+      ],
+      "original_ball_width_native": 14.22,
+      "derived_ball_box": [
+        84.75,
+        150.68,
+        97.08,
+        161.95
+      ],
+      "derived_ball_width_960": 18.49
+    },
+    {
+      "file": "youth_3_dpos0008.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_3_000215.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 21.73,
+        "y": 12.22,
+        "w": 618.27,
+        "h": 347.78,
+        "zoom": 1.0351
+      },
+      "n_labels": 20,
+      "classes": {
+        "player": 17,
+        "referee": 1,
+        "ball": 1,
+        "goalkeeper": 1
+      },
+      "original_ball_box": [
+        497.0,
+        314.0,
+        511.0,
+        324.0
+      ],
+      "original_ball_width_native": 14.0,
+      "derived_ball_box": [
+        491.97,
+        312.38,
+        506.47,
+        322.73
+      ],
+      "derived_ball_width_960": 21.74
+    },
+    {
+      "file": "rfext_08fd33_dpos0009.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_08fd33_000007.jpg",
+      "source_match": "rfext_08fd33",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 240.52,
+        "y": 135.29,
+        "w": 783.48,
+        "h": 440.71,
+        "zoom": 0.8169
+      },
+      "n_labels": 15,
+      "classes": {
+        "ball": 1,
+        "player": 13,
+        "referee": 1
+      },
+      "original_ball_box": [
+        736.0,
+        313.5,
+        748.44,
+        320.5
+      ],
+      "original_ball_width_native": 12.44,
+      "derived_ball_box": [
+        404.74,
+        145.57,
+        414.91,
+        151.29
+      ],
+      "derived_ball_width_960": 15.25
+    },
+    {
+      "file": "clemson_vs__notre_dame_dpos0010.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "clemson_vs__notre_dame_000475.jpg",
+      "source_match": "clemson_vs__notre_dame",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 39.13,
+        "w": 562.25,
+        "h": 316.26,
+        "zoom": 1.1383
+      },
+      "n_labels": 15,
+      "classes": {
+        "player": 13,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        206.0,
+        209.0,
+        218.0,
+        217.0
+      ],
+      "original_ball_width_native": 12.0,
+      "derived_ball_box": [
+        234.49,
+        193.36,
+        248.15,
+        202.47
+      ],
+      "derived_ball_width_960": 20.49
+    },
+    {
+      "file": "full_match_chelsea_vs_arsenal_dpos0011.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "full_match_chelsea_vs_arsenal_001030.jpg",
+      "source_match": "full_match_chelsea_vs_arsenal",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 32.41,
+        "y": 36.44,
+        "w": 575.23,
+        "h": 323.56,
+        "zoom": 1.1126
+      },
+      "n_labels": 9,
+      "classes": {
+        "player": 7,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        420.0,
+        190.0,
+        432.0,
+        198.0
+      ],
+      "original_ball_width_native": 12.0,
+      "derived_ball_box": [
+        431.23,
+        170.86,
+        444.58,
+        179.76
+      ],
+      "derived_ball_width_960": 20.03
+    },
+    {
+      "file": "youth_3_dpos0012.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_3_000183.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 93.57,
+        "y": 52.63,
+        "w": 546.43,
+        "h": 307.37,
+        "zoom": 1.1712
+      },
+      "n_labels": 13,
+      "classes": {
+        "player": 11,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        349.0,
+        258.0,
+        361.0,
+        269.0
+      ],
+      "original_ball_width_native": 12.0,
+      "derived_ball_box": [
+        299.17,
+        240.53,
+        313.23,
+        253.42
+      ],
+      "derived_ball_width_960": 21.08
+    },
+    {
+      "file": "rfext_4b770a_dpos0013.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_4b770a_000016.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 298.21,
+        "y": 0,
+        "w": 725.79,
+        "h": 408.26,
+        "zoom": 0.8818
+      },
+      "n_labels": 19,
+      "classes": {
+        "player": 16,
+        "referee": 2,
+        "ball": 1
+      },
+      "original_ball_box": [
+        492.89,
+        263.5,
+        504.44,
+        273.5
+      ],
+      "original_ball_width_native": 11.56,
+      "derived_ball_box": [
+        171.67,
+        232.35,
+        181.86,
+        241.17
+      ],
+      "derived_ball_width_960": 15.28
+    },
+    {
+      "file": "full_match_chelsea_vs_arsenal_dpos0014.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "full_match_chelsea_vs_arsenal_001045.jpg",
+      "source_match": "full_match_chelsea_vs_arsenal",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 30.08,
+        "y": 16.92,
+        "w": 609.92,
+        "h": 343.08,
+        "zoom": 1.0493
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        375.0,
+        188.0,
+        386.0,
+        197.0
+      ],
+      "original_ball_width_native": 11.0,
+      "derived_ball_box": [
+        361.93,
+        179.52,
+        373.47,
+        188.96
+      ],
+      "derived_ball_width_960": 17.31
+    },
+    {
+      "file": "full_match_chelsea_vs_arsenal_dpos0015.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "full_match_chelsea_vs_arsenal_001050.jpg",
+      "source_match": "full_match_chelsea_vs_arsenal",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 41.0,
+        "w": 539.0,
+        "h": 303.18,
+        "zoom": 1.1874
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        346.0,
+        189.0,
+        357.0,
+        198.0
+      ],
+      "original_ball_width_native": 11.0,
+      "derived_ball_box": [
+        410.84,
+        175.74,
+        423.9,
+        186.42
+      ],
+      "derived_ball_width_960": 19.59
+    },
+    {
+      "file": "youth_3_dpos0016.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_3_000130.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 18.25,
+        "w": 495.61,
+        "h": 278.78,
+        "zoom": 1.2913
+      },
+      "n_labels": 8,
+      "classes": {
+        "player": 6,
+        "ball": 1,
+        "goalkeeper": 1
+      },
+      "original_ball_box": [
+        191.0,
+        166.0,
+        202.0,
+        174.0
+      ],
+      "original_ball_width_native": 11.0,
+      "derived_ball_box": [
+        246.64,
+        190.79,
+        260.85,
+        201.12
+      ],
+      "derived_ball_width_960": 21.31
+    },
+    {
+      "file": "rfext_2e57b9_dpos0017.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_2e57b9_000028.jpg",
+      "source_match": "rfext_2e57b9",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 505.52,
+        "y": 247.56,
+        "w": 518.48,
+        "h": 291.65,
+        "zoom": 1.2344
+      },
+      "n_labels": 9,
+      "classes": {
+        "ball": 1,
+        "player": 6,
+        "referee": 2
+      },
+      "original_ball_box": [
+        948.44,
+        434.25,
+        959.11,
+        442.75
+      ],
+      "original_ball_width_native": 10.67,
+      "derived_ball_box": [
+        546.74,
+        230.45,
+        559.9,
+        240.94
+      ],
+      "derived_ball_width_960": 19.75
+    },
+    {
+      "file": "rfext_4b770a_dpos0018.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_4b770a_000013.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 167.26,
+        "w": 466.86,
+        "h": 262.61,
+        "zoom": 1.3709
+      },
+      "n_labels": 10,
+      "classes": {
+        "ball": 1,
+        "player": 9
+      },
+      "original_ball_box": [
+        270.22,
+        358.5,
+        280.89,
+        366.5
+      ],
+      "original_ball_width_native": 10.67,
+      "derived_ball_box": [
+        370.44,
+        262.17,
+        385.06,
+        273.13
+      ],
+      "derived_ball_width_960": 21.93
+    },
+    {
+      "file": "rfext_4b770a_dpos0019.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_4b770a_000022.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 86.05,
+        "y": 181.12,
+        "w": 622.77,
+        "h": 350.31,
+        "zoom": 1.0277
+      },
+      "n_labels": 13,
+      "classes": {
+        "ball": 1,
+        "player": 11,
+        "referee": 1
+      },
+      "original_ball_box": [
+        405.33,
+        372.75,
+        416.0,
+        381.25
+      ],
+      "original_ball_width_native": 10.67,
+      "derived_ball_box": [
+        328.12,
+        196.93,
+        339.08,
+        205.67
+      ],
+      "derived_ball_width_960": 16.44
+    },
+    {
+      "file": "chelsea_v_leeds_united_dpos0020.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "chelsea_v_leeds_united_000120.jpg",
+      "source_match": "chelsea_v_leeds_united",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 110.94,
+        "y": 68.19,
+        "w": 461.99,
+        "h": 259.87,
+        "zoom": 1.3853
+      },
+      "n_labels": 11,
+      "classes": {
+        "player": 9,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        332.0,
+        240.0,
+        342.0,
+        247.0
+      ],
+      "original_ball_width_native": 10.0,
+      "derived_ball_box": [
+        306.24,
+        238.02,
+        320.1,
+        247.71
+      ],
+      "derived_ball_width_960": 20.78
+    },
+    {
+      "file": "clemson_vs__notre_dame_dpos0021.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "clemson_vs__notre_dame_001377.jpg",
+      "source_match": "clemson_vs__notre_dame",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 31.89,
+        "w": 541.76,
+        "h": 304.74,
+        "zoom": 1.1813
+      },
+      "n_labels": 16,
+      "classes": {
+        "referee": 2,
+        "player": 13,
+        "ball": 1
+      },
+      "original_ball_box": [
+        123.0,
+        245.0,
+        133.0,
+        252.0
+      ],
+      "original_ball_width_native": 10.0,
+      "derived_ball_box": [
+        145.3,
+        251.75,
+        157.12,
+        260.02
+      ],
+      "derived_ball_width_960": 17.72
+    },
+    {
+      "file": "full_match_chelsea_vs_arsenal_dpos0022.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "full_match_chelsea_vs_arsenal_001035.jpg",
+      "source_match": "full_match_chelsea_vs_arsenal",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 145.91,
+        "y": 97.69,
+        "w": 466.33,
+        "h": 262.31,
+        "zoom": 1.3724
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        418.0,
+        189.0,
+        428.0,
+        198.0
+      ],
+      "original_ball_width_native": 10.0,
+      "derived_ball_box": [
+        373.42,
+        125.31,
+        387.14,
+        137.67
+      ],
+      "derived_ball_width_960": 20.59
+    },
+    {
+      "file": "full_match_chelsea_vs_arsenal_dpos0023.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "full_match_chelsea_vs_arsenal_001065.jpg",
+      "source_match": "full_match_chelsea_vs_arsenal",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 28.18,
+        "w": 589.91,
+        "h": 331.82,
+        "zoom": 1.0849
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        273.0,
+        193.0,
+        283.0,
+        202.0
+      ],
+      "original_ball_width_native": 10.0,
+      "derived_ball_box": [
+        296.18,
+        178.82,
+        307.03,
+        188.58
+      ],
+      "derived_ball_width_960": 16.27
+    },
+    {
+      "file": "full_match_chelsea_vs_arsenal_dpos0024.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "full_match_chelsea_vs_arsenal_001395.jpg",
+      "source_match": "full_match_chelsea_vs_arsenal",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "w": 620.98,
+        "h": 349.3,
+        "zoom": 1.0306
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        336.0,
+        146.0,
+        346.0,
+        152.0
+      ],
+      "original_ball_width_native": 10.0,
+      "derived_ball_box": [
+        346.29,
+        150.47,
+        356.6,
+        156.65
+      ],
+      "derived_ball_width_960": 15.46
+    },
+    {
+      "file": "youth_3_dpos0025.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_3_001283.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "w": 560.76,
+        "h": 315.43,
+        "zoom": 1.1413
+      },
+      "n_labels": 14,
+      "classes": {
+        "player": 12,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        184.0,
+        177.0,
+        194.0,
+        184.0
+      ],
+      "original_ball_width_native": 10.0,
+      "derived_ball_box": [
+        210.0,
+        202.01,
+        221.41,
+        210.0
+      ],
+      "derived_ball_width_960": 17.12
+    },
+    {
+      "file": "fc_barcelona_3_vs_1_atletico_de_mad_dpos0026.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "fc_barcelona_3_vs_1_atletico_de_mad_000160.jpg",
+      "source_match": "fc_barcelona_3_vs_1_atletico_de_mad",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 17.17,
+        "w": 609.47,
+        "h": 342.83,
+        "zoom": 1.0501
+      },
+      "n_labels": 21,
+      "classes": {
+        "goalkeeper": 1,
+        "player": 18,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        271.13,
+        341.84,
+        280.93,
+        351.1
+      ],
+      "original_ball_width_native": 9.8,
+      "derived_ball_box": [
+        284.71,
+        340.93,
+        295.0,
+        350.65
+      ],
+      "derived_ball_width_960": 15.44
+    },
+    {
+      "file": "rfext_40cd38_dpos0027.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_40cd38_000000.jpg",
+      "source_match": "rfext_40cd38",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 378.39,
+        "y": 261.08,
+        "w": 551.84,
+        "h": 310.41,
+        "zoom": 1.1597
+      },
+      "n_labels": 5,
+      "classes": {
+        "ball": 1,
+        "player": 4
+      },
+      "original_ball_box": [
+        758.67,
+        329.25,
+        768.44,
+        337.75
+      ],
+      "original_ball_width_native": 9.78,
+      "derived_ball_box": [
+        441.03,
+        79.06,
+        452.37,
+        88.92
+      ],
+      "derived_ball_width_960": 17.01
+    },
+    {
+      "file": "rfext_4b770a_dpos0028.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_4b770a_000005.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 408.54,
+        "y": 229.81,
+        "w": 615.46,
+        "h": 346.19,
+        "zoom": 1.0399
+      },
+      "n_labels": 12,
+      "classes": {
+        "ball": 2,
+        "player": 9,
+        "referee": 1
+      },
+      "original_ball_box": [
+        982.67,
+        450.75,
+        992.44,
+        463.25
+      ],
+      "original_ball_width_native": 9.78,
+      "derived_ball_box": [
+        597.02,
+        229.76,
+        607.19,
+        242.75
+      ],
+      "derived_ball_width_960": 15.25
+    },
+    {
+      "file": "rfext_4b770a_dpos0029.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_4b770a_000018.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 16.62,
+        "y": 60.92,
+        "w": 446.06,
+        "h": 250.91,
+        "zoom": 1.4348
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 10,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        292.89,
+        207.75,
+        302.67,
+        217.25
+      ],
+      "original_ball_width_native": 9.78,
+      "derived_ball_box": [
+        396.39,
+        210.67,
+        410.41,
+        224.3
+      ],
+      "derived_ball_width_960": 21.04
+    },
+    {
+      "file": "rfext_4b770a_dpos0030.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_4b770a_000029.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 202.64,
+        "w": 584.49,
+        "h": 328.77,
+        "zoom": 1.095
+      },
+      "n_labels": 6,
+      "classes": {
+        "player": 5,
+        "ball": 1
+      },
+      "original_ball_box": [
+        435.11,
+        344.5,
+        444.89,
+        354.5
+      ],
+      "original_ball_width_native": 9.78,
+      "derived_ball_box": [
+        476.44,
+        155.33,
+        487.14,
+        166.28
+      ],
+      "derived_ball_width_960": 16.06
+    },
+    {
+      "file": "rfext_538438_dpos0031.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_538438_000020.jpg",
+      "source_match": "rfext_538438",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 379.92,
+        "y": 302.18,
+        "w": 486.8,
+        "h": 273.82,
+        "zoom": 1.3147
+      },
+      "n_labels": 5,
+      "classes": {
+        "player": 4,
+        "ball": 1
+      },
+      "original_ball_box": [
+        585.33,
+        375.5,
+        595.11,
+        382.5
+      ],
+      "original_ball_width_native": 9.78,
+      "derived_ball_box": [
+        270.06,
+        96.4,
+        282.91,
+        105.6
+      ],
+      "derived_ball_width_960": 19.28
+    },
+    {
+      "file": "rfext_744b27_dpos0032.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_744b27_000000.jpg",
+      "source_match": "rfext_744b27",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 510.96,
+        "y": 287.42,
+        "w": 513.04,
+        "h": 288.58,
+        "zoom": 1.2475
+      },
+      "n_labels": 6,
+      "classes": {
+        "player": 5,
+        "ball": 1
+      },
+      "original_ball_box": [
+        832.44,
+        438.25,
+        842.22,
+        448.75
+      ],
+      "original_ball_width_native": 9.78,
+      "derived_ball_box": [
+        401.04,
+        188.16,
+        413.24,
+        201.26
+      ],
+      "derived_ball_width_960": 18.3
+    },
+    {
+      "file": "rfext_798b45_dpos0033.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_798b45_000031.jpg",
+      "source_match": "rfext_798b45",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 241.88,
+        "y": 122.08,
+        "w": 485.81,
+        "h": 273.27,
+        "zoom": 1.3174
+      },
+      "n_labels": 13,
+      "classes": {
+        "player": 10,
+        "referee": 2,
+        "ball": 1
+      },
+      "original_ball_box": [
+        517.78,
+        191.0,
+        527.56,
+        197.0
+      ],
+      "original_ball_width_native": 9.78,
+      "derived_ball_box": [
+        363.47,
+        90.79,
+        376.35,
+        98.7
+      ],
+      "derived_ball_width_960": 19.32
+    },
+    {
+      "file": "youth_3_dpos0034.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_3_000140.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 92.42,
+        "y": 49.58,
+        "w": 458.52,
+        "h": 257.92,
+        "zoom": 1.3958
+      },
+      "n_labels": 8,
+      "classes": {
+        "player": 6,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        275.0,
+        155.0,
+        284.0,
+        166.0
+      ],
+      "original_ball_width_native": 9.0,
+      "derived_ball_box": [
+        254.84,
+        147.14,
+        267.4,
+        162.49
+      ],
+      "derived_ball_width_960": 18.84
+    },
+    {
+      "file": "youth_7_dpos0035.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "youth_7_001250.jpg",
+      "source_match": "youth_7",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 140.55,
+        "y": 0,
+        "w": 422.82,
+        "h": 237.84,
+        "zoom": 1.5136
+      },
+      "n_labels": 8,
+      "classes": {
+        "player": 7,
+        "ball": 1
+      },
+      "original_ball_box": [
+        345.0,
+        105.0,
+        354.0,
+        112.0
+      ],
+      "original_ball_width_native": 9.0,
+      "derived_ball_box": [
+        309.47,
+        158.93,
+        323.09,
+        169.53
+      ],
+      "derived_ball_width_960": 20.43
+    },
+    {
+      "file": "clemson_vs__notre_dame_dpos0036.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "clemson_vs__notre_dame_000600.jpg",
+      "source_match": "clemson_vs__notre_dame",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 191.64,
+        "y": 107.8,
+        "w": 448.36,
+        "h": 252.2,
+        "zoom": 1.4274
+      },
+      "n_labels": 9,
+      "classes": {
+        "player": 7,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        448.0,
+        278.0,
+        457.0,
+        285.0
+      ],
+      "original_ball_width_native": 9.0,
+      "derived_ball_box": [
+        365.94,
+        242.95,
+        378.78,
+        252.94
+      ],
+      "derived_ball_width_960": 19.27
+    },
+    {
+      "file": "rfext_08fd33_dpos0037.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_08fd33_000022.jpg",
+      "source_match": "rfext_08fd33",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 423.28,
+        "y": 194.02,
+        "w": 491.41,
+        "h": 276.42,
+        "zoom": 1.3024
+      },
+      "n_labels": 10,
+      "classes": {
+        "ball": 1,
+        "player": 9
+      },
+      "original_ball_box": [
+        553.78,
+        358.0,
+        562.67,
+        367.0
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        169.95,
+        213.57,
+        181.53,
+        225.29
+      ],
+      "derived_ball_width_960": 17.37
+    },
+    {
+      "file": "rfext_2e57b9_dpos0038.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_2e57b9_000012.jpg",
+      "source_match": "rfext_2e57b9",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 140.54,
+        "y": 327.99,
+        "w": 440.9,
+        "h": 248.01,
+        "zoom": 1.4516
+      },
+      "n_labels": 4,
+      "classes": {
+        "player": 3,
+        "ball": 1
+      },
+      "original_ball_box": [
+        432.89,
+        413.0,
+        441.78,
+        422.0
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        424.36,
+        123.39,
+        437.26,
+        136.46
+      ],
+      "derived_ball_width_960": 19.35
+    },
+    {
+      "file": "rfext_538438_dpos0039.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_538438_000001.jpg",
+      "source_match": "rfext_538438",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 102.12,
+        "y": 119.11,
+        "w": 399.08,
+        "h": 224.48,
+        "zoom": 1.6037
+      },
+      "n_labels": 6,
+      "classes": {
+        "ball": 1,
+        "player": 4,
+        "referee": 1
+      },
+      "original_ball_box": [
+        368.89,
+        283.75,
+        377.78,
+        291.25
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        427.82,
+        264.03,
+        442.07,
+        276.06
+      ],
+      "derived_ball_width_960": 21.38
+    },
+    {
+      "file": "rfext_538438_dpos0040.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_538438_000028.jpg",
+      "source_match": "rfext_538438",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 319.29,
+        "y": 225.47,
+        "w": 404.28,
+        "h": 227.4,
+        "zoom": 1.5831
+      },
+      "n_labels": 16,
+      "classes": {
+        "player": 14,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        560.89,
+        378.25,
+        569.78,
+        384.75
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        382.47,
+        241.87,
+        396.54,
+        252.16
+      ],
+      "derived_ball_width_960": 21.11
+    },
+    {
+      "file": "rfext_538438_dpos0041.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_538438_000036.jpg",
+      "source_match": "rfext_538438",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 566.03,
+        "y": 132.75,
+        "w": 457.97,
+        "h": 257.61,
+        "zoom": 1.3975
+      },
+      "n_labels": 9,
+      "classes": {
+        "player": 7,
+        "ball": 2
+      },
+      "original_ball_box": [
+        1000.0,
+        209.75,
+        1008.89,
+        217.25
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        606.46,
+        107.61,
+        618.88,
+        118.09
+      ],
+      "derived_ball_width_960": 18.63
+    },
+    {
+      "file": "rfext_54745b_dpos0042.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_54745b_000000.jpg",
+      "source_match": "rfext_54745b",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 607.23,
+        "y": 240.19,
+        "w": 416.77,
+        "h": 234.43,
+        "zoom": 1.5356
+      },
+      "n_labels": 2,
+      "classes": {
+        "ball": 1,
+        "player": 1
+      },
+      "original_ball_box": [
+        837.33,
+        390.25,
+        846.22,
+        396.75
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        353.35,
+        230.44,
+        367.0,
+        240.42
+      ],
+      "derived_ball_width_960": 20.47
+    },
+    {
+      "file": "rfext_744b27_dpos0043.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_744b27_000026.jpg",
+      "source_match": "rfext_744b27",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 554.83,
+        "y": 195.29,
+        "w": 469.17,
+        "h": 263.91,
+        "zoom": 1.3641
+      },
+      "n_labels": 7,
+      "classes": {
+        "player": 5,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        993.78,
+        256.75,
+        1002.67,
+        263.25
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        598.77,
+        83.84,
+        610.9,
+        92.71
+      ],
+      "derived_ball_width_960": 18.19
+    },
+    {
+      "file": "rfext_a9f16c_dpos0044.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_a9f16c_000005.jpg",
+      "source_match": "rfext_a9f16c",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 206.87,
+        "w": 557.28,
+        "h": 313.47,
+        "zoom": 1.1484
+      },
+      "n_labels": 14,
+      "classes": {
+        "player": 12,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        163.56,
+        358.25,
+        172.44,
+        363.75
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        187.83,
+        173.85,
+        198.04,
+        180.17
+      ],
+      "derived_ball_width_960": 15.31
+    },
+    {
+      "file": "rfext_a9f16c_dpos0045.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_a9f16c_000013.jpg",
+      "source_match": "rfext_a9f16c",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 303.55,
+        "y": 274.36,
+        "w": 400.48,
+        "h": 225.27,
+        "zoom": 1.5981
+      },
+      "n_labels": 9,
+      "classes": {
+        "ball": 1,
+        "player": 7,
+        "referee": 1
+      },
+      "original_ball_box": [
+        606.22,
+        406.25,
+        615.11,
+        412.75
+      ],
+      "original_ball_width_native": 8.89,
+      "derived_ball_box": [
+        483.69,
+        210.77,
+        497.9,
+        221.16
+      ],
+      "derived_ball_width_960": 21.31
+    },
+    {
+      "file": "fc_barcelona_3_vs_1_atletico_de_mad_dpos0046.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "fc_barcelona_3_vs_1_atletico_de_mad_000136.jpg",
+      "source_match": "fc_barcelona_3_vs_1_atletico_de_mad",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 185.16,
+        "y": 126.97,
+        "w": 414.28,
+        "h": 233.03,
+        "zoom": 1.5449
+      },
+      "n_labels": 19,
+      "classes": {
+        "goalkeeper": 1,
+        "player": 16,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        317.6,
+        341.45,
+        325.8,
+        348.52
+      ],
+      "original_ball_width_native": 8.2,
+      "derived_ball_box": [
+        204.6,
+        331.34,
+        217.27,
+        342.26
+      ],
+      "derived_ball_width_960": 19.0
+    },
+    {
+      "file": "women_2_dpos0047.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "women_2_000520.jpg",
+      "source_match": "women_2",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 16.91,
+        "w": 370.37,
+        "h": 208.34,
+        "zoom": 1.728
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 10,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        89.0,
+        152.0,
+        97.0,
+        160.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        153.79,
+        233.44,
+        167.61,
+        247.26
+      ],
+      "derived_ball_width_960": 20.74
+    },
+    {
+      "file": "betis_3_vs_5_fc_barcelona_dpos0048.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "betis_3_vs_5_fc_barcelona_000180.jpg",
+      "source_match": "betis_3_vs_5_fc_barcelona",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 25.44,
+        "y": 142.8,
+        "w": 386.13,
+        "h": 217.2,
+        "zoom": 1.6575
+      },
+      "n_labels": 9,
+      "classes": {
+        "player": 7,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        196.0,
+        267.0,
+        204.0,
+        273.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        282.69,
+        205.86,
+        295.95,
+        215.8
+      ],
+      "derived_ball_width_960": 19.89
+    },
+    {
+      "file": "betis_3_vs_5_fc_barcelona_dpos0049.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "betis_3_vs_5_fc_barcelona_000700.jpg",
+      "source_match": "betis_3_vs_5_fc_barcelona",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 153.74,
+        "y": 86.48,
+        "w": 486.26,
+        "h": 273.52,
+        "zoom": 1.3162
+      },
+      "n_labels": 8,
+      "classes": {
+        "player": 6,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        532.0,
+        283.0,
+        540.0,
+        290.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        497.85,
+        258.65,
+        508.38,
+        267.87
+      ],
+      "derived_ball_width_960": 15.79
+    },
+    {
+      "file": "chelsea_v_leeds_united_dpos0050.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "chelsea_v_leeds_united_000155.jpg",
+      "source_match": "chelsea_v_leeds_united",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 66.5,
+        "y": 152.54,
+        "w": 357.87,
+        "h": 201.3,
+        "zoom": 1.7883
+      },
+      "n_labels": 6,
+      "classes": {
+        "ball": 1,
+        "player": 5
+      },
+      "original_ball_box": [
+        335.0,
+        239.0,
+        343.0,
+        247.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        480.18,
+        154.63,
+        494.48,
+        168.93
+      ],
+      "derived_ball_width_960": 21.46
+    },
+    {
+      "file": "chelsea_v_leeds_united_dpos0051.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "chelsea_v_leeds_united_000810.jpg",
+      "source_match": "chelsea_v_leeds_united",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 150.66,
+        "y": 0,
+        "w": 489.34,
+        "h": 275.26,
+        "zoom": 1.3079
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 9,
+        "ball": 1
+      },
+      "original_ball_box": [
+        531.0,
+        145.0,
+        539.0,
+        151.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        497.44,
+        189.64,
+        507.91,
+        197.49
+      ],
+      "derived_ball_width_960": 15.69
+    },
+    {
+      "file": "chelsea_v_leeds_united_dpos0052.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "chelsea_v_leeds_united_001450.jpg",
+      "source_match": "chelsea_v_leeds_united",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 135.23,
+        "y": 0,
+        "w": 504.77,
+        "h": 283.93,
+        "zoom": 1.2679
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 11,
+        "ball": 1
+      },
+      "original_ball_box": [
+        390.0,
+        164.0,
+        398.0,
+        170.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        323.02,
+        207.94,
+        333.17,
+        215.54
+      ],
+      "derived_ball_width_960": 15.21
+    },
+    {
+      "file": "chelsea_v_leicester_city_dpos0053.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "chelsea_v_leicester_city_000715.jpg",
+      "source_match": "chelsea_v_leicester_city",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 135.1,
+        "y": 0,
+        "w": 504.9,
+        "h": 284.01,
+        "zoom": 1.2676
+      },
+      "n_labels": 14,
+      "classes": {
+        "referee": 1,
+        "player": 12,
+        "ball": 1
+      },
+      "original_ball_box": [
+        548.0,
+        174.0,
+        556.0,
+        180.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        523.38,
+        220.56,
+        533.52,
+        228.16
+      ],
+      "derived_ball_width_960": 15.21
+    },
+    {
+      "file": "chelsea_v_leicester_city_dpos0054.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "chelsea_v_leicester_city_000740.jpg",
+      "source_match": "chelsea_v_leicester_city",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 257.11,
+        "y": 144.62,
+        "w": 382.89,
+        "h": 215.38,
+        "zoom": 1.6715
+      },
+      "n_labels": 5,
+      "classes": {
+        "player": 4,
+        "ball": 1
+      },
+      "original_ball_box": [
+        555.0,
+        198.0,
+        563.0,
+        207.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        497.92,
+        89.22,
+        511.3,
+        104.26
+      ],
+      "derived_ball_width_960": 20.06
+    },
+    {
+      "file": "chelsea_v_leicester_city_dpos0055.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "chelsea_v_leicester_city_001050.jpg",
+      "source_match": "chelsea_v_leicester_city",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 201.51,
+        "y": 80.69,
+        "w": 438.49,
+        "h": 246.65,
+        "zoom": 1.4596
+      },
+      "n_labels": 9,
+      "classes": {
+        "player": 8,
+        "ball": 1
+      },
+      "original_ball_box": [
+        436.0,
+        179.0,
+        444.0,
+        184.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        342.25,
+        143.49,
+        353.93,
+        150.79
+      ],
+      "derived_ball_width_960": 17.51
+    },
+    {
+      "file": "clemson_vs__notre_dame_dpos0056.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "clemson_vs__notre_dame_000360.jpg",
+      "source_match": "clemson_vs__notre_dame",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 104.15,
+        "y": 30.8,
+        "w": 509.63,
+        "h": 286.67,
+        "zoom": 1.2558
+      },
+      "n_labels": 11,
+      "classes": {
+        "player": 10,
+        "ball": 1
+      },
+      "original_ball_box": [
+        500.0,
+        225.0,
+        508.0,
+        233.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        497.12,
+        243.88,
+        507.16,
+        253.93
+      ],
+      "derived_ball_width_960": 15.07
+    },
+    {
+      "file": "clemson_vs__notre_dame_dpos0057.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "clemson_vs__notre_dame_000455.jpg",
+      "source_match": "clemson_vs__notre_dame",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 74.94,
+        "w": 495.69,
+        "h": 278.82,
+        "zoom": 1.2911
+      },
+      "n_labels": 11,
+      "classes": {
+        "player": 10,
+        "ball": 1
+      },
+      "original_ball_box": [
+        225.0,
+        162.0,
+        233.0,
+        169.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        290.51,
+        112.4,
+        300.83,
+        121.44
+      ],
+      "derived_ball_width_960": 15.49
+    },
+    {
+      "file": "clemson_vs__notre_dame_dpos0058.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "clemson_vs__notre_dame_000620.jpg",
+      "source_match": "clemson_vs__notre_dame",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 172.66,
+        "y": 78.44,
+        "w": 467.34,
+        "h": 262.88,
+        "zoom": 1.3695
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 10,
+        "referee": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        470.0,
+        275.0,
+        478.0,
+        283.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        407.19,
+        269.19,
+        418.15,
+        280.14
+      ],
+      "derived_ball_width_960": 16.43
+    },
+    {
+      "file": "fc_barcelona_3_vs_1_atletico_de_mad_dpos0059.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "fc_barcelona_3_vs_1_atletico_de_mad_000140.jpg",
+      "source_match": "fc_barcelona_3_vs_1_atletico_de_mad",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 155.83,
+        "y": 87.66,
+        "w": 484.17,
+        "h": 272.34,
+        "zoom": 1.3219
+      },
+      "n_labels": 19,
+      "classes": {
+        "referee": 1,
+        "player": 16,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        307.0,
+        345.0,
+        315.0,
+        352.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        199.82,
+        340.17,
+        210.4,
+        349.43
+      ],
+      "derived_ball_width_960": 15.86
+    },
+    {
+      "file": "rfext_08fd33_dpos0060.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_08fd33_000021.jpg",
+      "source_match": "rfext_08fd33",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 395.96,
+        "y": 162.78,
+        "w": 506.18,
+        "h": 284.72,
+        "zoom": 1.2644
+      },
+      "n_labels": 9,
+      "classes": {
+        "ball": 1,
+        "player": 8
+      },
+      "original_ball_box": [
+        676.89,
+        362.5,
+        684.89,
+        370.5
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        355.2,
+        252.52,
+        365.32,
+        262.64
+      ],
+      "derived_ball_width_960": 15.17
+    },
+    {
+      "file": "rfext_121364_dpos0061.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_121364_000008.jpg",
+      "source_match": "rfext_121364",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 135.4,
+        "y": 242.78,
+        "w": 470.91,
+        "h": 264.89,
+        "zoom": 1.3591
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 9,
+        "ball": 1
+      },
+      "original_ball_box": [
+        257.33,
+        346.75,
+        265.33,
+        354.25
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        165.72,
+        141.3,
+        176.59,
+        151.5
+      ],
+      "derived_ball_width_960": 16.31
+    },
+    {
+      "file": "rfext_2e57b9_dpos0062.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_2e57b9_000023.jpg",
+      "source_match": "rfext_2e57b9",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 647.42,
+        "y": 25.34,
+        "w": 353.69,
+        "h": 198.95,
+        "zoom": 1.8095
+      },
+      "n_labels": 5,
+      "classes": {
+        "player": 3,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "original_ball_box": [
+        741.78,
+        176.5,
+        749.78,
+        184.5
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        170.74,
+        273.53,
+        185.22,
+        288.01
+      ],
+      "derived_ball_width_960": 21.71
+    },
+    {
+      "file": "rfext_40cd38_dpos0063.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_40cd38_000015.jpg",
+      "source_match": "rfext_40cd38",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 204.9,
+        "y": 329.65,
+        "w": 437.96,
+        "h": 246.35,
+        "zoom": 1.4613
+      },
+      "n_labels": 7,
+      "classes": {
+        "player": 6,
+        "ball": 1
+      },
+      "original_ball_box": [
+        412.89,
+        450.25,
+        420.89,
+        457.75
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        303.93,
+        176.24,
+        315.62,
+        187.2
+      ],
+      "derived_ball_width_960": 17.54
+    },
+    {
+      "file": "rfext_40cd38_dpos0064.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_40cd38_000016.jpg",
+      "source_match": "rfext_40cd38",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 539.97,
+        "y": 263.47,
+        "w": 356.22,
+        "h": 200.37,
+        "zoom": 1.7967
+      },
+      "n_labels": 10,
+      "classes": {
+        "referee": 1,
+        "player": 8,
+        "ball": 1
+      },
+      "original_ball_box": [
+        812.0,
+        376.0,
+        820.0,
+        384.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        488.74,
+        202.17,
+        503.12,
+        216.54
+      ],
+      "derived_ball_width_960": 21.56
+    },
+    {
+      "file": "rfext_54745b_dpos0065.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_54745b_000001.jpg",
+      "source_match": "rfext_54745b",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 455.01,
+        "y": 298.63,
+        "w": 471.5,
+        "h": 265.22,
+        "zoom": 1.3574
+      },
+      "n_labels": 5,
+      "classes": {
+        "ball": 1,
+        "player": 4
+      },
+      "original_ball_box": [
+        826.22,
+        364.25,
+        834.22,
+        371.75
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        503.86,
+        89.07,
+        514.72,
+        99.25
+      ],
+      "derived_ball_width_960": 16.29
+    },
+    {
+      "file": "rfext_55c9d1_dpos0066.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_55c9d1_000005.jpg",
+      "source_match": "rfext_55c9d1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 142.97,
+        "y": 142.65,
+        "w": 402.81,
+        "h": 226.58,
+        "zoom": 1.5888
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 10,
+        "ball": 1,
+        "referee": 1
+      },
+      "original_ball_box": [
+        257.33,
+        305.75,
+        265.33,
+        314.25
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        181.7,
+        259.15,
+        194.41,
+        272.65
+      ],
+      "derived_ball_width_960": 19.07
+    },
+    {
+      "file": "rfext_744b27_dpos0067.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_744b27_000023.jpg",
+      "source_match": "rfext_744b27",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 261.66,
+        "w": 355.23,
+        "h": 199.82,
+        "zoom": 1.8016
+      },
+      "n_labels": 6,
+      "classes": {
+        "goalkeeper": 1,
+        "player": 4,
+        "ball": 1
+      },
+      "original_ball_box": [
+        156.0,
+        335.75,
+        164.0,
+        343.25
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        281.06,
+        133.48,
+        295.47,
+        146.99
+      ],
+      "derived_ball_width_960": 21.62
+    },
+    {
+      "file": "rfext_744b27_dpos0068.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_744b27_000034.jpg",
+      "source_match": "rfext_744b27",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 178.09,
+        "w": 459.88,
+        "h": 258.68,
+        "zoom": 1.3917
+      },
+      "n_labels": 6,
+      "classes": {
+        "player": 5,
+        "ball": 1
+      },
+      "original_ball_box": [
+        221.78,
+        271.5,
+        229.78,
+        278.5
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        308.64,
+        130.0,
+        319.77,
+        139.74
+      ],
+      "derived_ball_width_960": 16.7
+    },
+    {
+      "file": "rfext_798b45_dpos0069.jpg",
+      "kind": "positive_scale_context",
+      "source_image": "rfext_798b45_000014.jpg",
+      "source_match": "rfext_798b45",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 595.87,
+        "y": 255.23,
+        "w": 428.13,
+        "h": 240.82,
+        "zoom": 1.4949
+      },
+      "n_labels": 2,
+      "classes": {
+        "ball": 1,
+        "player": 1
+      },
+      "original_ball_box": [
+        835.11,
+        319.0,
+        843.11,
+        326.0
+      ],
+      "original_ball_width_native": 8.0,
+      "derived_ball_box": [
+        357.63,
+        95.33,
+        369.59,
+        105.79
+      ],
+      "derived_ball_width_960": 17.94
+    },
+    {
+      "file": "betis_3_vs_5_fc_barcelona_dneg0070.jpg",
+      "kind": "hard_negative",
+      "source_image": "betis_3_vs_5_fc_barcelona_000220.jpg",
+      "source_match": "betis_3_vs_5_fc_barcelona",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 113.3,
+        "y": 138.01,
+        "w": 394.65,
+        "h": 221.99,
+        "zoom": 1.6217
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "referee": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.8968,
+      "fp_box": [
+        207.57,
+        270.21,
+        213.79,
+        277.42
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "fc_barcelona_3_vs_1_atletico_de_mad_dneg0071.jpg",
+      "kind": "hard_negative",
+      "source_image": "fc_barcelona_3_vs_1_atletico_de_mad_001395.jpg",
+      "source_match": "fc_barcelona_3_vs_1_atletico_de_mad",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 202.18,
+        "y": 123.78,
+        "w": 284.14,
+        "h": 159.83,
+        "zoom": 2.2524
+      },
+      "n_labels": 6,
+      "classes": {
+        "player": 5,
+        "ball": 1
+      },
+      "fp_confidence": 0.8926,
+      "fp_box": [
+        350.25,
+        223.71,
+        355.56,
+        229.88
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "betis_3_vs_5_fc_barcelona_dneg0072.jpg",
+      "kind": "hard_negative",
+      "source_image": "betis_3_vs_5_fc_barcelona_000650.jpg",
+      "source_match": "betis_3_vs_5_fc_barcelona",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 257.03,
+        "y": 122.63,
+        "w": 382.97,
+        "h": 215.42,
+        "zoom": 1.6712
+      },
+      "n_labels": 4,
+      "classes": {
+        "player": 3,
+        "ball": 1
+      },
+      "fp_confidence": 0.8254,
+      "fp_box": [
+        453.05,
+        244.16,
+        459.43,
+        251.92
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "fc_barcelona_3_vs_1_atletico_de_mad_dneg0073.jpg",
+      "kind": "hard_negative",
+      "source_image": "fc_barcelona_3_vs_1_atletico_de_mad_001390.jpg",
+      "source_match": "fc_barcelona_3_vs_1_atletico_de_mad",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 204.56,
+        "y": 141.26,
+        "w": 317.57,
+        "h": 178.63,
+        "zoom": 2.0153
+      },
+      "n_labels": 7,
+      "classes": {
+        "player": 6,
+        "ball": 1
+      },
+      "fp_confidence": 0.7516,
+      "fp_box": [
+        350.24,
+        213.58,
+        355.4,
+        219.55
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_573e61_dneg0074.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_573e61_000016.jpg",
+      "source_match": "rfext_573e61",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 668.13,
+        "y": 96.46,
+        "w": 330.99,
+        "h": 186.18,
+        "zoom": 1.9336
+      },
+      "n_labels": 7,
+      "classes": {
+        "player": 6,
+        "ball": 1
+      },
+      "fp_confidence": 0.6424,
+      "fp_box": [
+        812.82,
+        177.49,
+        818.13,
+        183.12
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_4b770a_dneg0075.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_4b770a_000018.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 153.41,
+        "y": 144.77,
+        "w": 368.12,
+        "h": 207.07,
+        "zoom": 1.7386
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 10,
+        "referee": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.6398,
+      "fp_box": [
+        294.0,
+        208.66,
+        301.71,
+        214.39
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_573e61_dneg0076.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_573e61_000006.jpg",
+      "source_match": "rfext_573e61",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 266.13,
+        "w": 423.23,
+        "h": 238.07,
+        "zoom": 1.5122
+      },
+      "n_labels": 2,
+      "classes": {
+        "player": 2
+      },
+      "fp_confidence": 0.6138,
+      "fp_box": [
+        28.12,
+        445.64,
+        35.64,
+        453.32
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "betis_3_vs_5_fc_barcelona_dneg0077.jpg",
+      "kind": "hard_negative",
+      "source_image": "betis_3_vs_5_fc_barcelona_000220.jpg",
+      "source_match": "betis_3_vs_5_fc_barcelona",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 152.96,
+        "y": 145.31,
+        "w": 381.68,
+        "h": 214.69,
+        "zoom": 1.6768
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "referee": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.6123,
+      "fp_box": [
+        288.63,
+        271.49,
+        296.81,
+        276.19
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_42ba34_dneg0078.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_42ba34_000019.jpg",
+      "source_match": "rfext_42ba34",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 110.21,
+        "y": 159.87,
+        "w": 313.52,
+        "h": 176.35,
+        "zoom": 2.0414
+      },
+      "n_labels": 7,
+      "classes": {
+        "player": 7
+      },
+      "fp_confidence": 0.576,
+      "fp_box": [
+        255.47,
+        291.22,
+        260.94,
+        297.37
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "rfext_42ba34_dneg0079.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_42ba34_000011.jpg",
+      "source_match": "rfext_42ba34",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 677.26,
+        "y": 107.24,
+        "w": 346.74,
+        "h": 195.04,
+        "zoom": 1.8458
+      },
+      "n_labels": 6,
+      "classes": {
+        "player": 4,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.5201,
+      "fp_box": [
+        943.7,
+        217.73,
+        949.48,
+        223.92
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_42ba34_dneg0080.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_42ba34_000022.jpg",
+      "source_match": "rfext_42ba34",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 425.01,
+        "y": 126.53,
+        "w": 270.99,
+        "h": 152.43,
+        "zoom": 2.3617
+      },
+      "n_labels": 14,
+      "classes": {
+        "player": 12,
+        "referee": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.4936,
+      "fp_box": [
+        509.72,
+        154.07,
+        514.91,
+        160.31
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "youth_3_dneg0081.jpg",
+      "kind": "hard_negative",
+      "source_image": "youth_3_000140.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 71.74,
+        "y": 64.3,
+        "w": 275.03,
+        "h": 154.7,
+        "zoom": 2.327
+      },
+      "n_labels": 4,
+      "classes": {
+        "player": 2,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.4918,
+      "fp_box": [
+        226.0,
+        93.62,
+        231.7,
+        98.31
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_744b27_dneg0082.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_744b27_000014.jpg",
+      "source_match": "rfext_744b27",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 206.33,
+        "y": 156.64,
+        "w": 292.25,
+        "h": 164.39,
+        "zoom": 2.1899
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 7,
+        "referee": 2,
+        "goalkeeper": 1
+      },
+      "fp_confidence": 0.4717,
+      "fp_box": [
+        396.96,
+        248.81,
+        402.16,
+        254.29
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "rfext_4b770a_dneg0083.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_4b770a_000019.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 233.55,
+        "y": 21.11,
+        "w": 386.84,
+        "h": 217.6,
+        "zoom": 1.6544
+      },
+      "n_labels": 16,
+      "classes": {
+        "player": 13,
+        "referee": 2,
+        "ball": 1
+      },
+      "fp_confidence": 0.4591,
+      "fp_box": [
+        343.39,
+        153.71,
+        350.97,
+        159.96
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "full_match_chelsea_vs_arsenal_dneg0084.jpg",
+      "kind": "hard_negative",
+      "source_image": "full_match_chelsea_vs_arsenal_001345.jpg",
+      "source_match": "full_match_chelsea_vs_arsenal",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "w": 628.58,
+        "h": 353.58,
+        "zoom": 1.0182
+      },
+      "n_labels": 10,
+      "classes": {
+        "player": 8,
+        "referee": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.4523,
+      "fp_box": [
+        300.26,
+        156.43,
+        312.25,
+        166.81
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_573e61_dneg0085.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_573e61_000007.jpg",
+      "source_match": "rfext_573e61",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 426.99,
+        "y": 96.95,
+        "w": 562.77,
+        "h": 316.56,
+        "zoom": 1.1372
+      },
+      "n_labels": 16,
+      "classes": {
+        "player": 14,
+        "referee": 1,
+        "goalkeeper": 1
+      },
+      "fp_confidence": 0.4494,
+      "fp_box": [
+        791.97,
+        208.24,
+        801.72,
+        218.67
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "rfext_42ba34_dneg0086.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_42ba34_000022.jpg",
+      "source_match": "rfext_42ba34",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 431.94,
+        "y": 173.89,
+        "w": 300.09,
+        "h": 168.8,
+        "zoom": 2.1327
+      },
+      "n_labels": 9,
+      "classes": {
+        "player": 8,
+        "referee": 1
+      },
+      "fp_confidence": 0.4458,
+      "fp_box": [
+        648.59,
+        209.55,
+        653.55,
+        213.97
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "rfext_4b770a_dneg0087.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_4b770a_000020.jpg",
+      "source_match": "rfext_4b770a",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 42.89,
+        "y": 5.28,
+        "w": 582.88,
+        "h": 327.87,
+        "zoom": 1.098
+      },
+      "n_labels": 18,
+      "classes": {
+        "player": 15,
+        "referee": 2,
+        "ball": 1
+      },
+      "fp_confidence": 0.4339,
+      "fp_box": [
+        273.13,
+        171.36,
+        283.54,
+        178.95
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "rfext_573e61_dneg0088.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_573e61_000004.jpg",
+      "source_match": "rfext_573e61",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 315.62,
+        "w": 462.91,
+        "h": 260.38,
+        "zoom": 1.3826
+      },
+      "n_labels": 1,
+      "classes": {
+        "player": 1
+      },
+      "fp_confidence": 0.4207,
+      "fp_box": [
+        28.51,
+        438.53,
+        36.59,
+        446.85
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "rfext_08fd33_dneg0089.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_08fd33_000027.jpg",
+      "source_match": "rfext_08fd33",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 560.58,
+        "y": 101.83,
+        "w": 413.44,
+        "h": 232.56,
+        "zoom": 1.548
+      },
+      "n_labels": 16,
+      "classes": {
+        "ball": 1,
+        "player": 13,
+        "referee": 1,
+        "goalkeeper": 1
+      },
+      "fp_confidence": 0.3911,
+      "fp_box": [
+        711.28,
+        218.51,
+        718.99,
+        223.25
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "chelsea_v_leicester_city_dneg0090.jpg",
+      "kind": "hard_negative",
+      "source_image": "chelsea_v_leicester_city_000050.jpg",
+      "source_match": "chelsea_v_leicester_city",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 365.85,
+        "y": 113.02,
+        "w": 274.15,
+        "h": 154.21,
+        "zoom": 2.3345
+      },
+      "n_labels": 2,
+      "classes": {
+        "goalkeeper": 1,
+        "player": 1
+      },
+      "fp_confidence": 0.3684,
+      "fp_box": [
+        489.92,
+        199.68,
+        494.79,
+        204.4
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "betis_3_vs_5_fc_barcelona_dneg0091.jpg",
+      "kind": "hard_negative",
+      "source_image": "betis_3_vs_5_fc_barcelona_000700.jpg",
+      "source_match": "betis_3_vs_5_fc_barcelona",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 0,
+        "y": 79.33,
+        "w": 375.28,
+        "h": 211.09,
+        "zoom": 1.7054
+      },
+      "n_labels": 6,
+      "classes": {
+        "player": 6
+      },
+      "fp_confidence": 0.3634,
+      "fp_box": [
+        77.17,
+        167.71,
+        83.47,
+        172.02
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "youth_1_dneg0092.jpg",
+      "kind": "hard_negative",
+      "source_image": "youth_1_000700.jpg",
+      "source_match": "youth_1",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 1326.03,
+        "y": 721.74,
+        "w": 593.97,
+        "h": 334.11,
+        "zoom": 1.0775
+      },
+      "n_labels": 0,
+      "classes": {},
+      "fp_confidence": 0.3499,
+      "fp_box": [
+        1908.17,
+        847.34,
+        1919.51,
+        857.38
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "rfext_744b27_dneg0093.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_744b27_000016.jpg",
+      "source_match": "rfext_744b27",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 574.79,
+        "y": 212.57,
+        "w": 404.66,
+        "h": 227.62,
+        "zoom": 1.5816
+      },
+      "n_labels": 11,
+      "classes": {
+        "player": 9,
+        "referee": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.3469,
+      "fp_box": [
+        666.22,
+        296.57,
+        674.47,
+        301.62
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "youth_3_dneg0094.jpg",
+      "kind": "hard_negative",
+      "source_image": "youth_3_001050.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 109.23,
+        "y": 49.82,
+        "w": 259.29,
+        "h": 145.85,
+        "zoom": 2.4682
+      },
+      "n_labels": 5,
+      "classes": {
+        "player": 4,
+        "ball": 1
+      },
+      "fp_confidence": 0.3456,
+      "fp_box": [
+        166.51,
+        130.79,
+        171.97,
+        135.9
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "youth_3_dneg0095.jpg",
+      "kind": "hard_negative",
+      "source_image": "youth_3_001135.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 208.32,
+        "y": 0,
+        "w": 431.68,
+        "h": 242.82,
+        "zoom": 1.4826
+      },
+      "n_labels": 12,
+      "classes": {
+        "player": 10,
+        "ball": 1,
+        "referee": 1
+      },
+      "fp_confidence": 0.3455,
+      "fp_box": [
+        529.53,
+        104.89,
+        536.35,
+        110.64
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "youth_7_dneg0096.jpg",
+      "kind": "hard_negative",
+      "source_image": "youth_7_000585.jpg",
+      "source_match": "youth_7",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 174.07,
+        "y": 122.15,
+        "w": 422.85,
+        "h": 237.85,
+        "zoom": 1.5135
+      },
+      "n_labels": 8,
+      "classes": {
+        "goalkeeper": 1,
+        "player": 6,
+        "ball": 1
+      },
+      "fp_confidence": 0.3386,
+      "fp_box": [
+        388.98,
+        187.77,
+        395.62,
+        194.02
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "youth_3_dneg0097.jpg",
+      "kind": "hard_negative",
+      "source_image": "youth_3_000183.jpg",
+      "source_match": "youth_3",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 134.0,
+        "y": 0.15,
+        "w": 322.02,
+        "h": 181.14,
+        "zoom": 1.9875
+      },
+      "n_labels": 3,
+      "classes": {
+        "player": 3
+      },
+      "fp_confidence": 0.3362,
+      "fp_box": [
+        203.84,
+        101.16,
+        208.89,
+        106.56
+      ],
+      "contains_real_ball": false
+    },
+    {
+      "file": "rfext_a9f16c_dneg0098.jpg",
+      "kind": "hard_negative",
+      "source_image": "rfext_a9f16c_000001.jpg",
+      "source_match": "rfext_a9f16c",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 248.03,
+        "y": 8.08,
+        "w": 469.39,
+        "h": 264.03,
+        "zoom": 1.3635
+      },
+      "n_labels": 17,
+      "classes": {
+        "player": 14,
+        "referee": 2,
+        "ball": 1
+      },
+      "fp_confidence": 0.322,
+      "fp_box": [
+        582.44,
+        167.71,
+        593.2,
+        175.75
+      ],
+      "contains_real_ball": true
+    },
+    {
+      "file": "fc_barcelona_3_vs_1_atletico_de_mad_dneg0099.jpg",
+      "kind": "hard_negative",
+      "source_image": "fc_barcelona_3_vs_1_atletico_de_mad_001430.jpg",
+      "source_match": "fc_barcelona_3_vs_1_atletico_de_mad",
+      "split": "TRAIN_ONLY",
+      "crop": {
+        "x": 205.85,
+        "y": 107.82,
+        "w": 367.28,
+        "h": 206.59,
+        "zoom": 1.7425
+      },
+      "n_labels": 7,
+      "classes": {
+        "player": 5,
+        "goalkeeper": 1,
+        "ball": 1
+      },
+      "fp_confidence": 0.2932,
+      "fp_box": [
+        313.08,
+        198.87,
+        319.7,
+        203.96
+      ],
+      "contains_real_ball": true
+    }
+  ]
+}

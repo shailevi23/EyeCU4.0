@@ -1,0 +1,348 @@
+{
+  "model": "best_A_960.pt",
+  "thresholds": {
+    "candidate_conf": 0.1,
+    "accept_conf": 0.25,
+    "dedupe_iou": 0.7,
+    "match_iou": 0.5
+  },
+  "baseline": {
+    "GAMEPLAY ONLY": {
+      "frames": 91,
+      "gt": 77,
+      "empty": 14,
+      "tp": 44,
+      "fp": 4,
+      "fn": 33,
+      "precision": 0.9167,
+      "recall": 0.5714,
+      "fp_per_frame": 0.044
+    },
+    "CLOSEUP / NON-GAMEPLAY ONLY": {
+      "frames": 13,
+      "gt": 0,
+      "empty": 13,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "fp_per_frame": 0.0
+    },
+    "ALL FRAMES": {
+      "frames": 104,
+      "gt": 77,
+      "empty": 27,
+      "tp": 44,
+      "fp": 4,
+      "fn": 33,
+      "precision": 0.9167,
+      "recall": 0.5714,
+      "fp_per_frame": 0.0385
+    }
+  },
+  "baseline_per_match": {
+    "austin_fc_vs__club_tijuana": {
+      "n_gt": 12,
+      "n_pred": 8,
+      "tp": 8,
+      "fp": 0,
+      "fn": 4,
+      "frames": 26,
+      "empty_frames": 14
+    },
+    "bayern_munich_3-1_chelsea": {
+      "n_gt": 25,
+      "n_pred": 17,
+      "tp": 17,
+      "fp": 0,
+      "fn": 8,
+      "frames": 26,
+      "empty_frames": 1
+    },
+    "women_1": {
+      "n_gt": 15,
+      "n_pred": 9,
+      "tp": 8,
+      "fp": 1,
+      "fn": 7,
+      "frames": 26,
+      "empty_frames": 11
+    },
+    "youth_premier_league": {
+      "n_gt": 25,
+      "n_pred": 14,
+      "tp": 11,
+      "fp": 3,
+      "fn": 14,
+      "frames": 26,
+      "empty_frames": 1
+    }
+  },
+  "baseline_per_window": {
+    "austin_fc_vs__club_tijuana w0": {
+      "n_gt": 0,
+      "n_pred": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "frames": 13,
+      "empty_frames": 13
+    },
+    "austin_fc_vs__club_tijuana w1": {
+      "n_gt": 12,
+      "n_pred": 8,
+      "tp": 8,
+      "fp": 0,
+      "fn": 4,
+      "frames": 13,
+      "empty_frames": 1
+    },
+    "bayern_munich_3-1_chelsea w0": {
+      "n_gt": 13,
+      "n_pred": 11,
+      "tp": 11,
+      "fp": 0,
+      "fn": 2,
+      "frames": 13,
+      "empty_frames": 0
+    },
+    "bayern_munich_3-1_chelsea w1": {
+      "n_gt": 12,
+      "n_pred": 6,
+      "tp": 6,
+      "fp": 0,
+      "fn": 6,
+      "frames": 13,
+      "empty_frames": 1
+    },
+    "women_1 w0": {
+      "n_gt": 9,
+      "n_pred": 7,
+      "tp": 7,
+      "fp": 0,
+      "fn": 2,
+      "frames": 13,
+      "empty_frames": 4
+    },
+    "women_1 w1": {
+      "n_gt": 6,
+      "n_pred": 2,
+      "tp": 1,
+      "fp": 1,
+      "fn": 5,
+      "frames": 13,
+      "empty_frames": 7
+    },
+    "youth_premier_league w0": {
+      "n_gt": 13,
+      "n_pred": 13,
+      "tp": 11,
+      "fp": 2,
+      "fn": 2,
+      "frames": 13,
+      "empty_frames": 0
+    },
+    "youth_premier_league w1": {
+      "n_gt": 12,
+      "n_pred": 1,
+      "tp": 0,
+      "fp": 1,
+      "fn": 12,
+      "frames": 13,
+      "empty_frames": 1
+    }
+  },
+  "frames_with_multiple_gt_balls": [],
+  "temporal": {
+    "GAMEPLAY ONLY": {
+      "frames": 91,
+      "gt_frames": 77,
+      "empty_frames": 14,
+      "raw_recall": 0.5714,
+      "observed_plus_recovered_recall": 0.5974,
+      "trajectory_coverage": 0.6234,
+      "false_recovery_rate_on_empty": 0.0714,
+      "hallucinated_frames": 1,
+      "unknown_frames": 36,
+      "states": {
+        "observed": 47,
+        "interpolated_short_gap": 5,
+        "recovered_low_conf": 3,
+        "unknown": 36
+      }
+    },
+    "CLOSEUP / NON-GAMEPLAY ONLY": {
+      "frames": 13,
+      "gt_frames": 0,
+      "empty_frames": 13,
+      "raw_recall": null,
+      "observed_plus_recovered_recall": null,
+      "trajectory_coverage": null,
+      "false_recovery_rate_on_empty": 0.0,
+      "hallucinated_frames": 0,
+      "unknown_frames": 13,
+      "states": {
+        "unknown": 13
+      }
+    },
+    "ALL FRAMES": {
+      "frames": 104,
+      "gt_frames": 77,
+      "empty_frames": 27,
+      "raw_recall": 0.5714,
+      "observed_plus_recovered_recall": 0.5974,
+      "trajectory_coverage": 0.6234,
+      "false_recovery_rate_on_empty": 0.037,
+      "hallucinated_frames": 1,
+      "unknown_frames": 49,
+      "states": {
+        "unknown": 49,
+        "observed": 47,
+        "interpolated_short_gap": 5,
+        "recovered_low_conf": 3
+      }
+    }
+  },
+  "longest_hallucinated_run": 1,
+  "longest_hallucinated_run_window": "youth_premier_league w1",
+  "camera_cuts_detected": 5,
+  "transitions": {
+    "GT empty -> correctly unknown": 26,
+    "raw miss -> interpolated_short_gap": 5,
+    "raw miss -> recovered_low_conf": 3,
+    "raw miss -> unknown": 23,
+    "raw miss -> observed": 2,
+    "GT empty -> false recovery (observed)": 1
+  },
+  "temporal_per_window": {
+    "austin_fc_vs__club_tij w0": {
+      "gt": 0,
+      "empty": 13,
+      "observed": 0,
+      "recovered": 0,
+      "interpolated": 0,
+      "unknown": 13,
+      "coverage": null,
+      "false_recovery": 0.0,
+      "cuts": 5
+    },
+    "austin_fc_vs__club_tij w1": {
+      "gt": 12,
+      "empty": 1,
+      "observed": 8,
+      "recovered": 1,
+      "interpolated": 2,
+      "unknown": 2,
+      "coverage": 0.75,
+      "false_recovery": 0.0,
+      "cuts": 0
+    },
+    "bayern_munich_3-1_chel w0": {
+      "gt": 13,
+      "empty": 0,
+      "observed": 11,
+      "recovered": 0,
+      "interpolated": 2,
+      "unknown": 0,
+      "coverage": 0.9231,
+      "false_recovery": null,
+      "cuts": 0
+    },
+    "bayern_munich_3-1_chel w1": {
+      "gt": 12,
+      "empty": 1,
+      "observed": 6,
+      "recovered": 1,
+      "interpolated": 0,
+      "unknown": 6,
+      "coverage": 0.5833,
+      "false_recovery": 0.0,
+      "cuts": 0
+    },
+    "women_1 w0": {
+      "gt": 9,
+      "empty": 4,
+      "observed": 7,
+      "recovered": 0,
+      "interpolated": 1,
+      "unknown": 5,
+      "coverage": 0.8889,
+      "false_recovery": 0.0,
+      "cuts": 0
+    },
+    "women_1 w1": {
+      "gt": 6,
+      "empty": 7,
+      "observed": 1,
+      "recovered": 1,
+      "interpolated": 0,
+      "unknown": 11,
+      "coverage": 0.1667,
+      "false_recovery": 0.0,
+      "cuts": 0
+    },
+    "youth_premier_league w0": {
+      "gt": 13,
+      "empty": 0,
+      "observed": 13,
+      "recovered": 0,
+      "interpolated": 0,
+      "unknown": 0,
+      "coverage": 0.8462,
+      "false_recovery": null,
+      "cuts": 0
+    },
+    "youth_premier_league w1": {
+      "gt": 12,
+      "empty": 1,
+      "observed": 1,
+      "recovered": 0,
+      "interpolated": 0,
+      "unknown": 12,
+      "coverage": 0.0,
+      "false_recovery": 1.0,
+      "cuts": 0
+    }
+  },
+  "temporal_per_match": {
+    "austin_fc_vs__club_tijuana": {
+      "unknown": 15,
+      "gt": 12,
+      "empty": 14,
+      "cov": 9,
+      "false": 0,
+      "observed": 8,
+      "interpolated_short_gap": 2,
+      "recovered_low_conf": 1
+    },
+    "bayern_munich_3-1_chelsea": {
+      "observed": 17,
+      "gt": 25,
+      "empty": 1,
+      "cov": 19,
+      "false": 0,
+      "interpolated_short_gap": 2,
+      "unknown": 6,
+      "recovered_low_conf": 1
+    },
+    "women_1": {
+      "observed": 8,
+      "gt": 15,
+      "empty": 11,
+      "cov": 9,
+      "false": 0,
+      "unknown": 16,
+      "interpolated_short_gap": 1,
+      "recovered_low_conf": 1
+    },
+    "youth_premier_league": {
+      "observed": 14,
+      "gt": 25,
+      "empty": 1,
+      "cov": 11,
+      "false": 1,
+      "unknown": 12
+    }
+  }
+}
