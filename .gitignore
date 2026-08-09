@@ -52,3 +52,18 @@ data/dataset_C/labels/
 !data/tracking_val_v1/detections/*.jsonl
 !data/tracking_val_v1/candidates/
 !data/tracking_val_v1/candidates/*.jsonl
+
+# Identity-GT package: frames rebuild from tools/build_tracking_gt_package.py and
+# are verified by decoded_frames_sha256; the annotation artifacts are the value.
+!data/tracking_val_gt/
+!data/tracking_val_gt/manifest.json
+!data/tracking_val_gt/preannotations/
+!data/tracking_val_gt/preannotations/*
+!data/tracking_val_gt/annotations/
+!data/tracking_val_gt/annotations/*
+!data/tracking_val_gt/roles/
+!data/tracking_val_gt/roles/*
+!data/tracking_val_gt/mot/
+!data/tracking_val_gt/mot/**
+data/tracking_val_gt/sequences/
+data/tracking_val_gt/qc/

@@ -154,5 +154,16 @@
     "D internal-no-match": 780,
     "C wrapper-ambiguous": 41
   },
-  "input_total": 18269
+  "input_total": 18269,
+  "conclusions": {
+    "proven": "The Supervision update_with_detections wrapper is not a material additional source of observation loss: it adds 62 losses over 16,220 returned internal track observations (0.38%).",
+    "not_yet_classified": "A substantially larger gap exists between accepted detections and internal returned track observations, but without identity ground truth this gap cannot yet be classified as correct tracker lifecycle behavior versus association failure.",
+    "new_track_gate": "The (0.25, 0.35) new-track gate is a measured implementation effect, not yet a proven tracking defect.",
+    "explicitly_not_claimed": [
+      "internal ByteTrack is the dominant cause of fragmentation",
+      "any identity-switch, IDF1, HOTA or AssA statement",
+      "that the wrapper or the gate should be changed"
+    ],
+    "note": "The commit message for b25c840 used the word \"dominant\" for the accepted-vs-internal gap. This record supersedes that wording; git history was not rewritten."
+  }
 }
