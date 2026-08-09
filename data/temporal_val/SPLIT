@@ -1,0 +1,4 @@
+VAL_ONLY
+
+Frames here come from the four matches pinned to validation.
+They must never be added to train or test.

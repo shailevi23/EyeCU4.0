@@ -15,3 +15,10 @@ data/pseudo_meta/
 # frame manifest are decisions worth sharing.
 !data/batches/
 !data/batches/*.json
+
+# Temporal-val frames stay local, but the window plan and provenance are
+# decisions worth sharing -- they define the benchmark.
+!data/temporal_val/
+!data/temporal_val/manifest.json
+!data/temporal_val/ANNOTATION.md
+!data/temporal_val/SPLIT
