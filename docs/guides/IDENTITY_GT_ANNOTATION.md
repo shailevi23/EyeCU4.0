@@ -45,6 +45,65 @@ Use them as a **cross-check**: open the XML if you want to see where the
 detector fired, or compare counts afterwards. Nothing in the pipeline reads
 them as annotation input.
 
+## Some frames already have your reviewed boxes
+
+42 of the 1,200 frames were hand-corrected during detector labelling, carrying
+560 reviewed human boxes (481 player, 22 goalkeeper, 57 referee; 28 ball boxes
+dropped). Those are in `human_seed/<seq>.json`, in absolute pixels on the
+640x360 package frames.
+
+Overlap was established from source-frame provenance and then confirmed
+pixel-wise: each seeded frame records its mean absolute difference to the
+packaged frame and the ratio to the nearest neighbouring frame, and a frame is
+only accepted when the correct frame wins by more than 2x. Filenames agreeing
+is not evidence.
+
+Do not redraw those boxes. Where a seeded frame falls inside a track, place the
+keyframe there and match the reviewed geometry. After annotation:
+
+```bash
+python tools/check_human_seed_agreement.py
+```
+
+reports where the identity pass and the detector-era pass disagree — a missing
+person, a different role, or drifted geometry. It is report-only: two human
+passes disagreeing is information, and overwriting one with the other would
+throw away the only independent check this benchmark has.
+
+The seed carries **no identity**. Nothing from the detector era can.
+
+## Before the real work: a 10-minute CVAT smoke test
+
+The synthetic fixture in `tests/` proves the parser handles the XML we believe
+CVAT writes. It cannot prove your CVAT version and export dialog produce that
+XML. A version that numbers frames differently or writes tracks as shapes would
+pass every unit test and silently corrupt 1,200 frames of annotation.
+
+1. Make a task from the **first 10 frames only** of `women_1_239`
+   (`sequences/women_1_239/img1/000001.jpg` .. `000010.jpg`) — it is the
+   least crowded sequence, ~11 people per frame.
+2. Annotate **2 tracks** with **different roles** (e.g. one `player`, one
+   `referee`).
+3. On track A: keyframe frames 1 and 5 and let CVAT interpolate between them;
+   mark `outside` for two frames; then bring the **same track** back and
+   keyframe it again through frame 10.
+4. Track B: visible throughout, keyframe the first and last frame.
+5. Export as **CVAT for video 1.1**, then:
+
+```bash
+python tools/smoke_test_cvat_export.py --export path/to/smoke.xml
+```
+
+It runs the real export through import → canonical JSON → validator → QC
+renderer → MOT export on a scratch copy, and checks 25 properties: CVAT frame 0
+becomes package frame 1, identities stay stable, roles survive, outside frames
+emit no box, the reappearance keeps the same identity, interpolation decodes,
+boxes are in-frame, no duplicate ids, MOT `conf=1` and `class=1`. The real
+package is never written to.
+
+If it fails, **stop** — the importer or the export settings need fixing before
+any full annotation.
+
 ## The workflow
 
 1. **Create one CVAT task per sequence.** Name it exactly the sequence tag
