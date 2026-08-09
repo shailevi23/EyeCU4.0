@@ -63,6 +63,55 @@ The real validation set (208 images, 4 frozen matches, 115 goalkeepers) now
 exists. **Experiment A must be re-run against it, and the result will not be
 comparable to the table above.**
 
+### Pilot on the real validation set — 2026-08-09
+
+10 epochs, 823 train / 208 val, to confirm the rebuilt dataset trains and to
+time a full run. **This is the first measurement against the real held-out
+validation set** and supersedes everything above.
+
+| Class | n | Precision | Recall | mAP50 | mAP50-95 |
+|---|---|---|---|---|---|
+| player | 2,490 | 0.876 | 0.926 | 0.953 | 0.667 |
+| referee | 257 | **0.611** | 0.747 | 0.733 | 0.466 |
+| goalkeeper | 115 | 0.773 | 0.574 | 0.653 | 0.435 |
+| ball | 111 | 0.779 | **0.486** | 0.548 | 0.267 |
+| **all** | 2,973 | 0.757 | 0.683 | **0.722** | 0.459 |
+
+49.7 FPS. 9.7 minutes for 10 epochs.
+
+Three things this measurement establishes:
+
+**The merged dataset is doing real work.** 10 epochs here reaches mAP50 0.722;
+the previous model needed 65 epochs to reach 0.735 on an *easier* val set.
+Training images went 366 → 823.
+
+**Goalkeeper precision rose 0.632 → 0.773** while recall held steady. Training
+instances went 110 → 431, mostly from the external merge.
+
+**Referee is now the weakest class by precision (0.611), not recall (0.747).**
+The model over-predicts referees — it finds them, and it also finds things that
+are not them. This is the kit-confusion failure below, appearing in a headline
+metric for the first time, because the new val set contains
+`austin_fc_vs__club_tijuana`. It was always happening; the old val set could
+not see it.
+
+Ball is the weakest class overall (mAP50-95 0.267) and the main open question
+for the full run.
+
+### Confidence intervals — why the val rebuild mattered
+
+95% Wilson intervals on recall:
+
+| Class | n | recall | 95% CI | width | old width (85-img val) |
+|---|---|---|---|---|---|
+| player | 2,490 | 0.926 | [0.915, 0.936] | 0.021 | 0.034 |
+| referee | 257 | 0.747 | [0.690, 0.796] | 0.106 | 0.174 |
+| goalkeeper | 115 | 0.574 | [0.483, 0.661] | **0.178** | 0.320 |
+| ball | 111 | 0.486 | [0.395, 0.578] | **0.183** | 0.231 |
+
+Goalkeeper and ball intervals nearly halved. Still wide enough that a
+difference under ~9 points on those two classes is not a difference.
+
 ---
 
 ## Measured failure modes
@@ -82,10 +131,14 @@ Across 20 frames: **81 referees** (4/frame, where a pitch has at most 3
 officials) and only 8.1 players/frame against Roboflow's 13.2. The model
 labels green-shirted **players** as referees.
 
-Its validation referee recall of 0.703 was measured on four matches whose kits
-resemble the training set, and does not hold on a genuinely new one. This is
-overfitting to 10 matches, not a bug — and it is invisible in every metric
-above.
+Its validation referee recall of 0.703 was measured on the retired val set,
+whose four matches had kits resembling the training set. It did not hold on a
+genuinely new one.
+
+**The rebuilt validation set now catches this.** `austin_fc_vs__club_tijuana`
+is one of the four frozen val matches, and referee precision on the 2026-08-09
+pilot is 0.611 — the weakest figure of any class on any metric. The failure was
+always present; it is now measured rather than anecdotal.
 
 ### Close-up blindness
 
