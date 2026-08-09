@@ -44,7 +44,9 @@ data/football_dataset*.zip
 data/dataset_C/images/
 data/dataset_C/labels/
 
-# Frozen tracking inputs: the manifest and validator are the contract and are
-# tracked; the serialised detections rebuild from tools/freeze_tracking_detections.py
+# Frozen tracking inputs are scientific benchmark inputs, not disposable
+# diagnostics: the exact serialised detections are versioned, not just hashed.
 !data/tracking_val_v1/
 !data/tracking_val_v1/manifest.json
+!data/tracking_val_v1/detections/
+!data/tracking_val_v1/detections/*.jsonl
