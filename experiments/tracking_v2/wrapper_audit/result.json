@@ -1,0 +1,158 @@
+{
+  "config": {
+    "constructor": "sv.ByteTrack()  # production-exact, no arguments",
+    "track_activation_threshold": 0.25,
+    "det_thresh": 0.35,
+    "minimum_matching_threshold": 0.8,
+    "minimum_consecutive_frames": 1,
+    "max_time_lost": 30,
+    "frame_rate_used": 30,
+    "wrapper_cost_threshold": 0.5,
+    "view": "accepted"
+  },
+  "sequences": [
+    {
+      "sequence": "austin_fc_vs__club_tijuana_284",
+      "input_accepted_detections": 3777,
+      "internal_returned_track_observations": 3434,
+      "public_returned_observations": 3394,
+      "categories": {
+        "A wrapper-preserved": 3394,
+        "B wrapper-dropped": 171,
+        "D internal-no-match": 209,
+        "C wrapper-ambiguous": 3
+      },
+      "frames_with_no_internal_track": 0,
+      "detections_dropped_by_empty_return": 0,
+      "replay_mismatched_frames": 0,
+      "matched_iou": {
+        "n": 3394,
+        "mean": 0.8683,
+        "p10": 0.739,
+        "min": 0.503
+      },
+      "unmatched_plausible_iou": {
+        "n": 174,
+        "mean": 0.791
+      },
+      "pairs_just_below_threshold_0p40_0p50": 39,
+      "new_track_gate_band_0p25_0p35": 270,
+      "new_track_gate_band_without_id": 176,
+      "final_internal_state_A": {
+        "tracked": 15,
+        "lost": 3,
+        "removed": 0,
+        "tracked_active": 0
+      }
+    },
+    {
+      "sequence": "bayern_munich_3-1_chelsea_228",
+      "input_accepted_detections": 7472,
+      "internal_returned_track_observations": 7150,
+      "public_returned_observations": 7150,
+      "categories": {
+        "A wrapper-preserved": 7150,
+        "B wrapper-dropped": 269,
+        "D internal-no-match": 52,
+        "C wrapper-ambiguous": 1
+      },
+      "frames_with_no_internal_track": 0,
+      "detections_dropped_by_empty_return": 0,
+      "replay_mismatched_frames": 0,
+      "matched_iou": {
+        "n": 7150,
+        "mean": 0.8902,
+        "p10": 0.7956,
+        "min": 0.5194
+      },
+      "unmatched_plausible_iou": {
+        "n": 270,
+        "mean": 0.8459
+      },
+      "pairs_just_below_threshold_0p40_0p50": 8,
+      "new_track_gate_band_0p25_0p35": 215,
+      "new_track_gate_band_without_id": 137,
+      "final_internal_state_A": {
+        "tracked": 24,
+        "lost": 3,
+        "removed": 0,
+        "tracked_active": 0
+      }
+    },
+    {
+      "sequence": "women_1_239",
+      "input_accepted_detections": 3374,
+      "internal_returned_track_observations": 2849,
+      "public_returned_observations": 2835,
+      "categories": {
+        "A wrapper-preserved": 2835,
+        "D internal-no-match": 280,
+        "B wrapper-dropped": 254,
+        "C wrapper-ambiguous": 5
+      },
+      "frames_with_no_internal_track": 0,
+      "detections_dropped_by_empty_return": 0,
+      "replay_mismatched_frames": 0,
+      "matched_iou": {
+        "n": 2835,
+        "mean": 0.881,
+        "p10": 0.7774,
+        "min": 0.5031
+      },
+      "unmatched_plausible_iou": {
+        "n": 259,
+        "mean": 0.8402
+      },
+      "pairs_just_below_threshold_0p40_0p50": 20,
+      "new_track_gate_band_0p25_0p35": 360,
+      "new_track_gate_band_without_id": 254,
+      "final_internal_state_A": {
+        "tracked": 13,
+        "lost": 7,
+        "removed": 4,
+        "tracked_active": 0
+      }
+    },
+    {
+      "sequence": "youth_premier_league_1133",
+      "input_accepted_detections": 3646,
+      "internal_returned_track_observations": 2787,
+      "public_returned_observations": 2779,
+      "categories": {
+        "A wrapper-preserved": 2779,
+        "D internal-no-match": 239,
+        "B wrapper-dropped": 596,
+        "C wrapper-ambiguous": 32
+      },
+      "frames_with_no_internal_track": 0,
+      "detections_dropped_by_empty_return": 0,
+      "replay_mismatched_frames": 0,
+      "matched_iou": {
+        "n": 2779,
+        "mean": 0.8673,
+        "p10": 0.739,
+        "min": 0.5065
+      },
+      "unmatched_plausible_iou": {
+        "n": 628,
+        "mean": 0.7904
+      },
+      "pairs_just_below_threshold_0p40_0p50": 23,
+      "new_track_gate_band_0p25_0p35": 628,
+      "new_track_gate_band_without_id": 404,
+      "final_internal_state_A": {
+        "tracked": 13,
+        "lost": 11,
+        "removed": 0,
+        "tracked_active": 0
+      }
+    }
+  ],
+  "combined": {
+    "A wrapper-preserved": 16158,
+    "B wrapper-dropped": 1290,
+    "D internal-no-match": 780,
+    "C wrapper-ambiguous": 41
+  },
+  "input_total": 18269
+}
