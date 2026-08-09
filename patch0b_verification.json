@@ -1,0 +1,62 @@
+{
+  "suppression_iou": 0.7,
+  "accepted": {
+    "before": {
+      "tp": 51,
+      "fp": 14,
+      "n": 111,
+      "mean_iou": 0.7553,
+      "median_iou": 0.7784
+    },
+    "after": {
+      "tp": 51,
+      "fp": 10,
+      "mean_iou": 0.7518,
+      "median_iou": 0.7652
+    }
+  },
+  "candidate_pool": {
+    "tp": 61,
+    "fp": 41,
+    "rescue_band_tp": 10,
+    "rescue_band_fp": 31
+  },
+  "per_match": {
+    "austin_fc_vs__club_tijuana": {
+      "n": 28,
+      "tp_off": 12,
+      "tp_on": 12,
+      "fp_off": 1,
+      "fp_on": 0,
+      "mean_iou_off": 0.7918,
+      "mean_iou_on": 0.788
+    },
+    "bayern_munich_3-1_chelsea": {
+      "n": 29,
+      "tp_off": 17,
+      "tp_on": 17,
+      "fp_off": 6,
+      "fp_on": 5,
+      "mean_iou_off": 0.7057,
+      "mean_iou_on": 0.705
+    },
+    "women_1": {
+      "n": 26,
+      "tp_off": 10,
+      "tp_on": 10,
+      "fp_off": 4,
+      "fp_on": 3,
+      "mean_iou_off": 0.7154,
+      "mean_iou_on": 0.7087
+    },
+    "youth_premier_league": {
+      "n": 28,
+      "tp_off": 12,
+      "tp_on": 12,
+      "fp_off": 3,
+      "fp_on": 2,
+      "mean_iou_off": 0.8224,
+      "mean_iou_on": 0.8181
+    }
+  }
+}

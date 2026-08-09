@@ -1,0 +1,532 @@
+{
+  "pairwise": [
+    {
+      "img": "austin_fc_vs__club_tijuana_000405.jpg",
+      "pred_pred_iou": 0.827,
+      "winner_conf": 0.147,
+      "dup_conf": 0.188,
+      "dup_iou_gt": 0.713,
+      "dup_conf_higher": true
+    },
+    {
+      "img": "austin_fc_vs__club_tijuana_001620.jpg",
+      "pred_pred_iou": 0.9259,
+      "winner_conf": 0.566,
+      "dup_conf": 0.876,
+      "dup_iou_gt": 0.9232,
+      "dup_conf_higher": true
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_000450.jpg",
+      "pred_pred_iou": 0.7509,
+      "winner_conf": 0.857,
+      "dup_conf": 0.154,
+      "dup_iou_gt": 0.5203,
+      "dup_conf_higher": false
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001020.jpg",
+      "pred_pred_iou": 0.8909,
+      "winner_conf": 0.83,
+      "dup_conf": 0.123,
+      "dup_iou_gt": 0.662,
+      "dup_conf_higher": false
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001100.jpg",
+      "pred_pred_iou": 0.936,
+      "winner_conf": 0.839,
+      "dup_conf": 0.128,
+      "dup_iou_gt": 0.6989,
+      "dup_conf_higher": false
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001110.jpg",
+      "pred_pred_iou": 0.8161,
+      "winner_conf": 0.446,
+      "dup_conf": 0.22,
+      "dup_iou_gt": 0.7656,
+      "dup_conf_higher": false
+    },
+    {
+      "img": "bayern_munich_3-1_chelsea_001130.jpg",
+      "pred_pred_iou": 0.9027,
+      "winner_conf": 0.256,
+      "dup_conf": 0.792,
+      "dup_iou_gt": 0.7824,
+      "dup_conf_higher": true
+    },
+    {
+      "img": "women_1_000400.jpg",
+      "pred_pred_iou": 0.8435,
+      "winner_conf": 0.877,
+      "dup_conf": 0.249,
+      "dup_iou_gt": 0.6135,
+      "dup_conf_higher": false
+    },
+    {
+      "img": "women_1_000550.jpg",
+      "pred_pred_iou": 0.9125,
+      "winner_conf": 0.523,
+      "dup_conf": 0.549,
+      "dup_iou_gt": 0.7337,
+      "dup_conf_higher": true
+    },
+    {
+      "img": "youth_premier_league_000100.jpg",
+      "pred_pred_iou": 0.7431,
+      "winner_conf": 0.119,
+      "dup_conf": 0.228,
+      "dup_iou_gt": 0.6816,
+      "dup_conf_higher": true
+    },
+    {
+      "img": "youth_premier_league_000190.jpg",
+      "pred_pred_iou": 0.822,
+      "winner_conf": 0.206,
+      "dup_conf": 0.743,
+      "dup_iou_gt": 0.6913,
+      "dup_conf_higher": true
+    },
+    {
+      "img": "youth_premier_league_000865.jpg",
+      "pred_pred_iou": 0.868,
+      "winner_conf": 0.282,
+      "dup_conf": 0.483,
+      "dup_iou_gt": 0.8607,
+      "dup_conf_higher": true
+    },
+    {
+      "img": "youth_premier_league_001350.jpg",
+      "pred_pred_iou": 0.326,
+      "winner_conf": 0.416,
+      "dup_conf": 0.14,
+      "dup_iou_gt": 0.3035,
+      "dup_conf_higher": false
+    }
+  ],
+  "ablation": {
+    "candidate pool >=0.10": {
+      "before": {
+        "tp": 61,
+        "fp": 53,
+        "n": 111,
+        "recall": 0.5495,
+        "precision": 0.5351,
+        "per_match": {
+          "austin_fc_vs__club_tijuana": {
+            "tp": 16,
+            "fp": 7,
+            "n": 28,
+            "recall": 0.5714
+          },
+          "bayern_munich_3-1_chelsea": {
+            "tp": 18,
+            "fp": 16,
+            "n": 29,
+            "recall": 0.6207
+          },
+          "women_1": {
+            "tp": 11,
+            "fp": 9,
+            "n": 26,
+            "recall": 0.4231
+          },
+          "youth_premier_league": {
+            "tp": 16,
+            "fp": 21,
+            "n": 28,
+            "recall": 0.5714
+          }
+        }
+      },
+      "grid": {
+        "0.5": {
+          "tp": 61,
+          "fp": 41,
+          "recall": 0.5495,
+          "precision": 0.598,
+          "duplicates_removed": 12,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 16,
+              "fp": 5,
+              "n": 28,
+              "recall": 0.5714
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 18,
+              "fp": 11,
+              "n": 29,
+              "recall": 0.6207
+            },
+            "women_1": {
+              "tp": 11,
+              "fp": 7,
+              "n": 26,
+              "recall": 0.4231
+            },
+            "youth_premier_league": {
+              "tp": 16,
+              "fp": 18,
+              "n": 28,
+              "recall": 0.5714
+            }
+          }
+        },
+        "0.6": {
+          "tp": 61,
+          "fp": 41,
+          "recall": 0.5495,
+          "precision": 0.598,
+          "duplicates_removed": 12,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 16,
+              "fp": 5,
+              "n": 28,
+              "recall": 0.5714
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 18,
+              "fp": 11,
+              "n": 29,
+              "recall": 0.6207
+            },
+            "women_1": {
+              "tp": 11,
+              "fp": 7,
+              "n": 26,
+              "recall": 0.4231
+            },
+            "youth_premier_league": {
+              "tp": 16,
+              "fp": 18,
+              "n": 28,
+              "recall": 0.5714
+            }
+          }
+        },
+        "0.7": {
+          "tp": 61,
+          "fp": 41,
+          "recall": 0.5495,
+          "precision": 0.598,
+          "duplicates_removed": 12,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 16,
+              "fp": 5,
+              "n": 28,
+              "recall": 0.5714
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 18,
+              "fp": 11,
+              "n": 29,
+              "recall": 0.6207
+            },
+            "women_1": {
+              "tp": 11,
+              "fp": 7,
+              "n": 26,
+              "recall": 0.4231
+            },
+            "youth_premier_league": {
+              "tp": 16,
+              "fp": 18,
+              "n": 28,
+              "recall": 0.5714
+            }
+          }
+        },
+        "0.8": {
+          "tp": 61,
+          "fp": 43,
+          "recall": 0.5495,
+          "precision": 0.5865,
+          "duplicates_removed": 10,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 16,
+              "fp": 5,
+              "n": 28,
+              "recall": 0.5714
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 18,
+              "fp": 12,
+              "n": 29,
+              "recall": 0.6207
+            },
+            "women_1": {
+              "tp": 11,
+              "fp": 7,
+              "n": 26,
+              "recall": 0.4231
+            },
+            "youth_premier_league": {
+              "tp": 16,
+              "fp": 19,
+              "n": 28,
+              "recall": 0.5714
+            }
+          }
+        },
+        "0.9": {
+          "tp": 61,
+          "fp": 49,
+          "recall": 0.5495,
+          "precision": 0.5545,
+          "duplicates_removed": 4,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 16,
+              "fp": 6,
+              "n": 28,
+              "recall": 0.5714
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 18,
+              "fp": 14,
+              "n": 29,
+              "recall": 0.6207
+            },
+            "women_1": {
+              "tp": 11,
+              "fp": 8,
+              "n": 26,
+              "recall": 0.4231
+            },
+            "youth_premier_league": {
+              "tp": 16,
+              "fp": 21,
+              "n": 28,
+              "recall": 0.5714
+            }
+          }
+        }
+      }
+    },
+    "accepted >=0.25": {
+      "before": {
+        "tp": 51,
+        "fp": 14,
+        "n": 111,
+        "recall": 0.4595,
+        "precision": 0.7846,
+        "per_match": {
+          "austin_fc_vs__club_tijuana": {
+            "tp": 12,
+            "fp": 1,
+            "n": 28,
+            "recall": 0.4286
+          },
+          "bayern_munich_3-1_chelsea": {
+            "tp": 17,
+            "fp": 6,
+            "n": 29,
+            "recall": 0.5862
+          },
+          "women_1": {
+            "tp": 10,
+            "fp": 4,
+            "n": 26,
+            "recall": 0.3846
+          },
+          "youth_premier_league": {
+            "tp": 12,
+            "fp": 3,
+            "n": 28,
+            "recall": 0.4286
+          }
+        }
+      },
+      "grid": {
+        "0.5": {
+          "tp": 51,
+          "fp": 10,
+          "recall": 0.4595,
+          "precision": 0.8361,
+          "duplicates_removed": 4,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 12,
+              "fp": 0,
+              "n": 28,
+              "recall": 0.4286
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 17,
+              "fp": 5,
+              "n": 29,
+              "recall": 0.5862
+            },
+            "women_1": {
+              "tp": 10,
+              "fp": 3,
+              "n": 26,
+              "recall": 0.3846
+            },
+            "youth_premier_league": {
+              "tp": 12,
+              "fp": 2,
+              "n": 28,
+              "recall": 0.4286
+            }
+          }
+        },
+        "0.6": {
+          "tp": 51,
+          "fp": 10,
+          "recall": 0.4595,
+          "precision": 0.8361,
+          "duplicates_removed": 4,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 12,
+              "fp": 0,
+              "n": 28,
+              "recall": 0.4286
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 17,
+              "fp": 5,
+              "n": 29,
+              "recall": 0.5862
+            },
+            "women_1": {
+              "tp": 10,
+              "fp": 3,
+              "n": 26,
+              "recall": 0.3846
+            },
+            "youth_premier_league": {
+              "tp": 12,
+              "fp": 2,
+              "n": 28,
+              "recall": 0.4286
+            }
+          }
+        },
+        "0.7": {
+          "tp": 51,
+          "fp": 10,
+          "recall": 0.4595,
+          "precision": 0.8361,
+          "duplicates_removed": 4,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 12,
+              "fp": 0,
+              "n": 28,
+              "recall": 0.4286
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 17,
+              "fp": 5,
+              "n": 29,
+              "recall": 0.5862
+            },
+            "women_1": {
+              "tp": 10,
+              "fp": 3,
+              "n": 26,
+              "recall": 0.3846
+            },
+            "youth_premier_league": {
+              "tp": 12,
+              "fp": 2,
+              "n": 28,
+              "recall": 0.4286
+            }
+          }
+        },
+        "0.8": {
+          "tp": 51,
+          "fp": 10,
+          "recall": 0.4595,
+          "precision": 0.8361,
+          "duplicates_removed": 4,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 12,
+              "fp": 0,
+              "n": 28,
+              "recall": 0.4286
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 17,
+              "fp": 5,
+              "n": 29,
+              "recall": 0.5862
+            },
+            "women_1": {
+              "tp": 10,
+              "fp": 3,
+              "n": 26,
+              "recall": 0.3846
+            },
+            "youth_premier_league": {
+              "tp": 12,
+              "fp": 2,
+              "n": 28,
+              "recall": 0.4286
+            }
+          }
+        },
+        "0.9": {
+          "tp": 51,
+          "fp": 11,
+          "recall": 0.4595,
+          "precision": 0.8226,
+          "duplicates_removed": 3,
+          "tp_lost": 0,
+          "per_match": {
+            "austin_fc_vs__club_tijuana": {
+              "tp": 12,
+              "fp": 0,
+              "n": 28,
+              "recall": 0.4286
+            },
+            "bayern_munich_3-1_chelsea": {
+              "tp": 17,
+              "fp": 5,
+              "n": 29,
+              "recall": 0.5862
+            },
+            "women_1": {
+              "tp": 10,
+              "fp": 3,
+              "n": 26,
+              "recall": 0.3846
+            },
+            "youth_premier_league": {
+              "tp": 12,
+              "fp": 3,
+              "n": 28,
+              "recall": 0.4286
+            }
+          }
+        }
+      }
+    }
+  },
+  "annotation": {
+    "images": 208,
+    "balls": 111,
+    "histogram": {
+      "1": 111,
+      "0": 97
+    }
+  }
+}

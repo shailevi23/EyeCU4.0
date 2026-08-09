@@ -87,7 +87,10 @@ def match(gt_boxes, pred_boxes, thr):
 
     ious = iou_matrix(gt_boxes, pred_boxes)
     used = set()
-    order = np.dstack(np.unravel_index(np.argsort(-ious, axis=None), ious.shape))[0]
+    # kind='stable' so exact IoU ties resolve deterministically; the default
+    # quicksort leaves tie order unspecified and makes results irreproducible.
+    order = np.dstack(np.unravel_index(
+        np.argsort(-ious, axis=None, kind='stable'), ious.shape))[0]
     for g, p in order:
         if ious[g, p] < thr:
             break

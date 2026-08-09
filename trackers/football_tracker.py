@@ -218,6 +218,8 @@ class FootballTracker:
                 class_name = det.get('class')
                 if class_name not in CLASS_IDS:
                     continue  # detector already normalised; anything else is noise
+                if det.get('state', 'observed') != 'observed':
+                    continue  # rescue candidates never reach the tracker
                 boxes.append(det['bbox'])
                 class_ids.append(CLASS_IDS[class_name])
                 confidences.append(det.get('confidence', 0.5))
@@ -250,6 +252,13 @@ class FootballTracker:
             # raw detection directly. ID 1 keeps it stable for downstream code.
             ball_found = False
             for det in frame_detections:
+                # Detections carrying state='candidate_low_conf' are the rescue
+                # pool. They exist for BallTemporalSelector, which does not
+                # exist yet, so nothing may accept them as observations here.
+                # Detectors without the pool emit no 'state' key at all, and
+                # the default keeps their behaviour identical.
+                if det.get('state', 'observed') != 'observed':
+                    continue
                 if det.get('class') == 'ball':
                     tracks["ball"][frame_idx][1] = {
                         "bbox": det['bbox'],

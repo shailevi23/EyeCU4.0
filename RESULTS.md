@@ -177,6 +177,92 @@ independent CI is too conservative and will hide real differences. Use
 
 ---
 
+### Experiment B @1280, and why A was kept — 2026-08-09
+
+`B_yolo26s_1280_realval`. YOLO26s @ 1280, full 80 epochs, 139 minutes.
+mAP50 **0.758**, mAP50-95 **0.488**, **32.6 FPS**.
+
+Two methodological points had to be settled before the comparison meant
+anything, and both changed the answer.
+
+**Ultralytics does not report P/R at a fixed threshold.**
+`ultralytics/utils/metrics.py:883` selects a *single shared* operating point
+per model — `i = smooth(f1_curve.mean(0), 0.1).argmax()` — the confidence that
+maximises the class-*mean* F1, then applies that one index to every class. It
+is not per-class, and it is not constant across models:
+
+| model | index | confidence |
+|---|---|---|
+| A @960 | 248 | **0.2482** |
+| B @1280 | 193 | **0.1932** |
+
+So the headline A-vs-B tables compare A at conf 0.248 with B at conf 0.193.
+Every per-class number quoted for B is measured at a lower threshold than A's.
+
+**Re-measured at an identical threshold**, B is better on ball at every
+operating point, and *worse* on goalkeeper and referee:
+
+| conf | A ball R | B ball R | A gk R | B gk R | A ref R | B ref R |
+|---|---|---|---|---|---|---|
+| 0.10 | 0.550 | **0.595** | — | — | — | — |
+| 0.25 | 0.459 | **0.514** | **0.513** | 0.409 | **0.809** | 0.747 |
+
+**A was kept on cost, not on accuracy.** B costs 1.73× per image
+(measured twice: 0.565 FPS ratio on T4, 0.579 on CPU) for +0.055 ball recall
+at matched threshold, while losing goalkeeper and referee. The defensible
+conclusion is narrow: *raising input resolution from 960 to 1280 did not
+produce an improvement large or robust enough to justify its cost under this
+training setup* — not that resolution is irrelevant.
+
+Context that explains the small gain: **all four validation videos are
+640×360**, and the median validation ball is **6.0 × 6.0 px**. A@960 already
+upsamples 1.5×; B@1280 upsamples 2×. Neither adds information.
+
+### Patch 0b — ball duplicate suppression — 2026-08-09
+
+YOLO26 is end-to-end and runs no NMS. The `iou` argument to `predict()` is
+inert — verified on this checkpoint, which returns 18 boxes at iou 0.1, 0.5 and
+0.9 alike. Nothing suppressed a second box on the same ball.
+
+At the candidate threshold 0.10, 14 of A's 53 ball false positives overlapped a
+real ball. Thirteen of those overlapped a ball *already claimed* by a better
+prediction; twelve of those thirteen had **prediction-to-prediction** IoU
+≥ 0.70 (median 0.84). Prediction-vs-GT overlap is not what NMS thresholds on,
+so the pairwise distribution was measured separately before choosing.
+
+Suppression threshold chosen from a measured plateau, not tuned: 0.50/0.60/0.70
+all remove the same 12 pairs with zero true detections lost; 0.80 removes 10.
+**0.70 is the top of the plateau** — maximum removal, widest margin against
+suppressing genuinely distinct balls.
+
+| | TP | FP | recall | precision | mean IoU | median IoU |
+|---|---|---|---|---|---|---|
+| accepted ≥0.25, before | 51 | 14 | 0.4595 | 0.7846 | 0.7553 | 0.7784 |
+| accepted ≥0.25, **after** | **51** | **10** | 0.4595 | **0.8361** | 0.7518 | 0.7652 |
+| candidate ≥0.10, after | 61 | 41 | 0.5495 | 0.5980 | 0.7444 | 0.7503 |
+
+TP is unchanged globally **and in every one of the four validation matches**.
+Because suppression keeps the most confident box and in 7 of 13 pairs that was
+not the best-fitting one, localisation drifts slightly: mean matched IoU
+−0.0035, median −0.0132. On a 6 px ball that is sub-pixel, and it is reported
+rather than rounded away.
+
+Two limits stated deliberately:
+
+- **This validation set cannot detect harm to a spare ball.** No frame in it
+  carries more than one ball box (97 frames with none, 111 with exactly one),
+  and `LABELING.md` specifies only *visibility*, never *which* ball. A correctly
+  detected second football is already scored as a false positive here, so
+  suppressing one would register as an improvement. The 0.70 threshold bounds
+  the risk — a spare ball elsewhere on the pitch has near-zero IoU with the
+  match ball — but the measurement is silent on it.
+- Suppression is **ball-only**. Humans are excluded by design: players
+  legitimately overlap when contesting a header, and the end-to-end head is
+  meant to emit both. Verified bit-identical human boxes with the flag on.
+
+The flag is **off by default**; with it off the detector emits exactly what it
+emitted before this patch, including no `state` key.
+
 ## Measured failure modes
 
 ### Generalisation: kit-based referee confusion
@@ -286,7 +372,7 @@ data against ours rather than trusting the export.
 
 ## Reproducibility
 
-- **41 automated tests** (32 fast, 9 slow). `pytest -m "not slow"` runs in ~2 s.
+- **55 automated tests** (46 fast, 9 slow). `pytest -m "not slow"` runs in ~2 s.
 - Splits are seeded and pinned; frozen val/test cannot drift as the pool grows.
 - Every tool is CLI-driven, with `--dry-run` wherever it writes.
 - Detection caches are keyed on video, model, detector and tracker settings,
