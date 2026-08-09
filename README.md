@@ -103,6 +103,7 @@ experimental/              preserved, unintegrated code
 | [docs/results/RESULTS.md](docs/results/RESULTS.md) | what was measured — detector results, failure modes, bugs found |
 | [docs/coursework/COURSEWORK_PLAN.md](docs/coursework/COURSEWORK_PLAN.md) | what remains to finish the project |
 | [docs/guides/LABELING.md](docs/guides/LABELING.md) | how to extract frames, draft labels and annotate |
+| [docs/research/ball_architecture_audit.md](docs/research/ball_architecture_audit.md) | why the ball is hard for this architecture; detector freeze record |
 | [docs/research/system_rescue_research.md](docs/research/system_rescue_research.md) | verified reference-repo findings and football-CV literature |
 | [docs/research/EXTERNAL_DATASETS.md](docs/research/EXTERNAL_DATASETS.md) | SoccerNet / SoccerTrack / Roboflow assessment |
 | [experiments/records/](experiments/records/) | experiment specs and raw training logs |

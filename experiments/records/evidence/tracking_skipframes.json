@@ -1,0 +1,26 @@
+{
+  "1": {
+    "frames": 300,
+    "unique_ids": 41,
+    "ids_per_human": 1.64,
+    "median_len": 255,
+    "survive_half": 25,
+    "role_flips": 23
+  },
+  "2": {
+    "frames": 150,
+    "unique_ids": 38,
+    "ids_per_human": 1.52,
+    "median_len": 122,
+    "survive_half": 25,
+    "role_flips": 14
+  },
+  "3": {
+    "frames": 100,
+    "unique_ids": 66,
+    "ids_per_human": 2.65,
+    "median_len": 32,
+    "survive_half": 22,
+    "role_flips": 8
+  }
+}
