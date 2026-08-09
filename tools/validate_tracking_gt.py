@@ -6,11 +6,14 @@ Two distinct modes, because the dangerous failure is an empty or half-finished
 benchmark being mistaken for a finished answer key:
 
     --stage pre    package structure is ready for a human to annotate
-    --stage post   a complete, manually verified GT exists and is self-consistent
+    --stage post   annotations exist and are self-consistent
+    --stage final  GT is VERIFIED: post passed AND human QC was confirmed, with
+                   the confirmation still matching the artifacts on disk
 
-`post` refuses to pass while identity_gt_status is UNANNOTATED, and refuses to
-pass if the annotations are byte-identical to the preannotation geometry, which
-would mean nobody actually annotated anything.
+Status is a three-state machine -- UNANNOTATED, ANNOTATED_PENDING_QC, VERIFIED
+-- because a two-state one lets a manifest string edit turn an unreviewed
+import into an answer key. `final` re-checks the QC record's hashes, so editing
+the status by hand does not make GT evaluable.
 
 Exit 0 = valid, 1 = invalid.
 """
@@ -181,12 +184,43 @@ def validate_post(root: Path):
     errors, n = validate_pre(root)
     man = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
     status = man.get('identity_gt_status')
-    n += _check(errors, status == 'ANNOTATED',
-                f'identity_gt_status is {status!r}; an unannotated benchmark '
-                f'cannot be accepted as final GT')
-    if status != 'ANNOTATED':
+    n += _check(errors, status in ('ANNOTATED_PENDING_QC', 'VERIFIED'),
+                f'identity_gt_status is {status!r}; nothing has been imported')
+    if status not in ('ANNOTATED_PENDING_QC', 'VERIFIED'):
         return errors, n
     e2, n2 = validate_gt_content(root)
+    return errors + e2, n + n2
+
+
+def validate_verified(root: Path):
+    """
+    The identity-safety gate: status is VERIFIED, the QC confirmation still
+    matches the annotations on disk, and the content rules hold.
+
+    Separate from validate_pre so that the gate can be applied to GT content
+    alone. Structure is a build-time property; this is the part that decides
+    whether numbers computed against this GT mean anything.
+    """
+    from tools.confirm_tracking_gt_qc import qc_record_valid
+    errors, n = [], 0
+    man = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
+    status = man.get('identity_gt_status')
+    n += _check(errors, status == 'VERIFIED',
+                f'identity_gt_status is {status!r}; only VERIFIED GT may be '
+                f'evaluated')
+    ok, why = qc_record_valid(root, man)
+    n += _check(errors, ok, f'QC confirmation invalid: {why}')
+    if status == 'VERIFIED':
+        e2, n2 = validate_gt_content(root)
+        errors += e2
+        n += n2
+    return errors, n
+
+
+def validate_final(root: Path):
+    """Everything: package structure plus the verified-identity gate."""
+    errors, n = validate_pre(root)
+    e2, n2 = validate_verified(root)
     return errors + e2, n + n2
 
 
@@ -194,9 +228,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--root', default='data/tracking_val_gt')
-    ap.add_argument('--stage', choices=['pre', 'post'], default='pre')
+    ap.add_argument('--stage', choices=['pre', 'post', 'final'], default='pre')
     args = ap.parse_args()
-    fn = validate_pre if args.stage == 'pre' else validate_post
+    fn = {'pre': validate_pre, 'post': validate_post,
+          'final': validate_final}[args.stage]
     errors, n = fn(Path(args.root))
     print(f'{n} checks run  (stage={args.stage})')
     if errors:
@@ -208,8 +243,12 @@ def main():
         print('VALID: package structure is ready for manual annotation')
         print('NOTE: this says nothing about identity quality. Identity GT does '
               'not exist until --stage post passes.')
+    elif args.stage == 'post':
+        print('VALID: annotations are self-consistent')
+        print('NOTE: this is not yet VERIFIED GT. Run '
+              'tools/confirm_tracking_gt_qc.py, then --stage final.')
     else:
-        print('VALID: complete manually verified identity GT')
+        print('VALID: complete, human-verified identity GT')
 
 
 if __name__ == '__main__':

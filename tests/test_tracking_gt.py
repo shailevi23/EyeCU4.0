@@ -13,7 +13,8 @@ from pathlib import Path
 import pytest
 
 from tools.validate_tracking_gt import (EXPECTED, N_FRAMES, validate_gt_content,
-                                        validate_post, validate_pre)
+                                        validate_post, validate_pre,
+                                        validate_verified)
 from trackers.detector import HUMAN_CLASSES
 
 ROOT = Path(__file__).resolve().parents[1] / 'data' / 'tracking_val_gt'
@@ -109,8 +110,14 @@ class TestPostStageRefusesWithoutAnnotation:
             export(ROOT, ROOT / 'mot')
 
 
-def _annotated(tmp_path, boxes, roles=None, status='ANNOTATED'):
-    """Minimal synthetic annotated package built from the real structure."""
+def _annotated(tmp_path, boxes, roles=None, status='VERIFIED'):
+    """
+    Minimal synthetic annotated package built from the real structure.
+
+    When status is VERIFIED a matching QC confirmation record is written too,
+    because VERIFIED without one is precisely the state the gate must reject.
+    """
+    from tools.confirm_tracking_gt_qc import promote_to_verified
     dst = tmp_path / 'gt'
     shutil.copytree(ROOT, dst, ignore=shutil.ignore_patterns('img1', 'qc'))
     man = json.loads((dst / 'manifest.json').read_text(encoding='utf-8'))
@@ -125,6 +132,8 @@ def _annotated(tmp_path, boxes, roles=None, status='ANNOTATED'):
     (dst / s['roles_expected']).write_text(json.dumps(
         {'identity_roles': roles or {str(i): 'player' for i in ids}}), encoding='utf-8')
     (dst / 'manifest.json').write_text(json.dumps(man), encoding='utf-8')
+    if status == 'VERIFIED':
+        promote_to_verified(dst, man, reviewer='test')
     return dst, s
 
 
@@ -227,6 +236,60 @@ class TestMotExport:
         sm = (tmp_path / 'mot' / 'seqmaps' / 'EyeCU-val.txt').read_text(encoding='utf-8')
         assert sm.splitlines()[0] == 'name'
         assert s['sequence'] in sm
+
+
+class TestGtStateMachine:
+    """
+    UNANNOTATED -> ANNOTATED_PENDING_QC -> VERIFIED.
+
+    A two-state machine lets a manifest string edit turn an unreviewed import
+    into an answer key, so the tests that matter here are the refusals.
+    """
+
+    def _export_fails(self, dst, tmp_path, why):
+        from tools.export_tracking_gt_mot import export
+        with pytest.raises(SystemExit, match='REFUSING'):
+            export(dst, tmp_path / 'mot')
+        errors, _ = validate_verified(dst)
+        assert any(why in e for e in errors), errors[:5]
+
+    def test_unannotated_cannot_export(self, tmp_path):
+        dst, _ = _annotated(tmp_path, [{'frame': 1, 'id': 1, 'bbox': BOX,
+                                        'role': 'player'}],
+                            status='UNANNOTATED')
+        self._export_fails(dst, tmp_path, 'only VERIFIED')
+
+    def test_pending_qc_cannot_export(self, tmp_path):
+        dst, _ = _annotated(tmp_path, [{'frame': 1, 'id': 1, 'bbox': BOX,
+                                        'role': 'player'}],
+                            status='ANNOTATED_PENDING_QC')
+        self._export_fails(dst, tmp_path, 'only VERIFIED')
+
+    def test_manual_status_edit_without_qc_record_is_rejected(self, tmp_path):
+        """The whole point: asserting VERIFIED is not evidence of QC."""
+        dst, _ = _annotated(tmp_path, [{'frame': 1, 'id': 1, 'bbox': BOX,
+                                        'role': 'player'}],
+                            status='ANNOTATED_PENDING_QC')
+        man = json.loads((dst / 'manifest.json').read_text(encoding='utf-8'))
+        man['identity_gt_status'] = 'VERIFIED'          # hand edit, nothing else
+        (dst / 'manifest.json').write_text(json.dumps(man), encoding='utf-8')
+        self._export_fails(dst, tmp_path, 'no QC confirmation record')
+
+    def test_annotation_edited_after_qc_is_rejected(self, tmp_path):
+        dst, s = _annotated(tmp_path, [{'frame': 1, 'id': 1, 'bbox': BOX,
+                                        'role': 'player'}])
+        (dst / s['annotation_file_expected']).write_text(json.dumps(
+            {'boxes': [{'frame': 1, 'id': 99, 'bbox': BOX, 'role': 'player'}]}),
+            encoding='utf-8')
+        self._export_fails(dst, tmp_path, 'changed since QC confirmation')
+
+    def test_verified_with_matching_qc_record_exports(self, tmp_path):
+        from tools.export_tracking_gt_mot import export
+        dst, s = _annotated(tmp_path, [{'frame': 1, 'id': 1, 'bbox': BOX,
+                                        'role': 'player'}])
+        export(dst, tmp_path / 'mot')
+        gt = tmp_path / 'mot' / 'EyeCU-val' / s['sequence'] / 'gt' / 'gt.txt'
+        assert gt.read_text(encoding='utf-8').strip()
 
 
 class TestQcRendererIsReadOnly:

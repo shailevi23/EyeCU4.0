@@ -19,8 +19,10 @@ Format verified against trackeval 1.3.0 `mot_challenge_2d_box.py`, not assumed:
 The commonly quoted `frame,id,x,y,w,h,conf,-1,-1,-1` row is the TRACKER
 prediction convention. Used for GT it makes class = -1, which TrackEval rejects.
 
-Refuses to run while identity_gt_status is UNANNOTATED: exporting an empty
-benchmark into a TrackEval layout is exactly how fake results get produced.
+Refuses to run unless the benchmark is VERIFIED -- imported, post-validated,
+and human QC-confirmed with the confirmation still matching the artifacts on
+disk. Exporting an unreviewed benchmark into a TrackEval layout is exactly how
+fake results get produced.
 """
 
 import argparse
@@ -39,10 +41,13 @@ GT_VISIBILITY = 1
 
 def export(root: Path, out: Path, benchmark_split: str = 'EyeCU-val'):
     man = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
-    if man.get('identity_gt_status') != 'ANNOTATED':
+    from tools.validate_tracking_gt import validate_verified
+    errors, _ = validate_verified(root)
+    if errors:
+        sep = '\n  '
         raise SystemExit(
-            f"REFUSING: identity_gt_status is {man.get('identity_gt_status')!r}. "
-            f"There is no manually verified GT to export.")
+            'REFUSING: GT is not VERIFIED.' + sep + sep.join(errors[:6]) +
+            '\nExport is only permitted for human-confirmed GT.')
 
     seqmap = []
     for s in man['sequences']:
@@ -76,7 +81,16 @@ def main():
     ap.add_argument('--root', default='data/tracking_val_gt')
     ap.add_argument('--out', default='data/tracking_val_gt/mot')
     args = ap.parse_args()
-    export(Path(args.root), Path(args.out))
+    root = Path(args.root)
+    # the CLI additionally re-checks package structure; export() itself enforces
+    # the identity gate (VERIFIED + intact QC record + valid content)
+    from tools.validate_tracking_gt import validate_final
+    errors, _ = validate_final(root)
+    if errors:
+        sep = '\n  '
+        raise SystemExit('REFUSING: GT is not VERIFIED.' + sep +
+                         sep.join(errors[:6]))
+    export(root, Path(args.out))
 
 
 if __name__ == '__main__':
