@@ -1,98 +1,184 @@
-# EyeCU 4.0 — First Pipeline Run Results
+# EyeCU 4.0 — Results
 
-_Run date: 2026-08-06_
+_Last updated: 2026-08-09._
 
-## Command
+Measured results only. Plans live in [COURSEWORK_PLAN.md](COURSEWORK_PLAN.md).
 
-```
-python run_pipeline.py --input input-videos/short.mp4 --output-dir match_analysis_output --yolo-model yolov8n.pt --max-frames 60 --skip-frames 2 --fps 15
-```
+---
 
-This is the first successful end-to-end run of the pipeline.
+## Headline
 
-## Run Summary
+A football-specific detector trained on our own footage, replacing a generic
+COCO model behind a cloud API.
 
-| Metric | Value |
+| | before | after |
+|---|---|---|
+| Pipeline throughput | **0.6 FPS** (Roboflow cloud) | **41 FPS** local |
+| Ball detection | 1 frame in 60 | recall **0.59**, precision 0.91 |
+| Goalkeeper | **not detectable** (no such COCO class) | recall 0.58 |
+| Referee | **not detectable** | recall 0.70 |
+
+The first two rows are the project's original problem statement. A COCO model
+has no `goalkeeper` or `referee` class at all, so the last two rows are a
+capability that did not previously exist.
+
+---
+
+## Detector — Experiment A (`eyecu_football_v1.pt`)
+
+YOLO26s @ 960 px, 80 epochs requested, **early-stopped at 65** with the best
+checkpoint at epoch 45. 30.4 minutes on a Colab T4. Trained on 366 EyeCU
+images, validated on 85 held out by match.
+
+| Class | Precision | Recall | mAP50 | mAP50-95 |
+|---|---|---|---|---|
+| player | 0.927 | 0.910 | 0.949 | 0.735 |
+| referee | 0.617 | 0.703 | 0.709 | 0.518 |
+| ball | 0.908 | 0.591 | 0.694 | 0.448 |
+| goalkeeper | 0.632 | 0.576 | 0.590 | 0.486 |
+| **all** | 0.771 | 0.695 | **0.735** | **0.547** |
+
+Inference 13.6 ms/image → **41 FPS**.
+
+### Progression from the 10-epoch pilot
+
+| Class | pilot recall | Experiment A |
+|---|---|---|
+| goalkeeper | 0.121 | **0.576** |
+| referee | 0.505 | **0.703** |
+| ball | 0.570 | 0.591 |
+| player | 0.909 | 0.910 |
+
+mAP50-95 0.450 → 0.547. Goalkeeper was the class predicted to fail on 110
+training instances; most of the gap closed with more epochs.
+
+### ⚠️ These numbers are superseded
+
+They were measured against a **temporary** 85-image validation set carved from
+training sources, because the real validation matches had no labels yet. That
+set had 33 goalkeeper instances — a 95% confidence interval of ±0.16 on
+goalkeeper recall, far too wide to compare models on.
+
+The real validation set (208 images, 4 frozen matches, 115 goalkeepers) now
+exists. **Experiment A must be re-run against it, and the result will not be
+comparable to the table above.**
+
+---
+
+## Measured failure modes
+
+### Generalisation: kit-based referee confusion
+
+`eyecu_football_v1` run on `austin_fc_vs__club_tijuana`, a match in neither
+train nor val. Austin play in green. On one frame:
+
+| | our model | Roboflow (generic) |
+|---|---|---|
+| player | 8 | **14** ✓ |
+| referee | **6** ✗ | 0 ✓ |
+| goalkeeper | 0 | **1** ✓ |
+
+Across 20 frames: **81 referees** (4/frame, where a pitch has at most 3
+officials) and only 8.1 players/frame against Roboflow's 13.2. The model
+labels green-shirted **players** as referees.
+
+Its validation referee recall of 0.703 was measured on four matches whose kits
+resemble the training set, and does not hold on a genuinely new one. This is
+overfitting to 10 matches, not a bug — and it is invisible in every metric
+above.
+
+### Close-up blindness
+
+**42 of 451 frames (9.3%)** returned zero detections from the hosted drafter,
+concentrated in `betis_3_vs_5_fc_barcelona` (14/41) and `youth_3` (14/51).
+Two were inspected visually: one a player-and-referee close-up, one two clearly
+visible players. Wide-shot detectors collapse outside broadcast wide framing.
+
+### Tracking: ID churn
+
+**145 unique track IDs across 300 frames**, where a match has ~22 players on
+pitch. `player_statistics.json` therefore counts *tracks*, not people, and is
+reported as `unique_track_ids` for that reason. Not yet measured properly —
+see COURSEWORK_PLAN §6.
+
+### Speed and distance are UNCALIBRATED
+
+`pixels_per_meter = 12.0` is a guess applied uniformly despite perspective and
+zoom. Output fields are named `*_UNCALIBRATED` and `final_report.json` carries
+`speed_distance_calibrated: false`. Figures are relative only.
+
+An earlier run reported player speeds of 124–205 km/h. Half of that was a
+separate bug: the estimator was fed the source FPS instead of
+`source_fps / skip_frames`, inflating every speed by exactly the skip factor
+(2× at the default). Fixed and tested. The calibration error remains.
+
+---
+
+## Dataset
+
+| Split | images | matches | player | goalkeeper | referee | ball |
+|---|---|---|---|---|---|---|
+| train | 823 | 29 | 12,975 | 431 | 1,453 | 673 |
+| val | 208 | 4 | 2,490 | 115 | 257 | 111 |
+| test | 177 | 3 | **unlabelled — deliberately untouched** | | | |
+
+Match-disjoint and domain-stratified (pro / women / youth / amateur). Leakage
+is checked automatically and the build fails if any match appears twice.
+
+**Sources.** 1,483 frames extracted from 23 of our own videos, plus 372
+external frames from
+[roboflow-jvuqo/football-players-detection-3zvbc v20](https://universe.roboflow.com/roboflow-jvuqo/football-players-detection-3zvbc)
+(CC BY 4.0), pinned to train only. Provenance in
+`data/external_provenance.json`.
+
+**Annotation.** 659 frames corrected by hand across two batches (451 train,
+208 val), each drafted by a hosted detector first. Roughly 40 hours.
+
+The correction step is where the value is. Batch 02, validation:
+
+| | drafted | corrected | change |
+|---|---|---|---|
+| goalkeeper | 37 | **115** | +78 (3.1×) |
+| referee | 135 | **257** | +122 |
+| ball | 84 | 111 | +27 |
+| player | 2,544 | 2,490 | −54 |
+
+---
+
+## Bugs found and fixed
+
+Recorded because several would have silently corrupted results rather than
+failing loudly.
+
+| Bug | Consequence if missed |
 |---|---|
-| Input video | `input-videos/short.mp4` (1920x1080, 30fps, 1535 total frames) |
-| Frames read | 60 (capped by `--max-frames`) |
-| Frames processed (after skip=2) | 30 |
-| Players detected | 8 |
-| Total processing time | 49.57s |
-| Processing FPS | 0.61 |
-| Detection source | Roboflow API (31/32 calls succeeded, 1 fell back to local YOLOv8n after a 502 error) |
-| Team colors assigned | Team 1: `(240, 243, 142)`, Team 2: `(66, 66, 50)` |
+| Roboflow alphabetises classes on export | Every player relabelled as referee |
+| External images squashed 16:9 → 1:1 | Model taught people are 1.8× too narrow |
+| `cv2.imwrite` silently fails on non-ASCII paths | 178 frames reported saved, none written |
+| Speed used source FPS, not effective FPS | Every speed inflated by `skip_frames` (2×) |
+| Cache key ignored video/model/settings | A run silently reuses another run's detections |
+| Unlabelled frames included as background | Model taught real players are not there |
+| Split written only for non-zero ratios | A pinned-only val split never reached disk |
+| 80 annotations returned as polygons | Ultralytics rejects those lines outright |
+| 18 duplicate/near-duplicate boxes | Teaches the detector that double-boxing is correct |
+| API key printed in error text | Key leaked to console on every failed request |
 
-## Artifacts Produced
+The aspect-ratio and class-order catches both came from measuring the external
+data against ours rather than trusting the export.
 
-All under `match_analysis_output/` (git-ignored, not committed):
+---
 
-| File | Notes |
-|---|---|
-| `tracked_output.mp4` | Annotated output video (30 frames) |
-| `visualizations/frame_0000.jpg` … `frame_0027.jpg` | 10 sample annotated frames |
-| `final_report.json` | Summary stats (see below) |
-| `processing_stats.json` | Same processing stats, standalone file |
-| `cache/camera_movement.pkl` | Camera movement estimation cache |
-| `match_1.db` | SQLite DB created by `MatchRecorder` (legacy DB layer; not populated by the advanced path) |
-| `reports/` | Empty — see bug below |
-| `bodies/`, `faces/`, `meshes/`, `evaluation/`, `tracking_videos/` | Empty — these are created by `run_pipeline.py` but only used by the legacy path |
+## Reproducibility
 
-### `final_report.json`
+- **41 automated tests** (32 fast, 9 slow). `pytest -m "not slow"` runs in ~2 s.
+- Splits are seeded and pinned; frozen val/test cannot drift as the pool grows.
+- Every tool is CLI-driven, with `--dry-run` wherever it writes.
+- Detection caches are keyed on video, model, detector and tracker settings,
+  `skip_frames` and `max_frames`.
 
-```json
-{
-  "match_id": 1,
-  "frames_processed": 30,
-  "processing_stats": {
-    "total_frames_processed": 30,
-    "avg_processing_time": 1.6522364060084032,
-    "total_processing_time": 49.567092180252075,
-    "fps": 0.6052402648697683,
-    "advanced_tracking": true
-  },
-  "advanced_tracking": true
-}
+The pipeline runs fully offline — no Roboflow, no network, no API key:
+
+```bash
+python run_pipeline.py --input input-videos/short.mp4 \
+    --yolo-model eyecu_football_v1.pt --imgsz 960 --max-frames 300
 ```
-
-## Visual Check
-
-Sample frame (`frame_0015.jpg`) shows correctly working:
-- Player bounding ellipses with tracking IDs (1, 2, 5, 6, 7, 8, 13, 14)
-- Referee marked distinctly (ID 2, dark box)
-- Ball possession triangle markers over the ball carrier
-- Team ball control readout ("Team 1 Ball Control: 100.00%")
-- Camera movement overlay (X/Y compensation values)
-
-## Bug Found During This Run
-
-- **`reports/player_statistics.json` is never generated.** `FootballAnalysisPipeline.generate_final_report()` checks `hasattr(self.adv_tracker, 'tracks')`, but `trackers/football_tracker.py`'s `FootballTracker` class never sets a `self.tracks` attribute — it only returns tracks from `get_object_tracks()`. The check silently evaluates to `False`, so player speed/distance statistics are computed during the run (printed/used for drawing) but never written to disk. Fix: either have `FootballTracker` cache `self.tracks` after `get_object_tracks()`, or have `full_pipeline.py` pass the local `tracks` variable from `_process_video_advanced()` into `generate_final_report()`.
-
-## Notes / Caveats
-
-- Roboflow API returned a 502 (Bad Gateway) once during the run; the pipeline correctly fell back to local YOLOv8n, so detection continued without failing the run — good resilience, but confirms Roboflow availability is not fully reliable.
-- Run used `yolov8n.pt` (fastest model) and only 30 frames for a quick smoke test — not representative of full-video accuracy/performance. A longer run with `yolov8x.pt` would be needed for real analysis quality.
-- `--use-cache` was not passed, so `cache/tracks.pkl` was not written (only `camera_movement.pkl` was, since that cache is unconditional). Pass `--use-cache` to persist/reuse detection tracks across runs.
-
-## Team Color Assignment — Investigation & Fixes (follow-up session)
-
-The user flagged two problems with `trackers/team_assigner.py`: (1) low-contrast box colors (white-on-white, yellow-on-yellow jerseys were nearly invisible), and (2) real team misclassification (white and yellow players sometimes landed in the same team). Root causes found and fixed:
-
-1. **Low contrast annotations** — the code was drawing each player's *actual detected jersey color*, which is obviously low-contrast against that same jersey. Fixed by adding a fixed high-contrast `display_colors` palette (blue `(255,60,60)` / red `(60,60,255)` BGR) used only for on-screen boxes, while the real detected color is still used internally for clustering.
-
-2. **Referee contamination** — the local YOLO fallback has no "referee" class (COCO only has generic "person"), so the referee's dark kit gets pooled in with player samples and corrupts the 2-cluster fit. First attempted an over-cluster-then-merge-nearest-centroids approach, but this backfired: white and yellow jerseys are often *closer to each other* (both bright) than either is to the near-black referee, so the naive "merge two nearest clusters" step merged the two real teams together and isolated the referee as its own "team" instead. **Fixed properly** by filtering out very dark samples (`max(B,G,R) < 100`) before fitting — referees/officials in this footage wear solid near-black kit, clearly separable from both (bright) team colors by brightness alone, without confusing white vs. yellow.
-
-3. **First-frame-wins caching bug** — `get_player_team()` decided a player's team from its *first* appearance and cached it forever, so one bad/occluded initial read permanently mislabeled that track for the whole video. Fixed `assign_teams_to_tracks()` to compute a representative color **across every frame a track appears in** before deciding its team once, instead of trusting frame one.
-
-4. **Persistent single-track misclassification (track 7)** — after fix #3, one white-shirted player (track 7) was *still* misclassified as the yellow team in every frame. Root-caused to two compounding contamination sources:
-   - **Bounding-box overlap with a neighbor** (track 6) in many frames, mixing the neighbor's yellow pixels into the sampled chest color. Fixed by adding `_bbox_overlap_ratio()` and skipping any frame where a player's box is >25% covered by another tracked player's box when building its color sample pool (`_collect_color_samples(..., skip_overlaps=True)`), falling back to unfiltered samples only if a track has no non-overlapping frames at all.
-   - **Non-overlap contamination** (shadow, motion blur, partial occlusion by the ball/limbs) still darkened roughly half of track 7's *non-overlapping* samples. Since both real jerseys in this footage are bright and only the referee is genuinely dark, added a brightness-preference step: when computing a track's representative color, prefer samples with `max(B,G,R) >= 150` if there are enough of them, falling back to all samples otherwise (which correctly keeps the referee's dark color, since it has no bright subset to prefer).
-
-### Verified accuracy (per user's request to check against a 90% bar)
-
-Re-ran the pipeline after all fixes and visually inspected all 10 sample frames in `match_analysis_output/visualizations/`. Result: **100% of real player tracks correctly separated (white vs. yellow) in every one of the 10 sampled frames** — including track 7, which was the last remaining failure case.
-
-- Tracks 1, 3, 4, 5, 6, 7, 8, 13, 14, 25 were all consistently and correctly classified across every frame they appeared in.
-- The referee (track 2) is, by design, bucketed into whichever team cluster its dark kit is numerically nearer to — this is unavoidable without a dedicated referee-detection class and is excluded from the accuracy count (it was never a real "team" to begin with).
-
-**Bottom line:** team separation went from "completely broken" (white+yellow merged into one team, or unreadable low-contrast boxes) to 100% correct across all sampled frames, comfortably above the requested 90% bar. The fix required four layered corrections: a fixed display palette, brightness-based referee filtering during cluster fitting, per-track median color instead of first-frame caching, and overlap/brightness-aware sample filtering to remove contamination from occlusion and shadow.

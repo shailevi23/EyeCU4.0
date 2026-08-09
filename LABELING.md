@@ -1,7 +1,51 @@
 # Labeling Guide
 
-How to turn 1,483 extracted frames into a training set — starting with one
-batch of ~450, not all of them.
+The full path from raw video to a trained model, and the rules for annotating.
+
+## Pipeline overview
+
+```bash
+# 1. extract diverse frames          DONE - 1,483 frames from 23 videos
+python tools/extract_frames.py --videos-dir input-videos --out data/frames \
+    --interval-sec 3 --max-frames 300
+
+# 2. inventory + integrity check
+python tools/dataset_manifest.py --check-images
+
+# 3. pick a batch from TRAIN sources only
+python tools/select_batch.py --size 450
+
+# 4. draft labels                    (see "Which drafter" below)
+python tools/pseudo_label.py --batch data/batches/batch_01.json
+
+# 5. correct by hand in Roboflow/CVAT   <- the slow part, and the valuable one
+# 6. import, validate, dedupe
+python tools/import_roboflow.py --export <zip>
+python tools/validate_annotations.py --strict
+python tools/dedupe_labels.py
+
+# 7. build the split and train
+python tools/build_dataset.py --plan-only
+python tools/build_dataset.py --zip --force-train "rfext_*" --force-val <frozen val matches>
+```
+
+Frame extraction samples on an interval, adds short bursts around motion spikes
+to catch corners and tackles, and drops near-duplicates plus the blurriest 15%
+of candidates. The blur threshold is computed **per video** — broadcast sources
+differ enormously in intrinsic sharpness (measured here: median Laplacian
+variance 282 for one clip against 24 for another; one fixed threshold would
+have emptied the softer video entirely).
+
+## Which drafter to use
+
+| Situation | Backend | Why |
+|---|---|---|
+| Frames from matches already in training | `--backend local --model eyecu_football_v1.pt` | Knows this footage, free, produces all four classes |
+| **Any unseen match** — especially val/test | `--backend roboflow` | The local model hallucinates referees on new kits (RESULTS.md) |
+
+This matters. On an unseen match our own model produced 6 referees in a frame
+that had none, labelling green-shirted players as officials. Confidently wrong
+drafts are worse than no drafts, because an annotator may accept them.
 
 ## Why batches
 
@@ -139,26 +183,37 @@ Then upload `data/football_dataset.zip` to Drive and open
 
 ---
 
-## First-training gate
+## Progress
 
-Do not start training until all of these hold:
+| Batch | Frames | Status |
+|---|---|---|
+| 01 — train | 451 | ✅ corrected and imported |
+| 02 — validation | 208 | ✅ corrected and imported |
+| 03 — test | 177 | ⬜ **not started — see below** |
 
-- [ ] ~400–500 **train** frames corrected (batch 1 is 451)
-- [ ] Enough **val** frames corrected to measure all four classes — val must
-      contain a non-zero count of `goalkeeper`, `referee` and `ball`, or those
-      per-class scores are meaningless
-- [ ] `python tools/validate_annotations.py --strict` exits 0
-- [ ] `python tools/build_dataset.py --check` reports no leakage
+Both completed batches passed `validate_annotations --strict` with 0 errors.
 
-Test stays untouched until a model has been selected on val.
-
-## Splits (seed 42, do not change without rebuilding)
+## Splits (frozen — pinned, not re-derived)
 
 | Split | Sources |
 |---|---|
-| **train** | betis_3_vs_5_fc_barcelona, chelsea_v_leeds_united, chelsea_v_leicester_city, clemson_vs__notre_dame, croatia_1-1_czechia, fc_barcelona_3_vs_1_atletico_de_mad, full_match_chelsea_vs_arsenal, sunday_league_full_match, women_2, youth_1, youth_3, youth_4, youth_5, youth_7 |
+| **train** | betis_3_vs_5_fc_barcelona, chelsea_v_leeds_united, chelsea_v_leicester_city, clemson_vs__notre_dame, croatia_1-1_czechia, fc_barcelona_3_vs_1_atletico_de_mad, full_match_chelsea_vs_arsenal, sunday_league_full_match, women_2, youth_1, youth_3, youth_4, youth_5, youth_7, + 15 `rfext_*` external |
 | **val** | austin_fc_vs__club_tijuana, bayern_munich_3-1_chelsea, women_1, youth_premier_league |
 | **test** | como_2-0_sassuolo, manchester_city_v_liverpool, youth_2 |
 
+Val and test are pinned with `--force-val` / `--force-test` so the split cannot
+drift as the training pool grows. External `rfext_*` sources are pinned to
+train with `--force-train` and can never reach val or test.
+
 `short` and `08fd33_4` are excluded entirely — they are the fixtures the
 regression tests run against.
+
+## Batch 03 — the test set
+
+**Do not start this until a model has been selected on validation.** The test
+set is scored once, at the end. Labelling it early is harmless; *looking at*
+its scores before choosing a model is not, because then it is no longer held
+out.
+
+When the time comes, draft it with `--backend roboflow` — never the local
+model. See "Which drafter" above.

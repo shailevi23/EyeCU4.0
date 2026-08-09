@@ -10,8 +10,8 @@ cleanup sections there are done and stay as a record._
 | Detector | `eyecu_football_v1.pt` — YOLO26s @ 960, trained on 366 frames |
 | Val results | mAP50 **0.735**, player R 0.910, referee R 0.703, goalkeeper R 0.576, ball R 0.591 |
 | Speed | **41 FPS** local, against ~0.6 FPS for the old Roboflow-cloud pipeline |
-| Dataset | 738 train / 85 val images, match-disjoint, leakage-checked |
-| Labels | 1,031 of 1,855 frames — 451 corrected, 208 drafted, 372 external |
+| Dataset | **823 train / 208 val** images, match-disjoint, leakage-checked, splits pinned |
+| Labels | 1,031 of 1,855 frames — 659 hand-corrected, 372 external |
 | Tests | 41 automated (32 fast, 9 slow), all passing |
 | **Test set** | **never evaluated — 177 frames still unlabelled** |
 
@@ -35,9 +35,10 @@ What is missing, in order of how much it costs the project:
 
 1. **No test-set number.** Every figure quoted is validation. A project that
    never touches its held-out set has no final result.
-2. **The validation set is too small to conclude anything.** 33 goalkeepers
-   gives a 95% confidence interval of ±0.16 on recall. A/B comparisons on it
-   are coin flips.
+2. ~~The validation set is too small to conclude anything.~~ **Fixed** —
+   goalkeepers went 33 → 115. Still not large: expect roughly ±0.09 on
+   goalkeeper recall, enough to rank models but not to call a 2-point
+   difference meaningful.
 3. **No tracking evaluation.** EyeCU is a tracking system; only the detector
    has been measured.
 4. **Known generalisation failure, unquantified.** The model calls
@@ -51,51 +52,55 @@ What is missing, in order of how much it costs the project:
 
 Everything here is required for a defensible final result.
 
-### 1. Finish the validation set — **blocks everything**
+### 1. ✅ Finish the validation set — **DONE 2026-08-09**
 
-`data/export/football_batch02_val_for_annotation.zip` is built and waiting.
-208 frames, 4 matches.
+208 frames across the 4 frozen val matches, corrected and imported. Validator
+passes with 0 errors after 5 duplicate boxes were removed.
 
-- [ ] Correct batch 02 in Roboflow — **budget 10–20 h**
-- [ ] `python tools/import_roboflow.py --export <zip> --dry-run` then without
-- [ ] `python tools/validate_annotations.py --strict`
-- [ ] `python tools/dedupe_labels.py`
+| | drafted | corrected | change |
+|---|---|---|---|
+| goalkeeper | 37 | **115** | +78 (3.1×) |
+| referee | 135 | **257** | +122 |
+| ball | 84 | 111 | +27 |
+| player | 2,544 | 2,490 | −54 |
 
-Watch for: goalkeepers are nearly all missing (37 drafted across 208 frames,
-`women_1` has zero); 15 empty files are close-ups needing labelling from
-scratch; referees badly under-drafted.
+Validation is now genuinely held out: 4 EyeCU matches, no external frames,
+never trained on. **Goalkeeper val instances went 33 → 115**, which is what
+makes model comparison meaningful. The estimate above was 80–150; the outcome
+landed mid-range.
 
-**Why first:** goalkeeper val instances go 33 → an estimated **80–150**.
-(Batch 01 correction took goalkeepers 64 → 144, a factor of 2.25; batch 02
-drafts 37, so ~85 from correction alone, plus every keeper the drafter missed
-entirely — `women_1` has zero drafted across 40 frames, so all of those are
-manual additions. An earlier estimate of ~200 in this file was optimistic.)
+Note the previous 85-image val was a stand-in carved from train sources and is
+retired. Any number measured against it is not comparable to what follows.
 
-Even 150 leaves a wide confidence interval. It is enough to rank models
-sensibly; it is not enough to call a 2-point difference meaningful.
+### 2. Retrain on the real split — **NEXT**
 
-### 2. Rebuild the split, then retrain
+The split rebuild is done. `build_dataset.py` gained `--force-val` /
+`--force-test`, and the frozen matches are now pinned rather than re-derived,
+so the split cannot drift as the training pool grows.
 
-⚠️ **The current 85-image val is temporary.** It is carved out of *train*
-sources (`chelsea_v_leeds_united`, `chelsea_v_leicester_city`, `youth_4`,
-`youth_7`) because the real val matches had no labels yet. Once batch 02 is
-imported, the split must change shape: those four matches return to train, and
-the four frozen val matches become val.
+| Split | images | matches | player | goalkeeper | referee | ball |
+|---|---|---|---|---|---|---|
+| train | 823 | 29 | 12,975 | 431 | 1,453 | 673 |
+| val | 208 | 4 | 2,490 | 115 | 257 | 111 |
 
-**Known gap:** `build_dataset.py` has `--force-train` but no `--force-val`, so
-there is currently no way to pin the four frozen matches into val. This must be
-added at import time — it is a mirror of the existing `--force-train` logic.
-
-- [ ] Add `--force-val` to `build_dataset.py` (small, mirrors `--force-train`)
-- [ ] Rebuild with the real split and re-verify leakage
-- [ ] Re-upload `data/football_dataset.zip` — the current 90 MB file is built
-      against the **temporary** val and must not be reused
-- [ ] Re-run Experiment A: `train('A_yolo26s_960', 'yolo26s.pt', imgsz=960, epochs=80)`
+- [ ] Upload the rebuilt `data/football_dataset.zip` (**102 MB** — the previous
+      90 MB file was built against the retired val and must be replaced)
+- [ ] In Colab, re-run cells 2–4 and confirm the check prints
+      `val 208 images, 4 matches`
+- [ ] Run **Experiment A only**:
+      `train('A_yolo26s_960', 'yolo26s.pt', imgsz=960, epochs=80)`
 - [ ] Record per-class precision/recall and FPS
 
-Expect goalkeeper to improve most — training instances went 110 → 398.
-**Do not** run Experiments B and C until the val set is fixed; on 33
-goalkeepers they cannot be distinguished from noise.
+Expect goalkeeper to improve — training instances went 110 → 431.
+
+**The new numbers will not be comparable to mAP50 0.735.** That was measured on
+the retired stand-in val. The real val is harder and more honest: it includes
+`austin_fc_vs__club_tijuana`, the match where the current model calls
+green-shirted players "referee". Referee precision may well look *worse*, and
+that would be the measurement finally catching a failure that was always there.
+
+**Do not** run Experiments B or C. Even at 115 goalkeepers the confidence
+interval is wide; comparing three architectures on it would be ranking noise.
 
 ### 3. Label the test set
 
