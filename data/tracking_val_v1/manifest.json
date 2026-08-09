@@ -1,0 +1,134 @@
+{
+  "benchmark": "EyeCU-Tracking-Val-v1",
+  "created": "2026-08-09T18:58:07+00:00",
+  "code_commit": "d968e680e17b996dc600ae6049030c86ac05ec3c",
+  "contains": "human detections only; no tracker ids, no ball, no temporal logic",
+  "detector": {
+    "checkpoint": "best_A_960.pt",
+    "checkpoint_sha256": "5eaf2e81d7f6b28fd0c665e769a5fb66ec71dc6be7f0d51576300a8370768e4a",
+    "imgsz": 960,
+    "confidence": 0.25,
+    "accepted_human_confidence": 0.25,
+    "accepted_human_behaviour": "detector emits humans at >= confidence; every serialised detection is therefore an accepted human detection",
+    "human_candidate_pool": false,
+    "human_candidate_conf_if_enabled": 0.1,
+    "ball_candidate_pool": false,
+    "classes": [
+      "player",
+      "goalkeeper",
+      "referee",
+      "ball"
+    ],
+    "human_classes": [
+      "player",
+      "goalkeeper",
+      "referee"
+    ],
+    "cache": "bypassed (frame_id=None); no disk cache consulted"
+  },
+  "ball_settings_for_provenance_only": {
+    "ball_candidate_conf": 0.1,
+    "ball_accept_conf": 0.25,
+    "ball_dedupe_iou": 0.7,
+    "note": "recorded for provenance; no ball detection is serialised"
+  },
+  "environment": {
+    "python": "3.10.0",
+    "numpy": "2.2.6",
+    "cv2_resolved": "4.10.0",
+    "supervision": "0.26.1",
+    "scipy": "1.15.3",
+    "ultralytics": "8.4.116",
+    "torch": "2.8.0+cpu"
+  },
+  "windows": [
+    {
+      "match": "austin_fc_vs__club_tijuana",
+      "sequence": "austin_fc_vs__club_tijuana_284",
+      "source_video": "input-videos/Austin FC vs. Club Tijuana.mp4",
+      "source_video_sha256": "e9b843537c2be6276b068d8c169815106564f2c2dc71c666776abf4ad581904c",
+      "source_total_frames": 1899,
+      "start_frame": 284,
+      "frame_count": 300,
+      "native_fps": 29.97,
+      "frame_width": 640,
+      "frame_height": 360,
+      "decoded_frames_sha256": "495be3eef4f34ef0e297142e8d6922e7d24e1df3e90a1464f13c3a0798b20eed",
+      "human_detections": 3777,
+      "frames_with_no_human": 0,
+      "class_counts": {
+        "player": 3291,
+        "goalkeeper": 167,
+        "referee": 319
+      },
+      "detections_file": "detections/austin_fc_vs__club_tijuana_284.jsonl",
+      "detections_sha256": "62db22840099e2fa98c50325069f6322ba903f412d23054ddf5932cf702dbabb"
+    },
+    {
+      "match": "bayern_munich_3-1_chelsea",
+      "sequence": "bayern_munich_3-1_chelsea_228",
+      "source_video": "input-videos/Bayern Munich 3-1 Chelsea.mp4",
+      "source_video_sha256": "6f29a03c687ea2c015edb06d511b900ad389516296585b6200fe16fade81d3a8",
+      "source_total_frames": 1522,
+      "start_frame": 228,
+      "frame_count": 300,
+      "native_fps": 25.0,
+      "frame_width": 640,
+      "frame_height": 360,
+      "decoded_frames_sha256": "a756722c46101c76ec0be4ccc8d8fd5dfb90f51d73dd6400aa0e8d660e778193",
+      "human_detections": 7472,
+      "frames_with_no_human": 0,
+      "class_counts": {
+        "player": 6315,
+        "goalkeeper": 103,
+        "referee": 1054
+      },
+      "detections_file": "detections/bayern_munich_3-1_chelsea_228.jsonl",
+      "detections_sha256": "066e82da9a40132ffe15ae5065a19c703bc684f68779796af10b0e322f25d66e"
+    },
+    {
+      "match": "women_1",
+      "sequence": "women_1_239",
+      "source_video": "input-videos/women 1.mp4",
+      "source_video_sha256": "c1339254e41446ef0e7a9e19360b9229f6b6e94e1be581289e36c7480cf94e33",
+      "source_total_frames": 1598,
+      "start_frame": 239,
+      "frame_count": 300,
+      "native_fps": 25.0,
+      "frame_width": 640,
+      "frame_height": 360,
+      "decoded_frames_sha256": "f1b7ab74695e4fb7bf897f9ab218970b561601df0d12083485ed213765eba37d",
+      "human_detections": 3374,
+      "frames_with_no_human": 0,
+      "class_counts": {
+        "player": 2642,
+        "goalkeeper": 93,
+        "referee": 639
+      },
+      "detections_file": "detections/women_1_239.jsonl",
+      "detections_sha256": "5ff3510ec2084b2080752e9ff5ba9ddf0a0efca47e3081037bba0cd85c8286e1"
+    },
+    {
+      "match": "youth_premier_league",
+      "sequence": "youth_premier_league_1133",
+      "source_video": "input-videos/ליגת העל לנוער.mp4",
+      "source_video_sha256": "85628c21f56e81b429de48d666082a00e26817e3e6ce58654ba97da38dc2b4e7",
+      "source_total_frames": 1555,
+      "start_frame": 1133,
+      "frame_count": 300,
+      "native_fps": 25.0,
+      "frame_width": 640,
+      "frame_height": 360,
+      "decoded_frames_sha256": "990638a0687544ccb75dde5dfce647b2dceede9f9cc6b1ef59d46d4436a6bab9",
+      "human_detections": 3646,
+      "frames_with_no_human": 0,
+      "class_counts": {
+        "player": 3414,
+        "goalkeeper": 0,
+        "referee": 232
+      },
+      "detections_file": "detections/youth_premier_league_1133.jsonl",
+      "detections_sha256": "4c6b2fe6f7c821af718701b8bdb0ce0ab76562df74cb436a29cc22d023584dc9"
+    }
+  ]
+}
