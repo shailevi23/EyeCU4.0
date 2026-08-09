@@ -91,16 +91,27 @@ def read_counts(label_path: Path) -> Counter:
 
 def active_splits(ratios):
     """
-    Splits with a non-zero share.
+    Splits eligible to receive automatically-assigned matches.
 
-    A ratio of 0 is meaningful: before val/test are labelled, a first baseline
-    needs train+val only, with test left out entirely rather than created empty.
+    A ratio of 0 is meaningful: it means 'assign nothing here'. The split can
+    still exist if matches are pinned to it explicitly -- see populated_splits.
     """
     return tuple(s for s, r in zip(SPLITS, ratios) if r > 0)
 
 
+def populated_splits(assigned):
+    """
+    Splits that actually ended up with matches.
+
+    Ratio alone cannot answer this: `--ratios 1,0,0 --force-val X` assigns
+    nothing to val automatically but still has a val split, and it must be
+    written out.
+    """
+    return tuple(s for s in SPLITS if assigned.get(s))
+
+
 def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int,
-                  force_train=()):
+                  force_train=(), force_val=(), force_test=()):
     """
     Greedy, domain-stratified, match-disjoint.
 
@@ -112,15 +123,25 @@ def assign_splits(match_sizes: dict, domains: dict, ratios, seed: int,
     ratio_of = dict(zip(SPLITS, ratios))
     assigned = {s: [] for s in SPLITS}
 
-    # Pinned sources bypass the split entirely. External datasets go here:
-    # validation and test must stay EyeCU footage, or the only honest
-    # measurement in the project stops measuring what it claims to.
-    forced = [m for m in match_sizes if m in set(force_train)]
-    assigned['train'].extend(forced)
+    # Pinned sources bypass the split entirely.
+    #   force_train: external datasets. Validation and test must stay EyeCU
+    #     footage, or the only honest measurement stops measuring what it claims.
+    #   force_val / force_test: the frozen EyeCU matches. These are chosen once
+    #     and must not drift when the pool grows, or results stop being
+    #     comparable across runs.
+    pinned = {}
+    for split, group in (('train', force_train), ('val', force_val),
+                         ('test', force_test)):
+        for m in group:
+            if m in match_sizes:
+                if m in pinned:
+                    raise ValueError(f'{m!r} pinned to both {pinned[m]} and {split}')
+                pinned[m] = split
+                assigned[split].append(m)
 
     by_domain = defaultdict(list)
     for match_id, size in match_sizes.items():
-        if match_id in set(force_train):
+        if match_id in pinned:
             continue
         by_domain[domains[match_id]].append(match_id)
 
@@ -191,6 +212,12 @@ def main():
                    help='Sources pinned to train, never val/test. Use for '
                         'external datasets. A prefix ending in * matches many, '
                         'e.g. "rfext_*".')
+    p.add_argument('--force-val', nargs='*', default=[],
+                   help='Sources pinned to val. Use for the frozen validation '
+                        'matches so the split cannot drift as the pool grows.')
+    p.add_argument('--force-test', nargs='*', default=[],
+                   help='Sources pinned to test. Use for the frozen test '
+                        'matches.')
     p.add_argument('--plan-only', action='store_true',
                    help='Print the split plan and exit without writing files.')
     p.add_argument('--check', action='store_true',
@@ -257,16 +284,27 @@ def main():
         sys.exit(f'Only {len(matches)} match(es); a match-disjoint split needs 3+.')
 
     # Expand any trailing-* patterns against the sources actually present.
-    forced = set()
-    for pat in args.force_train:
-        if pat.endswith('*'):
-            forced |= {m for m in sizes if m.startswith(pat[:-1])}
-        elif pat in sizes:
-            forced.add(pat)
-    if forced:
-        print(f'pinned to train (never val/test): {len(forced)} source(s)')
+    def expand(patterns):
+        out = set()
+        for pat in patterns:
+            if pat.endswith('*'):
+                out |= {m for m in sizes if m.startswith(pat[:-1])}
+            elif pat in sizes:
+                out.add(pat)
+        return out
 
-    splits = assign_splits(sizes, domains, ratios, args.seed, force_train=forced)
+    pin_train, pin_val, pin_test = (expand(args.force_train),
+                                    expand(args.force_val),
+                                    expand(args.force_test))
+    for label, group in (('train', pin_train), ('val', pin_val),
+                         ('test', pin_test)):
+        if group:
+            print(f'pinned to {label}: {len(group)} source(s)'
+                  + ('' if label == 'train' else f' -> {sorted(group)}'))
+
+    splits = assign_splits(sizes, domains, ratios, args.seed,
+                           force_train=pin_train, force_val=pin_val,
+                           force_test=pin_test)
 
     # --- report --------------------------------------------------------------
     total = sum(sizes.values())
@@ -277,7 +315,7 @@ def main():
         for m in ids:
             domain_matrix[split][domains[m]] += sizes[m]
 
-    for split in active_splits(ratios):
+    for split in populated_splits(splits):
         n = sum(sizes[m] for m in splits[split])
         print(f'{split:<6} {n:>5} frames ({n / total:>5.1%})  '
               f'{len(splits[split])} matches')
@@ -288,7 +326,7 @@ def main():
 
     missing_domains = {
         s: sorted(set(domains.values()) - set(domain_matrix[s]))
-        for s in active_splits(ratios)
+        for s in populated_splits(splits)
     }
     for split, missing in missing_domains.items():
         if missing:
@@ -308,12 +346,15 @@ def main():
     transfer = shutil.move if args.move else shutil.copy2
 
     report = {'classes': CLASSES, 'ratios': list(ratios), 'seed': args.seed,
-              'excluded': args.exclude, 'forced_to_train': sorted(forced),
+              'excluded': args.exclude,
+              'forced_to_train': sorted(pin_train),
+              'forced_to_val': sorted(pin_val),
+              'forced_to_test': sorted(pin_test),
               'domains': domains,
               'match_sizes': sizes, 'splits': {}}
     grand = Counter()
 
-    for split in active_splits(ratios):
+    for split in populated_splits(splits):
         img_dir = out_root / 'images' / split
         lbl_dir = out_root / 'labels' / split
         img_dir.mkdir(parents=True, exist_ok=True)
@@ -349,7 +390,7 @@ def main():
         '# Split by match and stratified by domain -- no match appears in\n'
         '# more than one split.\n'
         f'path: {out_root.resolve().as_posix()}\n'
-        + ''.join(f'{s}: images/{s}\n' for s in active_splits(ratios)) + '\n'
+        + ''.join(f'{s}: images/{s}\n' for s in populated_splits(splits)) + '\n'
         + 'names:\n' + ''.join(f'  {i}: {c}\n' for i, c in enumerate(CLASSES)),
         encoding='utf-8'
     )
@@ -367,7 +408,7 @@ def main():
     print(f'\n  totals: ' + '  '.join(f'{c}={report["totals"][c]}' for c in CLASSES))
     print(f'  config: {yaml_path}')
 
-    for split in [s for s in ('val', 'test') if s in active_splits(ratios)]:
+    for split in [s for s in ('val', 'test') if s in populated_splits(splits)]:
         for c in CLASSES:
             if report['splits'][split]['instances'][c] == 0:
                 print(f'! {split} has no `{c}` instances -- '
