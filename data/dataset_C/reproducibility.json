@@ -1,0 +1,23 @@
+{
+  "experiment": "C_yolo26s_960_scale_context_hardneg",
+  "git_commit": "8b48832e3cc98351e37dc022447fe33fc688805a",
+  "seed": 0,
+  "model_start": "yolo26s.pt (COCO pretrained, same as A)",
+  "imgsz": 960,
+  "n_train_original": 823,
+  "n_train_derived": 100,
+  "n_train_total": 923,
+  "n_val": 208,
+  "derived_manifest_sha256_16": "7caab1c5850908ad",
+  "derived_images_dir_sha256_16": "65f3a5ba698f943b",
+  "derived_labels_dir_sha256_16": "6c4b0e8f2f673183",
+  "val_images_dir_sha256_16": "66407221ab5074c7",
+  "val_labels_dir_sha256_16": "2b588752ad630862",
+  "yaml_sha256_16": "b89b865e88ec5f5e",
+  "train_class_instances": {
+    "player": 13777,
+    "goalkeeper": 450,
+    "referee": 1516,
+    "ball": 765
+  }
+}

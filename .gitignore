@@ -25,3 +25,6 @@ data/pseudo_meta/
 !data/derived_train/
 !data/derived_train/manifest.json
 !data/derived_train/SPLIT
+!data/dataset_C/
+!data/dataset_C/football_C.yaml
+!data/dataset_C/reproducibility.json

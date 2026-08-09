@@ -1,0 +1,10 @@
+# EyeCU Experiment C -- original TRAIN + derived scale/context + hard negatives
+# VAL is the frozen 208-image set, unchanged from Experiment A.
+path: /content/football_dataset_C
+train: images/train
+val: images/val
+names:
+  0: player
+  1: goalkeeper
+  2: referee
+  3: ball
