@@ -1,5 +1,5 @@
 """
-TODO.md section 6 / section 8: speed and distance must not change when
+docs/archive/TODO_legacy.md section 6 / section 8: speed and distance must not change when
 skip_frames changes.
 
 Only every skip_frames-th frame reaches the estimator, so the gap between the

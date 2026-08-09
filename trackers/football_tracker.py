@@ -17,7 +17,7 @@ from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, get_foot_pos
 
 # tracks[] key for each detector class. Goalkeepers are kept separate from
 # players so team assignment can exclude them (their kit deliberately differs
-# from their own team's) -- see TODO.md section 5.
+# from their own team's) -- see docs/archive/TODO_legacy.md section 5.
 TRACK_KEY = {
     'player': 'players',
     'goalkeeper': 'goalkeepers',

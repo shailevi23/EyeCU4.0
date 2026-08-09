@@ -12,7 +12,7 @@ the camera zooms or pans.
 
 Speeds are therefore usable only as relative comparisons within one clip, not as
 real-world values. Calibration (pitch homography from known line markings) is a
-separate, still-open task -- see TODO.md.
+separate, still-open task -- see docs/archive/TODO_legacy.md.
 """
 
 import cv2

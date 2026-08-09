@@ -4,7 +4,7 @@ Cache keys for detection/tracking artifacts.
 A cache file is only valid for the exact run that produced it. Reusing one
 across a different video, model, detector setting, tracker setting or
 skip_frames silently returns results that do not match the current request, so
-every one of those inputs is folded into the key (TODO.md section 6).
+every one of those inputs is folded into the key (docs/archive/TODO_legacy.md section 6).
 """
 
 import hashlib

@@ -1,5 +1,5 @@
 """
-TODO.md section 8 behavioural guarantees, exercised with a fake detector so the
+docs/archive/TODO_legacy.md section 8 behavioural guarantees, exercised with a fake detector so the
 tests are fast and deterministic and never load real weights.
 
 Covered:

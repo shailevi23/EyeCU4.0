@@ -11,7 +11,7 @@ run_pipeline.py → full_pipeline.py → trackers/
 
 Nothing there imports this module. It is self-contained (numpy, cv2, stdlib
 only) and kept for later evaluation. Integrating it is out of scope — see
-TODO.md section 7.
+../../docs/archive/TODO_legacy.md section 7.
 
 It has never been run against real tracking data; it imports cleanly, which is
 not the same as it working.

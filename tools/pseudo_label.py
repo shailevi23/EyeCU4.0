@@ -10,7 +10,7 @@ Two backends:
   roboflow  the hosted model, for bootstrapping before a local one exists.
 
 These are drafts, not truth. Every draft must be reviewed by a human before it
-trains anything -- see LABELING.md.
+trains anything -- see docs/guides/LABELING.md.
 
 Safety properties:
   * A label file the tool did not write is never touched.
@@ -441,7 +441,7 @@ def main():
                   f'covers all four classes.')
 
     print('\nNEXT: these are DRAFTS. Review every goalkeeper / referee / ball box '
-          'by hand (LABELING.md), then run:\n'
+          'by hand (docs/guides/LABELING.md), then run:\n'
           '  python tools/validate_annotations.py --strict')
 
 

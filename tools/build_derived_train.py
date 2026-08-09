@@ -25,7 +25,7 @@ Two products, kept separate in provenance:
 
 Hard negatives are NOT blank background. Easy background already dominates
 every frame; what the detector confuses are specific ball-like objects, and one
-of those (a goalkeeper's shirt crest) is already documented in RESULTS.md.
+of those (a goalkeeper's shirt crest) is already documented in docs/results/RESULTS.md.
 
 TRAIN ONLY. Validation and test sources are rejected by name and by file
 identity, and the check runs before anything is written.

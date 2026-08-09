@@ -1,3 +1,12 @@
+> **ARCHIVED — not the current roadmap.**
+> This was the cleanup and refactor plan; its engineering work is complete and
+> its measured outcomes live in [../results/RESULTS.md](../results/RESULTS.md).
+> What remains to do is in
+> [../coursework/COURSEWORK_PLAN.md](../coursework/COURSEWORK_PLAN.md).
+> Kept for the decisions it records, not for its instructions.
+
+---
+
 # Claude Efficiency and Token-Cost Rules
 
 * Begin with a short execution plan containing only:
@@ -319,10 +328,10 @@ plan guarantees they drift apart, so they were removed rather than left to rot.
 
 | What you want | Where it lives now |
 |---|---|
-| What to do next, in priority order | [COURSEWORK_PLAN.md](COURSEWORK_PLAN.md) |
-| Frame extraction, drafting, annotation rules, split definitions | [LABELING.md](LABELING.md) |
-| Measured results, failure modes, bugs found | [RESULTS.md](RESULTS.md) |
-| SoccerNet / SoccerTrack / Roboflow assessment | [EXTERNAL_DATASETS.md](EXTERNAL_DATASETS.md) |
+| What to do next, in priority order | [../coursework/COURSEWORK_PLAN.md](../coursework/COURSEWORK_PLAN.md) |
+| Frame extraction, drafting, annotation rules, split definitions | [../guides/LABELING.md](../guides/LABELING.md) |
+| Measured results, failure modes, bugs found | [../results/RESULTS.md](../results/RESULTS.md) |
+| SoccerNet / SoccerTrack / Roboflow assessment | [../research/EXTERNAL_DATASETS.md](../research/EXTERNAL_DATASETS.md) |
 | Training experiments | `notebooks/EyeCU_Train_Colab.ipynb` |
 
 The record above this line is kept because it documents what was removed from

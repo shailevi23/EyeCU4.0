@@ -77,7 +77,7 @@ def main():
     ap.add_argument('--split', default='val')
     ap.add_argument('--temporal', action='store_true',
                     help='Also run BallTemporalSelector (predeclared settings).')
-    ap.add_argument('--out', default='temporal_val_results.json')
+    ap.add_argument('--out', default='experiments/records/evidence/temporal_val_results.json')
     args = ap.parse_args()
 
     if args.split == 'test':

@@ -406,7 +406,7 @@ class FootballAnalysisPipeline:
                     # upper bound on the number of physical players, not a
                     # measurement of it. Reporting it as a player count would be
                     # wrong; the real count stays unresolved until tracking/ReID
-                    # is stable (TODO.md section 6).
+                    # is stable (docs/archive/TODO_legacy.md section 6).
                     report['unique_track_ids'] = len(player_stats)
                     # pixels_per_meter is an unvalidated constant, so every
                     # speed/distance figure below is relative, not real-world.

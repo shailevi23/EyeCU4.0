@@ -41,7 +41,7 @@ have emptied the softer video entirely).
 | Situation | Backend | Why |
 |---|---|---|
 | Frames from matches already in training | `--backend local --model eyecu_football_v1.pt` | Knows this footage, free, produces all four classes |
-| **Any unseen match** — especially val/test | `--backend roboflow` | The local model hallucinates referees on new kits (RESULTS.md) |
+| **Any unseen match** — especially val/test | `--backend roboflow` | The local model hallucinates referees on new kits (../results/RESULTS.md) |
 
 This matters. On an unseen match our own model produced 6 referees in a frame
 that had none, labelling green-shirted players as officials. Confidently wrong
@@ -78,8 +78,11 @@ export ROBOFLOW_API_KEY="your-key"      # bash
 Get one at <https://app.roboflow.com/settings/api>. If the key is missing the
 tool stops with an explicit message rather than silently producing nothing.
 
-> The old key `bzHGvvsL4gjqNOHIPR5J` was committed to this repo and must be
-> treated as compromised. Revoke it and issue a new one.
+> An earlier Roboflow key — **[REVOKED/REMOVED SECRET]** — was committed to
+> this repo and must be treated as compromised. Revoke it in the Roboflow
+> console and issue a new one. The literal value has been removed from the
+> working tree, but it remains in git history, so revocation is the only real
+> fix.
 
 ## Step 2 — Draft the batch
 

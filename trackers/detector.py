@@ -5,7 +5,7 @@ One interface, two backends:
 
     LocalDetector      Ultralytics YOLO running locally. The production path.
     RoboflowDetector   Hosted model. Optional, opt-in, used only as a
-                       labelling/benchmark aid (TODO.md section 5).
+                       labelling/benchmark aid (docs/archive/TODO_legacy.md section 5).
 
 Every backend emits the same four classes and never collapses one into
 another -- in particular `goalkeeper` stays `goalkeeper`. Team identity is not
@@ -32,7 +32,7 @@ HUMAN_CLASSES = ('player', 'goalkeeper', 'referee')
 
 # --- ball candidate pool (Patch 0b) -------------------------------------
 # Opt-in via LocalDetector(ball_candidate_pool=True). All measured on the
-# frozen 208-image validation split; see RESULTS.md.
+# frozen 208-image validation split; see docs/results/RESULTS.md.
 BALL_CANDIDATE_CONF = 0.10   # floor of the low-confidence rescue pool
 BALL_ACCEPT_CONF = 0.25      # at/above this a ball is a high-confidence observation
 BALL_DEDUPE_IOU = 0.70       # prediction-to-prediction IoU for duplicate suppression
@@ -73,7 +73,7 @@ def suppress_ball_duplicates(detections: List[Dict],
     confident one. Note that in 7 of the 13 measured pairs the duplicate
     outranked the box that best fit the ground truth, so the survivor is not
     always the tightest box; validation showed no true detection lost by this,
-    but the effect on mean IoU is real and is reported in RESULTS.md.
+    but the effect on mean IoU is real and is reported in docs/results/RESULTS.md.
     """
     balls = [d for d in detections if d.get('class') == 'ball']
     if len(balls) < 2:

@@ -1,5 +1,5 @@
 """
-TODO.md section 6 / section 8: incompatible runs must not share a cache file.
+docs/archive/TODO_legacy.md section 6 / section 8: incompatible runs must not share a cache file.
 
 A stale cache is silent — the run completes and reports numbers that belong to
 a different video, model or setting. Each test changes exactly one input and

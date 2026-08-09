@@ -97,7 +97,7 @@ class TestSuppression:
 class TestThresholdConstants:
     def test_measured_values(self):
         """These are measured on the frozen val split, not tuned knobs.
-        Changing one invalidates the before/after in RESULTS.md."""
+        Changing one invalidates the before/after in docs/results/RESULTS.md."""
         assert BALL_DEDUPE_IOU == 0.70
         assert BALL_CANDIDATE_CONF == 0.10
         assert BALL_ACCEPT_CONF == 0.25

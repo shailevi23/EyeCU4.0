@@ -2,7 +2,7 @@
 
 _Last updated: 2026-08-09._
 
-Measured results only. Plans live in [COURSEWORK_PLAN.md](COURSEWORK_PLAN.md).
+Measured results only. Plans live in [../coursework/COURSEWORK_PLAN.md](../coursework/COURSEWORK_PLAN.md).
 
 ---
 
@@ -262,6 +262,112 @@ Two limits stated deliberately:
 
 The flag is **off by default**; with it off the detector emits exactly what it
 emitted before this patch, including no `state` key.
+
+### Continuous temporal benchmark — 2026-08-09
+
+The 208-image validation set is interval-sampled, so consecutive frames are
+seconds apart and no temporal rule can be evaluated on it. A separate benchmark
+was built: **104 frames**, two 2.5 s windows per validation match at fixed
+fractions of duration (40% and 70%), sampled at 5 FPS, hand-annotated for the
+ball only. 77 frames contain a ball, 27 do not; 13 are tagged
+`closeup_or_non_gameplay`.
+
+Window selection is content-neutral — chosen by a fixed rule, never by
+inspecting detector behaviour.
+
+| | A@960 raw | with frozen selector |
+|---|---|---|
+| ball recall / coverage | **0.5714** (44/77) | **0.6234** (48/77) |
+| precision | 0.9167 | — |
+| FP per frame | 0.0385 | — |
+| hallucinated frames | — | 1 of 27 |
+
+The selector recovered 3 balls from the low-confidence pool and interpolated 5,
+with **zero false recoveries attributable to the temporal layer** — the single
+hallucinated frame is a raw detector false positive present in the baseline
+too. On the 13 close-up frames the detector produced 2 ball candidates (both
+the goalkeeper's circular shirt crest) and the selector correctly refused both,
+having no history anchor.
+
+Two failure regimes dominate, and they are different problems:
+
+| window | GT | A recall | character |
+|---|---|---|---|
+| youth w1 | 12 | **0.000** | large balls (18.9–24.2 px @960) at players' feet in close-contact duels |
+| women_1 w1 | 6 | 0.167 | small balls (7–11 px) against stone-wall and stand backgrounds |
+
+Of 17 misses across those two windows, **12 had no usable proposal even at
+confidence 0.01** — detector blindness, not thresholding.
+
+### Cross-resolution 2×2 — 2026-08-09
+
+A and B weights each evaluated at 960 and 1280 on the continuous benchmark,
+identical matching:
+
+| config | TP | FP | recall |
+|---|---|---|---|
+| A@960 | 44 | 4 | 0.5714 |
+| A@1280 | 41 | 3 | 0.5325 |
+| B@960 | 44 | 4 | 0.5714 |
+| B@1280 | 50 | 7 | **0.6494** |
+
+At 960, A and B have equal aggregate recall but materially different per-window
+behaviour — B gains in some windows and loses in others. B's aggregate
+advantage appears only at 1280, indicating a strong interaction between
+training configuration, learned weights and inference resolution. **For these
+specific checkpoints on this benchmark, A performs worse at 1280 than at 960
+while B performs better at 1280 than at 960.** That is a checkpoint-specific
+interaction, not a universal rule.
+
+24 of A@960's 33 misses were recovered by **none** of the four configurations.
+
+### Experiment C — rejected — 2026-08-09
+
+`C_yolo26s_960_scale_context_hardneg`. YOLO26s @960, best epoch 13, early
+stopped at 33, 37 min. Training data: the 823 original frames **plus 100
+derived views** — 70 contextual crop/zoom positives placing balls in the
+12–25 px band (median 18.4) and 30 mined hard negatives. Recipe otherwise
+identical to A.
+
+This was a **targeted contextual crop/zoom + hard-negative data ablation**, not
+pure ball-scale augmentation: the crops also raised median human box height
+from 32.8 px to 69.7 px (2.12×).
+
+| | A | C |
+|---|---|---|
+| 208 VAL ball recall | **0.4595** | 0.4144 |
+| 208 VAL referee recall | **0.809** | 0.650 |
+| 208 VAL goalkeeper recall | 0.513 | **0.539** |
+| 208 VAL player recall | 0.916 | 0.915 |
+| 104 temporal raw recall | **0.5714** (44 TP) | 0.4416 (34 TP) |
+| 104 temporal precision | 0.9167 | **0.9714** |
+| temporal coverage w/ selector | **0.6234** | 0.5974 |
+| speed | 154.7 ms/frame | 164.4 ms/frame |
+
+Ball paired on 208 VAL: both 42, A-only 9, C-only 4, neither 56 — McNemar
+p = 0.2668.
+
+**The intervention hit its target and was still net-negative.** All 3 rescued
+frames were in youth w1, all large balls in player contact — 3 of 3 in the
+predeclared regime, from a baseline of 0/12. But C lost 13 detections
+elsewhere, 9 of them in youth w0. Rescue mean ball width was ~21.8 px against
+~11.8 px for the regressions; the pattern suggests the intervention biased
+performance toward the larger apparent-ball regime while sacrificing detections
+at more common scales. No precise scale boundary is claimed.
+
+False positives fell on every measure — temporal FP 4→1, ball FP 10→8, native
+duplicates 4→2. This is consistent with the intended effect of hard-negative
+mining, **but the contribution of hard negatives cannot be isolated from the
+crop/zoom intervention**, since the two were introduced together.
+
+**Verdict: rejected as production candidate.** A@960 remains production;
+B@1280 remains the accuracy reference at 0.7143 coverage for 1.70× compute.
+
+What this does **not** establish: that large-ball coverage does not help. The
+valid conclusion is that *this specific* crop/zoom + hard-negative intervention
+did not improve the required validation performance. The ball-scale effect and
+the human-scale shift cannot be separated without a further run, which was not
+made.
 
 ## Measured failure modes
 

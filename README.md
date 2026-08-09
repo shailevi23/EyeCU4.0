@@ -1,127 +1,123 @@
-# EyeCU 4.0 Football Analysis Pipeline
+# EyeCU 4.0 — football video analysis
 
-## Overview
-This is an advanced football analysis pipeline that performs player detection, tracking, team assignment, and speed/distance calculation from football match videos. The system uses state-of-the-art computer vision techniques to identify players, track their movements, and analyze their performance.
+Detects and tracks players, goalkeepers, referees and the ball in football
+match video, assigns teams from jersey colour, and produces per-track
+statistics. Runs fully offline on a locally trained detector.
 
-## Features
-- Player detection using YOLOv8 and Roboflow API
-- Advanced multi-object tracking
-- Team assignment for player identification
-- Speed and distance calculation
-- Camera movement estimation
-- Ball detection and tracking
-- Visualization options
+University coursework project. Measured results, including the negative ones,
+live in [docs/results/RESULTS.md](docs/results/RESULTS.md).
+
+---
+
+## What it does today
+
+```
+video → detector (YOLO26s @960) → ByteTrack association → team assignment
+      → ball possession → annotated video + JSON reports
+```
+
+**Four semantic classes, preserved end to end:** `player`, `goalkeeper`,
+`referee`, `ball`. Goalkeeper is never collapsed into player — its kit
+deliberately differs from its own team's, and team assignment excludes it.
+
+**Current detector candidate: `best_A_960.pt`** — YOLO26s trained at 960 px on
+823 match-disjoint frames. On the frozen 208-image validation set: mAP50
+**0.739**, player recall 0.916, referee recall 0.809, goalkeeper recall 0.515,
+ball recall 0.486. Roughly **58 FPS** on a T4.
+
+Two alternatives were trained and evaluated. `best_B_1280.pt` is more accurate
+on the ball but costs 1.7×; `best_C_960.pt` was a data-side ablation and was
+**rejected**. Both are kept for reproducibility. See
+[docs/results/RESULTS.md](docs/results/RESULTS.md).
+
+**Not calibrated:** speed and distance are reported in uncalibrated units and
+are marked as such in the output. Do not quote them as m/s or km/h.
+
+---
 
 ## Installation
 
-### Prerequisites
-- Python 3.8+
-- CUDA-compatible GPU (recommended)
+Python 3.10+. A CUDA GPU is optional for inference and effectively required for
+training.
 
-### Setup
-1. Clone the repository
-2. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-3. Download the YOLOv8 model (if not using Roboflow API exclusively)
-   ```
-   # Models are downloaded automatically when first used
-   ```
+```bash
+pip install -r requirements.txt
+```
+
+Model weights are downloaded on first use. Roboflow is **optional** and used
+only as a labelling aid; set `ROBOFLOW_API_KEY` in the environment if you want
+it. Never hard-code a key.
+
+---
 
 ## Usage
 
-### Quick Start
-For a quick test of the pipeline, use one of the provided scripts:
-- Windows CMD: `quick_test.bat`
-- PowerShell: `.\quick_test.ps1`
-
-### Command Line Interface
-The `run_pipeline.py` script provides a command-line interface for running the football analysis pipeline:
-
-```
-python run_pipeline.py --input INPUT_VIDEO --output OUTPUT_FILENAME [OPTIONS]
+```bash
+python run_pipeline.py --input input-videos/match.mp4 \
+    --yolo-model best_A_960.pt --imgsz 960 --max-frames 300
 ```
 
-#### Required Arguments
-- `--input`: Path to input video file
+Common options:
 
-#### Optional Arguments
-- `--output`: Output video filename (default: tracked_output.mp4)
-- `--output-dir`: Output directory for all results (default: match_analysis_output)
-- `--max-frames`: Maximum frames to process (default: all frames)
-- `--skip-frames`: Process every N frames (default: 2)
-- `--display`: Display real-time visualization (default: False)
-- `--use-cache`: Use cached detections/tracks if available (default: False)
-- `--use-roboflow`: Opt in to the Roboflow cloud detector (default: off — local YOLO only)
-- `--api-key`: Roboflow API key (defaults to the `ROBOFLOW_API_KEY` environment variable)
-- `--yolo-model`: YOLO model path (default: yolov8x.pt)
-- `--show-speed`: Show player speed in visualization
-- `--show-distance`: Show distance traveled in visualization
-- `--fps`: Output video FPS (default: 15)
+| flag | default | meaning |
+|---|---|---|
+| `--input` | required | input video path |
+| `--yolo-model` | `yolov8x.pt` | detector weights — pass `best_A_960.pt` |
+| `--imgsz` | 960 | detector inference size |
+| `--conf` | 0.25 | detection confidence threshold |
+| `--skip-frames` | 2 | process every Nth frame |
+| `--max-frames` | all | cap frames processed |
+| `--max-ball-gap` | 15 | frames the last known ball box may be held before the ball is reported unknown |
+| `--use-cache` | off | reuse cached detections/tracks |
+| `--use-roboflow` | off | opt in to the hosted detector (labelling/benchmark only) |
+| `--show-speed` / `--show-distance` | off | overlay uncalibrated speed/distance |
 
-### Examples
+Output lands in `--output-dir` (default `match_analysis_output/`): annotated
+video, `visualizations/`, `reports/player_statistics.json`,
+`final_report.json`, and a `cache/` keyed on video, model and settings.
 
-Process a complete video with advanced tracking:
+Run `python run_pipeline.py --help` for the full list.
+
+---
+
+## Repository layout
+
 ```
-python run_pipeline.py --input input-videos/match.mp4 --output tracked_output.mp4
-```
-
-Process with limited frames for faster testing:
-```
-python run_pipeline.py --input input-videos/match.mp4 --max-frames 100 --skip-frames 3
-```
-
-Show player speed and distance in visualization:
-```
-python run_pipeline.py --input input-videos/match.mp4 --show-speed --show-distance
-```
-
-## Output Structure
-The pipeline generates output in the specified directory (default: match_analysis_output):
-
-- `tracked_output.mp4`: Main output video with tracking visualization
-- `visualizations/`: Selected frames saved as images
-- `reports/`: Analysis reports and statistics in JSON format
-- `cache/`: Cached detections and intermediate results
-- `final_report.json`: Summary of processing statistics and results
-
-## Advanced Usage
-
-### Direct API Access
-You can also use the `FootballAnalysisPipeline` class directly in your Python code:
-
-```python
-from full_pipeline import FootballAnalysisPipeline
-
-# Initialize the pipeline
-pipeline = FootballAnalysisPipeline(
-    yolo_model="yolov8x.pt",
-    output_dir="my_results",
-    use_advanced_tracking=True,
-    use_roboflow=True
-)
-
-# Process a video
-stats = pipeline.process_video(
-    video_path="my_video.mp4",
-    skip_frames=2,
-    max_frames=None,  # Process all frames
-    display_results=True
-)
-
-# Save the results
-pipeline.save_output_video("output.mp4", fps=30)
-pipeline.generate_final_report()
-pipeline.cleanup()
+run_pipeline.py            CLI entry point
+full_pipeline.py           orchestrator
+trackers/                  detector, tracking, team assignment, ball temporal logic
+tools/                     dataset construction, labelling, evaluation, diagnostics
+tests/                     111 fast tests + 9 slow
+data/                      frames, labels, manifests, frozen splits (gitignored)
+experiments/records/       per-experiment specs and training logs
+docs/                      documentation (below)
+experimental/              preserved, unintegrated code
 ```
 
-## Customization
-- Modify tracking parameters in `trackers/football_tracker.py`
-- Adjust team assignment in `trackers/team_assigner.py`
-- Configure speed calculation in `trackers/speed_distance.py`
+---
 
-## Troubleshooting
-- **No detection results**: Verify your Roboflow API key and connection
-- **Slow processing**: Increase skip_frames value or use a smaller YOLO model
-- **Memory errors**: Reduce max_frames or batch size in detector
+## Documentation
+
+| document | answers |
+|---|---|
+| [docs/results/RESULTS.md](docs/results/RESULTS.md) | what was measured — detector results, failure modes, bugs found |
+| [docs/coursework/COURSEWORK_PLAN.md](docs/coursework/COURSEWORK_PLAN.md) | what remains to finish the project |
+| [docs/guides/LABELING.md](docs/guides/LABELING.md) | how to extract frames, draft labels and annotate |
+| [docs/research/system_rescue_research.md](docs/research/system_rescue_research.md) | verified reference-repo findings and football-CV literature |
+| [docs/research/EXTERNAL_DATASETS.md](docs/research/EXTERNAL_DATASETS.md) | SoccerNet / SoccerTrack / Roboflow assessment |
+| [experiments/records/](experiments/records/) | experiment specs and raw training logs |
+| [docs/archive/](docs/archive/) | superseded plans, kept as history |
+
+---
+
+## Tests
+
+```bash
+python -m pytest tests/ -m "not slow" -q
+```
+
+---
+
+## License
+
+See [LICENSE](LICENSE).

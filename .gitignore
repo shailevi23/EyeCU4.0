@@ -29,10 +29,12 @@ data/pseudo_meta/
 !data/dataset_C/football_C.yaml
 !data/dataset_C/reproducibility.json
 
-# One-off diagnostic renders land in the repo root and pile up fast. The
-# contact sheets and evidence images we deliberately keep are already tracked,
-# so this rule does not affect them; a genuinely new keeper needs `git add -f`.
+# One-off diagnostic renders land in the repo root and pile up fast. Keepers
+# belong in experiments/records/evidence/, which is tracked normally; this rule
+# only stops scratch renders accumulating at root.
 /*.png
+/*.json
+!/package.json
 
 # Regenerable dataset exports and the assembled Experiment C training set.
 # Rebuild with tools/build_dataset.py --zip and

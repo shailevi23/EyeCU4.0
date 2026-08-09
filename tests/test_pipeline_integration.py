@@ -4,7 +4,7 @@ End-to-end regression over a handful of real frames.
 Slower than the rest of the suite because it loads real YOLO weights and
 decodes video. Deselect with `-m "not slow"`.
 
-Covers TODO.md section 8: reports are produced, the four classes survive a real
+Covers docs/archive/TODO_legacy.md section 8: reports are produced, the four classes survive a real
 run, the source FPS is read rather than assumed, and caches from different
 configurations do not collide.
 """

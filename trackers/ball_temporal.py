@@ -40,7 +40,7 @@ gate is set to 60px to allow for that plus perspective, and grows by 40px for
 each additional missed frame.
 
     ACCEPT_CONF                 0.25    high-confidence observation
-    CANDIDATE_CONF              0.10    rescue pool floor (measured, RESULTS.md)
+    CANDIDATE_CONF              0.10    rescue pool floor (measured, docs/results/RESULTS.md)
     MAX_RESCUE_GAP_SECONDS      0.6     3 frames at 5 FPS
     GATE_BASE_PX                60.0    at 640px width, scaled to frame width
     GATE_GROWTH_PX              40.0    per additional missed frame
