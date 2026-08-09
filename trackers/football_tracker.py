@@ -12,12 +12,13 @@ import pickle
 import pandas as pd
 
 # Import from local modules
-from trackers.detector import CLASS_IDS, create_detector
+from trackers.detector import CLASS_IDS, HUMAN_CLASSES, create_detector
 from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, get_foot_position
 
 # tracks[] key for each detector class. Goalkeepers are kept separate from
 # players so team assignment can exclude them (their kit deliberately differs
-# from their own team's) -- see docs/archive/TODO_legacy.md section 5.
+# from their own team's) -- see docs/archive/TODO_legacy.md section 5. The
+# three human roles stay distinct end to end; none is ever folded into another.
 TRACK_KEY = {
     'player': 'players',
     'goalkeeper': 'goalkeepers',
@@ -26,6 +27,9 @@ TRACK_KEY = {
 }
 TRACK_KEYS = list(TRACK_KEY.values())
 CLASS_ID_TO_KEY = {CLASS_IDS[name]: key for name, key in TRACK_KEY.items()}
+# Only these reach ByteTrack. The ball is excluded by construction rather than
+# by a downstream filter, so a future edit cannot silently readmit it.
+HUMAN_TRACK_KEY = {CLASS_IDS[name]: TRACK_KEY[name] for name in HUMAN_CLASSES}
 
 
 class FootballTracker:
@@ -218,6 +222,14 @@ class FootballTracker:
                 class_name = det.get('class')
                 if class_name not in CLASS_IDS:
                     continue  # detector already normalised; anything else is noise
+                if class_name not in HUMAN_CLASSES:
+                    # The ball never enters human association. It is not a
+                    # person, it moves an order of magnitude faster, and letting
+                    # it compete for IoU matches against players both wastes
+                    # tracker state and produced spurious ball track ids -- 9 of
+                    # them in a 12-second measured sequence. The ball has one
+                    # canonical path, below.
+                    continue
                 if det.get('state', 'observed') != 'observed':
                     continue  # rescue candidates never reach the tracker
                 boxes.append(det['bbox'])
@@ -239,17 +251,18 @@ class FootballTracker:
                 tracked_detections = self.tracker.update_with_detections(detections)
 
                 for i in range(len(tracked_detections.xyxy)):
-                    key = CLASS_ID_TO_KEY.get(int(tracked_detections.class_id[i]))
+                    key = HUMAN_TRACK_KEY.get(int(tracked_detections.class_id[i]))
                     if key is None:
-                        continue
+                        continue  # nothing but humans should reach here
                     track_id = int(tracked_detections.tracker_id[i])
                     tracks[key][frame_idx][track_id] = {
                         "bbox": tracked_detections.xyxy[i].tolist(),
                         "confidence": float(tracked_detections.confidence[i]),
                     }
 
-            # The ball moves erratically and ByteTrack often drops it, so take the
-            # raw detection directly. ID 1 keeps it stable for downstream code.
+            # The ball's single canonical path. It is written here and nowhere
+            # else: ByteTrack no longer sees it, so it cannot also arrive above
+            # under a tracker id. ID 1 keeps it stable for downstream code.
             ball_found = False
             for det in frame_detections:
                 # Detections carrying state='candidate_low_conf' are the rescue
