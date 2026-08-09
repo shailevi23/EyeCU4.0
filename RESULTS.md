@@ -13,10 +13,13 @@ COCO model behind a cloud API.
 
 | | before | after |
 |---|---|---|
-| Pipeline throughput | **0.6 FPS** (Roboflow cloud) | **41 FPS** local |
-| Ball detection | 1 frame in 60 | recall **0.59**, precision 0.91 |
-| Goalkeeper | **not detectable** (no such COCO class) | recall 0.58 |
-| Referee | **not detectable** | recall 0.70 |
+| Pipeline throughput | **0.6 FPS** (Roboflow cloud) | **57.7 FPS** local |
+| Ball detection | 1 frame in 60 | recall **0.49**, precision 0.81 |
+| Goalkeeper | **not detectable** (no such COCO class) | recall 0.52, precision 0.85 |
+| Referee | **not detectable** | recall 0.80, precision 0.65 |
+
+Current model: `A_yolo26s_960_realval`, mAP50 **0.739**, mAP50-95 **0.474** on
+208 held-out images from 4 matches never trained on.
 
 The first two rows are the project's original problem statement. A COCO model
 has no `goalkeeper` or `referee` class at all, so the last two rows are a
@@ -24,7 +27,7 @@ capability that did not previously exist.
 
 ---
 
-## Detector — Experiment A (`eyecu_football_v1.pt`)
+## Detector — retired run (`eyecu_football_v1.pt`)
 
 YOLO26s @ 960 px, 80 epochs requested, **early-stopped at 65** with the best
 checkpoint at epoch 45. 30.4 minutes on a Colab T4. Trained on 366 EyeCU
@@ -97,6 +100,54 @@ not see it.
 
 Ball is the weakest class overall (mAP50-95 0.267) and the main open question
 for the full run.
+
+### Experiment A on the real validation set — 2026-08-09
+
+`A_yolo26s_960_realval`. YOLO26s @ 960, 80 epochs requested. **Early-stopped at
+epoch 32, best checkpoint at epoch 12.** 34.7 minutes, 823 train / 208 val.
+
+| Class | n | Precision | Recall | mAP50 | mAP50-95 |
+|---|---|---|---|---|---|
+| player | 2,490 | 0.864 | 0.918 | 0.939 | 0.663 |
+| referee | 257 | **0.646** | 0.798 | 0.770 | 0.515 |
+| goalkeeper | 115 | 0.845 | **0.515** | 0.701 | 0.453 |
+| ball | 111 | 0.812 | **0.486** | 0.547 | 0.262 |
+| **all** | 2,973 | 0.789 | 0.679 | **0.739** | **0.474** |
+
+**57.7 FPS** (13.4 ms inference).
+
+#### The finding is the plateau, not the score
+
+Best checkpoint at **epoch 12 of 80**. Against the 10-epoch pilot on the same
+val set:
+
+| metric | pilot (10 ep) | A (best ep 12) | Δ | |
+|---|---|---|---|---|
+| mAP50 | 0.722 | 0.739 | +0.017 | |
+| mAP50-95 | 0.459 | 0.474 | +0.015 | |
+| player recall | 0.926 | 0.918 | −0.008 | within noise |
+| goalkeeper recall | 0.574 | 0.515 | −0.059 | within noise |
+| referee recall | 0.747 | 0.798 | +0.051 | within noise |
+| **ball recall** | **0.486** | **0.486** | **0.000** | identical |
+| ball mAP50-95 | 0.267 | 0.262 | −0.005 | |
+
+Ball recall is identical to seven decimal places — 54 of 111 instances, the
+same 54 — across two independently trained models. Every per-class change sits
+inside its confidence interval.
+
+**Seventy extra epochs bought nothing measurable.** The model converges in ~12
+epochs and then stops improving. That is a statement about the dataset, not the
+schedule: at 823 training images with 673 ball instances, capacity and training
+time are not the binding constraint. More epochs, and probably more resolution,
+cannot manufacture examples that are not there.
+
+This is the single most useful negative result in the project so far. It says
+where the remaining effort should go: **more and more varied labelled data**,
+not longer training.
+
+Ball and goalkeeper remain the weak classes. Referee precision (0.646) is still
+the weakest precision, unchanged in character from the pilot — the kit
+confusion is not a training-length problem either.
 
 ### Confidence intervals — why the val rebuild mattered
 
