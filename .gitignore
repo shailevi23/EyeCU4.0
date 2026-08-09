@@ -50,3 +50,5 @@ data/dataset_C/labels/
 !data/tracking_val_v1/manifest.json
 !data/tracking_val_v1/detections/
 !data/tracking_val_v1/detections/*.jsonl
+!data/tracking_val_v1/candidates/
+!data/tracking_val_v1/candidates/*.jsonl

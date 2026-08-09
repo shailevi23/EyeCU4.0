@@ -1,7 +1,6 @@
 {
   "benchmark": "EyeCU-Tracking-Val-v1",
   "created": "2026-08-09T18:58:07+00:00",
-  "code_commit": "d968e680e17b996dc600ae6049030c86ac05ec3c",
   "contains": "human detections only; no tracker ids, no ball, no temporal logic",
   "detector": {
     "checkpoint": "best_A_960.pt",
@@ -62,7 +61,15 @@
         "referee": 319
       },
       "detections_file": "detections/austin_fc_vs__club_tijuana_284.jsonl",
-      "detections_sha256": "62db22840099e2fa98c50325069f6322ba903f412d23054ddf5932cf702dbabb"
+      "detections_sha256": "62db22840099e2fa98c50325069f6322ba903f412d23054ddf5932cf702dbabb",
+      "candidate_file": "candidates/austin_fc_vs__club_tijuana_284.jsonl",
+      "candidate_detections": 9193,
+      "candidate_sha256": "dc6fd67f95ebaf649115d359111f9b0114c6e6b7fdc37ac0fb0f3de28eaba8da",
+      "candidate_raw_boxes_max": 78,
+      "candidate_raw_boxes_mean": 33.4,
+      "candidate_frames_at_max_det": 0,
+      "candidate_frames_within_90pct_max_det": 0,
+      "accepted_subset_mismatched_frames": 0
     },
     {
       "match": "bayern_munich_3-1_chelsea",
@@ -84,7 +91,15 @@
         "referee": 1054
       },
       "detections_file": "detections/bayern_munich_3-1_chelsea_228.jsonl",
-      "detections_sha256": "066e82da9a40132ffe15ae5065a19c703bc684f68779796af10b0e322f25d66e"
+      "detections_sha256": "066e82da9a40132ffe15ae5065a19c703bc684f68779796af10b0e322f25d66e",
+      "candidate_file": "candidates/bayern_munich_3-1_chelsea_228.jsonl",
+      "candidate_detections": 10256,
+      "candidate_sha256": "028f6b433fa5f0477a69fa093f0fc9194b7378d76e0d4a36f50ae93ac4ed2c2d",
+      "candidate_raw_boxes_max": 54,
+      "candidate_raw_boxes_mean": 37.48,
+      "candidate_frames_at_max_det": 0,
+      "candidate_frames_within_90pct_max_det": 0,
+      "accepted_subset_mismatched_frames": 0
     },
     {
       "match": "women_1",
@@ -106,7 +121,15 @@
         "referee": 639
       },
       "detections_file": "detections/women_1_239.jsonl",
-      "detections_sha256": "5ff3510ec2084b2080752e9ff5ba9ddf0a0efca47e3081037bba0cd85c8286e1"
+      "detections_sha256": "5ff3510ec2084b2080752e9ff5ba9ddf0a0efca47e3081037bba0cd85c8286e1",
+      "candidate_file": "candidates/women_1_239.jsonl",
+      "candidate_detections": 8203,
+      "candidate_sha256": "6f8193fbfd64f2785bbcc7cafddd148afce72002943468b5ccf830c049dd92a1",
+      "candidate_raw_boxes_max": 55,
+      "candidate_raw_boxes_mean": 29.83,
+      "candidate_frames_at_max_det": 0,
+      "candidate_frames_within_90pct_max_det": 0,
+      "accepted_subset_mismatched_frames": 0
     },
     {
       "match": "youth_premier_league",
@@ -128,7 +151,27 @@
         "referee": 232
       },
       "detections_file": "detections/youth_premier_league_1133.jsonl",
-      "detections_sha256": "4c6b2fe6f7c821af718701b8bdb0ce0ab76562df74cb436a29cc22d023584dc9"
+      "detections_sha256": "4c6b2fe6f7c821af718701b8bdb0ce0ab76562df74cb436a29cc22d023584dc9",
+      "candidate_file": "candidates/youth_premier_league_1133.jsonl",
+      "candidate_detections": 12607,
+      "candidate_sha256": "cdb25cd61c090cd71f96b18c1625a858ba56959fa639187670e81cccd2d6eac6",
+      "candidate_raw_boxes_max": 75,
+      "candidate_raw_boxes_mean": 48.81,
+      "candidate_frames_at_max_det": 0,
+      "candidate_frames_within_90pct_max_det": 0,
+      "accepted_subset_mismatched_frames": 0
     }
-  ]
+  ],
+  "version": "1.1",
+  "detector_source_commit": "d968e680e17b996dc600ae6049030c86ac05ec3c",
+  "freeze_tool_commit": "fd45d5d29a3721d2dd4de726955b2633f5ca9ed0",
+  "accepted_human_threshold": 0.25,
+  "candidate_human_floor": 0.01,
+  "views": {
+    "accepted": "confidence >= 0.25 -- EyeCU public/reporting boundary; the detector output production actually exposes",
+    "candidate": "confidence >= 0.01 -- frozen detector EVIDENCE STORE for tracker association, before any tracker-specific confidence filtering. NOT a production threshold.",
+    "relationship": "accepted is exactly the >= 0.25 subset of candidate, verified frame by frame on all 1200 frames"
+  },
+  "evidence_floor_note": "Modern ByteTrackTracker could theoretically consume detections below 0.01; EyeCU-Tracking-Val-v1 defines 0.01 as its frozen detector evidence floor. 0.01 is not claimed to be algorithmically optimal.",
+  "max_det_mechanism": "YOLO26 is end-to-end (no NMS). trackers head applies a hard top-k: get_topk_index(scores, self.max_det) with max_det=300, across all four classes before confidence filtering."
 }

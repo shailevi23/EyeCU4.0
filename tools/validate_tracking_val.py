@@ -94,6 +94,76 @@ def validate(root: Path):
         check(n_det == w['human_detections'],
               f'{tag}: manifest says {w["human_detections"]} detections, file has {n_det}')
 
+    # ---- candidate view, once the package has been extended to v1.1
+    if man.get('version') == '1.1' or any('candidate_file' in w for w in man['windows']):
+        floor = man.get('candidate_human_floor')
+        accept = man.get('accepted_human_threshold')
+        check(floor is not None, 'manifest missing candidate_human_floor')
+        check(accept is not None, 'manifest missing accepted_human_threshold')
+        check(man.get('detector_source_commit'), 'manifest missing detector_source_commit')
+        check(man.get('freeze_tool_commit'), 'manifest missing freeze_tool_commit')
+        check('views' in man, 'manifest does not distinguish accepted from candidate')
+
+        for w in man['windows']:
+            tag = w['sequence']
+            check('candidate_file' in w, f'{tag}: candidate view missing')
+            if 'candidate_file' not in w:
+                continue
+            cf = root / w['candidate_file']
+            if not cf.exists():
+                errors.append(f'{tag}: candidate file missing'); checks += 1; continue
+            ctext = cf.read_text(encoding='utf-8')
+            check(hashlib.sha256(ctext.encode('utf-8')).hexdigest() == w['candidate_sha256'],
+                  f'{tag}: candidate SHA256 mismatch')
+            crows = [json.loads(l) for l in ctext.splitlines() if l.strip()]
+            check(len(crows) == N_FRAMES, f'{tag}: candidate has {len(crows)} rows')
+            check([r['frame'] for r in crows] == list(range(N_FRAMES)),
+                  f'{tag}: candidate frame indices not 0..{N_FRAMES-1} exactly once')
+
+            # top-k truncation would silently cut the evidence universe
+            check(w.get('candidate_frames_at_max_det', 0) == 0,
+                  f'{tag}: {w.get("candidate_frames_at_max_det")} frames hit the '
+                  f'detector top-k cap -- candidate universe may be truncated')
+            check(w.get('candidate_frames_within_90pct_max_det', 0) == 0,
+                  f'{tag}: frames within 90% of the top-k cap')
+
+            n_c = 0
+            for r in crows:
+                for d in r['detections']:
+                    n_c += 1
+                    check(d['class'] in HUMAN_CLASSES,
+                          f'{tag} f{r["frame"]}: non-human class in candidate view')
+                    check(not ({'tracker_id', 'id', 'track_id', 'identity'} & set(d)),
+                          f'{tag} f{r["frame"]}: identity field in candidate view')
+                    check(d['confidence'] >= floor - 1e-9,
+                          f'{tag} f{r["frame"]}: candidate confidence {d["confidence"]} '
+                          f'below the declared floor {floor}')
+            check(n_c == w['candidate_detections'],
+                  f'{tag}: candidate count {n_c} != manifest {w["candidate_detections"]}')
+            check(n_c >= w['human_detections'],
+                  f'{tag}: candidate view smaller than the accepted view')
+
+            # accepted-subset invariance, order-independent
+            arows = [json.loads(l) for l in
+                     (root / w['detections_file']).read_text(encoding='utf-8').splitlines()
+                     if l.strip()]
+
+            def canon(dets):
+                return sorted((d['class'], round(float(d['confidence']), 12),
+                               tuple(round(float(v), 12) for v in d['bbox']))
+                              for d in dets)
+
+            bad = 0
+            for a, c in zip(arows, crows):
+                sub = [d for d in c['detections'] if d['confidence'] >= accept]
+                if canon(sub) != canon(a['detections']):
+                    bad += 1
+            check(bad == 0,
+                  f'{tag}: accepted-subset invariance FAILED on {bad} frames -- '
+                  f'lowering the inference floor changed the >= {accept} output')
+            check(w.get('accepted_subset_mismatched_frames', 0) == 0,
+                  f'{tag}: manifest records accepted-subset mismatches')
+
     ck = Path(man['detector']['checkpoint'])
     if ck.exists():
         h = hashlib.sha256()

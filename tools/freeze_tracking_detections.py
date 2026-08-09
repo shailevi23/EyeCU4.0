@@ -46,7 +46,20 @@ BENCHMARK = 'EyeCU-Tracking-Val-v1'
 N_FRAMES = 300
 MODEL = 'best_A_960.pt'
 IMGSZ = 960
-CONF = 0.25
+CONF = 0.25                    # accepted / public human threshold
+
+# Frozen detector evidence floor for the candidate view. This is a benchmark
+# evidence-store floor -- NOT a production acceptance threshold, NOT a ByteTrack
+# threshold, and NOT a tuned tracking parameter. Modern ByteTrackTracker could
+# theoretically consume detections below 0.01; EyeCU-Tracking-Val-v1 defines
+# 0.01 as its frozen detector evidence floor.
+CANDIDATE_FLOOR = 0.01
+
+# YOLO26 is end-to-end: the Detect head applies a hard top-k
+# (get_topk_index(scores, self.max_det), max_det=300) across ALL classes before
+# confidence filtering. If a frame returns this many boxes the candidate
+# universe may be truncated, so every frame's raw box count is recorded.
+MAX_DET = 300
 
 # The four frozen continuity windows. Changing any of these invalidates every
 # downstream comparison, so they live here as data, not as CLI arguments.
@@ -106,11 +119,128 @@ def serialise(frame_idx: int, dets) -> str:
     return json.dumps({'frame': frame_idx, 'detections': rows}, sort_keys=True)
 
 
+
+def canonical(dets):
+    """Order-independent comparison key: lowering the inference floor may change
+    the detector's native ordering, so the invariance check must not depend on
+    it."""
+    return sorted((d['class'], round(float(d['confidence']), 12),
+                   tuple(round(float(v), 12) for v in d['bbox'])) for d in dets)
+
+
+def freeze_candidates(args, out, det_dir):
+    """
+    Freeze the >= CANDIDATE_FLOOR evidence view and prove its >= CONF subset
+    reproduces the already-versioned accepted freeze exactly.
+    """
+    import cv2
+    mpath = out / 'manifest.json'
+    if not mpath.exists():
+        raise SystemExit('accepted freeze missing; run --view accepted first')
+    man = json.loads(mpath.read_text(encoding='utf-8'))
+    cand_dir = out / 'candidates'
+
+    freeze_tool_commit = subprocess.run(['git', 'rev-parse', 'HEAD'],
+                                        capture_output=True, text=True).stdout.strip()
+    print(f'{"window":<30}{"cand":>8}{"acc":>7}{"maxRaw":>8}{"@cap":>6}{"90%cap":>8}'
+          f'{"mismatch":>10}')
+
+    total_mismatch, saturated, near = 0, 0, 0
+    for w in man['windows']:
+        match, start = w['match'], w['start_frame']
+        video = w['source_video']
+        frames, fps, total, frames_hash = read_window(video, start, N_FRAMES)
+        if len(frames) != N_FRAMES:
+            raise SystemExit(f'{match}: got {len(frames)} frames')
+        if frames_hash != w['decoded_frames_sha256']:
+            raise SystemExit(f'{match}: decoded pixels differ from the accepted freeze '
+                             f'-- refusing to build a candidate view on different frames')
+
+        det = LocalDetector(args.model, confidence=CANDIDATE_FLOOR, imgsz=IMGSZ,
+                            ball_candidate_pool=False, human_candidate_pool=False)
+        accepted_rows = [json.loads(l) for l in
+                         (out / w['detections_file']).read_text(encoding='utf-8').splitlines()
+                         if l.strip()]
+        lines, n_c, raw_counts, mism = [], 0, [], 0
+        for i, f in enumerate(frames):
+            alld = det.detect(f, None)          # every class; == raw model boxes
+            raw_counts.append(len(alld))
+            humans = [d for d in alld if d['class'] in HUMAN_CLASSES]
+            n_c += len(humans)
+            lines.append(serialise(i, humans))
+            # accepted-subset invariance, canonical (order-independent)
+            subset = [d for d in humans if d['confidence'] >= CONF]
+            if canonical(subset) != canonical(accepted_rows[i]['detections']):
+                mism += 1
+        raw = np.array(raw_counts)
+        at_cap = int((raw >= MAX_DET).sum())
+        near_cap = int((raw >= 0.9 * MAX_DET).sum())
+        saturated += at_cap; near += near_cap; total_mismatch += mism
+
+        text = '\n'.join(lines) + '\n'
+        name = f'{match}_{start}.jsonl'
+        print(f'{match[:28]:<30}{n_c:>8}{w["human_detections"]:>7}{int(raw.max()):>8}'
+              f'{at_cap:>6}{near_cap:>8}{mism:>10}')
+        w.update({
+            'candidate_file': f'candidates/{name}',
+            'candidate_detections': n_c,
+            'candidate_sha256': sha256_text(text),
+            'candidate_raw_boxes_max': int(raw.max()),
+            'candidate_raw_boxes_mean': round(float(raw.mean()), 2),
+            'candidate_frames_at_max_det': at_cap,
+            'candidate_frames_within_90pct_max_det': near_cap,
+            'accepted_subset_mismatched_frames': mism,
+        })
+        if not args.dry_run:
+            cand_dir.mkdir(parents=True, exist_ok=True)
+            (cand_dir / name).write_text(text, encoding='utf-8')
+
+    print(f'\nframes at max_det ({MAX_DET}): {saturated}   within 90%: {near}')
+    if saturated or near:
+        raise SystemExit('STOP: detector top-k cap reached; the candidate universe '
+                         'may be truncated. Do not raise max_det silently.')
+    print(f'accepted-subset invariance mismatched frames: {total_mismatch}')
+    if total_mismatch:
+        raise SystemExit('STOP: lowering the inference floor changed the >=0.25 '
+                         'subset. The accepted freeze was NOT overwritten.')
+
+    man['version'] = '1.1'
+    man['detector_source_commit'] = man.pop('code_commit', man.get('detector_source_commit'))
+    man['freeze_tool_commit'] = freeze_tool_commit
+    man['accepted_human_threshold'] = CONF
+    man['candidate_human_floor'] = CANDIDATE_FLOOR
+    man['views'] = {
+        'accepted': 'confidence >= %s -- EyeCU public/reporting boundary; the '
+                    'detector output production actually exposes' % CONF,
+        'candidate': 'confidence >= %s -- frozen detector EVIDENCE STORE for '
+                     'tracker association, before any tracker-specific '
+                     'confidence filtering. NOT a production threshold.' % CANDIDATE_FLOOR,
+        'relationship': 'accepted is exactly the >= %s subset of candidate, '
+                        'verified frame by frame on all %d frames' % (CONF, N_FRAMES * 4),
+    }
+    man['evidence_floor_note'] = (
+        'Modern ByteTrackTracker could theoretically consume detections below '
+        '0.01; EyeCU-Tracking-Val-v1 defines 0.01 as its frozen detector '
+        'evidence floor. 0.01 is not claimed to be algorithmically optimal.')
+    man['max_det_mechanism'] = (
+        'YOLO26 is end-to-end (no NMS). trackers head applies a hard top-k: '
+        'get_topk_index(scores, self.max_det) with max_det=%d, across all four '
+        'classes before confidence filtering.' % MAX_DET)
+    if not args.dry_run:
+        mpath.write_text(json.dumps(man, indent=2, ensure_ascii=False), encoding='utf-8')
+        print(f'manifest updated to v1.1')
+    return man
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--out', default='data/tracking_val_v1')
     ap.add_argument('--model', default=MODEL)
+    ap.add_argument('--view', choices=['accepted', 'candidate'], default='accepted',
+                    help="'accepted' freezes the >=0.25 public view; 'candidate' "
+                         "freezes the >=0.01 evidence view and verifies that its "
+                         ">=0.25 subset reproduces the accepted freeze exactly.")
     ap.add_argument('--dry-run', action='store_true')
     args = ap.parse_args()
 
@@ -123,6 +253,8 @@ def main():
 
     out = Path(args.out)
     det_dir = out / 'detections'
+    if args.view == 'candidate':
+        return freeze_candidates(args, out, det_dir)
     commit = subprocess.run(['git', 'rev-parse', 'HEAD'],
                             capture_output=True, text=True).stdout.strip()
 
