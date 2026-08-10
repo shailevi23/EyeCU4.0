@@ -142,15 +142,20 @@
       "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all four sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
     },
     "youth_premier_league_1133": {
-      "identity_status": "ANNOTATED_PENDING_QC",
+      "identity_status": "IDENTITY_ACCEPTED_PENDING_FINAL_QC",
       "imported": "2026-08-10",
-      "review_source": null,
+      "accepted": "2026-08-10",
+      "review_source": "human annotator",
       "tracker_output_used": false,
       "embeddings_used": false,
-      "long_gap_events_open": 7,
-      "long_gap_review": "qc_identity/youth_premier_league_1133/identity_gap_review.json",
+      "reid_used": false,
+      "long_gap_events_open": 0,
+      "long_gap_events_total": 7,
+      "long_gap_decisions": "qc_identity/youth_premier_league_1133/identity_gap_decisions.json",
+      "box_geometry": "BOX_GEOMETRY_HUMAN_ACCEPTED",
       "raw_export_provenance": "cvat_exports/youth_premier_league_1133.provenance.json",
-      "note": "Structural validation passed. NOT verified: seven disappearance/re-entry events await human decision, and the benchmark stays incomplete until all three sequences are accepted and final QC is done."
+      "density_note": "The >=10 humans/frame rule was a selection-time detector proxy (12.2 for this window). The human GT count of 8.40 is descriptive and is NOT a retrospective eligibility test. See experiments/tracking_v2/gt_conventions.json -> density_eligibility_rule.",
+      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all three sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
     }
   },
   "benchmark_definition": {

@@ -1,46 +1,115 @@
 {
- "record": "EyeCU-Tracking-Val-v1 GT annotation conventions and methodological decisions",
+ "record": "EyeCU-Tracking-Val GT annotation conventions and methodological decisions",
  "recorded": "2026-08-10",
- "status": "FROZEN before the remaining three sequences are annotated",
- "applies_to": ["austin_fc_vs__club_tijuana_284", "bayern_munich_3-1_chelsea_228",
-                "women_1_239", "youth_premier_league_1133"],
-
+ "status": "FROZEN. The box convention, occlusion rule, long-gap policy and density rule are not revisable after annotation; the sequence list follows the benchmark revision.",
+ "applies_to": [
+  "bayern_munich_3-1_chelsea_228",
+  "women_1_239",
+  "youth_premier_league_1133"
+ ],
  "box_convention": {
   "rule": "Tight visible-person extent with a small practical tolerance at this resolution; no deliberate horizontal safety margin; no shadow; do not infer fully hidden body extent; a partially visible person is annotated consistently.",
   "authority": "the image",
   "not_the_authority": "the A@960 detector. GT is not tuned for IoU agreement with the model under evaluation, in either direction.",
   "women_1_decision": "KEEP the existing annotation. It is altered only where human visual QC identifies clearly excessive background margin -- never automatically, and never from an IoU statistic.",
-  "automatic_resizing": "FORBIDDEN"
+  "automatic_resizing": "FORBIDDEN",
+  "youth_decision": "BOX_GEOMETRY_HUMAN_ACCEPTED. The annotator accepted all 2,520 boxes, including width and height changes made deliberately during zoom, movement and pose changes. Nothing was resized, tightened or normalised."
  },
-
  "box_audit_observation": {
   "status": "QA OBSERVATION, not a reason to alter GT",
   "measured_against": "the frozen detector preannotations, all 300 frames of women_1_239",
   "matched_pairs_iou_ge_0.2": 2902,
-  "width_ratio_gt_over_detector": {"mean": 1.401, "median": 1.394, "sd": 0.276},
-  "height_ratio_gt_over_detector": {"mean": 1.153, "median": 1.151, "sd": 0.141},
-  "centre_offset_px": {"dx_mean": 0.10, "dy_mean": 0.48},
-  "median_box_px": {"gt": [17.8, 35.5], "detector": [13.2, 32.8]},
-  "iou": {"mean": 0.594, "median": 0.582, "ge_0.3": 0.993, "ge_0.5": 0.756, "ge_0.7": 0.217},
+  "width_ratio_gt_over_detector": {
+   "mean": 1.401,
+   "median": 1.394,
+   "sd": 0.276
+  },
+  "height_ratio_gt_over_detector": {
+   "mean": 1.153,
+   "median": 1.151,
+   "sd": 0.141
+  },
+  "centre_offset_px": {
+   "dx_mean": 0.1,
+   "dy_mean": 0.48
+  },
+  "median_box_px": {
+   "gt": [
+    17.8,
+    35.5
+   ],
+   "detector": [
+    13.2,
+    32.8
+   ]
+  },
+  "iou": {
+   "mean": 0.594,
+   "median": 0.582,
+   "ge_0.3": 0.993,
+   "ge_0.5": 0.756,
+   "ge_0.7": 0.217
+  },
   "scale_caveat": "At these target sizes the 1.39x width ratio is about 4.6 px of total width. A ratio computed on 13-18 px objects magnifies a difference of a few pixels, and must be read with the absolute numbers beside it.",
   "apparent_person_width": "NOT MEASURED. No reliable estimator exists here for 13-18 px targets over grass, stands and crowd; chroma or GrabCut segmentation fails on the cases that matter and would count shadow as body, which the convention excludes. A number from an unreliable method would be worse than none.",
-  "artifacts": ["data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_gt_only.jpg",
-                "data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_with_detector.jpg",
-                "data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_sample.json"]
+  "artifacts": [
+   "data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_gt_only.jpg",
+   "data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_with_detector.jpg",
+   "data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_sample.json"
+  ],
+  "youth_observation": {
+   "status": "QA OBSERVATION, not a reason to alter GT",
+   "width_ratio_gt_over_detector_median": 1.0,
+   "height_ratio_gt_over_detector_median": 0.968,
+   "iou": {
+    "mean": 0.79,
+    "median": 0.817,
+    "ge_0.5": 0.967,
+    "ge_0.7": 0.831
+   },
+   "median_box_px": {
+    "gt": [
+     28.4,
+     71.2
+    ],
+    "detector": [
+     28.3,
+     75.9
+    ]
+   },
+   "note": "Youth targets are roughly twice the size of women_1 and the geometry agrees closely with the detector. Neither fact makes the detector an authority; both are recorded as evidence only."
+  }
  },
-
  "hota_thresholds": {
   "correction_of": "an earlier statement in this project that treated IoU >= 0.5 as the HOTA operating point",
   "pinned_from": "https://raw.githubusercontent.com/JonathonLuiten/TrackEval/master/trackeval/metrics/hota.py",
   "source_line": "self.array_labels = np.arange(0.05, 0.99, 0.05)",
-  "alphas": [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50,
-             0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95],
+  "alphas": [
+   0.05,
+   0.1,
+   0.15,
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5,
+   0.55,
+   0.6,
+   0.65,
+   0.7,
+   0.75,
+   0.8,
+   0.85,
+   0.9,
+   0.95
+  ],
   "n_alphas": 19,
   "aggregation": "trackeval/metrics/_base_metric.py _summary_row reduces every float_array_field with 100 * np.mean(results_[h]); the reported HOTA is therefore the mean over all 19 alphas.",
   "clear_and_identity": "CLEAR (MOTA) and Identity (IDF1) use a single similarity threshold, default 0.5.",
   "consequence": "The IoU >= 0.5 share is a DIAGNOSTIC of box-convention agreement only. It is not the fraction of detections that fail aggregate HOTA, and must never be reported as such."
  },
-
  "occlusion": {
   "rule": "CVAT occluded is preserved per visible annotation in the canonical EyeCU JSON as a BOOLEAN.",
   "forbidden": "Inventing a numeric visibility fraction from that boolean. The annotator marked a binary fact; a fraction would look like a measurement while carrying no information anyone supplied.",
@@ -53,15 +122,32 @@
    "revisit_if": "a later, explicitly defined evaluation protocol requires visibility-aware handling; at that point the canonical JSON already holds the annotator's marks."
   }
  },
-
  "long_gap_identity_policy": {
   "default": "A long-gap reconnect is NEVER accepted automatically. Every event is recorded HUMAN_REVIEW_REQUIRED until a person decides.",
   "if_confident": "Where the same physical person can be confidently established across the disappearance and re-entry, preserve the same identity.",
   "if_uncertain": "Do not guess. Start a NEW GT identity and record an uncertain-reentry QC event.",
   "insufficient_evidence": "Role or team-kit similarity alone does not establish physical identity.",
-  "forbidden_evidence": ["tracker output", "appearance embeddings"],
+  "forbidden_evidence": [
+   "tracker output",
+   "appearance embeddings",
+   "ReID"
+  ],
   "forbidden_because": "The benchmark exists to judge trackers. GT built from tracker output would be marking its own homework.",
   "jump_distance_caveat": "The recorded jump is image-space displacement between the last and first observation. The camera moves during these gaps, so it is not a measure of how far the person walked.",
-  "open_events": "data/tracking_val_gt/qc_identity/<sequence>/identity_gap_review.json"
- }
+  "open_events": "data/tracking_val_gt/qc_identity/<sequence>/identity_gap_review.json",
+  "authoritative_decisions": "data/tracking_val_gt/qc_identity/<sequence>/identity_gap_decisions.json -- hand-recorded, never written by a tool"
+ },
+ "density_eligibility_rule": {
+  "rule_text": ">=10 mean target humans/frame over the full 300-frame window",
+  "operationalised_at": "SEQUENCE SELECTION TIME",
+  "measured_with": "the frozen detector-derived human-count proxy, because identity GT did not exist yet and could not have",
+  "youth_at_selection_time": 12.2,
+  "youth_human_gt_count": 8.4,
+  "status_of_the_gt_count": "a DESCRIPTIVE property of the benchmark, not a retrospective eligibility test",
+  "explicit": "The >=10 threshold NEVER referred to post-hoc human GT counts. It was a selection-time proxy, applied before annotation existed. No window may be rejected or reselected on a number that could only be known after it was annotated.",
+  "why_this_matters": "Reselecting a window using information obtained after manual annotation would make window choice depend on the annotation, which is the same failure mode as choosing windows on tracker output: the benchmark would be measuring its own selection.",
+  "observed_gap_explained": "Detector boxes with no GT counterpart are mostly people beyond the touchline and surplus duplicate detections, not on-field people the annotator missed.",
+  "recorded": "2026-08-10"
+ },
+ "applies_to_note": "austin_fc_vs__club_tijuana_284 was in scope when this was first frozen and left the benchmark in v1.1. The conventions themselves are unchanged; only the list of sequences they govern."
 }
