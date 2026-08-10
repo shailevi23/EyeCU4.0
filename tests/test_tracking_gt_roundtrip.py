@@ -14,6 +14,7 @@ conversion path only, and is never GT for any sequence.
 
 import json
 import shutil
+from collections import defaultdict
 from pathlib import Path
 
 import pytest
@@ -47,7 +48,8 @@ FIXTURE = """<?xml version="1.0" encoding="utf-8"?>
 </annotations>
 """
 
-# Trimmed from a REAL app.cvat.ai export (job 4344203, women_1_239 frames 0-9).
+# Verbatim tracks from a REAL app.cvat.ai export (job 4344203, women_1_239
+# frames 0-9), the one the smoke test passed 25/25 on.
 # It differs from the fixture above in ways worth pinning down:
 #   * every frame is written out, including interpolated ones (keyframe="0"),
 #     not just the keyframes
@@ -82,6 +84,28 @@ REAL_CVAT = """<?xml version="1.0" encoding="utf-8"?>
     <box frame="8" keyframe="1" outside="0" occluded="0" xtl="204.84" ytl="148.63" xbr="230.24" ybr="208.84" z_order="0">
     </box>
     <box frame="9" keyframe="0" outside="0" occluded="0" xtl="204.84" ytl="148.63" xbr="230.24" ybr="208.84" z_order="0">
+    </box>
+  </track>
+  <track id="1" label="referee" source="manual">
+    <box frame="0" keyframe="1" outside="0" occluded="0" xtl="542.26" ytl="142.97" xbr="571.48" ybr="200.37" z_order="0">
+    </box>
+    <box frame="1" keyframe="1" outside="0" occluded="0" xtl="543.83" ytl="142.97" xbr="573.04" ybr="200.37" z_order="0">
+    </box>
+    <box frame="2" keyframe="1" outside="0" occluded="0" xtl="546.44" ytl="145.06" xbr="575.65" ybr="202.45" z_order="0">
+    </box>
+    <box frame="3" keyframe="1" outside="0" occluded="0" xtl="548.00" ytl="145.58" xbr="577.22" ybr="202.98" z_order="0">
+    </box>
+    <box frame="4" keyframe="1" outside="0" occluded="0" xtl="552.18" ytl="146.63" xbr="581.39" ybr="204.02" z_order="0">
+    </box>
+    <box frame="5" keyframe="1" outside="0" occluded="0" xtl="554.26" ytl="146.63" xbr="583.48" ybr="204.02" z_order="0">
+    </box>
+    <box frame="6" keyframe="1" outside="0" occluded="0" xtl="554.26" ytl="145.58" xbr="583.48" ybr="202.98" z_order="0">
+    </box>
+    <box frame="7" keyframe="1" outside="0" occluded="0" xtl="555.83" ytl="144.02" xbr="585.05" ybr="201.41" z_order="0">
+    </box>
+    <box frame="8" keyframe="1" outside="0" occluded="0" xtl="557.39" ytl="143.50" xbr="586.61" ybr="200.89" z_order="0">
+    </box>
+    <box frame="9" keyframe="1" outside="0" occluded="0" xtl="558.96" ytl="142.97" xbr="588.18" ybr="200.36" z_order="0">
     </box>
   </track>
 </annotations>
@@ -189,34 +213,57 @@ class TestRealCvatExportShape:
 
     def test_dense_per_frame_boxes_decode(self, real):
         boxes, roles, warn = real
-        assert roles == {1: 'player'}
+        assert roles == {1: 'player', 2: 'referee'}
         assert warn == []
+        assert len(boxes) == 18
 
     def test_outside_marker_and_absent_frame_both_yield_no_box(self, real):
         """Frame 5 is marked outside; frame 6 is simply missing. Both drop."""
         boxes, _, _ = real
-        frames = sorted(b['frame'] for b in boxes)
+        frames = sorted(b['frame'] for b in boxes if b['id'] == 1)
         assert frames == [1, 2, 3, 4, 5, 8, 9, 10], frames
+
+    def test_the_other_track_is_unaffected_by_the_gap(self, real):
+        """One track going outside must not disturb the other."""
+        boxes, _, _ = real
+        assert sorted(b['frame'] for b in boxes if b['id'] == 2) == list(range(1, 11))
+
+    def test_two_identities_stay_separate(self, real):
+        boxes, _, _ = real
+        per_frame = defaultdict(list)
+        for b in boxes:
+            per_frame[b['frame']].append(b['id'])
+        for f, ids in per_frame.items():
+            assert len(ids) == len(set(ids)), f
+        roles_by_id = defaultdict(set)
+        for b in boxes:
+            roles_by_id[b['id']].add(b['role'])
+        assert roles_by_id == {1: {'player'}, 2: {'referee'}}
 
     def test_reappearance_keeps_the_identity(self, real):
         boxes, _, _ = real
-        assert {b['id'] for b in boxes if b['frame'] >= 8} == {1}
+        late = [b for b in boxes if b['frame'] >= 8 and b['role'] == 'player']
+        assert {b['id'] for b in late} == {1}
 
     def test_geometry_survives_verbatim(self, real):
         boxes, _, _ = real
-        first = next(b for b in boxes if b['frame'] == 1)
+        first = next(b for b in boxes if b['frame'] == 1 and b['id'] == 1)
         assert first['bbox'] == [206.22, 148.71, 233.82, 206.68]
-        last = next(b for b in boxes if b['frame'] == 10)
+        last = next(b for b in boxes if b['frame'] == 10 and b['id'] == 1)
         assert last['bbox'] == [204.84, 148.63, 230.24, 208.84]
+        ref = next(b for b in boxes if b['frame'] == 1 and b['id'] == 2)
+        assert ref['bbox'] == [542.26, 142.97, 571.48, 200.37]
 
     def test_matches_the_synthetic_fixture_frame_pattern(self, tmp_path, real):
         """The two fixtures disagree on encoding, agree on meaning."""
         p = tmp_path / 'syn.xml'
         p.write_text(FIXTURE, encoding='utf-8')
-        syn, _, _ = parse_cvat_video(p, n_frames=300)
-        real_boxes, _, _ = real
-        assert sorted(b['frame'] for b in real_boxes) == \
-            sorted(b['frame'] for b in syn if b['id'] == 1)
+        syn, syn_roles, _ = parse_cvat_video(p, n_frames=300)
+        real_boxes, real_roles, _ = real
+        assert set(real_roles) == set(syn_roles)
+        for ident in (1, 2):
+            assert sorted(b['frame'] for b in real_boxes if b['id'] == ident) == \
+                sorted(b['frame'] for b in syn if b['id'] == ident)
 
 
 def _import_into_package(tmp_path):
