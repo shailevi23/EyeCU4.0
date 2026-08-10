@@ -32,8 +32,12 @@ class TestPackage:
         errors, n = validate_pre(ROOT)
         assert n > 0 and errors == [], errors[:5]
 
-    def test_exactly_four_sequences(self, manifest):
+    def test_exactly_the_three_clean_matches(self, manifest):
         assert {s['sequence'] for s in manifest['sequences']} == EXPECTED
+        assert len(manifest['sequences']) == 3
+        assert manifest['benchmark'] == 'EyeCU-Tracking-Val-v1.1'
+        assert manifest['benchmark_definition']['total_frames'] == 900
+        assert manifest['benchmark_definition']['independent_matches'] == 3
 
     def test_no_test_source(self, manifest):
         from tools.build_derived_train import TEST_MATCHES, VAL_MATCHES
@@ -42,8 +46,7 @@ class TestPackage:
         assert srcs <= VAL_MATCHES
 
     def test_exact_frame_ranges(self, manifest):
-        expected = {'austin_fc_vs__club_tijuana_284': (284, 583),
-                    'bayern_munich_3-1_chelsea_228': (228, 527),
+        expected = {'bayern_munich_3-1_chelsea_228': (228, 527),
                     'women_1_239': (239, 538),
                     'youth_premier_league_1133': (1133, 1432)}
         for s in manifest['sequences']:

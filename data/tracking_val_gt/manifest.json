@@ -1,5 +1,5 @@
 {
-  "benchmark": "EyeCU-Tracking-Val-v1",
+  "benchmark": "EyeCU-Tracking-Val-v1.1",
   "annotation_schema_version": "1.0",
   "created": "2026-08-09T19:46:04+00:00",
   "code_commit": "b25c840214cfc1c0c72a1d80fb662127423940f9",
@@ -48,33 +48,6 @@
     "accepted_human_threshold": 0.25
   },
   "sequences": [
-    {
-      "sequence": "austin_fc_vs__club_tijuana_284",
-      "match": "austin_fc_vs__club_tijuana",
-      "source_video": "input-videos/Austin FC vs. Club Tijuana.mp4",
-      "source_video_sha256": "e9b843537c2be6276b068d8c169815106564f2c2dc71c666776abf4ad581904c",
-      "decoded_frames_sha256": "495be3eef4f34ef0e297142e8d6922e7d24e1df3e90a1464f13c3a0798b20eed",
-      "source_frame_range": [
-        284,
-        583
-      ],
-      "package_frame_range": [
-        1,
-        300
-      ],
-      "frame_count": 300,
-      "native_fps": 29.97,
-      "frame_width": 640,
-      "frame_height": 360,
-      "preannotation_boxes": 3777,
-      "preannotation_cvat": "preannotations/austin_fc_vs__club_tijuana_284.cvat.xml",
-      "preannotation_det": "preannotations/austin_fc_vs__club_tijuana_284.det.txt",
-      "preannotation_cvat_sha256": "f230014d98508e29d040c91e1a045e8b0101309181fdbbe1fbc5f83654cb5963",
-      "preannotation_det_sha256": "172cc4e9bb6b5ed6f30290d3351e1837d99aa842e4bfb86e05536b0914435b96",
-      "annotation_file_expected": "annotations/austin_fc_vs__club_tijuana_284.json",
-      "mot_gt_expected": "mot/austin_fc_vs__club_tijuana_284/gt/gt.txt",
-      "roles_expected": "roles/austin_fc_vs__club_tijuana_284.json"
-    },
     {
       "sequence": "bayern_munich_3-1_chelsea_228",
       "match": "bayern_munich_3-1_chelsea",
@@ -168,5 +141,103 @@
       "long_gap_decisions": "qc_identity/women_1_239/identity_gap_decisions.json",
       "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all four sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
     }
+  },
+  "benchmark_definition": {
+    "name": "EyeCU-Tracking-Val-v1.1",
+    "scope": "CLEAN CONTINUITY tracking benchmark",
+    "independent_matches": 3,
+    "sequences": [
+      "bayern_munich_3-1_chelsea_228",
+      "women_1_239",
+      "youth_premier_league_1133"
+    ],
+    "total_frames": 900,
+    "rule": "300 continuous native-FPS frames, no camera/broadcast cut, >=10 mean humans/frame over the full window",
+    "no_train_footage": true,
+    "no_test_footage": true,
+    "no_correlated_second_window": "A fourth sequence taken from an already-used match would restore the sequence count without adding an independent match. Sequence count is not evidence; independent matches are."
+  },
+  "revision_history": [
+    {
+      "version": "EyeCU-Tracking-Val-v1",
+      "date": "2026-08-09",
+      "sequences": [
+        "austin_fc_vs__club_tijuana_284",
+        "bayern_munich_3-1_chelsea_228",
+        "women_1_239",
+        "youth_premier_league_1133"
+      ],
+      "independent_matches": 4,
+      "status": "SUPERSEDED",
+      "summary": "Four proposed windows. Austin was later found invalid: its window straddles a broadcast dissolve and its source is a highlights montage."
+    },
+    {
+      "version": "EyeCU-Tracking-Val-v1.1",
+      "date": "2026-08-10",
+      "sequences": [
+        "bayern_munich_3-1_chelsea_228",
+        "women_1_239",
+        "youth_premier_league_1133"
+      ],
+      "independent_matches": 3,
+      "status": "CURRENT",
+      "summary": "Three independent clean-continuity VAL matches, 900 frames. Austin removed and preserved separately as a transition-stress case.",
+      "changed_before_any_tracker_result_existed": true,
+      "why_that_matters": "The benchmark changed for a content reason found by a human watching footage, with no tracker having been run against it. Nothing was selected or deselected on tracker behaviour."
+    }
+  ],
+  "excluded_sequences": [
+    {
+      "status": "REJECTED_FOR_CONTINUITY_BENCHMARK",
+      "classification": "TRANSITION_STRESS_CASE",
+      "reason": "hard broadcast edit / temporal discontinuity",
+      "excluded_in": "EyeCU-Tracking-Val-v1.1",
+      "never_enters": [
+        "clean HOTA aggregate",
+        "clean AssA aggregate",
+        "clean IDF1 aggregate",
+        "any clean-continuity metric"
+      ],
+      "record": "rejected/austin_fc_vs__club_tijuana_284/REJECTION_RECORD.json",
+      "partial_annotation": "rejected/austin_fc_vs__club_tijuana_284/austin_partial_cvat_export.xml",
+      "partial_annotation_validity": "NOT valid continuity GT across the dissolve. The 16 tracks run unbroken over all 300 frames, so identities were carried across the edit. Before any use, pre-cut and post-cut must be given INDEPENDENT identity spaces, unless a separate and explicitly defined re-identification GT is created manually.",
+      "original_entry": {
+        "sequence": "austin_fc_vs__club_tijuana_284",
+        "match": "austin_fc_vs__club_tijuana",
+        "source_video": "input-videos/Austin FC vs. Club Tijuana.mp4",
+        "source_video_sha256": "e9b843537c2be6276b068d8c169815106564f2c2dc71c666776abf4ad581904c",
+        "decoded_frames_sha256": "495be3eef4f34ef0e297142e8d6922e7d24e1df3e90a1464f13c3a0798b20eed",
+        "source_frame_range": [
+          284,
+          583
+        ],
+        "package_frame_range": [
+          1,
+          300
+        ],
+        "frame_count": 300,
+        "native_fps": 29.97,
+        "frame_width": 640,
+        "frame_height": 360,
+        "preannotation_boxes": 3777,
+        "preannotation_cvat": "preannotations/austin_fc_vs__club_tijuana_284.cvat.xml",
+        "preannotation_det": "preannotations/austin_fc_vs__club_tijuana_284.det.txt",
+        "preannotation_cvat_sha256": "f230014d98508e29d040c91e1a045e8b0101309181fdbbe1fbc5f83654cb5963",
+        "preannotation_det_sha256": "172cc4e9bb6b5ed6f30290d3351e1837d99aa842e4bfb86e05536b0914435b96",
+        "annotation_file_expected": "annotations/austin_fc_vs__club_tijuana_284.json",
+        "mot_gt_expected": "mot/austin_fc_vs__club_tijuana_284/gt/gt.txt",
+        "roles_expected": "roles/austin_fc_vs__club_tijuana_284.json"
+      }
+    }
+  ],
+  "reporting_views": {
+    "A_per_match": [
+      "women_1_239",
+      "youth_premier_league_1133",
+      "bayern_munich_3-1_chelsea_228"
+    ],
+    "B_official": "TrackEval COMBINED_SEQ, the official combined calculation",
+    "C_macro_mean": "unweighted mean of the three per-match HOTA / AssA / IDF1 values, a descriptive robustness check only",
+    "precedence": "View B is the official result. View C never replaces it; it exists so a result carried by one long sequence is visible as such."
   }
 }

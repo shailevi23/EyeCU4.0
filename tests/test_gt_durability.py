@@ -18,7 +18,7 @@ import pytest
 REPO = Path(__file__).resolve().parents[1]
 ROOT = REPO / 'data' / 'tracking_val_gt'
 SEQ = 'women_1_239'
-NEXT = 'austin_fc_vs__club_tijuana_284'      # not yet annotated: the real test
+NEXT = 'youth_premier_league_1133'          # not yet annotated: the real test
 
 
 def ignored(rel: str) -> bool:

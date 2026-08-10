@@ -1,7 +1,15 @@
 # Identity GT Annotation Guide
 
-How to annotate the four 300-frame tracking sequences so that HOTA/IDF1 numbers
-computed against them mean something.
+How to annotate the three 300-frame tracking sequences of
+**EyeCU-Tracking-Val-v1.1** so that HOTA/IDF1 numbers computed against them mean
+something.
+
+> A fourth window (austin) was proposed in v1.0 and removed before any tracker
+> ran: its window straddles a broadcast dissolve and its source turned out to be
+> a highlights montage. It is preserved as a transition-stress case in
+> `data/tracking_val_gt/rejected/` and never enters the clean aggregate.
+>
+> Order: women_1 (accepted) -> youth_premier_league_1133 -> bayern_munich_3-1_chelsea_228.
 
 This benchmark answers one question: **does a tracker keep the same person under
 the same identity?** Box geometry is secondary — a slightly loose box costs a
@@ -222,7 +230,7 @@ camera moves during these gaps — it is not how far the person walked.
    `data/tracking_val_gt/cvat_exports/<seq>.xml` (create that directory; like
    the rest of `data/`, it is not tracked in git). Video format is the only one
    that carries identity *and* label in one file.
-10. **Import all four sequences:**
+10. **Import the finished sequences:**
 
     ```bash
     python tools/import_tracking_gt_cvat.py --dry-run    # inspect first
