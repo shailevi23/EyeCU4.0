@@ -24,6 +24,13 @@ Every event is recorded as HUMAN_REVIEW_REQUIRED and stays there until a person
 decides. A reconnect is not accepted by default -- silently keeping an identity
 across a long absence would hand the tracker bake-off an answer key that
 already assumes the answer.
+
+Decisions a human has already made live in identity_gap_decisions.json, which
+this tool READS and never writes. Regenerating the report must not make a
+settled question look open again -- a reviewer who sees HUMAN_REVIEW_REQUIRED
+on something they already decided will either redo the work or, worse, assume
+their decision was rejected. Where no authoritative decision exists the event
+stays HUMAN_REVIEW_REQUIRED, and this tool has no path that creates one.
 """
 
 import argparse
@@ -57,6 +64,18 @@ def imwrite(p: Path, img, q=95):
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_bytes(buf.tobytes())
     return ok
+
+
+DECISIONS_FILE = 'identity_gap_decisions.json'
+
+
+def authoritative_decisions(out_dir: Path):
+    """{id: decision} from the hand-recorded file. Read-only, never created."""
+    p = out_dir / DECISIONS_FILE
+    if not p.exists():
+        return {}
+    rec = json.loads(p.read_text(encoding='utf-8'))
+    return {int(d['id']): d for d in rec.get('decisions', [])}
 
 
 def gaps_of(frames):
@@ -119,7 +138,8 @@ def contact(frames, cols=COLS):
     return np.vstack(rows)
 
 
-def clip_for(root: Path, s: dict, ident: int, out_dir: Path, lead: int):
+def clip_for(root: Path, s: dict, ident: int, out_dir: Path, lead: int,
+             decided=None):
     seq = s['sequence']
     ann = json.loads((root / s['annotation_file_expected']).read_text(encoding='utf-8'))
     per_frame = defaultdict(list)
@@ -192,10 +212,13 @@ def clip_for(root: Path, s: dict, ident: int, out_dir: Path, lead: int):
 
     print(f'  id {ident:>3} ({role:<10}) absent f{a}-{b}  {b-a+1} frames, '
           f'jump {jump:.0f}px   {len(before)} before + {len(after)} after')
+    # an existing human decision is displayed; its absence is not a decision
+    d = (decided or {}).get(ident)
     return {'id': ident, 'role': role,
-            'status': 'HUMAN_REVIEW_REQUIRED',
-            'decision': None,
-            'decided_by': None,
+            'status': d['status'] if d else 'HUMAN_REVIEW_REQUIRED',
+            'decision': d.get('decision') if d else None,
+            'decided_by': d.get('decided_by', 'human annotator') if d else None,
+            'decision_source': DECISIONS_FILE if d else None,
             'gap': [a, b], 'gap_frames': b - a + 1,
             'jump_px': round(jump, 1),
             'last_seen_frame': a - 1, 'reappears_frame': b + 1,
@@ -227,11 +250,15 @@ def main():
     out_dir = root / 'qc_identity' / args.sequence
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    decided = authoritative_decisions(out_dir)
     print(f'{args.sequence}: ~{lead} frames each side (native '
           f'{s["native_fps"]} fps)')
+    if decided:
+        print(f'{len(decided)} authoritative decision(s) found in '
+              f'{DECISIONS_FILE}; they are displayed, never recomputed')
     recs = []
     for tok in args.ids.split(','):
-        r = clip_for(root, s, int(tok.strip()), out_dir, lead)
+        r = clip_for(root, s, int(tok.strip()), out_dir, lead, decided)
         if r:
             recs.append(r)
     (out_dir / 'identity_gap_review.json').write_text(json.dumps({
@@ -252,6 +279,8 @@ def main():
                          'marking its own homework.',
         },
         'decided_by': 'human, from the footage',
+        'authoritative_record': DECISIONS_FILE,
+        'this_file_is_generated': True,
         'tracker_output_used': False,
         'embeddings_used': False,
         'alters_annotations': False,

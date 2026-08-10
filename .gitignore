@@ -3,31 +3,9 @@ __pycache__/
 *.pt
 input-videos/
 roboflow_api_key.env
-data/
 YouTubeVideoSegmentDownloader/
 .pytest_cache/
-data/dataset/
-data/football_dataset.zip
-data/pseudo_meta/
 .env
-
-# Frames/labels/datasets stay local, but the batch assignments and the
-# frame manifest are decisions worth sharing.
-!data/batches/
-!data/batches/*.json
-
-# Temporal-val frames stay local, but the window plan and provenance are
-# decisions worth sharing -- they define the benchmark.
-!data/temporal_val/
-!data/temporal_val/manifest.json
-!data/temporal_val/ANNOTATION.md
-!data/temporal_val/SPLIT
-!data/derived_train/
-!data/derived_train/manifest.json
-!data/derived_train/SPLIT
-!data/dataset_C/
-!data/dataset_C/football_C.yaml
-!data/dataset_C/reproducibility.json
 
 # One-off diagnostic renders land in the repo root and pile up fast. Keepers
 # belong in experiments/records/evidence/, which is tracked normally; this rule
@@ -36,34 +14,113 @@ data/pseudo_meta/
 /*.json
 !/package.json
 
-# Regenerable dataset exports and the assembled Experiment C training set.
-# Rebuild with tools/build_dataset.py --zip and
-# tools/build_experiment_c_dataset.py; the manifests, hashes and yaml are
-# tracked so the rebuild stays verifiable.
-data/football_dataset*.zip
-data/dataset_C/images/
-data/dataset_C/labels/
+# ---------------------------------------------------------------------------
+# data/ : ignored by default, with a narrow allow-list for the small records
+# that are decisions rather than bulk.
+#
+# Note `data/*` and not `data/`. Git does not descend into a directory excluded
+# by name, so with `data/` every `!data/...` negation below is silently dead --
+# which is exactly what happened here: the manual identity annotation this repo
+# calls "the value" was never actually tracked, and the files that looked
+# tracked had been force-added by hand. `data/*` ignores each entry directly
+# under data/ while still allowing a negation to re-include a subtree.
+#
+# Each block follows the same shape:
+#     !dir/        re-include the directory so git will look inside
+#     dir/*        ignore its contents again
+#     !dir/keep    name exactly what is worth keeping
+#
+# Bulk stays out: decoded frames, annotation MP4s, QC renders, model weights,
+# source video, caches, and reproducible smoke artifacts.
+# ---------------------------------------------------------------------------
+data/*
+
+# Batch assignments and the frame manifest are decisions worth sharing.
+!data/batches/
+data/batches/*
+!data/batches/*.json
+
+# Temporal-val and derived-train frames stay local; the window plan, split and
+# provenance define the benchmark.
+!data/temporal_val/
+data/temporal_val/*
+!data/temporal_val/manifest.json
+!data/temporal_val/ANNOTATION.md
+!data/temporal_val/SPLIT
+!data/derived_train/
+data/derived_train/*
+!data/derived_train/manifest.json
+!data/derived_train/SPLIT
+
+# Experiment C images and labels rebuild from tools/build_experiment_c_dataset.py;
+# the yaml and reproducibility record are what make the rebuild verifiable.
+!data/dataset_C/
+data/dataset_C/*
+!data/dataset_C/football_C.yaml
+!data/dataset_C/reproducibility.json
 
 # Frozen tracking inputs are scientific benchmark inputs, not disposable
 # diagnostics: the exact serialised detections are versioned, not just hashed.
 !data/tracking_val_v1/
+data/tracking_val_v1/*
 !data/tracking_val_v1/manifest.json
 !data/tracking_val_v1/detections/
+data/tracking_val_v1/detections/*
 !data/tracking_val_v1/detections/*.jsonl
 !data/tracking_val_v1/candidates/
+data/tracking_val_v1/candidates/*
 !data/tracking_val_v1/candidates/*.jsonl
 
-# Identity-GT package: frames rebuild from tools/build_tracking_gt_package.py and
-# are verified by decoded_frames_sha256; the annotation artifacts are the value.
+# Identity GT. Frames rebuild from tools/build_tracking_gt_package.py and are
+# verified by decoded_frames_sha256; the annotation is hand-drawn and cannot be
+# rebuilt from anything, so it is tracked without needing `git add -f`.
 !data/tracking_val_gt/
+data/tracking_val_gt/*
 !data/tracking_val_gt/manifest.json
+
+# detector preannotations: model output, but frozen and hashed in the manifest
 !data/tracking_val_gt/preannotations/
-!data/tracking_val_gt/preannotations/*
+data/tracking_val_gt/preannotations/*
+!data/tracking_val_gt/preannotations/*.xml
+!data/tracking_val_gt/preannotations/*.txt
+
+# the raw human work, and the canonical form derived from it
+!data/tracking_val_gt/cvat_exports/
+data/tracking_val_gt/cvat_exports/*
+!data/tracking_val_gt/cvat_exports/*.xml
+!data/tracking_val_gt/cvat_exports/README.txt
 !data/tracking_val_gt/annotations/
-!data/tracking_val_gt/annotations/*
+data/tracking_val_gt/annotations/*
+!data/tracking_val_gt/annotations/*.json
 !data/tracking_val_gt/roles/
-!data/tracking_val_gt/roles/*
+data/tracking_val_gt/roles/*
+!data/tracking_val_gt/roles/*.json
+
+# reference geometry with unconfirmed provenance -- not GT, but its status
+# record is small and worth versioning
+!data/tracking_val_gt/human_seed/
+data/tracking_val_gt/human_seed/*
+!data/tracking_val_gt/human_seed/*.json
+
+# QC decisions a human made. The contact sheets and clips beside them are
+# regenerable renders and stay out; the decision records do not regenerate.
+!data/tracking_val_gt/qc_identity/
+data/tracking_val_gt/qc_identity/*
+!data/tracking_val_gt/qc_identity/*/
+data/tracking_val_gt/qc_identity/*/*
+!data/tracking_val_gt/qc_identity/*/identity_gap_decisions.json
+!data/tracking_val_gt/audit/
+data/tracking_val_gt/audit/*
+!data/tracking_val_gt/audit/*/
+data/tracking_val_gt/audit/*/*
+!data/tracking_val_gt/audit/*/*.json
+
+# the MOT export TrackEval reads: derived, but small text, and versioning it
+# makes an evaluation run reproducible from the repo alone
+# The MOT layout nests four deep (mot/<split>/<seq>/gt/gt.txt), so this block
+# matches by depth-independent glob rather than counting levels.
 !data/tracking_val_gt/mot/
-!data/tracking_val_gt/mot/**
-data/tracking_val_gt/sequences/
-data/tracking_val_gt/qc/
+data/tracking_val_gt/mot/**
+!data/tracking_val_gt/mot/**/
+!data/tracking_val_gt/mot/**/*.txt
+!data/tracking_val_gt/mot/**/*.ini
