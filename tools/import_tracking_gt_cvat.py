@@ -18,6 +18,7 @@ everything the benchmark needs in one file:
   semantic role         <track label>
   frame index           <box frame>       0-BASED in CVAT
   visibility            outside="1" ends the visible interval
+  occlusion             occluded="1"; kept per box as a BOOLEAN
   keyframes             keyframe="1"; gaps between keyframes are interpolated
 
 Frame conversion is owned here: CVAT frame 0 is EyeCU package frame 1. The
@@ -28,6 +29,16 @@ the box moves linearly, and the interval ends at a shape with outside="1". A
 track is therefore absent exactly where the annotator marked it outside, which
 is what an occlusion should produce -- no box is invented while a person is
 hidden.
+
+`occluded` is carried into the canonical JSON as a boolean and nothing more.
+It is deliberately NOT converted into a visibility fraction: the annotator
+marked a binary fact, and a number invented from it would look like a
+measurement while carrying no information the annotator supplied. The canonical
+JSON is the authoritative home for occlusion metadata; the MOT export keeps
+visibility = 1, because TrackEval's MotChallenge2DBox loader never reads that
+column (verified against the official source: it slices columns 2:6, 1, 6 and 7
+only, and nothing in _load_raw_file or get_preprocessed_seq_data touches
+column 8).
 
 Running this successfully moves the benchmark from UNANNOTATED to
 ANNOTATED_PENDING_QC. It never reaches VERIFIED: that requires human QC
@@ -79,6 +90,7 @@ def parse_cvat_video(xml_path: Path, n_frames: int):
             shapes.append({
                 'frame': int(b.get('frame')),
                 'outside': b.get('outside') == '1',
+                'occluded': b.get('occluded') == '1',
                 'xtl': float(b.get('xtl')), 'ytl': float(b.get('ytl')),
                 'xbr': float(b.get('xbr')), 'ybr': float(b.get('ybr')),
             })
@@ -96,22 +108,27 @@ def parse_cvat_video(xml_path: Path, n_frames: int):
             for k in range(span):
                 f = a['frame'] + k
                 t = (k / span) if span else 0.0
-                emitted[f] = [a['xtl'] + (b['xtl'] - a['xtl']) * t,
-                              a['ytl'] + (b['ytl'] - a['ytl']) * t,
-                              a['xbr'] + (b['xbr'] - a['xbr']) * t,
-                              a['ybr'] + (b['ybr'] - a['ybr']) * t]
+                # occlusion holds from the shape it was set on until the next
+                # one, exactly as the position does
+                emitted[f] = ([a['xtl'] + (b['xtl'] - a['xtl']) * t,
+                               a['ytl'] + (b['ytl'] - a['ytl']) * t,
+                               a['xbr'] + (b['xbr'] - a['xbr']) * t,
+                               a['ybr'] + (b['ybr'] - a['ybr']) * t],
+                              a['occluded'])
         last = shapes[-1]
         if not last['outside']:
-            emitted[last['frame']] = [last['xtl'], last['ytl'],
-                                      last['xbr'], last['ybr']]
+            emitted[last['frame']] = ([last['xtl'], last['ytl'],
+                                       last['xbr'], last['ybr']],
+                                      last['occluded'])
 
-        for f, bb in emitted.items():
+        for f, (bb, occluded) in emitted.items():
             pf = f + 1                          # -> 1-based package frame
             if not (1 <= pf <= n_frames):
                 warn.append(f'track {raw_id}: frame {pf} outside 1..{n_frames}, dropped')
                 continue
             boxes.append({'frame': pf, 'id': ident,
-                          'bbox': [round(v, 2) for v in bb], 'role': label})
+                          'bbox': [round(v, 2) for v in bb], 'role': label,
+                          'occluded': bool(occluded)})
 
     boxes.sort(key=lambda r: (r['frame'], r['id']))
     return boxes, roles, warn

@@ -238,6 +238,38 @@ class TestMotExport:
         assert s['sequence'] in sm
 
 
+class TestShippedWomen1Occlusion:
+    """The annotator's occlusion marks are present in the canonical GT."""
+
+    ANN = ROOT / 'annotations' / 'women_1_239.json'
+    pytestmark = pytest.mark.skipif(not ANN.exists(),
+                                    reason='women_1 not imported')
+
+    @pytest.fixture(scope='class')
+    def boxes(self):
+        if not self.ANN.exists():
+            pytest.skip('women_1 not imported')
+        return json.loads(self.ANN.read_text(encoding='utf-8'))['boxes']
+
+    def test_every_box_has_a_boolean_occluded(self, boxes):
+        assert boxes
+        assert all(isinstance(b['occluded'], bool) for b in boxes)
+
+    def test_occlusion_matches_the_cvat_export(self, boxes):
+        import re
+        xml = (ROOT / 'cvat_exports' / 'women_1_239.xml').read_text(encoding='utf-8')
+        from_xml = len([m.group(0) for m in re.finditer(r'<box [^>]*>', xml)
+                        if 'occluded="1"' in m.group(0)
+                        and 'outside="1"' not in m.group(0)])
+        assert sum(b['occluded'] for b in boxes) == from_xml
+
+    def test_no_visibility_fraction_was_invented(self, boxes):
+        """occluded is what the annotator marked; a number would be fiction."""
+        for b in boxes:
+            assert 'visibility' not in b
+            assert b['occluded'] in (True, False)
+
+
 class TestGtStateMachine:
     """
     UNANNOTATED -> ANNOTATED_PENDING_QC -> VERIFIED.

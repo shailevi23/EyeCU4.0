@@ -151,6 +151,10 @@ def validate_gt_content(root: Path, only=None):
                         f'{tag} f{f_} id{i_}: role {row.get("role")!r} not in {sorted(ROLES)}')
             n += _check(errors, row.get('class') != 'ball',
                         f'{tag} f{f_}: ball present in human GT')
+            # a boolean, never a fabricated visibility fraction
+            n += _check(errors, isinstance(row.get('occluded', False), bool),
+                        f'{tag} f{f_} id{i_}: occluded must be a boolean, got '
+                        f'{row.get("occluded")!r}')
 
         for f_, rows in per_frame.items():
             ids = [r['id'] for r in rows]

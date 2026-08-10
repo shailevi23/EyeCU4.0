@@ -266,6 +266,58 @@ class TestRealCvatExportShape:
                 sorted(b['frame'] for b in syn if b['id'] == ident)
 
 
+class TestOcclusionIsCarriedAndInert:
+    """
+    The annotator's occluded marks must survive into canonical GT, and must
+    change nothing else.
+
+    Recovering metadata from a re-import is only safe if the re-import is
+    otherwise a no-op. The test flips every occlusion flag in the same XML and
+    asserts that frame, identity, bbox, role and ORDER are byte-identical --
+    so a later re-import to recover metadata cannot quietly move a box.
+    """
+
+    def _parse(self, tmp_path, xml, name):
+        p = tmp_path / name
+        p.write_text(xml, encoding='utf-8')
+        return parse_cvat_video(p, n_frames=300)
+
+    def test_every_box_carries_a_boolean_occluded(self, tmp_path):
+        boxes, _, _ = self._parse(tmp_path, REAL_CVAT, 'a.xml')
+        assert boxes
+        for b in boxes:
+            assert isinstance(b['occluded'], bool), b
+
+    def test_occluded_marks_are_recovered(self, tmp_path):
+        marked = REAL_CVAT.replace(
+            'frame="2" keyframe="0" outside="0" occluded="0"',
+            'frame="2" keyframe="0" outside="0" occluded="1"')
+        boxes, _, _ = self._parse(tmp_path, marked, 'b.xml')
+        occ = [b for b in boxes if b['occluded']]
+        assert len(occ) == 1 and occ[0]['frame'] == 3, occ
+
+    def test_flipping_occlusion_changes_nothing_else(self, tmp_path):
+        plain, _, _ = self._parse(tmp_path, REAL_CVAT, 'c.xml')
+        flipped, _, _ = self._parse(
+            tmp_path, REAL_CVAT.replace('occluded="0"', 'occluded="1"'), 'd.xml')
+        assert len(plain) == len(flipped)
+        strip = lambda bs: [{k: v for k, v in b.items() if k != 'occluded'}
+                            for b in bs]
+        assert strip(plain) == strip(flipped), 'occlusion must be inert'
+        assert all(b['occluded'] for b in flipped)
+        assert not any(b['occluded'] for b in plain)
+
+    def test_occlusion_holds_across_interpolated_frames(self, tmp_path):
+        """An interpolated frame inherits occlusion from the shape before it."""
+        marked = FIXTURE.replace(
+            '<box frame="0" outside="0" occluded="0" keyframe="1" xtl="100"',
+            '<box frame="0" outside="0" occluded="1" keyframe="1" xtl="100"')
+        boxes, _, _ = self._parse(tmp_path, marked, 'e.xml')
+        got = {b['frame']: b['occluded'] for b in boxes if b['id'] == 1}
+        assert got[1] is True and got[2] is True and got[4] is True
+        assert got[8] is False, 'the next keyframe ends the occluded run'
+
+
 def _import_into_package(tmp_path):
     """Run the real importer against a one-sequence copy of the real package."""
     from tools.import_tracking_gt_cvat import main as import_main

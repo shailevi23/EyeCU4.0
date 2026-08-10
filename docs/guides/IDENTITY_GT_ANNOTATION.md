@@ -139,6 +139,50 @@ package is never written to.
 If it fails, **stop** — the importer or the export settings need fixing before
 any full annotation.
 
+## Box convention
+
+**Tight visible-person extent with a small practical tolerance at this
+resolution; no deliberate horizontal safety margin; no shadow; do not infer
+fully hidden body extent; a partially visible person is annotated
+consistently.**
+
+The authority is the image. GT is never tuned for IoU agreement with the
+detector under evaluation, in either direction — a benchmark adjusted to
+flatter the thing it measures has stopped measuring it.
+
+A QA audit of women_1 found GT boxes about 1.39x wider and 1.15x taller than
+the detector's, with centres coincident. At these target sizes that is roughly
+**4.6 px of total width** on 13–18 px people, so read the ratio with the
+absolute number beside it. That is a recorded observation, not a reason to
+resize anything: automatic resizing is forbidden, and women_1 stands unless
+human visual QC finds clearly excessive background margin. Full record in
+[experiments/tracking_v2/gt_conventions.json](../../experiments/tracking_v2/gt_conventions.json).
+
+## When someone disappears and comes back
+
+**A long-gap reconnect is never accepted automatically.** Every such event is
+recorded `HUMAN_REVIEW_REQUIRED` and stays there until a person decides.
+
+- Same physical person confidently established across the gap → **keep the same
+  identity**.
+- Genuinely uncertain → **do not guess**. Start a new GT identity and record an
+  uncertain-reentry QC event.
+- Role or team kit matching is **not** proof of physical identity. Twenty-two
+  people wear two kits.
+- Tracker output and appearance embeddings **must not** inform the decision.
+  The benchmark exists to judge trackers; GT built from one would be marking
+  its own homework.
+
+Review aids, per identity:
+
+```bash
+python tools/render_identity_qc_clips.py --sequence <seq> --ids 16,14,12
+```
+
+~1 s before the disappearance and after the reappearance, target highlighted,
+others dimmed. The reported jump is **image-space** displacement, and the
+camera moves during these gaps — it is not how far the person walked.
+
 ## The workflow
 
 0. **Build the annotation clips** (after the smoke test passes):
@@ -165,7 +209,9 @@ any full annotation.
    when they return. No box is emitted while a track is outside.
 6. **Occluded but visible stays annotated.** `occluded=1` with a box is the
    right annotation for a partly hidden player; `outside` is for *not visible
-   at all*. Guessing a box for someone you cannot see invents GT.
+   at all*. Guessing a box for someone you cannot see invents GT. The
+   `occluded` flag is preserved into the canonical JSON as a boolean — mark it
+   honestly, it is kept.
 7. **Keyframe sparsely, check densely.** Set keyframes where motion changes;
    CVAT interpolates linearly between them and the importer reproduces that
    exactly. Then scrub the whole sequence and fix drift.

@@ -1,0 +1,67 @@
+{
+ "record": "EyeCU-Tracking-Val-v1 GT annotation conventions and methodological decisions",
+ "recorded": "2026-08-10",
+ "status": "FROZEN before the remaining three sequences are annotated",
+ "applies_to": ["austin_fc_vs__club_tijuana_284", "bayern_munich_3-1_chelsea_228",
+                "women_1_239", "youth_premier_league_1133"],
+
+ "box_convention": {
+  "rule": "Tight visible-person extent with a small practical tolerance at this resolution; no deliberate horizontal safety margin; no shadow; do not infer fully hidden body extent; a partially visible person is annotated consistently.",
+  "authority": "the image",
+  "not_the_authority": "the A@960 detector. GT is not tuned for IoU agreement with the model under evaluation, in either direction.",
+  "women_1_decision": "KEEP the existing annotation. It is altered only where human visual QC identifies clearly excessive background margin -- never automatically, and never from an IoU statistic.",
+  "automatic_resizing": "FORBIDDEN"
+ },
+
+ "box_audit_observation": {
+  "status": "QA OBSERVATION, not a reason to alter GT",
+  "measured_against": "the frozen detector preannotations, all 300 frames of women_1_239",
+  "matched_pairs_iou_ge_0.2": 2902,
+  "width_ratio_gt_over_detector": {"mean": 1.401, "median": 1.394, "sd": 0.276},
+  "height_ratio_gt_over_detector": {"mean": 1.153, "median": 1.151, "sd": 0.141},
+  "centre_offset_px": {"dx_mean": 0.10, "dy_mean": 0.48},
+  "median_box_px": {"gt": [17.8, 35.5], "detector": [13.2, 32.8]},
+  "iou": {"mean": 0.594, "median": 0.582, "ge_0.3": 0.993, "ge_0.5": 0.756, "ge_0.7": 0.217},
+  "scale_caveat": "At these target sizes the 1.39x width ratio is about 4.6 px of total width. A ratio computed on 13-18 px objects magnifies a difference of a few pixels, and must be read with the absolute numbers beside it.",
+  "apparent_person_width": "NOT MEASURED. No reliable estimator exists here for 13-18 px targets over grass, stands and crowd; chroma or GrabCut segmentation fails on the cases that matter and would count shadow as body, which the convention excludes. A number from an unreliable method would be worse than none.",
+  "artifacts": ["data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_gt_only.jpg",
+                "data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_with_detector.jpg",
+                "data/tracking_val_gt/audit/women_1_239/women_1_239_box_audit_sample.json"]
+ },
+
+ "hota_thresholds": {
+  "correction_of": "an earlier statement in this project that treated IoU >= 0.5 as the HOTA operating point",
+  "pinned_from": "https://raw.githubusercontent.com/JonathonLuiten/TrackEval/master/trackeval/metrics/hota.py",
+  "source_line": "self.array_labels = np.arange(0.05, 0.99, 0.05)",
+  "alphas": [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50,
+             0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95],
+  "n_alphas": 19,
+  "aggregation": "trackeval/metrics/_base_metric.py _summary_row reduces every float_array_field with 100 * np.mean(results_[h]); the reported HOTA is therefore the mean over all 19 alphas.",
+  "clear_and_identity": "CLEAR (MOTA) and Identity (IDF1) use a single similarity threshold, default 0.5.",
+  "consequence": "The IoU >= 0.5 share is a DIAGNOSTIC of box-convention agreement only. It is not the fraction of detections that fail aggregate HOTA, and must never be reported as such."
+ },
+
+ "occlusion": {
+  "rule": "CVAT occluded is preserved per visible annotation in the canonical EyeCU JSON as a BOOLEAN.",
+  "forbidden": "Inventing a numeric visibility fraction from that boolean. The annotator marked a binary fact; a fraction would look like a measurement while carrying no information anyone supplied.",
+  "authoritative_location": "data/tracking_val_gt/annotations/<sequence>.json",
+  "mot_export_visibility": 1,
+  "mot_visibility_justification": {
+   "pinned_from": "https://raw.githubusercontent.com/JonathonLuiten/TrackEval/master/trackeval/datasets/mot_challenge_2d_box.py",
+   "finding": "The MotChallenge2DBox loader never reads the visibility column. It slices time_data[:, 2:6] for boxes, column 1 for ids, column 6 for the zero-marked/confidence flag and column 7 for class; column 8 is untouched in both _load_raw_file and get_preprocessed_seq_data.",
+   "therefore": "Keeping visibility = 1 changes nothing for the HOTA, CLEAR or Identity metrics we intend to run.",
+   "revisit_if": "a later, explicitly defined evaluation protocol requires visibility-aware handling; at that point the canonical JSON already holds the annotator's marks."
+  }
+ },
+
+ "long_gap_identity_policy": {
+  "default": "A long-gap reconnect is NEVER accepted automatically. Every event is recorded HUMAN_REVIEW_REQUIRED until a person decides.",
+  "if_confident": "Where the same physical person can be confidently established across the disappearance and re-entry, preserve the same identity.",
+  "if_uncertain": "Do not guess. Start a NEW GT identity and record an uncertain-reentry QC event.",
+  "insufficient_evidence": "Role or team-kit similarity alone does not establish physical identity.",
+  "forbidden_evidence": ["tracker output", "appearance embeddings"],
+  "forbidden_because": "The benchmark exists to judge trackers. GT built from tracker output would be marking its own homework.",
+  "jump_distance_caveat": "The recorded jump is image-space displacement between the last and first observation. The camera moves during these gaps, so it is not a measure of how far the person walked.",
+  "open_events": "data/tracking_val_gt/qc_identity/<sequence>/identity_gap_review.json"
+ }
+}

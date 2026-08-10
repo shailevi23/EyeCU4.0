@@ -19,6 +19,11 @@ second after they return:
 Outputs an MP4 for scrubbing and a contact sheet for a side-by-side look. No
 tracker output is involved, and nothing is corrected: the tool cannot write to
 an annotation file.
+
+Every event is recorded as HUMAN_REVIEW_REQUIRED and stays there until a person
+decides. A reconnect is not accepted by default -- silently keeping an identity
+across a long absence would hand the tracker bake-off an answer key that
+already assumes the answer.
 """
 
 import argparse
@@ -187,7 +192,11 @@ def clip_for(root: Path, s: dict, ident: int, out_dir: Path, lead: int):
 
     print(f'  id {ident:>3} ({role:<10}) absent f{a}-{b}  {b-a+1} frames, '
           f'jump {jump:.0f}px   {len(before)} before + {len(after)} after')
-    return {'id': ident, 'role': role, 'gap': [a, b], 'gap_frames': b - a + 1,
+    return {'id': ident, 'role': role,
+            'status': 'HUMAN_REVIEW_REQUIRED',
+            'decision': None,
+            'decided_by': None,
+            'gap': [a, b], 'gap_frames': b - a + 1,
             'jump_px': round(jump, 1),
             'last_seen_frame': a - 1, 'reappears_frame': b + 1,
             'last_bbox': [round(v, 2) for v in last_box],
@@ -228,10 +237,27 @@ def main():
     (out_dir / 'identity_gap_review.json').write_text(json.dumps({
         'sequence': args.sequence,
         'purpose': 'human review of disappearance/reappearance identity',
+        'policy': {
+            'default': 'A long-gap reconnect is never accepted automatically. '
+                       'Every event starts at HUMAN_REVIEW_REQUIRED.',
+            'if_confident': 'The same physical person established across the '
+                            'disappearance keeps the same identity.',
+            'if_uncertain': 'Do not guess. Start a NEW GT identity and record '
+                            'an uncertain-reentry QC event.',
+            'insufficient_evidence': 'Role or team-kit similarity alone does '
+                                     'not establish physical identity.',
+            'forbidden': 'Tracker output and appearance embeddings must not '
+                         'inform this decision -- the benchmark exists to '
+                         'judge trackers, and GT built from one would be '
+                         'marking its own homework.',
+        },
         'decided_by': 'human, from the footage',
         'tracker_output_used': False,
+        'embeddings_used': False,
         'alters_annotations': False,
         'lead_frames': lead,
+        'open_events': sum(1 for r in recs
+                           if r['status'] == 'HUMAN_REVIEW_REQUIRED'),
         'events': recs,
     }, indent=1), encoding='utf-8')
     print(f'\nwritten to {out_dir}')
