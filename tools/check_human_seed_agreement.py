@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 """
-Compare identity annotation against the reviewed human geometry that already
-exists for some frames (see tools/build_human_gt_seed.py).
+Compare identity annotation against the reference geometry that already exists
+for some frames (see tools/build_human_gt_seed.py).
 
-Report only. It never edits annotations, because two human passes disagreeing
-is information -- silently overwriting one with the other would throw away the
-only independent check this benchmark has.
+The reference has UNCONFIRMED provenance, so a disagreement does not mean the
+annotation is wrong -- it means the two passes differ and a person should look.
+The annotation is the authority; this is a prompt to check, never a correction.
+
+Report only. It never edits annotations.
 
 What a disagreement means:
 
-  missing      the seed has a person the identity pass did not annotate
-  extra        the identity pass has a person the seed does not -- usually
+  missing      the reference has a person the identity pass did not annotate
+  extra        the identity pass has a person the reference does not -- usually
                fine, the detector-era pass was not required to be exhaustive
-  role         same box, different class: one of the two passes is wrong
-  loose        matched but IoU below --iou: geometry drifted
+  role         same box, different class: worth a look either way
+  loose        matched but IoU below --iou: geometry differs
 
-Run it before QC confirmation. Resolve `missing` and `role` in CVAT; `extra`
-and `loose` are judgement calls for the reviewer.
+Run it before QC confirmation, as a prompt for review.
 """
 
 import argparse
@@ -64,7 +65,7 @@ def compare(root: Path, seq: str, ann_path: Path, iou_thresh=MATCH_IOU):
                     best, bi = v, i
             if bi < 0 or best < iou_thresh:
                 tally['missing'] += 1
-                issues.append(f'{seq} f{pf}: seed has a {sb["role"]} at '
+                issues.append(f'{seq} f{pf}: reference has a {sb["role"]} at '
                               f'{sb["bbox"]} with no annotated counterpart')
                 continue
             used.add(bi)
@@ -72,12 +73,12 @@ def compare(root: Path, seq: str, ann_path: Path, iou_thresh=MATCH_IOU):
             if got[bi]['role'] != sb['role']:
                 tally['role'] += 1
                 issues.append(f'{seq} f{pf} id{got[bi]["id"]}: annotated as '
-                              f'{got[bi]["role"]}, reviewed detector GT says '
+                              f'{got[bi]["role"]}, reference geometry says '
                               f'{sb["role"]}')
             if best < 0.8:
                 tally['loose'] += 1
                 issues.append(f'{seq} f{pf} id{got[bi]["id"]}: IoU {best:.2f} '
-                              f'against reviewed geometry')
+                              f'against reference geometry')
         tally['extra'] += len(got) - len(used)
         tally['seed_frames'] += 1
     return issues, tally
@@ -112,7 +113,8 @@ def main():
 
     print(f'\nTOTAL  matched {grand["matched"]}  missing {grand["missing"]}  '
           f'extra {grand["extra"]}  role {grand["role"]}  loose {grand["loose"]}')
-    print('Report only -- nothing was modified.')
+    print('Report only -- nothing was modified. The reference has UNCONFIRMED')
+    print('provenance; the annotation is the authority.')
 
 
 if __name__ == '__main__':

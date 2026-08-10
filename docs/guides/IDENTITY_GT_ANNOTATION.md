@@ -12,8 +12,10 @@ metrics the entire investigation depends on.
 
 ```
 data/tracking_val_gt/
-  sequences/<seq>/img1/000001.jpg .. 000300.jpg   frames, 1-based
+  sequences/<seq>/img1/000001.jpg .. 000300.jpg   frames, 1-based  (canonical)
   sequences/<seq>/seqinfo.ini                     MOT sequence header
+  cvat_video/<seq>.mp4                            what you upload to CVAT
+  cvat_video/<seq>.provenance.json                its verified frame mapping
   preannotations/<seq>.cvat.xml                   detector boxes, NO identity
   preannotations/<seq>.det.txt                    same, MOT det format (id = -1)
   manifest.json                                   identity_gt_status: UNANNOTATED
@@ -23,6 +25,33 @@ The preannotations are detector output. They carry **no identity** by
 construction — the validator refuses the package if a `<track>` element or a
 non-`-1` id column appears in them, because identity that came from a tracker
 cannot be used to score trackers.
+
+## Upload the MP4, never the JPEG folder
+
+CVAT picks the annotation mode from what you upload:
+
+| Upload | CVAT mode | Objects you can create |
+|---|---|---|
+| **video** | interpolation | **tracks** — what this benchmark needs |
+| images | annotation | shapes — no identity, ever |
+
+Our importer reads `<track>` semantics. A task made from `img1/` is an image
+task, and no amount of care during annotation recovers identity from it. So
+upload `cvat_video/<seq>.mp4`.
+
+The MP4 is a **UI vehicle only**. Canonical provenance stays with the frozen
+package: `img1/000001.jpg` is package frame 1, which is source frame
+`source_frame_range[0]`. Nothing measured comes from the MP4's pixels — it
+exists so CVAT offers track mode.
+
+Each clip is built by [build_cvat_video_clips.py](../../tools/build_cvat_video_clips.py)
+from the frozen frames and then verified by decoding it back: exact frame
+count, decoded frame 0 = package frame 1, every decoded frame matching its own
+package frame better than its neighbours, no duplicated frames, 640×360, and
+the container frame rate equal to the source's exact rational rate (taken from
+`ffprobe r_frame_rate`, not reconstructed from a rounded decimal). The record
+lands in `<seq>.provenance.json`; a clip that fails verification is deleted
+rather than shipped.
 
 ## Preannotations are reference only
 
@@ -45,30 +74,32 @@ Use them as a **cross-check**: open the XML if you want to see where the
 detector fired, or compare counts afterwards. Nothing in the pipeline reads
 them as annotation input.
 
-## Some frames already have your reviewed boxes
+## 42 frames have existing labels — reference only, provenance unconfirmed
 
-42 of the 1,200 frames were hand-corrected during detector labelling, carrying
-560 reviewed human boxes (481 player, 22 goalkeeper, 57 referee; 28 ball boxes
-dropped). Those are in `human_seed/<seq>.json`, in absolute pixels on the
-640x360 package frames.
+42 of the 1,200 frames were already labelled during detector annotation: 560
+boxes (481 player, 22 goalkeeper, 57 referee; 28 ball boxes dropped), in
+`human_seed/<seq>.json` as absolute pixels on the 640×360 package frames.
 
-Overlap was established from source-frame provenance and then confirmed
-pixel-wise: each seeded frame records its mean absolute difference to the
-packaged frame and the ratio to the nearest neighbouring frame, and a frame is
-only accepted when the correct frame wins by more than 2x. Filenames agreeing
-is not evidence.
+**These are not ground truth.** They began as output of one Roboflow model and
+were later modified — 90 boxes added, 32 classes changed — by a process this
+repository does not record. The label pipeline has no reviewed flag, only
+`status: draft`. Until someone can say how those edits were reviewed, the file
+is marked `provenance_status: UNCONFIRMED` and must not be adopted as tracking
+GT.
 
-Do not redraw those boxes. Where a seeded frame falls inside a track, place the
-keyframe there and match the reviewed geometry. After annotation:
+Overlap itself *is* confirmed: source-frame provenance, then a pixel check in
+which each frame beat its neighbours by at least 2.3×. It is the labels, not
+the frame identification, that are uncertain.
+
+Use them as a visual reference while annotating, and afterwards as a
+cross-check:
 
 ```bash
 python tools/check_human_seed_agreement.py
 ```
 
-reports where the identity pass and the detector-era pass disagree — a missing
-person, a different role, or drifted geometry. It is report-only: two human
-passes disagreeing is information, and overwriting one with the other would
-throw away the only independent check this benchmark has.
+It reports where the two passes differ. Report-only, and your annotation is the
+authority — a disagreement is a prompt to look, not a correction to apply.
 
 The seed carries **no identity**. Nothing from the detector era can.
 
@@ -79,16 +110,20 @@ CVAT writes. It cannot prove your CVAT version and export dialog produce that
 XML. A version that numbers frames differently or writes tracks as shapes would
 pass every unit test and silently corrupt 1,200 frames of annotation.
 
-1. Make a task from the **first 10 frames only** of `women_1_239`
-   (`sequences/women_1_239/img1/000001.jpg` .. `000010.jpg`) — it is the
-   least crowded sequence, ~11 people per frame.
-2. Annotate **2 tracks** with **different roles** (e.g. one `player`, one
-   `referee`).
-3. On track A: keyframe frames 1 and 5 and let CVAT interpolate between them;
-   mark `outside` for two frames; then bring the **same track** back and
-   keyframe it again through frame 10.
-4. Track B: visible throughout, keyframe the first and last frame.
-5. Export as **CVAT for video 1.1**, then:
+1. **Create task** → name `smoke` → labels `player`, `goalkeeper`, `referee` →
+   **Select files** → upload the single file
+   `data/tracking_val_gt/cvat_video/women_1_239_smoke10.mp4` → Submit.
+   It is 10 frames of the least crowded sequence (~11 people per frame).
+   Because it is a video, CVAT opens it in interpolation mode.
+2. Open the job. Annotate **2 tracks** with **different roles** — press **N**
+   with a track label selected, and make sure the object is a *Track*, not a
+   Shape.
+3. Track A: box it on frame 0, move to frame 4 and adjust the box (that makes a
+   keyframe and CVAT interpolates 1–3); on frame 5 mark it **outside**; on
+   frame 7 make it visible again — **same track**, do not create a new one —
+   and adjust it once more on frame 9.
+4. Track B: box it on frame 0, adjust on frame 9, visible throughout.
+5. **Menu → Export job dataset → CVAT for video 1.1**, then:
 
 ```bash
 python tools/smoke_test_cvat_export.py --export path/to/smoke.xml
@@ -106,10 +141,18 @@ any full annotation.
 
 ## The workflow
 
+0. **Build the annotation clips** (after the smoke test passes):
+
+   ```bash
+   python tools/build_cvat_video_clips.py
+   ```
+
+   Four verified 300-frame MP4s in `data/tracking_val_gt/cvat_video/`.
+
 1. **Create one CVAT task per sequence.** Name it exactly the sequence tag
-   (e.g. `bayern_munich_3-1_chelsea_228`). Upload
-   `data/tracking_val_gt/sequences/<seq>/img1/` as an image sequence, ordered by
-   filename.
+   (e.g. `bayern_munich_3-1_chelsea_228`) and upload the single file
+   `cvat_video/<seq>.mp4`. **Not** the `img1/` folder — that makes an image
+   task, which cannot hold identity.
 2. **Create exactly three labels:** `player`, `goalkeeper`, `referee`.
    No `ball`, no other labels — the importer rejects anything else.
 3. **Annotate in track mode**, not shape mode. Every person is one track that
@@ -185,7 +228,9 @@ rejects it.
 |---|---|
 | New track id after an occlusion | Fabricates an ID switch the tracker never made |
 | Deleting boxes instead of `outside` | GT claims the person was there; recall looks worse than it is |
+| Uploading the `img1/` folder | Makes an image task; shapes only, no identity |
 | Annotating in shape mode | No identity at all; the importer refuses the export |
 | Exporting "CVAT for images" | Same — the importer detects it and tells you to re-export |
 | Importing the preannotations as a starting point | GT becomes an echo of the detector under test |
+| Treating `human_seed/` as GT | Its provenance is unconfirmed; it is reference only |
 | Editing the manifest status by hand | Blocked; the QC record hashes will not match |

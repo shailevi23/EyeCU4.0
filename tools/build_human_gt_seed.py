@@ -1,14 +1,19 @@
 #!/usr/bin/env python
 """
-Extract the human-corrected detector GT that already covers tracking frames.
+Extract the detector labels that already cover tracking frames.
 
-Some frames of the four tracking sequences were already hand-corrected during
-detector labelling. Those boxes are reviewed human geometry, so asking anyone to
-redraw them wastes effort and, worse, produces two different human answers for
-the same frame.
+PROVENANCE IS UNCONFIRMED. These labels began as output of one Roboflow model
+and were later modified -- boxes added, classes changed -- by something this
+repository does not record. The label pipeline has no reviewed/approved flag,
+only `status: draft`. The user states they have never annotated in CVAT, so the
+review path, if any, is unknown.
+
+They are therefore REFERENCE GEOMETRY, not ground truth. They may be consulted
+during annotation and used afterwards as a cross-check, and they must not be
+adopted as tracking GT unless someone can say how they were reviewed.
 
 This tool finds them and writes them to `human_seed/<seq>.json`. It is separate
-from the frozen detector preannotations, which are model output and stay
+from the frozen detector preannotations, which are pure model output and stay
 untouched: mixing the two would destroy the distinction the whole benchmark
 rests on.
 
@@ -22,6 +27,9 @@ without rerunning anything.
 
 The seed carries geometry and class only. It carries NO identity -- identity is
 the new work, and no detector-era artifact can supply it.
+
+The file name says `human_seed` for continuity with existing paths; the
+`provenance_status` field inside each file is what governs how it may be used.
 """
 
 import argparse
@@ -127,8 +135,12 @@ def build(root: Path, data: Path, dry_run=False):
 
         out = {
             'sequence': seq,
-            'purpose': 'reviewed human geometry for frames already labelled '
-                       'during detector annotation',
+            'purpose': 'reference geometry for frames already labelled during '
+                       'detector annotation',
+            'provenance_status': 'UNCONFIRMED',
+            'authoritative': False,
+            'usage': 'Consult during annotation and cross-check afterwards. '
+                     'Do NOT adopt as tracking GT.',
             'contains_identity': False,
             'identity_note': 'Identity is NOT present and cannot be derived '
                              'from this file. It remains manual work.',
@@ -136,7 +148,13 @@ def build(root: Path, data: Path, dry_run=False):
             'class_mapping': {'reused': sorted(HUMAN_CLASSES),
                               'dropped': ['ball']},
             'provenance': {
-                'source': 'data/labels (detector GT, hand-corrected)',
+                'source': 'data/labels',
+                'known': 'drafted by the Roboflow model recorded in '
+                         'model_draft_record, then modified by an unrecorded '
+                         'process (boxes added, classes changed)',
+                'unknown': 'whether, by whom, and to what standard those '
+                           'modifications were reviewed; the label pipeline '
+                           'carries no reviewed flag, only status=draft',
                 'overlap_established_by': 'source frame provenance '
                                           '(data/manifest.json frame_index)',
                 'overlap_confirmed_by': 'pixel comparison against the packaged '
@@ -169,7 +187,8 @@ def build(root: Path, data: Path, dry_run=False):
           f'{tot["goalkeeper"]:>5}{tot["referee"]:>5}{tot["ball_excluded"]:>11}'
           f'{tot["rejected"]:>10}')
     reusable = tot['player'] + tot['goalkeeper'] + tot['referee']
-    print(f'\n{reusable} reviewed human boxes on {tot["frames"]} of 1200 frames.')
+    print(f'\n{reusable} reference boxes on {tot["frames"]} of 1200 frames.')
+    print('PROVENANCE UNCONFIRMED: reference and cross-check only, not GT.')
     print('Identity for all 1200 frames remains manual work.')
     if dry_run:
         print('\n(dry run -- nothing written)')

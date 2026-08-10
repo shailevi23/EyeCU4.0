@@ -1,9 +1,10 @@
 """
-Reuse of existing human detector GT inside the tracking benchmark.
+Reuse of existing detector labels as reference geometry in the tracking
+benchmark.
 
 The risk being tested is not that the seed is missing -- it is that the seed
 quietly carries something it must not: an identity, a ball, a box from the
-wrong frame, or detector output masquerading as reviewed geometry.
+wrong frame, or a provenance claim nobody can support.
 """
 
 import json
@@ -71,6 +72,14 @@ class TestSeedContent:
             assert 'preannotation' in s['provenance']['is_not']
             assert 'data/labels' in s['provenance']['source']
 
+    def test_seed_does_not_claim_to_be_ground_truth(self, seeds):
+        """The label edits were never traced to a reviewer; say so in the file."""
+        for s in seeds:
+            assert s['provenance_status'] == 'UNCONFIRMED'
+            assert s['authoritative'] is False
+            assert 'Do NOT adopt as tracking GT' in s['usage']
+            assert s['provenance']['unknown']
+
     def test_seed_does_not_touch_the_frozen_preannotations(self):
         man = json.loads((ROOT / 'manifest.json').read_text(encoding='utf-8'))
         for s in man['sequences']:
@@ -112,7 +121,7 @@ class TestAgreementCheck:
                                     'role': 'player'}])
         issues, tally = compare(root, 'seq', ann)
         assert tally['role'] == 1
-        assert any('reviewed detector GT says referee' in m for m in issues)
+        assert any('reference geometry says referee' in m for m in issues)
 
     def test_missing_person_is_reported(self, tmp_path):
         root = _seed_file(tmp_path, [{'bbox': BOX, 'role': 'player'}])
