@@ -1,0 +1,25 @@
+{
+ "sequence": "women_1_239",
+ "generated_from": "CVAT track labels via import_tracking_gt_cvat.py",
+ "identity_roles": {
+  "1": "player",
+  "2": "player",
+  "3": "player",
+  "4": "player",
+  "5": "player",
+  "6": "player",
+  "7": "player",
+  "8": "player",
+  "9": "referee",
+  "10": "player",
+  "11": "player",
+  "12": "player",
+  "13": "player",
+  "14": "player",
+  "15": "goalkeeper",
+  "16": "referee",
+  "17": "player",
+  "18": "player",
+  "19": "player"
+ }
+}

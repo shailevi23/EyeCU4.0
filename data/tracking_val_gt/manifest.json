@@ -156,5 +156,17 @@
       "mot_gt_expected": "mot/youth_premier_league_1133/gt/gt.txt",
       "roles_expected": "roles/youth_premier_league_1133.json"
     }
-  ]
+  ],
+  "sequence_review": {
+    "women_1_239": {
+      "identity_status": "IDENTITY_ACCEPTED_PENDING_FINAL_QC",
+      "accepted": "2026-08-10",
+      "review_source": "human annotator",
+      "tracker_output_used": false,
+      "embeddings_used": false,
+      "long_gap_events_open": 0,
+      "long_gap_decisions": "qc_identity/women_1_239/identity_gap_decisions.json",
+      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all four sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
+    }
+  }
 }
