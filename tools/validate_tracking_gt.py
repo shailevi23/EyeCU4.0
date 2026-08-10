@@ -6,6 +6,7 @@ Two distinct modes, because the dangerous failure is an empty or half-finished
 benchmark being mistaken for a finished answer key:
 
     --stage pre    package structure is ready for a human to annotate
+    --stage sequence  one finished sequence, checked on its own
     --stage post   annotations exist and are self-consistent
     --stage final  GT is VERIFIED: post passed AND human QC was confirmed, with
                    the confirmation still matching the artifacts on disk
@@ -108,16 +109,24 @@ def validate_pre(root: Path):
     return errors, n
 
 
-def validate_gt_content(root: Path):
+def validate_gt_content(root: Path, only=None):
     """
     GT content only: identities, boxes, roles, and the annotation-is-not-the-
     preannotation check. Kept separate from validate_pre so content rules can be
     exercised without a full 1,200-frame package on disk.
+
+    `only` restricts the check to one sequence. Sequences arrive one at a time
+    -- annotating 300 frames is a session, not a moment -- and a finished one
+    should be checkable immediately, while the mistakes are still fresh. It
+    narrows what is checked, never what is required: the benchmark still
+    reaches VERIFIED only when every sequence passes.
     """
     errors, n = [], 0
     man = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
     for s in man['sequences']:
         tag = s['sequence']
+        if only and tag != only:
+            continue
         ann = root / s['annotation_file_expected']
         n += _check(errors, ann.exists(), f'{tag}: annotation file missing')
         if not ann.exists():
@@ -228,18 +237,30 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--root', default='data/tracking_val_gt')
-    ap.add_argument('--stage', choices=['pre', 'post', 'final'], default='pre')
+    ap.add_argument('--stage', choices=['pre', 'post', 'final', 'sequence'],
+                    default='pre')
+    ap.add_argument('--sequence', default=None,
+                    help='with --stage sequence: check this sequence alone')
     args = ap.parse_args()
-    fn = {'pre': validate_pre, 'post': validate_post,
-          'final': validate_final}[args.stage]
-    errors, n = fn(Path(args.root))
+    if args.stage == 'sequence':
+        if not args.sequence:
+            sys.exit('--stage sequence requires --sequence <tag>')
+        errors, n = validate_gt_content(Path(args.root), only=args.sequence)
+    else:
+        fn = {'pre': validate_pre, 'post': validate_post,
+              'final': validate_final}[args.stage]
+        errors, n = fn(Path(args.root))
     print(f'{n} checks run  (stage={args.stage})')
     if errors:
         print(f'\nFAILED ({len(errors)}):')
         for e in errors[:40]:
             print(f'  - {e}')
         sys.exit(1)
-    if args.stage == 'pre':
+    if args.stage == 'sequence':
+        print(f'VALID: {args.sequence} content is self-consistent')
+        print('NOTE: one sequence only. The benchmark is not VERIFIED, and no '
+              'other sequence was checked.')
+    elif args.stage == 'pre':
         print('VALID: package structure is ready for manual annotation')
         print('NOTE: this says nothing about identity quality. Identity GT does '
               'not exist until --stage post passes.')

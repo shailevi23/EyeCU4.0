@@ -120,6 +120,33 @@ def qc(root: Path, seq: str, out_dir: Path, stride: int, render: bool):
     return issues
 
 
+def render_video(frames_dir: Path, out: Path, fps: str):
+    """
+    Encode the QC frames into one scrubbing video.
+
+    An identity error is a property of a person over time, so it is spotted by
+    watching, not by opening 300 stills. The video is a review aid built from
+    the QC frames; nothing reads it back.
+    """
+    import shutil
+    import subprocess
+    if not shutil.which('ffmpeg'):
+        print('  (ffmpeg not found; skipping video)')
+        return None
+    out.parent.mkdir(parents=True, exist_ok=True)
+    cmd = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y',
+           '-framerate', fps, '-start_number', '1',
+           '-i', str(frames_dir / '%06d.jpg'),
+           '-c:v', 'libx264', '-preset', 'slow', '-crf', '16',
+           '-pix_fmt', 'yuv420p', '-fps_mode', 'passthrough',
+           '-movflags', '+faststart', str(out)]
+    p = subprocess.run(cmd, capture_output=True, text=True)
+    if p.returncode != 0:
+        print(f'  (ffmpeg failed: {p.stderr[:300]})')
+        return None
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -128,13 +155,27 @@ def main():
     ap.add_argument('--stride', type=int, default=1)
     ap.add_argument('--no-render', action='store_true',
                     help='report only; draw nothing')
+    ap.add_argument('--video', action='store_true',
+                    help='also encode the QC frames into an MP4 for scrubbing')
     args = ap.parse_args()
     root = Path(args.root)
     man = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
     seqs = [args.sequence] if args.sequence else [s['sequence'] for s in man['sequences']]
     total = 0
     for s in seqs:
-        total += len(qc(root, s, root / 'qc' / s, args.stride, not args.no_render))
+        out_dir = root / 'qc' / s
+        total += len(qc(root, s, out_dir, args.stride, not args.no_render))
+        if args.video and not args.no_render:
+            if args.stride != 1:
+                print('  (video needs --stride 1; skipping)')
+                continue
+            from fractions import Fraction
+            spec = next(x for x in man['sequences'] if x['sequence'] == s)
+            f = Fraction(float(spec['native_fps'])).limit_denominator(1000)
+            vid = render_video(out_dir, root / 'qc' / f'{s}_qc.mp4',
+                               f'{f.numerator}/{f.denominator}')
+            if vid:
+                print(f'  QC video: {vid}')
     print(f'\ntotal QC issues: {total}')
 
 
