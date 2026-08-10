@@ -23,7 +23,12 @@ came out.
 
 Everything runs on a scratch copy. The real package is never written to.
 
-    python tools/smoke_test_cvat_export.py --export path/to/smoke.xml
+Checks are split. A CONTRACT failure means CVAT does not write what we parse,
+and annotation must not start. A TASK failure means the smoke task did not
+exercise something -- the tooling is fine, but the untested path stays
+untested. Exit code 1 for contract, 2 for coverage.
+
+    python tools/smoke_test_cvat_export.py --export path/to/annotations.xml
 """
 
 import argparse
@@ -45,8 +50,17 @@ from trackers.detector import HUMAN_CLASSES  # noqa: E402
 SMOKE_FRAMES = 10
 
 
-def check(results, name, ok, detail=''):
-    results.append((ok, name, detail))
+# A check is either about the IMPORTER CONTRACT -- does CVAT write what we
+# parse -- or about TASK COVERAGE -- did the annotator actually exercise the
+# thing being tested. Only contract failures mean the tooling is wrong. Task
+# failures mean the smoke task was incomplete, which is a different problem
+# with a different fix, and conflating the two produces a scary STOP for a
+# missing box.
+CONTRACT, TASK = 'contract', 'task'
+
+
+def check(results, name, ok, detail='', kind=CONTRACT):
+    results.append((ok, name, detail, kind))
     return ok
 
 
@@ -62,9 +76,10 @@ def run(export_xml: Path, root: Path, seq: str, keep: Path = None):
     boxes, roles, warn = parse_cvat_video(export_xml, n_frames=s['frame_count'])
     check(results, 'export parses as CVAT for video 1.1 (has <track>)',
           bool(boxes), f'{len(boxes)} boxes, {len(roles)} tracks')
-    check(results, 'exactly 2 tracks', len(roles) == 2, f'got {len(roles)}')
+    check(results, 'exactly 2 tracks', len(roles) == 2, f'got {len(roles)}',
+          TASK)
     check(results, 'two different roles', len(set(roles.values())) == 2,
-          str(dict(roles)))
+          str(dict(roles)), TASK)
     check(results, 'roles are EyeCU human classes',
           set(roles.values()) <= set(HUMAN_CLASSES), str(sorted(set(roles.values()))))
 
@@ -95,7 +110,7 @@ def run(export_xml: Path, root: Path, seq: str, keep: Path = None):
               for i, f in per_id.items()}
     with_gap = {i: g for i, g in gapped.items() if g}
     check(results, 'one track has an outside interval (no boxes emitted there)',
-          len(with_gap) >= 1, str(with_gap))
+          len(with_gap) >= 1, str(with_gap), TASK)
     check(results, 'that track reappears under the SAME identity',
           any(max(per_id[i]) > max(g) for i, g in with_gap.items()),
           str({i: (min(per_id[i]), g, max(per_id[i])) for i, g in with_gap.items()}))
@@ -104,7 +119,7 @@ def run(export_xml: Path, root: Path, seq: str, keep: Path = None):
     moved = {i: len({tuple(b['bbox']) for b in boxes if b['id'] == i})
              for i in per_id}
     check(results, 'boxes vary across frames (interpolation decoded)',
-          any(v > 1 for v in moved.values()), str(moved))
+          any(v > 1 for v in moved.values()), str(moved), TASK)
 
     # ---- 6. geometry --------------------------------------------------------
     bad = [b for b in boxes
@@ -200,18 +215,36 @@ def main():
     results = run(Path(args.export), Path(args.root), args.sequence,
                   Path(args.keep) if args.keep else None)
     print()
-    for ok, name, detail in results:
+    for ok, name, detail, kind in results:
         mark = 'PASS' if ok else 'FAIL'
-        print(f'  [{mark}] {name}' + (f'   -- {detail}' if detail else ''))
-    failed = [r for r in results if not r[0]]
-    print(f'\n{len(results) - len(failed)}/{len(results)} checks passed')
-    if failed:
+        tag = '' if kind == CONTRACT else '  (task coverage)'
+        print(f'  [{mark}] {name}{tag}' + (f'   -- {detail}' if detail else ''))
+
+    bad_contract = [r for r in results if not r[0] and r[3] == CONTRACT]
+    bad_task = [r for r in results if not r[0] and r[3] == TASK]
+    passed = len([r for r in results if r[0]])
+    print(f'\n{passed}/{len(results)} checks passed')
+
+    if bad_contract:
         print('\nSTOP. The real CVAT export does not match what the importer '
-              'expects.\nFix the importer (or the export settings) before any '
-              'full annotation begins.')
+              'expects:')
+        for _, name, detail, _ in bad_contract:
+            print(f'  - {name}   {detail}')
+        print('Fix the importer (or the export settings) before any full '
+              'annotation begins.')
         sys.exit(1)
-    print('Real CVAT export matches the importer contract. Full annotation may '
-          'begin.')
+
+    print('\nIMPORTER CONTRACT: holds. Every conversion check passed on a real '
+          'CVAT export.')
+    if bad_task:
+        print('\nTASK COVERAGE: incomplete. The tooling is fine, but the smoke '
+              'task did not exercise:')
+        for _, name, detail, _ in bad_task:
+            print(f'  - {name}   {detail}')
+        print('\nWhat was not exercised stays unverified. Add it, re-export, '
+              'and run this again.')
+        sys.exit(2)
+    print('Full annotation may begin.')
 
 
 if __name__ == '__main__':

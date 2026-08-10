@@ -47,6 +47,46 @@ FIXTURE = """<?xml version="1.0" encoding="utf-8"?>
 </annotations>
 """
 
+# Trimmed from a REAL app.cvat.ai export (job 4344203, women_1_239 frames 0-9).
+# It differs from the fixture above in ways worth pinning down:
+#   * every frame is written out, including interpolated ones (keyframe="0"),
+#     not just the keyframes
+#   * tracks carry source="manual", boxes carry z_order, and <box> is an open
+#     element with whitespace inside rather than self-closing
+#   * the frame after an outside marker is simply absent, not marked
+# All of that must decode to the same thing as the sparse fixture.
+REAL_CVAT = """<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <job><id>4344203</id><size>10</size><mode>interpolation</mode>
+      <start_frame>0</start_frame><stop_frame>9</stop_frame>
+    </job>
+    <original_size><width>640</width><height>360</height></original_size>
+  </meta>
+  <track id="0" label="player" source="manual">
+    <box frame="0" keyframe="1" outside="0" occluded="0" xtl="206.22" ytl="148.71" xbr="233.82" ybr="206.68" z_order="0">
+    </box>
+    <box frame="1" keyframe="0" outside="0" occluded="0" xtl="206.22" ytl="148.71" xbr="233.82" ybr="206.68" z_order="0">
+    </box>
+    <box frame="2" keyframe="0" outside="0" occluded="0" xtl="206.22" ytl="148.71" xbr="233.82" ybr="206.68" z_order="0">
+    </box>
+    <box frame="3" keyframe="0" outside="0" occluded="0" xtl="206.22" ytl="148.71" xbr="233.82" ybr="206.68" z_order="0">
+    </box>
+    <box frame="4" keyframe="1" outside="0" occluded="0" xtl="206.22" ytl="148.71" xbr="233.82" ybr="206.68" z_order="0">
+    </box>
+    <box frame="5" keyframe="1" outside="1" occluded="0" xtl="206.22" ytl="148.71" xbr="233.82" ybr="206.68" z_order="0">
+    </box>
+    <box frame="7" keyframe="1" outside="0" occluded="0" xtl="206.90" ytl="148.63" xbr="232.30" ybr="208.84" z_order="0">
+    </box>
+    <box frame="8" keyframe="1" outside="0" occluded="0" xtl="204.84" ytl="148.63" xbr="230.24" ybr="208.84" z_order="0">
+    </box>
+    <box frame="9" keyframe="0" outside="0" occluded="0" xtl="204.84" ytl="148.63" xbr="230.24" ybr="208.84" z_order="0">
+    </box>
+  </track>
+</annotations>
+"""
+
 SHAPES_ONLY = """<?xml version="1.0" encoding="utf-8"?>
 <annotations>
   <version>1.1</version>
@@ -130,6 +170,53 @@ class TestCvatImport:
         boxes, _, warn = parse_cvat_video(p, n_frames=5)
         assert warn and any('outside 1..5' in w for w in warn)
         assert max(b['frame'] for b in boxes) <= 5
+
+
+class TestRealCvatExportShape:
+    """
+    Pinned against an actual app.cvat.ai export, not against what we assumed.
+
+    The synthetic fixture writes only keyframes; real CVAT writes every frame.
+    Both must decode identically, or the parser is agreeing with our
+    imagination rather than with CVAT.
+    """
+
+    @pytest.fixture
+    def real(self, tmp_path):
+        p = tmp_path / 'real.xml'
+        p.write_text(REAL_CVAT, encoding='utf-8')
+        return parse_cvat_video(p, n_frames=300)
+
+    def test_dense_per_frame_boxes_decode(self, real):
+        boxes, roles, warn = real
+        assert roles == {1: 'player'}
+        assert warn == []
+
+    def test_outside_marker_and_absent_frame_both_yield_no_box(self, real):
+        """Frame 5 is marked outside; frame 6 is simply missing. Both drop."""
+        boxes, _, _ = real
+        frames = sorted(b['frame'] for b in boxes)
+        assert frames == [1, 2, 3, 4, 5, 8, 9, 10], frames
+
+    def test_reappearance_keeps_the_identity(self, real):
+        boxes, _, _ = real
+        assert {b['id'] for b in boxes if b['frame'] >= 8} == {1}
+
+    def test_geometry_survives_verbatim(self, real):
+        boxes, _, _ = real
+        first = next(b for b in boxes if b['frame'] == 1)
+        assert first['bbox'] == [206.22, 148.71, 233.82, 206.68]
+        last = next(b for b in boxes if b['frame'] == 10)
+        assert last['bbox'] == [204.84, 148.63, 230.24, 208.84]
+
+    def test_matches_the_synthetic_fixture_frame_pattern(self, tmp_path, real):
+        """The two fixtures disagree on encoding, agree on meaning."""
+        p = tmp_path / 'syn.xml'
+        p.write_text(FIXTURE, encoding='utf-8')
+        syn, _, _ = parse_cvat_video(p, n_frames=300)
+        real_boxes, _, _ = real
+        assert sorted(b['frame'] for b in real_boxes) == \
+            sorted(b['frame'] for b in syn if b['id'] == 1)
 
 
 def _import_into_package(tmp_path):
