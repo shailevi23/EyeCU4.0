@@ -14,8 +14,7 @@ from pathlib import Path
 
 import pytest
 
-from tools.build_cvat_video_clips import (NEIGHBOUR_MARGIN, encode, fps_fraction,
-                                          verify)
+from tools.build_cvat_video_clips import encode, fps_fraction, verify
 
 ROOT = Path(__file__).resolve().parents[1] / 'data' / 'tracking_val_gt'
 CLIPS = ROOT / 'cvat_video'
@@ -58,37 +57,54 @@ class TestRoundTripThroughMp4:
 
     def test_frame_count_is_exact(self, built):
         clip, img1, s = built
-        ok, checks, mapping, _ = verify(clip, img1, 6, 25.0,
-                                        s['frame_width'], s['frame_height'])
+        ok, checks, mapping = verify(clip, img1, 6, 25.0,
+                                     s['frame_width'], s['frame_height'])[:3]
         assert ok, [c for c in checks if not c['ok']]
         assert len(mapping) == 6
 
     def test_decoded_frame_zero_is_package_frame_one(self, built):
         clip, img1, s = built
-        _, _, mapping, _ = verify(clip, img1, 6, 25.0,
-                                  s['frame_width'], s['frame_height'])
+        mapping = verify(clip, img1, 6, 25.0,
+                         s['frame_width'], s['frame_height'])[2]
         assert mapping[0]['decoded_frame_0based'] == 0
         assert mapping[0]['package_frame_1based'] == 1
 
-    def test_every_frame_beats_its_neighbours(self, built):
-        """Ordering is checked against the frames, not assumed from the count."""
+    def test_every_frame_matches_its_own_package_frame(self, built):
+        """argmin, not a ratio: static footage has no margin to give."""
         clip, img1, s = built
-        _, _, _, worst = verify(clip, img1, 6, 25.0,
-                                s['frame_width'], s['frame_height'])
-        assert worst > NEIGHBOUR_MARGIN, worst
+        misaligned = verify(clip, img1, 6, 25.0,
+                            s['frame_width'], s['frame_height'])[6]
+        assert misaligned == [], misaligned
+
+    def test_shift_test_puts_the_minimum_at_offset_zero(self, built):
+        clip, img1, s = built
+        shifts = verify(clip, img1, 6, 25.0,
+                        s['frame_width'], s['frame_height'])[4]
+        assert all(v['argmin_offset'] == 0 for v in shifts.values()), shifts
+
+    def test_a_shifted_clip_is_caught(self, built, tmp_path):
+        """Encode frames 2..7 but verify as if they were 1..6."""
+        _, img1, s = built
+        bad = tmp_path / 'shifted.mp4'
+        encode(img1, bad, 6, '25/1', start=2)
+        ok, checks, _, _, shifts, _, misaligned, _ = verify(
+            bad, img1, 6, 25.0, s['frame_width'], s['frame_height'])
+        assert not ok
+        assert misaligned, 'an off-by-one clip must not pass'
+        assert shifts['all']['argmin_offset'] != 0
 
     def test_wrong_frame_count_is_detected(self, built):
         clip, img1, s = built
-        ok, checks, _, _ = verify(clip, img1, 7, 25.0,
-                                  s['frame_width'], s['frame_height'])
+        ok, checks = verify(clip, img1, 7, 25.0,
+                            s['frame_width'], s['frame_height'])[:2]
         assert not ok
         assert any(c['check'] == 'exact frame count' and not c['ok']
                    for c in checks)
 
     def test_wrong_fps_is_detected(self, built):
         clip, img1, s = built
-        ok, checks, _, _ = verify(clip, img1, 6, 30.0,
-                                  s['frame_width'], s['frame_height'])
+        ok, checks = verify(clip, img1, 6, 30.0,
+                            s['frame_width'], s['frame_height'])[:2]
         assert not ok
         assert any('fps' in c['check'] and not c['ok'] for c in checks)
 
@@ -100,6 +116,10 @@ class TestShippedSmokeClip:
     def rec(self):
         return json.loads((CLIPS / 'women_1_239_smoke10.provenance.json'
                            ).read_text(encoding='utf-8'))
+
+    def test_alignment_was_decided_by_argmin_not_by_a_margin(self, rec):
+        assert rec['argmin_failures'] == []
+        assert all(v['argmin_offset'] == 0 for v in rec['shift_test'].values())
 
     def test_clip_shipped_only_because_it_verified(self, rec):
         assert rec['verified'] is True

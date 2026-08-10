@@ -22,12 +22,23 @@ by decoding it back:
 
     exact frame count           decoded count == frame_count
     frame 0 -> package frame 1  decoded frame 0 best-matches 000001.jpg
-    ordered and complete        every decoded frame best-matches its own
-                                package frame, beating its neighbours
+    ordered and complete        every decoded frame matches ITS OWN package
+                                frame better than any frame within +/-2
+    no shift                    offset 0 minimises total difference over the
+                                whole clip AND over each third, so a shift
+                                starting midway cannot hide
     no duplicates               no two consecutive decoded frames identical
                                 where the package frames differ
     geometry                    640x360 preserved
     frame rate                  container fps == the sequence's native fps
+
+Alignment is decided by argmin, not by a ratio. Football footage contains
+stretches where consecutive frames differ less than the encoder's own noise --
+a wide static shot before a restart, for instance -- and there a
+"beat your neighbour by 1.5x" rule fails on perfectly aligned frames simply
+because there is nothing to distinguish. argmin is scale-free and does not
+care. The ratio is still computed and reported wherever the neighbouring
+package frames are distinguishable at all, as a strength-of-evidence figure.
 
 The verification record is written next to the clip. A clip that fails is
 deleted rather than shipped: a silently misaligned video would put every
@@ -40,6 +51,7 @@ failure this tool must not have.
 """
 
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
@@ -155,36 +167,90 @@ def verify(clip: Path, img1: Path, n: int, fps: float, W: int, H: int,
     cap.release()
     note('exact frame count', len(decoded) == n, f'{len(decoded)} decoded, {n} expected')
 
+    pkg = [imread(img1 / f'{start + k:06d}.jpg') for k in range(-1, n + 1)]
+
+    def pkg_at(k):
+        """Package frame for decoded index k, or None outside the clip."""
+        return pkg[k + 1] if -1 <= k <= n else None
+
     mapping, worst_ratio, misaligned, dupes = [], float('inf'), [], []
+    low_margin, unresolvable = [], 0
     for k, fr in enumerate(decoded[:n]):
         pf = start + k
-        own = mad(fr, imread(img1 / f'{pf:06d}.jpg'))
-        ratios = []
-        for off in (-1, 1):
-            nb = imread(img1 / f'{pf + off:06d}.jpg')
-            if nb is not None and own > 0:
-                ratios.append(mad(fr, nb) / own)
-        ratio = min(ratios) if ratios else float('inf')
-        worst_ratio = min(worst_ratio, ratio)
-        if ratio <= NEIGHBOUR_MARGIN:
+        own = mad(fr, pkg_at(k))
+
+        # Which nearby package frame does this decoded frame actually match?
+        # argmin is the right test: it is scale-free, so it works whether the
+        # scene is moving or static.
+        cands = [(mad(fr, pkg_at(k + o)), o) for o in (-2, -1, 1, 2)
+                 if pkg_at(k + o) is not None]
+        best_other, best_off = min(cands) if cands else (float('inf'), None)
+        ratio = best_other / own if own > 0 else float('inf')
+
+        # A margin only means something when the neighbouring PACKAGE frames
+        # differ from each other by more than the encoding noise. Where they do
+        # not, no pixel comparison can separate them -- that is a fact about the
+        # footage, not a failure. Those frames are counted, not silently passed.
+        steps = [mad(pkg_at(k), pkg_at(k + o)) for o in (-1, 1)
+                 if pkg_at(k + o) is not None]
+        resolvable = bool(steps) and max(steps) > own
+
+        if best_off is not None and best_other <= own:
             misaligned.append({'decoded_frame': k, 'package_frame': pf,
-                               'mad': round(own, 3), 'neighbour_ratio': round(ratio, 3)})
-        if k > 0 and mad(fr, decoded[k - 1]) == 0.0:
-            a = imread(img1 / f'{pf:06d}.jpg')
-            b = imread(img1 / f'{pf - 1:06d}.jpg')
-            if mad(a, b) > 0.0:
-                dupes.append(k)
+                               'mad': round(own, 3),
+                               'better_match_at_offset': best_off,
+                               'its_mad': round(best_other, 3)})
+        if resolvable:
+            worst_ratio = min(worst_ratio, ratio)
+            if ratio <= NEIGHBOUR_MARGIN:
+                low_margin.append({'decoded_frame': k, 'package_frame': pf,
+                                   'mad': round(own, 3),
+                                   'neighbour_ratio': round(ratio, 3)})
+        else:
+            unresolvable += 1
+
+        if k > 0 and mad(fr, decoded[k - 1]) == 0.0 and mad(pkg_at(k), pkg_at(k - 1)) > 0.0:
+            dupes.append(k)
         mapping.append({'decoded_frame_0based': k, 'package_frame_1based': pf,
                         'source_frame': None, 'mad': round(own, 3)})
+
+    # A shift that starts midway would leave most frames looking fine, so check
+    # each third as a whole as well as the clip as a whole.
+    shifts = {}
+    m = min(n, len(decoded))      # a short clip already failed the count check
+    for name, lo, hi in (('all', 0, m), ('first_third', 0, m // 3),
+                         ('middle_third', m // 3, 2 * m // 3),
+                         ('last_third', 2 * m // 3, m)):
+        tots = []
+        for off in (-2, -1, 0, 1, 2):
+            v = [mad(decoded[k], pkg_at(k + off)) for k in range(lo, hi)
+                 if pkg_at(k + off) is not None]
+            tots.append(sum(v) / len(v) if v else float('inf'))
+        shifts[name] = {'by_offset': [round(t, 4) for t in tots],
+                        'argmin_offset': (-2, -1, 0, 1, 2)[tots.index(min(tots))]}
 
     note('decoded frame 0 is package frame 1',
          bool(decoded) and mapping and mapping[0]['package_frame_1based'] == 1
          and not any(m['decoded_frame'] == 0 for m in misaligned))
-    note('ordered mapping is deterministic and complete', not misaligned,
+    note('every decoded frame matches its own package frame', not misaligned,
          f'{len(misaligned)} misaligned' if misaligned else
-         f'every frame beat its neighbours by >= {worst_ratio:.2f}x')
+         f'{n}/{n} by argmin over offsets -2..+2')
+    note('no whole-clip or per-segment shift',
+         all(v['argmin_offset'] == 0 for v in shifts.values()),
+         ', '.join(f'{k}:{v["argmin_offset"]:+d}' for k, v in shifts.items()))
     note('no duplicated frames', not dupes, str(dupes[:5]))
-    return ok_all, checks, mapping, worst_ratio
+    # Reported, never a gate. A margin is only meaningful where consecutive
+    # frames differ; where they do not, a low ratio says the footage is static,
+    # not that the mapping is wrong -- and annotating on a frame identical to
+    # its neighbour has no consequence for the GT either way.
+    checks.append({'check': 'neighbour-margin statistics (informational)',
+                   'ok': True,
+                   'detail': f'{n - unresolvable}/{n} frames have neighbours '
+                             f'distinguishable above encode noise; weakest '
+                             f'margin {worst_ratio:.2f}x; '
+                             f'{len(low_margin)} below {NEIGHBOUR_MARGIN}x'})
+    return (ok_all, checks, mapping, worst_ratio, shifts, unresolvable,
+            misaligned, low_margin)
 
 
 def build_one(root: Path, s: dict, out_dir: Path, n: int, tag: str):
@@ -196,8 +262,8 @@ def build_one(root: Path, s: dict, out_dir: Path, n: int, tag: str):
     clip = out_dir / f'{seq}{tag}.mp4'
 
     encode(img1, clip, n, rate)
-    ok, checks, mapping, worst = verify(clip, img1, n, float(Fraction(rate)),
-                                        W, H)
+    (ok, checks, mapping, worst, shifts, unresolvable, misaligned,
+     low_margin) = verify(clip, img1, n, float(Fraction(rate)), W, H)
 
     lo = s['source_frame_range'][0]
     for m in mapping:
@@ -205,6 +271,9 @@ def build_one(root: Path, s: dict, out_dir: Path, n: int, tag: str):
 
     record = {
         'clip': clip.name,
+        'clip_sha256': (hashlib.sha256(clip.read_bytes()).hexdigest()
+                        if clip.exists() else None),
+        'package_frames_sha256': s.get('decoded_frames_sha256'),
         'sequence': seq,
         'purpose': 'CVAT VIDEO task vehicle -- forces interpolation/track mode',
         'authoritative': False,
@@ -223,6 +292,12 @@ def build_one(root: Path, s: dict, out_dir: Path, n: int, tag: str):
                                        mapping[-1]['source_frame']] if mapping else None,
         'verification': checks,
         'verified': ok,
+        'alignment_test': 'per-frame argmin over offsets -2..+2, plus a '
+                          'whole-clip and per-third shift test',
+        'shift_test': shifts,
+        'frames_with_indistinguishable_neighbours': unresolvable,
+        'argmin_failures': misaligned,
+        'frames_below_neighbour_margin': low_margin,
         'min_neighbour_margin': round(worst, 3) if worst != float('inf') else None,
         'frame_mapping': mapping,
     }
