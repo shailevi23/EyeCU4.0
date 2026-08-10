@@ -1,0 +1,160 @@
+{
+  "benchmark": "EyeCU-Tracking-Val-v1",
+  "annotation_schema_version": "1.0",
+  "created": "2026-08-09T19:46:04+00:00",
+  "code_commit": "b25c840214cfc1c0c72a1d80fb662127423940f9",
+  "build_tool_sha256": "49e21a57238360d10a6e59b4efb7c1bd202cc60baaba73abe9c8c56ddde1b5a8",
+  "identity_gt_status": "UNANNOTATED",
+  "identity_provenance": "Identity ground truth MUST be assigned manually by a human and was NOT generated from tracker IDs. Preannotations contain box geometry and a detector class hint only -- no tracker id, no temporal link, no identity.",
+  "target": {
+    "classes": [
+      "player",
+      "goalkeeper",
+      "referee"
+    ],
+    "ball_excluded": true,
+    "association_is_class_agnostic_human": true,
+    "role_evaluated_separately": true,
+    "not_targets": [
+      "coach",
+      "substitute",
+      "medical staff",
+      "ball boy",
+      "spectator",
+      "ball"
+    ]
+  },
+  "conventions": {
+    "bbox": "visible extent of one person, xyxy in pixels, positive width/height, inside the frame; never infer a fully occluded person",
+    "identity": "one stable positive integer per physical person per sequence; preserved across occlusion, detector misses, blur and role jitter; never renumbered because a tracker would",
+    "occlusion": "omit the box while fully hidden; resume the SAME id when visible again; mark for QC if genuinely ambiguous",
+    "entry_exit": "new identity on first appearance; identity ends on exit unless the same person is confidently recognised again within the same sequence",
+    "role": "one canonical role per identity; detector role jitter must not create a new identity",
+    "ignored_objects": "non-target people are left unlabelled"
+  },
+  "frame_numbering": {
+    "package": "1-based; img1/000001.jpg is source frame start_frame",
+    "trackeval": "1-based, verified in trackeval 1.3.0 mot_challenge_2d_box.py L215/L227"
+  },
+  "mot_export": {
+    "row": "frame,id,x,y,w,h,conf,class,visibility",
+    "gt_conf": 1,
+    "gt_class": 1,
+    "note": "TrackEval discards GT rows whose conf column is 0 (L394) and raises on any class outside its valid set (L365-373). A trailing -1,-1,-1 is the TRACKER row convention and is invalid for GT."
+  },
+  "frozen_detection_benchmark": {
+    "path": "data\\tracking_val_v1",
+    "relationship": "preannotation geometry is the frozen ACCEPTED view (>=0.25); the candidate view is not used here",
+    "accepted_human_threshold": 0.25
+  },
+  "sequences": [
+    {
+      "sequence": "austin_fc_vs__club_tijuana_284",
+      "match": "austin_fc_vs__club_tijuana",
+      "source_video": "input-videos/Austin FC vs. Club Tijuana.mp4",
+      "source_video_sha256": "e9b843537c2be6276b068d8c169815106564f2c2dc71c666776abf4ad581904c",
+      "decoded_frames_sha256": "495be3eef4f34ef0e297142e8d6922e7d24e1df3e90a1464f13c3a0798b20eed",
+      "source_frame_range": [
+        284,
+        583
+      ],
+      "package_frame_range": [
+        1,
+        300
+      ],
+      "frame_count": 300,
+      "native_fps": 29.97,
+      "frame_width": 640,
+      "frame_height": 360,
+      "preannotation_boxes": 3777,
+      "preannotation_cvat": "preannotations/austin_fc_vs__club_tijuana_284.cvat.xml",
+      "preannotation_det": "preannotations/austin_fc_vs__club_tijuana_284.det.txt",
+      "preannotation_cvat_sha256": "f230014d98508e29d040c91e1a045e8b0101309181fdbbe1fbc5f83654cb5963",
+      "preannotation_det_sha256": "172cc4e9bb6b5ed6f30290d3351e1837d99aa842e4bfb86e05536b0914435b96",
+      "annotation_file_expected": "annotations/austin_fc_vs__club_tijuana_284.json",
+      "mot_gt_expected": "mot/austin_fc_vs__club_tijuana_284/gt/gt.txt",
+      "roles_expected": "roles/austin_fc_vs__club_tijuana_284.json"
+    },
+    {
+      "sequence": "bayern_munich_3-1_chelsea_228",
+      "match": "bayern_munich_3-1_chelsea",
+      "source_video": "input-videos/Bayern Munich 3-1 Chelsea.mp4",
+      "source_video_sha256": "6f29a03c687ea2c015edb06d511b900ad389516296585b6200fe16fade81d3a8",
+      "decoded_frames_sha256": "a756722c46101c76ec0be4ccc8d8fd5dfb90f51d73dd6400aa0e8d660e778193",
+      "source_frame_range": [
+        228,
+        527
+      ],
+      "package_frame_range": [
+        1,
+        300
+      ],
+      "frame_count": 300,
+      "native_fps": 25.0,
+      "frame_width": 640,
+      "frame_height": 360,
+      "preannotation_boxes": 7472,
+      "preannotation_cvat": "preannotations/bayern_munich_3-1_chelsea_228.cvat.xml",
+      "preannotation_det": "preannotations/bayern_munich_3-1_chelsea_228.det.txt",
+      "preannotation_cvat_sha256": "aaa9cdb8752ee64c50f25d153fa56281553057ae8957ee27724713faa0cf7719",
+      "preannotation_det_sha256": "79e2986bdb0255316b187dbeb3cce138f26a5619b78fcb3d1eeac87fe3dba5b6",
+      "annotation_file_expected": "annotations/bayern_munich_3-1_chelsea_228.json",
+      "mot_gt_expected": "mot/bayern_munich_3-1_chelsea_228/gt/gt.txt",
+      "roles_expected": "roles/bayern_munich_3-1_chelsea_228.json"
+    },
+    {
+      "sequence": "women_1_239",
+      "match": "women_1",
+      "source_video": "input-videos/women 1.mp4",
+      "source_video_sha256": "c1339254e41446ef0e7a9e19360b9229f6b6e94e1be581289e36c7480cf94e33",
+      "decoded_frames_sha256": "f1b7ab74695e4fb7bf897f9ab218970b561601df0d12083485ed213765eba37d",
+      "source_frame_range": [
+        239,
+        538
+      ],
+      "package_frame_range": [
+        1,
+        300
+      ],
+      "frame_count": 300,
+      "native_fps": 25.0,
+      "frame_width": 640,
+      "frame_height": 360,
+      "preannotation_boxes": 3374,
+      "preannotation_cvat": "preannotations/women_1_239.cvat.xml",
+      "preannotation_det": "preannotations/women_1_239.det.txt",
+      "preannotation_cvat_sha256": "f0e7322c0eca3e0e96511b9bc399223830d051878393406c9ad3ed300b8c7257",
+      "preannotation_det_sha256": "71d52baa74b4945f81c0bf11c09bb7881779bf6582246a9c6b602e4323d1a8e6",
+      "annotation_file_expected": "annotations/women_1_239.json",
+      "mot_gt_expected": "mot/women_1_239/gt/gt.txt",
+      "roles_expected": "roles/women_1_239.json"
+    },
+    {
+      "sequence": "youth_premier_league_1133",
+      "match": "youth_premier_league",
+      "source_video": "input-videos/ליגת העל לנוער.mp4",
+      "source_video_sha256": "85628c21f56e81b429de48d666082a00e26817e3e6ce58654ba97da38dc2b4e7",
+      "decoded_frames_sha256": "990638a0687544ccb75dde5dfce647b2dceede9f9cc6b1ef59d46d4436a6bab9",
+      "source_frame_range": [
+        1133,
+        1432
+      ],
+      "package_frame_range": [
+        1,
+        300
+      ],
+      "frame_count": 300,
+      "native_fps": 25.0,
+      "frame_width": 640,
+      "frame_height": 360,
+      "preannotation_boxes": 3646,
+      "preannotation_cvat": "preannotations/youth_premier_league_1133.cvat.xml",
+      "preannotation_det": "preannotations/youth_premier_league_1133.det.txt",
+      "preannotation_cvat_sha256": "b59ed2154a5ca42abcadd2d817853b17dce32e9489af4659b8849e737967a8c6",
+      "preannotation_det_sha256": "153cb5f3cec59c1c37ea9c78539b3460c158c764ca958205e02c87b2f3596abc",
+      "annotation_file_expected": "annotations/youth_premier_league_1133.json",
+      "mot_gt_expected": "mot/youth_premier_league_1133/gt/gt.txt",
+      "roles_expected": "roles/youth_premier_league_1133.json"
+    }
+  ]
+}

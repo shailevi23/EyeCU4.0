@@ -12,7 +12,8 @@ import pickle
 import pandas as pd
 
 # Import from local modules
-from trackers.detector import CLASS_IDS, HUMAN_CLASSES, create_detector
+from trackers.detector import (CLASS_IDS, HUMAN_CLASSES,
+                               HUMAN_ACCEPT_CONF, create_detector)
 from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, get_foot_position
 
 # tracks[] key for each detector class. Goalkeepers are kept separate from
@@ -46,6 +47,7 @@ class FootballTracker:
                 confidence=0.25,
                 imgsz=960,
                 max_ball_gap=15,
+                human_candidate_pool=False,
                 detector=None):
         """
         Initialize the football tracker
@@ -66,6 +68,11 @@ class FootballTracker:
         """
         self.model_path = model_path
         self.max_ball_gap = max_ball_gap
+        # The boundary between association evidence and public output. Every
+        # tracked box below this is used to keep an identity alive and is then
+        # withheld from tracks[], so reports and visualisation are unchanged.
+        self.human_accept_conf = max(confidence, HUMAN_ACCEPT_CONF)
+        self.human_candidate_pool = human_candidate_pool
         self.use_roboflow = use_roboflow
         self.api_key = api_key
         self.persist_cache = persist_cache
@@ -80,6 +87,7 @@ class FootballTracker:
             api_key=api_key,
             confidence=confidence,
             imgsz=imgsz,
+            human_candidate_pool=human_candidate_pool,
         )
 
         # Initialize tracker using supervision
@@ -230,8 +238,11 @@ class FootballTracker:
                     # them in a 12-second measured sequence. The ball has one
                     # canonical path, below.
                     continue
-                if det.get('state', 'observed') != 'observed':
-                    continue  # rescue candidates never reach the tracker
+                # Humans below the accepted threshold DO enter the tracker when
+                # the pool is on: they are exactly the low-score detections
+                # ByteTrack's second association stage exists to consume. They
+                # are withheld from the output below, not here. With the pool
+                # off no such detection exists and this is a no-op.
                 boxes.append(det['bbox'])
                 class_ids.append(CLASS_IDS[class_name])
                 confidences.append(det.get('confidence', 0.5))
@@ -254,10 +265,16 @@ class FootballTracker:
                     key = HUMAN_TRACK_KEY.get(int(tracked_detections.class_id[i]))
                     if key is None:
                         continue  # nothing but humans should reach here
+                    conf = float(tracked_detections.confidence[i])
+                    if conf < self.human_accept_conf:
+                        # Association evidence only. It kept the identity alive
+                        # through this frame; it must not appear in reports,
+                        # counts, statistics or the rendered video.
+                        continue
                     track_id = int(tracked_detections.tracker_id[i])
                     tracks[key][frame_idx][track_id] = {
                         "bbox": tracked_detections.xyxy[i].tolist(),
-                        "confidence": float(tracked_detections.confidence[i]),
+                        "confidence": conf,
                     }
 
             # The ball's single canonical path. It is written here and nowhere

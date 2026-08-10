@@ -37,6 +37,36 @@ BALL_CANDIDATE_CONF = 0.10   # floor of the low-confidence rescue pool
 BALL_ACCEPT_CONF = 0.25      # at/above this a ball is a high-confidence observation
 BALL_DEDUPE_IOU = 0.70       # prediction-to-prediction IoU for duplicate suppression
 
+# --- human association candidate pool -----------------------------------
+# Opt-in via LocalDetector(human_candidate_pool=True).
+#
+# ByteTrack's published contribution is recovering tracks from *low-score*
+# detections. supervision implements that as a second association stage, and
+# both comparisons are STRICT (verified against supervision 0.26.1):
+#
+#     remain_inds = scores >  self.track_activation_threshold   # > 0.25
+#     inds_low    = scores >  0.1
+#     inds_high   = scores <  self.track_activation_threshold   # < 0.25
+#     inds_second = logical_and(inds_low, inds_high)
+#
+# So the association pool is effectively `0.10 < confidence < 0.25`, exclusive
+# at both ends -- not an inclusive >= 0.10. A score of exactly 0.10 is dropped,
+# and so is a score of exactly 0.25, which satisfies neither comparison and
+# therefore reaches neither pool. We emit from >= 0.10 and let ByteTrack apply
+# its own boundary rather than changing ByteTrack to match our wording.
+#
+# EyeCU filtered humans at 0.25 before the tracker ever saw them, so that pool
+# was always empty and the stage never ran. Measured consequence: of 159
+# non-edge track terminations across four validation windows, 135 (84.9%) had a
+# human detection overlapping the predicted position at IoU >= 0.30 -- the
+# tracker had evidence available and dropped the identity anyway.
+#
+# These boxes are association evidence ONLY. They carry state
+# 'candidate_low_conf' and must never reach visualisation, reports, player
+# counts or detector metrics; the accepted boundary stays where it was.
+HUMAN_CANDIDATE_CONF = 0.10  # we emit from here; ByteTrack consumes (0.10, 0.25)
+HUMAN_ACCEPT_CONF = 0.25     # unchanged public/accepted boundary
+
 
 def _iou(a, b) -> float:
     ix1, iy1 = max(a[0], b[0]), max(a[1], b[1])
@@ -162,7 +192,8 @@ class LocalDetector(BaseDetector):
                  iou: float = 0.5,
                  imgsz: int = 960,
                  device: Optional[str] = None,
-                 ball_candidate_pool: bool = False):
+                 ball_candidate_pool: bool = False,
+                 human_candidate_pool: bool = False):
         super().__init__(confidence)
         from ultralytics import YOLO
 
@@ -174,6 +205,9 @@ class LocalDetector(BaseDetector):
         # emitted before Patch 0b -- same threshold, no suppression, no extra
         # keys. BallTemporalSelector will turn it on.
         self.ball_candidate_pool = ball_candidate_pool
+        # Likewise off by default. On, humans are emitted down to
+        # HUMAN_CANDIDATE_CONF and tagged, for the tracker's use only.
+        self.human_candidate_pool = human_candidate_pool
         self.model = YOLO(model_path)
 
         # Resolve the model's own label space once.
@@ -198,7 +232,9 @@ class LocalDetector(BaseDetector):
         # candidates exist at all; every class is then filtered back to its own
         # threshold, so humans are unaffected either way.
         ball_floor = BALL_CANDIDATE_CONF if self.ball_candidate_pool else self.confidence
-        floor = min(self.confidence, ball_floor)
+        human_floor = (HUMAN_CANDIDATE_CONF if self.human_candidate_pool
+                       else self.confidence)
+        floor = min(self.confidence, ball_floor, human_floor)
 
         kwargs = dict(conf=floor, iou=self.iou,
                       imgsz=self.imgsz, verbose=False)
@@ -212,7 +248,13 @@ class LocalDetector(BaseDetector):
             if not name:
                 continue  # a COCO class we do not care about
             conf = float(box.conf)
-            if conf < (ball_floor if name == 'ball' else self.confidence):
+            if name == 'ball':
+                threshold = ball_floor
+            elif name in HUMAN_CLASSES:
+                threshold = human_floor
+            else:
+                threshold = self.confidence
+            if conf < threshold:
                 continue
             x1, y1, x2, y2 = box.xyxy[0].tolist()
             det = {
@@ -224,6 +266,12 @@ class LocalDetector(BaseDetector):
                 # Split the pool, but keep both halves in one list so callers
                 # can audit them separately without a second inference pass.
                 det['state'] = ('observed' if conf >= BALL_ACCEPT_CONF
+                                else 'candidate_low_conf')
+            elif self.human_candidate_pool and name in HUMAN_CLASSES:
+                # Same contract for humans. Raw class and confidence are kept
+                # untouched -- the tag says how the box may be USED, never what
+                # it is. A goalkeeper stays a goalkeeper here and downstream.
+                det['state'] = ('observed' if conf >= HUMAN_ACCEPT_CONF
                                 else 'candidate_low_conf')
             detections.append(det)
 
@@ -324,7 +372,8 @@ def create_detector(model_path: str = 'yolov8s.pt',
                     iou: float = 0.5,
                     imgsz: int = 960,
                     model_id: Optional[str] = None,
-                    ball_candidate_pool: bool = False) -> BaseDetector:
+                    ball_candidate_pool: bool = False,
+                    human_candidate_pool: bool = False) -> BaseDetector:
     """
     Build the detector for a run.
 
@@ -334,7 +383,8 @@ def create_detector(model_path: str = 'yolov8s.pt',
     """
     local = LocalDetector(model_path=model_path, confidence=confidence,
                           iou=iou, imgsz=imgsz,
-                          ball_candidate_pool=ball_candidate_pool)
+                          ball_candidate_pool=ball_candidate_pool,
+                          human_candidate_pool=human_candidate_pool)
     if not use_roboflow:
         return local
 
