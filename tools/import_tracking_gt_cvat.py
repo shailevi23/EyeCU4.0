@@ -214,7 +214,7 @@ def main():
         print('  python tools/confirm_tracking_gt_qc.py --reviewer "<name>" --confirm')
     else:
         print(f'\n{imported}/{len(man["sequences"])} sequences imported; status '
-              f'unchanged until all four are present')
+              f'unchanged until all {len(man["sequences"])} are present')
 
 
 if __name__ == '__main__':

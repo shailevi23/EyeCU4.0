@@ -1,0 +1,13 @@
+{
+ "sequence": "youth_premier_league_1133",
+ "benchmark": "EyeCU-Tracking-Val-v1.1",
+ "received": "2026-08-10",
+ "original_upload_filename": "youth_1_manuel_cvat_300_frames.zip",
+ "filename_note": "The upload was named \"youth_1\", which is a DIFFERENT (TRAIN) source. The contents were verified against the frozen youth_premier_league detections before import: 94.9% of GT boxes have a detector match at IoU>=0.3 in this sequence, against 2.2% for another sequence used as a control. It is the right footage; only the filename was wrong.",
+ "zip_sha256": "08fc2a30aaff6432e9547f66f6c966d586a79cf61c4e5f8cb501b2886d0569f7",
+ "zip_bytes": 343050,
+ "annotations_xml_sha256": "b556467ffb5b96636127564aefdea4395a5742ee5fbcdb6f7f8dff3ee1242a0b",
+ "annotations_xml_bytes": 342922,
+ "raw_export_modified": false,
+ "note": "The XML is extracted byte-for-byte from the zip and neither is edited. Corrections belong in records, never in evidence."
+}

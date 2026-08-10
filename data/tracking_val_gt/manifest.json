@@ -140,6 +140,17 @@
       "long_gap_events_open": 0,
       "long_gap_decisions": "qc_identity/women_1_239/identity_gap_decisions.json",
       "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all four sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
+    },
+    "youth_premier_league_1133": {
+      "identity_status": "ANNOTATED_PENDING_QC",
+      "imported": "2026-08-10",
+      "review_source": null,
+      "tracker_output_used": false,
+      "embeddings_used": false,
+      "long_gap_events_open": 7,
+      "long_gap_review": "qc_identity/youth_premier_league_1133/identity_gap_review.json",
+      "raw_export_provenance": "cvat_exports/youth_premier_league_1133.provenance.json",
+      "note": "Structural validation passed. NOT verified: seven disappearance/re-entry events await human decision, and the benchmark stays incomplete until all three sequences are accepted and final QC is done."
     }
   },
   "benchmark_definition": {

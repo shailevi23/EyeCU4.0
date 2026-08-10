@@ -88,6 +88,8 @@ data/tracking_val_gt/preannotations/*
 !data/tracking_val_gt/cvat_exports/
 data/tracking_val_gt/cvat_exports/*
 !data/tracking_val_gt/cvat_exports/*.xml
+!data/tracking_val_gt/cvat_exports/*.zip
+!data/tracking_val_gt/cvat_exports/*.provenance.json
 !data/tracking_val_gt/cvat_exports/README.txt
 !data/tracking_val_gt/annotations/
 data/tracking_val_gt/annotations/*
