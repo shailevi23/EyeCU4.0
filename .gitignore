@@ -102,6 +102,15 @@ data/tracking_val_gt/roles/*
 data/tracking_val_gt/human_seed/*
 !data/tracking_val_gt/human_seed/*.json
 
+# A rejected window: the annotation and the record of WHY it was rejected are
+# both evidence, and a rejection that is not written down repeats itself.
+!data/tracking_val_gt/rejected/
+data/tracking_val_gt/rejected/*
+!data/tracking_val_gt/rejected/*/
+data/tracking_val_gt/rejected/*/*
+!data/tracking_val_gt/rejected/*/*.json
+!data/tracking_val_gt/rejected/*/*.xml
+
 # QC decisions a human made. The contact sheets and clips beside them are
 # regenerable renders and stay out; the decision records do not regenerate.
 !data/tracking_val_gt/qc_identity/

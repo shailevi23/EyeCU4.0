@@ -1,0 +1,68 @@
+{
+ "sequence": "austin_fc_vs__club_tijuana_284",
+ "status": "REJECTED_FOR_CONTINUITY_BENCHMARK",
+ "reason": "hard broadcast edit / temporal discontinuity",
+ "recorded": "2026-08-10",
+ "decided_by": "human annotator (visual), corroborated by a pixel-only source audit",
+ "tracker_output_used": false,
+ "embeddings_used": false,
+
+ "violated_rule": {
+  "predeclared": "300 continuous native-FPS frames, no camera/broadcast cut, >=10 mean humans/frame over the full window",
+  "violated_clause": "no camera/broadcast cut"
+ },
+
+ "discontinuity_in_the_window": {
+  "window_source_frames": [284, 583],
+  "transition_source_frames": [386, 402],
+  "transition_type": "dissolve, not a hard cut -- the change is spread over ~17 frames, so no adjacent frame pair looks catastrophic and a lag-1 hard-cut rule sails past it",
+  "evidence": {
+   "broadcast_clock_burn_in": "src 391-393 read 29:0x; src 394 reads 30:35 -- a jump of about 1.5 minutes to a different game moment",
+   "pixel_signal": "histogram correlation at lag 8 falls to 0.80-0.85 through the transition against a source median of 0.9987",
+   "visual": "different attacking phase and camera position after the transition; frame 394 shows dissolve ghosting"
+  },
+  "usable_split": {
+   "pre_cut": {"source_frames": [284, 385], "frames": 102, "package_frames": [1, 102]},
+   "transition": {"source_frames": [386, 402], "frames": 17},
+   "post_cut": {"source_frames": [403, 583], "frames": 181, "package_frames": [120, 300]}
+  },
+  "note": "Neither side reaches 300 frames, so this window cannot be salvaged by trimming."
+ },
+
+ "source_verdict": {
+  "finding": "The Austin source video is a highlights/recap montage, not a continuous broadcast.",
+  "frames": 1799,
+  "transition_events": 9,
+  "continuous_shots": 10,
+  "shot_lengths_frames": [386, 255, 61, 21, 50, 580, 15, 7, 77, 194],
+  "discontinuous_frames_per_1000": 44.47,
+  "shot_types_observed": ["wide tactical", "goalkeeper close-up", "player close-up through netting", "replay/reaction angles"],
+  "control": "The same rule applied unchanged to the other three VAL sources found ZERO discontinuities in each (bayern, women_1, youth; 1501 frames each, hcorr p5 >= 0.9867).",
+  "clean_island_exists_but_not_used": {
+   "run": [854, 1433],
+   "frames": 580,
+   "why_not_used": "Instructed not to hunt for a lucky clean island inside a generally discontinuous source. A window selected by surviving a cut detector calibrated on one event carries the risk that a slower dissolve was missed, and a benchmark whose windows were chosen by that search is only as trustworthy as the search."
+  }
+ },
+
+ "annotation_work_preserved": {
+  "file": "austin_partial_cvat_export.xml",
+  "format": "CVAT for video 1.1",
+  "tracks": 16,
+  "boxes": 4800,
+  "frames_covered": [1, 300],
+  "outside_markers": 0,
+  "roles_used": ["player", "goalkeeper"],
+  "identity_validity": "INVALID AS CONTINUITY GT. The 16 tracks run unbroken across all 300 frames with no outside markers, so every identity was carried across the transition at package frames 103-119. No identity after the transition may be treated as continuous with one before it.",
+  "deleted": false,
+  "imported_into_canonical_gt": false,
+  "counted_in_clean_aggregate": false
+ },
+
+ "future_use": {
+  "intended": "transition-stress / broadcast-cut artifact",
+  "usable_for": "measuring how a tracker behaves across an edit -- how many identities it destroys, whether it invents continuity that does not exist",
+  "not_usable_for": "any clean-continuity metric, and never aggregated with the clean sequences",
+  "before_any_such_use": "the pre-cut and post-cut segments must be re-annotated as two SEPARATE identity spaces; the current single-identity-space annotation asserts a continuity that the footage does not contain"
+ }
+}

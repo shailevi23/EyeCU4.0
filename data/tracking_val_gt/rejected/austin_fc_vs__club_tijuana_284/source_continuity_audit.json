@@ -1,0 +1,149 @@
+{
+ "lag": 8,
+ "hcorr_min": 0.9,
+ "need_frames": 300,
+ "sources": [
+  {
+   "match": "austin_fc_vs__club_tijuana",
+   "video": "input-videos/Austin FC vs. Club Tijuana.mp4",
+   "frames": 1799,
+   "discontinuities": 80,
+   "per_1000_frames": 44.47,
+   "hcorr_median": 0.9987,
+   "hcorr_p05": 0.9115,
+   "longest_continuous_run": 580,
+   "runs_ge_300": 2,
+   "first_runs": [
+    [
+     0,
+     385,
+     386
+    ],
+    [
+     403,
+     657,
+     255
+    ],
+    [
+     674,
+     734,
+     61
+    ],
+    [
+     745,
+     765,
+     21
+    ],
+    [
+     782,
+     831,
+     50
+    ],
+    [
+     854,
+     1433,
+     580
+    ]
+   ],
+   "discontinuity_frames": [
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    392,
+    393,
+    394,
+    658,
+    659,
+    660,
+    661,
+    662,
+    663,
+    664,
+    665,
+    735,
+    736,
+    766,
+    767,
+    768,
+    769,
+    770,
+    771,
+    772,
+    773,
+    832,
+    833,
+    834,
+    835,
+    836,
+    837,
+    838,
+    839,
+    840,
+    841,
+    842,
+    843,
+    844
+   ]
+  },
+  {
+   "match": "bayern_munich_3-1_chelsea",
+   "video": "input-videos/Bayern Munich 3-1 Chelsea.mp4",
+   "frames": 1501,
+   "discontinuities": 0,
+   "per_1000_frames": 0.0,
+   "hcorr_median": 0.9998,
+   "hcorr_p05": 0.9992,
+   "longest_continuous_run": 1501,
+   "runs_ge_300": 1,
+   "first_runs": [
+    [
+     0,
+     1500,
+     1501
+    ]
+   ],
+   "discontinuity_frames": []
+  },
+  {
+   "match": "women_1",
+   "video": "input-videos/women 1.mp4",
+   "frames": 1501,
+   "discontinuities": 0,
+   "per_1000_frames": 0.0,
+   "hcorr_median": 0.9991,
+   "hcorr_p05": 0.9953,
+   "longest_continuous_run": 1501,
+   "runs_ge_300": 1,
+   "first_runs": [
+    [
+     0,
+     1500,
+     1501
+    ]
+   ],
+   "discontinuity_frames": []
+  },
+  {
+   "match": "youth_premier_league",
+   "video": "input-videos/\u05dc\u05d9\u05d2\u05ea \u05d4\u05e2\u05dc \u05dc\u05e0\u05d5\u05e2\u05e8.mp4",
+   "frames": 1501,
+   "discontinuities": 0,
+   "per_1000_frames": 0.0,
+   "hcorr_median": 0.9994,
+   "hcorr_p05": 0.9867,
+   "longest_continuous_run": 1501,
+   "runs_ge_300": 1,
+   "first_runs": [
+    [
+     0,
+     1500,
+     1501
+    ]
+   ],
+   "discontinuity_frames": []
+  }
+ ]
+}
