@@ -1,8 +1,10 @@
 {
  "sequence": "austin_fc_vs__club_tijuana_284",
  "status": "REJECTED_FOR_CONTINUITY_BENCHMARK",
+ "classification": "TRANSITION_STRESS_CASE",
  "reason": "hard broadcast edit / temporal discontinuity",
  "recorded": "2026-08-10",
+ "amended": "2026-08-10",
  "decided_by": "human annotator (visual), corroborated by a pixel-only source audit",
  "tracker_output_used": false,
  "embeddings_used": false,
@@ -15,6 +17,7 @@
  "discontinuity_in_the_window": {
   "window_source_frames": [284, 583],
   "transition_source_frames": [386, 402],
+  "transition_package_frames": [103, 119],
   "transition_type": "dissolve, not a hard cut -- the change is spread over ~17 frames, so no adjacent frame pair looks catastrophic and a lag-1 hard-cut rule sails past it",
   "evidence": {
    "broadcast_clock_burn_in": "src 391-393 read 29:0x; src 394 reads 30:35 -- a jump of about 1.5 minutes to a different game moment",
@@ -38,6 +41,7 @@
   "discontinuous_frames_per_1000": 44.47,
   "shot_types_observed": ["wide tactical", "goalkeeper close-up", "player close-up through netting", "replay/reaction angles"],
   "control": "The same rule applied unchanged to the other three VAL sources found ZERO discontinuities in each (bayern, women_1, youth; 1501 frames each, hcorr p5 >= 0.9867).",
+  "prior_signal_in_repo": "tools/build_temporal_val.py already carried a note that an earlier Austin sample landed 'entirely inside a goalkeeper close-up that also contained a camera cut'. The signal existed in an earlier phase and was not generalised to tracking-window selection.",
   "clean_island_exists_but_not_used": {
    "run": [854, 1433],
    "frames": 580,
@@ -47,13 +51,37 @@
 
  "annotation_work_preserved": {
   "file": "austin_partial_cvat_export.xml",
+  "also": "austin_partial_cvat_export.zip (the original CVAT download, unmodified)",
   "format": "CVAT for video 1.1",
+  "modified_since_export": false,
+  "purpose": "provenance and evidence of where annotation stopped",
   "tracks": 16,
-  "boxes": 4800,
-  "frames_covered": [1, 300],
-  "outside_markers": 0,
+  "total_boxes_in_file": 4800,
   "roles_used": ["player", "goalkeeper"],
-  "identity_validity": "INVALID AS CONTINUITY GT. The 16 tracks run unbroken across all 300 frames with no outside markers, so every identity was carried across the transition at package frames 103-119. No identity after the transition may be treated as continuous with one before it.",
+  "outside_markers": 0,
+
+  "where_human_work_stops": {
+   "clarified_by": "the human annotator, and confirmed against the export",
+   "annotator_statement": "manual work continued only to approximately package frame 115, stopping at the discovered broadcast transition",
+   "measured_in_the_export": {
+    "last_manual_keyframe": {"cvat_frame": 100, "package_frame": 101},
+    "identical_for_all_16_tracks": true,
+    "manual_keyframes_after_that_point": 0,
+    "human_annotated_span": {"package_frames": [1, 101], "boxes": 1616},
+    "residual_span": {"package_frames": [102, 300], "boxes": 3184}
+   },
+   "what_the_residual_boxes_are": "CVAT continues a track that has no further keyframes by holding the last keyframed shape. All 3,184 boxes after package frame 101 are byte-identical copies of that track's frame-101 box, frozen in place for 199 frames. They are neither annotation nor motion.",
+   "verification": "Checked directly in the export: 16/16 tracks have every post-101 box identical to their frame-101 box, and zero boxes after CVAT frame 100 carry keyframe=\"1\"."
+  },
+
+  "identity_validity": "Frames 1-101 are human annotation of a pre-transition scene. Frames 102-300 are NOT annotation: they are residual CVAT hold from pre-transition tracks and must not be used as GT. The annotator did not assert, and the file does not represent, physical identity continuity across the transition.",
+
+  "correction_of_an_earlier_statement": {
+   "what_was_recorded_before": "that the 16 tracks 'run unbroken across all 300 frames with no outside markers, so every identity was carried across the transition'",
+   "why_that_was_wrong": "It read a tool artifact as a human claim. The annotator stopped at the transition; CVAT's hold behaviour produced the rest. Nobody asserted that a post-cut person is a pre-cut person.",
+   "corrected": "2026-08-10"
+  },
+
   "deleted": false,
   "imported_into_canonical_gt": false,
   "counted_in_clean_aggregate": false
@@ -63,6 +91,11 @@
   "intended": "transition-stress / broadcast-cut artifact",
   "usable_for": "measuring how a tracker behaves across an edit -- how many identities it destroys, whether it invents continuity that does not exist",
   "not_usable_for": "any clean-continuity metric, and never aggregated with the clean sequences",
-  "before_any_such_use": "the pre-cut and post-cut segments must be re-annotated as two SEPARATE identity spaces; the current single-identity-space annotation asserts a continuity that the footage does not contain"
+  "if_reused": [
+   "Rebuild the pre-cut and post-cut annotation spaces from the ORIGINAL VIDEO. Do not treat the current post-101 boxes as annotation of anything; they are frozen residue.",
+   "Give the two sides INDEPENDENT identity spaces, unless a separate and explicitly defined re-identification GT is created manually.",
+   "Frames 1-101 are reusable human work for the pre-cut side and need not be redrawn; frames 102-300 must be annotated from scratch."
+  ],
+  "raw_export_is_immutable": "The CVAT export is kept exactly as downloaded. Corrections belong in this record, not in the evidence."
  }
 }

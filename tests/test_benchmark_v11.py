@@ -80,9 +80,44 @@ class TestAustinCannotComeBack:
             assert any(metric in n for n in never), metric
 
     def test_partial_annotation_is_marked_invalid_as_continuity_gt(self, manifest):
-        v = manifest['excluded_sequences'][0]['partial_annotation_validity']
+        a = manifest['excluded_sequences'][0]
+        v = a['partial_annotation_validity']
         assert 'NOT valid continuity GT' in v
-        assert 'INDEPENDENT identity spaces' in v
+        assert 'INDEPENDENT identity spaces' in a['if_reused']
+
+    def test_the_record_does_not_credit_the_annotator_with_the_residue(self, manifest):
+        """
+        The post-transition boxes are a CVAT hold, not a human claim.
+
+        Reading a tool artifact as an assertion of physical identity would
+        misrepresent the annotator and, worse, make the residue look like GT
+        someone stood behind.
+        """
+        a = manifest['excluded_sequences'][0]
+        assert a['human_annotated_span'] == {'package_frames': [1, 101],
+                                             'boxes': 1616}
+        assert a['residual_span']['boxes'] == 3184
+        assert 'not annotation' in a['residual_span']['what_it_is']
+        v = a['partial_annotation_validity']
+        assert 'did NOT' in v and 'assert identity continuity' in v
+
+    def test_rejection_record_measures_where_work_stopped(self):
+        rec = json.loads((ROOT / 'rejected' / AUSTIN / 'REJECTION_RECORD.json'
+                          ).read_text(encoding='utf-8'))
+        w = rec['annotation_work_preserved']['where_human_work_stops']
+        m = w['measured_in_the_export']
+        assert m['last_manual_keyframe'] == {'cvat_frame': 100,
+                                             'package_frame': 101}
+        assert m['identical_for_all_16_tracks'] is True
+        assert m['manual_keyframes_after_that_point'] == 0
+        assert rec['annotation_work_preserved']['modified_since_export'] is False
+
+    def test_the_earlier_mischaracterisation_is_recorded_not_erased(self):
+        rec = json.loads((ROOT / 'rejected' / AUSTIN / 'REJECTION_RECORD.json'
+                          ).read_text(encoding='utf-8'))
+        c = rec['annotation_work_preserved']['correction_of_an_earlier_statement']
+        assert 'run unbroken' in c['what_was_recorded_before']
+        assert c['why_that_was_wrong']
 
     def test_the_rejection_record_and_annotation_are_preserved(self):
         d = ROOT / 'rejected' / AUSTIN

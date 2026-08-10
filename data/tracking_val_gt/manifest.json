@@ -200,7 +200,7 @@
       ],
       "record": "rejected/austin_fc_vs__club_tijuana_284/REJECTION_RECORD.json",
       "partial_annotation": "rejected/austin_fc_vs__club_tijuana_284/austin_partial_cvat_export.xml",
-      "partial_annotation_validity": "NOT valid continuity GT across the dissolve. The 16 tracks run unbroken over all 300 frames, so identities were carried across the edit. Before any use, pre-cut and post-cut must be given INDEPENDENT identity spaces, unless a separate and explicitly defined re-identification GT is created manually.",
+      "partial_annotation_validity": "NOT valid continuity GT. Human annotation stops at package frame 101 -- the last manual keyframe of all 16 tracks -- where the annotator stopped on finding the transition. Every box after that is residual CVAT hold: 3,184 boxes byte-identical to their track's frame-101 box, frozen for 199 frames, with zero manual keyframes among them. The annotator did NOT assert identity continuity across the transition, and the file does not represent one. Frames 102-300 must never be used as GT.",
       "original_entry": {
         "sequence": "austin_fc_vs__club_tijuana_284",
         "match": "austin_fc_vs__club_tijuana",
@@ -227,7 +227,23 @@
         "annotation_file_expected": "annotations/austin_fc_vs__club_tijuana_284.json",
         "mot_gt_expected": "mot/austin_fc_vs__club_tijuana_284/gt/gt.txt",
         "roles_expected": "roles/austin_fc_vs__club_tijuana_284.json"
-      }
+      },
+      "human_annotated_span": {
+        "package_frames": [
+          1,
+          101
+        ],
+        "boxes": 1616
+      },
+      "residual_span": {
+        "package_frames": [
+          102,
+          300
+        ],
+        "boxes": 3184,
+        "what_it_is": "CVAT hold of the last keyframe, not annotation"
+      },
+      "if_reused": "Rebuild pre-cut and post-cut annotation spaces from the ORIGINAL VIDEO with INDEPENDENT identity spaces. Frames 1-101 are reusable human work; frames 102-300 must be annotated from scratch. The raw export is immutable evidence."
     }
   ],
   "reporting_views": {
