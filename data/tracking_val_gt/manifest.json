@@ -4,7 +4,7 @@
   "created": "2026-08-09T19:46:04+00:00",
   "code_commit": "b25c840214cfc1c0c72a1d80fb662127423940f9",
   "build_tool_sha256": "49e21a57238360d10a6e59b4efb7c1bd202cc60baaba73abe9c8c56ddde1b5a8",
-  "identity_gt_status": "ANNOTATED_PENDING_QC",
+  "identity_gt_status": "VERIFIED",
   "identity_provenance": "Identity ground truth MUST be assigned manually by a human and was NOT generated from tracker IDs. Preannotations contain box geometry and a detector class hint only -- no tracker id, no temporal link, no identity.",
   "target": {
     "classes": [
@@ -132,17 +132,20 @@
   ],
   "sequence_review": {
     "women_1_239": {
-      "identity_status": "IDENTITY_ACCEPTED_PENDING_FINAL_QC",
+      "identity_status": "VERIFIED",
       "accepted": "2026-08-10",
       "review_source": "human annotator",
       "tracker_output_used": false,
       "embeddings_used": false,
       "long_gap_events_open": 0,
       "long_gap_decisions": "qc_identity/women_1_239/identity_gap_decisions.json",
-      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all four sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
+      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all four sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation.",
+      "verified": "2026-08-11",
+      "verified_by": "ShaiLevi23",
+      "verified_via": "qc/qc_confirmation.json"
     },
     "youth_premier_league_1133": {
-      "identity_status": "IDENTITY_ACCEPTED_PENDING_FINAL_QC",
+      "identity_status": "VERIFIED",
       "imported": "2026-08-10",
       "accepted": "2026-08-10",
       "review_source": "human annotator",
@@ -155,10 +158,13 @@
       "box_geometry": "BOX_GEOMETRY_HUMAN_ACCEPTED",
       "raw_export_provenance": "cvat_exports/youth_premier_league_1133.provenance.json",
       "density_note": "The >=10 humans/frame rule was a selection-time detector proxy (12.2 for this window). The human GT count of 8.40 is descriptive and is NOT a retrospective eligibility test. See experiments/tracking_v2/gt_conventions.json -> density_eligibility_rule.",
-      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all three sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
+      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all three sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation.",
+      "verified": "2026-08-11",
+      "verified_by": "ShaiLevi23",
+      "verified_via": "qc/qc_confirmation.json"
     },
     "bayern_munich_3-1_chelsea_228": {
-      "identity_status": "IDENTITY_ACCEPTED_PENDING_FINAL_QC",
+      "identity_status": "VERIFIED",
       "imported": "2026-08-11",
       "review_source": "human annotator",
       "tracker_output_used": false,
@@ -182,7 +188,10 @@
       },
       "goalkeeper_count_note": "Exactly one goalkeeper is visible and targeted in this window, confirmed by the annotator. It is not a missing or mislabelled second goalkeeper, and no QC may raise an event, search for one, or relabel a player on position, kit, detector output or football expectation.",
       "long_gap_decisions": "qc_identity/bayern_munich_3-1_chelsea_228/identity_gap_decisions.json",
-      "box_geometry": "BOX_GEOMETRY_HUMAN_ACCEPTED"
+      "box_geometry": "BOX_GEOMETRY_HUMAN_ACCEPTED",
+      "verified": "2026-08-11",
+      "verified_by": "ShaiLevi23",
+      "verified_via": "qc/qc_confirmation.json"
     }
   },
   "benchmark_definition": {
@@ -306,7 +315,7 @@
     "roles_generated_from": "CVAT track labels (single source of truth)"
   },
   "whole_benchmark_final_qc": {
-    "status": "REPORT GENERATED, AWAITING HUMAN ACCEPTANCE",
+    "status": "ACCEPTED",
     "generated": "2026-08-11",
     "scope": "structural invariants only",
     "must_not": "reinterpret human-confirmed semantic labels. Role composition is reported, never judged; no goalkeeper-count rule exists.",
@@ -316,6 +325,16 @@
       "youth_premier_league_1133",
       "bayern_munich_3-1_chelsea_228"
     ],
-    "gate": "identity GT becomes VERIFIED only when a human accepts this QC via tools/confirm_tracking_gt_qc.py, which writes the hash record the export gate re-checks."
+    "gate": "identity GT becomes VERIFIED only when a human accepts this QC via tools/confirm_tracking_gt_qc.py, which writes the hash record the export gate re-checks.",
+    "accepted": "2026-08-11",
+    "accepted_by": "ShaiLevi23",
+    "result": "65/65 structural checks, validators 201621 checks 0 errors"
+  },
+  "qc_confirmation": "qc/qc_confirmation.json",
+  "reviewer_identity": {
+    "name": "ShaiLevi23",
+    "source": "project git identity (user.name)",
+    "corroborated_by": "CVAT task owner shai6 <shailevi23@gmail.com> on all three raw exports",
+    "note": "No name was invented; this is the identifier the project records."
   }
 }

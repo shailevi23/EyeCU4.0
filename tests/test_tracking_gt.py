@@ -125,10 +125,26 @@ class TestPostStageRefusesWithoutAnnotation:
             assert any('QC confirmation' in e or 'only VERIFIED' in e
                        for e in errors), errors
 
-    def test_mot_export_refuses_without_annotation(self):
+    def test_mot_export_refuses_when_gt_is_tampered_with(self, tmp_path):
+        """
+        Once GT is VERIFIED the export legitimately succeeds, so the invariant
+        worth testing is the one that still bites: a VERIFIED manifest whose
+        annotations no longer match the QC record must not export.
+
+        It runs on a COPY. Pointing this at the real package would have the
+        test suite quietly regenerate the canonical MOT export, which is
+        exactly the kind of silent side effect this benchmark cannot afford.
+        """
         from tools.export_tracking_gt_mot import export
+        dst = tmp_path / 'gt'
+        shutil.copytree(ROOT, dst, ignore=shutil.ignore_patterns('img1', 'mot'))
+        man = json.loads((dst / 'manifest.json').read_text(encoding='utf-8'))
+        ann = dst / man['sequences'][0]['annotation_file_expected']
+        data = json.loads(ann.read_text(encoding='utf-8'))
+        data['boxes'] = data['boxes'][:-1]           # one box removed
+        ann.write_text(json.dumps(data), encoding='utf-8')
         with pytest.raises(SystemExit, match='REFUSING'):
-            export(ROOT, ROOT / 'mot')
+            export(dst, tmp_path / 'mot')
 
 
 def _annotated(tmp_path, boxes, roles=None, status='VERIFIED'):

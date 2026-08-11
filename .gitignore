@@ -130,8 +130,28 @@ data/tracking_val_gt/audit/*/*
 # makes an evaluation run reproducible from the repo alone
 # The MOT layout nests four deep (mot/<split>/<seq>/gt/gt.txt), so this block
 # matches by depth-independent glob rather than counting levels.
+# Vendored TrackEval: read for the protocol freeze, and the file hashes are
+# recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
+# the pinned wheel, so the bytes stay out of the repo.
+third_party/
+
 !data/tracking_val_gt/mot/
 data/tracking_val_gt/mot/**
+# Vendored TrackEval: read for the protocol freeze, and the file hashes are
+# recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
+# the pinned wheel, so the bytes stay out of the repo.
+third_party/
+
 !data/tracking_val_gt/mot/**/
+# Vendored TrackEval: read for the protocol freeze, and the file hashes are
+# recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
+# the pinned wheel, so the bytes stay out of the repo.
+third_party/
+
 !data/tracking_val_gt/mot/**/*.txt
+# Vendored TrackEval: read for the protocol freeze, and the file hashes are
+# recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
+# the pinned wheel, so the bytes stay out of the repo.
+third_party/
+
 !data/tracking_val_gt/mot/**/*.ini
