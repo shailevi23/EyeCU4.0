@@ -272,30 +272,73 @@ class TestConfirmationLifecycleContract:
         return ft.get_object_tracks([np.zeros((360, 640, 3), np.uint8)] * n_frames,
                                     read_from_cache=False)
 
-    def test_frame_1_emits_no_fabricated_identity(self):
-        tracks = self._run(1)
-        assert tracks['players'][0] == {}, (
-            'an unconfirmed observation must not be given a public identity')
-
-    def test_confirmation_is_evidenced_on_real_data_not_this_fixture(self):
+    def test_stationary_person_receives_a_positive_identity(self):
         """
-        This synthetic fixture repeats an identical stationary box, and CBIoU
-        never confirms it -- six frames produce no identity at all.
+        Corrects an earlier wrong explanation of mine.
 
-        That is a property of the fixture, not of CBIoU: on the three VAL
-        sequences the same configuration produced 25, 24 and 31 identities with
-        median track lengths of 298, 94 and 58 frames. So the "frame 2+ emits a
-        positive id" half of the contract is evidenced there, and asserting it
-        here would mean inventing motion until the tracker agreed.
+        I reported that CBIoU never confirms a stationary box. It confirms it
+        immediately as raw id 0; the EyeCU adapter then discarded it, because
+        the `<= 0` guard was written for sv.ByteTrack's 1-based ids. Motion was
+        never the variable. The adapter now maps raw >= 0 to raw + 1.
         """
         tracks = self._run(6)
-        assert all(f == {} for f in tracks['players']), (
-            'fixture assumption changed; re-derive the lifecycle evidence')
-        run = json.loads((REPO / 'experiments' / 'tracking_v2' / 't2'
-                          / 'run_report.json').read_text(encoding='utf-8'))
-        ids = [run['diagnostics'][k]['distinct_ids'] for k in run['diagnostics']
-               if k.startswith('CBIoUTracker/')]
-        assert ids and all(n > 0 for n in ids), ids
+        assert all(f for f in tracks['players']), 'stationary person must track'
+        assert {t for f in tracks['players'] for t in f} == {1}
+
+    def test_raw_id_zero_becomes_public_id_one(self):
+        from rf_trackers import CBIoUTracker
+        import supervision as sv
+        t = CBIoUTracker(frame_rate=25.0)
+        xy = np.array([[10, 10, 30, 60], [100, 100, 120, 160]], np.float32)
+        for i in range(3):
+            r = t.update(sv.Detections(xyxy=xy + i * 4,
+                                       confidence=np.array([.95, .9], np.float32),
+                                       class_id=np.zeros(2, int)))
+        assert sorted(int(x) for x in r.tracker_id) == [0, 1], 'raw ids are 0-based'
+        tracks = self._run(4)
+        assert {t for f in tracks['players'] for t in f} == {1}
+
+    def test_two_raw_ids_become_two_distinct_public_ids(self):
+        from trackers.football_tracker import FootballTracker
+
+        class _Two:
+            def detect(self, frame, *a, **k):
+                return [{'class': 'player', 'bbox': [100, 100, 130, 180], 'confidence': 0.9},
+                        {'class': 'player', 'bbox': [400, 120, 430, 200], 'confidence': 0.88}]
+        ft = FootballTracker(detector=_Two(), persist_cache=False,
+                             tracker_backend='cbiou', frame_rate=25.0)
+        tr = ft.get_object_tracks([np.zeros((360, 640, 3), np.uint8)] * 5,
+                                  read_from_cache=False)
+        ids = {t for f in tr['players'] for t in f}
+        assert ids == {1, 2}, ids
+        for f in tr['players']:
+            assert len(f) == len(set(f))
+
+    def test_minus_one_is_never_exposed(self):
+        tracks = self._run(6)
+        for key in ('players', 'goalkeepers', 'referees', 'ball'):
+            for f in tracks[key]:
+                assert all(t > 0 for t in f)
+
+    def test_legacy_identity_semantics_are_not_shifted(self):
+        """Legacy is already 1-based and must not receive the +1."""
+        src = (REPO / 'trackers' / 'football_tracker.py').read_text(encoding='utf-8')
+        assert "if self.tracker_backend != 'legacy':" in src
+        from trackers.football_tracker import FootballTracker
+
+        class _One:
+            def detect(self, frame, *a, **k):
+                return [{'class': 'player', 'bbox': [100, 100, 130, 180], 'confidence': 0.9}]
+        ft = FootballTracker(detector=_One(), persist_cache=False,
+                             tracker_backend='legacy')
+        tr = ft.get_object_tracks([np.zeros((360, 640, 3), np.uint8)] * 4,
+                                  read_from_cache=False)
+        assert {t for f in tr['players'] for t in f} == {1}
+
+    def test_ball_and_roles_unaffected_by_normalisation(self):
+        tracks = self._run(4)
+        assert list(tracks['ball'][0]) == [1]
+        assert all(t['confidence'] == 0.9 for f in tracks['players'] for t in f.values())
 
     def test_minus_one_never_reaches_any_track_dict(self):
         tracks = self._run(6)

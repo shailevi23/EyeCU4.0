@@ -2,7 +2,7 @@
  "production_tracker": "CBIoUTracker",
  "source": "vendored trackers==2.6.0 equivalent (rf_trackers/)",
  "config": "exact LIBRARY_DEFAULTS; production supplies only frame_rate",
- "tracker_status": "FROZEN",
+ "tracker_status": "FROZEN (re-affirmed on corrected results)",
  "frozen": "2026-08-11",
  "evidence_class": "POST-HOC / DEVELOPMENT QUALIFICATION -- not independent confirmation",
  "rollback": "FootballTracker(tracker_backend='legacy') -> sv.ByteTrack(), retained and tested",
@@ -47,7 +47,7 @@
   "fixture_assumption": 7,
   "note": "the 7 ball-isolation tests are fixture-assumption cases whose invariants are separately asserted for BOTH backends on 8-frame fixtures in test_cbiou_integration"
  },
- "status": "PRODUCTION_EDGE_CASE_REVIEW_REQUIRED",
+ "status": "SELECTION_REVIEW_REQUIRED -> RESOLVED, CBIoU re-selected",
  "edge_case": {
   "found": "2026-08-11",
   "summary": "CBIoU track ids are 0-BASED; the EyeCU filter discards id 0 as if it were unconfirmed.",
@@ -66,5 +66,28 @@
   "metrics_impact": "The T2 reference runner used the same `<= 0` filter, so reference-vs-integrated equivalence is genuine and the bake-off comparison was internally consistent. But the frozen HOTA/AssA/IDF1 describe the FILTERED output, so they under-count CBIoU slightly rather than flattering it.",
   "not_done": "No fix applied, no tuning, no default change -- audit only, per instruction.",
   "recommended": "change the predicate to < 0, re-run equivalence and the T2 metrics, and re-freeze; CBIoU configuration itself must not change"
- }
+ },
+ "corrected_selection": {
+  "gate": "T2 ADOPTION GATE v1.0, unchanged",
+  "CBIoU": {
+   "HOTA": 60.6,
+   "AssA": 61.68,
+   "IDF1": 81.13,
+   "all_criteria": "PASS"
+  },
+  "BoTSORT": {
+   "HOTA": 60.2,
+   "AssA": 60.61,
+   "IDF1": 79.8,
+   "all_criteria": "PASS except criterion 8 not measured"
+  },
+  "legacy": {
+   "HOTA": 55.7
+  },
+  "hota_gap": 0.4,
+  "tie_break": "gap < 0.5 -> lower end-to-end ms/frame",
+  "selected": "CBIoUTracker",
+  "note": "CBIoU wins on both branches: higher COMBINED_SEQ HOTA and lower cost. BoTSORT has no paired end-to-end measurement, so its criterion 8 is unestablished and it could not be selected without one."
+ },
+ "adapter": "raw < 0 dropped; raw >= 0 -> public id raw + 1 (modern only; legacy untouched)"
 }

@@ -1,0 +1,121 @@
+{
+ "gate": "T2 ADOPTION GATE v1.0 (unchanged)",
+ "candidates": {
+  "CBIoUTracker": {
+   "combined": {
+    "HOTA": 60.6,
+    "DetA": 59.78,
+    "AssA": 61.68,
+    "MOTA": 75.92,
+    "IDF1": 81.13
+   },
+   "per_seq_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": 4.19,
+    "women_1_239": 3.58,
+    "youth_premier_league_1133": 9.03
+   },
+   "criteria": {
+    "1_repro": [
+     true,
+     {
+      "HOTA": 0.0,
+      "AssA": 0.0,
+      "IDF1": 0.0
+     }
+    ],
+    "2_HOTA>=+2": [
+     true,
+     4.9
+    ],
+    "3_AssA>=+3": [
+     true,
+     8.02
+    ],
+    "4_IDF1>=+3": [
+     true,
+     10.34
+    ],
+    "5_HOTA>=2of3 & none<-2": [
+     true,
+     "3/3 worst +3.58"
+    ],
+    "6_IDF1 none<-2": [
+     true,
+     "worst +8.13"
+    ],
+    "7_invariants": [
+     true,
+     "9/9 (validated outputs, 0 invalid rows)"
+    ],
+    "8_runtime<=+10%": [
+     null,
+     "CBIoU paired -0.115%; BoTSORT not paired-measured"
+    ],
+    "9_no_tuning": [
+     true,
+     "exact 2.6.0 defaults, config MATCH 3/3"
+    ]
+   }
+  },
+  "BoTSORTTracker": {
+   "combined": {
+    "HOTA": 60.2,
+    "DetA": 60.06,
+    "AssA": 60.61,
+    "MOTA": 76.57,
+    "IDF1": 79.8
+   },
+   "per_seq_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": 2.73,
+    "women_1_239": 3.56,
+    "youth_premier_league_1133": 11.58
+   },
+   "criteria": {
+    "1_repro": [
+     true,
+     {
+      "HOTA": 0.0,
+      "AssA": 0.0,
+      "IDF1": 0.0
+     }
+    ],
+    "2_HOTA>=+2": [
+     true,
+     4.5
+    ],
+    "3_AssA>=+3": [
+     true,
+     6.96
+    ],
+    "4_IDF1>=+3": [
+     true,
+     9.02
+    ],
+    "5_HOTA>=2of3 & none<-2": [
+     true,
+     "3/3 worst +2.73"
+    ],
+    "6_IDF1 none<-2": [
+     true,
+     "worst +5.15"
+    ],
+    "7_invariants": [
+     true,
+     "9/9 (validated outputs, 0 invalid rows)"
+    ],
+    "8_runtime<=+10%": [
+     null,
+     "CBIoU paired -0.115%; BoTSORT not paired-measured"
+    ],
+    "9_no_tuning": [
+     true,
+     "exact 2.6.0 defaults, config MATCH 3/3"
+    ]
+   }
+  }
+ },
+ "hota_gap": 0.4,
+ "tie_break": "gap < 0.5 -> lower end-to-end ms/frame",
+ "selection": "CBIoUTracker",
+ "note": "BoTSORT has no paired end-to-end measurement, so its criterion 8 is not established; CBIoU passes 8 at -0.115%. CBIoU also has the higher COMBINED_SEQ HOTA, so it wins on both branches."
+}

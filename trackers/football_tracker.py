@@ -301,18 +301,28 @@ class FootballTracker:
                     if key is None:
                         continue  # nothing but humans should reach here
                     raw_id = tracked_detections.tracker_id[i]
-                    if raw_id is None or int(raw_id) <= 0:
-                        # CBIoU reports -1 for a track that has not yet met
-                        # minimum_consecutive_frames. It is not an identity and
-                        # must not become a dictionary key.
+                    if raw_id is None or int(raw_id) < 0:
+                        # Modern trackers report -1 for a track that has not yet
+                        # met minimum_consecutive_frames. That is not an
+                        # identity and must not become a dictionary key.
                         continue
+                    raw_id = int(raw_id)
+                    if self.tracker_backend != 'legacy':
+                        # Modern trackers number from 0 (trackers 2.6.0,
+                        # base_tracklet.py: tracker_id starts at -1 and the
+                        # first confirmed track takes 0). EyeCU's public
+                        # identity contract is POSITIVE integers, so the
+                        # boundary shifts by one. Legacy sv.ByteTrack is
+                        # already 1-based and is left alone. The map is
+                        # injective, so uniqueness and continuity are preserved.
+                        raw_id += 1
                     conf = float(tracked_detections.confidence[i])
                     if conf < self.human_accept_conf:
                         # Association evidence only. It kept the identity alive
                         # through this frame; it must not appear in reports,
                         # counts, statistics or the rendered video.
                         continue
-                    track_id = int(raw_id)
+                    track_id = raw_id
                     tracks[key][frame_idx][track_id] = {
                         "bbox": tracked_detections.xyxy[i].tolist(),
                         "confidence": conf,

@@ -1,0 +1,1409 @@
+{
+ "runs": {
+  "LIBRARY_DEFAULTS/ByteTrackTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "ByteTrackTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold": 0.1,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 10256,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 7308,
+    "tracker_update_seconds": 0.8341,
+    "tracker_ms_per_frame": 2.7804,
+    "distinct_track_ids": 30
+   }
+  },
+  "LIBRARY_DEFAULTS/ByteTrackTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "ByteTrackTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold": 0.1,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 8203,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 3418,
+    "tracker_update_seconds": 0.1802,
+    "tracker_ms_per_frame": 0.6005,
+    "distinct_track_ids": 24
+   }
+  },
+  "LIBRARY_DEFAULTS/ByteTrackTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "ByteTrackTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold": 0.1,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 12607,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 3942,
+    "tracker_update_seconds": 0.2258,
+    "tracker_ms_per_frame": 0.7527,
+    "distinct_track_ids": 38
+   }
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "BoTSORTTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": true,
+     "cmc": "CMC"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 10256,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 6952,
+    "tracker_update_seconds": 1.6431,
+    "tracker_ms_per_frame": 5.477,
+    "distinct_track_ids": 28
+   }
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "BoTSORTTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": true,
+     "cmc": "CMC"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 8203,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 2786,
+    "tracker_update_seconds": 1.3381,
+    "tracker_ms_per_frame": 4.4604,
+    "distinct_track_ids": 23
+   }
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "BoTSORTTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": true,
+     "cmc": "CMC"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 12607,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 2488,
+    "tracker_update_seconds": 1.308,
+    "tracker_ms_per_frame": 4.3599,
+    "distinct_track_ids": 33
+   }
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "CBIoUTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": false,
+     "cmc": null,
+     "iou_first": "BIoU",
+     "iou_second": "BIoU",
+     "buffer_ratio_first": 0.3,
+     "buffer_ratio_second": 0.5
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 10256,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 6956,
+    "tracker_update_seconds": 0.5121,
+    "tracker_ms_per_frame": 1.7071,
+    "distinct_track_ids": 26
+   }
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "CBIoUTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": false,
+     "cmc": null,
+     "iou_first": "BIoU",
+     "iou_second": "BIoU",
+     "buffer_ratio_first": 0.3,
+     "buffer_ratio_second": 0.5
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 8203,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 2755,
+    "tracker_update_seconds": 0.3234,
+    "tracker_ms_per_frame": 1.0779,
+    "distinct_track_ids": 25
+   }
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "CBIoUTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": false,
+     "cmc": null,
+     "iou_first": "BIoU",
+     "iou_second": "BIoU",
+     "buffer_ratio_first": 0.3,
+     "buffer_ratio_second": 0.5
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 12607,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 2537,
+    "tracker_update_seconds": 0.2817,
+    "tracker_ms_per_frame": 0.9388,
+    "distinct_track_ids": 32
+   }
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "OCSORTTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 3,
+     "minimum_iou_threshold": 0.3,
+     "direction_consistency_weight": 0.2,
+     "high_conf_det_threshold": 0.6,
+     "delta_t": 3,
+     "tracks": "list",
+     "frame_count": 300,
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 10256,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 6257,
+    "tracker_update_seconds": 0.4352,
+    "tracker_ms_per_frame": 1.4508,
+    "distinct_track_ids": 29
+   }
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "OCSORTTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 3,
+     "minimum_iou_threshold": 0.3,
+     "direction_consistency_weight": 0.2,
+     "high_conf_det_threshold": 0.6,
+     "delta_t": 3,
+     "tracks": "list",
+     "frame_count": 300,
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 8203,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 1727,
+    "tracker_update_seconds": 0.2398,
+    "tracker_ms_per_frame": 0.7992,
+    "distinct_track_ids": 31
+   }
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "OCSORTTracker",
+    "profile": "LIBRARY_DEFAULTS",
+    "requested_kwargs": {
+     "frame_rate": 25.0
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 3,
+     "minimum_iou_threshold": 0.3,
+     "direction_consistency_weight": 0.2,
+     "high_conf_det_threshold": 0.6,
+     "delta_t": 3,
+     "tracks": "list",
+     "frame_count": 300,
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 12607,
+    "min_conf_exclusive": 0.01,
+    "output_rows": 1031,
+    "tracker_update_seconds": 0.2838,
+    "tracker_ms_per_frame": 0.9462,
+    "distinct_track_ids": 46
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "ByteTrackTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold": 0.1,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 7960,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 7591,
+    "tracker_update_seconds": 0.3223,
+    "tracker_ms_per_frame": 1.0742,
+    "distinct_track_ids": 92
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "ByteTrackTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold": 0.1,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 4240,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 3835,
+    "tracker_update_seconds": 0.2273,
+    "tracker_ms_per_frame": 0.7575,
+    "distinct_track_ids": 82
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "ByteTrackTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold": 0.1,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 5275,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 4573,
+    "tracker_update_seconds": 0.297,
+    "tracker_ms_per_frame": 0.99,
+    "distinct_track_ids": 98
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "BoTSORTTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": true,
+     "cmc": "CMC"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 7960,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 7337,
+    "tracker_update_seconds": 1.8848,
+    "tracker_ms_per_frame": 6.2826,
+    "distinct_track_ids": 48
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "BoTSORTTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": true,
+     "cmc": "CMC"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 4240,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 3257,
+    "tracker_update_seconds": 1.4383,
+    "tracker_ms_per_frame": 4.7943,
+    "distinct_track_ids": 56
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "BoTSORTTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": true,
+     "cmc": "CMC"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 5275,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 3538,
+    "tracker_update_seconds": 1.4669,
+    "tracker_ms_per_frame": 4.8896,
+    "distinct_track_ids": 78
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "CBIoUTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": false,
+     "cmc": null,
+     "iou_first": "BIoU",
+     "iou_second": "BIoU",
+     "buffer_ratio_first": 0.3,
+     "buffer_ratio_second": 0.5
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 7960,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 7325,
+    "tracker_update_seconds": 0.5914,
+    "tracker_ms_per_frame": 1.9715,
+    "distinct_track_ids": 49
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "CBIoUTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": false,
+     "cmc": null,
+     "iou_first": "BIoU",
+     "iou_second": "BIoU",
+     "buffer_ratio_first": 0.3,
+     "buffer_ratio_second": 0.5
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 4240,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 3245,
+    "tracker_update_seconds": 0.3606,
+    "tracker_ms_per_frame": 1.202,
+    "distinct_track_ids": 56
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "CBIoUTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 2,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "track_activation_threshold": 0.25,
+     "high_conf_det_threshold": 0.25,
+     "instant_first_frame_activation": true,
+     "tracks": "list",
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU",
+     "frame_id": 300,
+     "enable_cmc": false,
+     "cmc": null,
+     "iou_first": "BIoU",
+     "iou_second": "BIoU",
+     "buffer_ratio_first": 0.3,
+     "buffer_ratio_second": 0.5
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 5275,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 3526,
+    "tracker_update_seconds": 0.436,
+    "tracker_ms_per_frame": 1.4535,
+    "distinct_track_ids": 81
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "ok": true,
+   "meta": {
+    "tracker": "OCSORTTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 3,
+     "minimum_iou_threshold": 0.3,
+     "direction_consistency_weight": 0.2,
+     "high_conf_det_threshold": 0.25,
+     "delta_t": 3,
+     "tracks": "list",
+     "frame_count": 300,
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 7960,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 6905,
+    "tracker_update_seconds": 0.5786,
+    "tracker_ms_per_frame": 1.9286,
+    "distinct_track_ids": 72
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/women_1_239": {
+   "ok": true,
+   "meta": {
+    "tracker": "OCSORTTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 3,
+     "minimum_iou_threshold": 0.3,
+     "direction_consistency_weight": 0.2,
+     "high_conf_det_threshold": 0.25,
+     "delta_t": 3,
+     "tracks": "list",
+     "frame_count": 300,
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 4240,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 2707,
+    "tracker_update_seconds": 0.3694,
+    "tracker_ms_per_frame": 1.2313,
+    "distinct_track_ids": 76
+   }
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/youth_premier_league_1133": {
+   "ok": true,
+   "meta": {
+    "tracker": "OCSORTTracker",
+    "profile": "EYECU_SCORE_POLICY_V1",
+    "requested_kwargs": {
+     "frame_rate": 25.0,
+     "high_conf_det_threshold": 0.25
+    },
+    "effective_config": {
+     "maximum_frames_without_update": 25,
+     "maximum_time_without_update": 1.0,
+     "minimum_consecutive_frames": 3,
+     "minimum_iou_threshold": 0.3,
+     "direction_consistency_weight": 0.2,
+     "high_conf_det_threshold": 0.25,
+     "delta_t": 3,
+     "tracks": "list",
+     "frame_count": 300,
+     "state_estimator_class": "ABCMeta",
+     "iou": "IoU"
+    },
+    "python": "3.10.0",
+    "trackers_version": "not exposed",
+    "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\bakeoff_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+    "supervision_version": "0.30.0",
+    "numpy_version": "2.2.6",
+    "frames": 300,
+    "detections_supplied": 5275,
+    "min_conf_exclusive": 0.1,
+    "output_rows": 2408,
+    "tracker_update_seconds": 0.4648,
+    "tracker_ms_per_frame": 1.5492,
+    "distinct_track_ids": 95
+   }
+  }
+ },
+ "validation": {
+  "LIBRARY_DEFAULTS/ByteTrackTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 7308,
+   "frames_with_output": 299,
+   "distinct_ids": 30,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/ByteTrackTracker/women_1_239": {
+   "rows": 3418,
+   "frames_with_output": 299,
+   "distinct_ids": 24,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/ByteTrackTracker/youth_premier_league_1133": {
+   "rows": 3942,
+   "frames_with_output": 299,
+   "distinct_ids": 38,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 6952,
+   "frames_with_output": 300,
+   "distinct_ids": 28,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/women_1_239": {
+   "rows": 2786,
+   "frames_with_output": 300,
+   "distinct_ids": 23,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/youth_premier_league_1133": {
+   "rows": 2488,
+   "frames_with_output": 300,
+   "distinct_ids": 33,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 6956,
+   "frames_with_output": 300,
+   "distinct_ids": 26,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/women_1_239": {
+   "rows": 2755,
+   "frames_with_output": 300,
+   "distinct_ids": 25,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/youth_premier_league_1133": {
+   "rows": 2537,
+   "frames_with_output": 300,
+   "distinct_ids": 32,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 6257,
+   "frames_with_output": 299,
+   "distinct_ids": 29,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/women_1_239": {
+   "rows": 1727,
+   "frames_with_output": 298,
+   "distinct_ids": 31,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/youth_premier_league_1133": {
+   "rows": 1031,
+   "frames_with_output": 284,
+   "distinct_ids": 46,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 7591,
+   "frames_with_output": 299,
+   "distinct_ids": 92,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/women_1_239": {
+   "rows": 3835,
+   "frames_with_output": 299,
+   "distinct_ids": 82,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/youth_premier_league_1133": {
+   "rows": 4573,
+   "frames_with_output": 299,
+   "distinct_ids": 98,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 7337,
+   "frames_with_output": 300,
+   "distinct_ids": 48,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/women_1_239": {
+   "rows": 3257,
+   "frames_with_output": 300,
+   "distinct_ids": 56,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/youth_premier_league_1133": {
+   "rows": 3538,
+   "frames_with_output": 300,
+   "distinct_ids": 78,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 7325,
+   "frames_with_output": 300,
+   "distinct_ids": 49,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/women_1_239": {
+   "rows": 3245,
+   "frames_with_output": 300,
+   "distinct_ids": 56,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/youth_premier_league_1133": {
+   "rows": 3526,
+   "frames_with_output": 300,
+   "distinct_ids": 81,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "rows": 6905,
+   "frames_with_output": 299,
+   "distinct_ids": 72,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/women_1_239": {
+   "rows": 2707,
+   "frames_with_output": 299,
+   "distinct_ids": 76,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/youth_premier_league_1133": {
+   "rows": 2408,
+   "frames_with_output": 299,
+   "distinct_ids": 95,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/LEGACY_SUPERVISION_BYTETRACK/bayern_munich_3-1_chelsea_228": {
+   "rows": 7150,
+   "frames_with_output": 300,
+   "distinct_ids": 53,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/LEGACY_SUPERVISION_BYTETRACK/bayern_munich_3-1_chelsea_228": {
+   "rows": 7150,
+   "frames_with_output": 300,
+   "distinct_ids": 53,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/LEGACY_SUPERVISION_BYTETRACK/women_1_239": {
+   "rows": 2835,
+   "frames_with_output": 300,
+   "distinct_ids": 62,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/LEGACY_SUPERVISION_BYTETRACK/women_1_239": {
+   "rows": 2835,
+   "frames_with_output": 300,
+   "distinct_ids": 62,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "LIBRARY_DEFAULTS/LEGACY_SUPERVISION_BYTETRACK/youth_premier_league_1133": {
+   "rows": 2779,
+   "frames_with_output": 300,
+   "distinct_ids": 101,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  },
+  "EYECU_SCORE_POLICY_V1/LEGACY_SUPERVISION_BYTETRACK/youth_premier_league_1133": {
+   "rows": 2779,
+   "frames_with_output": 300,
+   "distinct_ids": 101,
+   "issues": [],
+   "issue_count": 0,
+   "valid": true
+  }
+ },
+ "diagnostics": {
+  "LIBRARY_DEFAULTS/ByteTrackTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 30,
+   "median_track_length": 295,
+   "track_length_min": 1,
+   "track_length_max": 299,
+   "tracks_len_1": 1,
+   "tracks_len_ge_100": 26
+  },
+  "LIBRARY_DEFAULTS/ByteTrackTracker/women_1_239": {
+   "distinct_ids": 24,
+   "median_track_length": 139,
+   "track_length_min": 10,
+   "track_length_max": 298,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 14
+  },
+  "LIBRARY_DEFAULTS/ByteTrackTracker/youth_premier_league_1133": {
+   "distinct_ids": 38,
+   "median_track_length": 90,
+   "track_length_min": 5,
+   "track_length_max": 295,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 16
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 28,
+   "median_track_length": 298,
+   "track_length_min": 22,
+   "track_length_max": 300,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 25
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/women_1_239": {
+   "distinct_ids": 23,
+   "median_track_length": 98,
+   "track_length_min": 9,
+   "track_length_max": 291,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 11
+  },
+  "LIBRARY_DEFAULTS/BoTSORTTracker/youth_premier_league_1133": {
+   "distinct_ids": 33,
+   "median_track_length": 57,
+   "track_length_min": 1,
+   "track_length_max": 283,
+   "tracks_len_1": 3,
+   "tracks_len_ge_100": 10
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 26,
+   "median_track_length": 299,
+   "track_length_min": 13,
+   "track_length_max": 300,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 24
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/women_1_239": {
+   "distinct_ids": 25,
+   "median_track_length": 77,
+   "track_length_min": 7,
+   "track_length_max": 300,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 10
+  },
+  "LIBRARY_DEFAULTS/CBIoUTracker/youth_premier_league_1133": {
+   "distinct_ids": 32,
+   "median_track_length": 58,
+   "track_length_min": 1,
+   "track_length_max": 235,
+   "tracks_len_1": 2,
+   "tracks_len_ge_100": 10
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 29,
+   "median_track_length": 257,
+   "track_length_min": 4,
+   "track_length_max": 296,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 23
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/women_1_239": {
+   "distinct_ids": 31,
+   "median_track_length": 36,
+   "track_length_min": 2,
+   "track_length_max": 214,
+   "tracks_len_1": 0,
+   "tracks_len_ge_100": 6
+  },
+  "LIBRARY_DEFAULTS/OCSORTTracker/youth_premier_league_1133": {
+   "distinct_ids": 46,
+   "median_track_length": 17,
+   "track_length_min": 1,
+   "track_length_max": 81,
+   "tracks_len_1": 5,
+   "tracks_len_ge_100": 0
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 92,
+   "median_track_length": 67,
+   "track_length_min": 1,
+   "track_length_max": 287,
+   "tracks_len_1": 8,
+   "tracks_len_ge_100": 31
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/women_1_239": {
+   "distinct_ids": 82,
+   "median_track_length": 22,
+   "track_length_min": 1,
+   "track_length_max": 261,
+   "tracks_len_1": 9,
+   "tracks_len_ge_100": 10
+  },
+  "EYECU_SCORE_POLICY_V1/ByteTrackTracker/youth_premier_league_1133": {
+   "distinct_ids": 98,
+   "median_track_length": 32,
+   "track_length_min": 1,
+   "track_length_max": 186,
+   "tracks_len_1": 2,
+   "tracks_len_ge_100": 17
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 48,
+   "median_track_length": 183,
+   "track_length_min": 1,
+   "track_length_max": 300,
+   "tracks_len_1": 2,
+   "tracks_len_ge_100": 25
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/women_1_239": {
+   "distinct_ids": 56,
+   "median_track_length": 36,
+   "track_length_min": 1,
+   "track_length_max": 243,
+   "tracks_len_1": 5,
+   "tracks_len_ge_100": 10
+  },
+  "EYECU_SCORE_POLICY_V1/BoTSORTTracker/youth_premier_league_1133": {
+   "distinct_ids": 78,
+   "median_track_length": 28,
+   "track_length_min": 1,
+   "track_length_max": 190,
+   "tracks_len_1": 2,
+   "tracks_len_ge_100": 11
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 49,
+   "median_track_length": 118,
+   "track_length_min": 1,
+   "track_length_max": 300,
+   "tracks_len_1": 4,
+   "tracks_len_ge_100": 27
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/women_1_239": {
+   "distinct_ids": 56,
+   "median_track_length": 23,
+   "track_length_min": 1,
+   "track_length_max": 253,
+   "tracks_len_1": 3,
+   "tracks_len_ge_100": 11
+  },
+  "EYECU_SCORE_POLICY_V1/CBIoUTracker/youth_premier_league_1133": {
+   "distinct_ids": 81,
+   "median_track_length": 27,
+   "track_length_min": 1,
+   "track_length_max": 162,
+   "tracks_len_1": 1,
+   "tracks_len_ge_100": 12
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 72,
+   "median_track_length": 68,
+   "track_length_min": 1,
+   "track_length_max": 299,
+   "tracks_len_1": 3,
+   "tracks_len_ge_100": 25
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/women_1_239": {
+   "distinct_ids": 76,
+   "median_track_length": 21,
+   "track_length_min": 1,
+   "track_length_max": 234,
+   "tracks_len_1": 5,
+   "tracks_len_ge_100": 8
+  },
+  "EYECU_SCORE_POLICY_V1/OCSORTTracker/youth_premier_league_1133": {
+   "distinct_ids": 95,
+   "median_track_length": 18,
+   "track_length_min": 1,
+   "track_length_max": 114,
+   "tracks_len_1": 3,
+   "tracks_len_ge_100": 1
+  },
+  "LIBRARY_DEFAULTS/LEGACY_SUPERVISION_BYTETRACK/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 53,
+   "median_track_length": 61,
+   "track_length_min": 1,
+   "track_length_max": 300,
+   "tracks_len_1": 2,
+   "tracks_len_ge_100": 26
+  },
+  "EYECU_SCORE_POLICY_V1/LEGACY_SUPERVISION_BYTETRACK/bayern_munich_3-1_chelsea_228": {
+   "distinct_ids": 53,
+   "median_track_length": 61,
+   "track_length_min": 1,
+   "track_length_max": 300,
+   "tracks_len_1": 2,
+   "tracks_len_ge_100": 26
+  },
+  "LIBRARY_DEFAULTS/LEGACY_SUPERVISION_BYTETRACK/women_1_239": {
+   "distinct_ids": 62,
+   "median_track_length": 13,
+   "track_length_min": 1,
+   "track_length_max": 238,
+   "tracks_len_1": 8,
+   "tracks_len_ge_100": 10
+  },
+  "EYECU_SCORE_POLICY_V1/LEGACY_SUPERVISION_BYTETRACK/women_1_239": {
+   "distinct_ids": 62,
+   "median_track_length": 13,
+   "track_length_min": 1,
+   "track_length_max": 238,
+   "tracks_len_1": 8,
+   "tracks_len_ge_100": 10
+  },
+  "LIBRARY_DEFAULTS/LEGACY_SUPERVISION_BYTETRACK/youth_premier_league_1133": {
+   "distinct_ids": 101,
+   "median_track_length": 9,
+   "track_length_min": 1,
+   "track_length_max": 202,
+   "tracks_len_1": 13,
+   "tracks_len_ge_100": 5
+  },
+  "EYECU_SCORE_POLICY_V1/LEGACY_SUPERVISION_BYTETRACK/youth_premier_league_1133": {
+   "distinct_ids": 101,
+   "median_track_length": 9,
+   "track_length_min": 1,
+   "track_length_max": 202,
+   "tracks_len_1": 13,
+   "tracks_len_ge_100": 5
+  }
+ }
+}

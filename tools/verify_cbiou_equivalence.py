@@ -54,8 +54,9 @@ def run_integrated(candidates: Path, frames: Path, fps: float):
             continue
         for i in range(len(res)):
             tid = res.tracker_id[i]
-            if tid is None or (isinstance(tid, float) and np.isnan(tid)) or int(tid) <= 0:
+            if tid is None or (isinstance(tid, float) and np.isnan(tid)) or int(tid) < 0:
                 continue
+            tid = int(tid) + 1        # 0-based raw -> positive public id
             x1, y1, x2, y2 = (float(v) for v in res.xyxy[i])
             c = float(res.confidence[i]) if res.confidence is not None else 1.0
             out.append(f'{f},{int(tid)},{x1:.2f},{y1:.2f},'

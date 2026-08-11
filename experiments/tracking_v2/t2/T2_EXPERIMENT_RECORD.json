@@ -23,5 +23,20 @@
   "trackeval_raw/T2_macro.json": "5d1f23de854f4b0c34be63461df9b08e53ccf03348ff72cc4be474f9926965d8"
  },
  "test_accessed": false,
- "production_changed": false
+ "production_changed": false,
+ "adapter_bug_invalidation": {
+  "status": "INVALIDATED_FOR_TRACKER_SELECTION",
+  "reason": "adapter incorrectly discarded legitimate raw tracker id 0",
+  "detail": "All four modern trackers in trackers==2.6.0 number identities from 0 and use -1 for unconfirmed (utils/base_tracklet.py:27). The EyeCU adapter dropped raw_id <= 0, so every modern run silently lost one whole identity. Legacy sv.ByteTrack is 1-based and was unaffected.",
+  "still_valid": [
+   "frozen detections",
+   "identity GT",
+   "tracker configurations",
+   "TrackEval protocol and DO_PREPROC=False",
+   "score policies"
+  ],
+  "defective": "tracker-output canonicalisation only",
+  "classification": "correctness bug fix, NOT tuning"
+ },
+ "superseded_by": "experiments/tracking_v2/t2/T2_EXPERIMENT_RECORD  -> see *_CORRECTED artefacts"
 }

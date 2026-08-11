@@ -1,0 +1,18 @@
+{
+ "tracker": "LEGACY_SUPERVISION_BYTETRACK",
+ "profile": "PRODUCTION_HISTORICAL",
+ "implementation": "supervision.ByteTrack() via update_with_detections",
+ "supervision_version": "0.26.1",
+ "arguments_passed": "none -- real production semantics preserved",
+ "new_track_gate": "effective ~0.35 (det_thresh = activation + 0.1), NOT normalised",
+ "detections_fed": "accepted store, confidence > 0.00",
+ "output_filter": "conf >= 0.25 (production behaviour)",
+ "frames": 300,
+ "detections_supplied": 3374,
+ "output_rows": 2835,
+ "withheld_below_accept_conf": 0,
+ "distinct_track_ids": 62,
+ "tracker_update_seconds": 0.731,
+ "tracker_ms_per_frame": 2.4367,
+ "python": "3.10.0"
+}
