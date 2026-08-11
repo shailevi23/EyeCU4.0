@@ -5,7 +5,7 @@ input-videos/
 roboflow_api_key.env
 .pytest_cache/
 .env
-check_datasets/
+EyeCU_external_data/
 
 # One-off diagnostic renders land in the repo root and pile up fast. Keepers
 # belong in experiments/records/evidence/, which is tracked normally; this rule
@@ -160,6 +160,11 @@ third_party/
 # else's images and rebuild exactly from the hashed archives, so they stay out.
 # The reports, contact sheets and candidate index ARE the audit and are tracked.
 experiments/external_data_audit/extracted/
+
+# SoccerTrack audit: 2.5 GB of extracted third-party annotation, rebuilt exactly
+# from the hashed archives in EyeCU_external_data/. Reports and contact sheets
+# are the audit and are tracked.
+experiments/soccertrack_audit/extracted/
 
 # Bake-off: the records, configs, metrics and verdict are the evidence and are
 # tracked. Raw per-frame tracker outputs are large and regenerate exactly from

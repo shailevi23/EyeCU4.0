@@ -72,10 +72,21 @@ def main():
     srcs = json.loads((AUDIT / 'raw' / 'SOURCES.json').read_text(encoding='utf-8'))
     now = {'zips': {}, 'trees': {}, 'code': {}, 'weights': {}}
 
+    # The ZIPs were moved out of check_datasets/ into EyeCU_external_data/ after
+    # the first audit run. Both locations are searched and the hash is checked
+    # wherever the file is found, so a move is not mistaken for tampering and
+    # tampering is not excused by a move.
+    zip_dirs = [REPO / 'EyeCU_external_data' / 'roboflow_audit' / 'raw_zips',
+                REPO / 'check_datasets']
     for sid, s in srcs['sources'].items():
-        p = REPO / 'check_datasets' / s['original_filename']
-        now['zips'][sid] = {'file': s['original_filename'], 'sha256': sha(p),
-                            'expected': s['sha256'], 'bytes': p.stat().st_size}
+        p = next((d / s['original_filename'] for d in zip_dirs
+                  if (d / s['original_filename']).exists()), None)
+        now['zips'][sid] = {
+            'file': s['original_filename'],
+            'located_at': str(p.parent.relative_to(REPO)).replace('\\', '/') if p else None,
+            'sha256': sha(p) if p else None,
+            'expected': s['sha256'],
+            'bytes': p.stat().st_size if p else None}
     for k, (root, subs) in WATCHED.items():
         now['trees'][k] = tree_digest(REPO / root, subs)
     for f in CODE:

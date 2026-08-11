@@ -1,0 +1,267 @@
+{
+ "audit": "SoccerTrack v2 data-utility audit (partial download)",
+ "date": "2026-08-11",
+ "scope": "AUDIT ONLY. Nothing trained, nothing merged into EyeCU, no EyeCU split touched, no detector or tracker changed, no TEST performance accessed, no further download initiated.",
+
+ "headline": [
+  "The MOT component did not download. mot-20260811T095052Z-1-001.zip is 158 bytes and contains one empty directory entry. Every MOT question below is therefore UNANSWERABLE from this download, not answered negatively.",
+  "GSR contains ZERO ball annotations and ZERO referee annotations -- in all 20 downloaded halves. The categories list declares both; the instance count for both is 0.",
+  "GSR bbox_image is a geometry-derived box, not an annotated person box. Height takes 13 distinct values across 38,261 sampled boxes, varies by under 2 px for a single player across a whole half, correlates +0.98 with image row, and 99.1% of boxes are WIDER THAN TALL.",
+  "The images the boxes refer to are not in the download. GSR declares 3840x1504 frames in an 'img1' folder; the only pixels downloaded are a 4096x1080 panorama MP4, a different rendering with a different aspect ratio.",
+  "The calibration package is the real asset: complete, self-consistent and verified to 8.6 px / 0.83 m."
+ ],
+
+ "inventory": {
+  "GSR": {"files": 20, "bytes": 55283616955,
+          "matches": 10, "halves": 20,
+          "schema": "SoccerNet-GSR v1.3 JSON: info / images / annotations / categories",
+          "declared_image_size": "3840x1504, im_dir 'img1', im_ext '.jpg'",
+          "frame_semantics": "images 000001..seq_length, 25 fps, image_id = video_id + zero-padded frame",
+          "images_present_in_download": false},
+  "MOT": {"files": 1, "bytes": 158, "status": "EMPTY -- archive contains only './mot/'",
+          "consequence": "no MOT sequence, frame, box, identity, FPS, resolution or class semantics can be reported"},
+  "BAS": {"files": 1, "bytes": 242159, "matches": 10,
+          "schema": "{match_id, fps, actions[{gameTime, label, position, team, player_id}]}",
+          "events": 23663},
+  "RAW": {"files": 102, "bytes": 282127447, "matches": 10,
+          "per_match": ["_homography.npy", "_camera_intrinsics.npz", "_mapx.npy",
+                        "_mapy.npy", "_keypoints.json", "_padding_info.csv",
+                        "_player_nodes.csv", "_tracker_box_data.xml",
+                        "_tracker_box_metadata.xml", "_12_class_events.json"],
+          "note": "the copy under gsr/ is byte-identical to the copy under raw/ (sha256 933b6d12ef2694a8..., 5799f216ebb688f9...)"},
+  "VIDEO": {"files": 2, "bytes": 6734589858, "matches": 1,
+            "which": "128058, both halves",
+            "format": "4096x1080 h264, 25 fps, 68975 / 67750 frames"}
+ },
+
+ "identifiers_linking_components": {
+  "match_id": "128058 -- appears in every RAW filename, the BAS json, the metadata XML and the GSR filename",
+  "player_id": "GSR annotations[].attributes.player_id == BAS actions[].player_id == metadata <player id> == player_nodes.csv player_id. This is the join key and it is consistent.",
+  "track_id": "GSR-internal, 1..23 for this half. It does NOT appear in BAS, RAW or metadata; it is joined to a real person only through attributes.player_id in the same annotation.",
+  "time": "BAS 'position' is milliseconds of match time; metadata <period frameStart/frameEnd/fps> maps match time to recording frames; padding_info.csv gives the ms offset of each half inside the recording."
+ },
+
+ "video_alignment": {
+  "verdict": "NOT ESTABLISHED for bbox_image; ESTABLISHED for pitch coordinates",
+  "evidence": [
+   "GSR declares 3840x1504; the video is 4096x1080. The per-axis ratios differ (1.0667 vs 0.7181), so the GSR image is not this video rescaled.",
+   "Naively rescaling bbox_image per axis onto the video puts the boxes in the treeline behind the pitch -- rendered as align_128058_f1200_zoom.jpg.",
+   "An offset search over +/-500 frames scored bbox_image placement essentially flat (spread 0.006-0.022), i.e. no temporal alignment was found by that route.",
+   "The pitch route DOES land: bbox_pitch -> homography -> mapx puts a marker at each player's feet, visible in the same render.",
+   "GSR seq_length 69251 vs 68975 video frames -- 276 frames apart, unexplained by anything in the download."
+  ],
+  "consequence": "This download cannot produce (image, box) training pairs. It can produce (video frame, pitch position) pairs."
+ },
+
+ "mot_findings": "UNANSWERABLE -- the archive is empty. Sequences, frames, boxes, identities, annotation FPS, resolution, class semantics, occlusion behaviour, and whether goalkeeper/referee/player are distinguishable in MOT all remain unknown from this download. Nothing here should be read as evidence about MOT either way.",
+
+ "gsr_findings": {
+  "per_object_fields": ["id", "image_id", "track_id", "supercategory",
+                        "category_id", "attributes", "bbox_image",
+                        "bbox_pitch", "bbox_pitch_raw"],
+  "attributes": ["role", "jersey", "team", "player_id"],
+  "bbox_image_fields": ["x", "y", "x_center", "y_center", "w", "h"],
+  "bbox_pitch_fields": ["x_bottom_left", "y_bottom_left", "x_bottom_right",
+                        "y_bottom_right", "x_bottom_middle", "y_bottom_middle"],
+  "confidence_or_visibility_or_occlusion": "ABSENT -- no confidence, visibility or occlusion field exists on any annotation",
+  "bbox_pitch_note": "left, right and middle are identical in every sampled annotation, so bbox_pitch is a single ground point, not a footprint",
+  "categories_declared": ["player", "goalkeeper", "referee", "ball", "pitch", "camera"],
+  "annotation_counts_all_20_halves": {
+   "player": 27998936, "goalkeeper": 2801653, "referee": 0, "ball": 0,
+   "pitch": 1400875, "camera": 0,
+   "frames": 1400875},
+  "per_frame": "19.99 player + 2.00 goalkeeper + 1 pitch annotation per frame",
+  "identity": {
+   "track_ids_per_half": 23,
+   "composition": "21 outfield player slots (two of which are substitutions) + 2 goalkeepers",
+   "tracks_whose_role_changes": 0,
+   "tracks_whose_jersey_changes": 0,
+   "tracks_whose_team_changes": 0,
+   "occlusion_gaps": "NONE -- every non-substituted track carries a box in every sampled frame of the half, spanning frame 2 to 69229",
+   "interpretation": "identity comes from a registration/tracking system, not from image observation. There are no re-entry or occlusion events to solve, so this is not a realistic tracking challenge."
+  }
+ },
+
+ "mot_to_gsr_linkage": {
+  "requested": "MOT_ID -> GSR_ID/PLAYER_ID -> ROLE -> TEAM -> JERSEY",
+  "status": "The MOT half of this chain CANNOT be produced -- the MOT archive is empty. No inference is offered.",
+  "what_the_download_does_support": "GSR track_id -> player_id -> role / team / jersey / shirt number / squad position / player name, exactly and without ambiguity",
+  "worked_example_128058_1st": [
+   {"gsr_track_id": 10, "player_id": 510747, "role": "player", "team": "right",
+    "jersey": "33", "squad_name": "Kazuma Matsumoto", "squad_position": "LB",
+    "squad_shirt_number": "33", "team_name_en": "University of Tsukuba - B1"},
+   {"gsr_track_id": 18, "player_id": 510762, "role": "goalkeeper", "team": "left",
+    "jersey": "1", "squad_position_source": "metadata <player position='GK'>"}
+  ],
+  "note": "jersey in GSR attributes and shirtNumber in the metadata XML agree on the sampled records"
+ },
+
+ "human_detector_utility": {
+  "verdict": "NOT USABLE AS DETECTOR GROUND TRUTH",
+  "box_tightness_evidence": {
+   "player": {"n_sampled": 37433, "w_median": 46.0, "h_median": 37.0,
+              "aspect_h_over_w_median": 0.80, "fraction_wider_than_tall": 0.991},
+   "goalkeeper": {"n_sampled": 3742, "w_median": 48.0, "h_median": 37.0,
+                  "aspect_h_over_w_median": 0.79, "fraction_wider_than_tall": 1.0},
+   "height_distinct_values": 13,
+   "height_std_overall_px": 1.6,
+   "height_std_within_one_track_over_a_half_px": "0.4 to 2.1",
+   "corr_height_vs_image_row": 0.984,
+   "corr_height_vs_pitch_distance": 0.915,
+   "reading": "A standing human is taller than wide at every scale, and a real annotation changes as the player runs, turns and jumps. These boxes do neither: height is a smooth function of position alone. They are synthesised from the calibration, not drawn on the person."
+  },
+  "real_player_scale_for_comparison": {
+   "method": "1.8 m vertical segment projected with the verified fisheye camera model over 1122 pitch positions",
+   "player_pixel_height_in_the_panorama": {"median": 57.1, "p10": 40.3,
+                                           "p90": 97.2, "min": 35.0, "max": 160.7},
+   "note": "real players are 35-161 px tall in the video; the GSR boxes are 37 px tall in a differently scaled space and near-square. The two do not describe the same object."
+  },
+  "usable_player_boxes": 0,
+  "usable_goalkeeper_boxes": 0,
+  "usable_referee_boxes": 0,
+  "role_assignment_ambiguity": "none -- roles are unambiguous where they exist; the problem is the boxes, not the labels",
+  "small_distant_humans": "none below 35 px in the panorama; this is not small-object data"
+ },
+
+ "ball_localization_finding": {
+  "statement": "SoccerTrack v2, as downloaded, provides NO ball bounding boxes and NO ball image coordinates.",
+  "evidence": [
+   "GSR declares category id 4 'ball' and contains 0 ball annotations across all 20 halves.",
+   "BAS: 23,663 events across 10 matches, 0 of which carry any spatial field. 'position' is a millisecond timestamp, not a place. BAS event labels do NOT imply ball localization.",
+   "RAW *_tracker_box_data.xml -- despite the filename -- contains no boxes. It carries per-frame <player loc='[x,y]' speed> and one <ball playerId='ball' loc='[x,y]' speed='NA'/> in NORMALISED PITCH coordinates."
+  ],
+  "the_one_ball_signal_that_exists": {
+   "where": "RAW *_tracker_box_data.xml <ball> element, per frame at 25 fps",
+   "what": "a ground-plane pitch position, normalised 0-1, with ballStatus (e.g. BALLOUT) on the frame",
+   "why_it_is_not_a_ball_box": "It is a pitch-plane point for an object that spends much of the match in the air. Projecting it through the ground homography puts an airborne ball on the grass beneath itself. It also has no extent, so no box can be derived without inventing a radius.",
+   "verdict": "NOT suitable for ball detector training. Usable at most as a weak temporal prior about where on the pitch the ball is."
+  }
+ },
+
+ "bas_utility": {
+  "event_classes_12": {"PASS": 10276, "DRIVE": 9106, "HIGH PASS": 1276,
+                       "OUT": 867, "CROSS": 438, "THROW IN": 423,
+                       "BALL PLAYER BLOCK": 401, "PLAYER SUCCESSFUL TACKLE": 328,
+                       "SHOT": 302, "FREE KICK": 164, "GOAL": 47, "HEADER": 35},
+  "timestamp_semantics": "'position' = milliseconds of match time; 'gameTime' = '<period> - M:SS'. Both are times, neither is a place.",
+  "identifies_player": "YES -- 23,555 of 23,663 events carry player_id (99.5%)",
+  "identifies_ball_location": "NO -- 0 events",
+  "temporal_alignment_to_video": "POSSIBLE: padding_info.csv gives each half's ms offset and metadata <period frameStart fps> gives the frame mapping, so an event's ms can be turned into a video frame for the one downloaded match.",
+  "classification_for_eyecu": ["EVENT DETECTION", "PLAYER ACTION LINKING", "REFERENCE ONLY"],
+  "explicitly_not": "BALL DETECTION"
+ },
+
+ "raw_calibration_finding": {
+  "verdict": "COMPLETE AND VERIFIED -- pixel <-> metre mapping is available for all 10 matches",
+  "components_present_per_match": {
+   "homography.npy": "3x3, pitch metres -> undistorted canvas",
+   "camera_intrinsics.npz": "K, D (4-coefficient fisheye), Knew, rvecs, tvecs, rms",
+   "mapx.npy / mapy.npy": "cv2 fixed-point remap, undistorted canvas -> source video pixel",
+   "keypoints.json": "65 correspondences, key '(x,y)' in pitch METRES -> [u,v] in video pixels",
+   "padding_info.csv": "per-period ms padding and match-time window"
+  },
+  "verified_transform_chain": "pitch metres --H--> undistorted canvas --mapx--> video pixel",
+  "accuracy_128058": {
+   "homography_route_reprojection_px": {"median": 8.60, "p90": 24.08},
+   "camera_model_route_reprojection_px": {"median": 8.85, "p90": 13.44},
+   "two_routes_agree_px": {"median": 9.81, "p90": 17.54},
+   "positional_error_in_metres": {"median": 0.83, "p90": 2.16,
+                                  "near_touchline": 0.65, "far_touchline": 1.14},
+   "ground_scale_px_per_metre": "3.0 (far centre) to 29.5 (near touchline)",
+   "note": "the two routes come from different files and agree, which is the strongest internal-consistency evidence available"
+  },
+  "per_match_calibration_quality_rms": {"117092": 30.63, "117093": 8.64,
+                                        "118575": 10.04, "118576": 9.88,
+                                        "118577": 9.40, "118578": 9.73,
+                                        "128057": 9.27, "128058": 9.35,
+                                        "132831": 1260.95, "132877": 9.78},
+  "caveats": [
+   "132831 has a calibration rms of 1260.95 and an outlying homography. Treat that match's calibration as unusable without re-solving it.",
+   "132831 and 132877 have no frameStart/frameEnd in their metadata, so their frame-to-time mapping is missing.",
+   "The fisheye fy estimates are poorly constrained (1667 to 80778 across matches) even where rms is good; the homography, not fy, is what the pitch mapping relies on.",
+   "This calibrates a FIXED panoramic rig. EyeCU's footage pans, zooms and cuts, so a single per-match homography does not transfer. The value is methodological and as a ground-truth testbed, not as a drop-in."
+  ]
+ },
+
+ "domain_diversity": {
+  "independent_matches": 10,
+  "halves": 20,
+  "date_range": "2023-11-18 to 2024-04-20",
+  "competition_level": "Japanese university and local amateur football",
+  "teams_named": 14,
+  "team_concentration": "8 of 10 matches involve a University of Tsukuba side (B, B1, B2, C1, C3, Football Society, Medical Soccer Club). Non-Tsukuba opponents: Matsudo City FC, Sakushin Gakuin University, TSC, Chuo Gakuin University.",
+  "venue": "The one downloaded video is a single artificial-turf pitch marked 'University of Tsukuba'. Venue diversity cannot be confirmed for the other nine matches from this download.",
+  "camera_geometry": "8 of 10 matches share a 4096x1080 canvas with fx ~1600 and near-identical distortion, i.e. one rig. 117092 (3840x1906, fx 1365) and 132831 (3840x1504) differ.",
+  "lighting": "daylight in the downloaded match; not assessable for the others",
+  "camera_motion": "none -- fixed panoramic rig, no pan, no zoom, no cuts",
+  "shot_types": "one: full-pitch wide. No close-ups, no medium shots, no replays, no graphics.",
+  "player_scale": "35-161 px tall, median 57 px",
+  "comparison_with_eyecu_train": "EyeCU TRAIN is 823 images from 29 matches across pro / women / youth / amateur broadcast footage with cuts, zooms, close-ups and replays. SoccerTrack adds volume in a domain EyeCU does not deploy in, and adds none of the shot variety EyeCU actually fails on."
+ },
+
+ "eyecu_leakage_check": {
+  "method": "500 frames sampled evenly across both downloaded halves, letterbox-stripped 64x64 signature, 8 dihedral orientations, hamming <= 10 then NCC >= 0.95",
+  "EXTERNAL_vs_TRAIN": 0,
+  "EXTERNAL_vs_VAL": 0,
+  "EXTERNAL_vs_TEST": 0,
+  "same_source_footage": "none -- a fixed panoramic rig over a Japanese university pitch against EyeCU's broadcast and amateur sources",
+  "test_handling": "TEST images were hashed only. No TEST label was opened and nothing was evaluated."
+ },
+
+ "license_metadata": {
+  "shipped_with_the_download": "NONE",
+  "searched": ["all six archives, every entry name",
+               "every extracted json / csv / xml under 3 MB",
+               "both video files' container and stream tags"],
+  "found": "no LICENSE, no README, no NOTICE, no CITATION, no attribution file, and no licence string in any file or video tag",
+  "code_license": "not present in this download",
+  "dataset_license": "not present in this download",
+  "attribution_requirements": "not stated in this download",
+  "third_party_media_caveats": "not stated in this download",
+  "note": "EyeCU's earlier paper study (docs/research/EXTERNAL_DATASETS.md) records SoccerTrack v2 as CC BY 4.0 data / MIT code from the project's public pages. That claim is NOT corroborated by anything in this download and is not restated here as fact. No legal conclusion is drawn beyond what the files contain, which is nothing."
+ },
+
+ "scorecard": {
+  "A_player_detector_value": {"rating": "LOW",
+   "evidence": "The annotated images are not in the download, and the boxes are geometry-derived rather than person-shaped (99.1% wider than tall, 13 distinct heights, per-track height std under 2 px across a whole half). Zero usable player boxes."},
+  "B_role_classification_value": {"rating": "LOW",
+   "evidence": "Roles are unambiguous and perfectly stable -- 0 role changes across 23 tracks -- and goalkeeper volume is enormous (2.77 M annotations). But there are ZERO referee annotations in all 20 halves, and the role labels are attached to boxes that cannot be used. EyeCU needs referee most of all."},
+  "C_identity_tracking_value": {"rating": "MEDIUM",
+   "evidence": "23 persistent identities per half with no role, jersey or team drift. But every track has a box in every frame: there are no occlusion gaps and no re-entries, so it does not exercise what a tracker must solve. The MOT component that would have been the tracking benchmark is empty. EyeCU already has its own human-verified 900-frame identity benchmark."},
+  "D_ball_detector_value": {"rating": "LOW",
+   "evidence": "Zero ball boxes and zero ball image coordinates anywhere. The only ball signal is a per-frame ground-plane pitch point for an object that is frequently airborne. This is the goal EyeCU cares about most and SoccerTrack cannot serve it."},
+  "E_event_detection_value": {"rating": "MEDIUM",
+   "evidence": "23,663 events, 12 classes, ms timestamps, player_id on 99.5%, alignable to video through padding_info and the period frame mapping. Genuinely good data -- for a task EyeCU does not have."},
+  "F_jersey_team_player_page_value": {"rating": "MEDIUM",
+   "evidence": "jersey, team side and player_id on every annotation, joined to squad metadata with names, shirt numbers and positions including GK. A complete player-identity graph. Reading a jersey from pixels still needs the img1 frames, which were not downloaded."},
+  "G_pitch_calibration_homography_value": {"rating": "HIGH",
+   "evidence": "A complete calibration for all 10 matches -- homography, fisheye intrinsics and extrinsics, undistortion maps, 65 pitch correspondences, period padding -- verified end to end at 8.6 px / 0.83 m by two independent routes that agree to 9.8 px. This is the one component that speaks directly to EyeCU's uncalibrated speed and distance, as a worked reference and a ground-truth testbed."}
+ },
+
+ "should_we_download_more": {
+  "answer": "CURRENT DOWNLOAD IS ENOUGH",
+  "reason": "The questions that would justify 6.7 GB per additional match are already answered, and answered no: there are no ball boxes, no referee annotations, and no usable person boxes anywhere in SoccerTrack v2. More video is more pixels for annotations that cannot be attached to them. The one high-value component -- calibration -- is already downloaded in full for all ten matches, because it is small and lives in RAW.",
+  "single_exception": {
+   "what": "re-fetch the MOT archive only",
+   "why": "mot-20260811T095052Z-1-001.zip is 158 bytes and empty, so the entire MOT audit is unanswered rather than answered. It is small, and it is the only component that could still overturn the 'no usable boxes' finding.",
+   "not_a_match_download": true,
+   "size": "unknown, but MOT ground truth is text and is orders of magnitude smaller than a video"
+  },
+  "explicitly_not_recommended": [
+   "the remaining nine matches' videos (~60 GB) -- they add one venue, one rig and one shot type",
+   "any further GSR halves -- 55 GB is already downloaded and the schema is uniform across all 20"
+  ]
+ },
+
+ "recommended_next_action": "Re-fetch the empty MOT archive and re-run this audit's MOT section, since it is small and is the only remaining way SoccerTrack could supply usable boxes. Independently of that, keep the RAW calibration package: it is the strongest external asset found in either audit, and it is the natural reference against which to build and validate EyeCU's pitch calibration -- which is the outstanding blocker behind the UNCALIBRATED speed and distance figures. Do not plan any SoccerTrack-based detector experiment.",
+
+ "audit_integrity": {
+  "downloaded_assets_modified": false,
+  "eyecu_train_val_test_modified": false,
+  "detector_or_tracker_changed": false,
+  "training_performed": false,
+  "test_evaluation_performed": false,
+  "further_download_initiated": false
+ },
+ "test_accessed_for_performance": "NO"
+}
