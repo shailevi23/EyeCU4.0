@@ -1,0 +1,286 @@
+{
+ "gate": "T2 ADOPTION GATE v1.0",
+ "spec_sha256": "5f8d2a752c57aef1fd4fd82719d2b6bfd9bc8c7cb9e28b9433b114761a756f60",
+ "evidence_classification": "POST-HOC / DEVELOPMENT",
+ "evidence_role": "DEVELOPMENT QUALIFICATION / REPRODUCIBILITY",
+ "baseline_combined": {
+  "HOTA": 55.7,
+  "DetA": 58.09,
+  "AssA": 53.66,
+  "MOTA": 71.85,
+  "IDF1": 70.79
+ },
+ "candidates": {
+  "CBIoUTracker": {
+   "combined": {
+    "HOTA": 59.4,
+    "DetA": 57.89,
+    "AssA": 61.19,
+    "MOTA": 73.27,
+    "IDF1": 79.59
+   },
+   "criteria": {
+    "1_reproducibility": {
+     "value": {
+      "HOTA": 0.0,
+      "AssA": 0.0,
+      "IDF1": 0.0
+     },
+     "tolerance": 0.1,
+     "config_equivalent": true,
+     "pass": true
+    },
+    "2_combined_HOTA_ge_+2.0": {
+     "value": 3.7,
+     "pass": true
+    },
+    "3_combined_AssA_ge_+3.0": {
+     "value": 7.54,
+     "pass": true
+    },
+    "4_combined_IDF1_ge_+3.0": {
+     "value": 8.81,
+     "pass": true
+    },
+    "5_per_match_HOTA": {
+     "value": {
+      "improved": "3/3",
+      "worst": 2.42,
+      "per_match": {
+       "bayern_munich_3-1_chelsea_228": 2.42,
+       "women_1_239": 3.49,
+       "youth_premier_league_1133": 8.38
+      }
+     },
+     "pass": true
+    },
+    "6_per_match_IDF1": {
+     "value": {
+      "worst": 5.91,
+      "per_match": {
+       "bayern_munich_3-1_chelsea_228": 5.91,
+       "women_1_239": 8.0,
+       "youth_premier_league_1133": 17.75
+      }
+     },
+     "pass": true
+    },
+    "7_eyecu_invariants": {
+     "value": {
+      "ball_isolated_from_human_tracking": true,
+      "only_intended_human_detections_supplied": true,
+      "role_semantics_preserved": true,
+      "goalkeeper_never_normalised_to_player": true,
+      "accepted_public_output_contract_preserved": true,
+      "no_invalid_tracker_rows": true,
+      "no_duplicate_tracker_identity_in_a_frame": true,
+      "valid_cache_config_provenance": true,
+      "no_hidden_detector_rerun_or_gt_filtering": true,
+      "_outputs_valid": true
+     },
+     "detail": {
+      "ball_isolated_from_human_tracking": {
+       "ok": true,
+       "detail": "human detections only; no tracker ids, no ball, no temporal logic"
+      },
+      "only_intended_human_detections_supplied": {
+       "ok": true,
+       "detail": [
+        "goalkeeper",
+        "player",
+        "referee"
+       ]
+      },
+      "role_semantics_preserved": {
+       "ok": true,
+       "detail": "all three roles present in the supplied evidence"
+      },
+      "goalkeeper_never_normalised_to_player": {
+       "ok": true,
+       "detail": "goalkeeper survives as its own class in the input evidence"
+      },
+      "accepted_public_output_contract_preserved": {
+       "ok": true,
+       "detail": "class=1 and visibility=1 on every row"
+      },
+      "no_invalid_tracker_rows": {
+       "ok": true,
+       "detail": ""
+      },
+      "no_duplicate_tracker_identity_in_a_frame": {
+       "ok": true,
+       "detail": ""
+      },
+      "valid_cache_config_provenance": {
+       "ok": true,
+       "detail": "instantiated-object config matches the preserved LIBRARY_DEFAULTS"
+      },
+      "no_hidden_detector_rerun_or_gt_filtering": {
+       "ok": true,
+       "detail": "accuracy metrics consumed the frozen store only; the detector ran solely for the runtime measurement, never for metrics"
+      },
+      "_outputs_valid": {
+       "ok": true,
+       "detail": ""
+      }
+     },
+     "pass": true
+    },
+    "8_end_to_end_runtime_le_+10pct": {
+     "value": "-0.08%",
+     "detail": {
+      "detector_ms_per_frame": 212.919,
+      "tracker_ms_per_frame": 1.05,
+      "total_ms_per_frame": 213.969,
+      "effective_fps": 4.67
+     },
+     "pass": true
+    },
+    "9_no_tuning": {
+     "value": "exact recorded 2.6.0 defaults; config equivalence verified against the preserved instantiated-object configs",
+     "pass": true
+    }
+   },
+   "overall_pass": true
+  },
+  "BoTSORTTracker": {
+   "combined": {
+    "HOTA": 58.99,
+    "DetA": 58.16,
+    "AssA": 60.1,
+    "MOTA": 73.92,
+    "IDF1": 78.25
+   },
+   "criteria": {
+    "1_reproducibility": {
+     "value": {
+      "HOTA": 0.0,
+      "AssA": 0.0,
+      "IDF1": 0.0
+     },
+     "tolerance": 0.1,
+     "config_equivalent": true,
+     "pass": true
+    },
+    "2_combined_HOTA_ge_+2.0": {
+     "value": 3.28,
+     "pass": true
+    },
+    "3_combined_AssA_ge_+3.0": {
+     "value": 6.44,
+     "pass": true
+    },
+    "4_combined_IDF1_ge_+3.0": {
+     "value": 7.46,
+     "pass": true
+    },
+    "5_per_match_HOTA": {
+     "value": {
+      "improved": "3/3",
+      "worst": 0.92,
+      "per_match": {
+       "bayern_munich_3-1_chelsea_228": 0.92,
+       "women_1_239": 3.47,
+       "youth_premier_league_1133": 10.96
+      }
+     },
+     "pass": true
+    },
+    "6_per_match_IDF1": {
+     "value": {
+      "worst": 2.81,
+      "per_match": {
+       "bayern_munich_3-1_chelsea_228": 2.81,
+       "women_1_239": 8.02,
+       "youth_premier_league_1133": 19.56
+      }
+     },
+     "pass": true
+    },
+    "7_eyecu_invariants": {
+     "value": {
+      "ball_isolated_from_human_tracking": true,
+      "only_intended_human_detections_supplied": true,
+      "role_semantics_preserved": true,
+      "goalkeeper_never_normalised_to_player": true,
+      "accepted_public_output_contract_preserved": true,
+      "no_invalid_tracker_rows": true,
+      "no_duplicate_tracker_identity_in_a_frame": true,
+      "valid_cache_config_provenance": true,
+      "no_hidden_detector_rerun_or_gt_filtering": true,
+      "_outputs_valid": true
+     },
+     "detail": {
+      "ball_isolated_from_human_tracking": {
+       "ok": true,
+       "detail": "human detections only; no tracker ids, no ball, no temporal logic"
+      },
+      "only_intended_human_detections_supplied": {
+       "ok": true,
+       "detail": [
+        "goalkeeper",
+        "player",
+        "referee"
+       ]
+      },
+      "role_semantics_preserved": {
+       "ok": true,
+       "detail": "all three roles present in the supplied evidence"
+      },
+      "goalkeeper_never_normalised_to_player": {
+       "ok": true,
+       "detail": "goalkeeper survives as its own class in the input evidence"
+      },
+      "accepted_public_output_contract_preserved": {
+       "ok": true,
+       "detail": "class=1 and visibility=1 on every row"
+      },
+      "no_invalid_tracker_rows": {
+       "ok": true,
+       "detail": ""
+      },
+      "no_duplicate_tracker_identity_in_a_frame": {
+       "ok": true,
+       "detail": ""
+      },
+      "valid_cache_config_provenance": {
+       "ok": true,
+       "detail": "instantiated-object config matches the preserved LIBRARY_DEFAULTS"
+      },
+      "no_hidden_detector_rerun_or_gt_filtering": {
+       "ok": true,
+       "detail": "accuracy metrics consumed the frozen store only; the detector ran solely for the runtime measurement, never for metrics"
+      },
+      "_outputs_valid": {
+       "ok": true,
+       "detail": ""
+      }
+     },
+     "pass": true
+    },
+    "8_end_to_end_runtime_le_+10pct": {
+     "value": "+1.70%",
+     "detail": {
+      "detector_ms_per_frame": 212.919,
+      "tracker_ms_per_frame": 4.858,
+      "total_ms_per_frame": 217.777,
+      "effective_fps": 4.59
+     },
+     "pass": true
+    },
+    "9_no_tuning": {
+     "value": "exact recorded 2.6.0 defaults; config equivalence verified against the preserved instantiated-object configs",
+     "pass": true
+    }
+   },
+   "overall_pass": true
+  }
+ },
+ "selection_rule_applied": "HOTA gap 0.41 < 0.5, decided on end-to-end ms/frame",
+ "passing_candidates": [
+  "CBIoUTracker",
+  "BoTSORTTracker"
+ ],
+ "selection": "CBIoUTracker",
+ "not_independent_confirmation": "Even where a candidate passes, the VAL accuracy result is NOT independent confirmation: these configurations were already evaluated on this benchmark, and that evaluation generated the hypothesis."
+}

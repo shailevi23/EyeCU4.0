@@ -1,0 +1,116 @@
+{
+ "design": {
+  "repeats": 3,
+  "warmup": 1,
+  "order": "sequence order rotated between repeats",
+  "frames": "decoded once, identical arrays for every arm",
+  "detector": "best_A_960.pt, imgsz 960, conf 0.25, CPU",
+  "composition": "detector and tracker timed separately and summed; validated against a fused single-process legacy measurement",
+  "statistic": "median of repeats, then mean across the three sequences"
+ },
+ "detector_ms_per_frame": {
+  "bayern_munich_3-1_chelsea_228": 210.135,
+  "women_1_239": 212.265,
+  "youth_premier_league_1133": 216.356
+ },
+ "legacy_fused_ms_per_frame": {
+  "bayern_munich_3-1_chelsea_228": 209.699,
+  "women_1_239": 217.092,
+  "youth_premier_league_1133": 212.463
+ },
+ "arms": {
+  "LEGACY_SUPERVISION_BYTETRACK": {
+   "detector_ms_per_frame": 212.919,
+   "tracker_ms_per_frame": 1.215,
+   "tracker_per_sequence": {
+    "bayern_munich_3-1_chelsea_228": 1.611,
+    "women_1_239": 0.988,
+    "youth_premier_league_1133": 1.046
+   },
+   "total_ms_per_frame": 214.134,
+   "effective_fps": 4.67,
+   "total_pct_vs_legacy": 0.0,
+   "all_tracker_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     1.662,
+     1.544,
+     1.611
+    ],
+    "women_1_239": [
+     1.008,
+     0.988,
+     0.888
+    ],
+    "youth_premier_league_1133": [
+     1.081,
+     1.046,
+     0.931
+    ]
+   }
+  },
+  "CBIoUTracker": {
+   "detector_ms_per_frame": 212.919,
+   "tracker_ms_per_frame": 1.05,
+   "tracker_per_sequence": {
+    "bayern_munich_3-1_chelsea_228": 1.475,
+    "women_1_239": 0.865,
+    "youth_premier_league_1133": 0.811
+   },
+   "total_ms_per_frame": 213.969,
+   "effective_fps": 4.67,
+   "total_pct_vs_legacy": -0.08,
+   "all_tracker_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     1.553,
+     1.475,
+     1.47
+    ],
+    "women_1_239": [
+     0.885,
+     0.865,
+     0.831
+    ],
+    "youth_premier_league_1133": [
+     0.885,
+     0.793,
+     0.811
+    ]
+   }
+  },
+  "BoTSORTTracker": {
+   "detector_ms_per_frame": 212.919,
+   "tracker_ms_per_frame": 4.858,
+   "tracker_per_sequence": {
+    "bayern_munich_3-1_chelsea_228": 5.543,
+    "women_1_239": 4.576,
+    "youth_premier_league_1133": 4.455
+   },
+   "total_ms_per_frame": 217.777,
+   "effective_fps": 4.59,
+   "total_pct_vs_legacy": 1.7,
+   "all_tracker_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     5.865,
+     5.543,
+     5.444
+    ],
+    "women_1_239": [
+     5.222,
+     4.576,
+     3.749
+    ],
+    "youth_premier_league_1133": [
+     4.681,
+     4.455,
+     4.086
+    ]
+   }
+  }
+ },
+ "composition_check": {
+  "legacy_composed_total_ms_per_frame": 214.134,
+  "legacy_fused_total_ms_per_frame": 213.085,
+  "difference_ms": 1.049,
+  "difference_pct": 0.49
+ }
+}

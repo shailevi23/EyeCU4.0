@@ -53,10 +53,28 @@ class TestSpecIsFrozen:
             assert hashlib.sha256(SPEC.read_bytes()).hexdigest() == SPEC_SHA256
             assert spec['adoption_gate']['frozen_before_execution'] is True
 
-    def test_execution_state_matches_reality(self, spec):
-        if spec['execution_state'] == 'NOT_STARTED':
-            assert not t2_has_been_executed(), (
-                'results exist but the spec still claims NOT_STARTED')
+    def test_execution_state_is_tracked_outside_the_frozen_spec(self, spec):
+        """
+        The spec's `execution_state` field is frozen at NOT_STARTED on purpose.
+
+        This test originally required the field to be updated once results
+        appeared. That was wrong: the execution order forbids modifying the
+        specification at all, and updating a field inside it would change the
+        pinned hash -- destroying the very guarantee the freeze exists for. So
+        execution state lives in the T2 experiment record beside the results,
+        and the spec stays byte-identical to what was frozen.
+
+        What must still hold is the strong invariant: once results exist, the
+        spec has not moved.
+        """
+        assert spec['execution_state'] == 'NOT_STARTED'
+        if t2_has_been_executed():
+            assert hashlib.sha256(SPEC.read_bytes()).hexdigest() == SPEC_SHA256
+            rec = EXP / 't2' / 'T2_EXPERIMENT_RECORD.json'
+            assert rec.exists(), (
+                'T2 produced results but no experiment record states that it '
+                'ran; execution state would then be recorded nowhere')
+            assert json.loads(rec.read_text(encoding='utf-8'))['status'] == 'COMPLETE'
 
     def test_amendment_rule_is_recorded(self, spec):
         r = spec['adoption_gate']['amendment_rule']

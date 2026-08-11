@@ -1,0 +1,27 @@
+{
+ "experiment": "Tracking Experiment T2 -- Modern Default Policy Follow-up",
+ "status": "COMPLETE",
+ "executed": "2026-08-11",
+ "gate": "T2 ADOPTION GATE v1.0",
+ "spec_sha256": "5f8d2a752c57aef1fd4fd82719d2b6bfd9bc8c7cb9e28b9433b114761a756f60",
+ "evidence_classification": "POST-HOC / DEVELOPMENT",
+ "evidence_role": "DEVELOPMENT QUALIFICATION / REPRODUCIBILITY",
+ "not_independent_confirmation": "CBIoU and BoTSORT at exact 2.6.0 defaults had already been evaluated on EyeCU-Tracking-Val-v1.1, and that evaluation generated the hypothesis T2 tests. The accuracy numbers here are a reproduction, not independent confirmation. What T2 genuinely establishes is reproducibility, per-match robustness, end-to-end runtime cost, and invariant preservation.",
+ "result": {
+  "both_candidates_passed_all_nine_criteria": true,
+  "selection_rule_applied": "HOTA gap 0.41 < 0.5, decided on end-to-end ms/frame",
+  "selected": "CBIoUTracker",
+  "note": "CBIoU wins on both branches: it has the higher COMBINED_SEQ HOTA (59.40 vs 58.99) and the lower end-to-end cost (213.97 vs 217.78 ms/frame). The tie-break was applied because the gap fell under 0.5, and it did not change the answer."
+ },
+ "runtime_finding": "BoTSORT's +110.6% tracker-side figure from the closed bake-off translated to +1.70% end-to-end, because the detector costs 212.92 ms/frame and the tracker costs single-digit milliseconds. Inferring criterion 8 from the tracker-side number would have wrongly disqualified it.",
+ "composition_validation": "The composed total was checked against a genuine fused single-process legacy measurement: 214.13 ms composed vs 213.08 ms fused, +0.49%.",
+ "files_sha256": {
+  "T2_verdict.json": "4f39ca51951df6dd1004f2e9fd1c9594dcc604f946c0b8b600bdea2aa33abad7",
+  "run_report.json": "92608d851b7e816ed3208c486a0b58e3cb077acf607808f0054577813ade4745",
+  "runtime.json": "f3798c7ab14c89d7d923392f09516b245b3ea07331bfdd08b99e95570ef676da",
+  "trackeval_raw/T2.json": "8cc351b7e374d9ad9a7893edbb9d5f9239adef924e1c773e3ce95b6aa22fb0d8",
+  "trackeval_raw/T2_macro.json": "5d1f23de854f4b0c34be63461df9b08e53ccf03348ff72cc4be474f9926965d8"
+ },
+ "test_accessed": false,
+ "production_changed": false
+}

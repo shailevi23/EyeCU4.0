@@ -160,4 +160,6 @@ third_party/
 # tracked. Raw per-frame tracker outputs are large and regenerate exactly from
 # the frozen detections, so they stay local.
 experiments/tracking_v2/bakeoff/outputs/
+experiments/tracking_v2/t2/outputs/
+experiments/tracking_v2/t2/meta/
 experiments/tracking_v2/bakeoff/meta/
