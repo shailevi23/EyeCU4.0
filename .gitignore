@@ -156,6 +156,11 @@ third_party/
 
 !data/tracking_val_gt/mot/**/*.ini
 
+# External data audit: the extracted ZIP contents are ~330 MB of somebody
+# else's images and rebuild exactly from the hashed archives, so they stay out.
+# The reports, contact sheets and candidate index ARE the audit and are tracked.
+experiments/external_data_audit/extracted/
+
 # Bake-off: the records, configs, metrics and verdict are the evidence and are
 # tracked. Raw per-frame tracker outputs are large and regenerate exactly from
 # the frozen detections, so they stay local.

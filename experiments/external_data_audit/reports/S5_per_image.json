@@ -1,0 +1,7055 @@
+[
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0002_jpg.rf.584a0b10a611d81f9407458117ad8408.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0003_jpg.rf.d18205150dcce371342a39d2e61d56d7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0004_jpg.rf.797d8ae16244ac37bf1189d7b9d7ef19.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0005_jpg.rf.9382c0beb9dc5c97317df55214ff5c4d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0007_jpg.rf.6ce30d4af7a6f0891160c6fd1dcc47d3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0008_jpg.rf.5567fd6af450385abbdd0119827039e2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0009_jpg.rf.58e3fc46aedcbb9496715dcf7949e664.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0013_jpg.rf.f12e351b8b252f0b5b3a931887cfbe61.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0014_jpg.rf.a1384d43b939832b83cf3f25206f549f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0015_jpg.rf.9bf4ddf8d0b12dc027183250f275b3d6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0016_jpg.rf.584ebf439d18a5af4a2bb18b8e3c8507.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0017_jpg.rf.dd1bc0d0dc615e3afd654610199c78c6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0018_jpg.rf.6ea6a1eb045970c85049fc985c909cd7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0021_jpg.rf.050ad40a1b5587db60e52cb5174d3906.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0025_jpg.rf.cae7c340ce692f7ebcd72fc3494c2089.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0026_jpg.rf.9a96e5bf28cb0b2e16585dc6e0ced7dd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0027_jpg.rf.2beb477b3f9afd91f07ad235b7684e4a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0030_jpg.rf.bd18b156b1c518df44320ece94185447.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0031_jpg.rf.334da0f74236577c1659be7a3bb785ca.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0032_jpg.rf.e153e8297f03a7d6e474957c51095cfb.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0033_jpg.rf.a4b0237f7d6ce3f3bef1381d69f04cef.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0034_jpg.rf.bc84a7b3d14cdc4bb603a96e31f74f34.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0036_jpg.rf.261173842a69b5bbd2bd4d276b9f3975.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0037_jpg.rf.39a734ebbf49b87112e4c9ad697b65ac.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0038_jpg.rf.0ac8f582250cf4c5b5cf6433a946e9e9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0039_jpg.rf.0adf6c32a2665bdc3b5d9be2a5e55c0a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0040_jpg.rf.0eec2fcd125cf759e1f37e6da4ae500a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0042_jpg.rf.747ef94f4bb855b010a60e0ddd63abb5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0044_jpg.rf.bf3c20d18452701fd9f2671949337bf6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0045_jpg.rf.2bb0c6d13532ba5aecd9428e306363bf.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0047_jpg.rf.2e7861f82ed5e8bc410302c6303c5930.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0048_jpg.rf.1e2cf03dce1cce1c49a526e4ff7e28f2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0049_jpg.rf.ceeeeca51a00f4e14d3499366e93d831.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0051_jpg.rf.74d65b498925d44683b3ad050ef7e128.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0052_jpg.rf.80d3b767d6f786721088afc370615463.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0053_jpg.rf.bcf347e2828fe373b021dbd1adc1fe6c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0055_jpg.rf.5d48354031ce648dc24f6dcaf88793bb.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0058_jpg.rf.956daab307cb4865592d8e7defd16a21.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0062_jpg.rf.0470dd28a28ac4d030ac69e688523be3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0064_jpg.rf.47f845626498dc419fed0e1df4da1ffd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0065_jpg.rf.e27a425cda9c5c438e95b69643feac7b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0067_jpg.rf.306129ae1a434db8259d28233865e27e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0069_jpg.rf.c4a34f44e9e6e95aa4ce66371bec41f3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0071_jpg.rf.3ac39b1da86804aa3b76aa1f69c24e58.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0072_jpg.rf.5a46701870ad4b9ff02972049c9cbb24.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0073_jpg.rf.4a3c60ab9ea5578b5812b7a2b4d1675d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0074_jpg.rf.be95ac3f8e653543a768882e31363248.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0075_jpg.rf.1e8f094cd091df7a662eac4ff206423c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0077_jpg.rf.d169814bf9c58027000cc3ee41e74261.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0080_jpg.rf.c22bbcc64db0c558ab95ff2dc8cb25a6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0081_jpg.rf.8a1b87c01bea63875162159e43c0a11a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0082_jpg.rf.b1a6081a0af435bd6f1829e54c9b0855.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0083_jpg.rf.607d72ff9a6c0cfd95e85a21a214afc3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0085_jpg.rf.4d3cb9c451b7506c4fe2c0ba94c5d19e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0086_jpg.rf.a515e2dd02fef82d8292598b94df220c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0087_jpg.rf.aa50e431d4324619006750931995425f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0088_jpg.rf.859d1e7bf7f06e593c6dd83c6990e354.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0090_jpg.rf.9cff91a06d56b60b3a4b798f1cb27573.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0092_jpg.rf.fd206d390ac1e419d76deccd32d37f9a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0093_jpg.rf.71c95241df6cf03bcf2d6dd1c2b6b213.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0096_jpg.rf.7311a60b11131f339afeed3c06d5ffba.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0097_jpg.rf.565d6ff06c0b3745219a1ce9d0d08984.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0099_jpg.rf.59ab0743775e914ce4497a5a500442a3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0100_jpg.rf.68bccdcf107337d504bb9424b51e9648.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0101_jpg.rf.b2f59e832e20fe3f447a5c315f5e6779.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0102_jpg.rf.dccedd34d2bab12dd33dc69869a8f582.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0103_jpg.rf.d6a96222374b296dbe2d1d8b8399a60d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0104_jpg.rf.7574eebe086528880eae2b1d53e931fd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0105_jpg.rf.2a2107d30531d0ee2d80fe8660269551.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0110_jpg.rf.29f8503bd004a3a218d19604a6ec0e3e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0113_jpg.rf.ce933aa1ae70eba331b75e01eb78d596.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0114_jpg.rf.9e3f4609e1517e04a09314f2e76e59c9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0115_jpg.rf.4577e6e4a831fdbefca94f4bc2bed398.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0118_jpg.rf.2763c915cf640ca14e7c134d32803df9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0120_jpg.rf.4adf42fd585809ac8130810516e66fb4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0123_jpg.rf.e3928374c1127f76ab4168df0f5f291d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0126_jpg.rf.c3ad2ed53aeae15cde35c8a003f8aa10.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0127_jpg.rf.8e024e4c146ca7d864c5fbae24f4b1e5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0128_jpg.rf.02935990fb6c57f519176c86ff76d78a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0129_jpg.rf.d7495428d4ec3f3abb2e5a2dc8445d94.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0130_jpg.rf.0b77690d257aac4b83fcbe3cafe15225.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0134_jpg.rf.f1c104316bcea34c7893d412ed35fd5f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0136_jpg.rf.2ee5ee52082629d2d891484cefadd096.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0138_jpg.rf.65546ea279bcf4e74ac926f8a5a64fad.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0143_jpg.rf.9c8bb679cf23b66344f4101cc6ca5632.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0144_jpg.rf.7fff661835cf9f815d4c40d4cfd7cc1a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0148_jpg.rf.389e1582fdabc9e5fdb8a823d844b347.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0150_jpg.rf.2b58a55187b4fd3d541e2cd36ab428a6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0151_jpg.rf.f7f5abf14bc4abd07722f8643fbcc30d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0152_jpg.rf.76b0b4b0eb7be229b918b9206b893014.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0153_jpg.rf.4d81d00094510e39a3af25260227b9a7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0161_jpg.rf.fbf1239f8f9b9a9d1144a44eca6da639.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0165_jpg.rf.f0af468af15a01d4f9f635fe1d11ba57.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0166_jpg.rf.8f29633d707983dc670a69f88ed3c353.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0167_jpg.rf.1c54de52093912ada2ea3020104fd03e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0168_jpg.rf.ae2e974340db5e2a76f5b150f6a432a7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0169_jpg.rf.f6e1f56673d8b9611d19eecd15b85b26.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0171_jpg.rf.68cd73d358963a45a591b5de014ef634.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0172_jpg.rf.cb2b82bf01e8f57a079c1fa053ea400b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0173_jpg.rf.a6cb4f6052e5f4bf6b0de0715f4e2f4f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0174_jpg.rf.9109e1806b841711101de4e4a76306c7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0175_jpg.rf.c27f1b080622e2bce2f4b31131042ae1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0176_jpg.rf.e5339c2a538919aff5d60f902cd69350.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0177_jpg.rf.e11bb3c3a76603958dcee76dc8a8829a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0184_jpg.rf.2c62ed9a27ea0622c130ee054807eee5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0186_jpg.rf.20bdde1cac53543c99620f934290df36.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0191_jpg.rf.fb43d5b4d38bca5c0c5a0eedf75706d5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0192_jpg.rf.f31115aeb869c8528f8703348b73d122.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0193_jpg.rf.b3c866553e6995e875bd6264a4d52e9b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0196_jpg.rf.5800b43ce2f6f46afbbbdb00cf5c9d4e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0197_jpg.rf.ef058b913a8aca953cf7eab515add9a5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0199_jpg.rf.1eccd4ff627bdc80639a9301c5bc6dd5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0201_jpg.rf.14519f31878e655f93fe0d333ad138ed.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0203_jpg.rf.962177c846edaa3a517381a9da2818c0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0204_jpg.rf.19312e69bc58cd56ab9f4bd1de7fb2eb.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0207_jpg.rf.a5dd54661dfd1c9eac921a7959c51539.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0208_jpg.rf.886ee272a033fbe8bdbc8c9e875f1b59.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0211_jpg.rf.0808d6cabdaea95f3e8dbe06b830ccaa.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0212_jpg.rf.8d2d7b3f896b966e4ee5b5eae2ea32be.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0215_jpg.rf.e2179ba4e817c80709ce492b80452782.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0216_jpg.rf.9be76895fe7666ea742b142cc72bedf5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0217_jpg.rf.dbd559197e7ba79ac3f5a489fba04203.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0218_jpg.rf.177718d9215b58e5ec11fe824f533d58.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0223_jpg.rf.6d3c73d96bde26718336e97f290319f1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0224_jpg.rf.c930e39a45c7f6debadf8209befb86e2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0227_jpg.rf.63dea6575f402b4b9f7e03a6b5ddc032.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0228_jpg.rf.fe1582fffef9fc6b17ba0fced63805e8.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0230_jpg.rf.f20e5510ea3488a72eda7dc13c99b858.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0232_jpg.rf.eb29b250cec44ae26010f6558e526d9a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0234_jpg.rf.8f5cbe06b9a9122b6b59c08030e49e40.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0235_jpg.rf.bd8e79972b7a2a30d85de832842c2db0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0236_jpg.rf.95fb9f814a92e7d75c44734d0f95b8d2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0237_jpg.rf.356f1ac7f6b6180e76c519c75d0d30c4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0238_jpg.rf.083b95fe02642f5ced82b33254aff517.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0239_jpg.rf.596ca4e91ca6003dc8d32e72d3ee40b6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0241_jpg.rf.536d14192c80fd9a716dc8e72e8d8056.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0245_jpg.rf.b9359397d41b0f63aeb65701758c8c8c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0246_jpg.rf.9c5952bdc3b6dda298afa6664496568f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0247_jpg.rf.191865bae294ecc5c4614c9072e709a3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0250_jpg.rf.f32c0fa5ea44d0967bfd531dfe602a7c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0257_jpg.rf.6efad90fde8b48a938951bcb06f64c72.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0258_jpg.rf.d852c48f024e241efd7b5dd55d873117.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0260_jpg.rf.590c36259e735a10493d2489ce83c7f4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0261_jpg.rf.0369d79908cc75072fa275892c14426d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0262_jpg.rf.06636720752dc0ff6c4a6c6618be4618.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0265_jpg.rf.d75b77c50ad65693173cd358e6433e73.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0267_jpg.rf.770f4d27fe75b3b9222fc382de58e1d9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0269_jpg.rf.1ca2538fefffe9221fa8f7a6e461c7f5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0271_jpg.rf.1eb984b049db7f95524805dab9de4784.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0273_jpg.rf.71ef5de7f70a0579349ee3354a550708.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0275_jpg.rf.d4c30e635e10a759bd27026fa8c96720.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0276_jpg.rf.d7279b15fdd142be1683be92b0e5c9ec.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0277_jpg.rf.264ea3808f24fd02196de91336dab054.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0279_jpg.rf.d7bf6dbed67348aaceabf361d00e2f4a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0280_jpg.rf.3a7d405630b1c1758ae6bd1777cf4a80.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0282_jpg.rf.d69ef5088da9630a1af094d82ac860d4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0285_jpg.rf.fd8e1674cb1f5681757f5833fef1f310.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0286_jpg.rf.91cd33afd96884a2937fd841f157ab81.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0287_jpg.rf.331d585d825d92c9b744415b8330eee9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0288_jpg.rf.a14a5f6a29e54f281ad818f3c8564db4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0289_jpg.rf.8328eec6a5f05c3b421adfc7095e7cdf.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0291_jpg.rf.d58bf97355944f4d64d357572e1bb90d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0293_jpg.rf.0d75a6a1e8b78cebd789487b85d70f7a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0295_jpg.rf.26d9e99405f14ab5275508092a74a1d5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0296_jpg.rf.4d9b0d0083e4c5141875b512a4929717.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0298_jpg.rf.e1ee50181ead23bf0b82516ad265250f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0299_jpg.rf.f817ed79c65b9e0a09e5d137c786eba1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0300_jpg.rf.a0573a479542b71d40f8d1f9c9a72290.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0301_jpg.rf.24c5fb00a147fd6aeccea075872bf4b7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0302_jpg.rf.5d188c3247320bf5e835a7bbb3b7114f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0303_jpg.rf.193109c731acf2a0e1ad10be38f59aa1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0304_jpg.rf.fa71e2fc320dd0a9970508dbb2e91931.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0305_jpg.rf.064987d6bf7a85218f0a0acf007176df.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0307_jpg.rf.2772b814e3b66ccf926e85bee145a6cd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0309_jpg.rf.4794ecc707265fbc346d913e32919062.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0311_jpg.rf.b13a43afd649813a6b0b8c57a372e7a4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0313_jpg.rf.71f1ccc8217c4407d9ae0b6e80ac977d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0314_jpg.rf.dc675f2b0d2b17d4944f95bfe77a243b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0315_jpg.rf.88e8f6e06115cbcbe7bd9ebd6454e22f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0316_jpg.rf.5075407a1eeeafbea70c18334ea8a636.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0317_jpg.rf.2edce1af7aef326b3fc79f82cffa3401.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0318_jpg.rf.e37e950f0282573170b01411bf3d08be.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0319_jpg.rf.fde6c4a4b4591ba64ae240c44ebaa04d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0320_jpg.rf.507f8c366503f2a0db74a5d7fb79f732.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0321_jpg.rf.f4d63d45873b966bf22a2273946ab6b4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0322_jpg.rf.0ee990921de62177b309a56fdadd4d91.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0323_jpg.rf.bc11172d90c92c4fa7cf7855d23f354a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0324_jpg.rf.65d6cf677f5b3ccb61339cafcec3357a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0325_jpg.rf.7972fd8deae1c0f6196644efd8fa4e24.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0328_jpg.rf.4a370ee18153ba3de263dbe9697ce131.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0329_jpg.rf.e04d0e0bedf6a6e21fb9370d9e6f1bf2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0330_jpg.rf.78a95f00ef179f87f1548f5b2e4f38cb.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0331_jpg.rf.01f3e5aa1d943cec0bb799a17b756635.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0332_jpg.rf.5df81be6ff01d4a65c859c398ed4594e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0334_jpg.rf.cc012397397c001eeb15902fe22ac8c9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0335_jpg.rf.9209846e2b5b4689dd846fe581f504f8.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0336_jpg.rf.4a412780c6cc20f3ac8267832c140013.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0338_jpg.rf.c46c79a15bbaaebff2a207d43eab593c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0341_jpg.rf.5025a422a6ce596d69b536f9bc8763d1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0344_jpg.rf.b6cf888a19ed1fb23917b8a62a0c40c1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0345_jpg.rf.01bf3db1d039dd653cc01cb3c817a399.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0346_jpg.rf.7e6f3e9614437f735b05d3a7bf496c13.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0348_jpg.rf.76c7eaacf5c18ef5c6c70b29c7a4d148.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0350_jpg.rf.2eed5b02cf65d0ff15bb2dd2644f93ad.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0351_jpg.rf.ead7acadd8be63cf153f867990edb526.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0352_jpg.rf.0a7219b409b9c0c8f6baf2fb625812fd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0353_jpg.rf.25289a19a5c8f2c2d4360289c50ea999.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0354_jpg.rf.e6e1c806683b5da9652262265a827642.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0358_jpg.rf.0623369aee85cf57767de0f8c864800b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0359_jpg.rf.f7919c8c9723d6a6ad62a9cfe562d4eb.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0361_jpg.rf.f83201b2b276e95ef81e25cf70985952.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0362_jpg.rf.98c862085d2b0a2be756b4b61590e855.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0363_jpg.rf.1afe91d0c388605f4ed26f8aaf573a5d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0366_jpg.rf.99d8a33ca42730c468a9b88bd58f2d98.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0367_jpg.rf.0739896788a12fa4d53d516aaa79dd6a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0368_jpg.rf.fd591aacc61a1b967335b12aab26561d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0371_jpg.rf.9d34c3bb12cbdc0bb885c404fd51c165.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0375_jpg.rf.1c11b9515c3b9561e5d599b333c5bcd6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0376_jpg.rf.6cf036f2183e9ab3be5553b987690fa9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0378_jpg.rf.e24f5a1514cfb54e4d35e13a6f2a9712.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0382_jpg.rf.63617da6a6581203e475f33a49d577c6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0383_jpg.rf.020b581628018d3623b7d2d460fe95ef.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0384_jpg.rf.e3ed27aeb8a713fce467411708c6afc3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0386_jpg.rf.c1676637d1171acf17ee829f845a05ea.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0387_jpg.rf.4a3a670f16ad8f138b97becdb2ae996f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0390_jpg.rf.69d73cec2235304b85a2377b37f0d700.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0395_jpg.rf.3766caa5967604e349b292b909602585.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0396_jpg.rf.18b55af1f3b8a43a08ac2972b0a9394a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0397_jpg.rf.12ca219523a9db1bc417f6e9f244ccd0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0398_jpg.rf.27873665106068f6fbe0c8e7a47a0e89.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0399_jpg.rf.96f273f9c15cefb5ea42f32edffb2801.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0404_jpg.rf.98a131017d5764691889c08fb8164c32.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0405_jpg.rf.7e593c9fc824fa368c8a4bf808866288.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0406_jpg.rf.fd85e1e23ac1194095f3c48b621536b1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0407_jpg.rf.6542b2a94d9da24359d9a1750b0f8c79.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0408_jpg.rf.7041febeac121f04dacc50022aae974f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0410_jpg.rf.a40f8cd80bbf91d265bb014ea5570b59.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0413_jpg.rf.67cf4c6fdbf7e8738ba8bc77883a3185.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0414_jpg.rf.c03b7894c8240827f5946f11f090ea1a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0416_jpg.rf.9a20335a4005043d9d187ba2031e1135.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0422_jpg.rf.bedb9ebb3a5419eb3b276d24ea5952cd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0423_jpg.rf.4fac8816366144be9f181114c765c986.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0424_jpg.rf.8e80279b66b515a1cddf1d86d9e5c3af.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0425_jpg.rf.f97e6e26ed72e8795b3c794b3590eb53.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0428_jpg.rf.71ad81300ae4d17fb46a06f4551eefb6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0429_jpg.rf.55b8c6deb8c935652f827d22a505aabd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0431_jpg.rf.00edf455c4b4411c6df1735c73a4d00f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0432_jpg.rf.9d70ebb8037f1e1a14756bdc3c78c0e6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0434_jpg.rf.761eb9c4dd376396c187cf7aff840c89.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0439_jpg.rf.3384aa2b35fbf97bcaf0a2d3033f2b12.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0441_jpg.rf.8b7e7a1950200b0e5fe9a848c0e13e6e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0442_jpg.rf.78ae8a05d2d59091919c3a05ccaf013e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0443_jpg.rf.699e25bab154fb7b4415476bfa3552ec.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0444_jpg.rf.5bf588039487b0d6458f7b47d2785ba1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0446_jpg.rf.4be51806d566f5289e08b8948fc50f96.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0450_jpg.rf.5080af2a534eec1cb8da6be39329970c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0451_jpg.rf.e7828d18ee5c50db8ca7f90f1ee428d6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0455_jpg.rf.22652c5c50dd5c5f3ffcc489d674fb38.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0456_jpg.rf.49f3777eb1b6942bceb4bf4ca543747c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0457_jpg.rf.59ecb63b02d579eb0d667b549296634e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0458_jpg.rf.d53ab4a51c14599086488dbf4bfb72f6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0459_jpg.rf.8d6bfa38f93182d666d6135610ebdb76.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0462_jpg.rf.dbe336be9c2bb3e1736a0211e72f49b5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0464_jpg.rf.afc046e55ff9062c906f9ab4f55d0d95.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0466_jpg.rf.0c4a54b7875cade30e7f0dfd8aced1f2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0467_jpg.rf.e2e41ea13071e2ad395d932d41c92637.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0472_jpg.rf.d1964467cf54155eaac52d11bc25cbd7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0473_jpg.rf.af6686b5c74308021b041efa08a042d0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0475_jpg.rf.1d8de093091e50b31569adc0dd1d57ce.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0476_jpg.rf.58605bedf6db74d20fb01724c5799c87.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0479_jpg.rf.c9ebe20d5bb149ebd4fab3d56bcffa59.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0481_jpg.rf.b2797ca30711aaaa8e1bf931cdbd4314.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0484_jpg.rf.201f09ee6dd967732b851698aa5a7c9a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0488_jpg.rf.efcd8bf40a3b9e2b1d8a4859f2de6277.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0489_jpg.rf.c688fcc6a2cda18a9843784135174b22.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0490_jpg.rf.4a7c08d3372bd0e4887e625f8723cb5f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0494_jpg.rf.8f96513d8a1e5b09d1eae5d91d800b46.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0495_jpg.rf.f44551466888d645cd4136147404540c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0497_jpg.rf.821442235c124c1d18daae513451e960.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0498_jpg.rf.2869b57da76b5590233140fe6b91bd84.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0502_jpg.rf.30b3f4445965494c72dd4b6552bd0f84.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0503_jpg.rf.17ff5a86cc14e2503b7c50cc401ceb94.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0505_jpg.rf.63f204cf722719dce1a4be9561636112.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0506_jpg.rf.f813b08c6a394d93edc1c36a2471b5bd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0507_jpg.rf.484cc195ce9a1935a2040742a2379926.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0510_jpg.rf.3bd6742d531fbdcd1787340a99964db1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0511_jpg.rf.c965c7197d00648aafeabb6aca6bd668.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0512_jpg.rf.a2c973f2065f7d411136ba30a3dc23ec.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0513_jpg.rf.d0c38ed9ec0d459fb83697e6c5051859.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0514_jpg.rf.e82be994aa2b0f40daf39fe7e0855413.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0518_jpg.rf.bf4907060e25e4624dd21e8e83bb1ffa.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0521_jpg.rf.3c5297fa828bc281df7c4bdf18f788d2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0522_jpg.rf.af14b939652a29f670462da642f39e90.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0526_jpg.rf.382ca9e039f68054aacf8ec61e50b652.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0527_jpg.rf.dd7b28535152802c4556664c34b57bdc.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0530_jpg.rf.18cdcaa9ab0b6dfe13ee7b65bd2cc996.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0532_jpg.rf.60495746745d69fd8764640c9b821c2f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0533_jpg.rf.f484d9d989ecf16cfe3037a9c13f3fda.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0534_jpg.rf.6667506895c222bfa9d37c5c68bc911e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0535_jpg.rf.4b2e4066ea03cd230fa8c82e631abb28.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0537_jpg.rf.161b4d0cdea16ee6dd225570b793690e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0538_jpg.rf.179b90d6d643b79d5039fadf05eb32e8.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0542_jpg.rf.f2d92e68ae45628862dec87f6c6bb24c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0543_jpg.rf.b6f4ad679923742ec8a5aeb4353c2af2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0544_jpg.rf.fb0a9bedc172c4a126ff9b8818493941.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0546_jpg.rf.db76071d576135fe9e854e22348b2b4e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0548_jpg.rf.7e56821398df087a7a343579c7b17b54.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0549_jpg.rf.1b73d49d0f3505810f69ed4f11457f79.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0550_jpg.rf.c776c8f396876cfb1ca4fb14bcda7612.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0551_jpg.rf.dea3f992b9cae163388ce1e9bc1a0ec3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0556_jpg.rf.cde1e56b57efff593a1fdbc57d49a89b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0559_jpg.rf.ea9a194def3b328f047233940579ba40.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0560_jpg.rf.0159dbc504b53fd79b70ee89ed10d668.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0562_jpg.rf.c231588cf1db0a3584f9a8b4d49e1639.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0564_jpg.rf.6921d91fef185c3c97e41cdeedf60daf.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0568_jpg.rf.1ce5d67f7fe743c3fa51fce5aac1f970.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0569_jpg.rf.ab7eb5c1734d41e3faa23714b7825999.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0572_jpg.rf.0f5d2a01623d15105d81b8d53c463eb6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0574_jpg.rf.a13fb521a127360de5dfd2bc8b1671c5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0575_jpg.rf.294e715afb7e5d8dae793b5c3439e430.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0579_jpg.rf.caac73fc106ac05249f53784f49701e0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0580_jpg.rf.4fda17506e88aefe03e15e56a03fb567.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0581_jpg.rf.61f62a28a4de152633991f3d232be814.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0583_jpg.rf.5fe2ce66fa610f3bc0bd66517ec6819c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0584_jpg.rf.ff1261f3df45d05ef983884b534ce389.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0585_jpg.rf.40d4d352c1353e6f4ee727c41eb016a2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0586_jpg.rf.0f065ae43729c7f6188a9c76e6bb886d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0587_jpg.rf.af0b0c40e880cd7ee65debdd7763373a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0588_jpg.rf.49cdd3e23d18ab30b952c2c7615f7b63.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0589_jpg.rf.261148c35cac09cf60dda1b68c890188.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0590_jpg.rf.36f817f698d9d551941f1f39aebe0c48.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0592_jpg.rf.1137c98792ebc053a2f782b0eef614c7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0593_jpg.rf.6c16b30073221638fac91246f5c54dd1.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0594_jpg.rf.c0edf264f1081d16343692f398910d5d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0595_jpg.rf.1b16df665d5ff77e163165c895019fc9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0599_jpg.rf.de0de8ad3494b51520c6ff6ec5a28be2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0602_jpg.rf.0a90dde8c4e643f7162215f23bc01732.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0603_jpg.rf.32569d23cfe293ae187652c03fd453d2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0604_jpg.rf.9172dfe2ca4c2e4d06ceb5e08b3ee3dd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0605_jpg.rf.718a4432059638b0a42b0a0c5e16b146.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0608_jpg.rf.a96318c0e37d885e175de63e2a5a3e63.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0610_jpg.rf.b431cccbd5bd3828f7654008b5beca9e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0611_jpg.rf.438bac17b13c431e0ff371cde23abae9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0612_jpg.rf.4e285ceb83f92b80e421ce2760fb2d4b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "train",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0614_jpg.rf.e2ab601667f12aabd03e88bec9ed7b92.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0006_jpg.rf.3fbc2215a99fea36f2c33392ab192b3e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0024_jpg.rf.e31baaab13f903fd53038b5f1eeb0c1e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0028_jpg.rf.61fefc220aa3d2237788c74d0ab779ae.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0046_jpg.rf.d21f40e78222f023882feac0d9b17860.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0050_jpg.rf.0915510859d077befdc4dd00dd9011ec.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0054_jpg.rf.1412d33e6af1b9d0e9eea6bed745b648.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0063_jpg.rf.76221676adb420f7f732b7adeedb9c92.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0068_jpg.rf.a3ac3dcae2b02e7b79f815a7866c8ebe.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0076_jpg.rf.0308ef29ad6c6d24d25c95a91436bf7f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0078_jpg.rf.0f06cc5e2fd850d33179dd6726891049.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0084_jpg.rf.339027a8ee42310ea7b5d2e1eb6b5e75.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0091_jpg.rf.9e7c986815ba6f430feaf0d3c781cd00.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0098_jpg.rf.137cb0bd996543ed1b670df00a707c68.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0108_jpg.rf.a8b9ca9261fda47ad303ff3c3193c835.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0112_jpg.rf.f79c56fb044ec3d343c20671d9e3d3a0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0116_jpg.rf.90e16f20d4e4a8e99196b5a940531d3b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0125_jpg.rf.a4257bb903480581be84aa76a139ecf3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0132_jpg.rf.b601f77c01c394d5ae0aab0f4e7117c2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0142_jpg.rf.e6378f657c763879d97de03a225794f6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0178_jpg.rf.e95a48128dc21a4788bb03a442d198fd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0183_jpg.rf.3dc8d1d42dd4a0611ffec63ddf8fabf7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0187_jpg.rf.a0a1fe35e43f3b904b38c14769ada8ad.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0202_jpg.rf.f3e3b49aea117ab7dbb59ec79d4f87c4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0206_jpg.rf.c95e84412c7149a3042c244c537ee7ba.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0210_jpg.rf.4e4ae17968ee55f4758147b274fdc726.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0226_jpg.rf.76792b09995ba5ea8145fa3503e1be39.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0233_jpg.rf.b0e2b92b2d77ce34dbd027cbbf00e197.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0249_jpg.rf.0070279309daf6528f133cd66a81a807.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0254_jpg.rf.bd040d3d1da740f9c7c8da5b4ef8dc40.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0256_jpg.rf.e1d8fdfc19595c8ca68656d0772fe928.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0259_jpg.rf.8bcd7ac761aec2f1ee9a458cf4d71a8f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0263_jpg.rf.734a16e629a3474d49c43f688d68175c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0266_jpg.rf.64a19194cc9352b1045a42869a5df36e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0284_jpg.rf.c8b91b8015b796f2c8d913ecaafdd929.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0290_jpg.rf.ebf2c087b78f3e5e86a9d59a86d7245e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0292_jpg.rf.40a858c4c5eb62861b56851e01f0043b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0294_jpg.rf.0ecf9d1deb5b60f20a1714321ad1184a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 2
+},
+"eyecu": {
+"ball": 2
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0308_jpg.rf.dacdc985a3e129fe358ffae7f5595155.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0312_jpg.rf.ec47f90e767295802473513a40759fe4.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0326_jpg.rf.180ce193bec2419248ed210050a88604.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0333_jpg.rf.0941d12d8b8e30a21cc412b2f2d637d7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0337_jpg.rf.9b0aab55eb8fd0d8b5cc3ff7f03d71c7.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0339_jpg.rf.f08344f0ec00fc1e1a9189b8601dab3e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0342_jpg.rf.ac68fd47196b0907c626978c032654ed.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0343_jpg.rf.102eeff154baabe75ff707088e551753.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0349_jpg.rf.bdf4d205aa5f703518f7c7b9f122d730.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0355_jpg.rf.84636004957cb265c9b10108ceea8844.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0364_jpg.rf.4567ef3b7ff86cbe2f0e64776e487111.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0369_jpg.rf.d9e1a67c1b1f33b8e14653a0bffb815a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0372_jpg.rf.4a3506b8da524ff1f18dcf0876c02564.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0374_jpg.rf.0c6bc2c2ae4e80ecd67f6a24de948ce5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0377_jpg.rf.f99b0da888d859e6b41c1de354e9232f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0388_jpg.rf.6cce12a1d7a4af73bb76f8b064f339dd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0391_jpg.rf.ee011314f58f2a149cbc90caf54ee105.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0402_jpg.rf.3a6bfee66a3ae3ca7af02659a5e3c8d6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0411_jpg.rf.b2304d134bf17a9311bddac11f152bda.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0427_jpg.rf.3a39d67bb7ccc872403610ad1b1a5b27.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0433_jpg.rf.c44ae84332631b00d0c9771407de7345.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0445_jpg.rf.852604a3c1248e9d8e8660447d89ab36.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0447_jpg.rf.a5306918d6f220c5683787054aae2c80.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0460_jpg.rf.a7b53ba4819ccd3e8407f11ecd9af610.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0465_jpg.rf.163ef1c40a2b25876d4b9fbc8d4b2d22.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0474_jpg.rf.c42bdae39938884de9e2e9fe4ec4cd0d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0477_jpg.rf.719bfa0fe288612fefe7c51510cdf03b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0480_jpg.rf.297647f10e0547a17583e07d5618202d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0482_jpg.rf.ffa709e1341ad67d812a23b0d51ee099.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0486_jpg.rf.4dc0ea16bbe60d0b5d66c86b7a3e6753.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0487_jpg.rf.2bac35d2e37bd35b3b64b2cfdcc25dd5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0493_jpg.rf.8a9c5aaedec062f6dbac6ede4b5f1f49.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0496_jpg.rf.c0d2a1b3888988fce75164ec01798992.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0508_jpg.rf.ea085ebde58513c3218a75e890fab020.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0509_jpg.rf.e1f6839c453a38c54347142c20694b93.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0515_jpg.rf.91d0163e038a63acd37271b12c01d468.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0517_jpg.rf.d353311b0fe5a6c7c4ec2ca20f197eeb.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0519_jpg.rf.63c93f44f236bdef66553471c4667508.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0520_jpg.rf.fab213fba9835d9ccac36dbd273dedbd.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0525_jpg.rf.3cac749f376b696f528527ac6e7efde0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0529_jpg.rf.3a93ef29e3d18649b3449ce5bff0e02e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0539_jpg.rf.60150f58a8dcc6d190b9e01f4314c66e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0540_jpg.rf.595a1c2950113c4ad4afcc16027d3f3f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0545_jpg.rf.4ca2f90a242765ebb0517cf5cc95a71c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0547_jpg.rf.d1da96efa9a13fc19c21b57a13b46392.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0554_jpg.rf.0807693af5756632205d65fa5ed4a5ef.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0557_jpg.rf.2fb0fbd6a9bd65da6941bbab7ebab614.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0561_jpg.rf.28244d643f4a87995bd922db5871aabf.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0576_jpg.rf.c7912956d7091aff523ef55340a8d469.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0577_jpg.rf.35d4278729333c35cdf0c1f9c76f5c2a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0578_jpg.rf.26de3bcc42558712918987b00cd58ce0.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0582_jpg.rf.ba2ddbe1a4caa6f38be99e87088607ed.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0591_jpg.rf.97491503dd5877dd42d76659aa540fc3.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0598_jpg.rf.6614209829929d1743f81f96940b2989.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0601_jpg.rf.b231777785580a55195be393560b8210.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0606_jpg.rf.e23b9f5e5246fa540956a30bc4314c37.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "valid",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0613_jpg.rf.369e1f69019e45d587628ca11a259d1d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0010_jpg.rf.2adac4a2ed8ee56ed7c099d16ddaa0a8.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0011_jpg.rf.e826a9db4f30469f09fcc957812a2330.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0020_jpg.rf.cc6de33138b557cb1a090237ef44c200.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0022_jpg.rf.f806363a98b82834d4e30a572b9d67cc.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0035_jpg.rf.2bccf5a9e91620fde30f70f7fefd3030.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0041_jpg.rf.642128118f2475a6476048a334cdb08c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0070_jpg.rf.db42837e9476a8f44358349ce675c546.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0117_jpg.rf.0e8fd411a2abd726754270a302cc1b38.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0119_jpg.rf.d6bce8a727124454fce2d3b99320ca8c.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0124_jpg.rf.56129323988f95e38c9dbbae6a7e2328.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0135_jpg.rf.b53e98a30001575676334fd231e7e1be.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0158_jpg.rf.e9d6752ac25ae0285b5125e11703163d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0163_jpg.rf.f030c9d4eed0708705a1a3ca1cb2794f.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0205_jpg.rf.04ae9f4198b57ac7586790462403cc50.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0209_jpg.rf.e32c8dd07dd2cc186a07ee71f42f9a16.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0231_jpg.rf.0d72ff97fba308e4e1a0b78a54af30bc.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0243_jpg.rf.ff0ecd6866d6e02243f91aa2fd557788.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0255_jpg.rf.394e3e810d64ed0c2c1fecd6ea60f28e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0264_jpg.rf.9f093592ee37e5fb771a454525b7f52a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0297_jpg.rf.03abde151170892288e2b3725204a359.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0327_jpg.rf.553e0d5b7ab889a3505fe1f975afcd5e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0340_jpg.rf.3a68cad388c35f063caa37d9af12ebd2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0357_jpg.rf.d166b830f060b337902972f74d81caf5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0360_jpg.rf.d7bd2336d5a1488f8ceb465c4d32d27b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0370_jpg.rf.d390665951faad443f213a14b987e570.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0373_jpg.rf.40670af06c2d68f0e0cae62d5e700db6.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0379_jpg.rf.6452fc1dec36f856e9ad3f745983ec44.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0380_jpg.rf.d56123b709d6f923dd6ffd396c737899.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0381_jpg.rf.de0b494cd32653d35ce6a65c8638c285.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0392_jpg.rf.6d3bb91c7fe58f4695379004fa76da09.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0394_jpg.rf.b4861a600eee56ccb2f54be84955636d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0401_jpg.rf.e8091b5458f584cfb29d1387989fe058.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0412_jpg.rf.87923d9aebf3399e69360b8b8ea9a57d.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0415_jpg.rf.94a0929153ac6e9cd80f1bf6dc3d0198.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0417_jpg.rf.2435d8b1a1ad563ce177e1631b18e9c8.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0435_jpg.rf.2f0eab2bd248017abe1886062f4873c2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0468_jpg.rf.37581a2e0f19317af8eaa8bf3efd2578.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0485_jpg.rf.145069f0b192f66ebecec983f81e8919.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0499_jpg.rf.ce4fbbd91bc4ba33713dfe5eda46f879.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0504_jpg.rf.434c7673f2a82eb8b22b8a192e3ae473.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0528_jpg.rf.142e23e847052efdd54676a24505125e.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0531_jpg.rf.9f3e1879601befa6e8bea9b7b073037b.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0553_jpg.rf.807555bd12b214587509e3449d659f02.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0558_jpg.rf.5ed596087cc68d670fb877972a12a371.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {},
+"eyecu": {},
+"n": 0,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0571_jpg.rf.d3f051c33e34311baa0aa14e635772f9.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0573_jpg.rf.cb1263f4b4f8e7ba10cbace3621c93b5.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0596_jpg.rf.c817919ba067b989183d990a7771fd4a.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S5",
+"split": "test",
+"file": "Legendary-Goals-That-SHOCKED-The-World-TfcOMVncxXI-copy_mp4-0600_jpg.rf.da9fdb05da3e0d7025f85c912741a0f2.jpg",
+"w": 2560,
+"h": 1440,
+"counts": {
+"ball": 1
+},
+"eyecu": {
+"ball": 1
+},
+"n": 1,
+"label_file": true
+}
+]

@@ -1,0 +1,81 @@
+{
+ "images_hashed": 4802,
+ "collections": {
+  "S1": 574,
+  "S2": 396,
+  "S3": 163,
+  "S4": 272,
+  "S5": 487,
+  "S6": 1702,
+  "EYECU_TRAIN": 823,
+  "EYECU_VAL": 208,
+  "EYECU_TEST": 177
+ },
+ "exact": {
+  "byte_identical_groups": 12,
+  "pixel_identical_groups": 12,
+  "images_in_pixel_identical_groups": 24,
+  "within_source": {
+   "S1": 12
+  },
+  "cross_source_pairs": {}
+ },
+ "augmentation": {
+  "S1": {
+   "images": 574,
+   "distinct_source_images": 148,
+   "inflation_factor": 3.878,
+   "source_images_with_multiple_exports": 102,
+   "generated_copies": 426
+  },
+  "S2": {
+   "images": 396,
+   "distinct_source_images": 183,
+   "inflation_factor": 2.164,
+   "source_images_with_multiple_exports": 116,
+   "generated_copies": 213
+  },
+  "S3": {
+   "images": 163,
+   "distinct_source_images": 163,
+   "inflation_factor": 1.0,
+   "source_images_with_multiple_exports": 0,
+   "generated_copies": 0
+  },
+  "S4": {
+   "images": 272,
+   "distinct_source_images": 204,
+   "inflation_factor": 1.333,
+   "source_images_with_multiple_exports": 68,
+   "generated_copies": 68
+  },
+  "S5": {
+   "images": 487,
+   "distinct_source_images": 487,
+   "inflation_factor": 1.0,
+   "source_images_with_multiple_exports": 0,
+   "generated_copies": 0
+  },
+  "S6": {
+   "images": 1702,
+   "distinct_source_images": 1702,
+   "inflation_factor": 1.0,
+   "source_images_with_multiple_exports": 0,
+   "generated_copies": 0
+  }
+ },
+ "near_duplicate": {
+  "candidate_pairs": 3390,
+  "HIGH_CONFIDENCE_NEAR_DUPLICATE": 547,
+  "POSSIBLE_DUPLICATE_REVIEW": 281,
+  "DISTINCT": 2550,
+  "EXACT_DUPLICATE": 12
+ },
+ "leakage": {
+  "S4->EYECU_TRAIN": {
+   "EXACT": 0,
+   "HIGH_CONFIDENCE_NEAR_DUPLICATE": 205,
+   "POSSIBLE_DUPLICATE_REVIEW": 13
+  }
+ }
+}

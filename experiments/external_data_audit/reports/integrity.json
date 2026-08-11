@@ -1,0 +1,208 @@
+{
+ "first_run": false,
+ "all_pass": true,
+ "checks": [
+  {
+   "check": "zip S1 (SOccer.v1i.yolo26.zip)",
+   "pass": true,
+   "detail": "6cfdbf2f31cbba58"
+  },
+  {
+   "check": "zip S2 (football.v1i.yolo26.zip)",
+   "pass": true,
+   "detail": "d99cb76a6d3d056c"
+  },
+  {
+   "check": "zip S3 (soccer players.v1-release-640.yolo26.zip)",
+   "pass": true,
+   "detail": "091af379c7a5a91d"
+  },
+  {
+   "check": "zip S4 (soccer.v1i.yolo26 (1).zip)",
+   "pass": true,
+   "detail": "6df855c3f1decdc2"
+  },
+  {
+   "check": "zip S5 (soccer.v1i.yolo26 (2).zip)",
+   "pass": true,
+   "detail": "e420dfcdec32409d"
+  },
+  {
+   "check": "zip S6 (soccer.v1i.yolo26 (3).zip)",
+   "pass": true,
+   "detail": "ae34e65843c531ec"
+  },
+  {
+   "check": "EYECU_TRAIN",
+   "pass": true,
+   "detail": "823 files, 90e1515d1ba80cb8"
+  },
+  {
+   "check": "EYECU_VAL",
+   "pass": true,
+   "detail": "208 files, 2fc81ce889103269"
+  },
+  {
+   "check": "EYECU_TEST_IMAGES",
+   "pass": true,
+   "detail": "177 files, 364964dc18ae3291"
+  },
+  {
+   "check": "EYECU_TRAIN_LABELS",
+   "pass": true,
+   "detail": "823 files, 461f3c18c86a7ad1"
+  },
+  {
+   "check": "EYECU_VAL_LABELS",
+   "pass": true,
+   "detail": "208 files, cf029e251da964fa"
+  },
+  {
+   "check": "trackers/football_tracker.py",
+   "pass": true,
+   "detail": "2471708627163102"
+  },
+  {
+   "check": "trackers/detector.py",
+   "pass": true,
+   "detail": "2c964627064daeb2"
+  },
+  {
+   "check": "experiments/tracking_v2/integration/TRACKER_FREEZE.json",
+   "pass": true,
+   "detail": "45fcb0ea35e3c4a7"
+  },
+  {
+   "check": "data/dataset_baseline/split_report.json",
+   "pass": true,
+   "detail": "b5f24deb0151716c"
+  },
+  {
+   "check": "data/external_provenance.json",
+   "pass": true,
+   "detail": "b190370faf6b396e"
+  },
+  {
+   "check": "best_A_960.pt",
+   "pass": true,
+   "detail": "5eaf2e81d7f6b28f"
+  },
+  {
+   "check": "best_B_1280.pt",
+   "pass": true,
+   "detail": "e19718d1113b8a50"
+  },
+  {
+   "check": "best_C_960.pt",
+   "pass": true,
+   "detail": "6faf2316bc63df5e"
+  },
+  {
+   "check": "eyecu_football_v1.pt",
+   "pass": true,
+   "detail": "9aff5d7f23c91fd6"
+  },
+  {
+   "check": "no training run directory produced",
+   "pass": true,
+   "detail": "0 entries"
+  },
+  {
+   "check": "audit tools import no trainer or evaluator",
+   "pass": true,
+   "detail": "6 audit tools checked"
+  },
+  {
+   "check": "no TEST label path referenced",
+   "pass": true,
+   "detail": "none"
+  }
+ ],
+ "state": {
+  "zips": {
+   "S1": {
+    "file": "SOccer.v1i.yolo26.zip",
+    "sha256": "6cfdbf2f31cbba589852b6e341f85dfb7318915096ad96a7fd52d239e502c50d",
+    "expected": "6cfdbf2f31cbba589852b6e341f85dfb7318915096ad96a7fd52d239e502c50d",
+    "bytes": 23516008
+   },
+   "S2": {
+    "file": "football.v1i.yolo26.zip",
+    "sha256": "d99cb76a6d3d056c25dc611025bb0dc49af8db956265f457803927e20079d4cf",
+    "expected": "d99cb76a6d3d056c25dc611025bb0dc49af8db956265f457803927e20079d4cf",
+    "bytes": 37643123
+   },
+   "S3": {
+    "file": "soccer players.v1-release-640.yolo26.zip",
+    "sha256": "091af379c7a5a91d6771f989cc57f96bb2f48e84f380d9e33fe71207159d0e06",
+    "expected": "091af379c7a5a91d6771f989cc57f96bb2f48e84f380d9e33fe71207159d0e06",
+    "bytes": 5900954
+   },
+   "S4": {
+    "file": "soccer.v1i.yolo26 (1).zip",
+    "sha256": "6df855c3f1decdc2cf0b44c8bd1c02c9a7ad9ce3a0d255bb73332b37ea6d2534",
+    "expected": "6df855c3f1decdc2cf0b44c8bd1c02c9a7ad9ce3a0d255bb73332b37ea6d2534",
+    "bytes": 17276408
+   },
+   "S5": {
+    "file": "soccer.v1i.yolo26 (2).zip",
+    "sha256": "e420dfcdec32409d7ec5a313a76ed2a864cb992242defcc3acd8ec1ede128ccd",
+    "expected": "e420dfcdec32409d7ec5a313a76ed2a864cb992242defcc3acd8ec1ede128ccd",
+    "bytes": 94691842
+   },
+   "S6": {
+    "file": "soccer.v1i.yolo26 (3).zip",
+    "sha256": "ae34e65843c531ec6b82be1a42524a047e573ecfe9b7d82fd148593dac8c8a29",
+    "expected": "ae34e65843c531ec6b82be1a42524a047e573ecfe9b7d82fd148593dac8c8a29",
+    "bytes": 151295839
+   }
+  },
+  "trees": {
+   "EYECU_TRAIN": {
+    "files": 823,
+    "digest": "90e1515d1ba80cb819ebed282d56b5c59f310b186c344d5ed7872c12839747a9"
+   },
+   "EYECU_VAL": {
+    "files": 208,
+    "digest": "2fc81ce8891032694c5298f23e9d7f95dab1b97217d15d6437787a24bafbfb42"
+   },
+   "EYECU_TEST_IMAGES": {
+    "files": 177,
+    "digest": "364964dc18ae3291d06a8d3ec196e1074b2d47accb306dbe27ab550da1dd50d4"
+   },
+   "EYECU_TRAIN_LABELS": {
+    "files": 823,
+    "digest": "461f3c18c86a7ad1ecfe5de99372356b1e86561855696869e0904c1cdbe2d031"
+   },
+   "EYECU_VAL_LABELS": {
+    "files": 208,
+    "digest": "cf029e251da964fac9814f64062cc342a6a56f1b3c372d135580d1c4e6f6273f"
+   }
+  },
+  "code": {
+   "trackers/football_tracker.py": "24717086271631023885791c13395773245d7bfcb7d763480f44c56e1b4e0cdb",
+   "trackers/detector.py": "2c964627064daeb20cfe89a92f4e5990cc23de344df42bc68cf6864c1aa6195d",
+   "experiments/tracking_v2/integration/TRACKER_FREEZE.json": "45fcb0ea35e3c4a7267661c50bddb8396742ad0b423066784104c5d76dbf1f59",
+   "data/dataset_baseline/split_report.json": "b5f24deb0151716c9f626ccf44a63fc7a1c7a5a25d6aeaec922a4c97e2b0c227",
+   "data/external_provenance.json": "b190370faf6b396e65d1923a72559583959abb213883f5a6322ae62a04dcfb3b"
+  },
+  "weights": {
+   "best_A_960.pt": {
+    "sha256": "5eaf2e81d7f6b28fd0c665e769a5fb66ec71dc6be7f0d51576300a8370768e4a",
+    "mtime": 1786274141
+   },
+   "best_B_1280.pt": {
+    "sha256": "e19718d1113b8a50f9e062975b60db58ff6b5a0b3ab5f818305fe2f75b9a86c1",
+    "mtime": 1786274170
+   },
+   "best_C_960.pt": {
+    "sha256": "6faf2316bc63df5e6230e832623748c0edf9503788d9fa461aaa88508171d1a5",
+    "mtime": 1786294480
+   },
+   "eyecu_football_v1.pt": {
+    "sha256": "9aff5d7f23c91fd6d60043a3363f5d64ced743328046b3609e7d523933ece857",
+    "mtime": 1786193171
+   }
+  }
+ }
+}

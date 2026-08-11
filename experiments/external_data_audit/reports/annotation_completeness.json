@@ -1,0 +1,50 @@
+{
+ "S1": {
+  "verdict": "FULL_MULTICLASS_LIKELY",
+  "evidence": "every image carries labels; 574/574 contain human boxes and 478/574 contain a ball",
+  "images": 574,
+  "zero_box_images": 0,
+  "images_without_human_labels": 0,
+  "goalkeeper_class_absent": true
+ },
+ "S2": {
+  "verdict": "FULL_MULTICLASS_LIKELY",
+  "evidence": "every image carries labels; 393/396 contain human boxes and 221/396 contain a ball",
+  "images": 396,
+  "zero_box_images": 0,
+  "images_without_human_labels": 3,
+  "goalkeeper_class_absent": false
+ },
+ "S3": {
+  "verdict": "FULL_MULTICLASS_LIKELY",
+  "evidence": "every image carries labels; 163/163 contain human boxes and 141/163 contain a ball",
+  "images": 163,
+  "zero_box_images": 0,
+  "images_without_human_labels": 0,
+  "goalkeeper_class_absent": true
+ },
+ "S4": {
+  "verdict": "FULL_MULTICLASS_LIKELY",
+  "evidence": "every image carries labels; 272/272 contain human boxes and 228/272 contain a ball",
+  "images": 272,
+  "zero_box_images": 0,
+  "images_without_human_labels": 0,
+  "goalkeeper_class_absent": false
+ },
+ "S5": {
+  "verdict": "BALL_ONLY",
+  "evidence": "the export declares a single ball class; every image contains visible players that carry no label at all",
+  "images": 487,
+  "zero_box_images": 63,
+  "images_without_human_labels": 487,
+  "goalkeeper_class_absent": true
+ },
+ "S6": {
+  "verdict": "PARTIAL_ANNOTATION_LIKELY",
+  "evidence": "342/1702 images (20.1%) carry zero boxes while visibly containing players, officials and in places the ball -- see S6_zero_box_images.jpg. Annotation appears to cover the wide tactical camera only.",
+  "images": 1702,
+  "zero_box_images": 342,
+  "images_without_human_labels": 342,
+  "goalkeeper_class_absent": false
+ }
+}

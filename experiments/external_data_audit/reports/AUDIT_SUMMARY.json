@@ -1,0 +1,140 @@
+{
+ "audit": "EyeCU external data audit -- six Roboflow soccer datasets",
+ "date": "2026-08-11",
+ "scope": "AUDIT ONLY. No model trained, no dataset merged, no EyeCU split modified, no detector or tracker changed, no TEST performance accessed.",
+
+ "headline": [
+  "S4 is not new data. All 272 of its images are frames EyeCU already holds in TRAIN (the football-players-detection-3zvbc corpus imported as rfext_*). 204 distinct frames, plus 68 that are those same frames rotated 90 degrees.",
+  "No external image overlaps EyeCU VAL or TEST, under any of the eight dihedral orientations.",
+  "The tiny-ball opportunity is largely an artifact of Roboflow downscaling. As stored, 857 of 2609 ball instances are <=8 px wide. Projected back to the 1920x1080 frames they were cropped from, 4 are.",
+  "S6 is the only source that contributes substantial, well-annotated, broadcast-domain data -- but all 1702 frames are one match, and 342 of them are close-ups with visible players and zero labels."
+ ],
+
+ "source_inventory": {
+  "S1": {"project": "modulov/soccer-3ezqd v1", "license": "CC BY 4.0", "files": 574,
+         "distinct_source_images": 148, "classes": ["Ball", "Player", "Ref"],
+         "boxes": 7748, "preprocessing": "640x640 stretch",
+         "augmentation": "3x: 50% hflip, exposure +/-6%",
+         "footage": "one match -- USA v NED, Qatar 2022"},
+  "S2": {"project": "va-sah7v/football-eitpt v1", "license": "CC BY 4.0", "files": 396,
+         "distinct_source_images": 183, "classes": ["Arbitre", "Ballon", "Gardien", "Joueur"],
+         "boxes": 3132, "preprocessing": "640x640 stretch",
+         "augmentation": "3x: 90-degree rotations, 0-20% crop, Gaussian blur <=2.5px, salt-and-pepper on 5% of pixels",
+         "footage": "one match -- ARG v FRA, 2022 World Cup final, from a YouTube stream"},
+  "S3": {"project": "roboflow-100/soccer-players-5fuqs v1", "license": "CC BY 4.0", "files": 163,
+         "distinct_source_images": 163, "classes": ["football", "player", "referee"],
+         "boxes": 2003, "preprocessing": "640x640 stretch", "augmentation": "none",
+         "footage": "several Premier League matches (Burnley v Arsenal, Liverpool, Tottenham v West Brom)"},
+  "S4": {"project": "simon6048/soccer-xwvv0 v1", "license": "CC BY 4.0", "files": 272,
+         "distinct_source_images": 204, "classes": ["0", "1", "2", "3"],
+         "boxes": 6468, "preprocessing": "640x640 stretch",
+         "augmentation": "declared NONE; 68 rotated copies found",
+         "footage": "DFL Bundesliga clips -- the same corpus EyeCU already holds"},
+  "S5": {"project": "mishahal-salim-nuz8t/soccer-xvqxc v1", "license": "Public Domain", "files": 487,
+         "distinct_source_images": 487, "classes": ["ball"],
+         "boxes": 438, "preprocessing": "none (2560x1440 as-is)", "augmentation": "none",
+         "footage": "a YouTube highlights compilation, many matches and eras"},
+  "S6": {"project": "old-storm-hhcgf/soccer-f6mhl v1", "license": "CC BY 4.0", "files": 1702,
+         "distinct_source_images": 1702, "classes": ["0", "1", "2", "3"],
+         "boxes": 27778, "preprocessing": "1280x1280 fill -- 16:9 letterboxed into a square",
+         "augmentation": "none",
+         "footage": "one match -- FC Barcelona v RCD Mallorca, La Liga"}
+ },
+
+ "declared_vs_actual": {
+  "S2": "README declares 439 images, archive contains 396",
+  "S5": "README declares 511 images, archive contains 487",
+  "S4": "README declares no augmentation; 68 of 272 images are 90-degree rotations of others",
+  "all_others": "match"
+ },
+
+ "ball_size": {
+  "measurement_note": "Roboflow resized five of six exports BEFORE writing them, so the true original frames are NOT in any archive and cannot be measured. 'stored' is the ball in the image as delivered -- what a model would actually see. 'native_equivalent' back-projects to 1920x1080 using the declared preprocessing; it is an inference from metadata, not a measurement.",
+  "combined_stored": {"instances": 2609, "unique_images": 2526, "median_px": 10.0,
+                      "p10": 6.0, "p25": 8.0, "p75": 19.75, "p90": 53.1,
+                      "le5": 242, "le8": 857, "le12": 1629,
+                      "bins": {"<3": 70, "3-5": 172, ">5-8": 615, ">8-12": 772,
+                               ">12-20": 334, ">20-40": 281, ">40": 365}},
+  "combined_native_equivalent": {"median_px": 21.0, "le5": 1, "le8": 4, "le12": 308,
+                                 "bins": {"<3": 1, "3-5": 0, ">5-8": 3, ">8-12": 304,
+                                          ">12-20": 932, ">20-40": 825, ">40": 544}},
+  "eyecu_own_reference": {"instances": 784, "median_px": 6.0, "le5": 217, "le8": 670,
+                          "le12": 729,
+                          "note": "EyeCU's own stored frames are 640x360 / 1024x576, so its median ball is 6 px as stored -- about 18 px in native 1920x1080 terms. The external sources are NOT smaller-ball data than EyeCU already has."}
+ },
+
+ "duplicates": {
+  "exact_pixel_identical_groups": 12,
+  "exact_within_source": {"S1": 12},
+  "exact_cross_source": 0,
+  "augmentation_inflation": {"S1": "574 files / 148 source images = 3.88x",
+                             "S2": "396 / 183 = 2.16x", "S3": "163 / 163 = 1.00x",
+                             "S4": "272 / 204 = 1.33x", "S5": "487 / 487 = 1.00x",
+                             "S6": "1702 / 1702 = 1.00x"},
+  "near_duplicate_within_source": {"HIGH_CONFIDENCE": {"S1": 286, "S6": 52, "S2": 2, "S5": 1},
+                                   "POSSIBLE_REVIEW": {"S6": 176, "S1": 64, "S2": 7,
+                                                       "S4": 6, "S5": 3, "S3": 1}},
+  "effective_unique_after_exact_and_augmentation": 2887,
+  "not_already_held_by_eyecu": 2683
+ },
+
+ "leakage": {
+  "method": "8 dihedral orientations of every external image against every EyeCU image; dhash candidate stage, NCC verification",
+  "EXTERNAL_vs_TRAIN": {"pairs": 295, "external_images": 272, "eyecu_images": 207,
+                        "sources": ["S4"],
+                        "orientations": {"rot0": 223, "rot270": 72}},
+  "EXTERNAL_vs_VAL": {"pairs": 0},
+  "EXTERNAL_vs_TEST": {"pairs": 0},
+  "action": "No image is deleted. S4 is recorded as EXCLUDE_NEAR_DUPLICATE in the candidate index with the reason stored per image.",
+  "test_handling": "TEST images were hashed. No TEST label was opened and nothing was evaluated."
+ },
+
+ "candidate_index": {
+  "KEEP_CANDIDATE": 1251,
+  "HUMAN_REVIEW": 569,
+  "EXCLUDE_PARTIAL_ANNOTATION_RISK": 807,
+  "EXCLUDE_AUGMENTATION_COPY": 627,
+  "EXCLUDE_NEAR_DUPLICATE": 310,
+  "EXCLUDE_IRRELEVANT": 18,
+  "EXCLUDE_EXACT_DUPLICATE": 12,
+  "keep_by_source": {"S6": 1251},
+  "review_by_source": {"S2": 174, "S3": 160, "S1": 142, "S6": 93},
+  "ball_instances_on_KEEP_CANDIDATE": {"instances": 988, "unique_images": 959,
+                                       "stored_le8": 152, "stored_le12": 752,
+                                       "native_le8": 2, "native_le12": 152}
+ },
+
+ "verdicts": {
+  "S1": {"decision": "PARTIAL USE", "why": "148 genuinely distinct frames, good boxes -- but one match, no goalkeeper class, and 84 segmentation polygons hidden in a detection export."},
+  "S2": {"decision": "REJECT", "why": "The only source with all four EyeCU classes, and the only one whose pixels were deliberately destroyed at export: 90-degree rotations, crops, blur and salt-and-pepper noise on every generated version, with no recoverable original."},
+  "S3": {"decision": "PARTIAL USE", "why": "163 clean frames across several Premier League matches -- the best domain diversity per image here. Loose ball boxes and no goalkeeper class."},
+  "S4": {"decision": "REJECT", "why": "Contributes nothing. Every image is already in EyeCU TRAIN."},
+  "S5": {"decision": "PARTIAL USE -- ball reference only", "why": "487 native-resolution frames with clean large-ball boxes and zero human labels. Cannot enter four-class training; usable only as ball reference or for a ball-specific study."},
+  "S6": {"decision": "KEEP", "why": "1360 well-annotated broadcast frames with all four classes and the best ball boxes in the audit. Costs: one match only, and 342 close-ups that must be dropped, not imported."}
+ },
+
+ "source_ranking": ["S6", "S3", "S1", "S5", "S4", "S2"],
+
+ "experiment_d_feasibility": {
+  "rating": "WEAK",
+  "for": "Experiment D -- Current A@960 training + audited clean external real data",
+  "rationale": [
+   "The usable yield is 1251 KEEP_CANDIDATE images from a SINGLE match, plus at most ~470 more behind human review from three further matches. Against EyeCU's existing 823 training images from 29 matches, that is a large block of highly correlated data, not new diversity.",
+   "It does not address the stated goal. The audit was run for BALL detection, and none of these sources contains balls smaller than EyeCU's own: EyeCU's median ball is ~18 px in native terms, the external median is 21 px, and only 4 of 2609 external balls are <=8 px natively.",
+   "It does not address EyeCU's documented close-up blindness either. The one source with many close-ups, S6, leaves exactly those frames unlabelled.",
+   "Two of six sources are unusable outright and a third is already in the training set.",
+   "The clean part is genuinely clean, so this is WEAK rather than NO: adding S6's 1251 frames as a single controlled variable is a runnable experiment. It is just unlikely to move ball recall, and it risks tilting the training distribution toward one La Liga match."
+  ],
+  "what_would_make_it_STRONG": [
+   "External frames at native broadcast resolution, not pre-downscaled by an export pipeline.",
+   "Ball annotation on genuinely small balls -- <=8 px in the original frame.",
+   "More than one match per source.",
+   "Annotated close-ups, which is where EyeCU actually fails."
+  ]
+ },
+
+ "recommended_next_step": "Do not run Experiment D on this data as the primary ball intervention. If external data is used at all, use S6's 1251 KEEP_CANDIDATE images alone, with the 342 unlabelled close-ups excluded, aspect restored to 16:9 (the existing importer already does this for rfext_*), pinned to TRAIN only, and treated as a diversity experiment rather than a ball experiment. The higher-value ball work remains EyeCU's own footage at higher resolution -- which is what the earlier paper study concluded, and this audit does not overturn it.",
+
+ "audit_integrity": "PASS",
+ "test_accessed_for_performance": "NO"
+}
