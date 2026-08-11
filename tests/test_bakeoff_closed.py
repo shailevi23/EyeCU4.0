@@ -117,10 +117,16 @@ class TestPostHocFindingAndT2Spec:
         assert obs['hypothesis']['status'].startswith('HYPOTHESIS ONLY')
 
     def test_t2_is_specification_only_and_post_hoc(self, t2):
-        assert t2['status'] == 'SPECIFICATION ONLY -- NOT EXECUTED'
-        assert t2['evidence_class'] == 'POST-HOC / DEVELOPMENT'
-        assert 'never be described as a confirmatory replication' in \
-            t2['honesty_statement']
+        """
+        Structural detail of the frozen gate lives in test_t2_spec_frozen.py.
+        What matters here is only that the closed experiment's follow-up is
+        still unexecuted and still labelled development evidence.
+        """
+        assert t2['status'] == 'SPECIFICATION FROZEN -- NOT EXECUTED'
+        assert t2['execution_state'] == 'NOT_STARTED'
+        assert t2['evidence_classification'] == 'POST-HOC / DEVELOPMENT'
+        assert 'must NOT be described as a new independent confirmation' in \
+            t2['methodological_correction']['correction']
 
     def test_t2_candidates_are_the_two_plus_baseline(self, t2):
         assert set(t2['candidates']) == {'LEGACY_SUPERVISION_BYTETRACK',
@@ -129,18 +135,23 @@ class TestPostHocFindingAndT2Spec:
                                                   'OCSORTTracker'}
 
     def test_t2_forbids_tuning_and_cmc_ablation(self, t2):
-        assert 'changes no parameter' in t2['no_tuning_statement']
+        assert 'EXACT recorded 2.6.0 defaults' in             t2['adoption_gate']['criteria']['9_no_tuning']['requirement']
         assert 'Do NOT ablate CMC' in t2['predeclared_questions']['F_cmc_contribution']
         assert 'ablate BoTSORT CMC' in t2['not_to_be_done_in_T2']
         assert 'access TEST' in t2['not_to_be_done_in_T2']
 
     def test_t2_requires_end_to_end_runtime(self, t2):
-        r = t2['runtime_requirements']
-        assert 'END-TO-END' in r['scope']
-        assert 'substituting a tracker-side figure' in r['forbidden']
+        c = t2['adoption_gate']['criteria']['8_controlled_end_to_end_runtime']
+        assert 'TOTAL pipeline' in c['requirement']
+        assert any('tracker-side runtime alone' in f for f in c['forbidden'])
 
-    def test_t2_does_not_inherit_spec_1_1_silently(self, t2):
-        assert 'TO BE PREDECLARED AND FROZEN BEFORE T2 RUNS' in t2['adoption_criteria']
+    def test_t2_has_its_own_gate_not_spec_1_1(self, t2):
+        """spec 1.1 belonged to the closed experiment and is not inherited."""
+        g = t2['adoption_gate']
+        assert g['version'] == 'T2 ADOPTION GATE v1.0'
+        assert g['frozen_before_execution'] is True
+        assert 'improvement >= +3.0' in g['criteria']['4_combined_IDF1']['requirement'], (
+            'T2 demands an IDF1 gain where spec 1.1 only forbade regression')
 
 
 class TestValidationSetStatus:
