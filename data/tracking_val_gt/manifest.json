@@ -336,5 +336,29 @@
     "source": "project git identity (user.name)",
     "corroborated_by": "CVAT task owner shai6 <shailevi23@gmail.com> on all three raw exports",
     "note": "No name was invented; this is the identifier the project records."
+  },
+  "benchmark_usage_status": {
+    "status": "DEVELOPMENT / MODEL-SELECTION BENCHMARK",
+    "as_of": "2026-08-11",
+    "why": "Results from EyeCU-Tracking-Val-v1.1 have already been seen and have influenced hypotheses -- specifically the post-hoc hypothesis behind Tracking Experiment T2. A set that has shaped the questions asked of it can no longer answer them independently.",
+    "therefore": "It must NOT later be represented as an untouched final confirmation set, and no result measured on it may be reported as final system confirmation.",
+    "used_by": [
+      "confirmatory tracker bake-off (CLOSED)",
+      "Tracking Experiment T2 (specified, not executed)"
+    ],
+    "test_split": {
+      "status": "UNTOUCHED",
+      "accessed": false,
+      "reserved_for": "the final frozen-system evaluation, evaluated ONCE",
+      "preconditions": [
+        "detector frozen",
+        "tracker frozen",
+        "confidence policy frozen",
+        "role smoothing decision frozen",
+        "ball pipeline frozen",
+        "all system-level choices frozen"
+      ],
+      "forbidden": "TEST must not be used to choose between CBIoU and BoTSORT, or between any candidates. Choosing on TEST turns the final confirmation into another selection step."
+    }
   }
 }

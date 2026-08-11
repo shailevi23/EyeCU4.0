@@ -1,0 +1,99 @@
+{
+ "experiment": "Tracking Experiment T2 -- Modern Default Policy Follow-up",
+ "status": "SPECIFICATION ONLY -- NOT EXECUTED",
+ "written": "2026-08-11",
+ "evidence_class": "POST-HOC / DEVELOPMENT",
+
+ "honesty_statement": "The hypothesis behind T2 was formed AFTER seeing EyeCU-Tracking-Val-v1.1 results. T2 must never be described as a confirmatory replication, and its outcome cannot be reported as independent validation of a hypothesis the same data suggested. It is a development experiment that narrows what is worth testing on genuinely held-out data later.",
+
+ "purpose": "Determine whether the exact modern library-default configurations that showed strong exploratory results are legitimate production candidates.",
+
+ "motivating_observation": "experiments/tracking_v2/post_hoc_observation.json",
+ "closed_experiment_unchanged": "experiments/tracking_v2/bakeoff/EXPERIMENT_RECORD.json -- production decision KEEP_LEGACY_SUPERVISION_BYTETRACK stands regardless of T2's outcome until T2 itself concludes.",
+
+ "candidates": {
+  "LEGACY_SUPERVISION_BYTETRACK": {
+   "role": "baseline",
+   "config": "supervision==0.26.1 sv.ByteTrack() with NO arguments, driven via update_with_detections, fed the accepted store (>= 0.25), production output filter applied",
+   "not_normalised": "its effective ~0.35 new-track gate stays as production has it"
+  },
+  "CBIoUTracker": {
+   "role": "candidate",
+   "config": "trackers==2.6.0 exact library defaults",
+   "frozen_parameters": {
+    "lost_track_buffer": 30, "frame_rate": "native sequence FPS",
+    "track_activation_threshold": 0.7, "minimum_consecutive_frames": 2,
+    "minimum_iou_threshold_first_assoc": 0.2,
+    "minimum_iou_threshold_second_assoc": 0.5,
+    "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+    "high_conf_det_threshold": 0.6, "instant_first_frame_activation": true,
+    "buffer_ratio_first": 0.3, "buffer_ratio_second": 0.5,
+    "state_estimator_class": "XCYCWHStateEstimator"
+   }
+  },
+  "BoTSORTTracker": {
+   "role": "candidate",
+   "config": "trackers==2.6.0 exact library defaults",
+   "frozen_parameters": {
+    "lost_track_buffer": 30, "frame_rate": "native sequence FPS",
+    "track_activation_threshold": 0.7, "minimum_consecutive_frames": 2,
+    "minimum_iou_threshold_first_assoc": 0.2,
+    "minimum_iou_threshold_second_assoc": 0.5,
+    "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+    "high_conf_det_threshold": 0.6, "enable_cmc": true,
+    "cmc_method": "sparseOptFlow", "cmc_downscale": 2,
+    "instant_first_frame_activation": true,
+    "state_estimator_class": "XCYCWHStateEstimator"
+   }
+  }
+ },
+ "excluded_candidates": {
+  "ByteTrackTracker": "exploratory HOTA 55.78, within noise of the legacy 55.70 and far below the other two; not worth an experiment",
+  "OCSORTTracker": "exploratory HOTA 47.27, clearly worse than legacy under both profiles"
+ },
+
+ "configuration_equivalence_requirement": "The candidate configurations must be config-for-config identical to the LIBRARY_DEFAULTS runs already observed. Equivalence is checked mechanically against the recorded effective configs in experiments/tracking_v2/bakeoff/meta/LIBRARY_DEFAULTS/<tracker>/<sequence>.json, not by reading documentation. Any difference invalidates the run.",
+
+ "detections_supplied": "the frozen candidate evidence store, confidence >= 0.01, exactly as in the LIBRARY_DEFAULTS runs. The detector is not re-run.",
+
+ "predeclared_questions": {
+  "A_reproducibility": "Are the default CBIoU / BoTSORT HOTA gains reproducible from a clean rerun, from the same frozen detections, in a freshly created isolated environment?",
+  "B_source_of_gain": "Where does the gain come from -- DetA, AssA, or both? Report the decomposition per tracker and per sequence.",
+  "C_per_match_consistency": "Do they improve at least 2 of the 3 individual matches, or only the pooled COMBINED_SEQ? A pooled gain carried by one sequence is not a robust gain.",
+  "D_runtime": "Do the identity gains survive a controlled END-TO-END runtime measurement -- detector plus tracker, same machine, same decoded frames, warmup declared, repeated runs, order rotated? BoTSORT measured +110.6% tracker-side in the closed experiment, so this is a real risk for it specifically.",
+  "E_invariants": "Are EyeCU semantic, output and ball invariants preserved -- class 1 for every target human, role never used as the TrackEval class, no ball in human association, no duplicate id within a frame, no invalid rows?",
+  "F_cmc_contribution": "Does BoTSORT's CMC materially contribute to its result? RECORDED AS A FUTURE MECHANISTIC QUESTION ONLY. Do NOT ablate CMC in T2. The production-candidate experiment must use exact defaults, and an ablation would make the candidate something other than the configuration being judged."
+ },
+
+ "metrics": {
+  "primary": ["HOTA", "DetA", "AssA", "MOTA", "IDF1"],
+  "official_aggregate": "TrackEval COMBINED_SEQ",
+  "also_reported": ["per-sequence values for all three matches",
+                    "unweighted macro mean as a descriptive robustness check"],
+  "evaluation": "pinned TrackEval 1.3.0 vendored copy, MotChallenge2DBox, DO_PREPROC False, alpha thresholds unchanged",
+  "diagnostics": ["distinct track ids", "ids per mean visible GT human",
+                  "median and distribution of track length", "IDSW", "Frag"]
+ },
+
+ "runtime_requirements": {
+  "scope": "END-TO-END, detector plus tracker -- the closed experiment measured tracker-side only, which is not what criterion 8 asks about",
+  "detector": "A@960, identical for every arm",
+  "controls": ["same machine and environment", "same decoded frames",
+               "warmup declared and discarded", "at least 3 repeated runs",
+               "arm order rotated between repeats"],
+  "report": ["detector ms/frame", "tracker ms/frame", "total ms/frame",
+             "effective FPS", "percentage against the legacy baseline"],
+  "forbidden": "reusing the earlier contaminated +37% measurement, or substituting a tracker-side figure for an end-to-end one"
+ },
+
+ "no_tuning_statement": "T2 changes no parameter. Both candidates run at exact trackers==2.6.0 library defaults and the baseline runs at exact production semantics. No threshold sweep, no Optuna, no grid search, no per-match configuration, no intermediate profile between LIBRARY_DEFAULTS and EYECU_SCORE_POLICY_V1, and no new score policy. If both candidates fail, the result is that both candidates fail.",
+
+ "adoption_criteria": "TO BE PREDECLARED AND FROZEN BEFORE T2 RUNS. Spec 1.1 was written for the primary profile of the closed experiment and is not automatically inherited. Because T2 is post-hoc, its bar should be at least as strict, and the reason for any number chosen must be recorded before results exist.",
+
+ "validation_set_status_warning": "T2 runs on EyeCU-Tracking-Val-v1.1, which is now a development / model-selection benchmark. A T2 pass is therefore not a final confirmation and must not be reported as one.",
+
+ "not_to_be_done_in_T2": ["access TEST", "tune any parameter",
+                          "ablate BoTSORT CMC", "add other trackers",
+                          "modify production code",
+                          "modify the closed experiment's results"]
+}
