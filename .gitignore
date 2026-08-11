@@ -3,9 +3,9 @@ __pycache__/
 *.pt
 input-videos/
 roboflow_api_key.env
-YouTubeVideoSegmentDownloader/
 .pytest_cache/
 .env
+check_datasets/
 
 # One-off diagnostic renders land in the repo root and pile up fast. Keepers
 # belong in experiments/records/evidence/, which is tracked normally; this rule
