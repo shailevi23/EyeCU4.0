@@ -1,0 +1,1321 @@
+{
+ "sequence": "women_1_239",
+ "purpose": "reference geometry for frames already labelled during detector annotation",
+ "provenance_status": "UNCONFIRMED",
+ "authoritative": false,
+ "usage": "Consult during annotation and cross-check afterwards. Do NOT adopt as tracking GT.",
+ "contains_identity": false,
+ "identity_note": "Identity is NOT present and cannot be derived from this file. It remains manual work.",
+ "geometry": "absolute pixels [x1,y1,x2,y2] on 640x360 package frames",
+ "class_mapping": {
+  "reused": [
+   "goalkeeper",
+   "player",
+   "referee"
+  ],
+  "dropped": [
+   "ball"
+  ]
+ },
+ "provenance": {
+  "source": "data/labels",
+  "known": "drafted by the Roboflow model recorded in model_draft_record, then modified by an unrecorded process (boxes added, classes changed)",
+  "unknown": "whether, by whom, and to what standard those modifications were reviewed; the label pipeline carries no reviewed flag, only status=draft",
+  "overlap_established_by": "source frame provenance (data/manifest.json frame_index)",
+  "overlap_confirmed_by": "pixel comparison against the packaged frame and its neighbours",
+  "alignment_margin_required": 2.0,
+  "is_not": "the frozen detector preannotation, which is model output and is left untouched"
+ },
+ "frames": [
+  {
+   "package_frame": 12,
+   "source_frame": 250,
+   "detector_label_file": "data/labels/women_1/women_1_000250.txt",
+   "detector_label_sha256": "0c1c2d463d85bab98c77dd7cf046e86b8430132f3d3e9dcb62a791f016a64433",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000250.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.429,
+    "nearest_neighbour_ratio": 3.86
+   },
+   "boxes": [
+    {
+     "bbox": [
+      352.0,
+      125.0,
+      366.0,
+      161.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      231.0,
+      128.0,
+      248.0,
+      165.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      566.0,
+      147.0,
+      588.0,
+      202.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      208.0,
+      152.0,
+      227.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      292.99,
+      123.8,
+      305.86,
+      156.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      445.7,
+      155.57,
+      460.57,
+      197.9
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      101.56,
+      121.56,
+      116.0,
+      153.56
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      219.48,
+      135.96,
+      235.91,
+      177.26
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 47,
+   "source_frame": 285,
+   "detector_label_file": "data/labels/women_1/women_1_000285.txt",
+   "detector_label_sha256": "90488f9a0dc1b79d61c89b3ea7f32727626ce6b2408f8a1e6bce88a9b6709306",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000285.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.403,
+    "nearest_neighbour_ratio": 8.95
+   },
+   "boxes": [
+    {
+     "bbox": [
+      491.0,
+      155.0,
+      516.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      345.0,
+      157.0,
+      367.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      294.0,
+      136.0,
+      313.0,
+      181.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      47.0,
+      179.4,
+      87.0,
+      243.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      288.99,
+      127.78,
+      304.79,
+      161.38
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      230.17,
+      121.16,
+      245.97,
+      154.75
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      81.32,
+      108.34,
+      92.92,
+      141.94
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      485.39,
+      126.18,
+      503.99,
+      158.17
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      471.31,
+      124.86,
+      485.65,
+      154.19
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 52,
+   "source_frame": 290,
+   "detector_label_file": "data/labels/women_1/women_1_000290.txt",
+   "detector_label_sha256": "f2d6d92b769fb58921641296807eb680b498e4449b6cf3eb26c327d9acd4e1b4",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000290.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.237,
+    "nearest_neighbour_ratio": 9.36
+   },
+   "boxes": [
+    {
+     "bbox": [
+      533.0,
+      153.0,
+      547.0,
+      199.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      398.0,
+      156.0,
+      415.0,
+      210.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      334.63,
+      138.79,
+      349.63,
+      181.79
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      126.88,
+      108.83,
+      137.09,
+      141.41
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      114.01,
+      174.94,
+      134.22,
+      239.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      -0.0,
+      157.0,
+      10.0,
+      209.12
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      536.32,
+      125.85,
+      551.01,
+      155.03
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      330.67,
+      126.14,
+      345.14,
+      161.5
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      276.95,
+      124.28,
+      289.58,
+      148.84
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      526.03,
+      121.37,
+      540.72,
+      150.54
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 57,
+   "source_frame": 295,
+   "detector_label_file": "data/labels/women_1/women_1_000295.txt",
+   "detector_label_sha256": "20efaaabf29e51a9b604e4315286e996f616f29965bc4f2fa4b05f7590c56d3d",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000295.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.212,
+    "nearest_neighbour_ratio": 8.9
+   },
+   "boxes": [
+    {
+     "bbox": [
+      558.0,
+      155.0,
+      582.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      19.0,
+      126.0,
+      38.0,
+      161.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      367.0,
+      137.0,
+      383.0,
+      181.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      442.0,
+      156.0,
+      461.0,
+      209.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      35.0,
+      149.0,
+      57.0,
+      204.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      162.0,
+      182.0,
+      192.0,
+      238.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      578.79,
+      126.82,
+      593.85,
+      163.01
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      372.91,
+      126.24,
+      386.03,
+      160.32
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      319.24,
+      119.34,
+      332.36,
+      153.41
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      165.53,
+      110.44,
+      178.76,
+      138.71
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 62,
+   "source_frame": 300,
+   "detector_label_file": "data/labels/women_1/women_1_000300.txt",
+   "detector_label_sha256": "e78419df698bc09a506bd342cd033c849467517447c92e1f3f957ee2049afbc2",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000300.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.212,
+    "nearest_neighbour_ratio": 7.71
+   },
+   "boxes": [
+    {
+     "bbox": [
+      70.0,
+      128.0,
+      87.0,
+      163.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      573.0,
+      156.0,
+      592.0,
+      197.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      389.0,
+      140.0,
+      407.0,
+      180.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      89.0,
+      148.0,
+      107.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      599.0,
+      127.0,
+      616.0,
+      163.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      476.0,
+      154.0,
+      491.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      214.18,
+      179.0,
+      235.0,
+      233.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      352.74,
+      121.04,
+      369.44,
+      152.38
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      404.54,
+      126.97,
+      414.75,
+      158.09
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      207.24,
+      112.16,
+      218.32,
+      141.0
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 67,
+   "source_frame": 305,
+   "detector_label_file": "data/labels/women_1/women_1_000305.txt",
+   "detector_label_sha256": "c8db62bff481f098f057ab93a96537ad8a47ad7075413ef5ed774b78c5ff0ca4",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000305.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.198,
+    "nearest_neighbour_ratio": 6.17
+   },
+   "boxes": [
+    {
+     "bbox": [
+      106.0,
+      128.0,
+      121.0,
+      162.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      576.0,
+      154.0,
+      593.0,
+      197.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      609.0,
+      129.0,
+      624.0,
+      163.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      123.0,
+      148.0,
+      140.0,
+      196.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      405.0,
+      140.0,
+      418.0,
+      179.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      250.0,
+      171.0,
+      269.0,
+      227.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      415.0,
+      128.0,
+      432.0,
+      161.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      491.0,
+      154.0,
+      513.0,
+      206.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      623.58,
+      122.8,
+      638.58,
+      156.8
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      381.43,
+      123.25,
+      390.73,
+      151.43
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      232.86,
+      113.62,
+      242.16,
+      140.38
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 77,
+   "source_frame": 315,
+   "detector_label_file": "data/labels/women_1/women_1_000315.txt",
+   "detector_label_sha256": "e0301711a0d12e12211a8e797fd0ca4f06ce919d841a4a645afd458029da875c",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000315.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.233,
+    "nearest_neighbour_ratio": 7.35
+   },
+   "boxes": [
+    {
+     "bbox": [
+      571.0,
+      150.0,
+      586.0,
+      188.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      135.0,
+      124.0,
+      151.0,
+      159.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      437.0,
+      124.0,
+      449.0,
+      155.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      154.0,
+      141.0,
+      169.0,
+      187.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      415.0,
+      136.0,
+      426.0,
+      171.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      614.0,
+      124.0,
+      627.0,
+      157.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      517.0,
+      150.0,
+      532.0,
+      197.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      280.0,
+      165.0,
+      303.0,
+      217.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      403.0,
+      125.0,
+      418.0,
+      146.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      259.53,
+      108.79,
+      269.53,
+      136.29
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 82,
+   "source_frame": 320,
+   "detector_label_file": "data/labels/women_1/women_1_000320.txt",
+   "detector_label_sha256": "0d9a75446c669d254153a5b6a50aaa60b62b00b79b62a7348aaf2e5881af0742",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000320.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.239,
+    "nearest_neighbour_ratio": 8.01
+   },
+   "boxes": [
+    {
+     "bbox": [
+      581.0,
+      144.0,
+      599.0,
+      184.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      425.0,
+      131.0,
+      438.0,
+      166.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      171.0,
+      136.0,
+      184.0,
+      181.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      535.0,
+      149.0,
+      556.0,
+      192.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      453.0,
+      119.0,
+      468.0,
+      150.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      300.0,
+      159.0,
+      318.0,
+      210.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      0.0,
+      199.32,
+      28.0,
+      281.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      153.0,
+      117.0,
+      166.0,
+      149.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      629.0,
+      119.0,
+      640.0,
+      153.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      274.66,
+      105.0,
+      283.39,
+      131.31
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      425.69,
+      113.45,
+      432.99,
+      135.93
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 112,
+   "source_frame": 350,
+   "detector_label_file": "data/labels/women_1/women_1_000350.txt",
+   "detector_label_sha256": "915f5717adefe196fc00496f86774d5c2e5b462aff2df43fb8c4791c563bc473",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000350.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.311,
+    "nearest_neighbour_ratio": 5.15
+   },
+   "boxes": [
+    {
+     "bbox": [
+      225.0,
+      111.0,
+      242.0,
+      151.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      456.0,
+      111.0,
+      467.0,
+      145.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      239.0,
+      96.0,
+      250.0,
+      125.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      620.0,
+      127.0,
+      636.0,
+      162.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      349.0,
+      135.0,
+      368.0,
+      183.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      518.0,
+      99.0,
+      531.0,
+      127.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      252.0,
+      155.01,
+      275.0,
+      216.18
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      500.0,
+      97.0,
+      510.0,
+      115.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      337.99,
+      83.37,
+      345.39,
+      107.64
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 162,
+   "source_frame": 400,
+   "detector_label_file": "data/labels/women_1/women_1_000400.txt",
+   "detector_label_sha256": "7ac5fccf9a6137f11fe56fc7b4d06a408fba5a8265e8ede1dbbd67a6e835c666",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000400.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.518,
+    "nearest_neighbour_ratio": 3.99
+   },
+   "boxes": [
+    {
+     "bbox": [
+      388.0,
+      108.0,
+      399.0,
+      141.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      600.0,
+      119.0,
+      616.0,
+      154.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      248.0,
+      90.0,
+      257.0,
+      117.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      475.0,
+      95.0,
+      485.0,
+      120.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      595.0,
+      96.0,
+      607.0,
+      122.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      5.0,
+      105.0,
+      20.0,
+      142.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      208.0,
+      106.0,
+      227.0,
+      141.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      339.0,
+      134.0,
+      355.0,
+      185.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      352.0,
+      122.0,
+      366.0,
+      163.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      318.0,
+      72.0,
+      326.0,
+      99.0
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 212,
+   "source_frame": 450,
+   "detector_label_file": "data/labels/women_1/women_1_000450.txt",
+   "detector_label_sha256": "ecda40d627efac06cef675c7fe10bdd52a3fb87d04a4a8dd81e5658e40e9a71d",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000450.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.268,
+    "nearest_neighbour_ratio": 4.29
+   },
+   "boxes": [
+    {
+     "bbox": [
+      289.0,
+      83.0,
+      302.0,
+      108.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      133.0,
+      87.0,
+      143.0,
+      113.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      623.0,
+      96.0,
+      633.0,
+      126.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      407.0,
+      121.0,
+      427.0,
+      165.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      601.2,
+      104.6,
+      613.2,
+      131.6
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      305.0,
+      70.0,
+      312.0,
+      90.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      403.0,
+      97.0,
+      414.0,
+      125.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      473.0,
+      77.0,
+      481.0,
+      96.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      579.0,
+      81.0,
+      588.0,
+      101.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      401.0,
+      90.0,
+      413.0,
+      114.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      11.0,
+      128.0,
+      30.0,
+      145.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      40.0,
+      73.0,
+      50.0,
+      96.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      41.27,
+      220.73,
+      67.07,
+      308.07
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      361.0,
+      61.0,
+      369.0,
+      76.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      609.0,
+      91.18,
+      618.2,
+      113.78
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 262,
+   "source_frame": 500,
+   "detector_label_file": "data/labels/women_1/women_1_000500.txt",
+   "detector_label_sha256": "f2efd12ecc7474540c4acc8ddb32650eac1cc379a4514a085c56ce13880e775f",
+   "model_draft_record": "data/pseudo_meta/women_1/women_1_000500.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.649,
+    "nearest_neighbour_ratio": 3.63
+   },
+   "boxes": [
+    {
+     "bbox": [
+      328.0,
+      59.0,
+      339.0,
+      85.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      441.0,
+      79.0,
+      453.0,
+      111.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      503.0,
+      57.0,
+      512.0,
+      78.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      459.0,
+      77.0,
+      470.0,
+      109.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      131.0,
+      68.0,
+      142.0,
+      103.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      631.0,
+      64.0,
+      640.0,
+      84.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      316.0,
+      46.0,
+      326.0,
+      70.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      598.0,
+      71.0,
+      608.18,
+      96.36
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      15.0,
+      95.0,
+      38.0,
+      120.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      387.0,
+      37.0,
+      393.0,
+      51.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      551.28,
+      145.72,
+      584.0,
+      221.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      103.49,
+      222.28,
+      137.24,
+      329.44
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      42.38,
+      49.52,
+      50.56,
+      70.67
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  }
+ ]
+}

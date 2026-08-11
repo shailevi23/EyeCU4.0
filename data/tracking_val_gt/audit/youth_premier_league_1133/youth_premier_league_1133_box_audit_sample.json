@@ -1,0 +1,1134 @@
+{
+ "sequence": "youth_premier_league_1133",
+ "purpose": "visual audit of GT box tightness",
+ "authoritative": false,
+ "alters_annotations": false,
+ "sampling": {
+  "seed": 20260810,
+  "n": 40,
+  "strata": [
+   "time",
+   "size",
+   "role",
+   "occlusion"
+  ],
+  "height_terciles_px": [
+   62.59,
+   80.44
+  ],
+  "occlusion_source": "annotator occluded=\"1\" in the CVAT export, not inferred"
+ },
+ "detector_box_status": "comparison context only; the frozen detector is not the authority on box convention",
+ "observations": [
+  {
+   "frame": 9,
+   "id": 1,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    170.8,
+    102.28,
+    209.91,
+    199.8
+   ],
+   "gt_w": 39.11,
+   "gt_h": 97.52,
+   "gt_aspect_h_over_w": 2.493,
+   "detector_bbox": [
+    171.07,
+    98.69,
+    233.92,
+    200.34
+   ],
+   "iou_with_detector": 0.59,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 14,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    227.17,
+    123.01,
+    310.6,
+    185.2
+   ],
+   "gt_w": 83.43,
+   "gt_h": 62.19,
+   "gt_aspect_h_over_w": 0.745,
+   "detector_bbox": [
+    205.65,
+    112.69,
+    299.94,
+    202.64
+   ],
+   "iou_with_detector": 0.495,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 17,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    227.93,
+    124.4,
+    282.47,
+    185.52
+   ],
+   "gt_w": 54.54,
+   "gt_h": 61.12,
+   "gt_aspect_h_over_w": 1.121,
+   "detector_bbox": [
+    244.98,
+    111.27,
+    306.59,
+    208.16
+   ],
+   "iou_with_detector": 0.327,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 37,
+   "id": 14,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    518.3,
+    263.23,
+    568.7,
+    360.0
+   ],
+   "gt_w": 50.4,
+   "gt_h": 96.77,
+   "gt_aspect_h_over_w": 1.92,
+   "detector_bbox": [
+    522.8,
+    263.63,
+    566.76,
+    360.0
+   ],
+   "iou_with_detector": 0.869,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 45,
+   "id": 13,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    42.43,
+    297.41,
+    83.7,
+    360.0
+   ],
+   "gt_w": 41.27,
+   "gt_h": 62.59,
+   "gt_aspect_h_over_w": 1.517,
+   "detector_bbox": [
+    37.03,
+    302.3,
+    111.46,
+    360.0
+   ],
+   "iou_with_detector": 0.53,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 53,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    371.75,
+    74.13,
+    400.46,
+    181.03
+   ],
+   "gt_w": 28.71,
+   "gt_h": 106.9,
+   "gt_aspect_h_over_w": 3.723,
+   "detector_bbox": [
+    359.04,
+    70.75,
+    411.16,
+    190.02
+   ],
+   "iou_with_detector": 0.494,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 55,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    381.81,
+    73.56,
+    410.51,
+    180.46
+   ],
+   "gt_w": 28.7,
+   "gt_h": 106.9,
+   "gt_aspect_h_over_w": 3.725,
+   "detector_bbox": [
+    367.72,
+    67.11,
+    420.0,
+    190.55
+   ],
+   "iou_with_detector": 0.475,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 59,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    401.92,
+    72.42,
+    430.62,
+    179.32
+   ],
+   "gt_w": 28.7,
+   "gt_h": 106.9,
+   "gt_aspect_h_over_w": 3.725,
+   "detector_bbox": [
+    409.77,
+    71.89,
+    448.59,
+    188.2
+   ],
+   "iou_with_detector": 0.416,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 88,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    438.62,
+    93.45,
+    465.02,
+    173.06
+   ],
+   "gt_w": 26.4,
+   "gt_h": 79.61,
+   "gt_aspect_h_over_w": 3.016,
+   "detector_bbox": [
+    437.86,
+    89.76,
+    466.13,
+    181.11
+   ],
+   "iou_with_detector": 0.814,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 95,
+   "id": 3,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    454.87,
+    110.31,
+    488.97,
+    188.7
+   ],
+   "gt_w": 34.1,
+   "gt_h": 78.39,
+   "gt_aspect_h_over_w": 2.299,
+   "detector_bbox": [
+    456.07,
+    98.53,
+    489.55,
+    188.44
+   ],
+   "iou_with_detector": 0.826,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 97,
+   "id": 13,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    494.3,
+    208.7,
+    540.15,
+    311.49
+   ],
+   "gt_w": 45.85,
+   "gt_h": 102.79,
+   "gt_aspect_h_over_w": 2.242,
+   "detector_bbox": [
+    497.84,
+    202.59,
+    539.86,
+    309.82
+   ],
+   "iou_with_detector": 0.855,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 98,
+   "id": 1,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    446.31,
+    75.31,
+    471.21,
+    142.71
+   ],
+   "gt_w": 24.9,
+   "gt_h": 67.4,
+   "gt_aspect_h_over_w": 2.707,
+   "detector_bbox": [
+    449.65,
+    105.85,
+    477.92,
+    181.53
+   ],
+   "iou_with_detector": 0.263,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 108,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    0.0,
+    178.97,
+    13.74,
+    274.45
+   ],
+   "gt_w": 13.74,
+   "gt_h": 95.48,
+   "gt_aspect_h_over_w": 6.949,
+   "detector_bbox": null,
+   "iou_with_detector": null,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 121,
+   "id": 1,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    367.01,
+    78.26,
+    390.7,
+    138.9
+   ],
+   "gt_w": 23.69,
+   "gt_h": 60.64,
+   "gt_aspect_h_over_w": 2.56,
+   "detector_bbox": [
+    365.25,
+    84.67,
+    391.01,
+    140.87
+   ],
+   "iou_with_detector": 0.803,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 139,
+   "id": 13,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    614.5,
+    206.77,
+    640.0,
+    302.27
+   ],
+   "gt_w": 25.5,
+   "gt_h": 95.5,
+   "gt_aspect_h_over_w": 3.745,
+   "detector_bbox": [
+    617.25,
+    206.98,
+    639.71,
+    307.39
+   ],
+   "iou_with_detector": 0.839,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 143,
+   "id": 2,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    513.72,
+    111.29,
+    539.32,
+    191.69
+   ],
+   "gt_w": 25.6,
+   "gt_h": 80.4,
+   "gt_aspect_h_over_w": 3.141,
+   "detector_bbox": [
+    512.56,
+    114.02,
+    539.12,
+    197.79
+   ],
+   "iou_with_detector": 0.854,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 151,
+   "id": 3,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    388.48,
+    105.77,
+    415.22,
+    178.43
+   ],
+   "gt_w": 26.74,
+   "gt_h": 72.66,
+   "gt_aspect_h_over_w": 2.717,
+   "detector_bbox": [
+    388.63,
+    105.09,
+    418.23,
+    183.15
+   ],
+   "iou_with_detector": 0.832,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 153,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    26.33,
+    164.52,
+    55.7,
+    261.37
+   ],
+   "gt_w": 29.37,
+   "gt_h": 96.85,
+   "gt_aspect_h_over_w": 3.298,
+   "detector_bbox": [
+    24.8,
+    163.01,
+    64.04,
+    264.39
+   ],
+   "iou_with_detector": 0.715,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 156,
+   "id": 8,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    345.74,
+    128.12,
+    380.66,
+    201.17
+   ],
+   "gt_w": 34.92,
+   "gt_h": 73.05,
+   "gt_aspect_h_over_w": 2.092,
+   "detector_bbox": [
+    347.21,
+    124.33,
+    379.64,
+    204.98
+   ],
+   "iou_with_detector": 0.847,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 175,
+   "id": 10,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    576.94,
+    166.48,
+    612.96,
+    261.6
+   ],
+   "gt_w": 36.02,
+   "gt_h": 95.12,
+   "gt_aspect_h_over_w": 2.641,
+   "detector_bbox": [
+    584.9,
+    165.54,
+    607.39,
+    263.78
+   ],
+   "iou_with_detector": 0.612,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 181,
+   "id": 4,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    284.32,
+    188.07,
+    312.72,
+    271.05
+   ],
+   "gt_w": 28.4,
+   "gt_h": 82.98,
+   "gt_aspect_h_over_w": 2.922,
+   "detector_bbox": [
+    283.51,
+    185.43,
+    312.79,
+    275.09
+   ],
+   "iou_with_detector": 0.898,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 181,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    102.26,
+    165.93,
+    137.42,
+    263.53
+   ],
+   "gt_w": 35.16,
+   "gt_h": 97.6,
+   "gt_aspect_h_over_w": 2.776,
+   "detector_bbox": [
+    104.28,
+    166.73,
+    138.17,
+    266.45
+   ],
+   "iou_with_detector": 0.89,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 190,
+   "id": 1,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    342.12,
+    85.26,
+    379.67,
+    142.83
+   ],
+   "gt_w": 37.55,
+   "gt_h": 57.57,
+   "gt_aspect_h_over_w": 1.533,
+   "detector_bbox": [
+    336.46,
+    85.95,
+    380.72,
+    144.54
+   ],
+   "iou_with_detector": 0.815,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 194,
+   "id": 3,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    367.6,
+    109.61,
+    404.4,
+    171.3
+   ],
+   "gt_w": 36.8,
+   "gt_h": 61.69,
+   "gt_aspect_h_over_w": 1.676,
+   "detector_bbox": [
+    373.38,
+    108.8,
+    405.88,
+    171.26
+   ],
+   "iou_with_detector": 0.801,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 202,
+   "id": 6,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    290.62,
+    233.17,
+    320.12,
+    315.35
+   ],
+   "gt_w": 29.5,
+   "gt_h": 82.18,
+   "gt_aspect_h_over_w": 2.786,
+   "detector_bbox": [
+    288.42,
+    224.86,
+    327.33,
+    319.38
+   ],
+   "iou_with_detector": 0.659,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 203,
+   "id": 4,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    380.89,
+    185.28,
+    405.58,
+    268.85
+   ],
+   "gt_w": 24.69,
+   "gt_h": 83.57,
+   "gt_aspect_h_over_w": 3.385,
+   "detector_bbox": [
+    381.51,
+    186.97,
+    409.92,
+    268.47
+   ],
+   "iou_with_detector": 0.812,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 207,
+   "id": 4,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    398.71,
+    184.16,
+    419.4,
+    266.6
+   ],
+   "gt_w": 20.69,
+   "gt_h": 82.44,
+   "gt_aspect_h_over_w": 3.985,
+   "detector_bbox": [
+    396.81,
+    184.02,
+    421.24,
+    269.94
+   ],
+   "iou_with_detector": 0.813,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 208,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    195.13,
+    167.38,
+    225.94,
+    254.18
+   ],
+   "gt_w": 30.81,
+   "gt_h": 86.8,
+   "gt_aspect_h_over_w": 2.817,
+   "detector_bbox": [
+    197.23,
+    164.83,
+    229.39,
+    259.33
+   ],
+   "iou_with_detector": 0.774,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 209,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    195.65,
+    167.26,
+    226.29,
+    253.66
+   ],
+   "gt_w": 30.64,
+   "gt_h": 86.4,
+   "gt_aspect_h_over_w": 2.82,
+   "detector_bbox": [
+    199.2,
+    164.62,
+    231.11,
+    257.86
+   ],
+   "iou_with_detector": 0.713,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 210,
+   "id": 4,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    398.36,
+    183.11,
+    420.97,
+    262.07
+   ],
+   "gt_w": 22.61,
+   "gt_h": 78.96,
+   "gt_aspect_h_over_w": 3.492,
+   "detector_bbox": [
+    400.4,
+    183.44,
+    428.85,
+    261.98
+   ],
+   "iou_with_detector": 0.672,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 210,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    196.17,
+    167.15,
+    226.63,
+    253.13
+   ],
+   "gt_w": 30.46,
+   "gt_h": 85.98,
+   "gt_aspect_h_over_w": 2.823,
+   "detector_bbox": [
+    201.57,
+    165.43,
+    232.95,
+    254.98
+   ],
+   "iou_with_detector": 0.658,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 258,
+   "id": 13,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    582.96,
+    193.08,
+    608.53,
+    258.45
+   ],
+   "gt_w": 25.57,
+   "gt_h": 65.37,
+   "gt_aspect_h_over_w": 2.557,
+   "detector_bbox": null,
+   "iou_with_detector": null,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 266,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    104.36,
+    162.28,
+    126.89,
+    225.86
+   ],
+   "gt_w": 22.53,
+   "gt_h": 63.58,
+   "gt_aspect_h_over_w": 2.822,
+   "detector_bbox": [
+    105.33,
+    162.24,
+    128.06,
+    222.77
+   ],
+   "iou_with_detector": 0.867,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 275,
+   "id": 15,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    177.53,
+    321.77,
+    203.63,
+    360.0
+   ],
+   "gt_w": 26.1,
+   "gt_h": 38.23,
+   "gt_aspect_h_over_w": 1.465,
+   "detector_bbox": [
+    176.09,
+    321.06,
+    201.04,
+    360.0
+   ],
+   "iou_with_detector": 0.84,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 279,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    76.36,
+    162.16,
+    98.89,
+    225.74
+   ],
+   "gt_w": 22.53,
+   "gt_h": 63.58,
+   "gt_aspect_h_over_w": 2.822,
+   "detector_bbox": [
+    76.05,
+    161.33,
+    101.25,
+    228.23
+   ],
+   "iou_with_detector": 0.85,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 280,
+   "id": 16,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    624.96,
+    165.93,
+    640.0,
+    227.5
+   ],
+   "gt_w": 15.04,
+   "gt_h": 61.57,
+   "gt_aspect_h_over_w": 4.094,
+   "detector_bbox": [
+    629.3,
+    166.86,
+    639.93,
+    217.09
+   ],
+   "iou_with_detector": 0.577,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 282,
+   "id": 9,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    252.65,
+    278.51,
+    286.48,
+    348.98
+   ],
+   "gt_w": 33.83,
+   "gt_h": 70.47,
+   "gt_aspect_h_over_w": 2.083,
+   "detector_bbox": [
+    260.95,
+    277.49,
+    286.95,
+    350.51
+   ],
+   "iou_with_detector": 0.724,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 282,
+   "id": 13,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    527.04,
+    190.5,
+    548.39,
+    251.23
+   ],
+   "gt_w": 21.35,
+   "gt_h": 60.73,
+   "gt_aspect_h_over_w": 2.844,
+   "detector_bbox": [
+    526.32,
+    189.5,
+    549.32,
+    253.33
+   ],
+   "iou_with_detector": 0.883,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 288,
+   "id": 5,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    80.67,
+    163.84,
+    107.62,
+    227.42
+   ],
+   "gt_w": 26.95,
+   "gt_h": 63.58,
+   "gt_aspect_h_over_w": 2.359,
+   "detector_bbox": [
+    79.99,
+    168.43,
+    106.79,
+    226.73
+   ],
+   "iou_with_detector": 0.869,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 289,
+   "id": 7,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    127.99,
+    102.98,
+    147.48,
+    149.24
+   ],
+   "gt_w": 19.49,
+   "gt_h": 46.26,
+   "gt_aspect_h_over_w": 2.374,
+   "detector_bbox": [
+    129.8,
+    103.27,
+    145.9,
+    145.4
+   ],
+   "iou_with_detector": 0.752,
+   "annotator_marked_occluded": false
+  }
+ ]
+}

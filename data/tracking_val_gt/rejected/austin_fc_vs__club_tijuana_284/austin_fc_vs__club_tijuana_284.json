@@ -1,0 +1,2173 @@
+{
+ "sequence": "austin_fc_vs__club_tijuana_284",
+ "purpose": "reference geometry for frames already labelled during detector annotation",
+ "provenance_status": "UNCONFIRMED",
+ "authoritative": false,
+ "usage": "Consult during annotation and cross-check afterwards. Do NOT adopt as tracking GT.",
+ "contains_identity": false,
+ "identity_note": "Identity is NOT present and cannot be derived from this file. It remains manual work.",
+ "geometry": "absolute pixels [x1,y1,x2,y2] on 640x360 package frames",
+ "class_mapping": {
+  "reused": [
+   "goalkeeper",
+   "player",
+   "referee"
+  ],
+  "dropped": [
+   "ball"
+  ]
+ },
+ "provenance": {
+  "source": "data/labels",
+  "known": "drafted by the Roboflow model recorded in model_draft_record, then modified by an unrecorded process (boxes added, classes changed)",
+  "unknown": "whether, by whom, and to what standard those modifications were reviewed; the label pipeline carries no reviewed flag, only status=draft",
+  "overlap_established_by": "source frame provenance (data/manifest.json frame_index)",
+  "overlap_confirmed_by": "pixel comparison against the packaged frame and its neighbours",
+  "alignment_margin_required": 2.0,
+  "is_not": "the frozen detector preannotation, which is model output and is left untouched"
+ },
+ "frames": [
+  {
+   "package_frame": 2,
+   "source_frame": 285,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000285.txt",
+   "detector_label_sha256": "d54feed3b77b6b4466c46ec9d455a227107f918cf8161b946ada69556e499f69",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000285.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.408,
+    "nearest_neighbour_ratio": 10.14
+   },
+   "boxes": [
+    {
+     "bbox": [
+      135.0,
+      140.0,
+      160.0,
+      169.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      330.0,
+      138.0,
+      348.0,
+      169.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      290.0,
+      127.0,
+      306.0,
+      166.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      368.0,
+      144.0,
+      386.0,
+      186.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      201.0,
+      149.0,
+      219.0,
+      196.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      392.0,
+      139.0,
+      415.0,
+      179.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      113.0,
+      124.0,
+      128.0,
+      167.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      459.26,
+      149.0,
+      480.0,
+      199.87
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      219.0,
+      140.0,
+      237.0,
+      185.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      229.0,
+      121.0,
+      247.0,
+      165.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      473.0,
+      180.0,
+      495.0,
+      236.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      168.0,
+      221.14,
+      188.6,
+      287.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      406.0,
+      136.0,
+      422.06,
+      178.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      200.46,
+      232.33,
+      218.0,
+      298.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      478.2,
+      134.32,
+      498.4,
+      167.05
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  },
+  {
+   "package_frame": 12,
+   "source_frame": 295,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000295.txt",
+   "detector_label_sha256": "5b8a663b42c12fe3ec09383ac03b4e07edc74bbb0964962c23a77be8cbc2fd25",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000295.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.393,
+    "nearest_neighbour_ratio": 9.7
+   },
+   "boxes": [
+    {
+     "bbox": [
+      160.0,
+      151.0,
+      177.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      268.0,
+      144.0,
+      286.0,
+      171.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      323.0,
+      143.0,
+      342.0,
+      177.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      59.0,
+      129.0,
+      73.0,
+      168.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      232.0,
+      128.0,
+      246.0,
+      167.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      115.47,
+      217.53,
+      137.47,
+      282.74
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      153.0,
+      232.0,
+      178.0,
+      287.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      167.0,
+      123.0,
+      183.0,
+      159.27
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      403.0,
+      173.0,
+      424.0,
+      226.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      348.0,
+      138.0,
+      363.0,
+      177.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      385.0,
+      159.0,
+      409.0,
+      202.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      307.0,
+      142.0,
+      327.0,
+      185.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      72.6,
+      150.06,
+      99.4,
+      168.79
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      394.33,
+      137.92,
+      415.66,
+      160.11
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      169.34,
+      145.39,
+      179.4,
+      189.39
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 17,
+   "source_frame": 300,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000300.txt",
+   "detector_label_sha256": "da7835a275313ba1d480895830a86bf77b19f5660b4f5bb754600c8702c028b1",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000300.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.442,
+    "nearest_neighbour_ratio": 8.04
+   },
+   "boxes": [
+    {
+     "bbox": [
+      147.0,
+      151.0,
+      164.0,
+      194.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      248.0,
+      145.0,
+      265.0,
+      173.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      213.0,
+      131.0,
+      228.0,
+      169.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      297.87,
+      143.0,
+      314.87,
+      177.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      41.0,
+      130.0,
+      57.0,
+      169.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      285.0,
+      142.0,
+      302.0,
+      185.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      324.0,
+      139.0,
+      343.0,
+      178.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      383.0,
+      172.0,
+      399.0,
+      223.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      139.0,
+      225.0,
+      161.0,
+      284.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      361.0,
+      159.0,
+      384.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      100.0,
+      223.0,
+      123.0,
+      281.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      361.87,
+      144.38,
+      385.67,
+      166.38
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      48.07,
+      152.86,
+      79.47,
+      171.32
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      147.54,
+      124.31,
+      160.27,
+      159.31
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      308.8,
+      152.32,
+      325.8,
+      166.05
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 22,
+   "source_frame": 305,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000305.txt",
+   "detector_label_sha256": "ec22237c4453e8c032e45dfa8d88c4bf41972381230e84395b5116493902c3d8",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000305.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.575,
+    "nearest_neighbour_ratio": 6.22
+   },
+   "boxes": [
+    {
+     "bbox": [
+      239.0,
+      147.0,
+      255.0,
+      173.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      204.0,
+      133.0,
+      219.0,
+      168.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      146.0,
+      155.0,
+      160.0,
+      193.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      348.0,
+      156.0,
+      374.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      134.0,
+      223.0,
+      157.0,
+      279.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      140.0,
+      128.0,
+      152.0,
+      151.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      288.0,
+      141.0,
+      303.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      84.99,
+      215.0,
+      116.06,
+      273.94
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      276.0,
+      143.0,
+      292.0,
+      185.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      35.0,
+      129.0,
+      52.0,
+      170.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      371.0,
+      171.0,
+      389.0,
+      218.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      42.4,
+      153.0,
+      67.0,
+      173.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      316.0,
+      135.0,
+      330.0,
+      179.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      139.0,
+      140.0,
+      154.0,
+      177.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      343.47,
+      149.86,
+      369.47,
+      164.52
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      298.67,
+      151.26,
+      312.67,
+      167.52
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 77,
+   "source_frame": 360,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000360.txt",
+   "detector_label_sha256": "ba0b84f33a02791c91b4768fae09a89d7634f32b9c928cfccdb1c09bc73cdd7c",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000360.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.715,
+    "nearest_neighbour_ratio": 4.55
+   },
+   "boxes": [
+    {
+     "bbox": [
+      135.0,
+      152.0,
+      150.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      205.0,
+      130.0,
+      224.0,
+      171.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      40.0,
+      127.0,
+      53.0,
+      163.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      163.0,
+      129.0,
+      180.0,
+      170.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      279.0,
+      137.0,
+      293.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      248.0,
+      157.0,
+      268.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      159.0,
+      216.0,
+      185.0,
+      275.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      279.0,
+      140.0,
+      299.0,
+      185.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      149.0,
+      137.0,
+      167.0,
+      182.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      379.93,
+      163.0,
+      396.93,
+      214.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      316.47,
+      131.87,
+      334.47,
+      166.87
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      27.0,
+      156.0,
+      50.0,
+      173.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      73.0,
+      212.0,
+      90.0,
+      270.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      340.74,
+      127.32,
+      357.66,
+      166.05
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      302.34,
+      149.2,
+      320.34,
+      168.2
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      365.26,
+      154.19,
+      386.0,
+      205.19
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 111,
+   "source_frame": 394,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000394.txt",
+   "detector_label_sha256": "8f5c72a29c8f3177aa380c4dd6cb97ec037ebedd552b7bf59fdc5784afe9c2a6",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000394.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.583,
+    "nearest_neighbour_ratio": 8.51
+   },
+   "boxes": [
+    {
+     "bbox": [
+      281.0,
+      179.0,
+      300.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      511.0,
+      190.0,
+      524.0,
+      227.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      450.0,
+      168.0,
+      464.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      489.0,
+      163.26,
+      508.0,
+      197.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      479.0,
+      148.0,
+      488.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      303.0,
+      177.0,
+      320.0,
+      209.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      257.0,
+      331.0,
+      269.0,
+      346.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      293.47,
+      131.45,
+      306.4,
+      155.45
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  },
+  {
+   "package_frame": 117,
+   "source_frame": 400,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000400.txt",
+   "detector_label_sha256": "ab52f575676e41d5d311d2538f07cedfae51f8201dfddc7c24748cb7c482091b",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000400.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.577,
+    "nearest_neighbour_ratio": 6.84
+   },
+   "boxes": [
+    {
+     "bbox": [
+      304.0,
+      131.0,
+      317.0,
+      157.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      475.0,
+      164.0,
+      485.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      299.0,
+      177.0,
+      314.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      444.0,
+      168.0,
+      464.0,
+      199.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      481.0,
+      150.0,
+      494.0,
+      172.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      269.0,
+      180.0,
+      288.0,
+      211.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      504.0,
+      191.0,
+      527.0,
+      226.0
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 122,
+   "source_frame": 405,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000405.txt",
+   "detector_label_sha256": "a4386a766e25c9a36a78f1cb808579a8a770ed05438bd70517b875eaead733f9",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000405.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.657,
+    "nearest_neighbour_ratio": 6.92
+   },
+   "boxes": [
+    {
+     "bbox": [
+      440.0,
+      170.0,
+      460.0,
+      202.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      262.0,
+      180.0,
+      287.0,
+      212.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      504.0,
+      194.0,
+      522.0,
+      230.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      298.0,
+      176.0,
+      316.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      487.0,
+      151.0,
+      498.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      459.0,
+      163.0,
+      487.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      315.0,
+      135.0,
+      330.0,
+      158.0
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  },
+  {
+   "package_frame": 132,
+   "source_frame": 415,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000415.txt",
+   "detector_label_sha256": "b853efb7d1cbbe3f7a26b526ed2a95bba00b0be537b40faedb50e219670175d1",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000415.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.711,
+    "nearest_neighbour_ratio": 7.57
+   },
+   "boxes": [
+    {
+     "bbox": [
+      504.0,
+      151.0,
+      516.0,
+      177.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      438.0,
+      171.0,
+      462.0,
+      202.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      296.0,
+      175.0,
+      313.0,
+      209.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      505.0,
+      195.0,
+      527.0,
+      236.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      250.0,
+      182.0,
+      282.0,
+      213.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      344.0,
+      136.0,
+      357.0,
+      158.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      449.94,
+      163.13,
+      473.01,
+      189.0
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 137,
+   "source_frame": 420,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000420.txt",
+   "detector_label_sha256": "4dabb35117247a278c029a9f9666357e5f2ea10e6bf3dfe747a66f5bdea0848e",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000420.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.741,
+    "nearest_neighbour_ratio": 6.95
+   },
+   "boxes": [
+    {
+     "bbox": [
+      255.0,
+      178.0,
+      276.0,
+      211.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      299.0,
+      173.0,
+      309.0,
+      206.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      505.0,
+      196.0,
+      529.0,
+      236.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      514.0,
+      150.0,
+      527.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      441.0,
+      161.0,
+      460.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      356.0,
+      135.0,
+      371.0,
+      159.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      439.0,
+      172.0,
+      453.0,
+      203.0
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 197,
+   "source_frame": 480,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000480.txt",
+   "detector_label_sha256": "68d868598bc5a14990a03a9f7e09d0b0d91c65b26240783ef39269a814cb9818",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000480.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.835,
+    "nearest_neighbour_ratio": 5.42
+   },
+   "boxes": [
+    {
+     "bbox": [
+      532.0,
+      162.0,
+      543.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      250.0,
+      166.0,
+      263.0,
+      197.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      302.0,
+      167.0,
+      314.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      603.0,
+      127.0,
+      616.0,
+      157.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      526.0,
+      227.0,
+      549.0,
+      273.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      231.0,
+      172.0,
+      246.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      502.0,
+      137.0,
+      513.0,
+      162.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      621.0,
+      193.0,
+      639.0,
+      236.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      446.0,
+      189.0,
+      464.0,
+      228.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      365.0,
+      136.0,
+      380.0,
+      161.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      317.0,
+      157.0,
+      328.0,
+      188.0
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 208,
+   "source_frame": 491,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000491.txt",
+   "detector_label_sha256": "9160d12309b377ece6f7f14f0a550175d02ab0ddda98fb3bcdcc56566e552a7a",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000491.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.799,
+    "nearest_neighbour_ratio": 6.98
+   },
+   "boxes": [
+    {
+     "bbox": [
+      209.0,
+      174.0,
+      224.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      235.0,
+      167.0,
+      247.0,
+      201.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      274.0,
+      170.0,
+      288.0,
+      204.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      588.0,
+      194.0,
+      609.0,
+      237.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      499.0,
+      161.0,
+      513.0,
+      194.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      292.0,
+      161.0,
+      306.0,
+      194.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      440.0,
+      190.0,
+      457.0,
+      231.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      486.0,
+      228.0,
+      509.0,
+      275.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      480.0,
+      144.0,
+      498.0,
+      165.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      350.0,
+      139.0,
+      369.0,
+      167.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      571.0,
+      135.0,
+      584.0,
+      161.0
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 212,
+   "source_frame": 495,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000495.txt",
+   "detector_label_sha256": "92469c15da4987aee7f5e284ec76caa7627821c4c97285cb2f18ef63521668db",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000495.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.68,
+    "nearest_neighbour_ratio": 8.23
+   },
+   "boxes": [
+    {
+     "bbox": [
+      227.0,
+      169.0,
+      239.0,
+      204.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      262.0,
+      171.0,
+      276.0,
+      206.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      484.0,
+      163.0,
+      498.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      575.0,
+      192.0,
+      592.0,
+      237.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      468.0,
+      231.0,
+      490.0,
+      277.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      197.0,
+      176.0,
+      212.0,
+      210.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      435.0,
+      191.0,
+      453.0,
+      230.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      473.0,
+      148.0,
+      487.0,
+      166.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      621.0,
+      153.0,
+      638.0,
+      179.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      556.0,
+      134.0,
+      573.0,
+      162.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      279.0,
+      157.0,
+      297.0,
+      196.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      343.0,
+      144.0,
+      360.0,
+      166.0
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  },
+  {
+   "package_frame": 217,
+   "source_frame": 500,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000500.txt",
+   "detector_label_sha256": "456f28bebd6f7fd30fbadd510ce06e4fa72e187dbd47a32843bc83b93d4e5022",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000500.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.671,
+    "nearest_neighbour_ratio": 8.33
+   },
+   "boxes": [
+    {
+     "bbox": [
+      441.0,
+      231.0,
+      462.0,
+      276.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      539.0,
+      135.0,
+      553.0,
+      165.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      242.0,
+      172.0,
+      256.0,
+      207.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      546.0,
+      192.0,
+      568.0,
+      236.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      421.0,
+      194.0,
+      441.0,
+      233.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      208.0,
+      171.0,
+      223.0,
+      207.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      460.0,
+      163.0,
+      475.0,
+      194.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      459.0,
+      149.0,
+      476.0,
+      168.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      262.0,
+      165.0,
+      280.0,
+      198.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      175.0,
+      179.0,
+      188.0,
+      215.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      594.0,
+      155.0,
+      608.0,
+      182.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      333.99,
+      144.26,
+      349.66,
+      172.0
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  },
+  {
+   "package_frame": 222,
+   "source_frame": 505,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000505.txt",
+   "detector_label_sha256": "b4f34cc511f315f5170210974a9f5b29411c7db66aa59793805fb10f80323c0b",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000505.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.494,
+    "nearest_neighbour_ratio": 9.3
+   },
+   "boxes": [
+    {
+     "bbox": [
+      187.0,
+      173.0,
+      202.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      215.0,
+      177.0,
+      230.0,
+      211.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      519.0,
+      193.0,
+      533.0,
+      239.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      145.0,
+      182.0,
+      158.0,
+      220.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      405.0,
+      234.0,
+      432.0,
+      280.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      405.0,
+      193.0,
+      423.0,
+      233.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      433.0,
+      165.0,
+      447.0,
+      193.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      558.0,
+      157.0,
+      571.0,
+      182.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      519.0,
+      133.0,
+      533.0,
+      165.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      318.0,
+      145.0,
+      333.0,
+      171.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      241.0,
+      168.0,
+      260.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      446.0,
+      149.0,
+      461.0,
+      170.0
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 227,
+   "source_frame": 510,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000510.txt",
+   "detector_label_sha256": "0cdaa6810aec71224ca98db5bd554f85fd4ecc5380955489dbb3230907165318",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000510.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.506,
+    "nearest_neighbour_ratio": 9.09
+   },
+   "boxes": [
+    {
+     "bbox": [
+      162.0,
+      174.0,
+      175.0,
+      209.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      385.0,
+      194.0,
+      403.0,
+      234.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      401.0,
+      165.0,
+      417.0,
+      196.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      485.0,
+      192.0,
+      502.0,
+      235.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      495.0,
+      134.0,
+      509.0,
+      167.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      189.0,
+      177.0,
+      202.0,
+      212.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      522.0,
+      157.0,
+      536.0,
+      185.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      109.0,
+      185.0,
+      124.0,
+      224.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      370.0,
+      231.0,
+      388.0,
+      281.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      424.0,
+      149.0,
+      441.0,
+      172.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      215.0,
+      169.06,
+      238.6,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      304.0,
+      145.0,
+      312.0,
+      171.0
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  },
+  {
+   "package_frame": 237,
+   "source_frame": 520,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000520.txt",
+   "detector_label_sha256": "aad1f2704038c4e8f6d63dce243728ba053d87e36c9044a4e270a666e239ccf6",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000520.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.444,
+    "nearest_neighbour_ratio": 9.11
+   },
+   "boxes": [
+    {
+     "bbox": [
+      384.0,
+      151.0,
+      399.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      127.0,
+      179.0,
+      144.0,
+      216.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      333.0,
+      161.0,
+      348.0,
+      195.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      608.0,
+      152.0,
+      620.0,
+      184.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      103.0,
+      176.0,
+      121.0,
+      213.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      416.0,
+      191.0,
+      433.0,
+      235.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      448.0,
+      133.0,
+      461.0,
+      166.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      347.0,
+      192.46,
+      364.26,
+      232.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      38.0,
+      189.0,
+      59.0,
+      231.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      298.0,
+      232.0,
+      314.0,
+      284.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      174.0,
+      163.0,
+      192.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      603.0,
+      106.0,
+      613.0,
+      128.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      462.0,
+      154.0,
+      475.0,
+      188.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      255.0,
+      144.0,
+      267.0,
+      171.0
+     ],
+     "role": "goalkeeper"
+    }
+   ]
+  },
+  {
+   "package_frame": 247,
+   "source_frame": 530,
+   "detector_label_file": "data/labels/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000530.txt",
+   "detector_label_sha256": "7468b14f7b2b6a693a9031e63d79bb1825b32c9abb495aa511bfc2557cec3822",
+   "model_draft_record": "data/pseudo_meta/austin_fc_vs__club_tijuana/austin_fc_vs__club_tijuana_000530.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.699,
+    "nearest_neighbour_ratio": 6.53
+   },
+   "boxes": [
+    {
+     "bbox": [
+      568.0,
+      166.0,
+      588.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      284.0,
+      160.0,
+      302.0,
+      192.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      90.0,
+      178.0,
+      116.0,
+      217.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      369.0,
+      189.0,
+      383.0,
+      231.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      341.0,
+      152.0,
+      355.0,
+      179.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      419.0,
+      132.0,
+      435.0,
+      165.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      68.0,
+      172.0,
+      88.0,
+      212.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      552.0,
+      148.0,
+      563.0,
+      180.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      241.0,
+      230.0,
+      262.0,
+      284.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      148.0,
+      161.0,
+      170.0,
+      199.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      410.0,
+      160.0,
+      425.0,
+      190.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      224.0,
+      140.0,
+      236.0,
+      172.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      323.0,
+      190.0,
+      341.0,
+      229.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      571.0,
+      103.0,
+      581.0,
+      124.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      0.0,
+      189.0,
+      8.0,
+      229.0
+     ],
+     "role": "player"
+    }
+   ]
+  }
+ ]
+}

@@ -31,8 +31,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from trackers.detector import HUMAN_CLASSES  # noqa: E402
 from tools.build_derived_train import TEST_MATCHES, VAL_MATCHES  # noqa: E402
 
-EXPECTED = {'austin_fc_vs__club_tijuana_284', 'bayern_munich_3-1_chelsea_228',
-            'women_1_239', 'youth_premier_league_1133'}
+# EyeCU-Tracking-Val-v1.1: three independent VAL matches, 900 frames.
+# austin_fc_vs__club_tijuana_284 was in v1.0 and was removed before any tracker
+# result existed -- its window straddles a broadcast dissolve and its source is
+# a highlights montage. It is named here so an accidental reappearance is a
+# failure rather than a silent addition.
+EXPECTED = {'bayern_munich_3-1_chelsea_228', 'women_1_239',
+            'youth_premier_league_1133'}
+EXCLUDED = {'austin_fc_vs__club_tijuana_284'}
 N_FRAMES = 300
 ROLES = set(HUMAN_CLASSES)
 MOT_PEDESTRIAN_CLASS = 1
@@ -52,8 +58,12 @@ def validate_pre(root: Path):
         return ['manifest.json missing'], 1
     man = json.loads(mp.read_text(encoding='utf-8'))
 
-    n += _check(errors, {s['sequence'] for s in man['sequences']} == EXPECTED,
-                'sequence set mismatch')
+    got = {s['sequence'] for s in man['sequences']}
+    n += _check(errors, got == EXPECTED, f'sequence set mismatch: {sorted(got)}')
+    n += _check(errors, not (got & EXCLUDED),
+                f'excluded sequence back in the benchmark: {sorted(got & EXCLUDED)}')
+    n += _check(errors, man.get('benchmark') == 'EyeCU-Tracking-Val-v1.1',
+                f'benchmark is {man.get("benchmark")!r}, expected v1.1')
     n += _check(errors, man.get('annotation_schema_version'), 'schema version missing')
     n += _check(errors, 'NOT generated from tracker' in man.get('identity_provenance', ''),
                 'manifest does not record identity provenance')
@@ -151,6 +161,10 @@ def validate_gt_content(root: Path, only=None):
                         f'{tag} f{f_} id{i_}: role {row.get("role")!r} not in {sorted(ROLES)}')
             n += _check(errors, row.get('class') != 'ball',
                         f'{tag} f{f_}: ball present in human GT')
+            # a boolean, never a fabricated visibility fraction
+            n += _check(errors, isinstance(row.get('occluded', False), bool),
+                        f'{tag} f{f_} id{i_}: occluded must be a boolean, got '
+                        f'{row.get("occluded")!r}')
 
         for f_, rows in per_frame.items():
             ids = [r['id'] for r in rows]

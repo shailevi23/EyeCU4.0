@@ -1,0 +1,13 @@
+This directory contains a modified subset of the Roboflow "trackers"
+package version 2.6.0, licensed under the Apache License 2.0.
+
+Copyright Roboflow et al. <develop@roboflow.com>
+Upstream: https://github.com/roboflow/trackers
+
+MODIFICATION: absolute imports of the form `trackers.<x>` were
+rewritten to `rf_trackers.<x>` so the package can coexist with EyeCU's
+own top-level `trackers/` package. No other change was made. The exact
+files, their upstream hashes and the rewritten hashes are recorded in
+VENDOR_PROVENANCE.json.
+
+The full Apache 2.0 licence text is in LICENSE.

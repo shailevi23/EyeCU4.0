@@ -1,136 +1,193 @@
 {
-  "spec_version": "1.0",
-  "frozen_before_any_identity_gt_or_bakeoff_result": true,
-  "benchmark": "EyeCU-Tracking-Val-v1",
-  "sequences": [
+ "spec_version": "1.1",
+ "frozen_before_any_identity_gt_or_bakeoff_result": true,
+ "benchmark": "EyeCU-Tracking-Val-v1.1",
+ "sequences": [
+  "bayern_munich_3-1_chelsea_228",
+  "women_1_239",
+  "youth_premier_league_1133"
+ ],
+ "detector_evidence": {
+  "checkpoint": "best_A_960.pt",
+  "candidate_human_floor": 0.01,
+  "accepted_human_threshold": 0.25,
+  "note": "Frozen evidence store. The floor is a benchmark evidence-store floor, not a production acceptance threshold, not a ByteTrack threshold, and not a tuned tracking parameter."
+ },
+ "profiles": {
+  "LIBRARY_DEFAULTS": {
+   "purpose": "Measure out-of-the-box compatibility of trackers==2.6.0 with EyeCU detector scores.",
+   "status": "DIAGNOSTIC ONLY -- a production winner may not be declared from this profile alone.",
+   "detections_supplied_to_tracker": "confidence >= 0.01 (full frozen evidence store)",
+   "parameters": "exact library defaults from the pinned 2.6.0 source; no confidence threshold altered",
+   "observed_defaults_2_6_0": {
+    "ByteTrackTracker": {
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "minimum_iou_threshold": 0.1,
+     "lost_track_buffer": 30,
+     "minimum_consecutive_frames": 2,
+     "frame_rate": 30.0,
+     "low_pool_lower_bound": "none (~high_mask)"
+    },
+    "BoTSORTTracker": {
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "enable_cmc": true,
+     "cmc_method": "sparseOptFlow",
+     "cmc_downscale": 2,
+     "lost_track_buffer": 30,
+     "minimum_consecutive_frames": 2,
+     "frame_rate": 30.0,
+     "low_pool_lower_bound": "confidence > 0.1 (strict)"
+    },
+    "CBIoUTracker": {
+     "track_activation_threshold": 0.7,
+     "high_conf_det_threshold": 0.6,
+     "minimum_iou_threshold_first_assoc": 0.2,
+     "minimum_iou_threshold_second_assoc": 0.5,
+     "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+     "buffer_ratio_first": 0.3,
+     "buffer_ratio_second": 0.5,
+     "instant_first_frame_activation": true,
+     "lost_track_buffer": 30,
+     "minimum_consecutive_frames": 2,
+     "frame_rate": 30.0,
+     "low_pool_lower_bound": "confidence > 0.1 (strict)"
+    },
+    "OCSORTTracker": {
+     "high_conf_det_threshold": 0.6,
+     "minimum_iou_threshold": 0.3,
+     "lost_track_buffer": 30,
+     "minimum_consecutive_frames": 3,
+     "frame_rate": 30.0,
+     "track_activation_threshold": "PARAMETER DOES NOT EXIST in 2.6.0",
+     "low_pool_lower_bound": "none -- detections below high_conf_det_threshold are discarded outright"
+    }
+   }
+  },
+  "EYECU_SCORE_POLICY_V1": {
+   "purpose": "Primary score-normalised comparison: how do the association algorithms compare when their detector-score interface is aligned to EyeCU's pre-existing accepted/candidate policy?",
+   "status": "PRIMARY. Declared before identity GT exists; derived from EyeCU's existing detector interface, not from tracker performance.",
+   "detections_supplied_to_tracker": "confidence > 0.10 (strict), taken from the frozen 0.01 evidence store",
+   "confidence_overrides_only": {
+    "ByteTrackTracker": {
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "BoTSORTTracker": {
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "CBIoUTracker": {
+     "high_conf_det_threshold": 0.25,
+     "track_activation_threshold": 0.25
+    },
+    "OCSORTTracker": {
+     "high_conf_det_threshold": 0.25,
+     "note": "OCSORTTracker exposes no track_activation_threshold in 2.6.0. No artificial second-stage pool is added; its hard filter simply moves from 0.6 to 0.25."
+    }
+   },
+   "everything_else": "library defaults -- matching thresholds, state estimator, lost_track_buffer, minimum_consecutive_frames, C-BIoU buffers, BoT-SORT CMC behaviour, appearance/ReID behaviour",
+   "frame_rate": "actual source FPS per sequence (29.97 austin, 25.0 others). Metadata correctness, not tuning.",
+   "parameter_name_verification": "Names above were read from the pinned 2.6.0 source (trackers/core/<name>/tracker.py), not assumed. Any name that fails to bind at runtime must STOP the bake-off rather than be guessed."
+  }
+ },
+ "legacy_baseline": {
+  "implementation": "supervision==0.26.1 sv.ByteTrack via update_with_detections",
+  "rule": "NOT modified to imitate the normalised profile. It keeps its actual semantics, including the effective ~0.35 new-track gate (det_thresh = track_activation_threshold + 0.1) and its (0.10, 0.25) second-stage pool.",
+  "note": "The hidden legacy 0.35 behaviour is NOT the EyeCU score policy and must not be copied into modern trackers."
+ },
+ "constraints": {
+  "no_third_profile": true,
+  "no_threshold_sweep": true,
+  "no_optuna": true,
+  "no_per_match_thresholds": true,
+  "no_copied_dataset_configs": "SoccerNet / SportsMOT / MOT17 / DanceTrack tuned configs are forbidden",
+  "identical_inputs": "every tracker receives the same frames, detections, confidences, image coordinates, source FPS and frame order",
+  "reset_between_sequences": true
+ },
+ "adoption_criteria": {
+  "measured_on": "EYECU_SCORE_POLICY_V1, end-to-end task, against identity GT",
+  "frozen": "2026-08-10",
+  "frozen_before_results": true,
+  "primary": [
+   "combined HOTA improvement >= +2.0 absolute points over the legacy baseline",
+   "combined AssA improvement >= +3.0 absolute points",
+   "combined IDF1 regression <= 0.5 absolute point",
+   "HOTA improves in >= 2 of the 3 independent matches",
+   "the remaining match must not regress by > 2.0 HOTA points",
+   "no catastrophic identity failure in sequence-level QC",
+   "EyeCU semantic / ball / output invariants preserved",
+   "end-to-end runtime regression <= 10%, unless an explicit accuracy/runtime tradeoff is approved AFTER the measurements and BEFORE production adoption"
+  ],
+  "invariants": [
+   "accepted human detection semantics preserved (>= 0.25 boundary unchanged)",
+   "ball remains isolated from human association",
+   "all four detector classes preserved; goalkeeper never normalised to player"
+  ],
+  "profile_authority": "LIBRARY_DEFAULTS remains DIAGNOSTIC ONLY and cannot alone select the production winner.",
+  "amendment_rule": "These criteria may not be altered after any bake-off result is seen. They were re-frozen once, before any tracker had been run against this GT, because the benchmark itself legitimately changed size."
+ },
+ "why_two_profiles": {
+  "LIBRARY_DEFAULTS": "How well does the package work out of the box with EyeCU scores?",
+  "EYECU_SCORE_POLICY_V1": "How do the association algorithms compare when their detector-score interface is aligned to EyeCU's pre-existing accepted/candidate policy?",
+  "not_post_result_tuning": "The score policy is declared before identity GT results exist and is derived from EyeCU's existing detector interface, not from tracker performance."
+ },
+ "independent_matches": 3,
+ "total_frames": 900,
+ "superseded_adoption_criteria": [
+  {
+   "spec_version": "1.0",
+   "benchmark": "EyeCU-Tracking-Val-v1",
+   "sequences": [
     "austin_fc_vs__club_tijuana_284",
     "bayern_munich_3-1_chelsea_228",
     "women_1_239",
     "youth_premier_league_1133"
-  ],
-  "detector_evidence": {
-    "checkpoint": "best_A_960.pt",
-    "candidate_human_floor": 0.01,
-    "accepted_human_threshold": 0.25,
-    "note": "Frozen evidence store. The floor is a benchmark evidence-store floor, not a production acceptance threshold, not a ByteTrack threshold, and not a tuned tracking parameter."
-  },
-  "profiles": {
-    "LIBRARY_DEFAULTS": {
-      "purpose": "Measure out-of-the-box compatibility of trackers==2.6.0 with EyeCU detector scores.",
-      "status": "DIAGNOSTIC ONLY -- a production winner may not be declared from this profile alone.",
-      "detections_supplied_to_tracker": "confidence >= 0.01 (full frozen evidence store)",
-      "parameters": "exact library defaults from the pinned 2.6.0 source; no confidence threshold altered",
-      "observed_defaults_2_6_0": {
-        "ByteTrackTracker": {
-          "track_activation_threshold": 0.7,
-          "high_conf_det_threshold": 0.6,
-          "minimum_iou_threshold": 0.1,
-          "lost_track_buffer": 30,
-          "minimum_consecutive_frames": 2,
-          "frame_rate": 30.0,
-          "low_pool_lower_bound": "none (~high_mask)"
-        },
-        "BoTSORTTracker": {
-          "track_activation_threshold": 0.7,
-          "high_conf_det_threshold": 0.6,
-          "minimum_iou_threshold_first_assoc": 0.2,
-          "minimum_iou_threshold_second_assoc": 0.5,
-          "minimum_iou_threshold_unconfirmed_assoc": 0.3,
-          "enable_cmc": true,
-          "cmc_method": "sparseOptFlow",
-          "cmc_downscale": 2,
-          "lost_track_buffer": 30,
-          "minimum_consecutive_frames": 2,
-          "frame_rate": 30.0,
-          "low_pool_lower_bound": "confidence > 0.1 (strict)"
-        },
-        "CBIoUTracker": {
-          "track_activation_threshold": 0.7,
-          "high_conf_det_threshold": 0.6,
-          "minimum_iou_threshold_first_assoc": 0.2,
-          "minimum_iou_threshold_second_assoc": 0.5,
-          "minimum_iou_threshold_unconfirmed_assoc": 0.3,
-          "buffer_ratio_first": 0.3,
-          "buffer_ratio_second": 0.5,
-          "instant_first_frame_activation": true,
-          "lost_track_buffer": 30,
-          "minimum_consecutive_frames": 2,
-          "frame_rate": 30.0,
-          "low_pool_lower_bound": "confidence > 0.1 (strict)"
-        },
-        "OCSORTTracker": {
-          "high_conf_det_threshold": 0.6,
-          "minimum_iou_threshold": 0.3,
-          "lost_track_buffer": 30,
-          "minimum_consecutive_frames": 3,
-          "frame_rate": 30.0,
-          "track_activation_threshold": "PARAMETER DOES NOT EXIST in 2.6.0",
-          "low_pool_lower_bound": "none -- detections below high_conf_det_threshold are discarded outright"
-        }
-      }
-    },
-    "EYECU_SCORE_POLICY_V1": {
-      "purpose": "Primary score-normalised comparison: how do the association algorithms compare when their detector-score interface is aligned to EyeCU's pre-existing accepted/candidate policy?",
-      "status": "PRIMARY. Declared before identity GT exists; derived from EyeCU's existing detector interface, not from tracker performance.",
-      "detections_supplied_to_tracker": "confidence > 0.10 (strict), taken from the frozen 0.01 evidence store",
-      "confidence_overrides_only": {
-        "ByteTrackTracker": {
-          "high_conf_det_threshold": 0.25,
-          "track_activation_threshold": 0.25
-        },
-        "BoTSORTTracker": {
-          "high_conf_det_threshold": 0.25,
-          "track_activation_threshold": 0.25
-        },
-        "CBIoUTracker": {
-          "high_conf_det_threshold": 0.25,
-          "track_activation_threshold": 0.25
-        },
-        "OCSORTTracker": {
-          "high_conf_det_threshold": 0.25,
-          "note": "OCSORTTracker exposes no track_activation_threshold in 2.6.0. No artificial second-stage pool is added; its hard filter simply moves from 0.6 to 0.25."
-        }
-      },
-      "everything_else": "library defaults -- matching thresholds, state estimator, lost_track_buffer, minimum_consecutive_frames, C-BIoU buffers, BoT-SORT CMC behaviour, appearance/ReID behaviour",
-      "frame_rate": "actual source FPS per sequence (29.97 austin, 25.0 others). Metadata correctness, not tuning.",
-      "parameter_name_verification": "Names above were read from the pinned 2.6.0 source (trackers/core/<name>/tracker.py), not assumed. Any name that fails to bind at runtime must STOP the bake-off rather than be guessed."
-    }
-  },
-  "legacy_baseline": {
-    "implementation": "supervision==0.26.1 sv.ByteTrack via update_with_detections",
-    "rule": "NOT modified to imitate the normalised profile. It keeps its actual semantics, including the effective ~0.35 new-track gate (det_thresh = track_activation_threshold + 0.1) and its (0.10, 0.25) second-stage pool.",
-    "note": "The hidden legacy 0.35 behaviour is NOT the EyeCU score policy and must not be copied into modern trackers."
-  },
-  "constraints": {
-    "no_third_profile": true,
-    "no_threshold_sweep": true,
-    "no_optuna": true,
-    "no_per_match_thresholds": true,
-    "no_copied_dataset_configs": "SoccerNet / SportsMOT / MOT17 / DanceTrack tuned configs are forbidden",
-    "identical_inputs": "every tracker receives the same frames, detections, confidences, image coordinates, source FPS and frame order",
-    "reset_between_sequences": true
-  },
-  "adoption_criteria": {
+   ],
+   "status": "INVALID",
+   "why_invalid": "It required \"improves HOTA in >= 3 of 4 sequences\" and \"no sequence HOTA regression > 3\", which are arithmetic over four sequences. Austin was removed from the benchmark for a content reason before any tracker result existed, so the four-sequence form has no denominator. It is kept here because a criterion that vanishes is indistinguishable from one that was never met.",
+   "criteria": {
     "measured_on": "EYECU_SCORE_POLICY_V1, end-to-end task, against identity GT",
     "primary": [
-      "combined HOTA improvement >= 2 absolute points over the legacy baseline",
-      "combined AssA improvement >= 3 absolute points",
-      "IDF1 does not regress",
-      "improves HOTA in >= 3 of 4 sequences",
-      "no sequence HOTA regression > 3 absolute points"
+     "combined HOTA improvement >= 2 absolute points over the legacy baseline",
+     "combined AssA improvement >= 3 absolute points",
+     "IDF1 does not regress",
+     "improves HOTA in >= 3 of 4 sequences",
+     "no sequence HOTA regression > 3 absolute points"
     ],
     "invariants": [
-      "accepted human detection semantics preserved (>= 0.25 boundary unchanged)",
-      "ball remains isolated from human association",
-      "all four detector classes preserved; goalkeeper never normalised to player"
+     "accepted human detection semantics preserved (>= 0.25 boundary unchanged)",
+     "ball remains isolated from human association",
+     "all four detector classes preserved; goalkeeper never normalised to player"
     ],
     "runtime": "end-to-end regression <= 10% unless an accuracy gain is compelling and explicitly accepted",
     "frozen_before_results": true,
     "amendment_rule": "These criteria may not be altered after any bake-off result is seen."
-  },
-  "why_two_profiles": {
-    "LIBRARY_DEFAULTS": "How well does the package work out of the box with EyeCU scores?",
-    "EYECU_SCORE_POLICY_V1": "How do the association algorithms compare when their detector-score interface is aligned to EyeCU's pre-existing accepted/candidate policy?",
-    "not_post_result_tuning": "The score policy is declared before identity GT results exist and is derived from EyeCU's existing detector interface, not from tracker performance."
+   }
   }
+ ],
+ "revision_reason": {
+  "what_changed": "the benchmark, from 4 sequences to 3 independent matches",
+  "when": "before any tracker was run against the identity GT",
+  "why_this_is_not_post_hoc": "The change was forced by footage content -- a broadcast dissolve found by a human watching the video, corroborated by a pixel-only audit -- and no tracker output, metric or ranking was consulted at any point. Re-freezing criteria after seeing results would be indefensible; re-freezing them after the sample size legitimately changed, and before any result exists, is the only honest option available.",
+  "not_done": [
+   "no TRAIN footage added",
+   "no TEST footage added",
+   "no second correlated window added to restore four-sequence arithmetic"
+  ]
+ },
+ "reporting_views": {
+  "A_per_match": [
+   "women_1_239",
+   "youth_premier_league_1133",
+   "bayern_munich_3-1_chelsea_228"
+  ],
+  "B_official_combined": "TrackEval COMBINED_SEQ",
+  "C_macro_mean": "unweighted mean of the three per-match HOTA / AssA / IDF1 values, a descriptive robustness check",
+  "precedence": "B is the official result. C never replaces it -- it exists so that a combined figure carried by one sequence is visible as such."
+ }
 }

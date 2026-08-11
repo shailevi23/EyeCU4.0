@@ -1,0 +1,249 @@
+{
+ "design": {
+  "repeats": 3,
+  "warmup": 1,
+  "order": "arm order rotated between repeats",
+  "frames": "decoded once, shared by both arms",
+  "composed": false,
+  "note": "both arms are the same FootballTracker object differing only in tracker_backend",
+  "detector_cache": "cleared before every measured run; production passes a frame_id, so a warm cache would have served the second arm for free"
+ },
+ "decode_ms_per_frame": 4.944,
+ "arms": {
+  "legacy": {
+   "detector_ms_per_frame": 268.143,
+   "tracker_ms_per_frame": 2.505,
+   "total_ms_per_frame": 270.575,
+   "total_with_decode_ms_per_frame": 275.519,
+   "effective_fps": 3.7,
+   "per_sequence": {
+    "bayern_munich_3-1_chelsea_228": {
+     "detector": 352.801,
+     "tracker": 4.761
+    },
+    "women_1_239": {
+     "detector": 233.772,
+     "tracker": 1.447
+    },
+    "youth_premier_league_1133": {
+     "detector": 217.856,
+     "tracker": 1.306
+    }
+   },
+   "raw_per_repeat": {
+    "bayern_munich_3-1_chelsea_228": [
+     {
+      "detector_ms": 363.1044883333864,
+      "tracker_ms": 5.216717333290338,
+      "total_ms": 368.3212056666768,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 1
+     },
+     {
+      "detector_ms": 352.8010896667062,
+      "tracker_ms": 4.760942333280885,
+      "total_ms": 357.5620319999871,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 2
+     },
+     {
+      "detector_ms": 215.3043033334446,
+      "tracker_ms": 1.9185796665260568,
+      "total_ms": 217.22288299997066,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 3
+     }
+    ],
+    "women_1_239": [
+     {
+      "detector_ms": 354.15105300029,
+      "tracker_ms": 2.6412066664003455,
+      "total_ms": 356.79225966669037,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 1
+     },
+     {
+      "detector_ms": 233.77217066673134,
+      "tracker_ms": 1.2367049999496278,
+      "total_ms": 235.00887566668098,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 2
+     },
+     {
+      "detector_ms": 214.96591466634223,
+      "tracker_ms": 1.4471433336439077,
+      "total_ms": 216.41305799998614,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 3
+     }
+    ],
+    "youth_premier_league_1133": [
+     {
+      "detector_ms": 355.17154066673055,
+      "tracker_ms": 2.9466123332773955,
+      "total_ms": 358.1181530000079,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 1
+     },
+     {
+      "detector_ms": 217.85606100059036,
+      "tracker_ms": 1.297687999419092,
+      "total_ms": 219.15374900000947,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 2
+     },
+     {
+      "detector_ms": 213.55642633274934,
+      "tracker_ms": 1.3062540006164152,
+      "total_ms": 214.86268033336577,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 3
+     }
+    ]
+   },
+   "total_pct_vs_legacy": 0.0
+  },
+  "cbiou": {
+   "detector_ms_per_frame": 325.047,
+   "tracker_ms_per_frame": 2.271,
+   "total_ms_per_frame": 327.372,
+   "total_with_decode_ms_per_frame": 332.315,
+   "effective_fps": 3.05,
+   "per_sequence": {
+    "bayern_munich_3-1_chelsea_228": {
+     "detector": 335.953,
+     "tracker": 2.081
+    },
+    "women_1_239": {
+     "detector": 282.499,
+     "tracker": 2.373
+    },
+    "youth_premier_league_1133": {
+     "detector": 356.69,
+     "tracker": 2.359
+    }
+   },
+   "raw_per_repeat": {
+    "bayern_munich_3-1_chelsea_228": [
+     {
+      "detector_ms": 335.95263433283736,
+      "tracker_ms": 2.080662667140132,
+      "total_ms": 338.0332969999775,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 1
+     },
+     {
+      "detector_ms": 378.33706799977034,
+      "tracker_ms": 5.1230293335781125,
+      "total_ms": 383.4600973333484,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 2
+     },
+     {
+      "detector_ms": 211.72891300001842,
+      "tracker_ms": 1.9015696666610893,
+      "total_ms": 213.6304826666795,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 3
+     }
+    ],
+    "women_1_239": [
+     {
+      "detector_ms": 270.01546666695504,
+      "tracker_ms": 4.052604666358093,
+      "total_ms": 274.0680713333131,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 1
+     },
+     {
+      "detector_ms": 364.11099900006474,
+      "tracker_ms": 2.3730193332691365,
+      "total_ms": 366.48401833333384,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 2
+     },
+     {
+      "detector_ms": 282.49906566677964,
+      "tracker_ms": 2.345705666569605,
+      "total_ms": 284.84477133334923,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 3
+     }
+    ],
+    "youth_premier_league_1133": [
+     {
+      "detector_ms": 356.6897833341015,
+      "tracker_ms": 2.5469246659001024,
+      "total_ms": 359.23670800000156,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 1
+     },
+     {
+      "detector_ms": 362.3871213331101,
+      "tracker_ms": 2.3594593335777367,
+      "total_ms": 364.7465806666878,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 2
+     },
+     {
+      "detector_ms": 309.7745183336762,
+      "tracker_ms": 2.1834426662826445,
+      "total_ms": 311.95796099995886,
+      "frames": 300,
+      "detector_calls": 300,
+      "cache_hits": 0,
+      "repeat": 3
+     }
+    ]
+   },
+   "total_pct_vs_legacy": 20.991
+  }
+ },
+ "gate": {
+  "requirement": "total end-to-end regression <= +10%",
+  "observed_pct": 20.991,
+  "pass": false
+ },
+ "validity": {
+  "gate_closed": false,
+  "verdict": "MEASUREMENT INVALID FOR THE GATE -- control failure, not a CBIoU cost",
+  "why": "The detector is byte-identical across arms: same checkpoint, same decoded frames, same code path, and the sanity checks confirm 300 inferences per 300 frames with zero cache hits in every run. Yet its measured cost differs by +102.2 ms/frame between arms, and varies by 150 ms/frame within the legacy arm alone. The dominant term was not held constant, so the +20.99% total is machine variance attributed to whichever arm ran during a slow interval, not a property of CBIoU.",
+  "what_the_data_does_show": "Tracker-side, CBIoU is 0.44 ms/frame FASTER than legacy. Nothing in these numbers suggests CBIoU is expensive.",
+  "not_done": "CBIoU was not tuned, modified or re-run selectively, and the gate was not declared PASS on the strength of an argument about noise. A gate needs a valid measurement, not a rationalisation.",
+  "to_close_the_gate": "re-measure on an idle machine, or interleave arms at frame granularity so drift hits both equally, or pin detector cost by measuring it once and holding it fixed across arms"
+ }
+}

@@ -32,8 +32,12 @@ class TestPackage:
         errors, n = validate_pre(ROOT)
         assert n > 0 and errors == [], errors[:5]
 
-    def test_exactly_four_sequences(self, manifest):
+    def test_exactly_the_three_clean_matches(self, manifest):
         assert {s['sequence'] for s in manifest['sequences']} == EXPECTED
+        assert len(manifest['sequences']) == 3
+        assert manifest['benchmark'] == 'EyeCU-Tracking-Val-v1.1'
+        assert manifest['benchmark_definition']['total_frames'] == 900
+        assert manifest['benchmark_definition']['independent_matches'] == 3
 
     def test_no_test_source(self, manifest):
         from tools.build_derived_train import TEST_MATCHES, VAL_MATCHES
@@ -42,8 +46,7 @@ class TestPackage:
         assert srcs <= VAL_MATCHES
 
     def test_exact_frame_ranges(self, manifest):
-        expected = {'austin_fc_vs__club_tijuana_284': (284, 583),
-                    'bayern_munich_3-1_chelsea_228': (228, 527),
+        expected = {'bayern_munich_3-1_chelsea_228': (228, 527),
                     'women_1_239': (239, 538),
                     'youth_premier_league_1133': (1133, 1432)}
         for s in manifest['sequences']:
@@ -64,8 +67,19 @@ class TestPackage:
         assert manifest['target']['ball_excluded'] is True
         assert 'ball' in manifest['target']['not_targets']
 
-    def test_manifest_marks_gt_unannotated(self, manifest):
-        assert manifest['identity_gt_status'] == 'UNANNOTATED'
+    def test_manifest_never_claims_verified_without_a_qc_record(self, manifest):
+        """
+        The status may legitimately advance as sequences arrive; what must
+        never happen is VERIFIED without the QC confirmation that backs it.
+        Asserting the literal UNANNOTATED was only meaningful while sequences
+        were missing.
+        """
+        status = manifest['identity_gt_status']
+        assert status in ('UNANNOTATED', 'ANNOTATED_PENDING_QC', 'VERIFIED')
+        if status == 'VERIFIED':
+            from tools.confirm_tracking_gt_qc import qc_record_valid
+            ok, why = qc_record_valid(ROOT, manifest)
+            assert ok, why
 
     def test_manifest_records_manual_identity_provenance(self, manifest):
         assert 'NOT generated from tracker' in manifest['identity_provenance']
@@ -99,15 +113,38 @@ class TestPreannotationCarriesNoIdentity:
 
 
 class TestPostStageRefusesWithoutAnnotation:
-    def test_unannotated_package_cannot_pass_as_final_gt(self):
-        errors, n = validate_post(ROOT)
-        assert errors, 'an unannotated benchmark passed as final GT'
-        assert any('UNANNOTATED' in e for e in errors)
+    def test_annotated_but_unconfirmed_gt_cannot_pass_as_final(self):
+        """
+        Post validation may pass once every sequence is imported. The gate that
+        must hold regardless is the verified one: no QC record, no evaluation.
+        """
+        errors, _ = validate_verified(ROOT)
+        man = json.loads((ROOT / 'manifest.json').read_text(encoding='utf-8'))
+        if man['identity_gt_status'] != 'VERIFIED':
+            assert errors, 'unconfirmed GT passed the verified gate'
+            assert any('QC confirmation' in e or 'only VERIFIED' in e
+                       for e in errors), errors
 
-    def test_mot_export_refuses_without_annotation(self):
+    def test_mot_export_refuses_when_gt_is_tampered_with(self, tmp_path):
+        """
+        Once GT is VERIFIED the export legitimately succeeds, so the invariant
+        worth testing is the one that still bites: a VERIFIED manifest whose
+        annotations no longer match the QC record must not export.
+
+        It runs on a COPY. Pointing this at the real package would have the
+        test suite quietly regenerate the canonical MOT export, which is
+        exactly the kind of silent side effect this benchmark cannot afford.
+        """
         from tools.export_tracking_gt_mot import export
+        dst = tmp_path / 'gt'
+        shutil.copytree(ROOT, dst, ignore=shutil.ignore_patterns('img1', 'mot'))
+        man = json.loads((dst / 'manifest.json').read_text(encoding='utf-8'))
+        ann = dst / man['sequences'][0]['annotation_file_expected']
+        data = json.loads(ann.read_text(encoding='utf-8'))
+        data['boxes'] = data['boxes'][:-1]           # one box removed
+        ann.write_text(json.dumps(data), encoding='utf-8')
         with pytest.raises(SystemExit, match='REFUSING'):
-            export(ROOT, ROOT / 'mot')
+            export(dst, tmp_path / 'mot')
 
 
 def _annotated(tmp_path, boxes, roles=None, status='VERIFIED'):
@@ -236,6 +273,38 @@ class TestMotExport:
         sm = (tmp_path / 'mot' / 'seqmaps' / 'EyeCU-val.txt').read_text(encoding='utf-8')
         assert sm.splitlines()[0] == 'name'
         assert s['sequence'] in sm
+
+
+class TestShippedWomen1Occlusion:
+    """The annotator's occlusion marks are present in the canonical GT."""
+
+    ANN = ROOT / 'annotations' / 'women_1_239.json'
+    pytestmark = pytest.mark.skipif(not ANN.exists(),
+                                    reason='women_1 not imported')
+
+    @pytest.fixture(scope='class')
+    def boxes(self):
+        if not self.ANN.exists():
+            pytest.skip('women_1 not imported')
+        return json.loads(self.ANN.read_text(encoding='utf-8'))['boxes']
+
+    def test_every_box_has_a_boolean_occluded(self, boxes):
+        assert boxes
+        assert all(isinstance(b['occluded'], bool) for b in boxes)
+
+    def test_occlusion_matches_the_cvat_export(self, boxes):
+        import re
+        xml = (ROOT / 'cvat_exports' / 'women_1_239.xml').read_text(encoding='utf-8')
+        from_xml = len([m.group(0) for m in re.finditer(r'<box [^>]*>', xml)
+                        if 'occluded="1"' in m.group(0)
+                        and 'outside="1"' not in m.group(0)])
+        assert sum(b['occluded'] for b in boxes) == from_xml
+
+    def test_no_visibility_fraction_was_invented(self, boxes):
+        """occluded is what the annotator marked; a number would be fiction."""
+        for b in boxes:
+            assert 'visibility' not in b
+            assert b['occluded'] in (True, False)
 
 
 class TestGtStateMachine:

@@ -1,0 +1,65 @@
+{
+ "design": {
+  "repeats": 3,
+  "warmup": 1,
+  "order": "arm order rotated between repeats",
+  "frames": "decoded once, shared by both arms",
+  "composed": false,
+  "note": "both arms are the same FootballTracker object differing only in tracker_backend"
+ },
+ "decode_ms_per_frame": 3.578,
+ "arms": {
+  "legacy": {
+   "detector_ms_per_frame": 0.001,
+   "tracker_ms_per_frame": 4.582,
+   "total_ms_per_frame": 4.583,
+   "total_with_decode_ms_per_frame": 8.161,
+   "effective_fps": 218.21,
+   "per_sequence": {
+    "bayern_munich_3-1_chelsea_228": {
+     "detector": 0.0,
+     "tracker": 4.61
+    },
+    "women_1_239": {
+     "detector": 0.001,
+     "tracker": 4.602
+    },
+    "youth_premier_league_1133": {
+     "detector": 0.001,
+     "tracker": 4.535
+    }
+   },
+   "total_pct_vs_legacy": 0.0
+  },
+  "cbiou": {
+   "detector_ms_per_frame": 0.001,
+   "tracker_ms_per_frame": 4.827,
+   "total_ms_per_frame": 4.827,
+   "total_with_decode_ms_per_frame": 8.405,
+   "effective_fps": 207.15,
+   "per_sequence": {
+    "bayern_munich_3-1_chelsea_228": {
+     "detector": 0.001,
+     "tracker": 4.847
+    },
+    "women_1_239": {
+     "detector": 0.001,
+     "tracker": 4.853
+    },
+    "youth_premier_league_1133": {
+     "detector": 0.001,
+     "tracker": 4.78
+    }
+   },
+   "total_pct_vs_legacy": 5.338
+  }
+ },
+ "gate": {
+  "requirement": "total end-to-end regression <= +10%",
+  "observed_pct": 5.338,
+  "pass": true
+ },
+ "INVALID": true,
+ "why_invalid": "FootballTracker.detect_objects_in_frames calls detector.detect(frame, abs_idx) with a frame_id, which hits the detector's in-memory cache. The first arm measured populated that cache and every later run -- including the whole second arm -- was served from it. The 0.00 ms/frame detector figure is the symptom: a 155 ms/frame CPU detector cannot cost nothing. The comparison was between one cold arm and one warm one, so the +5.34% it reported means nothing and must not be quoted.",
+ "superseded_by": "runtime.json, produced with detector.clear_cache() before every measured run"
+}

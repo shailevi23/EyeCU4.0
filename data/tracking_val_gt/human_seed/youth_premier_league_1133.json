@@ -1,0 +1,416 @@
+{
+ "sequence": "youth_premier_league_1133",
+ "purpose": "reference geometry for frames already labelled during detector annotation",
+ "provenance_status": "UNCONFIRMED",
+ "authoritative": false,
+ "usage": "Consult during annotation and cross-check afterwards. Do NOT adopt as tracking GT.",
+ "contains_identity": false,
+ "identity_note": "Identity is NOT present and cannot be derived from this file. It remains manual work.",
+ "geometry": "absolute pixels [x1,y1,x2,y2] on 640x360 package frames",
+ "class_mapping": {
+  "reused": [
+   "goalkeeper",
+   "player",
+   "referee"
+  ],
+  "dropped": [
+   "ball"
+  ]
+ },
+ "provenance": {
+  "source": "data/labels",
+  "known": "drafted by the Roboflow model recorded in model_draft_record, then modified by an unrecorded process (boxes added, classes changed)",
+  "unknown": "whether, by whom, and to what standard those modifications were reviewed; the label pipeline carries no reviewed flag, only status=draft",
+  "overlap_established_by": "source frame provenance (data/manifest.json frame_index)",
+  "overlap_confirmed_by": "pixel comparison against the packaged frame and its neighbours",
+  "alignment_margin_required": 2.0,
+  "is_not": "the frozen detector preannotation, which is model output and is left untouched"
+ },
+ "frames": [
+  {
+   "package_frame": 68,
+   "source_frame": 1200,
+   "detector_label_file": "data/labels/youth_premier_league/youth_premier_league_001200.txt",
+   "detector_label_sha256": "7c60fb6a33f62a2a8681904304cdf805f2720e926ac3617035d566aaa4e9e39b",
+   "model_draft_record": "data/pseudo_meta/youth_premier_league/youth_premier_league_001200.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.147,
+    "nearest_neighbour_ratio": 12.36
+   },
+   "boxes": [
+    {
+     "bbox": [
+      438.4,
+      81.57,
+      468.93,
+      188.66
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      506.13,
+      131.71,
+      550.33,
+      243.07
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      55.79,
+      198.56,
+      115.86,
+      333.39
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      105.12,
+      189.74,
+      142.79,
+      302.7
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      384.86,
+      277.98,
+      422.0,
+      360.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      560.26,
+      85.56,
+      587.93,
+      188.91
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      453.07,
+      87.7,
+      488.93,
+      194.26
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 143,
+   "source_frame": 1275,
+   "detector_label_file": "data/labels/youth_premier_league/youth_premier_league_001275.txt",
+   "detector_label_sha256": "328064ac0ff1bd000892959139dff22d25ecb181f96fd43470a8d73f37d7a510",
+   "model_draft_record": "data/pseudo_meta/youth_premier_league/youth_premier_league_001275.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.551,
+    "nearest_neighbour_ratio": 4.2
+   },
+   "boxes": [
+    {
+     "bbox": [
+      514.87,
+      118.99,
+      540.14,
+      193.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      0.01,
+      169.66,
+      34.74,
+      262.34
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      0.0,
+      239.0,
+      25.73,
+      331.81
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      384.27,
+      105.8,
+      410.47,
+      178.01
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      294.94,
+      125.33,
+      321.41,
+      195.47
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      473.33,
+      110.39,
+      497.33,
+      182.01
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      301.2,
+      71.52,
+      326.74,
+      132.19
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      420.0,
+      154.92,
+      467.0,
+      246.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      193.34,
+      169.87,
+      221.94,
+      253.35
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 218,
+   "source_frame": 1350,
+   "detector_label_file": "data/labels/youth_premier_league/youth_premier_league_001350.txt",
+   "detector_label_sha256": "59bd5a4d9fce5d61c7dc3c22f61412690d7de8f55254d1158a8c0fac9c3313ac",
+   "model_draft_record": "data/pseudo_meta/youth_premier_league/youth_premier_league_001350.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.445,
+    "nearest_neighbour_ratio": 7.5
+   },
+   "boxes": [
+    {
+     "bbox": [
+      309.73,
+      212.53,
+      339.13,
+      281.2
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      626.06,
+      148.0,
+      639.99,
+      199.4
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      393.66,
+      182.31,
+      417.79,
+      252.18
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      194.27,
+      166.91,
+      229.54,
+      247.32
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      291.86,
+      92.23,
+      313.8,
+      147.03
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      264.4,
+      113.3,
+      291.66,
+      164.37
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      176.13,
+      107.69,
+      208.19,
+      161.43
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 293,
+   "source_frame": 1425,
+   "detector_label_file": "data/labels/youth_premier_league/youth_premier_league_001425.txt",
+   "detector_label_sha256": "2af77582ba26e82187a6d932604d2f42237be973c5790519965f8b7e76be9bbc",
+   "model_draft_record": "data/pseudo_meta/youth_premier_league/youth_premier_league_001425.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.425,
+    "nearest_neighbour_ratio": 6.92
+   },
+   "boxes": [
+    {
+     "bbox": [
+      294.0,
+      122.0,
+      312.0,
+      166.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      238.0,
+      100.0,
+      255.0,
+      138.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      324.8,
+      173.0,
+      353.66,
+      226.54
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      2.14,
+      136.0,
+      28.01,
+      186.14
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      141.0,
+      103.0,
+      158.0,
+      147.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      248.0,
+      314.0,
+      274.0,
+      360.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      96.0,
+      131.0,
+      124.0,
+      182.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      480.0,
+      158.0,
+      502.0,
+      214.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      533.6,
+      196.0,
+      566.0,
+      251.53
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      214.0,
+      108.0,
+      225.0,
+      154.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      385.0,
+      183.0,
+      408.2,
+      239.34
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      94.0,
+      165.6,
+      119.54,
+      228.74
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      514.0,
+      155.0,
+      529.0,
+      201.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      339.54,
+      278.01,
+      373.01,
+      355.08
+     ],
+     "role": "player"
+    }
+   ]
+  }
+ ]
+}

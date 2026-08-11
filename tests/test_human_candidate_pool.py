@@ -13,6 +13,13 @@ These tests exercise the mechanism itself -- an identity surviving a dip below
 the accepted threshold -- rather than just asserting a flag is plumbed through.
 """
 
+# LEGACY-SPECIFIC: this module tests ByteTrack's own second association
+# stage and its hardcoded 0.1 low-score floor. Those are sv.ByteTrack
+# mechanics, not EyeCU product invariants, so the backend is pinned rather
+# than parametrised. The backend-invariant versions of ball isolation,
+# goalkeeper semantics and identity attachment live in
+# tests/test_cbiou_integration.py, parametrised over both backends.
+
 import numpy as np
 import pytest
 
@@ -38,7 +45,7 @@ class Stub:
 
 
 def run(script, pool):
-    t = FootballTracker(detector=Stub(script), persist_cache=False,
+    t = FootballTracker(tracker_backend='legacy', detector=Stub(script), persist_cache=False,
                         human_candidate_pool=pool)
     frames = [np.zeros((360, 640, 3), dtype=np.uint8) for _ in script]
     return t.get_object_tracks(frames, read_from_cache=False, cache_path=None)
@@ -120,7 +127,7 @@ class TestPoolBoundaries:
         seen = []
         script = [[det('player', 10, 10, 50, 110, 0.9),
                    {'bbox': [300, 200, 306, 206], 'class': 'ball', 'confidence': 0.15}]] * 3
-        t = FootballTracker(detector=Stub(script), persist_cache=False,
+        t = FootballTracker(tracker_backend='legacy', detector=Stub(script), persist_cache=False,
                             human_candidate_pool=True)
         real = t.tracker.update_with_detections
         monkeypatch.setattr(t.tracker, 'update_with_detections',

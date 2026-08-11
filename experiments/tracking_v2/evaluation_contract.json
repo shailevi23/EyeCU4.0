@@ -1,0 +1,62 @@
+{
+ "record": "EyeCU tracking evaluation contract",
+ "status": "FROZEN before any tracker has been run against this GT",
+ "frozen": "2026-08-11",
+ "benchmark": "EyeCU-Tracking-Val-v1.1",
+ "clean_sequences": [
+  "women_1_239",
+  "youth_premier_league_1133",
+  "bayern_munich_3-1_chelsea_228"
+ ],
+ "independent_matches": 3,
+ "total_frames": 900,
+ "excluded": {
+  "austin_fc_vs__club_tijuana_284": "TRANSITION_STRESS_CASE; never enters any clean aggregate"
+ },
+ "profiles": {
+  "primary_production": "EYECU_SCORE_POLICY_V1",
+  "diagnostic_only": "LIBRARY_DEFAULTS",
+  "rule": "LIBRARY_DEFAULTS cannot alone select the production winner."
+ },
+ "official_result": "TrackEval COMBINED_SEQ",
+ "also_reported": {
+  "per_sequence": "HOTA / AssA / IDF1 for each of the three matches",
+  "macro_mean": "unweighted mean of the three per-sequence values, a DESCRIPTIVE robustness check",
+  "precedence": "COMBINED_SEQ is the official figure. The macro mean never replaces it; it exists so a combined number carried by one sequence is visible as such."
+ },
+ "adoption_criteria": {
+  "spec_version": "1.1",
+  "file": "experiments/tracking_v2/adoption_criteria.json",
+  "sha256": "0c987578baa023e3cc44e40065e31ef54d5ce2c8da01ffb7780c104bda8b6f76",
+  "primary": [
+   "combined HOTA improvement >= +2.0 absolute points over the legacy baseline",
+   "combined AssA improvement >= +3.0 absolute points",
+   "combined IDF1 regression <= 0.5 absolute point",
+   "HOTA improves in >= 2 of the 3 independent matches",
+   "the remaining match must not regress by > 2.0 HOTA points",
+   "no catastrophic identity failure in sequence-level QC",
+   "EyeCU semantic / ball / output invariants preserved",
+   "end-to-end runtime regression <= 10%, unless an explicit accuracy/runtime tradeoff is approved AFTER the measurements and BEFORE production adoption"
+  ],
+  "unchanged_since_freezing": true
+ },
+ "trackeval_protocol": "experiments/tracking_v2/trackeval_protocol.json",
+ "gt": {
+  "identity_gt_status": "VERIFIED",
+  "qc_confirmation": "qc/qc_confirmation.json",
+  "reviewer": "ShaiLevi23",
+  "artifact_sha256": {
+   "annotations/bayern_munich_3-1_chelsea_228.json": "603fe238625067aa7f55c7d1d579fdb39d55c5d5186d62b871e33c56e0338255",
+   "roles/bayern_munich_3-1_chelsea_228.json": "eba86500c8e65915d3d024b62720ead0978a42af2fac87b2b99bfd8c73417a97",
+   "annotations/women_1_239.json": "12feeaf12091b90132692b5bbf49ea39a8dddc2306a70e8c14a98105a7d03408",
+   "roles/women_1_239.json": "d66f3d93ebe79cac51eb0549a16128d32161936be4d5c59653e39643b0e904a4",
+   "annotations/youth_premier_league_1133.json": "b3632c63242b90d1f143a95a3f7bc5bcc06b08b94f8e93000815c060e468fd79",
+   "roles/youth_premier_league_1133.json": "89f254f67cbf66cc3981a5d692522b573ba34dde1c63b7a960082e15d42d3691"
+  }
+ },
+ "not_yet_done": [
+  "no tracker has been run",
+  "no HOTA/AssA/IDF1 computed",
+  "TEST never accessed"
+ ]
+}

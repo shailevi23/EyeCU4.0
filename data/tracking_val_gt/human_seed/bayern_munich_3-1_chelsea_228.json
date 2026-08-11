@@ -1,0 +1,1800 @@
+{
+ "sequence": "bayern_munich_3-1_chelsea_228",
+ "purpose": "reference geometry for frames already labelled during detector annotation",
+ "provenance_status": "UNCONFIRMED",
+ "authoritative": false,
+ "usage": "Consult during annotation and cross-check afterwards. Do NOT adopt as tracking GT.",
+ "contains_identity": false,
+ "identity_note": "Identity is NOT present and cannot be derived from this file. It remains manual work.",
+ "geometry": "absolute pixels [x1,y1,x2,y2] on 640x360 package frames",
+ "class_mapping": {
+  "reused": [
+   "goalkeeper",
+   "player",
+   "referee"
+  ],
+  "dropped": [
+   "ball"
+  ]
+ },
+ "provenance": {
+  "source": "data/labels",
+  "known": "drafted by the Roboflow model recorded in model_draft_record, then modified by an unrecorded process (boxes added, classes changed)",
+  "unknown": "whether, by whom, and to what standard those modifications were reviewed; the label pipeline carries no reviewed flag, only status=draft",
+  "overlap_established_by": "source frame provenance (data/manifest.json frame_index)",
+  "overlap_confirmed_by": "pixel comparison against the packaged frame and its neighbours",
+  "alignment_margin_required": 2.0,
+  "is_not": "the frozen detector preannotation, which is model output and is left untouched"
+ },
+ "frames": [
+  {
+   "package_frame": 23,
+   "source_frame": 250,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000250.txt",
+   "detector_label_sha256": "f12b59e1f035aa549915dffcc38e40ab0e83814f6159b12bd08edab93da4a864",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000250.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.059,
+    "nearest_neighbour_ratio": 2.76
+   },
+   "boxes": [
+    {
+     "bbox": [
+      159.0,
+      164.0,
+      167.0,
+      186.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      509.0,
+      197.0,
+      520.0,
+      220.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      285.0,
+      201.0,
+      295.0,
+      222.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      271.0,
+      229.0,
+      284.0,
+      253.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      360.0,
+      84.0,
+      367.0,
+      103.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      506.0,
+      343.0,
+      524.0,
+      360.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      441.0,
+      126.0,
+      450.0,
+      145.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      499.0,
+      93.0,
+      506.0,
+      111.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      417.0,
+      122.0,
+      424.0,
+      140.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      285.0,
+      124.0,
+      292.0,
+      143.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      429.0,
+      109.0,
+      435.0,
+      127.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      471.0,
+      81.0,
+      477.0,
+      96.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      481.0,
+      86.0,
+      488.0,
+      101.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      342.0,
+      82.0,
+      348.0,
+      98.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      41.0,
+      107.0,
+      49.0,
+      126.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      313.0,
+      150.0,
+      321.0,
+      172.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      191.0,
+      85.0,
+      198.0,
+      102.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      285.0,
+      69.0,
+      291.0,
+      85.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      377.0,
+      71.0,
+      383.0,
+      86.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      275.0,
+      123.0,
+      282.0,
+      142.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      469.0,
+      282.0,
+      483.0,
+      314.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      268.0,
+      60.0,
+      275.0,
+      74.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      234.0,
+      51.0,
+      242.0,
+      67.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      369.0,
+      66.0,
+      376.0,
+      80.0
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 123,
+   "source_frame": 350,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000350.txt",
+   "detector_label_sha256": "9581dabd495ddf15fcd216c7e0420b5c6274998a3eb9826f67953722f80dbd82",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000350.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.066,
+    "nearest_neighbour_ratio": 2.27
+   },
+   "boxes": [
+    {
+     "bbox": [
+      456.0,
+      285.0,
+      470.0,
+      313.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      351.0,
+      111.0,
+      360.0,
+      128.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      283.0,
+      82.0,
+      291.0,
+      99.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      292.0,
+      136.0,
+      299.0,
+      154.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      361.0,
+      203.0,
+      374.0,
+      224.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      112.0,
+      151.0,
+      119.0,
+      171.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      452.0,
+      85.0,
+      459.0,
+      101.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      473.0,
+      176.0,
+      480.0,
+      198.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      387.0,
+      100.0,
+      395.0,
+      117.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      194.0,
+      96.0,
+      202.0,
+      112.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      245.0,
+      106.0,
+      252.0,
+      124.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      11.0,
+      110.0,
+      21.0,
+      129.0
+     ],
+     "role": "goalkeeper"
+    },
+    {
+     "bbox": [
+      321.0,
+      90.0,
+      328.0,
+      109.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      360.0,
+      188.0,
+      368.0,
+      209.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      405.0,
+      75.0,
+      413.0,
+      89.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      333.0,
+      105.0,
+      340.0,
+      122.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      236.0,
+      85.0,
+      244.0,
+      102.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      289.0,
+      121.0,
+      295.0,
+      136.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      268.0,
+      84.0,
+      275.0,
+      98.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      267.0,
+      71.0,
+      272.0,
+      86.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      430.0,
+      77.0,
+      437.0,
+      93.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      255.0,
+      57.0,
+      260.0,
+      72.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      209.0,
+      45.0,
+      215.0,
+      60.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      496.0,
+      304.0,
+      506.0,
+      333.0
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 223,
+   "source_frame": 450,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000450.txt",
+   "detector_label_sha256": "d77b38bd55667de8bf968007f43d988c902915dadb0eee6b685f35d6de17c010",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000450.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.057,
+    "nearest_neighbour_ratio": 3.19
+   },
+   "boxes": [
+    {
+     "bbox": [
+      520.0,
+      294.0,
+      537.0,
+      321.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      412.0,
+      120.0,
+      421.0,
+      135.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      469.0,
+      283.0,
+      486.0,
+      311.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      264.0,
+      133.0,
+      271.0,
+      150.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      428.0,
+      201.0,
+      438.0,
+      220.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      476.0,
+      180.0,
+      486.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      299.0,
+      137.0,
+      306.0,
+      154.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      194.0,
+      166.0,
+      203.0,
+      184.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      308.0,
+      87.0,
+      315.0,
+      103.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      214.0,
+      112.0,
+      222.0,
+      128.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      397.0,
+      194.0,
+      404.0,
+      215.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      284.0,
+      74.0,
+      291.0,
+      88.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      242.0,
+      114.0,
+      248.0,
+      132.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      368.0,
+      102.0,
+      374.0,
+      119.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      337.0,
+      141.0,
+      346.0,
+      159.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      460.0,
+      92.0,
+      466.0,
+      109.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      386.0,
+      111.0,
+      395.0,
+      128.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      177.0,
+      97.0,
+      186.0,
+      115.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      291.0,
+      60.0,
+      297.0,
+      76.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      380.0,
+      101.0,
+      390.0,
+      117.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      451.79,
+      82.52,
+      458.54,
+      98.52
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      221.0,
+      38.0,
+      229.0,
+      53.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      458.36,
+      80.88,
+      462.73,
+      96.45
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 241,
+   "source_frame": 468,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000468.txt",
+   "detector_label_sha256": "f0f5e3f3ebe183a631ce0f1ad50b6368fa1cf7f117a2dfe18b5af50e79f55a22",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000468.json",
+   "alignment": {
+    "mad_to_packaged_frame": 1.008,
+    "nearest_neighbour_ratio": 4.47
+   },
+   "boxes": [
+    {
+     "bbox": [
+      487.0,
+      278.0,
+      502.0,
+      305.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      436.0,
+      207.0,
+      451.0,
+      228.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      470.0,
+      181.0,
+      485.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      296.0,
+      139.0,
+      303.0,
+      156.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      262.0,
+      142.0,
+      269.0,
+      160.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      176.0,
+      100.0,
+      185.0,
+      117.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      224.0,
+      113.0,
+      231.0,
+      128.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      374.0,
+      197.0,
+      384.0,
+      219.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      340.0,
+      146.0,
+      349.0,
+      164.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      355.0,
+      104.0,
+      363.0,
+      120.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      248.0,
+      115.0,
+      255.0,
+      133.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      543.0,
+      291.0,
+      553.0,
+      319.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      459.0,
+      94.0,
+      467.0,
+      112.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      394.0,
+      104.0,
+      406.0,
+      128.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      282.0,
+      74.0,
+      288.0,
+      88.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      421.0,
+      121.0,
+      431.0,
+      139.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      308.0,
+      88.0,
+      314.0,
+      104.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      450.0,
+      83.0,
+      458.0,
+      98.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      213.0,
+      172.0,
+      223.0,
+      192.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      217.0,
+      35.0,
+      224.0,
+      51.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      283.0,
+      61.0,
+      289.0,
+      75.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      457.0,
+      81.0,
+      464.0,
+      97.0
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 248,
+   "source_frame": 475,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000475.txt",
+   "detector_label_sha256": "ce98598bb3e3436d46e731a2a0bf4b75b1aeecdd9f0cd6bcf7d0c063d0c8a3bd",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000475.json",
+   "alignment": {
+    "mad_to_packaged_frame": 0.996,
+    "nearest_neighbour_ratio": 4.54
+   },
+   "boxes": [
+    {
+     "bbox": [
+      489.0,
+      278.0,
+      503.0,
+      304.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      535.0,
+      288.0,
+      554.0,
+      317.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      440.0,
+      209.0,
+      452.0,
+      231.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      468.0,
+      182.0,
+      480.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      345.0,
+      104.0,
+      354.0,
+      120.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      171.0,
+      102.0,
+      177.0,
+      119.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      359.0,
+      199.0,
+      366.0,
+      222.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      396.0,
+      105.0,
+      404.0,
+      122.32
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      289.0,
+      143.0,
+      296.0,
+      159.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      254.0,
+      146.0,
+      262.0,
+      167.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      419.0,
+      121.0,
+      431.0,
+      139.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      336.0,
+      148.0,
+      344.0,
+      166.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      218.0,
+      175.0,
+      225.0,
+      196.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      221.0,
+      115.0,
+      228.0,
+      133.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      451.0,
+      95.0,
+      462.0,
+      112.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      301.0,
+      89.0,
+      308.0,
+      106.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      244.0,
+      117.0,
+      252.0,
+      135.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      274.0,
+      62.0,
+      281.0,
+      78.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      449.0,
+      81.0,
+      456.0,
+      98.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      274.0,
+      74.0,
+      280.0,
+      89.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      440.0,
+      85.0,
+      449.0,
+      99.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      208.73,
+      38.64,
+      216.13,
+      49.84
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      398.06,
+      116.17,
+      403.5,
+      132.64
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 253,
+   "source_frame": 480,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000480.txt",
+   "detector_label_sha256": "38aec0261dd93ce97a820d4ac8a3a603738383baf54b633bf0789a5f776c7195",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000480.json",
+   "alignment": {
+    "mad_to_packaged_frame": 0.991,
+    "nearest_neighbour_ratio": 4.53
+   },
+   "boxes": [
+    {
+     "bbox": [
+      489.0,
+      277.0,
+      502.0,
+      304.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      443.0,
+      211.0,
+      453.0,
+      235.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      539.0,
+      285.0,
+      554.0,
+      315.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      333.0,
+      149.0,
+      342.0,
+      168.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      346.0,
+      201.0,
+      354.0,
+      226.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      296.0,
+      90.0,
+      304.0,
+      106.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      165.0,
+      104.0,
+      173.0,
+      121.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      465.0,
+      182.0,
+      478.0,
+      202.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      249.0,
+      148.0,
+      256.0,
+      168.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      420.0,
+      123.0,
+      428.0,
+      141.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      285.0,
+      145.0,
+      292.0,
+      160.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      340.0,
+      106.0,
+      346.0,
+      122.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      217.0,
+      116.0,
+      230.0,
+      135.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      448.0,
+      97.0,
+      456.0,
+      113.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      268.0,
+      74.0,
+      274.0,
+      90.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      241.0,
+      117.0,
+      251.0,
+      135.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      219.0,
+      176.0,
+      234.0,
+      200.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      445.0,
+      83.0,
+      452.0,
+      97.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      436.0,
+      84.0,
+      443.0,
+      99.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      394.26,
+      106.0,
+      404.01,
+      119.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      267.0,
+      64.0,
+      275.0,
+      80.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      204.11,
+      39.04,
+      209.74,
+      52.42
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      395.14,
+      115.88,
+      403.39,
+      130.76
+     ],
+     "role": "player"
+    }
+   ]
+  },
+  {
+   "package_frame": 268,
+   "source_frame": 495,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000495.txt",
+   "detector_label_sha256": "7dbb9ff52c9b700792b786fdfe6af655404f7e948ceb0198f9eadaf527c73521",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000495.json",
+   "alignment": {
+    "mad_to_packaged_frame": 0.937,
+    "nearest_neighbour_ratio": 4.7
+   },
+   "boxes": [
+    {
+     "bbox": [
+      443.0,
+      215.0,
+      459.0,
+      239.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      272.0,
+      150.0,
+      278.0,
+      168.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      321.0,
+      108.0,
+      329.0,
+      128.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      430.0,
+      99.0,
+      441.0,
+      116.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      216.0,
+      184.0,
+      225.0,
+      205.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      150.0,
+      110.0,
+      158.0,
+      127.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      235.0,
+      161.0,
+      245.0,
+      182.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      314.0,
+      207.0,
+      323.0,
+      232.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      487.0,
+      274.0,
+      500.0,
+      300.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      429.0,
+      84.0,
+      435.0,
+      101.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      283.0,
+      94.0,
+      290.0,
+      112.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      237.0,
+      119.0,
+      244.0,
+      136.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      214.0,
+      118.0,
+      221.0,
+      136.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      417.0,
+      83.0,
+      426.0,
+      100.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      411.12,
+      127.0,
+      421.0,
+      145.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      325.0,
+      156.0,
+      335.0,
+      175.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      463.0,
+      184.0,
+      476.0,
+      206.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      533.0,
+      282.0,
+      552.0,
+      311.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      250.0,
+      77.0,
+      257.0,
+      93.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      249.0,
+      65.0,
+      256.0,
+      81.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      394.0,
+      111.0,
+      402.0,
+      129.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      393.0,
+      118.0,
+      401.0,
+      132.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      182.93,
+      39.43,
+      189.68,
+      53.4
+     ],
+     "role": "referee"
+    }
+   ]
+  },
+  {
+   "package_frame": 273,
+   "source_frame": 500,
+   "detector_label_file": "data/labels/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000500.txt",
+   "detector_label_sha256": "da1e30f9a7d2315318eb68db5fe7fbcf53f472aa196a4a275e80949306d4d79c",
+   "model_draft_record": "data/pseudo_meta/bayern_munich_3-1_chelsea/bayern_munich_3-1_chelsea_000500.json",
+   "alignment": {
+    "mad_to_packaged_frame": 0.959,
+    "nearest_neighbour_ratio": 4.59
+   },
+   "boxes": [
+    {
+     "bbox": [
+      488.0,
+      275.0,
+      499.0,
+      301.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      409.0,
+      127.0,
+      421.0,
+      144.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      304.0,
+      209.0,
+      312.0,
+      234.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      323.0,
+      156.0,
+      333.0,
+      176.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      464.0,
+      185.0,
+      476.0,
+      207.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      230.0,
+      163.0,
+      239.0,
+      184.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      213.0,
+      185.0,
+      225.0,
+      208.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      441.0,
+      217.0,
+      452.0,
+      238.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      146.0,
+      112.0,
+      153.0,
+      129.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      428.0,
+      99.0,
+      436.0,
+      117.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      267.0,
+      153.0,
+      273.0,
+      170.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      423.0,
+      83.0,
+      431.0,
+      100.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      537.0,
+      280.0,
+      551.0,
+      309.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      412.0,
+      83.0,
+      419.0,
+      99.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      279.0,
+      95.0,
+      287.0,
+      112.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      317.0,
+      109.0,
+      324.0,
+      127.0
+     ],
+     "role": "referee"
+    },
+    {
+     "bbox": [
+      232.0,
+      120.0,
+      243.0,
+      139.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      244.0,
+      78.0,
+      251.0,
+      95.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      393.0,
+      114.0,
+      401.0,
+      132.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      212.0,
+      120.0,
+      220.0,
+      138.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      244.0,
+      67.0,
+      250.0,
+      82.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      392.0,
+      120.0,
+      400.0,
+      135.0
+     ],
+     "role": "player"
+    },
+    {
+     "bbox": [
+      176.0,
+      37.0,
+      185.0,
+      53.0
+     ],
+     "role": "referee"
+    }
+   ]
+  }
+ ]
+}

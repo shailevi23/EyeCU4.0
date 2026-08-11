@@ -1,0 +1,40 @@
+{
+ "tracker": "CBIoUTracker",
+ "profile": "LIBRARY_DEFAULTS",
+ "requested_kwargs": {
+  "frame_rate": 25.0
+ },
+ "effective_config": {
+  "maximum_frames_without_update": 25,
+  "maximum_time_without_update": 1.0,
+  "minimum_consecutive_frames": 2,
+  "minimum_iou_threshold_first_assoc": 0.2,
+  "minimum_iou_threshold_second_assoc": 0.5,
+  "minimum_iou_threshold_unconfirmed_assoc": 0.3,
+  "track_activation_threshold": 0.7,
+  "high_conf_det_threshold": 0.6,
+  "instant_first_frame_activation": true,
+  "tracks": "list",
+  "state_estimator_class": "ABCMeta",
+  "iou": "IoU",
+  "frame_id": 300,
+  "enable_cmc": false,
+  "cmc": null,
+  "iou_first": "BIoU",
+  "iou_second": "BIoU",
+  "buffer_ratio_first": 0.3,
+  "buffer_ratio_second": 0.5
+ },
+ "python": "3.10.0",
+ "trackers_version": "not exposed",
+ "trackers_origin": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\t2_env\\venv\\lib\\site-packages\\trackers\\__init__.py",
+ "supervision_version": "0.30.0",
+ "numpy_version": "2.2.6",
+ "frames": 300,
+ "detections_supplied": 10256,
+ "min_conf_exclusive": 0.01,
+ "output_rows": 6956,
+ "tracker_update_seconds": 0.5321,
+ "tracker_ms_per_frame": 1.7738,
+ "distinct_track_ids": 26
+}

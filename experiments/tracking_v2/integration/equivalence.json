@@ -1,0 +1,30 @@
+{
+ "reference": "experiments/tracking_v2/t2_corrected/outputs/EyeCU-val/CBIoUTracker/data",
+ "sequences": {
+  "bayern_munich_3-1_chelsea_228": {
+   "issues": [],
+   "reference_rows": 6956,
+   "integrated_rows": 6956,
+   "max_box_delta": 0.0,
+   "identical_after_normalisation": true,
+   "byte_identical_unsorted": true
+  },
+  "women_1_239": {
+   "issues": [],
+   "reference_rows": 2755,
+   "integrated_rows": 2755,
+   "max_box_delta": 0.0,
+   "identical_after_normalisation": true,
+   "byte_identical_unsorted": true
+  },
+  "youth_premier_league_1133": {
+   "issues": [],
+   "reference_rows": 2537,
+   "integrated_rows": 2537,
+   "max_box_delta": 0.0,
+   "identical_after_normalisation": true,
+   "byte_identical_unsorted": true
+  }
+ },
+ "exact_equivalence": true
+}

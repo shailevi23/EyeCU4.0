@@ -7,6 +7,8 @@ so that a future upgrade which changes these boundaries fails loudly instead of
 silently invalidating the audit. Nothing here modifies supervision.
 """
 
+# LEGACY-SPECIFIC: this audits the supervision wrapper itself.
+
 import json
 from pathlib import Path
 
@@ -52,11 +54,24 @@ class TestInstalledSemantics:
         assert sv.ByteTrack(frame_rate=60).max_time_lost == 60
 
     def test_production_uses_bare_constructor(self):
-        """EyeCU passes no arguments, so frame_rate is 30 even on 25 fps video."""
+        """
+        The LEGACY backend passes no arguments, so its frame_rate is 30 even on
+        25 fps video -- the historical semantics this audit documented.
+
+        Checked on the sv.ByteTrack construction specifically rather than by
+        searching the whole file: the CBIoU backend legitimately receives a
+        frame_rate, and a file-wide string check would confuse the two.
+        """
         src = (Path(__file__).resolve().parents[1] /
                'trackers' / 'football_tracker.py').read_text(encoding='utf-8')
         assert 'sv.ByteTrack()' in src
-        assert 'frame_rate=' not in src
+        constructions = [l.strip() for l in src.splitlines()
+                         if 'self.tracker = sv.ByteTrack(' in l]
+        assert constructions, 'legacy backend construction not found'
+        for line in constructions:
+            assert line == 'self.tracker = sv.ByteTrack()', line
+        assert 'CBIoUTracker(frame_rate=' in src, (
+            'CBIoU is given the real frame rate; only legacy is left bare')
 
 
 class TestConfidenceBoundaries:
@@ -164,7 +179,7 @@ class TestDiagnosticRunnerSafety:
                 return [{'bbox': [10, 10, 50, 110], 'class': 'player',
                          'confidence': 0.9}]
 
-        t = FootballTracker(detector=Stub(), persist_cache=False)
+        t = FootballTracker(tracker_backend='legacy', detector=Stub(), persist_cache=False)
         frames = [np.zeros((360, 640, 3), dtype=np.uint8) for _ in range(3)]
         tracks = t.get_object_tracks(frames, read_from_cache=False, cache_path=None)
         assert any(f for f in tracks['players'])

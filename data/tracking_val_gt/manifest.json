@@ -1,10 +1,10 @@
 {
-  "benchmark": "EyeCU-Tracking-Val-v1",
+  "benchmark": "EyeCU-Tracking-Val-v1.1",
   "annotation_schema_version": "1.0",
   "created": "2026-08-09T19:46:04+00:00",
   "code_commit": "b25c840214cfc1c0c72a1d80fb662127423940f9",
   "build_tool_sha256": "49e21a57238360d10a6e59b4efb7c1bd202cc60baaba73abe9c8c56ddde1b5a8",
-  "identity_gt_status": "UNANNOTATED",
+  "identity_gt_status": "VERIFIED",
   "identity_provenance": "Identity ground truth MUST be assigned manually by a human and was NOT generated from tracker IDs. Preannotations contain box geometry and a detector class hint only -- no tracker id, no temporal link, no identity.",
   "target": {
     "classes": [
@@ -48,33 +48,6 @@
     "accepted_human_threshold": 0.25
   },
   "sequences": [
-    {
-      "sequence": "austin_fc_vs__club_tijuana_284",
-      "match": "austin_fc_vs__club_tijuana",
-      "source_video": "input-videos/Austin FC vs. Club Tijuana.mp4",
-      "source_video_sha256": "e9b843537c2be6276b068d8c169815106564f2c2dc71c666776abf4ad581904c",
-      "decoded_frames_sha256": "495be3eef4f34ef0e297142e8d6922e7d24e1df3e90a1464f13c3a0798b20eed",
-      "source_frame_range": [
-        284,
-        583
-      ],
-      "package_frame_range": [
-        1,
-        300
-      ],
-      "frame_count": 300,
-      "native_fps": 29.97,
-      "frame_width": 640,
-      "frame_height": 360,
-      "preannotation_boxes": 3777,
-      "preannotation_cvat": "preannotations/austin_fc_vs__club_tijuana_284.cvat.xml",
-      "preannotation_det": "preannotations/austin_fc_vs__club_tijuana_284.det.txt",
-      "preannotation_cvat_sha256": "f230014d98508e29d040c91e1a045e8b0101309181fdbbe1fbc5f83654cb5963",
-      "preannotation_det_sha256": "172cc4e9bb6b5ed6f30290d3351e1837d99aa842e4bfb86e05536b0914435b96",
-      "annotation_file_expected": "annotations/austin_fc_vs__club_tijuana_284.json",
-      "mot_gt_expected": "mot/austin_fc_vs__club_tijuana_284/gt/gt.txt",
-      "roles_expected": "roles/austin_fc_vs__club_tijuana_284.json"
-    },
     {
       "sequence": "bayern_munich_3-1_chelsea_228",
       "match": "bayern_munich_3-1_chelsea",
@@ -156,5 +129,236 @@
       "mot_gt_expected": "mot/youth_premier_league_1133/gt/gt.txt",
       "roles_expected": "roles/youth_premier_league_1133.json"
     }
-  ]
+  ],
+  "sequence_review": {
+    "women_1_239": {
+      "identity_status": "VERIFIED",
+      "accepted": "2026-08-10",
+      "review_source": "human annotator",
+      "tracker_output_used": false,
+      "embeddings_used": false,
+      "long_gap_events_open": 0,
+      "long_gap_decisions": "qc_identity/women_1_239/identity_gap_decisions.json",
+      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all four sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation.",
+      "verified": "2026-08-11",
+      "verified_by": "ShaiLevi23",
+      "verified_via": "qc/qc_confirmation.json"
+    },
+    "youth_premier_league_1133": {
+      "identity_status": "VERIFIED",
+      "imported": "2026-08-10",
+      "accepted": "2026-08-10",
+      "review_source": "human annotator",
+      "tracker_output_used": false,
+      "embeddings_used": false,
+      "reid_used": false,
+      "long_gap_events_open": 0,
+      "long_gap_events_total": 7,
+      "long_gap_decisions": "qc_identity/youth_premier_league_1133/identity_gap_decisions.json",
+      "box_geometry": "BOX_GEOMETRY_HUMAN_ACCEPTED",
+      "raw_export_provenance": "cvat_exports/youth_premier_league_1133.provenance.json",
+      "density_note": "The >=10 humans/frame rule was a selection-time detector proxy (12.2 for this window). The human GT count of 8.40 is descriptive and is NOT a retrospective eligibility test. See experiments/tracking_v2/gt_conventions.json -> density_eligibility_rule.",
+      "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all three sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation.",
+      "verified": "2026-08-11",
+      "verified_by": "ShaiLevi23",
+      "verified_via": "qc/qc_confirmation.json"
+    },
+    "bayern_munich_3-1_chelsea_228": {
+      "identity_status": "VERIFIED",
+      "imported": "2026-08-11",
+      "review_source": "human annotator",
+      "tracker_output_used": false,
+      "embeddings_used": false,
+      "reid_used": false,
+      "long_gap_events_open": 0,
+      "long_gap_events_total": 0,
+      "automated_qc_issues": 0,
+      "raw_export_provenance": "cvat_exports/bayern_munich_3-1_chelsea_228.provenance.json",
+      "note": "Sequence-level acceptance only. VERIFIED still requires the whole-benchmark final QC to be accepted by a human.",
+      "accepted": "2026-08-11",
+      "acceptances": [
+        "ROLE_LABELS_HUMAN_ACCEPTED",
+        "BOX_GEOMETRY_HUMAN_ACCEPTED",
+        "IDENTITY_TRACKS_HUMAN_ACCEPTED"
+      ],
+      "role_composition": {
+        "player": 20,
+        "goalkeeper": 1,
+        "referee": 3
+      },
+      "goalkeeper_count_note": "Exactly one goalkeeper is visible and targeted in this window, confirmed by the annotator. It is not a missing or mislabelled second goalkeeper, and no QC may raise an event, search for one, or relabel a player on position, kit, detector output or football expectation.",
+      "long_gap_decisions": "qc_identity/bayern_munich_3-1_chelsea_228/identity_gap_decisions.json",
+      "box_geometry": "BOX_GEOMETRY_HUMAN_ACCEPTED",
+      "verified": "2026-08-11",
+      "verified_by": "ShaiLevi23",
+      "verified_via": "qc/qc_confirmation.json"
+    }
+  },
+  "benchmark_definition": {
+    "name": "EyeCU-Tracking-Val-v1.1",
+    "scope": "CLEAN CONTINUITY tracking benchmark",
+    "independent_matches": 3,
+    "sequences": [
+      "bayern_munich_3-1_chelsea_228",
+      "women_1_239",
+      "youth_premier_league_1133"
+    ],
+    "total_frames": 900,
+    "rule": "300 continuous native-FPS frames, no camera/broadcast cut, >=10 mean humans/frame over the full window",
+    "no_train_footage": true,
+    "no_test_footage": true,
+    "no_correlated_second_window": "A fourth sequence taken from an already-used match would restore the sequence count without adding an independent match. Sequence count is not evidence; independent matches are."
+  },
+  "revision_history": [
+    {
+      "version": "EyeCU-Tracking-Val-v1",
+      "date": "2026-08-09",
+      "sequences": [
+        "austin_fc_vs__club_tijuana_284",
+        "bayern_munich_3-1_chelsea_228",
+        "women_1_239",
+        "youth_premier_league_1133"
+      ],
+      "independent_matches": 4,
+      "status": "SUPERSEDED",
+      "summary": "Four proposed windows. Austin was later found invalid: its window straddles a broadcast dissolve and its source is a highlights montage."
+    },
+    {
+      "version": "EyeCU-Tracking-Val-v1.1",
+      "date": "2026-08-10",
+      "sequences": [
+        "bayern_munich_3-1_chelsea_228",
+        "women_1_239",
+        "youth_premier_league_1133"
+      ],
+      "independent_matches": 3,
+      "status": "CURRENT",
+      "summary": "Three independent clean-continuity VAL matches, 900 frames. Austin removed and preserved separately as a transition-stress case.",
+      "changed_before_any_tracker_result_existed": true,
+      "why_that_matters": "The benchmark changed for a content reason found by a human watching footage, with no tracker having been run against it. Nothing was selected or deselected on tracker behaviour."
+    }
+  ],
+  "excluded_sequences": [
+    {
+      "status": "REJECTED_FOR_CONTINUITY_BENCHMARK",
+      "classification": "TRANSITION_STRESS_CASE",
+      "reason": "hard broadcast edit / temporal discontinuity",
+      "excluded_in": "EyeCU-Tracking-Val-v1.1",
+      "never_enters": [
+        "clean HOTA aggregate",
+        "clean AssA aggregate",
+        "clean IDF1 aggregate",
+        "any clean-continuity metric"
+      ],
+      "record": "rejected/austin_fc_vs__club_tijuana_284/REJECTION_RECORD.json",
+      "partial_annotation": "rejected/austin_fc_vs__club_tijuana_284/austin_partial_cvat_export.xml",
+      "partial_annotation_validity": "NOT valid continuity GT. Human annotation stops at package frame 101 -- the last manual keyframe of all 16 tracks -- where the annotator stopped on finding the transition. Every box after that is residual CVAT hold: 3,184 boxes byte-identical to their track's frame-101 box, frozen for 199 frames, with zero manual keyframes among them. The annotator did NOT assert identity continuity across the transition, and the file does not represent one. Frames 102-300 must never be used as GT.",
+      "original_entry": {
+        "sequence": "austin_fc_vs__club_tijuana_284",
+        "match": "austin_fc_vs__club_tijuana",
+        "source_video": "input-videos/Austin FC vs. Club Tijuana.mp4",
+        "source_video_sha256": "e9b843537c2be6276b068d8c169815106564f2c2dc71c666776abf4ad581904c",
+        "decoded_frames_sha256": "495be3eef4f34ef0e297142e8d6922e7d24e1df3e90a1464f13c3a0798b20eed",
+        "source_frame_range": [
+          284,
+          583
+        ],
+        "package_frame_range": [
+          1,
+          300
+        ],
+        "frame_count": 300,
+        "native_fps": 29.97,
+        "frame_width": 640,
+        "frame_height": 360,
+        "preannotation_boxes": 3777,
+        "preannotation_cvat": "preannotations/austin_fc_vs__club_tijuana_284.cvat.xml",
+        "preannotation_det": "preannotations/austin_fc_vs__club_tijuana_284.det.txt",
+        "preannotation_cvat_sha256": "f230014d98508e29d040c91e1a045e8b0101309181fdbbe1fbc5f83654cb5963",
+        "preannotation_det_sha256": "172cc4e9bb6b5ed6f30290d3351e1837d99aa842e4bfb86e05536b0914435b96",
+        "annotation_file_expected": "annotations/austin_fc_vs__club_tijuana_284.json",
+        "mot_gt_expected": "mot/austin_fc_vs__club_tijuana_284/gt/gt.txt",
+        "roles_expected": "roles/austin_fc_vs__club_tijuana_284.json"
+      },
+      "human_annotated_span": {
+        "package_frames": [
+          1,
+          101
+        ],
+        "boxes": 1616
+      },
+      "residual_span": {
+        "package_frames": [
+          102,
+          300
+        ],
+        "boxes": 3184,
+        "what_it_is": "CVAT hold of the last keyframe, not annotation"
+      },
+      "if_reused": "Rebuild pre-cut and post-cut annotation spaces from the ORIGINAL VIDEO with INDEPENDENT identity spaces. Frames 1-101 are reusable human work; frames 102-300 must be annotated from scratch. The raw export is immutable evidence."
+    }
+  ],
+  "reporting_views": {
+    "A_per_match": [
+      "women_1_239",
+      "youth_premier_league_1133",
+      "bayern_munich_3-1_chelsea_228"
+    ],
+    "B_official": "TrackEval COMBINED_SEQ, the official combined calculation",
+    "C_macro_mean": "unweighted mean of the three per-match HOTA / AssA / IDF1 values, a descriptive robustness check only",
+    "precedence": "View B is the official result. View C never replaces it; it exists so a result carried by one long sequence is visible as such."
+  },
+  "identity_import": {
+    "canonical_format": "CVAT for video 1.1",
+    "importer": "tools/import_tracking_gt_cvat.py",
+    "frame_conversion": "CVAT frame 0 -> package frame 1",
+    "roles_generated_from": "CVAT track labels (single source of truth)"
+  },
+  "whole_benchmark_final_qc": {
+    "status": "ACCEPTED",
+    "generated": "2026-08-11",
+    "scope": "structural invariants only",
+    "must_not": "reinterpret human-confirmed semantic labels. Role composition is reported, never judged; no goalkeeper-count rule exists.",
+    "report": "qc/final_benchmark_qc.json",
+    "covers": [
+      "women_1_239",
+      "youth_premier_league_1133",
+      "bayern_munich_3-1_chelsea_228"
+    ],
+    "gate": "identity GT becomes VERIFIED only when a human accepts this QC via tools/confirm_tracking_gt_qc.py, which writes the hash record the export gate re-checks.",
+    "accepted": "2026-08-11",
+    "accepted_by": "ShaiLevi23",
+    "result": "65/65 structural checks, validators 201621 checks 0 errors"
+  },
+  "qc_confirmation": "qc/qc_confirmation.json",
+  "reviewer_identity": {
+    "name": "ShaiLevi23",
+    "source": "project git identity (user.name)",
+    "corroborated_by": "CVAT task owner shai6 <shailevi23@gmail.com> on all three raw exports",
+    "note": "No name was invented; this is the identifier the project records."
+  },
+  "benchmark_usage_status": {
+    "status": "DEVELOPMENT / MODEL-SELECTION BENCHMARK",
+    "as_of": "2026-08-11",
+    "why": "Results from EyeCU-Tracking-Val-v1.1 have already been seen and have influenced hypotheses -- specifically the post-hoc hypothesis behind Tracking Experiment T2. A set that has shaped the questions asked of it can no longer answer them independently.",
+    "therefore": "It must NOT later be represented as an untouched final confirmation set, and no result measured on it may be reported as final system confirmation.",
+    "used_by": [
+      "confirmatory tracker bake-off (CLOSED)",
+      "Tracking Experiment T2 (specified, not executed)"
+    ],
+    "test_split": {
+      "status": "UNTOUCHED",
+      "accessed": false,
+      "reserved_for": "the final frozen-system evaluation, evaluated ONCE",
+      "preconditions": [
+        "detector frozen",
+        "tracker frozen",
+        "confidence policy frozen",
+        "role smoothing decision frozen",
+        "ball pipeline frozen",
+        "all system-level choices frozen"
+      ],
+      "forbidden": "TEST must not be used to choose between CBIoU and BoTSORT, or between any candidates. Choosing on TEST turns the final confirmation into another selection step."
+    }
+  }
 }

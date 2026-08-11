@@ -1,0 +1,135 @@
+{
+ "gate": "T2 ADOPTION GATE v1.0 (unchanged)",
+ "candidates": {
+  "CBIoUTracker": {
+   "combined": {
+    "HOTA": 60.6,
+    "DetA": 59.78,
+    "AssA": 61.68,
+    "MOTA": 75.92,
+    "IDF1": 81.13
+   },
+   "per_seq_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": 4.19,
+    "women_1_239": 3.58,
+    "youth_premier_league_1133": 9.03
+   },
+   "criteria": {
+    "1_repro": [
+     true,
+     {
+      "HOTA": 0.0,
+      "AssA": 0.0,
+      "IDF1": 0.0
+     }
+    ],
+    "2_HOTA>=+2": [
+     true,
+     4.9
+    ],
+    "3_AssA>=+3": [
+     true,
+     8.02
+    ],
+    "4_IDF1>=+3": [
+     true,
+     10.34
+    ],
+    "5_HOTA>=2of3 & none<-2": [
+     true,
+     "3/3 worst +3.58"
+    ],
+    "6_IDF1 none<-2": [
+     true,
+     "worst +8.13"
+    ],
+    "7_invariants": [
+     true,
+     "9/9 (validated outputs, 0 invalid rows)"
+    ],
+    "8_runtime<=+10%": [
+     true,
+     "PASS -- paired end-to-end -0.115% vs legacy"
+    ],
+    "9_no_tuning": [
+     true,
+     "exact 2.6.0 defaults, config MATCH 3/3"
+    ]
+   },
+   "overall_pass": true
+  },
+  "BoTSORTTracker": {
+   "combined": {
+    "HOTA": 60.2,
+    "DetA": 60.06,
+    "AssA": 60.61,
+    "MOTA": 76.57,
+    "IDF1": 79.8
+   },
+   "per_seq_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": 2.73,
+    "women_1_239": 3.56,
+    "youth_premier_league_1133": 11.58
+   },
+   "criteria": {
+    "1_repro": [
+     true,
+     {
+      "HOTA": 0.0,
+      "AssA": 0.0,
+      "IDF1": 0.0
+     }
+    ],
+    "2_HOTA>=+2": [
+     true,
+     4.5
+    ],
+    "3_AssA>=+3": [
+     true,
+     6.96
+    ],
+    "4_IDF1>=+3": [
+     true,
+     9.02
+    ],
+    "5_HOTA>=2of3 & none<-2": [
+     true,
+     "3/3 worst +2.73"
+    ],
+    "6_IDF1 none<-2": [
+     true,
+     "worst +5.15"
+    ],
+    "7_invariants": [
+     true,
+     "9/9 (validated outputs, 0 invalid rows)"
+    ],
+    "8_runtime<=+10%": [
+     false,
+     "NOT ESTABLISHED -- no valid paired end-to-end measurement exists"
+    ],
+    "9_no_tuning": [
+     true,
+     "exact 2.6.0 defaults, config MATCH 3/3"
+    ]
+   },
+   "overall_pass": false
+  }
+ },
+ "hota_gap": 0.4,
+ "tie_break": "NOT INVOKED -- only one candidate passed all nine criteria",
+ "selection": "CBIoUTracker",
+ "note": "BoTSORT has no paired end-to-end measurement, so its criterion 8 is not established; CBIoU passes 8 at -0.115%. CBIoU also has the higher COMBINED_SEQ HOTA, so it wins on both branches.",
+ "selection_logic_correction": {
+  "recorded": "2026-08-11",
+  "error": "The verdict invoked the <0.5 HOTA tie-break between CBIoU and BoTSORT. That branch requires BOTH candidates to have passed ALL nine criteria. BoTSORT had criterion 8 NOT ESTABLISHED, and an unestablished mandatory criterion is not a pass.",
+  "correct_branch": "exactly one candidate passes ALL criteria -> select it",
+  "consequence": "The selection is CBIoU either way, but for the right reason: it is the only qualified candidate, not the winner of a comparison BoTSORT was never eligible to enter."
+ },
+ "qualification": {
+  "CBIoUTracker": "QUALIFIED / SELECTED",
+  "BoTSORTTracker": "NOT QUALIFIED -- criterion 8 unestablished",
+  "LEGACY_SUPERVISION_BYTETRACK": "rollback / reference"
+ },
+ "botsort_runtime_not_measured": "deliberately not measured: the exactly-one-passes branch already decides, so measuring BoTSORT would be work that cannot change the outcome"
+}

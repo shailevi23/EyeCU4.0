@@ -1,0 +1,75 @@
+{
+ "record": "TrackEval evaluation protocol for EyeCU-Tracking-Val-v1.1",
+ "status": "FROZEN before any tracker has been run against this GT",
+ "frozen": "2026-08-11",
+ "amendment_rule": "These settings may not be altered after any tracker result is visible. A regression test asserts each value.",
+ "tuned_on_tracker_output": false,
+
+ "source": {
+  "package": "trackeval",
+  "version": "1.3.0",
+  "obtained": "PyPI wheel trackeval-1.3.0-py3-none-any.whl",
+  "wheel_sha256": "bf5ed90f7b5a3eafc6dcfce36fb900259a587e8f3b2438ef23d72e7d4ab94efb",
+  "vendored_at": "third_party/trackeval-1.3.0",
+  "installed_into_environment": false,
+  "why_vendored": "The exact bytes being reasoned about live in the repository, and the active environment is untouched. A later machine cannot silently supply a different TrackEval.",
+  "commit": "not available -- the PyPI wheel carries no VCS metadata, and the upstream git clone failed on this machine with an SSL certificate error. Version and file hashes are recorded instead of a commit id.",
+  "file_sha256": {
+   "trackeval/datasets/mot_challenge_2d_box.py": "c3965aa67bc0a290849e71ba5e3bb733500b84bdd7cddd89c49b3a1063e3c9fc",
+   "trackeval/metrics/hota.py": "eec3a9e822435477c04ee5b82b27c7d70977ffb94baf838afe54b5db960362bb"
+  }
+ },
+
+ "dataset": {
+  "class": "trackeval.datasets.mot_challenge_2d_box.MotChallenge2DBox",
+  "BENCHMARK": "EyeCU",
+  "SPLIT_TO_EVAL": "val",
+  "gt_set_folder": "EyeCU-val",
+  "CLASSES_TO_EVAL": ["pedestrian"],
+  "SKIP_SPLIT_FOL": false,
+  "GT_FOLDER": "data/tracking_val_gt/mot"
+ },
+
+ "DO_PREPROC": false,
+
+ "do_preproc_rationale": {
+  "decided_from": "the pinned source, read line by line, not from memory",
+  "what_preproc_does_when_true": [
+   "L365-373: raises if any GT class is outside valid_class_numbers",
+   "L375-383: matches tracker dets to GT at IoU >= 0.5 and deletes tracker dets matched to a DISTRACTOR-class GT box (person_on_vehicle, static_person, distractor, reflection, and non_mot_vehicle on MOT20)",
+   "L393-395: gt_to_keep_mask = (zero_marked != 0) AND (gt_class == cls_id)"
+  ],
+  "what_it_does_when_false": [
+   "L396-398: gt_to_keep_mask = (zero_marked != 0) only; no distractor removal"
+  ],
+  "effect_on_this_benchmark": "NONE. The two settings are behaviourally identical on this GT, and that is a property of the data rather than an opinion: every exported row carries class = 1 (pedestrian) and conf = 1, so (a) no GT box belongs to a distractor class, leaving to_remove_tracker empty, and (b) gt_classes == cls_id holds for every row, so the extra class term in the keep-mask removes nothing.",
+  "why_false_was_chosen": "MOTChallenge preprocessing exists to handle MOTChallenge distractor annotations. EyeCU GT contains only intended target humans and encodes no distractor classes, so the machinery has no valid function here. Disabling it means no future edit can silently activate distractor logic that was never part of this benchmark's definition, and the evaluation path stays the smallest one that computes the metric.",
+  "the_cost_of_choosing_false": "With DO_PREPROC true, a stray non-pedestrian GT class would raise an exception at L368; with false it would be evaluated silently. That gap is closed by the exporter, which hard-codes class = 1, by the MOT round-trip validator, and by a regression test asserting every exported row is class 1.",
+  "all_roles_one_tracking_class": "player, goalkeeper and referee are all exported as class 1 and evaluated as a single target class for identity metrics. Role stays available separately in the canonical JSON for EyeCU semantic analysis and is never used by TrackEval."
+ },
+
+ "gt_columns_consumed": {
+  "format": "frame,id,x,y,w,h,conf,class,visibility",
+  "0_frame": "used as the timestep key; L215 builds keys as str(t+1), so frames are 1-based",
+  "1_id": "L241 raw_data['ids'] = time_data[:, 1]",
+  "2_to_5_box": "L240 raw_data['dets'] = time_data[:, 2:6] -> x, y, w, h",
+  "6_conf": "L261 gt_extras_dict['zero_marked'] = time_data[:, 6]. A GT row with 0 here is DROPPED (L394/L398), which is why the export writes 1.",
+  "7_class": "L252 raw_data['classes'] = time_data[:, 7]. Required: L257 raises if the row has fewer than 8 columns.",
+  "8_visibility": "NEVER READ. The loader slices columns 2:6, 1, 6 and 7 only; nothing in _load_raw_file or get_preprocessed_seq_data touches column 8. Confirmed by inspection of the pinned 1.3.0 source.",
+  "consequence": "visibility = 1 on every row changes nothing for HOTA, CLEAR or Identity as implemented here."
+ },
+
+ "occluded_metadata": {
+  "canonical_location": "data/tracking_val_gt/annotations/<sequence>.json, boolean per box",
+  "in_mot_export": "absent",
+  "silently_transformed": false,
+  "statement": "The annotator's occluded boolean is NOT converted into a visibility fraction, and is not encoded into the MOT visibility column. A fraction invented from a boolean would look like a measurement nobody made. The MOT export has exactly 9 columns and carries no occlusion field."
+ },
+
+ "metrics_intended": {
+  "HOTA": "19 alpha thresholds 0.05..0.95, reported as the mean over alphas (hota.py array_labels; _base_metric.py _summary_row uses 100 * np.mean)",
+  "CLEAR": "single similarity threshold, default 0.5",
+  "Identity": "single similarity threshold, default 0.5",
+  "not_yet_run": true
+ }
+}

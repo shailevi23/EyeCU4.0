@@ -22,12 +22,14 @@ reason, which is recorded.
 
 import argparse
 import hashlib
+import re
 import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from tools.render_identity_qc_clips import authoritative_decisions  # noqa: E402
 from tools.render_tracking_gt_qc import qc  # noqa: E402
 from tools.validate_tracking_gt import validate_post  # noqa: E402
 
@@ -62,7 +64,7 @@ def qc_record_valid(root: Path, man):
 
 
 def promote_to_verified(root: Path, man, reviewer, qc_issue_count=0,
-                        accepted_reason=None):
+                        accepted_reason=None, resolved_count=0):
     """Write the QC record and flip the status. The only writer of VERIFIED."""
     rec = {
         'confirmed': True,
@@ -70,6 +72,7 @@ def promote_to_verified(root: Path, man, reviewer, qc_issue_count=0,
         'confirmed_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         'qc_issue_count': qc_issue_count,
         'accepted_qc_issues_reason': accepted_reason,
+        'qc_issues_resolved_by_recorded_human_decision': resolved_count,
         'artifact_sha256': artifact_hashes(root, man),
     }
     (root / 'qc').mkdir(exist_ok=True)
@@ -108,11 +111,30 @@ def main():
     if blocking:
         sys.exit('REFUSING: post validation failed. Fix the annotation first.')
 
-    issues = []
+    # A reappearance the human already ruled on is not an outstanding issue.
+    # The automated QC cannot know that on its own, and re-raising a settled
+    # question either sends the reviewer back through finished work or makes
+    # them think their decision was rejected. Decisions are READ from the
+    # hand-recorded file; this tool never writes or infers one, and anything
+    # not covered by a recorded HUMAN_CONFIRMED decision still blocks.
+    issues, resolved = [], []
     for s in man['sequences']:
-        issues += qc(root, s['sequence'], root / 'qc' / s['sequence'],
-                     stride=1, render=False)
-    print(f'\nQC issues: {len(issues)}')
+        seq = s['sequence']
+        raw = qc(root, seq, root / 'qc' / seq, stride=1, render=False)
+        decided = authoritative_decisions(root / 'qc_identity' / seq)
+        for msg in raw:
+            m = re.search(r'identity (\d+) reappears', msg)
+            d = decided.get(int(m.group(1))) if m else None
+            if d and d.get('status') == 'HUMAN_CONFIRMED':
+                resolved.append(f'{seq}: {msg}  [{d["status"]} / {d["decision"]}]')
+            else:
+                issues.append(f'{seq}: {msg}')
+
+    if resolved:
+        print(f'\nsettled by a recorded human decision: {len(resolved)}')
+        for m in resolved:
+            print(f'  - {m}')
+    print(f'\nQC issues outstanding: {len(issues)}')
     if issues and not args.accept_qc_issues:
         for m in issues[:15]:
             print(f'  - {m}')
@@ -124,7 +146,7 @@ def main():
         return
 
     promote_to_verified(root, man, args.reviewer, len(issues),
-                        args.accept_qc_issues)
+                        args.accept_qc_issues, len(resolved))
     print(f'\nstatus -> {STATUS_VERIFIED}  (reviewer: {args.reviewer})')
     print('MOT export is now permitted: python tools/export_tracking_gt_mot.py')
 

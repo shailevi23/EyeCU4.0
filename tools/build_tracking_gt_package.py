@@ -46,6 +46,18 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from trackers.detector import HUMAN_CLASSES  # noqa: E402
 from tools.build_derived_train import TEST_MATCHES, VAL_MATCHES  # noqa: E402
 
+# EyeCU-Tracking-Val-v1.1. The frozen DETECTION store still holds austin, and
+# should: those detections are valid detector output. The GT package must not
+# rebuild it, because its window straddles a broadcast dissolve and no identity
+# can cross that. Named here rather than silently dropped, so a rebuild says out
+# loud what it is leaving behind.
+EXCLUDED_SEQUENCES = {
+    'austin_fc_vs__club_tijuana_284':
+        'REJECTED_FOR_CONTINUITY_BENCHMARK -- hard broadcast edit at source '
+        'frames 386-402; source is a highlights montage (9 transitions in 1799 '
+        'frames). Preserved as a TRANSITION_STRESS_CASE.',
+}
+
 BENCHMARK = 'EyeCU-Tracking-Val-v1'
 SCHEMA = '1.0'
 FROZEN = Path('data/tracking_val_v1')
@@ -116,6 +128,15 @@ def main():
     frozen = Path(args.frozen)
     fman = json.loads((frozen / 'manifest.json').read_text(encoding='utf-8'))
     out = Path(args.out)
+
+    windows = []
+    for w in fman['windows']:
+        why = EXCLUDED_SEQUENCES.get(w['sequence'])
+        if why:
+            print(f'EXCLUDED {w["sequence"]}: {why}')
+            continue
+        windows.append(w)
+    fman = dict(fman, windows=windows)
 
     names = {w['match'] for w in fman['windows']}
     if names & TEST_MATCHES:
