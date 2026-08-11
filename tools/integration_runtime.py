@@ -73,18 +73,22 @@ def main():
         # detect_objects_in_frames passes a frame_id, so the detector's own
         # cache would serve the SECOND arm for free and make the comparison
         # meaningless. Every measured run starts cold.
-        detector.clear_cache()
+        detector.clear_cache()          # cold every measured run
         ft = FootballTracker(detector=detector, persist_cache=False,
                              tracker_backend=arm,
                              frame_rate=float(s['native_fps']))
-        det_t = 0.0
+        det_t, det_calls, cache_hits = 0.0, 0, 0
         real_detect = detector.detect
+        cache = detector.detections_cache
 
-        def timed_detect(img, *a, **k):
-            nonlocal det_t
+        def timed_detect(img, fid=None, *a, **k):
+            nonlocal det_t, det_calls, cache_hits
+            if fid is not None and fid in cache:
+                cache_hits += 1          # must stay 0: a hit is not inference
             t0 = time.perf_counter()
-            r = real_detect(img, *a, **k)
+            r = real_detect(img, fid, *a, **k)
             det_t += time.perf_counter() - t0
+            det_calls += 1
             return r
 
         detector.detect = timed_detect
@@ -95,7 +99,21 @@ def main():
         finally:
             detector.detect = real_detect
         n = len(frames[seq])
-        return 1000 * det_t / n, 1000 * (total - det_t) / n
+        det_ms = 1000 * det_t / n
+        if det_calls != n:
+            raise SystemExit(f'INVALID RUN: {det_calls} detector calls for {n} '
+                             f'frames ({arm}/{seq})')
+        if cache_hits:
+            raise SystemExit(f'INVALID RUN: {cache_hits} cache hits ({arm}/{seq}); '
+                             f'inference did not execute for every frame')
+        if det_ms < 10.0:
+            raise SystemExit(f'INVALID RUN: detector {det_ms:.3f} ms/frame is '
+                             f'implausible for A@960 on CPU ({arm}/{seq}); a '
+                             f'collapse to near-zero means detections were '
+                             f'reused, not computed')
+        return {'detector_ms': det_ms, 'tracker_ms': 1000 * (total - det_t) / n,
+                'total_ms': 1000 * total / n, 'frames': n,
+                'detector_calls': det_calls, 'cache_hits': cache_hits}
 
     print('warmup (discarded)')
     for arm in ARMS:
@@ -107,7 +125,13 @@ def main():
         print(f'repeat {rep + 1}  arm order {rot}')
         for arm in rot:
             for s in seqs:
-                samples[arm][s['sequence']].append(one(arm, s))
+                r = one(arm, s)
+                r['repeat'] = rep + 1
+                samples[arm][s['sequence']].append(r)
+                print(f'    {arm:<7}{s["sequence"][:26]:<28}'
+                      f'frames {r["frames"]}  calls {r["detector_calls"]}  '
+                      f'det {r["detector_ms"]:.1f}  trk {r["tracker_ms"]:.2f}  '
+                      f'tot {r["total_ms"]:.1f} ms/frame')
 
     med = statistics.median
     decode_mean = sum(decode.values()) / len(decode)
@@ -127,11 +151,12 @@ def main():
           f'{"total":>9}{"FPS":>8}{"vs legacy":>11}')
     totals = {}
     for arm in ARMS:
-        det_ms = sum(med([x[0] for x in samples[arm][s['sequence']]])
+        det_ms = sum(med([x['detector_ms'] for x in samples[arm][s['sequence']]])
                      for s in seqs) / len(seqs)
-        trk_ms = sum(med([x[1] for x in samples[arm][s['sequence']]])
+        trk_ms = sum(med([x['tracker_ms'] for x in samples[arm][s['sequence']]])
                      for s in seqs) / len(seqs)
-        total = det_ms + trk_ms
+        total = sum(med([x['total_ms'] for x in samples[arm][s['sequence']]])
+                    for s in seqs) / len(seqs)
         totals[arm] = total
         out['arms'][arm] = {
             'detector_ms_per_frame': round(det_ms, 3),
@@ -140,9 +165,10 @@ def main():
             'total_with_decode_ms_per_frame': round(total + decode_mean, 3),
             'effective_fps': round(1000 / total, 2),
             'per_sequence': {s['sequence']: {
-                'detector': round(med([x[0] for x in samples[arm][s['sequence']]]), 3),
-                'tracker': round(med([x[1] for x in samples[arm][s['sequence']]]), 3)}
+                'detector': round(med([x['detector_ms'] for x in samples[arm][s['sequence']]]), 3),
+                'tracker': round(med([x['tracker_ms'] for x in samples[arm][s['sequence']]]), 3)}
                 for s in seqs},
+            'raw_per_repeat': {k: v for k, v in samples[arm].items()},
         }
     for arm in ARMS:
         pct = 100 * (totals[arm] - totals['legacy']) / totals['legacy']
