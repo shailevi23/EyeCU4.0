@@ -1,0 +1,1624 @@
+{
+ "created": [
+  "roboflow_audit/reports",
+  "roboflow_audit/manifests",
+  "huggingface/keremberke_football_object_detection/raw",
+  "huggingface/keremberke_football_object_detection/metadata",
+  "huggingface/keremberke_football_object_detection/manifests",
+  "huggingface/soccernet_v3/metadata_only",
+  "huggingface/soccernet_v3/full_dataset",
+  "huggingface/soccernet_v3/manifests",
+  "huggingface/manifests",
+  "huggingface/download_logs",
+  "soccertrack_v2/gsr",
+  "soccertrack_v2/bas",
+  "soccertrack_v2/raw",
+  "soccertrack_v2/videos",
+  "soccertrack_v2/public_repo",
+  "soccertrack_v2/reports",
+  "soccertrack_v2/manifests",
+  "research_sources/teamtrack",
+  "research_sources/sportslabkit",
+  "research_sources/manifests",
+  "removed empty SoccerTrackV2/gsr",
+  "removed empty SoccerTrackV2/bas",
+  "removed empty SoccerTrackV2/raw",
+  "removed empty SoccerTrackV2/mot",
+  "removed empty SoccerTrackV2/videos",
+  "removed empty SoccerTrack-v2",
+  "removed empty SoccerTrackV2",
+  "removed empty soccertrack_mot"
+ ],
+ "moved": [
+  {
+   "from": "SoccerTrackV2/gsr/117092_1st-005.json",
+   "to": "soccertrack_v2/gsr/117092_1st-005.json",
+   "sha256": "af3baad872ffd73f41853929a6dba035d68ebda9830f9b9c8071dc51aba4aa29"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/117092_2nd-018.json",
+   "to": "soccertrack_v2/gsr/117092_2nd-018.json",
+   "sha256": "ee2aac7f5a3b241f6d911d5601faa116fa97d310f252240590d4d7d9df982207"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/117093_1st-006.json",
+   "to": "soccertrack_v2/gsr/117093_1st-006.json",
+   "sha256": "c487f9917fc7906cf16317cda559bb6e92037f445b33f9734b341c67e9e6650e"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/117093_2nd-017.json",
+   "to": "soccertrack_v2/gsr/117093_2nd-017.json",
+   "sha256": "3a9268d3d77e435c398960850e80dafa1c5910e9ed843eb1901490b966fcb529"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118575_1st-013.json",
+   "to": "soccertrack_v2/gsr/118575_1st-013.json",
+   "sha256": "46f5aa862c05eba4c25d3f95801615be5c55c8501a69eec3cb828afd17544472"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118575_2nd-007.json",
+   "to": "soccertrack_v2/gsr/118575_2nd-007.json",
+   "sha256": "f5cb559f8301e7fd93056aa17818d580ef00f8875adb05eb46cdbea8489ce82f"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118576_1st-014.json",
+   "to": "soccertrack_v2/gsr/118576_1st-014.json",
+   "sha256": "f45568abf7b513339b66f5b4d12803e55fa912153138648c96a6a06780169af3"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118576_2nd-004.json",
+   "to": "soccertrack_v2/gsr/118576_2nd-004.json",
+   "sha256": "25e0ca15bb558426221d473c9ffae84af67a451e2bcf9e961e406a9a6c6e7e35"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118577_1st-011.json",
+   "to": "soccertrack_v2/gsr/118577_1st-011.json",
+   "sha256": "28a3766bf1176b266a043d36ee791177aca72568a7c5fb032597258c426663a1"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118577_2nd-001.json",
+   "to": "soccertrack_v2/gsr/118577_2nd-001.json",
+   "sha256": "ad91d9c7ca74acbb6257e2f825a0fdd55b3520e58747cd6ee154c30071be37ae"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118578_1st-020.json",
+   "to": "soccertrack_v2/gsr/118578_1st-020.json",
+   "sha256": "b8c9272308eaf5e4264e33f2916103fc46340e05005a03fc6e74c7307bcb0cbf"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/118578_2nd-019.json",
+   "to": "soccertrack_v2/gsr/118578_2nd-019.json",
+   "sha256": "5ebe1c414dfa6e810873e1643c283cef01177f4e0bbb89851e27a1434f018c71"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/128057_1st-016.json",
+   "to": "soccertrack_v2/gsr/128057_1st-016.json",
+   "sha256": "4d3c3451f7af6aa243e47b4047966c8b7162023c4c8df9216c6d61eaaa07cfb7"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/128057_2nd-012.json",
+   "to": "soccertrack_v2/gsr/128057_2nd-012.json",
+   "sha256": "96929ccbc80c37a661c49456335b99425b73ea138450ddc0ba943b68a0f74e4a"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/128058_1st-015.json",
+   "to": "soccertrack_v2/gsr/128058_1st-015.json",
+   "sha256": "50d2981192a5fb052602945e23bf5b7bccb829c0025d1fcbcdb980733f6f8536"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/128058_2nd-010.json",
+   "to": "soccertrack_v2/gsr/128058_2nd-010.json",
+   "sha256": "bb0755e75b2b1388980f3f16140c24525fe62be92e8a441385f1a3a0880db661"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/132831_1st-003.json",
+   "to": "soccertrack_v2/gsr/132831_1st-003.json",
+   "sha256": "3c9cd504d0806ef2cb8a7e021d5198a4a4f50d773f0fb0ba6494a8980591817a"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/132831_2nd-008.json",
+   "to": "soccertrack_v2/gsr/132831_2nd-008.json",
+   "sha256": "ec3b3c6d13ab355b64e2c884afe7aa7c685a024ea5397ddb236b046238f42bb6"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/132877_1st-009.json",
+   "to": "soccertrack_v2/gsr/132877_1st-009.json",
+   "sha256": "cf530dbb1c67530484f40611375c44354276a89b8f4328fd28c9e74e0991223d"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/132877_2nd-002.json",
+   "to": "soccertrack_v2/gsr/132877_2nd-002.json",
+   "sha256": "03fccad8dcf82a038d4e682077b2ec3a41b8d96f6fb2f04f2012ec5d182293fa"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/raw-20260811T095104Z-1-001.zip",
+   "to": "soccertrack_v2/gsr/raw-20260811T095104Z-1-001.zip",
+   "sha256": "933b6d12ef2694a8304228aade88bbf2e02b8ed679e73520e1935f6111f96217"
+  },
+  {
+   "from": "SoccerTrackV2/gsr/raw-20260811T095104Z-1-002.zip",
+   "to": "soccertrack_v2/gsr/raw-20260811T095104Z-1-002.zip",
+   "sha256": "5799f216ebb688f97cb73ba71034b621713cc11eb0412e3e943a2850a17e7738"
+  },
+  {
+   "from": "SoccerTrackV2/bas/bas-20260811T095050Z-1-001.zip",
+   "to": "soccertrack_v2/bas/bas-20260811T095050Z-1-001.zip",
+   "sha256": "ba651a8af01649358b84f0472be78ceee0665a033e5494d5ef5d3cf68b9cd31d"
+  },
+  {
+   "from": "SoccerTrackV2/raw/raw-20260811T095104Z-1-001.zip",
+   "to": "soccertrack_v2/raw/raw-20260811T095104Z-1-001.zip",
+   "sha256": "933b6d12ef2694a8304228aade88bbf2e02b8ed679e73520e1935f6111f96217"
+  },
+  {
+   "from": "SoccerTrackV2/raw/raw-20260811T095104Z-1-002.zip",
+   "to": "soccertrack_v2/raw/raw-20260811T095104Z-1-002.zip",
+   "sha256": "5799f216ebb688f97cb73ba71034b621713cc11eb0412e3e943a2850a17e7738"
+  },
+  {
+   "from": "SoccerTrackV2/mot/mot-20260811T095052Z-1-001.zip",
+   "to": "soccertrack_v2/raw/mot-20260811T095052Z-1-001.zip",
+   "sha256": "464e9b85e1bfbd8fc1545fc44a3aab882ea2b412bd1bc60d6dc1a2f426b3509b"
+  },
+  {
+   "from": "SoccerTrackV2/videos/128058_panorama_1st_half-002.mp4",
+   "to": "soccertrack_v2/videos/128058_panorama_1st_half-002.mp4",
+   "sha256": "8db0efdc045978d67572c6764681a76350e8da75a9f5fa7bc9307f3b9f21d989"
+  },
+  {
+   "from": "SoccerTrackV2/videos/128058_panorama_2nd_half-001.mp4",
+   "to": "soccertrack_v2/videos/128058_panorama_2nd_half-001.mp4",
+   "sha256": "c5554a1a85655770d7adc83d8ef272e656a14a04433d8b5ee74cf021f9805131"
+  },
+  {
+   "from": "SoccerTrack-v2/.cursorrules",
+   "to": "soccertrack_v2/public_repo/.cursorrules",
+   "sha256": "47b88e90670d1916af43ec82fbe6361f9d4657e50ae4c17bb3ade32395bbb131"
+  },
+  {
+   "from": "SoccerTrack-v2/.gitignore",
+   "to": "soccertrack_v2/public_repo/.gitignore",
+   "sha256": "935aa92512d8179701047fedf1add6a0895e59cbc2f217e286ea2854bea8666c"
+  },
+  {
+   "from": "SoccerTrack-v2/.python-version",
+   "to": "soccertrack_v2/public_repo/.python-version",
+   "sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d"
+  },
+  {
+   "from": "SoccerTrack-v2/AGENTS.md",
+   "to": "soccertrack_v2/public_repo/AGENTS.md",
+   "sha256": "7fcc2f400ec73d67718e7db06ae75bc7f7cd0af721d9aa6443e26949e747cd07"
+  },
+  {
+   "from": "SoccerTrack-v2/CONTRIBUTING.md",
+   "to": "soccertrack_v2/public_repo/CONTRIBUTING.md",
+   "sha256": "6584da9a13a864874f9f113f96709767b9b14043c1ecef119fa73613c6ca5218"
+  },
+  {
+   "from": "SoccerTrack-v2/LICENSE",
+   "to": "soccertrack_v2/public_repo/LICENSE",
+   "sha256": "96eda142cbe8e64ed078880cfcf5da7780ef061b1fcb1513b7d1d927393a91c8"
+  },
+  {
+   "from": "SoccerTrack-v2/LICENSE-DATA",
+   "to": "soccertrack_v2/public_repo/LICENSE-DATA",
+   "sha256": "35a20f5f925dcd821c3d002976a6b2758132227ac2d2440ddbd05edc99848711"
+  },
+  {
+   "from": "SoccerTrack-v2/Makefile",
+   "to": "soccertrack_v2/public_repo/Makefile",
+   "sha256": "2ddecbc4aeda9da19f2cfed878236e19243551ec6326161203a8cedb7b889430"
+  },
+  {
+   "from": "SoccerTrack-v2/pyproject.toml",
+   "to": "soccertrack_v2/public_repo/pyproject.toml",
+   "sha256": "c828f0fd72df0782c36524750515843a1433a39a3027d879dc0ec365c3bd6838"
+  },
+  {
+   "from": "SoccerTrack-v2/README.md",
+   "to": "soccertrack_v2/public_repo/README.md",
+   "sha256": "d49ad255e4be00afa0de07ea9eb491aa8f09de4b64c2a62789913b729e909489"
+  },
+  {
+   "from": "SoccerTrack-v2/TODO.md",
+   "to": "soccertrack_v2/public_repo/TODO.md",
+   "sha256": "3c559b4ba0dd6431923d437682daee92e9dd7da0f8cadeb2299b588f33c4e267"
+  },
+  {
+   "from": "SoccerTrack-v2/uv.lock",
+   "to": "soccertrack_v2/public_repo/uv.lock",
+   "sha256": "a61ebe8afe9df39a79e538c1ae775bb44ea24a3c980e9f5976577358b4d47aee"
+  },
+  {
+   "from": "SoccerTrack-v2/.github/ISSUE_TEMPLATE/bug.yml",
+   "to": "soccertrack_v2/public_repo/.github/ISSUE_TEMPLATE/bug.yml",
+   "sha256": "284a78b5231889e343338288a85a070cbfa0aed4a66279cf32662970efe05c33"
+  },
+  {
+   "from": "SoccerTrack-v2/.github/ISSUE_TEMPLATE/config.yml",
+   "to": "soccertrack_v2/public_repo/.github/ISSUE_TEMPLATE/config.yml",
+   "sha256": "6655e9a2ce6c2c261b83a7d754120555a348ff57925bbe7902999259e50235f8"
+  },
+  {
+   "from": "SoccerTrack-v2/.github/ISSUE_TEMPLATE/dataset_issue.yml",
+   "to": "soccertrack_v2/public_repo/.github/ISSUE_TEMPLATE/dataset_issue.yml",
+   "sha256": "9ff0dc73f593772df7d91bce5a080a8b61afb8f23abfdb6808a3f8f64147e50f"
+  },
+  {
+   "from": "SoccerTrack-v2/.github/ISSUE_TEMPLATE/docs_fix.yml",
+   "to": "soccertrack_v2/public_repo/.github/ISSUE_TEMPLATE/docs_fix.yml",
+   "sha256": "099cc0596f453d94551cb35ee5682506a628b7d8f15f64547481f2f7d6579aa5"
+  },
+  {
+   "from": "SoccerTrack-v2/.github/ISSUE_TEMPLATE/feature_request.yml",
+   "to": "soccertrack_v2/public_repo/.github/ISSUE_TEMPLATE/feature_request.yml",
+   "sha256": "5fc4cc4e149b9e77fb354e8456b9411186c8cb0646c43e4518d414cc64d95225"
+  },
+  {
+   "from": "SoccerTrack-v2/.github/workflows/docs.yml",
+   "to": "soccertrack_v2/public_repo/.github/workflows/docs.yml",
+   "sha256": "0a0e5d9a712a7cd8e4e1ba2244988339c5015b1ac3020424cd230692c70c3050"
+  },
+  {
+   "from": "SoccerTrack-v2/.github/workflows/lint.yml",
+   "to": "soccertrack_v2/public_repo/.github/workflows/lint.yml",
+   "sha256": "d9c1aec5b5fafa0231c3ea72e069073091160ed7f4435208f8591ff2be48c8e8"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/README.md",
+   "to": "soccertrack_v2/public_repo/baselines/README.md",
+   "sha256": "ba5ac165d1650e561b234ec0d209b88b27e2826874b597d9940e1e3a26e99015"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/__init__.py",
+   "to": "soccertrack_v2/public_repo/baselines/__init__.py",
+   "sha256": "e42222e1b12704328fd09dce3e2982e3fe7064f22e9cc0a583633a48ae654231"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/bas/config.yaml",
+   "to": "soccertrack_v2/public_repo/baselines/bas/config.yaml",
+   "sha256": "4b6a7ca773ddfa1d3a742da966ef92535f6e86c7804793986b3cd4069e46eb62"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/bas/eval.py",
+   "to": "soccertrack_v2/public_repo/baselines/bas/eval.py",
+   "sha256": "fce4a064844cce5f88c8030618588cea60bcdabe6d79fa34b7a03c8c15ad4f81"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/bas/README.md",
+   "to": "soccertrack_v2/public_repo/baselines/bas/README.md",
+   "sha256": "9160699f2bb0767e6d8c5639d8a691b0de88301594ebcc87527821a5380cbdf9"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/bas/train.py",
+   "to": "soccertrack_v2/public_repo/baselines/bas/train.py",
+   "sha256": "06640b1d4eb2a476a9621bc2ff852981cdd7943403f617b651ebe7a9dad471e0"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/bas/__init__.py",
+   "to": "soccertrack_v2/public_repo/baselines/bas/__init__.py",
+   "sha256": "dd2e2405064d276cd5e472a51095ef40e22824e8603d244e2d513e9a89cc4b35"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/gsr/config.yaml",
+   "to": "soccertrack_v2/public_repo/baselines/gsr/config.yaml",
+   "sha256": "381949ce783fb89a47de5b765f6f321b752cbd7ef6f893d0e102b55edb63470b"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/gsr/eval.py",
+   "to": "soccertrack_v2/public_repo/baselines/gsr/eval.py",
+   "sha256": "4ec16e768917011f2a11ef567bc913bcf8b49e36e1917c529e82cfeedba8f920"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/gsr/README.md",
+   "to": "soccertrack_v2/public_repo/baselines/gsr/README.md",
+   "sha256": "3c8635cd4dfcf9f4a021e191ad313d1f7f18c7fcad6f9f86290fa40f65451a25"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/gsr/train.py",
+   "to": "soccertrack_v2/public_repo/baselines/gsr/train.py",
+   "sha256": "d9fafac189a727475a78a5adb981362c859310815ace598f024e33b75f5228a0"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/gsr/__init__.py",
+   "to": "soccertrack_v2/public_repo/baselines/gsr/__init__.py",
+   "sha256": "e3f9c36bf9ea085b9b92062bd70785daf431eb701e461f72e73daa0b41156880"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/mot/config.yaml",
+   "to": "soccertrack_v2/public_repo/baselines/mot/config.yaml",
+   "sha256": "94542c706b8785189aa3bd72f2cd3ef3e8a936010916ff55cd403d5aca31ed54"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/mot/eval.py",
+   "to": "soccertrack_v2/public_repo/baselines/mot/eval.py",
+   "sha256": "ad48ec27e812a93f1db96022092dcd8fc73f261811e2ff3254314631db7a980f"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/mot/README.md",
+   "to": "soccertrack_v2/public_repo/baselines/mot/README.md",
+   "sha256": "09a0d0ac5383ea3bd250c78f59a8ebf17050da7a125cf8a16119e3d74dd2a762"
+  },
+  {
+   "from": "SoccerTrack-v2/baselines/mot/train.py",
+   "to": "soccertrack_v2/public_repo/baselines/mot/train.py",
+   "sha256": "34c21266b15fafea9a6a09262cf099e320d4ae9557401ac49a703f975b47bd45"
+  },
+  {
+   "from": "SoccerTrack-v2/configs/default_config.yaml",
+   "to": "soccertrack_v2/public_repo/configs/default_config.yaml",
+   "sha256": "59ebb5bc4c14146212290fde0d2586c0cb3644fe91236835f0995a1ec251dae6"
+  },
+  {
+   "from": "SoccerTrack-v2/configs/tracker_config.yaml",
+   "to": "soccertrack_v2/public_repo/configs/tracker_config.yaml",
+   "sha256": "eb773363b3a97b21f93fa8893f61847240b78393999b8f8ae383edd64daa9b53"
+  },
+  {
+   "from": "SoccerTrack-v2/configs/video_trimming_config.yaml",
+   "to": "soccertrack_v2/public_repo/configs/video_trimming_config.yaml",
+   "sha256": "1e928a10ce29bfcb18e5311b08a1ea571b0586afffe7bb7c90aee5ee11cf4dd7"
+  },
+  {
+   "from": "SoccerTrack-v2/data_corrections/132831_keypoints.json",
+   "to": "soccertrack_v2/public_repo/data_corrections/132831_keypoints.json",
+   "sha256": "0920c2f569416892ba8313aa41ce88cf1da1ec430380a7c6518caf012c96681e"
+  },
+  {
+   "from": "SoccerTrack-v2/data_corrections/README.md",
+   "to": "soccertrack_v2/public_repo/data_corrections/README.md",
+   "sha256": "65bec0b2098e852fb746ee36afbbcd346ad7d1e2ece25a7d8f97ad1126308b0a"
+  },
+  {
+   "from": "SoccerTrack-v2/diagrams/ground-truth-creation.drawio.svg",
+   "to": "soccertrack_v2/public_repo/diagrams/ground-truth-creation.drawio.svg",
+   "sha256": "9dbc5e7e0076aadbf60f51aadfddb18f79400c1d47e84df0f25872cbc73e56e1"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/calibration-findings.md",
+   "to": "soccertrack_v2/public_repo/docs/calibration-findings.md",
+   "sha256": "acb3f76b6bd696b24df9135eedbcdef3c5c88fa150e00cbdd024386d8a8dccc0"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/calibration.md",
+   "to": "soccertrack_v2/public_repo/docs/calibration.md",
+   "sha256": "b035187eae6975fc2e633a600f01ea9bd4b73d4039ed1c952bd93ebd69ad2ce2"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/cli.md",
+   "to": "soccertrack_v2/public_repo/docs/cli.md",
+   "sha256": "0c900e9e179fdb58455aac346c7e9cdebb062c4fe3795579bbfba672602c8a09"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/configuration.md",
+   "to": "soccertrack_v2/public_repo/docs/configuration.md",
+   "sha256": "11c868376ea5ece349cb9461008fdb80fe1745789a640c2ecd8de8a08eb038bf"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/data_processing.md",
+   "to": "soccertrack_v2/public_repo/docs/data_processing.md",
+   "sha256": "171826d580e739cdd9248fd9fa8a3daa09323607cef72ad57fef886a137de874"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/format-bas.md",
+   "to": "soccertrack_v2/public_repo/docs/format-bas.md",
+   "sha256": "19c61f6c413c9d402cfa9d3d25ca7c9505bef3cf19924f7d856f455e6cd6482c"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/format-gsr.md",
+   "to": "soccertrack_v2/public_repo/docs/format-gsr.md",
+   "sha256": "54859ab20387a09de4216475408ba13acf4b0e7f1f5690e8fc6ac62c0827c71f"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/format-mot.md",
+   "to": "soccertrack_v2/public_repo/docs/format-mot.md",
+   "sha256": "530c3ee1798d5d6784d133f4e9dda99e61598286ba231a27bda03f533e2c77f2"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/ground_truth_creation.md",
+   "to": "soccertrack_v2/public_repo/docs/ground_truth_creation.md",
+   "sha256": "9c0d28066f9f54b69ba4fac8e76711a606b00a076418687edb0de86cd633bebd"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/index-ja.html",
+   "to": "soccertrack_v2/public_repo/docs/index-ja.html",
+   "sha256": "d8533b29e3afc941ec2a3ab2378be59ad8e37bec61cdfca0e9e20f7500c115e2"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/index.html",
+   "to": "soccertrack_v2/public_repo/docs/index.html",
+   "sha256": "a64ba240f5a5ce2dc356f4cee6211266998114e81cf61bb64576e414df39cf07"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/leaderboard.html",
+   "to": "soccertrack_v2/public_repo/docs/leaderboard.html",
+   "sha256": "b1eada8903d64dd1fbdf1876df2542c7717c1e40e399e63f2d06e8b3de54f603"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/matches.json",
+   "to": "soccertrack_v2/public_repo/docs/matches.json",
+   "sha256": "27dc7f88c9a623da3dedca6b599da749542ab33f1b894ade67fee8d1a7742fd4"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/README.md",
+   "to": "soccertrack_v2/public_repo/docs/README.md",
+   "sha256": "c8ea851b891aeb8faa085eec7389579b76211a90c5512436709435729812431c"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/setup.md",
+   "to": "soccertrack_v2/public_repo/docs/setup.md",
+   "sha256": "efcd82068b44a1c43dab02e1c14aafb62df58ed97de86e1ba4312f8024a8a785"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/task-bas.html",
+   "to": "soccertrack_v2/public_repo/docs/task-bas.html",
+   "sha256": "a815d6235dceeb9db1888fdcefe9f6d2be029b4277d1e09f92146154151d6826"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/task-gsr.html",
+   "to": "soccertrack_v2/public_repo/docs/task-gsr.html",
+   "sha256": "fb18a697b135970759371688fdf414c61d8c8429a2c0e2d5b1af6335c4c7c199"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/task-mot.html",
+   "to": "soccertrack_v2/public_repo/docs/task-mot.html",
+   "sha256": "0f2b8ee05ea2d1667d6d497f7c12e8a79434da8eb21b92004c55464378e52e50"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/TODO.md",
+   "to": "soccertrack_v2/public_repo/docs/TODO.md",
+   "sha256": "7a8976f5c30499fdd5b8e07bb549b31689a047bda09dc09bbb3d52f056757702"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/visualization.md",
+   "to": "soccertrack_v2/public_repo/docs/visualization.md",
+   "sha256": "e6b435c0f506957aec25f051d9d715a43c81bd37a1fdfad77da80a542bd1b2ab"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/demo-gsr_and_bas.mp4",
+   "to": "soccertrack_v2/public_repo/docs/assets/demo-gsr_and_bas.mp4",
+   "sha256": "ee0430f74fef24fd5ae3e4d41911e853724a00f1556bc1c3e47546b7849d8751"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/demo-minimap.mp4",
+   "to": "soccertrack_v2/public_repo/docs/assets/demo-minimap.mp4",
+   "sha256": "7c73e07557846c1cd508231ce97e50466ebf8d568c708ae1a0c618bc47e11fc9"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/demo-tracking.mp4",
+   "to": "soccertrack_v2/public_repo/docs/assets/demo-tracking.mp4",
+   "sha256": "e40a95630d97d734442f22d9f9591c78abec8a1cd1e8cbadca36e600186b30a9"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/og-image.jpg",
+   "to": "soccertrack_v2/public_repo/docs/assets/og-image.jpg",
+   "sha256": "083188ab55a1961e7bea4f6810d7e8a22737924e40d9bb2962cd633baae8aee0"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/panorama-day.jpg",
+   "to": "soccertrack_v2/public_repo/docs/assets/panorama-day.jpg",
+   "sha256": "474cd32c43bf79375a91a72b798765cf7a8055a50c201ce5cc07f1c39ea6f0e9"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/panorama-night.jpg",
+   "to": "soccertrack_v2/public_repo/docs/assets/panorama-night.jpg",
+   "sha256": "6444f07d5460691c4ac5cc97b119694caa1135f9d34bb6c6718b891d9dc489b1"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/task-bas.jpg",
+   "to": "soccertrack_v2/public_repo/docs/assets/task-bas.jpg",
+   "sha256": "7ec8faca5f2c502ee71b7c13e6bceec734a1b000748c624d46fffe33a9c1e70e"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/task-gsr.jpg",
+   "to": "soccertrack_v2/public_repo/docs/assets/task-gsr.jpg",
+   "sha256": "035abcdc48395009f7488301076d483485db5791caa367e906e7be2d3900cde4"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/assets/task-mot.jpg",
+   "to": "soccertrack_v2/public_repo/docs/assets/task-mot.jpg",
+   "sha256": "444a46508269366792695d12e3977a5faa4732fef5e33fd226a101bebe8d3044"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/leaderboards/bas.json",
+   "to": "soccertrack_v2/public_repo/docs/leaderboards/bas.json",
+   "sha256": "5f2291d59ed5883df1a6a8d598ac267a06cb2b3554e0d88260c738db62826aa8"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/leaderboards/gsr.json",
+   "to": "soccertrack_v2/public_repo/docs/leaderboards/gsr.json",
+   "sha256": "573c9f89303a0a10939cc2bef09d47a1857cd222984eaec52a5bc27033c94a73"
+  },
+  {
+   "from": "SoccerTrack-v2/docs/leaderboards/mot.json",
+   "to": "soccertrack_v2/public_repo/docs/leaderboards/mot.json",
+   "sha256": "b96de23365dad48a711d52d2c3803562ba7cae0b2785720f668d3dc2889c6c6e"
+  },
+  {
+   "from": "SoccerTrack-v2/logs/.gitkeep",
+   "to": "soccertrack_v2/public_repo/logs/.gitkeep",
+   "sha256": "ca81aa2c025ff6dad74267c66f14eb4a33b85dbd69b700b91d7fa5497b3ae821"
+  },
+  {
+   "from": "SoccerTrack-v2/notebooks/creating_ground_truth_bbox.ipynb",
+   "to": "soccertrack_v2/public_repo/notebooks/creating_ground_truth_bbox.ipynb",
+   "sha256": "506c6a282e95886551712b6017725778eac5f151a68422242de4b82ac533d90d"
+  },
+  {
+   "from": "SoccerTrack-v2/notebooks/eda.ipynb",
+   "to": "soccertrack_v2/public_repo/notebooks/eda.ipynb",
+   "sha256": "71cff87e89a5e64816fded0a0ad91585a6ca6dc4fba1508886252d8ec5b18ad0"
+  },
+  {
+   "from": "SoccerTrack-v2/notebooks/quickstart.ipynb",
+   "to": "soccertrack_v2/public_repo/notebooks/quickstart.ipynb",
+   "sha256": "78856b4d0c0bc937d8e4ffaa40a2629e2d4053e9573ab9cedc0b9525b2775779"
+  },
+  {
+   "from": "SoccerTrack-v2/notebooks/raw_event_data.ipynb",
+   "to": "soccertrack_v2/public_repo/notebooks/raw_event_data.ipynb",
+   "sha256": "a71028b8518c3bdd53864b47cc63ae94f985523946decac97ee09b233690082e"
+  },
+  {
+   "from": "SoccerTrack-v2/notebooks/test.png",
+   "to": "soccertrack_v2/public_repo/notebooks/test.png",
+   "sha256": "00c43b032d37e081624b971c06f7360726c49f7e64691a801be1cdeb01f41cac"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate1.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate1.json",
+   "sha256": "ebc6c0d6448068e2929e5b51470acfbf52ec7396f7f14b68dac28d6a9ce6094f"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate2.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate2.json",
+   "sha256": "ce4bfdf5ba26c7ea3c5f1d931889bdd4efde70e71af3ca6c880859d76ab475a3"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate3.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate3.json",
+   "sha256": "c8c40b0f725c83de871094a110acadf0b0edc953407fc0cb3419c39c05267059"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate4.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate4.json",
+   "sha256": "9d9b0c248ef9b6fde9662447f18515bd8ea7f8ae9a8a9bc185d68ce650bb093d"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate5.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize10-randomstate5.json",
+   "sha256": "7d1c12f62fa2c4f5f910cd67c624c19baa53195a6e9882bd5433cee18a835695"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate1.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate1.json",
+   "sha256": "0c91e290c1d7d770d82504b58880617fc1381f8333890e9aa893776f676f7f80"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate2.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate2.json",
+   "sha256": "cf35ecce610bd3ac5b7f18ea3524796138747a1d011a6c276917d61371afcf7a"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate3.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate3.json",
+   "sha256": "b213e4f3caebcc2dce3366f2a35a7f5aa87bdfafef83c24cbb7aa7edd23f3cb3"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate4.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate4.json",
+   "sha256": "b213e4f3caebcc2dce3366f2a35a7f5aa87bdfafef83c24cbb7aa7edd23f3cb3"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate5.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize100-randomstate5.json",
+   "sha256": "cf35ecce610bd3ac5b7f18ea3524796138747a1d011a6c276917d61371afcf7a"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate1.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate1.json",
+   "sha256": "dcfcdcb0ee7421224d84e469805c1e84d0319e248a895bc62affe734d2c95408"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate2.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate2.json",
+   "sha256": "5ed7ba81464d6e700cde597dd9fb31a776ec4f5a4cae3f408dbf2e3731e8280b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate3.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate3.json",
+   "sha256": "10ad1690aa57161a673bb7bb3039b0ee3d7298e05faaf44d4f6c834a9525475b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate4.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate4.json",
+   "sha256": "7cc942e84ca2da45f7d7fa37aa93925fd678ede6051c9312a2e19bd085fc67cd"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate5.json",
+   "to": "soccertrack_v2/public_repo/outputs/change_trainset_size/2024-02-28-trainsize50-randomstate5.json",
+   "sha256": "5ed7ba81464d6e700cde597dd9fb31a776ec4f5a4cae3f408dbf2e3731e8280b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/all_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/all_class/mAP50-95.png",
+   "sha256": "7d6e42e3b5b94711ee05c4326f4acfaf2a0c035ea159324f5c546c7891f358ad"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/all_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/all_class/mAP50.png",
+   "sha256": "88bfa5ba59b018e03d057628c805c3aaac61c6c12bae94abc1fac3d2dfa81d0a"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/all_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/all_class/Precision.png",
+   "sha256": "b6129d318e6e4d96130d364a0576c3224d22d66a4d9221fb938b0ac20ba9bf92"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/all_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/all_class/Recall.png",
+   "sha256": "93a22380815a785af9efb56583f8a3381bb110f2c776f0506aaab2022f0dca1f"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/ball_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/ball_class/mAP50-95.png",
+   "sha256": "3ca5899e44b4600d85da43ca49b7b08762303535f5122aea87d3a604eb5ebb6b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/ball_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/ball_class/mAP50.png",
+   "sha256": "e58e0ffed9f9ead8ac4d519a5de0834dbb55e72b2b34f6f56223b29e0167aef4"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/ball_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/ball_class/Precision.png",
+   "sha256": "140f3aaa1f164d043b077b8c8b4bb9cdfac4dadbad536219bfaf8438ce961441"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/ball_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/ball_class/Recall.png",
+   "sha256": "511666f51ebd843fe76d5e731b9676922df97c611fbec1491715281b77f960bc"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/person_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/person_class/mAP50-95.png",
+   "sha256": "7b42aa14fabeff7b4873bf1571b8472578dc0455cb90410539c8c05a0a4329e9"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/person_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/person_class/mAP50.png",
+   "sha256": "eceb44095b274c3e0c41ba459fcc2b0df80447f063293e5d66b3f7b08eef8149"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/person_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/person_class/Precision.png",
+   "sha256": "c03201c34df5d7bd2ba1702096ec6fa69570eba52bf524be7ae7cb3e61f0177b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/error_bar_graph/person_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/error_bar_graph/person_class/Recall.png",
+   "sha256": "843e353c4f232f14fe8cb1865d719c9deb311b79f9ce078a0bbce76a6d750404"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/all_results_np1.npy",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/all_results_np1.npy",
+   "sha256": "2f799f177a2e768c1cc57e06e09e4ee9d65c3659437415fcff97ea34bbfbdfd0"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/all_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/all_class/mAP50-95.png",
+   "sha256": "b101d8da47e86620380b286094ff599eeb817550ff3ef38a2b4f79861caa75ce"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/all_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/all_class/mAP50.png",
+   "sha256": "d785a14c8549414cb24a8bfba7b4f68e60156525dbfbb031352e1c6642f040f2"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/all_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/all_class/Precision.png",
+   "sha256": "3d93db7059fec820d08c64d8395fa386079bd4acd4b36829579e3f56b92b5205"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/all_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/all_class/Recall.png",
+   "sha256": "bdffc49a691d1809c09aae067c9f586b89aedfe2189bbabd271272401af3fe16"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/ball_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/ball_class/mAP50-95.png",
+   "sha256": "2857ed8448425bbf783edca34de8af53e219baa9a3344a03077e9acf2c999b33"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/ball_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/ball_class/mAP50.png",
+   "sha256": "2b965cd72e1a7e737d83f502d015bbe263f6eff20e06e4758fa3be9709edd822"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/ball_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/ball_class/Precision.png",
+   "sha256": "c0743cb703b430065694ae27ffd52c81087c10c37e9170865ab535904e6597ed"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/ball_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/ball_class/Recall.png",
+   "sha256": "5095b520d1ab895e62a3079879bd4325da456e123d101bb5ec1f1c4a3612b48f"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/person_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/person_class/mAP50-95.png",
+   "sha256": "be45833c40defbb705b8ffbb5e004695c7ac8608ecb9fa150c7ade0032b81d8e"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/person_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/person_class/mAP50.png",
+   "sha256": "7151cb57a348b16de2eb82b2e67ce5136b31dffa17a17442aa8e181cbb92199d"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/person_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/person_class/Precision.png",
+   "sha256": "a0ed9a4c495062aefee6aedd4617ac071b097f85c3108e7b3e547a8ba08ce9be"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate1/person_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate1/person_class/Recall.png",
+   "sha256": "fcbe2c16c7fd6340e275900316051fa88d7b005cc594d4f65467bb423dffb8f0"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/all_results_np2.npy",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/all_results_np2.npy",
+   "sha256": "bd6f720f665d24d12c5c7e2cbf81dec3c976fcccf0d1c42c06eb8d42646b935c"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/all_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/all_class/mAP50-95.png",
+   "sha256": "a0d01de6f5aa922dc22b96abe3c7689f514594d9168c08991dacb26ebf61005f"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/all_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/all_class/mAP50.png",
+   "sha256": "b7e319937187b82b6d2c5d4a0d8a932019a787a5659244f8177cd36a5edc603e"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/all_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/all_class/Precision.png",
+   "sha256": "5c396fbc5a90ee866846b296b45a5d9e9cb791ecec346dde38cc32f6aa92588e"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/all_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/all_class/Recall.png",
+   "sha256": "01176208710fd9302ffac7a5f72b2359b420e65eb82084b773985a9b9ab3af6c"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/ball_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/ball_class/mAP50-95.png",
+   "sha256": "18f794cb1c43eb1a14036fcb0f227aa6d0f9265764166dc1a1e5582c16ad813c"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/ball_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/ball_class/mAP50.png",
+   "sha256": "6b9e531c050af5b6d77d20338b6f38dfe2aa4442fce95de897c4aa29ecd4eca2"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/ball_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/ball_class/Precision.png",
+   "sha256": "1176d99ce0b02d465ae3909ea2a327afd6b09ebbe250cc340e59f9202ce0bdba"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/ball_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/ball_class/Recall.png",
+   "sha256": "710eef0616aac50946321046b246dc532aba036dfb22122fe2741d11391b5cfa"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/person_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/person_class/mAP50-95.png",
+   "sha256": "75e78c1d2027654be646032700f4b70423fd322f608df7f0e46f35be38e12de4"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/person_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/person_class/mAP50.png",
+   "sha256": "73107c5e4992e8021e356ce0f6e0df431f66552c00acf0c384430d1df887b487"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/person_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/person_class/Precision.png",
+   "sha256": "4db817bbcf2e3d25a6d795b363ad033edab9ca8f55e58a0993c515ce2f4a0a93"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate2/person_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate2/person_class/Recall.png",
+   "sha256": "8944b8230410923948a4b6ae94d56af31d416db28fabb016d440787b8b922b2e"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/all_results_np3.npy",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/all_results_np3.npy",
+   "sha256": "b5b629074f815f226208ffe9d830bb7f8d0b762583a4d85646517c095a930f27"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/all_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/all_class/mAP50-95.png",
+   "sha256": "c0f3379bf16206713edb7970cdbbdb848d6accb45f03a0ca9ea04865a100dd4f"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/all_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/all_class/mAP50.png",
+   "sha256": "8ef54343dbdd5c67c758be1f3c7c4937e294a99bb027ba466be4a02ec24c2072"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/all_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/all_class/Precision.png",
+   "sha256": "f56cd004339d0b66e2b183a62a6ac26b5e70d4547db7433672420d3852e63a0b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/all_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/all_class/Recall.png",
+   "sha256": "a91a1d3827066b08d7e5d02b91387ca45d06c62e2cc2b5d5dba32ea823fe1be8"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/ball_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/ball_class/mAP50-95.png",
+   "sha256": "d4ed61abcbf0086f3d4c37dd40d8e36bdfb41f6c7f2e175eadf6bfda4a7e0719"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/ball_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/ball_class/mAP50.png",
+   "sha256": "946efe2d490bf46ff96c6f329fcafb6afb67401e152319a269d860fe9062c8cf"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/ball_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/ball_class/Precision.png",
+   "sha256": "c892484f017c9af3c07c9823b43e53d0da65312be0e70ea2aaf1614faf28373e"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/ball_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/ball_class/Recall.png",
+   "sha256": "5f6e11401975b6657f4eb2c8de3e18d6faf1b82ec02a173e16a939fd697b5f15"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/person_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/person_class/mAP50-95.png",
+   "sha256": "b43f524e8b92e6ae9991c498bd32b54236327e1117e351748707d6449110b346"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/person_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/person_class/mAP50.png",
+   "sha256": "74c151a60bb580e2d92652fc7e6b29bd33c197fce61864b5941d8c91fe1c4d58"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/person_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/person_class/Precision.png",
+   "sha256": "40fe76ed1f6d0d2a83280c9c57a016e5622851ae944c1e1532b41e76f3aa7200"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate3/person_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate3/person_class/Recall.png",
+   "sha256": "65d810c37c76a1922812094a3ebee94314f1a931ab027281ba9995c7ab35b891"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/all_results_np4.npy",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/all_results_np4.npy",
+   "sha256": "ce8d76f83445c00bf1b7f93e1b140ca5528a2ed2f3b0cf74d23e32f9f75ef41c"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/all_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/all_class/mAP50-95.png",
+   "sha256": "29ddabb656e6b5ffc3f63d74ad14cdebfd5fa44ab2bf645b5c3c914455af8bc6"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/all_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/all_class/mAP50.png",
+   "sha256": "6432de6402c8d67f1387423bad35159823ace9b7d76c8df5074faeb6b87a49a9"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/all_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/all_class/Precision.png",
+   "sha256": "7993dffb8fc925cafb9340d938c2d17a701d1e77bcdb18f864df00ee09e90eab"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/all_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/all_class/Recall.png",
+   "sha256": "bb44bbf63a544a5ef5d5ef31e91c28ccdabdb89dd0906c5ca3a9d3c1b43a9f7b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/ball_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/ball_class/mAP50-95.png",
+   "sha256": "2dd17beefaeb650c440b6b6a66fef7b7439122b476a9da1e56eae2d98ef1db4d"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/ball_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/ball_class/mAP50.png",
+   "sha256": "601e2a3d8fdc7124c9662c20af80c068ff1266f8b347d045d95ef4b47e7ceefd"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/ball_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/ball_class/Precision.png",
+   "sha256": "a6f2b03fc5157e2329b6282b6e78c7fca9ae96a374b2c0121e8723ddf3286993"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/ball_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/ball_class/Recall.png",
+   "sha256": "aec37b1a5f25236a28eaaabef5a3577485b39473c5cad2173e85d5111819371d"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/person_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/person_class/mAP50-95.png",
+   "sha256": "81d7a6b0ccb575a6e3a165fd974cc4d7f36b54dd5bb909d52545e3a7f022b9e1"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/person_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/person_class/mAP50.png",
+   "sha256": "2fba8cf179cf5b3dbbb5634b10dd82883fca663d487b4c61cb9c3f65b1b92cca"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/person_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/person_class/Precision.png",
+   "sha256": "9527dc9e43a5398be9e4f00595e801a65a773629051b9cc886764bd641dc791b"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate4/person_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate4/person_class/Recall.png",
+   "sha256": "af241662a392d85ff80b05fd04f14bd3030cb67d1783f27c97c4cb3582ff68b8"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/all_results_np5.npy",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/all_results_np5.npy",
+   "sha256": "36dfbb3cbded6c31d3402a33ed6698ab776be07f7dd878ab26ac888ae2939a43"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/all_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/all_class/mAP50-95.png",
+   "sha256": "9226a057774c2088e7a5f5f4c6c83fcdd00106136d58570f15a7bfa28e1e1c7a"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/all_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/all_class/mAP50.png",
+   "sha256": "7902fa277b5f70e3fe488e9f5363536ad15b6e3644a766b7601ba566f1c55595"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/all_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/all_class/Precision.png",
+   "sha256": "c8e4d323b65f3f408d4c8546afccbd3282df938a015553daad0b33f206641418"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/all_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/all_class/Recall.png",
+   "sha256": "9b9d8648a805808c9de32d0d0a041873abbd8587a41897a6c8557e249c90a953"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/ball_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/ball_class/mAP50-95.png",
+   "sha256": "9e7befa84d36431293e477e3ab26709ae6b03383c07cc18bf61100396b348712"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/ball_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/ball_class/mAP50.png",
+   "sha256": "581bb6e95d7192917b043ebfb72806460e81de75f2facf558ee3ae77dce99e21"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/ball_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/ball_class/Precision.png",
+   "sha256": "f7faf17b3f1abce4ab07e8fcbedaa6e87c5ba4793f942947611d1903b5c54393"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/ball_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/ball_class/Recall.png",
+   "sha256": "647c1c7fb4dc40cfdf3e7126d682e0f3f002df67d66795d9e6cf67b247854de2"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/person_class/mAP50-95.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/person_class/mAP50-95.png",
+   "sha256": "fcf386e1e8d7e50d35fe6e032c2a343b6f44aa1e2f9d0600463e97d5dc614634"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/person_class/mAP50.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/person_class/mAP50.png",
+   "sha256": "986f11278d597fae283755a3cc545e421831e8f09e56d38a9a7c164130c3171e"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/person_class/Precision.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/person_class/Precision.png",
+   "sha256": "f4ef2c012fac18c6bc761d0846a65d6fd9eccdcd67ce0c29f9fa5bbdb94dcd5a"
+  },
+  {
+   "from": "SoccerTrack-v2/outputs/graph/randomstate5/person_class/Recall.png",
+   "to": "soccertrack_v2/public_repo/outputs/graph/randomstate5/person_class/Recall.png",
+   "sha256": "a997cdc13614dfc57cfd02cdf4d2fe2adee69acd503376ff9aacaf85413cfda2"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/analyze_bbox_dimensions.sh",
+   "to": "soccertrack_v2/public_repo/scripts/analyze_bbox_dimensions.sh",
+   "sha256": "58c434099f2763eae9e285bc713b452cfedb3086883749652682a2d2e8e5ff0d"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibrate_camera.sh",
+   "to": "soccertrack_v2/public_repo/scripts/calibrate_camera.sh",
+   "sha256": "23ac63db041c5e4d132ddbea64987ae1a011345bffdd461f7d3f6c976b7c7035"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/convert_coordinates_to_bboxes.sh",
+   "to": "soccertrack_v2/public_repo/scripts/convert_coordinates_to_bboxes.sh",
+   "sha256": "860131693d164c549a7c1b10e13f11370e287e7400959b820a9b28b60fb9d329"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/convert_pitch_plane_to_image_plane.sh",
+   "to": "soccertrack_v2/public_repo/scripts/convert_pitch_plane_to_image_plane.sh",
+   "sha256": "0e5280fb51dafab3cd4e6036f65226a7397e78239d72f2b21d75ebb61f77baf4"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/convert_raw_to_pitch_plane.sh",
+   "to": "soccertrack_v2/public_repo/scripts/convert_raw_to_pitch_plane.sh",
+   "sha256": "8ec1e35f29812eb5b704498c5998f758cb0c42731f581e2ea8acd8388cadc5a8"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/create_ground_truth.sh",
+   "to": "soccertrack_v2/public_repo/scripts/create_ground_truth.sh",
+   "sha256": "7c396e2792b67fbd52951d664afe29c2187d133459a7876f7c2ef30a51cc2445"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/download.sh",
+   "to": "soccertrack_v2/public_repo/scripts/download.sh",
+   "sha256": "fce0db2c2957c4efc1866e766ecd1fe7565a30f41397b64b48fbe1c101439cc1"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/generate_calibration_mappings.sh",
+   "to": "soccertrack_v2/public_repo/scripts/generate_calibration_mappings.sh",
+   "sha256": "043b52d2029456c879c5668443824d0382b212efdc08a6b2b1256b33084651ad"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/generate_detections.sh",
+   "to": "soccertrack_v2/public_repo/scripts/generate_detections.sh",
+   "sha256": "d8712db732d70b2083cf0c4635d15c53aa9fd3e0e8a01371ca57122f1f77cea4"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/make_event_frequency.py",
+   "to": "soccertrack_v2/public_repo/scripts/make_event_frequency.py",
+   "sha256": "44720f177b986202c46b3ca754831ab144f849e4af747f833656e5b03e7da9db"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/make_gt_json.py",
+   "to": "soccertrack_v2/public_repo/scripts/make_gt_json.py",
+   "sha256": "d1061a5ad022e361b99d0283132cbc754179a3ce4f51f24ad0b00f1b972652b7"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/plot_bboxes_on_video.sh",
+   "to": "soccertrack_v2/public_repo/scripts/plot_bboxes_on_video.sh",
+   "sha256": "f1365884af60302c6718590367f1785a4badd1e50724535b079a839914b7ece3"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/plot_coordinates_on_video.sh",
+   "to": "soccertrack_v2/public_repo/scripts/plot_coordinates_on_video.sh",
+   "sha256": "eb10a5c684fd1c727f8d52da0055697cf4c7a58313e1af175940db4206cf0edc"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/plot_pitch_coordinates.py",
+   "to": "soccertrack_v2/public_repo/scripts/plot_pitch_coordinates.py",
+   "sha256": "638ab1cb665636e178658c43b09b95d2b1154f7ff726b1c9db34557ab243bfc1"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/pp.py",
+   "to": "soccertrack_v2/public_repo/scripts/pp.py",
+   "sha256": "cb92414b7b991af6d2b392464a20602e6e210b34efe0e29756d9d9da66ddaae0"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/prepare_and_train_yolo.sh",
+   "to": "soccertrack_v2/public_repo/scripts/prepare_and_train_yolo.sh",
+   "sha256": "f61603d05ce80f3c1e22a5a141c289a6c6cbfc437a68091fdd2479db0b50f310"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/run_tracking.sh",
+   "to": "soccertrack_v2/public_repo/scripts/run_tracking.sh",
+   "sha256": "8cdb43d22ec701b5e5c44e6dddc1ee9ebe469b3d0c9bdb35694a5b49fab75415"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/sample_frames_from_videos.py",
+   "to": "soccertrack_v2/public_repo/scripts/sample_frames_from_videos.py",
+   "sha256": "e96682bc816f6485502db845d9ccecb7ebdc1f8e4f2ab3629129aef60c9bae9e"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/trim_video_into_halves.sh",
+   "to": "soccertrack_v2/public_repo/scripts/trim_video_into_halves.sh",
+   "sha256": "8c5b1848c4fa0f46a96708da0cd63a9f701f3f08851ecca40038360411f6111e"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/visualize_events.py",
+   "to": "soccertrack_v2/public_repo/scripts/visualize_events.py",
+   "sha256": "fa483df9f1768e8d6bffde1a1a9dd646b834e9dff699515a97991848511e1019"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/__init__.py",
+   "to": "soccertrack_v2/public_repo/scripts/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/calculate_homography.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/calculate_homography.py",
+   "sha256": "dd99bba2a4cd8071f6332f1a3df4ea34b34a16578f175c0e25f341a5dacc073e"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/calibrate_all_from_keypoints.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/calibrate_all_from_keypoints.py",
+   "sha256": "97dc13d5967bb2a69234465c58f0d417be3587f0c8dcd0636533a489785facf8"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/calibrate_camera_from_mappings.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/calibrate_camera_from_mappings.py",
+   "sha256": "230f46ab03c284e2e4586761949dda323dc4bb043c9e03e139e1727010943d6c"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/checkerboard_calibration.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/checkerboard_calibration.py",
+   "sha256": "602e3baaa51e108d902a69685bed5cefc40214a044a9e526b0195aef07c0abf0"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/crop_image.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/crop_image.py",
+   "sha256": "0307f880934075ea2b969428e5cd43689b2c3fa2846f18b8519ef4f26e7b507a"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/fix_132831_keypoints.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/fix_132831_keypoints.py",
+   "sha256": "2b2f683b36e1fa2adb583beefdac8b62745847ca9f8b36fd8382f41da4c975ae"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/keypoints_calibration.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/keypoints_calibration.py",
+   "sha256": "18e56c58e4e04d14e2c73a6a8395b066d1a99aa1a4f2214056579e223a629031"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/keypoints_visualization.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/keypoints_visualization.py",
+   "sha256": "9b14975c9952748df44367c3df4001eefcaa12784c2e4de5aadafd5baea137f3"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/project_tracking_to_image.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/project_tracking_to_image.py",
+   "sha256": "a392cbd1c04456bf6f73d267b1d848dded038b37b8806e478a90d2375ed593c4"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/render_calibrated_videos.py",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/render_calibrated_videos.py",
+   "sha256": "2d394216a7b4af9656ddf4ba2711523d600ae1d862510307c4a50c65fe24f451"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/calibration/test_calibration_strategies.sh",
+   "to": "soccertrack_v2/public_repo/scripts/calibration/test_calibration_strategies.sh",
+   "sha256": "df7b63d45bbc3c1bc0e8e70290392a9d5c14d27ca684fb36ccfa16c3d45a0917"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/coordinate_conversion/convert_pitch_plane_mot_to_image_plane_mot.py",
+   "to": "soccertrack_v2/public_repo/scripts/coordinate_conversion/convert_pitch_plane_mot_to_image_plane_mot.py",
+   "sha256": "0f4e2c8984d041f82cfb8d469dbe3641016994b69540167e307d04bdf89d0a3d"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/coordinate_conversion/convert_raw_to_pitch_plane_mot.py",
+   "to": "soccertrack_v2/public_repo/scripts/coordinate_conversion/convert_raw_to_pitch_plane_mot.py",
+   "sha256": "bbf08b44ca9f46298e67cf056ef46b43a4c3f4bfcb3e919b6beb51a08e803e68"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/event_detection_tracking/evaluate_event_detection.py",
+   "to": "soccertrack_v2/public_repo/scripts/event_detection_tracking/evaluate_event_detection.py",
+   "sha256": "392056f20c86fa76b0e7e4ce89937c9e490627a213a646a49380211ae7b7bd66"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/event_detection_tracking/event_detection.py",
+   "to": "soccertrack_v2/public_repo/scripts/event_detection_tracking/event_detection.py",
+   "sha256": "c309c1989941392f77d530db19f92f160ae3d11f88b602c20c17b854b339d385"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/event_visualization/make_pass_graph.py",
+   "to": "soccertrack_v2/public_repo/scripts/event_visualization/make_pass_graph.py",
+   "sha256": "5a0b25fed557e172059fc5bd3bb54367d1792d05a94cd8c90b396ad0699e778c"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/event_visualization/visualize_event_tracking.py",
+   "to": "soccertrack_v2/public_repo/scripts/event_visualization/visualize_event_tracking.py",
+   "sha256": "e1d8ed67cc95d5b81a82786408a1f26e9a92a12e83bbfe1c5d102793031ed66c"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/event_visualization/visualize_event_video.py",
+   "to": "soccertrack_v2/public_repo/scripts/event_visualization/visualize_event_video.py",
+   "sha256": "dbe50c7e1251e7609f13c67f6fba473d41bc70873557f4d4d569b8cb95d8b35e"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/event_visualization/visualize_player_to_player.py",
+   "to": "soccertrack_v2/public_repo/scripts/event_visualization/visualize_player_to_player.py",
+   "sha256": "eb9164c75c9be7a72a212fe1038994e3903fa4c4b253a37bf6edf08d649869d6"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/roboflow/download.py",
+   "to": "soccertrack_v2/public_repo/scripts/roboflow/download.py",
+   "sha256": "7ef4c287dcfa55c9faf09509694ca35524ee574adc63bf1882307ae2bcaf9b3f"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/roboflow/split.py",
+   "to": "soccertrack_v2/public_repo/scripts/roboflow/split.py",
+   "sha256": "b298e69b3894ed28d5c33379e0d00fb50341368496bf94c841158d35a94a2bf8"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/roboflow/upload_to_rf.py",
+   "to": "soccertrack_v2/public_repo/scripts/roboflow/upload_to_rf.py",
+   "sha256": "91952cd5badf16cdbd16be5fc5f7d3cebbed9aa472a7f78c23841ba9cefe0866"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/tracking_data_utils/dataclass.py",
+   "to": "soccertrack_v2/public_repo/scripts/tracking_data_utils/dataclass.py",
+   "sha256": "9c0254acf5d5d757a3fe048f0a101737364cc54b1e1a712263680597c3816e4d"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/tracking_data_utils/io.py",
+   "to": "soccertrack_v2/public_repo/scripts/tracking_data_utils/io.py",
+   "sha256": "c6835cbb280bb4f98f071e5f557c25103c33c959890060f52ffaffced6cf3a09"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/tracking_data_utils/trim.py",
+   "to": "soccertrack_v2/public_repo/scripts/tracking_data_utils/trim.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/tracking_data_utils/__init__.py",
+   "to": "soccertrack_v2/public_repo/scripts/tracking_data_utils/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/video_utils/trim.py",
+   "to": "soccertrack_v2/public_repo/scripts/video_utils/trim.py",
+   "sha256": "2702e9f898d5de8b4fa3b82e78ce51ae563509468608c45c5693a07b2af8cdde"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/yolov8/each_randomstate_graph.py",
+   "to": "soccertrack_v2/public_repo/scripts/yolov8/each_randomstate_graph.py",
+   "sha256": "c438c1e3efb5d51d985eeb1f57ffb0af3c0e05dbc626c734bd2a832c7672d15d"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/yolov8/error_bar_graph.py",
+   "to": "soccertrack_v2/public_repo/scripts/yolov8/error_bar_graph.py",
+   "sha256": "7eda4014d75eb7234a6f4f87380b4eb8d3276fef35abdbca5a78bcf242f9328a"
+  },
+  {
+   "from": "SoccerTrack-v2/scripts/yolov8/train_val.py",
+   "to": "soccertrack_v2/public_repo/scripts/yolov8/train_val.py",
+   "sha256": "7e4e1faca28769cd85cefcd0897fbfac39d8bbb2de4f2f70130dfadb5671df0a"
+  },
+  {
+   "from": "SoccerTrack-v2/shell_scripts/keypionts_viz.sh",
+   "to": "soccertrack_v2/public_repo/shell_scripts/keypionts_viz.sh",
+   "sha256": "958501cbab4ca5d905f276e8c8a49d6e46e9859a9edf73cbd95a9bb9b80f5a19"
+  },
+  {
+   "from": "SoccerTrack-v2/shell_scripts/set_permissions.sh",
+   "to": "soccertrack_v2/public_repo/shell_scripts/set_permissions.sh",
+   "sha256": "cafb2d0150818007f96f8af020f02ea85d14373b3ea895f96507e64ad97a56d3"
+  },
+  {
+   "from": "SoccerTrack-v2/shell_scripts/abci/run_AG_small.sh",
+   "to": "soccertrack_v2/public_repo/shell_scripts/abci/run_AG_small.sh",
+   "sha256": "af0af94cd5d569e74c4983b1d1cf6d53c47cdc4c75cef5f8a11ecdaa5b9ad810"
+  },
+  {
+   "from": "SoccerTrack-v2/shell_scripts/detection/prepare_dataset.sh",
+   "to": "soccertrack_v2/public_repo/shell_scripts/detection/prepare_dataset.sh",
+   "sha256": "9866168a11deeb7fc4eac016d40a1b45de334eb127821118a7da33915cdff7ba"
+  },
+  {
+   "from": "SoccerTrack-v2/shell_scripts/detection/train_val.sh",
+   "to": "soccertrack_v2/public_repo/shell_scripts/detection/train_val.sh",
+   "sha256": "9814d89a381408cbe8220154bf75316a8b65dfe6951d0172a908d112691b7358"
+  },
+  {
+   "from": "SoccerTrack-v2/shell_scripts/mini/create_mini_dataset.sh",
+   "to": "soccertrack_v2/public_repo/shell_scripts/mini/create_mini_dataset.sh",
+   "sha256": "dab769074eae94c90cdd9678888a3bdb93d47da4b106238008695aa07a3852e7"
+  },
+  {
+   "from": "SoccerTrack-v2/slurm/bas.sbatch",
+   "to": "soccertrack_v2/public_repo/slurm/bas.sbatch",
+   "sha256": "7c7ebcbe15f066c11b305cf0dadc1a65e746d874e12b00e395514cb5467430fa"
+  },
+  {
+   "from": "SoccerTrack-v2/slurm/gsr.sbatch",
+   "to": "soccertrack_v2/public_repo/slurm/gsr.sbatch",
+   "sha256": "7533bb28e948af7831d3e3480e0318cd2a7830b9dbdd7e00e212bae825c8206b"
+  },
+  {
+   "from": "SoccerTrack-v2/src/csv_utils.py",
+   "to": "soccertrack_v2/public_repo/src/csv_utils.py",
+   "sha256": "94eb5368da43868b3449fe499c7fa51f001ebb1ab5d022c270c2d48e5246a52b"
+  },
+  {
+   "from": "SoccerTrack-v2/src/example.py",
+   "to": "soccertrack_v2/public_repo/src/example.py",
+   "sha256": "564802a27ccaf647f64a1d5513fc7cc62473bc86abd7f63a45d9137664a74afc"
+  },
+  {
+   "from": "SoccerTrack-v2/src/help.py",
+   "to": "soccertrack_v2/public_repo/src/help.py",
+   "sha256": "3daa4b5e59a14f65eee09a85e496e8d9e3e79dd5883dcb5482e6946cd8ec9c18"
+  },
+  {
+   "from": "SoccerTrack-v2/src/main.py",
+   "to": "soccertrack_v2/public_repo/src/main.py",
+   "sha256": "0bfb3809fa2a8c6191e2141916f29fe5ac187eb9b565de8b338118b1875ae998"
+  },
+  {
+   "from": "SoccerTrack-v2/src/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/__init__.py",
+   "sha256": "43144568cd9af58ae8567cfe2407df7b2babe4c209324660ad8858cdd476b56e"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/create_dataset.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/create_dataset.py",
+   "sha256": "685904e6487b894e64f5f991a574ef20e24c050b022091fcc20cff6a4fd240fa"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/dataset.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/dataset.py",
+   "sha256": "7b9e52caa58a961352ba748a039563012a093b0490f9a2d66da1dbde5dae0771"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/data_module.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/data_module.py",
+   "sha256": "76a20703034aa448f9483da1cd610ae3e7256ed3e4badd4ee6e966db0e488891"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/data_transforms.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/data_transforms.py",
+   "sha256": "168a66ece93d153466c80a9fa3f8a0e67c4a3719cd3dc270dde85853c2a90007"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/inference.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/inference.py",
+   "sha256": "528c0c7feac2ae5784eada645c8ce45b66cfc47955a4525fd996c10548ae9774"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/losses.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/losses.py",
+   "sha256": "a5bad6ab55ff87945a640a38bed734b9c6953ca097ad6dde9ea6131d082f9e97"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/model.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/model.py",
+   "sha256": "0f9344328a768668372fa018fb5b124b0cbe951800c71fb18a73272aac3dbc5c"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/train.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/train.py",
+   "sha256": "8df7513c7220f62e00fcf241bde08751f088849f6da4d6e34552928f70c7ae6b"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/tracknetx/utils.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/tracknetx/utils.py",
+   "sha256": "fc012dbc6d0d59b977313021eaa66583cf9a9b8e1539afa0fa40b2dd660e7f2f"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/ultralytics-botsort/create_dataset.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/ultralytics-botsort/create_dataset.py",
+   "sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/ultralytics-botsort/infer.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/ultralytics-botsort/infer.py",
+   "sha256": "b6872dff0aaca557209dd83250418344a09e254492d08b4e4a12920b879c598b"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/ultralytics-botsort/train.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/ultralytics-botsort/train.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/ultralytics_botsort/infer.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/ultralytics_botsort/infer.py",
+   "sha256": "b6872dff0aaca557209dd83250418344a09e254492d08b4e4a12920b879c598b"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/ultralytics_botsort/train.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/ultralytics_botsort/train.py",
+   "sha256": "632d1c7424a3a98b8c17a2c559199e3dae05f069fec76b701455071bf19fc179"
+  },
+  {
+   "from": "SoccerTrack-v2/src/ball_tracking/ultralytics_botsort/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/ball_tracking/ultralytics_botsort/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/src/calibration/calibrate_camera_from_mappings.py",
+   "to": "soccertrack_v2/public_repo/src/calibration/calibrate_camera_from_mappings.py",
+   "sha256": "bec74f696ee3f93e9f750bb5d8fa96c11d6bdee936072a982893cfeb026b031d"
+  },
+  {
+   "from": "SoccerTrack-v2/src/calibration/generate_calibration_mappings.py",
+   "to": "soccertrack_v2/public_repo/src/calibration/generate_calibration_mappings.py",
+   "sha256": "b17e12699bdc1e237327e5f8e71da8618a4040fa4d489c1eba739ca85dd08c19"
+  },
+  {
+   "from": "SoccerTrack-v2/src/calibration/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/calibration/__init__.py",
+   "sha256": "96bd7b04c3d5dbd17ecd6f21d97081be97523ee595cc687660de5be73f59f7ec"
+  },
+  {
+   "from": "SoccerTrack-v2/src/coordinate_conversion/convert_image_plane_to_bounding_box.py",
+   "to": "soccertrack_v2/public_repo/src/coordinate_conversion/convert_image_plane_to_bounding_box.py",
+   "sha256": "a08dd6f487a1256cb56badcf7fb978c4d2d2353a3082118c0d0bdd4a54ac6463"
+  },
+  {
+   "from": "SoccerTrack-v2/src/coordinate_conversion/convert_pitch_plane_to_image_plane.py",
+   "to": "soccertrack_v2/public_repo/src/coordinate_conversion/convert_pitch_plane_to_image_plane.py",
+   "sha256": "3d6859e24923dd2074b8265b1c1b7aba142f224480cbd269dc3cedc5e9fa30ef"
+  },
+  {
+   "from": "SoccerTrack-v2/src/coordinate_conversion/convert_raw_to_pitch_plane.py",
+   "to": "soccertrack_v2/public_repo/src/coordinate_conversion/convert_raw_to_pitch_plane.py",
+   "sha256": "3255728422f9838bbb321861d739ad9c3be8c113013b40a99b5a108cfaa606e5"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_association/analyze_bbox_dimensions.py",
+   "to": "soccertrack_v2/public_repo/src/data_association/analyze_bbox_dimensions.py",
+   "sha256": "1451b78c5c91663e6c257a140153f2acb1a27cd44977eaa393db67b3aaccdf8e"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_association/create_ground_truth.py",
+   "to": "soccertrack_v2/public_repo/src/data_association/create_ground_truth.py",
+   "sha256": "f18b61f4d9b4e264e3bc5114de7bddd6e173f4ec11527ce390d41d0821c7b123"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_association/create_ground_truth_with_fixed_bboxes.py",
+   "to": "soccertrack_v2/public_repo/src/data_association/create_ground_truth_with_fixed_bboxes.py",
+   "sha256": "54bedb836212d2baebb6d9ec34d139b28c4f5ae94a9fb663171fda556a873420"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_association/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/data_association/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_utils/create_dataset.py",
+   "to": "soccertrack_v2/public_repo/src/data_utils/create_dataset.py",
+   "sha256": "690b3cc60bb8612d7932a37acf8118067cfd12543857313f8c11d85a64c7d5e4"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_utils/create_yolo_dataset.py",
+   "to": "soccertrack_v2/public_repo/src/data_utils/create_yolo_dataset.py",
+   "sha256": "4d0e524135dd14e0d5822b737a9b1757a9da08d31cd52121d56b9d2db18bb7b4"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_utils/download_from_gdrive.py",
+   "to": "soccertrack_v2/public_repo/src/data_utils/download_from_gdrive.py",
+   "sha256": "e3a13522a22dcb8ddc2bec57dd2c20d315521a6ada74af74347fc4f3bddc9b87"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_utils/frame_samplers.py",
+   "to": "soccertrack_v2/public_repo/src/data_utils/frame_samplers.py",
+   "sha256": "2b599d43deee3b5485188facba32867e31c3f035be8dce45174b93f2d3bd72da"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_utils/load_from_hf.py",
+   "to": "soccertrack_v2/public_repo/src/data_utils/load_from_hf.py",
+   "sha256": "ef48af4be8c703599db66f0c3a4cdec3ba1a82785b82a65e5dec16a55b7bb6d5"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_utils/soccertrack_v2.py",
+   "to": "soccertrack_v2/public_repo/src/data_utils/soccertrack_v2.py",
+   "sha256": "e8f4da6ab84a5231f7dc2c7966ba5ad3bc355833bca288edd3727643fb1e2077"
+  },
+  {
+   "from": "SoccerTrack-v2/src/data_utils/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/data_utils/__init__.py",
+   "sha256": "a7ebbc634f9fe6201caaad05431aa4c9792f7220b134cdfd3cbb226ddf91a115"
+  },
+  {
+   "from": "SoccerTrack-v2/src/detection/yolov8.py",
+   "to": "soccertrack_v2/public_repo/src/detection/yolov8.py",
+   "sha256": "927e4d113723d68384c736c78060dbdf19c9296ab09860b300d9feeeed8139e3"
+  },
+  {
+   "from": "SoccerTrack-v2/src/detection/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/detection/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/src/evaluation/bas_map.py",
+   "to": "soccertrack_v2/public_repo/src/evaluation/bas_map.py",
+   "sha256": "0fd0b5637c7859d0dbdac30d6239e659d2d2fb40b23ffc7618550a6cce657ea5"
+  },
+  {
+   "from": "SoccerTrack-v2/src/evaluation/gs_hota.py",
+   "to": "soccertrack_v2/public_repo/src/evaluation/gs_hota.py",
+   "sha256": "a9756c552b3d99bf449b7307e8e38ba566eb4332a49f020c1d5c97f26e607414"
+  },
+  {
+   "from": "SoccerTrack-v2/src/evaluation/mot_hota.py",
+   "to": "soccertrack_v2/public_repo/src/evaluation/mot_hota.py",
+   "sha256": "0178598082ed86a622cf9d0c51133716727fad4e5c2aabe9395ea8a407b60714"
+  },
+  {
+   "from": "SoccerTrack-v2/src/evaluation/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/evaluation/__init__.py",
+   "sha256": "09e76cb5d17a9717910505213ff0a70817411fdb7066c6b236b2014942c751d5"
+  },
+  {
+   "from": "SoccerTrack-v2/src/video_utils/metadata.py",
+   "to": "soccertrack_v2/public_repo/src/video_utils/metadata.py",
+   "sha256": "a72af1c27a3865be3506101a4203f34c325552174a995321354200c1a89b90b2"
+  },
+  {
+   "from": "SoccerTrack-v2/src/video_utils/trim.py",
+   "to": "soccertrack_v2/public_repo/src/video_utils/trim.py",
+   "sha256": "05edf7015d133100821d4c8560e3ea82b1ef3c776e36c8511275b56496aff541"
+  },
+  {
+   "from": "SoccerTrack-v2/src/video_utils/trim_video_into_halves.py",
+   "to": "soccertrack_v2/public_repo/src/video_utils/trim_video_into_halves.py",
+   "sha256": "32d10a26e777ee2e37b5453ac3b7c3ea6e972c3931faa94a93eaa336b4f2871d"
+  },
+  {
+   "from": "SoccerTrack-v2/src/video_utils/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/video_utils/__init__.py",
+   "sha256": "2d46c96916de0f16966416c6c37fea975aed14844aa6f3e85d7550e2cb092cb8"
+  },
+  {
+   "from": "SoccerTrack-v2/src/visualization/plot_bboxes_on_video.py",
+   "to": "soccertrack_v2/public_repo/src/visualization/plot_bboxes_on_video.py",
+   "sha256": "f4a83409ddee85945d1ac7b021970ab3e5e9262bb5ff686df1a0ab15bffbfbdf"
+  },
+  {
+   "from": "SoccerTrack-v2/src/visualization/plot_coordinates_on_video.py",
+   "to": "soccertrack_v2/public_repo/src/visualization/plot_coordinates_on_video.py",
+   "sha256": "efa083438facfb83ff3f885215fbd8e6f68a317488698a87c33e50156fe5bfea"
+  },
+  {
+   "from": "SoccerTrack-v2/src/visualization/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/visualization/__init__.py",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "from": "SoccerTrack-v2/src/yolo/dataset.py",
+   "to": "soccertrack_v2/public_repo/src/yolo/dataset.py",
+   "sha256": "eef0f517861c87e0ec28e08b3fa307d4bc75720fa0055a8359f431af7bf93d88"
+  },
+  {
+   "from": "SoccerTrack-v2/src/yolo/train.py",
+   "to": "soccertrack_v2/public_repo/src/yolo/train.py",
+   "sha256": "f94a764d8588d6a21e72f0bb20cd0ad5839b6dd338f219208d723a9ed15f2356"
+  },
+  {
+   "from": "SoccerTrack-v2/src/yolo/__init__.py",
+   "to": "soccertrack_v2/public_repo/src/yolo/__init__.py",
+   "sha256": "59517199252fe19b696890cdb72862eb719e086d198f378006a8346a500c8164"
+  },
+  {
+   "from": "SoccerTrack-v2/tests/test_bas_map_identity.py",
+   "to": "soccertrack_v2/public_repo/tests/test_bas_map_identity.py",
+   "sha256": "48ddd592d92020fb876a57b7c6d3fd67335a8ae2d921156ac4f0a70e13e15753"
+  },
+  {
+   "from": "SoccerTrack-v2/tests/test_gs_hota_identity.py",
+   "to": "soccertrack_v2/public_repo/tests/test_gs_hota_identity.py",
+   "sha256": "f70890c8ea523f323d4b337e6d17590a49208b9b21635b4660016c290671f722"
+  }
+ ],
+ "verified": 314,
+ "deduplicated": [
+  {
+   "removed": "soccertrack_v2/gsr/raw-20260811T095104Z-1-001.zip",
+   "identical_to": "soccertrack_v2/raw/raw-20260811T095104Z-1-001.zip",
+   "sha256": "933b6d12ef2694a8304228aade88bbf2e02b8ed679e73520e1935f6111f96217",
+   "bytes_reclaimed": 246391336,
+   "reason": "the SoccerTrack download shipped the RAW archive twice; RAW is the canonical home"
+  },
+  {
+   "removed": "soccertrack_v2/gsr/raw-20260811T095104Z-1-002.zip",
+   "identical_to": "soccertrack_v2/raw/raw-20260811T095104Z-1-002.zip",
+   "sha256": "5799f216ebb688f97cb73ba71034b621713cc11eb0412e3e943a2850a17e7738",
+   "bytes_reclaimed": 35736111,
+   "reason": "the SoccerTrack download shipped the RAW archive twice; RAW is the canonical home"
+  }
+ ],
+ "errors": [],
+ "skipped": [],
+ "remaining_duplicate_groups": {}
+}

@@ -1,0 +1,29 @@
+{
+ "note": "as recorded by the SoccerTrack audit before consolidation; the gsr/ duplicate copies of the RAW archives were removed after byte-identical verification",
+ "archives": {
+  "bas/bas-20260811T095050Z-1-001.zip": {
+   "sha256": "ba651a8af01649358b84f0472be78ceee0665a033e5494d5ef5d3cf68b9cd31d",
+   "bytes": 242159
+  },
+  "mot/mot-20260811T095052Z-1-001.zip": {
+   "sha256": "464e9b85e1bfbd8fc1545fc44a3aab882ea2b412bd1bc60d6dc1a2f426b3509b",
+   "bytes": 158
+  },
+  "raw/raw-20260811T095104Z-1-001.zip": {
+   "sha256": "933b6d12ef2694a8304228aade88bbf2e02b8ed679e73520e1935f6111f96217",
+   "bytes": 246391336
+  },
+  "raw/raw-20260811T095104Z-1-002.zip": {
+   "sha256": "5799f216ebb688f97cb73ba71034b621713cc11eb0412e3e943a2850a17e7738",
+   "bytes": 35736111
+  },
+  "gsr/raw-20260811T095104Z-1-001.zip": {
+   "sha256": "933b6d12ef2694a8304228aade88bbf2e02b8ed679e73520e1935f6111f96217",
+   "bytes": 246391336
+  },
+  "gsr/raw-20260811T095104Z-1-002.zip": {
+   "sha256": "5799f216ebb688f97cb73ba71034b621713cc11eb0412e3e943a2850a17e7738",
+   "bytes": 35736111
+  }
+ }
+}

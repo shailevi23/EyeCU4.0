@@ -5,7 +5,47 @@ input-videos/
 roboflow_api_key.env
 .pytest_cache/
 .env
-EyeCU_external_data/
+
+# ---------------------------------------------------------------------------
+# EyeCU_external_data/ : third-party dataset bulk stays out; the records that
+# make it reproducible go in. Same shape as the data/ block below -- `dir/*`
+# rather than `dir/`, because git will not descend into a directory excluded by
+# name and every negation under it would be silently dead.
+#
+# Out: images, videos, ZIPs, the 55 GB of GSR JSON, the CA bundle, and the
+# SoccerTrack public repo checkout (it clones from upstream).
+# In:  the master registry, per-source manifests, download logs, pointers.
+# ---------------------------------------------------------------------------
+EyeCU_external_data/*
+!EyeCU_external_data/MASTER_EXTERNAL_SOURCE_REGISTRY.json
+!EyeCU_external_data/consolidation_log.json
+
+!EyeCU_external_data/roboflow_audit/
+EyeCU_external_data/roboflow_audit/*
+!EyeCU_external_data/roboflow_audit/manifests/
+!EyeCU_external_data/roboflow_audit/reports/
+
+!EyeCU_external_data/huggingface/
+EyeCU_external_data/huggingface/*
+!EyeCU_external_data/huggingface/manifests/
+!EyeCU_external_data/huggingface/download_logs/
+!EyeCU_external_data/huggingface/keremberke_football_object_detection/
+EyeCU_external_data/huggingface/keremberke_football_object_detection/*
+!EyeCU_external_data/huggingface/keremberke_football_object_detection/manifests/
+!EyeCU_external_data/huggingface/soccernet_v3/
+EyeCU_external_data/huggingface/soccernet_v3/*
+!EyeCU_external_data/huggingface/soccernet_v3/manifests/
+
+!EyeCU_external_data/soccertrack_v2/
+EyeCU_external_data/soccertrack_v2/*
+!EyeCU_external_data/soccertrack_v2/manifests/
+!EyeCU_external_data/soccertrack_v2/reports/
+
+!EyeCU_external_data/research_sources/
+EyeCU_external_data/research_sources/*
+!EyeCU_external_data/research_sources/manifests/
+!EyeCU_external_data/research_sources/teamtrack/
+!EyeCU_external_data/research_sources/sportslabkit/
 
 # One-off diagnostic renders land in the repo root and pile up fast. Keepers
 # belong in experiments/records/evidence/, which is tracked normally; this rule

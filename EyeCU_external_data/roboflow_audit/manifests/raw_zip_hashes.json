@@ -1,0 +1,55 @@
+{
+ "note": "Hashes re-verified at the canonical location after consolidation.",
+ "verified_utc": "2026-08-11T17:04:39Z",
+ "zips": {
+  "S1": {
+   "file": "SOccer.v1i.yolo26.zip",
+   "sha256": "6cfdbf2f31cbba589852b6e341f85dfb7318915096ad96a7fd52d239e502c50d",
+   "matches_original_audit": true,
+   "bytes": 23516008,
+   "project": "modulov/soccer-3ezqd v1",
+   "license": "CC BY 4.0"
+  },
+  "S2": {
+   "file": "football.v1i.yolo26.zip",
+   "sha256": "d99cb76a6d3d056c25dc611025bb0dc49af8db956265f457803927e20079d4cf",
+   "matches_original_audit": true,
+   "bytes": 37643123,
+   "project": "va-sah7v/football-eitpt v1",
+   "license": "CC BY 4.0"
+  },
+  "S3": {
+   "file": "soccer players.v1-release-640.yolo26.zip",
+   "sha256": "091af379c7a5a91d6771f989cc57f96bb2f48e84f380d9e33fe71207159d0e06",
+   "matches_original_audit": true,
+   "bytes": 5900954,
+   "project": "roboflow-100/soccer-players-5fuqs v1",
+   "license": "CC BY 4.0"
+  },
+  "S4": {
+   "file": "soccer.v1i.yolo26 (1).zip",
+   "sha256": "6df855c3f1decdc2cf0b44c8bd1c02c9a7ad9ce3a0d255bb73332b37ea6d2534",
+   "matches_original_audit": true,
+   "bytes": 17276408,
+   "project": "simon6048/soccer-xwvv0 v1",
+   "license": "CC BY 4.0"
+  },
+  "S5": {
+   "file": "soccer.v1i.yolo26 (2).zip",
+   "sha256": "e420dfcdec32409d7ec5a313a76ed2a864cb992242defcc3acd8ec1ede128ccd",
+   "matches_original_audit": true,
+   "bytes": 94691842,
+   "project": "mishahal-salim-nuz8t/soccer-xvqxc v1",
+   "license": "Public Domain"
+  },
+  "S6": {
+   "file": "soccer.v1i.yolo26 (3).zip",
+   "sha256": "ae34e65843c531ec6b82be1a42524a047e573ecfe9b7d82fd148593dac8c8a29",
+   "matches_original_audit": true,
+   "bytes": 151295839,
+   "project": "old-storm-hhcgf/soccer-f6mhl v1",
+   "license": "CC BY 4.0"
+  }
+ },
+ "all_hashes_unchanged": true
+}

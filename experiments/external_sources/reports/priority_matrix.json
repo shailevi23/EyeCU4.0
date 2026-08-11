@@ -1,0 +1,291 @@
+{
+ "generated_utc": "2026-08-11T17:18:49Z",
+ "rating_scale": [
+  "HIGH",
+  "MEDIUM",
+  "LOW",
+  "NONE",
+  "UNKNOWN"
+ ],
+ "priority_matrix": {
+  "RB_S1": {
+   "ball": "LOW",
+   "humans": "LOW",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "MEDIUM",
+   "quality": "MEDIUM",
+   "diversity": "LOW",
+   "effort": "MEDIUM"
+  },
+  "RB_S2": {
+   "ball": "NONE",
+   "humans": "NONE",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "LOW",
+   "quality": "LOW",
+   "diversity": "LOW",
+   "effort": "HIGH"
+  },
+  "RB_S3": {
+   "ball": "LOW",
+   "humans": "LOW",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "HIGH",
+   "quality": "MEDIUM",
+   "diversity": "MEDIUM",
+   "effort": "MEDIUM"
+  },
+  "RB_S4": {
+   "ball": "NONE",
+   "humans": "NONE",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "HIGH",
+   "quality": "MEDIUM",
+   "diversity": "NONE",
+   "effort": "NONE"
+  },
+  "RB_S5": {
+   "ball": "LOW",
+   "humans": "NONE",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "MEDIUM",
+   "quality": "MEDIUM",
+   "diversity": "MEDIUM",
+   "effort": "HIGH"
+  },
+  "RB_S6": {
+   "ball": "MEDIUM",
+   "humans": "MEDIUM",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "HIGH",
+   "quality": "HIGH",
+   "diversity": "LOW",
+   "effort": "LOW"
+  },
+  "HF_KEREMBERKE": {
+   "ball": "HIGH",
+   "humans": "LOW",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "HIGH",
+   "quality": "HIGH",
+   "diversity": "MEDIUM",
+   "effort": "MEDIUM"
+  },
+  "HF_SOCCERNET_V3": {
+   "ball": "MEDIUM",
+   "humans": "HIGH",
+   "tracking": "LOW",
+   "calibration": "NONE",
+   "events": "MEDIUM",
+   "identity": "HIGH",
+   "domain": "HIGH",
+   "quality": "HIGH",
+   "diversity": "HIGH",
+   "effort": "MEDIUM"
+  },
+  "SOCCERTRACK_V2": {
+   "ball": "NONE",
+   "humans": "LOW",
+   "tracking": "MEDIUM",
+   "calibration": "HIGH",
+   "events": "MEDIUM",
+   "identity": "MEDIUM",
+   "domain": "LOW",
+   "quality": "MEDIUM",
+   "diversity": "LOW",
+   "effort": "HIGH"
+  },
+  "SOCCERTRACK_MOT": {
+   "ball": "NONE",
+   "humans": "LOW",
+   "tracking": "LOW",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "LOW",
+   "quality": "UNKNOWN",
+   "diversity": "UNKNOWN",
+   "effort": "HIGH"
+  },
+  "HF_MARTINJOLIF": {
+   "ball": "UNKNOWN",
+   "humans": "UNKNOWN",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "UNKNOWN",
+   "quality": "UNKNOWN",
+   "diversity": "NONE",
+   "effort": "LOW"
+  },
+  "HF_SOCCANA": {
+   "ball": "UNKNOWN",
+   "humans": "UNKNOWN",
+   "tracking": "NONE",
+   "calibration": "NONE",
+   "events": "NONE",
+   "identity": "NONE",
+   "domain": "UNKNOWN",
+   "quality": "UNKNOWN",
+   "diversity": "UNKNOWN",
+   "effort": "HIGH"
+  },
+  "RS_TEAMTRACK": {
+   "ball": "UNKNOWN",
+   "humans": "UNKNOWN",
+   "tracking": "MEDIUM",
+   "calibration": "UNKNOWN",
+   "events": "NONE",
+   "identity": "UNKNOWN",
+   "domain": "LOW",
+   "quality": "UNKNOWN",
+   "diversity": "UNKNOWN",
+   "effort": "HIGH"
+  },
+  "RS_SPORTSLABKIT": {
+   "ball": "NONE",
+   "humans": "NONE",
+   "tracking": "MEDIUM",
+   "calibration": "MEDIUM",
+   "events": "LOW",
+   "identity": "LOW",
+   "domain": "NONE",
+   "quality": "UNKNOWN",
+   "diversity": "NONE",
+   "effort": "HIGH"
+  }
+ },
+ "rankings": {
+  "1_CURRENT_BALL_IMPROVEMENT": [
+   [
+    "HF_KEREMBERKE",
+    "The only source whose export applied NO resize, so its stored pixels are original pixels. 1,263 ball boxes, median 9.1 px at native 1280x720 -- SMALLER than EyeCU's own ball median. 474 balls <=8 px as stored."
+   ],
+   [
+    "HF_SOCCERNET_V3",
+    "3,830 ball boxes across 55 matches and 6 leagues, real broadcast. Balls are LARGER than EyeCU's own (35 px vs 18 px at 1920-equivalent), so this is ball DIVERSITY, not tiny-ball supply."
+   ],
+   [
+    "RB_S6",
+    "1,251 keep-candidate images with the best ball boxes of the six, but one La Liga match only."
+   ],
+   [
+    "RB_S5",
+    "Ball-only with unlabelled humans; large balls; reference at best."
+   ],
+   [
+    "RB_S3",
+    "141 padded ball boxes across a few Premier League matches."
+   ],
+   [
+    "RB_S1",
+    "498 ball boxes, one match, boxes distorted by a 640x640 stretch."
+   ]
+  ],
+  "2_FUTURE_CALIBRATION": [
+   [
+    "SOCCERTRACK_V2",
+    "Complete and verified: homography, fisheye intrinsics and extrinsics, undistortion maps, 65 pitch correspondences, for all 10 matches. Two independent routes agree to 9.8 px; 0.83 m median positional accuracy. Nothing else audited comes close."
+   ],
+   [
+    "RS_SPORTSLABKIT",
+    "Calibration and pitch-coordinate methodology, as reading material only -- GPL-3.0."
+   ],
+   [
+    "HF_SOCCERNET_V3",
+    "No calibration in this export."
+   ]
+  ],
+  "3_FUTURE_EVENTS": [
+   [
+    "SOCCERTRACK_V2",
+    "23,663 BAS events, 12 classes, ms timestamps, player_id on 99.5%, alignable to video."
+   ],
+   [
+    "HF_SOCCERNET_V3",
+    "Action-centred sampling with replay groups; the export is organised around events even though it ships no event labels of its own."
+   ]
+  ],
+  "4_FUTURE_IDENTITY_JERSEY": [
+   [
+    "HF_SOCCERNET_V3",
+    "15,041 readable jersey numbers on detections, plus team-left/team-right role split and 57 teams."
+   ],
+   [
+    "SOCCERTRACK_V2",
+    "Full squad metadata, jersey numbers, persistent track_id -> player_id, but only 10 amateur matches and unusable boxes."
+   ]
+  ],
+  "5_FUTURE_TRACKING_RESEARCH": [
+   [
+    "SOCCERTRACK_V2",
+    "Persistent identities, though with no occlusion gaps, so it does not exercise what a tracker must solve."
+   ],
+   [
+    "RS_TEAMTRACK",
+    "Designed as an external MOT benchmark; access currently BLOCKED_ACCESS (401)."
+   ],
+   [
+    "RS_SPORTSLABKIT",
+    "Tracking pipeline ideas, GPL-3.0, reference only."
+   ]
+  ]
+ },
+ "experiment_d_gate": {
+  "question": "SHOULD WE CREATE EXPERIMENT D?",
+  "answer": "YES",
+  "previous_answer_on_the_six_roboflow_sources_alone": "WEAK",
+  "what_changed": [
+   "keremberke supplies 1,263 ball boxes at NATIVE resolution with no resize in the export chain -- the first source in any EyeCU audit where a small stored ball is a genuinely small ball. Its balls are smaller than EyeCU's own: 13.7 px vs 18 px at 1920-equivalent.",
+   "SoccerNet-V3 supplies 40,139 player, 2,948 goalkeeper and 3,402 referee boxes with goalkeeper and referee as DISTINCT classes, across 55 matches in 6 leagues -- the class distinction EyeCU needs and the diversity the six Roboflow sources could not provide.",
+   "Neither source overlaps EyeCU VAL or TEST."
+  ],
+  "what_has_NOT_changed": [
+   "Still no large supply of genuinely tiny broadcast balls. Across everything audited, balls <=8 px in original terms remain rare.",
+   "A large correlated block from one match is still not diversity: RB_S6 remains 1,251 frames of one La Liga match."
+  ],
+  "blocking_conditions_before_D_can_be_designed": [
+   "keremberke collapses goalkeeper AND referee into \"player\" (verified visually on yellow-kit officials). Mixing its human boxes as-is would damage the two classes EyeCU is weakest on. Either use it ball-only with its humans handled as ignore-regions, or relabel -- and neither is authorised yet.",
+   "SoccerNet-V3 label quality has not been visually verified on the downloaded payload yet, and its Staff members / Wall of players / Referee flag / card classes must be dropped rather than mapped.",
+   "SoccerNet-V3 ships an action frame plus up to 8 replay frames of the SAME action; replays are correlated by construction and must not be counted as independent images."
+  ],
+  "design_constraints_for_a_future_D": {
+   "keep_fixed": [
+    "YOLO26s",
+    "960 input",
+    "same training policy",
+    "same frozen VAL",
+    "same evaluation protocol"
+   ],
+   "change_only": "audited external real data added to TRAIN",
+   "never": [
+    "external data in VAL or TEST",
+    "goalkeeper or referee collapsed into player",
+    "unlabelled humans mixed in without ignore-region handling"
+   ]
+  },
+  "not_executed": true
+ }
+}

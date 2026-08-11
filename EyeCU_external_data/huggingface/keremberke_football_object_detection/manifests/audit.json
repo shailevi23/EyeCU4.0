@@ -1,0 +1,115 @@
+{
+ "source": "keremberke/football-object-detection",
+ "underlying": "roboflow augmented-startups/football-player-detection-kucab v3",
+ "license_from_card": "CC BY 4.0",
+ "preprocessing_declared": "auto-orientation only; NO resize",
+ "augmentation_declared": "none",
+ "splits": {
+  "test": {
+   "images": 130,
+   "annotations": 2405,
+   "classes": {
+    "player": 2268,
+    "football": 137
+   },
+   "categories_declared": [
+    "football",
+    "player"
+   ],
+   "images_with_zero_annotations": 0
+  },
+  "train": {
+   "images": 859,
+   "annotations": 15960,
+   "classes": {
+    "football": 864,
+    "player": 15096
+   },
+   "categories_declared": [
+    "football",
+    "player"
+   ],
+   "images_with_zero_annotations": 1
+  },
+  "valid": {
+   "images": 243,
+   "annotations": 4513,
+   "classes": {
+    "player": 4251,
+    "football": 262
+   },
+   "categories_declared": [
+    "football",
+    "player"
+   ],
+   "images_with_zero_annotations": 0
+  }
+ },
+ "classes_total": {
+  "player": 21615,
+  "football": 1263
+ },
+ "images_total": 1232,
+ "annotations_total": 22878,
+ "image_dimensions": {
+  "1280x720": 1232
+ },
+ "images_whose_decoded_size_differs_from_coco": 0,
+ "images_with_zero_annotations": 1,
+ "ball": {
+  "instances": 1263,
+  "unique_images_with_ball": 972,
+  "stored_px": {
+   "width": {
+    "n": 1263,
+    "median": 9.14,
+    "mean": 13.42,
+    "p10": 5.35,
+    "p25": 6.8,
+    "p75": 11.79,
+    "p90": 15.97,
+    "min": 3.17,
+    "max": 664.66
+   },
+   "height": {
+    "n": 1263,
+    "median": 9.0,
+    "mean": 13.19,
+    "p10": 5.35,
+    "p25": 6.72,
+    "p75": 11.5,
+    "p90": 15.77,
+    "min": 3.45,
+    "max": 252.5
+   },
+   "width_bins": {
+    "<3": 0,
+    "3-5": 90,
+    ">5-8": 384,
+    ">8-12": 495,
+    ">12-20": 196,
+    ">20-40": 26,
+    ">40": 72
+   },
+   "le5": 90,
+   "le8": 474,
+   "le12": 969
+  },
+  "width_1920_equivalent": {
+   "note": "the export declares no resize, so stored == original; this column only rescales for comparison with EyeCU",
+   "median": 13.71,
+   "width_bins": {
+    "<3": 0,
+    "3-5": 2,
+    ">5-8": 123,
+    ">8-12": 349,
+    ">12-20": 586,
+    ">20-40": 112,
+    ">40": 91
+   },
+   "le5": 2,
+   "le8": 125,
+   "le12": 474
+  }
+ }
+}
