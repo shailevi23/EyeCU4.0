@@ -1,0 +1,699 @@
+{
+ "purpose": "detect the failure mode candidate review cannot see: an official the triage missed entirely, in an image where nothing was flagged",
+ "kept_separate_from_candidate_precision": true,
+ "seed": 0,
+ "population": 57,
+ "sample_size": 57,
+ "by_run": {
+  "plain_A": 15,
+  "plain_B": 41,
+  "pp_B": 1
+ },
+ "answers_recorded": 0,
+ "rows": [
+  {
+   "IMAGE": "valid/5527_jpg.rf.e2428190954cd6b6d9b830659f0f37e2.jpg",
+   "human_boxes": 1,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54671_jpg.rf.367c1433d47e7556cf6d20e8a439b75c.jpg",
+   "human_boxes": 1,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/480_pp_jpg.rf.d20dd7dca8bfba39458f27f41fe3f326.jpg",
+   "human_boxes": 1,
+   "run": "pp_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/5629_jpg.rf.460b71af1a36d3323244f47a99424104.jpg",
+   "human_boxes": 11,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/54892_jpg.rf.661514dd8da6fa2d439274c9f69f3c74.jpg",
+   "human_boxes": 2,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/5542_jpg.rf.5363b38256675299fb13f535ed5ffeda.jpg",
+   "human_boxes": 2,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/54680_jpg.rf.f4e3fa3ab3bdd619de8396bab060a7f7.jpg",
+   "human_boxes": 4,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/5665_jpg.rf.7061ab259c599dab6e5a34176f4a0ffb.jpg",
+   "human_boxes": 4,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54510_jpg.rf.7f375eca2da542f5258a1a5afc4c5566.jpg",
+   "human_boxes": 4,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/5645_jpg.rf.656bf11e47a50425d1b1dd0ea3cb746a.jpg",
+   "human_boxes": 1,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54694_jpg.rf.bbd89d6a1e456aa48d335c016766b646.jpg",
+   "human_boxes": 1,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/5563_jpg.rf.ceba283208058f92dcb0e42535eea68e.jpg",
+   "human_boxes": 4,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/54881_jpg.rf.62b337bc47dbf6fbf5a34e18a361de97.jpg",
+   "human_boxes": 3,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/5654_jpg.rf.46ae8091073caffde004ec8816ab4f33.jpg",
+   "human_boxes": 2,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54573_jpg.rf.f83032ae2bbd49a66ea9a4ec6d36323b.jpg",
+   "human_boxes": 15,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/5462_jpg.rf.ed077552f832d9fa561cdf39d35c585c.jpg",
+   "human_boxes": 1,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54529_jpg.rf.8acf983ec4acfa17efe0fe2133163f87.jpg",
+   "human_boxes": 18,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/5459_jpg.rf.f816ca860014b4a03566fa4cc3e31b92.jpg",
+   "human_boxes": 1,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54969_jpg.rf.461d3441d56b5564745342b75dab0b9d.jpg",
+   "human_boxes": 4,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/5663_jpg.rf.4861769aa03d5864c15fd8f3f31016a8.jpg",
+   "human_boxes": 4,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/54690_jpg.rf.50a0f267d5fc28dc6fe2950bef605bcd.jpg",
+   "human_boxes": 16,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/5464_jpg.rf.12ef3469e20530e1f2907f0d349f9378.jpg",
+   "human_boxes": 3,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55180_jpg.rf.052f121548dc49b387f6f5a885fc4432.jpg",
+   "human_boxes": 2,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/5626_jpg.rf.0ef8a89e401d18673eec816688df1d0f.jpg",
+   "human_boxes": 4,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54897_jpg.rf.3634b8015b0d00b2eefe9632de38b74e.jpg",
+   "human_boxes": 3,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/5502_jpg.rf.ca2a50f6b1b3b154752d3c9be82c6d9a.jpg",
+   "human_boxes": 2,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55161_jpg.rf.f8c0d9d8eaaf299bec2fcc005de56a1a.jpg",
+   "human_boxes": 1,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/5550_jpg.rf.10f013268653cc0d104f635cb0d8c4e9.jpg",
+   "human_boxes": 1,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/54550_jpg.rf.aa792b648aa91d189be3c53f8bbb3963.jpg",
+   "human_boxes": 15,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/5628_jpg.rf.79fe4c42a499fe0da2aa6c740a6a91d7.jpg",
+   "human_boxes": 2,
+   "run": "plain_A",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54815_jpg.rf.3754c80f875f85bec22cb766b40346ba.jpg",
+   "human_boxes": 5,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55093_jpg.rf.8b0506f920c3f059cdc3a2f5f3b6e3ec.jpg",
+   "human_boxes": 3,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55270_jpg.rf.ed81ec2b9c8b777d5f39ea1938424790.jpg",
+   "human_boxes": 11,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/54783_jpg.rf.cdffa8771697e7e35edc2974dbfba752.jpg",
+   "human_boxes": 4,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54512_jpg.rf.5bd16f913aff874ab494b0fef8e1dd83.jpg",
+   "human_boxes": 3,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55019_jpg.rf.193e2005241371ca1b49cd00bc8b8f24.jpg",
+   "human_boxes": 21,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54784_jpg.rf.138700d9bff6f2f7cacf025a4edbad60.jpg",
+   "human_boxes": 3,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54692_jpg.rf.4af087259b49b25bb65ba458a958d4df.jpg",
+   "human_boxes": 2,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55262_jpg.rf.8b628ecca2331a93689fd6009f705cfa.jpg",
+   "human_boxes": 2,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/54509_jpg.rf.f0e0bc7a392d9820c8b028ee68bc889a.jpg",
+   "human_boxes": 3,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54596_jpg.rf.d0c80d790a5eb8f9ee988c609fb168a6.jpg",
+   "human_boxes": 7,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54837_jpg.rf.81f32c043c500bffbb3c92de782efe45.jpg",
+   "human_boxes": 2,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55095_jpg.rf.6f9855f2249e60dc5cbc2bf4d80cc597.jpg",
+   "human_boxes": 1,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54724_jpg.rf.1aa344748d4b5798cdfeea27a58de156.jpg",
+   "human_boxes": 18,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54523_jpg.rf.d3d9b3ff695fa788c8b75819a0e24378.jpg",
+   "human_boxes": 10,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54616_jpg.rf.a10a157d0233ddde72bac6d7dc991504.jpg",
+   "human_boxes": 18,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54525_jpg.rf.ba3ca5f078c003011df42d336beaefc5.jpg",
+   "human_boxes": 7,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55284_jpg.rf.0abdcf193ae72344f98639d42fb588a5.jpg",
+   "human_boxes": 8,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/54650_jpg.rf.db1b828d9ab07e172d22ac496ab65193.jpg",
+   "human_boxes": 19,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/55165_jpg.rf.e6d14fbd597f0595081e1dc460aa522d.jpg",
+   "human_boxes": 1,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54524_jpg.rf.7c8f78d404e46c82869c893a565febfd.jpg",
+   "human_boxes": 7,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54645_jpg.rf.ba0cf601ae68eed7a5b09314bc844176.jpg",
+   "human_boxes": 18,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54659_jpg.rf.d40cde13cb90e9ba9b8ce48062d0b196.jpg",
+   "human_boxes": 6,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54994_jpg.rf.09a8aab98a173f012d5fcdd63cbe3486.jpg",
+   "human_boxes": 4,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "train/54532_jpg.rf.cff99f3ee58e18cce426f6fb03b0ddf3.jpg",
+   "human_boxes": 2,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "valid/55106_jpg.rf.9c371389bc9fe32277f741192de13b3a.jpg",
+   "human_boxes": 3,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "IMAGE": "test/55160_jpg.rf.826b1f2e76a56ab7fb122dfaeafaa51a.jpg",
+   "human_boxes": 1,
+   "run": "plain_B",
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "NO_OFFICIAL_PRESENT",
+    "MISSED_GOALKEEPER_PRESENT",
+    "MISSED_REFEREE_PRESENT",
+    "UNCERTAIN"
+   ]
+  }
+ ]
+}

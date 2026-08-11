@@ -1,0 +1,6262 @@
+{
+ "purpose": "measure triage RECALL -- officials wrongly left as player",
+ "sampling": "stratified round-robin over run x size x detector-confidence x region x depth",
+ "seed": 0,
+ "population": 17462,
+ "sample_size": 250,
+ "strata_available": 177,
+ "strata_covered": 54,
+ "answers_recorded": 0,
+ "rows": [
+  {
+   "BOX_ID": "train:12456",
+   "IMAGE": "train/5595_jpg.rf.c50a760d82d8824ca438c008ee2fa6fe.jpg",
+   "bbox_xywh": [
+    722.0,
+    268.0,
+    34.9,
+    82.5
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.909,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1845",
+   "IMAGE": "valid/5630_jpg.rf.7c0da013ec0c9ec0e0ac15f4d3012308.jpg",
+   "bbox_xywh": [
+    790.0,
+    412.0,
+    30.32,
+    81.54
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.845,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:467",
+   "IMAGE": "train/5610_jpg.rf.77383d0ef4e0ab2a5122695e65e092ff.jpg",
+   "bbox_xywh": [
+    104.0,
+    220.0,
+    32.43,
+    89.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.895,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6974",
+   "IMAGE": "train/5555_jpg.rf.4732ae6224fc21f33035c2f2479d6a53.jpg",
+   "bbox_xywh": [
+    171.0,
+    490.0,
+    34.9,
+    90.77
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.879,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1041",
+   "IMAGE": "valid/5480_jpg.rf.47df513a742e015d72f65e8688c43b09.jpg",
+   "bbox_xywh": [
+    854.0,
+    226.0,
+    35.13,
+    88.42
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.825,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2129",
+   "IMAGE": "valid/5634_jpg.rf.8470d51158b7213a40b31dc79cf197d0.jpg",
+   "bbox_xywh": [
+    1242.0,
+    452.0,
+    38.21,
+    96.67
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.839,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1040",
+   "IMAGE": "valid/5480_jpg.rf.47df513a742e015d72f65e8688c43b09.jpg",
+   "bbox_xywh": [
+    797.0,
+    275.0,
+    61.98,
+    93.68
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.383,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13753",
+   "IMAGE": "train/5607_jpg.rf.dc0085ba7b50ff1ad133247ea4389249.jpg",
+   "bbox_xywh": [
+    735.0,
+    430.0,
+    49.0,
+    95.91
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.454,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5193",
+   "IMAGE": "train/5649_jpg.rf.304623e1beecf0c29f6282bce3cc6064.jpg",
+   "bbox_xywh": [
+    312.0,
+    264.0,
+    32.98,
+    82.31
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.345,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6781",
+   "IMAGE": "train/5608_jpg.rf.43c1dd393ef4eea453c81c33bef4a662.jpg",
+   "bbox_xywh": [
+    223.0,
+    484.0,
+    40.48,
+    125.29
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.358,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:120",
+   "IMAGE": "test/5624_jpg.rf.03644803e5b52f203754f5a5cd27b621.jpg",
+   "bbox_xywh": [
+    854.0,
+    240.0,
+    41.43,
+    80.77
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.352,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10318",
+   "IMAGE": "train/5626_jpg.rf.0ef8a89e401d18673eec816688df1d0f.jpg",
+   "bbox_xywh": [
+    863.0,
+    262.0,
+    99.73,
+    265.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.255,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10591",
+   "IMAGE": "train/5520_jpg.rf.10c1469557e72d171921f55f6bbe0978.jpg",
+   "bbox_xywh": [
+    561.0,
+    269.0,
+    25.28,
+    104.64
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.53,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2412",
+   "IMAGE": "train/5575_jpg.rf.9918b88cdd0f8f0c140498513e4011a5.jpg",
+   "bbox_xywh": [
+    654.0,
+    329.0,
+    49.05,
+    87.35
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.59,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:9036",
+   "IMAGE": "train/5509_jpg.rf.69049fa427301a5e932704edaf59edd0.jpg",
+   "bbox_xywh": [
+    228.0,
+    280.0,
+    40.89,
+    80.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.542,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4427",
+   "IMAGE": "train/5579_jpg.rf.b4e7ee8b6e2b3d1069e391f18c9a85f1.jpg",
+   "bbox_xywh": [
+    195.0,
+    363.0,
+    37.78,
+    86.07
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.525,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:910",
+   "IMAGE": "test/5613_jpg.rf.776b21a1e02de0e568887e3f483fe02e.jpg",
+   "bbox_xywh": [
+    876.0,
+    240.0,
+    28.17,
+    80.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.713,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4247",
+   "IMAGE": "train/5476_jpg.rf.b5034fb300f12a21951c861b2bb29201.jpg",
+   "bbox_xywh": [
+    947.0,
+    411.0,
+    33.36,
+    90.59
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.732,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10994",
+   "IMAGE": "train/5483_jpg.rf.1da584cd03835415312950fedba4b10a.jpg",
+   "bbox_xywh": [
+    613.0,
+    186.0,
+    26.81,
+    61.15
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.862,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1478",
+   "IMAGE": "valid/5673_jpg.rf.60ddd66a2a539ba0c7adb057549a77d8.jpg",
+   "bbox_xywh": [
+    502.0,
+    423.0,
+    17.73,
+    63.13
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.761,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1956",
+   "IMAGE": "test/5596_jpg.rf.e52bcd8dd1b5326863e950fecd51b6be.jpg",
+   "bbox_xywh": [
+    252.0,
+    192.0,
+    22.22,
+    66.92
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.854,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4238",
+   "IMAGE": "train/5476_jpg.rf.b5034fb300f12a21951c861b2bb29201.jpg",
+   "bbox_xywh": [
+    39.0,
+    319.0,
+    46.39,
+    73.53
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.878,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12119",
+   "IMAGE": "train/5577_jpg.rf.c1840873f17e907975310fbf50a10e54.jpg",
+   "bbox_xywh": [
+    1044.0,
+    214.0,
+    21.35,
+    52.33
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.892,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3081",
+   "IMAGE": "train/5453_jpg.rf.a0e461c0407177f43b89a4221c331d1c.jpg",
+   "bbox_xywh": [
+    1023.0,
+    361.0,
+    33.14,
+    74.15
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.852,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:282",
+   "IMAGE": "test/5562_jpg.rf.2225875f0a2937a5de64d2932d088841.jpg",
+   "bbox_xywh": [
+    520.0,
+    160.0,
+    23.04,
+    52.27
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.496,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:998",
+   "IMAGE": "train/5599_jpg.rf.816244c171d91c4b344cc44ee90ceb48.jpg",
+   "bbox_xywh": [
+    491.0,
+    298.0,
+    42.94,
+    67.67
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.357,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2173",
+   "IMAGE": "valid/5615_jpg.rf.8a297f8787416a88cfbdcce2f90e9582.jpg",
+   "bbox_xywh": [
+    337.0,
+    155.0,
+    23.08,
+    50.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.455,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5222",
+   "IMAGE": "train/5639_jpg.rf.306c5f1046462a3fb9c7cb0af15c0cea.jpg",
+   "bbox_xywh": [
+    374.0,
+    294.0,
+    32.49,
+    74.21
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.256,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1887",
+   "IMAGE": "valid/5590_jpg.rf.6996f14fad4db4a52a93dc4a883ff4b4.jpg",
+   "bbox_xywh": [
+    1177.0,
+    142.0,
+    26.0,
+    53.93
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.417,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3551",
+   "IMAGE": "train/5530_jpg.rf.a2af4cf276f4d48593a4c148332360d4.jpg",
+   "bbox_xywh": [
+    880.0,
+    672.0,
+    29.9,
+    48.5
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.442,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15791",
+   "IMAGE": "train/5535_jpg.rf.fe45198fb84de69705f55fe14604a1ae.jpg",
+   "bbox_xywh": [
+    756.0,
+    182.0,
+    22.99,
+    55.77
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.651,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8826",
+   "IMAGE": "train/5669_jpg.rf.627c03ac63e37633dc26992e46c2f1a5.jpg",
+   "bbox_xywh": [
+    489.0,
+    428.0,
+    26.91,
+    63.02
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.746,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12293",
+   "IMAGE": "train/5593_jpg.rf.c2c3eafe611983b2a3a83979a422606d.jpg",
+   "bbox_xywh": [
+    244.0,
+    240.0,
+    26.79,
+    70.94
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.562,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1470",
+   "IMAGE": "valid/5673_jpg.rf.60ddd66a2a539ba0c7adb057549a77d8.jpg",
+   "bbox_xywh": [
+    249.0,
+    466.0,
+    22.13,
+    70.94
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.668,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1852",
+   "IMAGE": "valid/5630_jpg.rf.7c0da013ec0c9ec0e0ac15f4d3012308.jpg",
+   "bbox_xywh": [
+    1113.0,
+    134.0,
+    19.16,
+    52.31
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.696,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12121",
+   "IMAGE": "train/5577_jpg.rf.c1840873f17e907975310fbf50a10e54.jpg",
+   "bbox_xywh": [
+    1022.0,
+    390.0,
+    53.91,
+    74.65
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.513,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:2324",
+   "IMAGE": "test/5515_jpg.rf.fb2e545bcf2384e07f9f130bd69df9f5.jpg",
+   "bbox_xywh": [
+    796.0,
+    216.0,
+    22.43,
+    37.5
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.847,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14982",
+   "IMAGE": "train/5657_jpg.rf.f2cecb809cdd727c5b60573b40473f25.jpg",
+   "bbox_xywh": [
+    357.0,
+    254.0,
+    19.64,
+    37.65
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.891,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:7976",
+   "IMAGE": "train/5581_jpg.rf.56968c8e499bf75fc44680b77d9a68f4.jpg",
+   "bbox_xywh": [
+    888.0,
+    90.0,
+    32.28,
+    38.67
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.878,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2486",
+   "IMAGE": "valid/5656_jpg.rf.99721c6b22e1ba5a0e115747e113f6e4.jpg",
+   "bbox_xywh": [
+    572.0,
+    247.0,
+    11.81,
+    32.43
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.34,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:506",
+   "IMAGE": "valid/5482_jpg.rf.0d19ad3f44a9910abd00de39810fe45f.jpg",
+   "bbox_xywh": [
+    756.0,
+    683.0,
+    22.85,
+    37.06
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.261,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2480",
+   "IMAGE": "valid/5656_jpg.rf.99721c6b22e1ba5a0e115747e113f6e4.jpg",
+   "bbox_xywh": [
+    381.0,
+    223.0,
+    14.54,
+    24.86
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.414,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8021",
+   "IMAGE": "train/5541_jpg.rf.577897dbd400c327eb9ce06c95b3d4f5.jpg",
+   "bbox_xywh": [
+    225.0,
+    351.0,
+    57.75,
+    37.19
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.284,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2014",
+   "IMAGE": "valid/5521_jpg.rf.88b08db6185684554d48d7e7347488ba.jpg",
+   "bbox_xywh": [
+    899.0,
+    325.0,
+    12.57,
+    37.17
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.409,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14600",
+   "IMAGE": "train/5658_jpg.rf.ed7afdec4bf2de3b857d7ba23475e3d3.jpg",
+   "bbox_xywh": [
+    498.0,
+    254.0,
+    11.1,
+    34.75
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.53,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14983",
+   "IMAGE": "train/5657_jpg.rf.f2cecb809cdd727c5b60573b40473f25.jpg",
+   "bbox_xywh": [
+    336.0,
+    228.0,
+    14.94,
+    22.94
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.64,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2575",
+   "IMAGE": "valid/5518_jpg.rf.9e5de47e406ad7e49a635d9c44b00ec4.jpg",
+   "bbox_xywh": [
+    1007.0,
+    281.0,
+    20.22,
+    39.19
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.684,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:11669",
+   "IMAGE": "train/55265_jpg.rf.b825b1d92fe61d8007695e2769899b59.jpg",
+   "bbox_xywh": [
+    609.0,
+    247.0,
+    28.23,
+    85.0
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.889,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:11398",
+   "IMAGE": "train/54676_jpg.rf.24717a973fe6c7d1ce6d5360a3a72ba6.jpg",
+   "bbox_xywh": [
+    554.0,
+    289.0,
+    35.8,
+    83.78
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.794,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4220",
+   "IMAGE": "train/55158_jpg.rf.b1ae90d797bf673e9fc6c92e75f37620.jpg",
+   "bbox_xywh": [
+    322.0,
+    222.0,
+    24.63,
+    86.32
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.808,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:7683",
+   "IMAGE": "train/55243_jpg.rf.503cb3cbeb4ea0d89c6ed9ef418bf78d.jpg",
+   "bbox_xywh": [
+    166.0,
+    336.0,
+    31.01,
+    82.14
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.854,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:101",
+   "IMAGE": "valid/54703_jpg.rf.0aab2516292dbc2147cd40afbb0b358a.jpg",
+   "bbox_xywh": [
+    1098.0,
+    194.0,
+    44.02,
+    81.86
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.837,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5045",
+   "IMAGE": "train/54777_jpg.rf.2c41a60d91dbc11270cf1d4e97ca1144.jpg",
+   "bbox_xywh": [
+    952.0,
+    395.0,
+    32.19,
+    94.71
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.819,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2516",
+   "IMAGE": "train/55208_jpg.rf.9863b0f0672ffb19a51e147900b20366.jpg",
+   "bbox_xywh": [
+    810.0,
+    185.0,
+    20.49,
+    82.7
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.251,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6627",
+   "IMAGE": "train/54642_jpg.rf.42a0e1949b31550586e29615c4367683.jpg",
+   "bbox_xywh": [
+    541.0,
+    296.0,
+    23.45,
+    81.8
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.363,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:479",
+   "IMAGE": "test/54909_jpg.rf.3d99d63b3e9c41fefb125b60bb19be0c.jpg",
+   "bbox_xywh": [
+    373.0,
+    91.0,
+    51.9,
+    80.67
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.264,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3612",
+   "IMAGE": "train/55124_jpg.rf.a90c87aea41f88e06ef4d8c47611ac42.jpg",
+   "bbox_xywh": [
+    255.0,
+    557.0,
+    46.34,
+    122.86
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.353,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2583",
+   "IMAGE": "train/55153_jpg.rf.9d67c70d736ac63b1e8461ef017fc05f.jpg",
+   "bbox_xywh": [
+    825.0,
+    86.0,
+    95.21,
+    279.09
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.343,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13610",
+   "IMAGE": "train/54719_jpg.rf.dbf4f164ca681d4d101457dfbd98ca62.jpg",
+   "bbox_xywh": [
+    952.0,
+    602.0,
+    44.0,
+    118.0
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.273,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14874",
+   "IMAGE": "train/55152_jpg.rf.eccaed559d00308bc646c11510cc89bc.jpg",
+   "bbox_xywh": [
+    753.0,
+    45.0,
+    105.19,
+    344.62
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.73,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14769",
+   "IMAGE": "train/54775_jpg.rf.ee25d6b01931fbec2f9b0928aa11c5dc.jpg",
+   "bbox_xywh": [
+    430.0,
+    571.0,
+    34.46,
+    80.45
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.659,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1397",
+   "IMAGE": "train/54828_jpg.rf.84b0934eff61a23bbcf8e42dacd15ead.jpg",
+   "bbox_xywh": [
+    197.0,
+    272.0,
+    29.86,
+    94.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.726,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6049",
+   "IMAGE": "train/55233_jpg.rf.3d1e9bfc3ac3781afaf7cc310b499af7.jpg",
+   "bbox_xywh": [
+    321.0,
+    413.0,
+    38.86,
+    90.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.6,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:423",
+   "IMAGE": "valid/54987_jpg.rf.1d073a37c559eaa4504299524bb2b3db.jpg",
+   "bbox_xywh": [
+    1115.0,
+    268.0,
+    42.43,
+    84.29
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.651,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4026",
+   "IMAGE": "train/54936_jpg.rf.aaba7c96c4d048153589976062471e63.jpg",
+   "bbox_xywh": [
+    986.0,
+    335.0,
+    24.91,
+    84.62
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.707,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1680",
+   "IMAGE": "test/54740_jpg.rf.cc7019e9dee0a433a104e6e660d053c0.jpg",
+   "bbox_xywh": [
+    675.0,
+    172.0,
+    22.75,
+    51.79
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.782,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:9103",
+   "IMAGE": "train/54589_jpg.rf.6d919e127031c9481bb97a30ebbdd636.jpg",
+   "bbox_xywh": [
+    587.0,
+    403.0,
+    38.55,
+    76.33
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.817,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:682",
+   "IMAGE": "test/55077_jpg.rf.504d04794f610683a5368f9415b72f15.jpg",
+   "bbox_xywh": [
+    221.0,
+    135.0,
+    23.98,
+    60.45
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.794,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5236",
+   "IMAGE": "train/54742_jpg.rf.31d8c8d3320e9c7582f05c2636e5d184.jpg",
+   "bbox_xywh": [
+    106.0,
+    290.0,
+    30.56,
+    75.94
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.865,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:3691",
+   "IMAGE": "valid/54739_jpg.rf.e5546b29ac8390e1abb7e423fe8cc907.jpg",
+   "bbox_xywh": [
+    930.0,
+    258.0,
+    30.2,
+    54.32
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.878,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2311",
+   "IMAGE": "valid/54768_jpg.rf.8ce014c4e51d39546214f77009687fdd.jpg",
+   "bbox_xywh": [
+    1032.0,
+    323.0,
+    25.73,
+    75.0
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.831,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1553",
+   "IMAGE": "valid/54758_jpg.rf.7029d151485658338471ecc7c4d614dd.jpg",
+   "bbox_xywh": [
+    657.0,
+    236.0,
+    15.98,
+    77.78
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.38,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8356",
+   "IMAGE": "train/54582_jpg.rf.5e92e1c1855930567de43bb719b1ba1d.jpg",
+   "bbox_xywh": [
+    779.0,
+    397.0,
+    29.84,
+    60.59
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.386,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1059",
+   "IMAGE": "test/55172_jpg.rf.81f1cc8e9f9405fcfcf45aa9f1ac7092.jpg",
+   "bbox_xywh": [
+    179.0,
+    242.0,
+    26.22,
+    78.95
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.489,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3557",
+   "IMAGE": "train/55150_jpg.rf.a5cd124e87d1cbf67638b0dd3ea75a29.jpg",
+   "bbox_xywh": [
+    316.0,
+    288.0,
+    24.12,
+    78.49
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.452,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2143",
+   "IMAGE": "valid/55055_jpg.rf.7df7b2325596a2dddf634e3f9a3e406a.jpg",
+   "bbox_xywh": [
+    922.0,
+    247.0,
+    48.97,
+    63.18
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.451,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15780",
+   "IMAGE": "train/54759_jpg.rf.fe12b0ccb817fc7c85ec9ac876e97c14.jpg",
+   "bbox_xywh": [
+    848.0,
+    329.0,
+    24.61,
+    43.53
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.36,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:9409",
+   "IMAGE": "train/54577_jpg.rf.003e6633c5459afb6ccf79e1dfbe3bb3.jpg",
+   "bbox_xywh": [
+    687.0,
+    253.0,
+    25.97,
+    55.56
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.728,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15731",
+   "IMAGE": "train/55281_jpg.rf.f99795dc9a188a9b8ea9d34830869131.jpg",
+   "bbox_xywh": [
+    638.0,
+    324.0,
+    40.33,
+    69.58
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.678,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10705",
+   "IMAGE": "train/54580_jpg.rf.19d6a313c3f4220f6ad91cdf1a62a8e7.jpg",
+   "bbox_xywh": [
+    168.0,
+    214.0,
+    32.96,
+    55.21
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.623,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:9871",
+   "IMAGE": "train/55025_jpg.rf.06a15c7b8cef726114de241249d92055.jpg",
+   "bbox_xywh": [
+    385.0,
+    404.0,
+    14.7,
+    53.75
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.726,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4779",
+   "IMAGE": "train/54867_jpg.rf.2814feec3048b8dc13a17acb075b7331.jpg",
+   "bbox_xywh": [
+    1064.0,
+    237.0,
+    24.43,
+    55.91
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.636,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5953",
+   "IMAGE": "train/54587_jpg.rf.3b626b7102b186e24c87e16d229cec49.jpg",
+   "bbox_xywh": [
+    1148.0,
+    631.0,
+    50.99,
+    66.98
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.65,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4763",
+   "IMAGE": "train/55023_jpg.rf.2748dd46e642ba658b0bec7908c8a10b.jpg",
+   "bbox_xywh": [
+    712.0,
+    297.0,
+    9.1,
+    36.49
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.812,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1015",
+   "IMAGE": "train/55018_jpg.rf.81982d7ce9e19ed664e6aad785e9253a.jpg",
+   "bbox_xywh": [
+    699.0,
+    361.0,
+    11.17,
+    31.75
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.875,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:3528",
+   "IMAGE": "valid/54825_jpg.rf.df6024de4202165e1143cff7d576debc.jpg",
+   "bbox_xywh": [
+    392.0,
+    221.0,
+    18.4,
+    34.06
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.809,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4751",
+   "IMAGE": "train/55023_jpg.rf.2748dd46e642ba658b0bec7908c8a10b.jpg",
+   "bbox_xywh": [
+    401.0,
+    327.0,
+    13.44,
+    37.3
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.851,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15208",
+   "IMAGE": "train/54856_jpg.rf.f23afa4392cd2669ebc9520020368e1c.jpg",
+   "bbox_xywh": [
+    866.0,
+    224.0,
+    14.56,
+    36.15
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.887,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1856",
+   "IMAGE": "train/55017_jpg.rf.8a79e3610751d0278719bf82b35db639.jpg",
+   "bbox_xywh": [
+    952.0,
+    420.0,
+    14.82,
+    38.92
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.888,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10834",
+   "IMAGE": "train/55010_jpg.rf.1a9924f15ea17273ef229c2aa780601b.jpg",
+   "bbox_xywh": [
+    464.0,
+    242.0,
+    11.7,
+    22.35
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.253,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1844",
+   "IMAGE": "train/55017_jpg.rf.8a79e3610751d0278719bf82b35db639.jpg",
+   "bbox_xywh": [
+    656.0,
+    330.0,
+    9.66,
+    27.84
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.294,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8763",
+   "IMAGE": "train/55021_jpg.rf.6391bda94a6426a40ff008e4440589eb.jpg",
+   "bbox_xywh": [
+    409.0,
+    305.0,
+    12.37,
+    31.89
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.44,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15766",
+   "IMAGE": "train/54759_jpg.rf.fe12b0ccb817fc7c85ec9ac876e97c14.jpg",
+   "bbox_xywh": [
+    412.0,
+    309.0,
+    17.85,
+    35.59
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.484,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10862",
+   "IMAGE": "train/54637_jpg.rf.13212310d27ea38740e195918f19592d.jpg",
+   "bbox_xywh": [
+    859.0,
+    243.0,
+    18.72,
+    38.53
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.269,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:3623",
+   "IMAGE": "valid/54871_jpg.rf.e3b8d91197c0b34bfc1497ed1bd5ce62.jpg",
+   "bbox_xywh": [
+    845.0,
+    681.0,
+    21.81,
+    39.0
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.394,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15777",
+   "IMAGE": "train/54759_jpg.rf.fe12b0ccb817fc7c85ec9ac876e97c14.jpg",
+   "bbox_xywh": [
+    760.0,
+    244.0,
+    19.63,
+    39.12
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.549,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:11158",
+   "IMAGE": "train/54794_jpg.rf.1d4825b541a526d3cc9870b038015d2b.jpg",
+   "bbox_xywh": [
+    736.0,
+    356.0,
+    16.69,
+    36.18
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.734,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:961",
+   "IMAGE": "valid/55016_jpg.rf.41433fc68c865223c1eefe860795479a.jpg",
+   "bbox_xywh": [
+    416.0,
+    256.0,
+    7.68,
+    19.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.553,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:966",
+   "IMAGE": "valid/55016_jpg.rf.41433fc68c865223c1eefe860795479a.jpg",
+   "bbox_xywh": [
+    97.0,
+    320.0,
+    11.24,
+    22.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.602,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8300",
+   "IMAGE": "train/55040_jpg.rf.5aca1fba3f0aed9f5bc17c7ad7799334.jpg",
+   "bbox_xywh": [
+    868.0,
+    78.0,
+    13.73,
+    31.54
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.719,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1018",
+   "IMAGE": "train/55018_jpg.rf.81982d7ce9e19ed664e6aad785e9253a.jpg",
+   "bbox_xywh": [
+    891.0,
+    339.0,
+    11.45,
+    34.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.52,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3866",
+   "IMAGE": "train/20_pp_jpg.rf.a922859c9eb89f6214bf6221820f9ec6.jpg",
+   "bbox_xywh": [
+    548.0,
+    82.0,
+    85.55,
+    208.37
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.98,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4129",
+   "IMAGE": "train/19_pp_jpg.rf.ae7b89e1fcba6f5ef08016033db141ba.jpg",
+   "bbox_xywh": [
+    431.0,
+    334.0,
+    42.87,
+    98.38
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.873,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4130",
+   "IMAGE": "train/19_pp_jpg.rf.ae7b89e1fcba6f5ef08016033db141ba.jpg",
+   "bbox_xywh": [
+    241.0,
+    171.0,
+    35.2,
+    88.48
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.91,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4125",
+   "IMAGE": "train/19_pp_jpg.rf.ae7b89e1fcba6f5ef08016033db141ba.jpg",
+   "bbox_xywh": [
+    215.0,
+    303.0,
+    39.83,
+    95.78
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.897,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4131",
+   "IMAGE": "train/19_pp_jpg.rf.ae7b89e1fcba6f5ef08016033db141ba.jpg",
+   "bbox_xywh": [
+    1053.0,
+    219.0,
+    41.27,
+    92.32
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.906,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4133",
+   "IMAGE": "train/19_pp_jpg.rf.ae7b89e1fcba6f5ef08016033db141ba.jpg",
+   "bbox_xywh": [
+    206.0,
+    194.0,
+    34.94,
+    101.48
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.702,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4138",
+   "IMAGE": "train/19_pp_jpg.rf.ae7b89e1fcba6f5ef08016033db141ba.jpg",
+   "bbox_xywh": [
+    892.0,
+    5.0,
+    40.3,
+    85.92
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.734,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2762",
+   "IMAGE": "train/45_pp_jpg.rf.9b8d607c24a9bd8408ade854636bf4a7.jpg",
+   "bbox_xywh": [
+    667.0,
+    294.0,
+    22.04,
+    40.31
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.88,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:7448",
+   "IMAGE": "train/2_pp_jpg.rf.4eee85d286ab00de4ee1ac28ba55bc45.jpg",
+   "bbox_xywh": [
+    475.0,
+    385.0,
+    23.04,
+    41.91
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.903,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5494",
+   "IMAGE": "train/15_pp_jpg.rf.330e5633de01ba790e083e4e56eaab07.jpg",
+   "bbox_xywh": [
+    354.0,
+    32.0,
+    17.23,
+    43.96
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.867,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:173",
+   "IMAGE": "valid/16_pp_jpg.rf.13897a4aef93c14c3cd5a98431017adf.jpg",
+   "bbox_xywh": [
+    61.0,
+    389.0,
+    19.03,
+    49.66
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.876,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:578",
+   "IMAGE": "valid/52_pp_jpg.rf.318bfe1a07a3329b4db50ba01028db32.jpg",
+   "bbox_xywh": [
+    945.0,
+    175.0,
+    35.84,
+    44.59
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.897,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1851",
+   "IMAGE": "test/49_pp_jpg.rf.d1f70582f2a3937244668283b8f90a00.jpg",
+   "bbox_xywh": [
+    988.0,
+    322.0,
+    23.81,
+    46.92
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.899,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:573",
+   "IMAGE": "valid/52_pp_jpg.rf.318bfe1a07a3329b4db50ba01028db32.jpg",
+   "bbox_xywh": [
+    782.0,
+    142.0,
+    17.01,
+    45.45
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.479,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2200",
+   "IMAGE": "train/30_pp_jpg.rf.95e201dbd5ddb38ba83f38ead6e5d73d.jpg",
+   "bbox_xywh": [
+    641.0,
+    573.0,
+    23.13,
+    43.93
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.311,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1740",
+   "IMAGE": "train/23_pp_jpg.rf.8ed38fadcd495bb0806ef0758d62366a.jpg",
+   "bbox_xywh": [
+    335.0,
+    563.0,
+    26.66,
+    51.58
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.374,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:11066",
+   "IMAGE": "train/53_pp_jpg.rf.1e71e27f4ce0309a7316fc4cd32276f1.jpg",
+   "bbox_xywh": [
+    875.0,
+    184.0,
+    38.57,
+    46.63
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.336,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:263",
+   "IMAGE": "train/29_pp_jpg.rf.71271ec69178ebb33529ea0be12de34e.jpg",
+   "bbox_xywh": [
+    641.0,
+    601.0,
+    24.51,
+    41.48
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.593,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3263",
+   "IMAGE": "train/10_pp_jpg.rf.a1ddc48de3c23359d93795ed673a70ee.jpg",
+   "bbox_xywh": [
+    303.0,
+    291.0,
+    13.01,
+    41.9
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.73,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13834",
+   "IMAGE": "train/28_pp_jpg.rf.dc67ab0a9b8088bcec46f03c37289867.jpg",
+   "bbox_xywh": [
+    224.0,
+    484.0,
+    23.36,
+    42.52
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.713,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3700",
+   "IMAGE": "train/48_pp_jpg.rf.a4ee06be1988a65868df589d1ead1573.jpg",
+   "bbox_xywh": [
+    914.0,
+    382.0,
+    22.08,
+    47.42
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.519,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12595",
+   "IMAGE": "train/44_pp_jpg.rf.c8b49a4efb6d29693bffcf20e6cde479.jpg",
+   "bbox_xywh": [
+    701.0,
+    242.0,
+    18.92,
+    32.68
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.813,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12214",
+   "IMAGE": "train/24_pp_jpg.rf.c448c689faca22082d6c7b71ccbccf0a.jpg",
+   "bbox_xywh": [
+    575.0,
+    314.0,
+    13.93,
+    34.58
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.879,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1538",
+   "IMAGE": "valid/34_pp_jpg.rf.64a8bcd9c140724432a2fc2eaf6af92e.jpg",
+   "bbox_xywh": [
+    310.0,
+    249.0,
+    21.61,
+    32.48
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.884,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:285",
+   "IMAGE": "train/29_pp_jpg.rf.71271ec69178ebb33529ea0be12de34e.jpg",
+   "bbox_xywh": [
+    234.0,
+    475.0,
+    19.79,
+    38.23
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.884,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2771",
+   "IMAGE": "train/45_pp_jpg.rf.9b8d607c24a9bd8408ade854636bf4a7.jpg",
+   "bbox_xywh": [
+    980.0,
+    290.0,
+    20.45,
+    37.14
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.883,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2210",
+   "IMAGE": "train/30_pp_jpg.rf.95e201dbd5ddb38ba83f38ead6e5d73d.jpg",
+   "bbox_xywh": [
+    873.0,
+    350.0,
+    13.55,
+    35.98
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.84,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2352",
+   "IMAGE": "valid/1_pp_jpg.rf.8bf3bd36f34e7a5774162ea9296fef44.jpg",
+   "bbox_xywh": [
+    696.0,
+    223.0,
+    7.14,
+    20.68
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.478,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2877",
+   "IMAGE": "train/4_pp_jpg.rf.9f5700652cd323f34deb6ad2c1e49beb.jpg",
+   "bbox_xywh": [
+    481.0,
+    354.0,
+    24.2,
+    33.44
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.407,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1540",
+   "IMAGE": "valid/34_pp_jpg.rf.64a8bcd9c140724432a2fc2eaf6af92e.jpg",
+   "bbox_xywh": [
+    237.0,
+    277.0,
+    17.38,
+    33.08
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.283,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13833",
+   "IMAGE": "train/28_pp_jpg.rf.dc67ab0a9b8088bcec46f03c37289867.jpg",
+   "bbox_xywh": [
+    234.0,
+    312.0,
+    19.45,
+    36.28
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.404,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13872",
+   "IMAGE": "train/37_pp_jpg.rf.dc17c5b87ab4bca3304429237d94c9eb.jpg",
+   "bbox_xywh": [
+    1140.0,
+    232.0,
+    14.9,
+    34.23
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.326,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:274",
+   "IMAGE": "train/29_pp_jpg.rf.71271ec69178ebb33529ea0be12de34e.jpg",
+   "bbox_xywh": [
+    877.0,
+    352.0,
+    17.28,
+    34.99
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.371,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:7457",
+   "IMAGE": "train/2_pp_jpg.rf.4eee85d286ab00de4ee1ac28ba55bc45.jpg",
+   "bbox_xywh": [
+    601.0,
+    224.0,
+    17.08,
+    29.4
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.518,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1431",
+   "IMAGE": "train/0_pp_jpg.rf.854c44ffa085155cbb9533c54333e447.jpg",
+   "bbox_xywh": [
+    741.0,
+    457.0,
+    6.44,
+    17.34
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.701,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2053",
+   "IMAGE": "valid/11_pp_jpg.rf.87879aaac4903fee4740f5fd97b0a82c.jpg",
+   "bbox_xywh": [
+    269.0,
+    251.0,
+    27.62,
+    38.54
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.542,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12221",
+   "IMAGE": "train/24_pp_jpg.rf.c448c689faca22082d6c7b71ccbccf0a.jpg",
+   "bbox_xywh": [
+    265.0,
+    408.0,
+    17.09,
+    37.87
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.616,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2772",
+   "IMAGE": "train/45_pp_jpg.rf.9b8d607c24a9bd8408ade854636bf4a7.jpg",
+   "bbox_xywh": [
+    1072.0,
+    179.0,
+    12.53,
+    33.19
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.656,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:3405",
+   "IMAGE": "valid/13_pp_jpg.rf.cb39566ac15651f0423b6bd45805a395.jpg",
+   "bbox_xywh": [
+    877.0,
+    310.0,
+    19.83,
+    31.65
+   ],
+   "run": "pp_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.637,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1970",
+   "IMAGE": "test/480_pp_jpg.rf.d20dd7dca8bfba39458f27f41fe3f326.jpg",
+   "bbox_xywh": [
+    312.0,
+    40.0,
+    125.93,
+    255.26
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.855,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8435",
+   "IMAGE": "train/385_pp_jpg.rf.6055bc7e8c75231cc1ddfbd9986a6efb.jpg",
+   "bbox_xywh": [
+    552.0,
+    214.0,
+    17.43,
+    40.05
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.858,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5024",
+   "IMAGE": "train/459_pp_jpg.rf.283592685cec47fd98c3dd19b4743f3f.jpg",
+   "bbox_xywh": [
+    573.0,
+    380.0,
+    20.72,
+    66.26
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.859,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1530",
+   "IMAGE": "train/375_pp_jpg.rf.8670cab8e7fe1c4e173a5b893164cd41.jpg",
+   "bbox_xywh": [
+    382.0,
+    275.0,
+    28.41,
+    51.15
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.911,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:612",
+   "IMAGE": "train/450_pp_jpg.rf.77da9e1672e5fbaee1f67227bfcf79f6.jpg",
+   "bbox_xywh": [
+    306.0,
+    345.0,
+    23.05,
+    60.29
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.859,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6244",
+   "IMAGE": "train/307_pp_jpg.rf.3c24ea8bdcc983e60c4ca9757a9ff5da.jpg",
+   "bbox_xywh": [
+    1003.0,
+    263.0,
+    15.9,
+    40.16
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.888,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8599",
+   "IMAGE": "train/398_pp_jpg.rf.61a717a5dfc66d5ec15a6e872086ebcd.jpg",
+   "bbox_xywh": [
+    1122.0,
+    596.0,
+    25.14,
+    56.91
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.901,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3313",
+   "IMAGE": "train/351_pp_jpg.rf.a17201b6c055a6084549a04f4beb45fa.jpg",
+   "bbox_xywh": [
+    598.0,
+    266.0,
+    22.83,
+    43.47
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.37,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13928",
+   "IMAGE": "train/380_pp_jpg.rf.ddb453dd8df14d207ec2b6d5a7e12a29.jpg",
+   "bbox_xywh": [
+    624.0,
+    401.0,
+    20.86,
+    41.88
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.337,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2313",
+   "IMAGE": "train/400_pp_jpg.rf.90ba7564c310b03ca4ac8214ef79fe1b.jpg",
+   "bbox_xywh": [
+    163.0,
+    137.0,
+    17.52,
+    40.98
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.42,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:727",
+   "IMAGE": "train/119_pp_jpg.rf.79d1dfd7bb0527806105b54e7350985a.jpg",
+   "bbox_xywh": [
+    354.0,
+    620.0,
+    16.03,
+    44.35
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.468,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2549",
+   "IMAGE": "valid/478_pp_jpg.rf.97b66602e65998ec74a0f1be1c701214.jpg",
+   "bbox_xywh": [
+    930.0,
+    264.0,
+    21.24,
+    41.92
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.384,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:41",
+   "IMAGE": "train/509_pp_jpg.rf.6ecade23539eddebb0cb4fc8d2292cba.jpg",
+   "bbox_xywh": [
+    974.0,
+    549.0,
+    18.87,
+    48.21
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.376,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14307",
+   "IMAGE": "train/381_pp_jpg.rf.e446b4cfbc4bf3830b9e9162c1877277.jpg",
+   "bbox_xywh": [
+    418.0,
+    245.0,
+    17.39,
+    42.56
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.735,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:11842",
+   "IMAGE": "train/491_pp_jpg.rf.b8ffe74d800ad25db6f07b9b0eb5e70c.jpg",
+   "bbox_xywh": [
+    513.0,
+    340.0,
+    17.51,
+    44.57
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.74,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5280",
+   "IMAGE": "train/534_pp_jpg.rf.332a05e4372c75bcb7127da638d582d0.jpg",
+   "bbox_xywh": [
+    293.0,
+    117.0,
+    21.11,
+    40.92
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.545,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10375",
+   "IMAGE": "train/313_pp_jpg.rf.119651573ea871ad2ea519efb8aaca61.jpg",
+   "bbox_xywh": [
+    403.0,
+    357.0,
+    31.69,
+    62.37
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.638,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3161",
+   "IMAGE": "train/141_pp_jpg.rf.9fe6c77891b74aee5ddc947b8d0e1a1b.jpg",
+   "bbox_xywh": [
+    1048.0,
+    239.0,
+    16.89,
+    48.41
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.547,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5037",
+   "IMAGE": "train/459_pp_jpg.rf.283592685cec47fd98c3dd19b4743f3f.jpg",
+   "bbox_xywh": [
+    879.0,
+    375.0,
+    22.01,
+    64.31
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.546,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1952",
+   "IMAGE": "train/237_pp_jpg.rf.8c62cd69c61b3a516c1aadd10ded4353.jpg",
+   "bbox_xywh": [
+    816.0,
+    235.0,
+    14.14,
+    32.05
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.836,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1537",
+   "IMAGE": "test/508_pp_jpg.rf.b7b887b30b5df192187b013c0f3aec23.jpg",
+   "bbox_xywh": [
+    631.0,
+    350.0,
+    22.67,
+    34.2
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.859,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:11317",
+   "IMAGE": "train/352_pp_jpg.rf.235719586fe8ad656f4711ca9810559b.jpg",
+   "bbox_xywh": [
+    331.0,
+    291.0,
+    18.89,
+    39.52
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.777,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10550",
+   "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+   "bbox_xywh": [
+    145.0,
+    420.0,
+    29.18,
+    39.68
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.892,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14320",
+   "IMAGE": "train/381_pp_jpg.rf.e446b4cfbc4bf3830b9e9162c1877277.jpg",
+   "bbox_xywh": [
+    949.0,
+    139.0,
+    14.3,
+    39.52
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.866,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:7742",
+   "IMAGE": "train/191_pp_jpg.rf.53765a5fa4f8c961a0dae0c5cfd27c58.jpg",
+   "bbox_xywh": [
+    933.0,
+    325.0,
+    17.54,
+    36.61
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.885,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1762",
+   "IMAGE": "train/165_pp_jpg.rf.8eb82bc322918fbc22936e3fea3e6da3.jpg",
+   "bbox_xywh": [
+    588.0,
+    234.0,
+    13.33,
+    29.53
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.482,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:797",
+   "IMAGE": "valid/445_pp_jpg.rf.43d4d6ca5938f7a88c09e98f21ed9408.jpg",
+   "bbox_xywh": [
+    817.0,
+    322.0,
+    22.86,
+    31.08
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.489,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15671",
+   "IMAGE": "train/297_pp_jpg.rf.f9eca75bef8f3d6738307f8376c4aa75.jpg",
+   "bbox_xywh": [
+    195.0,
+    287.0,
+    17.21,
+    37.98
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.332,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1140",
+   "IMAGE": "train/278_pp_jpg.rf.836876779c42b76c8ebd3fb263d5762a.jpg",
+   "bbox_xywh": [
+    277.0,
+    335.0,
+    10.76,
+    24.25
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.271,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2046",
+   "IMAGE": "valid/202_pp_jpg.rf.74cf518c18c6de6faae2b6f180027564.jpg",
+   "bbox_xywh": [
+    1193.0,
+    255.0,
+    15.9,
+    32.4
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.377,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:3677",
+   "IMAGE": "train/340_pp_jpg.rf.a8a588950c26c05dcc6951f52f7d428f.jpg",
+   "bbox_xywh": [
+    1059.0,
+    319.0,
+    18.91,
+    34.4
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.372,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15142",
+   "IMAGE": "train/180_pp_jpg.rf.f4f5b15f92459dc7474b0b64edfd4e67.jpg",
+   "bbox_xywh": [
+    478.0,
+    260.0,
+    24.5,
+    39.66
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.544,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6614",
+   "IMAGE": "train/330_pp_jpg.rf.44afb04f6b614e0f9580810a6a568059.jpg",
+   "bbox_xywh": [
+    578.0,
+    337.0,
+    11.01,
+    30.2
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.541,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6879",
+   "IMAGE": "train/293_pp_jpg.rf.495373cf293315959490228cd367307a.jpg",
+   "bbox_xywh": [
+    238.0,
+    305.0,
+    16.06,
+    34.69
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.512,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14041",
+   "IMAGE": "train/292_pp_jpg.rf.e13f2f6a2937c94635dfa6dd8cf6c02f.jpg",
+   "bbox_xywh": [
+    161.0,
+    337.0,
+    22.47,
+    21.76
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.738,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1732",
+   "IMAGE": "test/497_pp_jpg.rf.c915e6be21362665dccf8411446897a7.jpg",
+   "bbox_xywh": [
+    1080.0,
+    175.0,
+    12.59,
+    30.82
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.652,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1358",
+   "IMAGE": "test/221_pp_jpg.rf.9a2aec1e297e8d9491840fd9a5396361.jpg",
+   "bbox_xywh": [
+    914.0,
+    372.0,
+    13.96,
+    39.35
+   ],
+   "run": "pp_B",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.732,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1964",
+   "IMAGE": "test/5596_jpg.rf.e52bcd8dd1b5326863e950fecd51b6be.jpg",
+   "bbox_xywh": [
+    636.0,
+    259.0,
+    32.24,
+    83.46
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.835,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6858",
+   "IMAGE": "train/5663_jpg.rf.4861769aa03d5864c15fd8f3f31016a8.jpg",
+   "bbox_xywh": [
+    581.0,
+    176.0,
+    126.89,
+    457.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.931,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8383",
+   "IMAGE": "train/5598_jpg.rf.5f83fadc03bf4e7327054febef21e0ae.jpg",
+   "bbox_xywh": [
+    28.0,
+    262.0,
+    36.19,
+    81.67
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.894,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:4148",
+   "IMAGE": "valid/5686_jpg.rf.f37a06703b6a2425c9cc1a892264eaad.jpg",
+   "bbox_xywh": [
+    147.0,
+    332.0,
+    361.96,
+    353.57
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.966,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:533",
+   "IMAGE": "train/5466_jpg.rf.7c161275242ce6b662d1e7af5547971a.jpg",
+   "bbox_xywh": [
+    1002.0,
+    141.0,
+    126.08,
+    347.81
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.935,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5804",
+   "IMAGE": "train/5511_jpg.rf.3914e82cba7b7e3e0a30893c069f1344.jpg",
+   "bbox_xywh": [
+    1114.0,
+    308.0,
+    32.8,
+    100.83
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.76,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6440",
+   "IMAGE": "train/5510_jpg.rf.4217f97db6c35aa0fa6b382f3774f5b7.jpg",
+   "bbox_xywh": [
+    494.0,
+    257.0,
+    36.91,
+    93.72
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.495,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15593",
+   "IMAGE": "train/5600_jpg.rf.f8f35212e07c9ba4156698e5765d88e3.jpg",
+   "bbox_xywh": [
+    800.0,
+    312.0,
+    46.7,
+    85.29
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.269,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13146",
+   "IMAGE": "train/5479_jpg.rf.d2586992f443331b259d9bb3f3d5da50.jpg",
+   "bbox_xywh": [
+    360.0,
+    136.0,
+    49.85,
+    84.44
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.34,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2082",
+   "IMAGE": "train/5647_jpg.rf.9438a3c7f80735f8173dc215ad02130a.jpg",
+   "bbox_xywh": [
+    81.0,
+    478.0,
+    61.83,
+    92.69
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.353,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8127",
+   "IMAGE": "train/5603_jpg.rf.59fd10b70c1fe2d15dcdd0cf8df82790.jpg",
+   "bbox_xywh": [
+    937.0,
+    234.0,
+    49.85,
+    112.5
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.295,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:3111",
+   "IMAGE": "valid/5591_jpg.rf.c4a1890982773d3cc0576dd33cb946db.jpg",
+   "bbox_xywh": [
+    1034.0,
+    557.0,
+    58.61,
+    112.61
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.45,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6438",
+   "IMAGE": "train/5510_jpg.rf.4217f97db6c35aa0fa6b382f3774f5b7.jpg",
+   "bbox_xywh": [
+    437.0,
+    249.0,
+    34.12,
+    86.28
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.748,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:473",
+   "IMAGE": "train/5610_jpg.rf.77383d0ef4e0ab2a5122695e65e092ff.jpg",
+   "bbox_xywh": [
+    815.0,
+    413.0,
+    50.23,
+    112.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.603,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1039",
+   "IMAGE": "valid/5480_jpg.rf.47df513a742e015d72f65e8688c43b09.jpg",
+   "bbox_xywh": [
+    123.0,
+    257.0,
+    32.54,
+    90.53
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.557,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13142",
+   "IMAGE": "train/5479_jpg.rf.d2586992f443331b259d9bb3f3d5da50.jpg",
+   "bbox_xywh": [
+    190.0,
+    334.0,
+    46.02,
+    108.33
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.674,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2583",
+   "IMAGE": "valid/5589_jpg.rf.9c8346c5df65915b032447a5e270380c.jpg",
+   "bbox_xywh": [
+    897.0,
+    234.0,
+    33.07,
+    88.64
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.644,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:849",
+   "IMAGE": "test/5601_jpg.rf.56b3377415e28ac8293627e7677fcf48.jpg",
+   "bbox_xywh": [
+    1023.0,
+    449.0,
+    36.4,
+    107.06
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.613,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13593",
+   "IMAGE": "train/5648_jpg.rf.d60d29a6f94ea83950115e031160ce25.jpg",
+   "bbox_xywh": [
+    736.0,
+    264.0,
+    32.79,
+    73.75
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.871,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:286",
+   "IMAGE": "test/5562_jpg.rf.2225875f0a2937a5de64d2932d088841.jpg",
+   "bbox_xywh": [
+    512.0,
+    428.0,
+    53.53,
+    69.09
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.856,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13265",
+   "IMAGE": "train/5683_jpg.rf.d5d397b457989c6d2b519a34e9e1b604.jpg",
+   "bbox_xywh": [
+    10.0,
+    153.0,
+    31.0,
+    75.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.902,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12111",
+   "IMAGE": "train/5577_jpg.rf.c1840873f17e907975310fbf50a10e54.jpg",
+   "bbox_xywh": [
+    360.0,
+    325.0,
+    23.68,
+    64.19
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.878,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:9238",
+   "IMAGE": "train/5612_jpg.rf.69f8b30744c17a6436b416c911371f68.jpg",
+   "bbox_xywh": [
+    1060.0,
+    166.0,
+    34.55,
+    52.86
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.772,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4926",
+   "IMAGE": "train/5547_jpg.rf.2d9a4203b9d4de64789d73894a5297b3.jpg",
+   "bbox_xywh": [
+    966.0,
+    296.0,
+    30.26,
+    78.08
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.843,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15802",
+   "IMAGE": "train/5534_jpg.rf.ff24144e7fa488789ddbdf644aeb9ef0.jpg",
+   "bbox_xywh": [
+    459.0,
+    167.0,
+    30.41,
+    66.67
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.49,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2007",
+   "IMAGE": "valid/5521_jpg.rf.88b08db6185684554d48d7e7347488ba.jpg",
+   "bbox_xywh": [
+    829.0,
+    376.0,
+    13.44,
+    44.78
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.495,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2971",
+   "IMAGE": "train/5643_jpg.rf.a084b4518766f9c9bb8eb6057d4ee025.jpg",
+   "bbox_xywh": [
+    77.0,
+    290.0,
+    36.77,
+    64.09
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.47,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1562",
+   "IMAGE": "valid/5492_jpg.rf.71eaa384ade366c584f2cf04b41c4ae0.jpg",
+   "bbox_xywh": [
+    242.0,
+    350.0,
+    45.93,
+    60.33
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.267,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4809",
+   "IMAGE": "train/5546_jpg.rf.298da165c166148d7c32e08c12b9153c.jpg",
+   "bbox_xywh": [
+    1003.0,
+    225.0,
+    22.42,
+    67.5
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.344,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5636",
+   "IMAGE": "train/5507_jpg.rf.34b3763c5471d73d38be1ebc6a02d27c.jpg",
+   "bbox_xywh": [
+    1178.0,
+    359.0,
+    18.84,
+    72.14
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.258,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:4805",
+   "IMAGE": "train/5546_jpg.rf.298da165c166148d7c32e08c12b9153c.jpg",
+   "bbox_xywh": [
+    671.0,
+    221.0,
+    19.93,
+    65.42
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.624,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1479",
+   "IMAGE": "valid/5673_jpg.rf.60ddd66a2a539ba0c7adb057549a77d8.jpg",
+   "bbox_xywh": [
+    518.0,
+    396.0,
+    18.98,
+    58.75
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.719,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10722",
+   "IMAGE": "train/5531_jpg.rf.14b4adf0174da5d06fcadb2b43848a92.jpg",
+   "bbox_xywh": [
+    210.0,
+    282.0,
+    42.86,
+    56.25
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.74,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:223",
+   "IMAGE": "train/5666_jpg.rf.72a442feb93e9b2f099a035eb2431d0e.jpg",
+   "bbox_xywh": [
+    393.0,
+    434.0,
+    23.43,
+    57.61
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.729,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:6970",
+   "IMAGE": "train/5618_jpg.rf.4a57651359544f283bcc94ceecd65635.jpg",
+   "bbox_xywh": [
+    1014.0,
+    268.0,
+    31.72,
+    64.09
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.743,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2160",
+   "IMAGE": "valid/5604_jpg.rf.8468d628a905928e5c31a78b41504188.jpg",
+   "bbox_xywh": [
+    930.0,
+    433.0,
+    28.88,
+    70.0
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.735,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2489",
+   "IMAGE": "valid/5656_jpg.rf.99721c6b22e1ba5a0e115747e113f6e4.jpg",
+   "bbox_xywh": [
+    650.0,
+    256.0,
+    15.88,
+    36.76
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.862,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:23",
+   "IMAGE": "test/5517_jpg.rf.0da429c1e26cb025b7ece21d7f5ce0bf.jpg",
+   "bbox_xywh": [
+    321.0,
+    254.0,
+    13.16,
+    37.14
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.853,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5407",
+   "IMAGE": "train/5677_jpg.rf.32d9c9940cbefa41a8724189afd91f38.jpg",
+   "bbox_xywh": [
+    908.0,
+    249.0,
+    29.0,
+    31.25
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.814,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2568",
+   "IMAGE": "valid/5518_jpg.rf.9e5de47e406ad7e49a635d9c44b00ec4.jpg",
+   "bbox_xywh": [
+    585.0,
+    244.0,
+    7.77,
+    20.27
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.35,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2483",
+   "IMAGE": "valid/5656_jpg.rf.99721c6b22e1ba5a0e115747e113f6e4.jpg",
+   "bbox_xywh": [
+    506.0,
+    227.0,
+    12.1,
+    34.86
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.576,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14854",
+   "IMAGE": "train/5659_jpg.rf.ef9e7a78c20a03935ee4a7b8437af52b.jpg",
+   "bbox_xywh": [
+    319.0,
+    271.0,
+    17.49,
+    28.98
+   ],
+   "run": "plain_A",
+   "stratum": {
+    "size": "small",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.736,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:481",
+   "IMAGE": "test/54909_jpg.rf.3d99d63b3e9c41fefb125b60bb19be0c.jpg",
+   "bbox_xywh": [
+    516.0,
+    108.0,
+    35.2,
+    86.67
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.751,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:10516",
+   "IMAGE": "train/55185_jpg.rf.184a620e2b8627a0ffe55654624b2443.jpg",
+   "bbox_xywh": [
+    614.0,
+    346.0,
+    29.93,
+    81.21
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.892,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15191",
+   "IMAGE": "train/54922_jpg.rf.f6636b0d2638ad7e712bce25b33b9c75.jpg",
+   "bbox_xywh": [
+    196.0,
+    267.0,
+    28.27,
+    83.75
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.874,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2887",
+   "IMAGE": "valid/54540_jpg.rf.a6c87af9501eb5133c7d2982186b61c0.jpg",
+   "bbox_xywh": [
+    95.0,
+    554.0,
+    27.48,
+    91.71
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.873,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:3742",
+   "IMAGE": "valid/54697_jpg.rf.e4fdfbf5169641a865ef0c88cdd94380.jpg",
+   "bbox_xywh": [
+    952.0,
+    252.0,
+    38.99,
+    91.58
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.799,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1871",
+   "IMAGE": "train/54935_jpg.rf.8be9918a0c4e5d39b434c9d2aff7dd63.jpg",
+   "bbox_xywh": [
+    1169.0,
+    496.0,
+    31.85,
+    102.0
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.816,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1400",
+   "IMAGE": "train/54828_jpg.rf.84b0934eff61a23bbcf8e42dacd15ead.jpg",
+   "bbox_xywh": [
+    567.0,
+    263.0,
+    26.88,
+    110.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.481,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:3177",
+   "IMAGE": "valid/54903_jpg.rf.c5adff3ec00aea2177e093103952ca16.jpg",
+   "bbox_xywh": [
+    674.0,
+    377.0,
+    65.9,
+    169.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.442,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:12861",
+   "IMAGE": "train/54790_jpg.rf.ce5e813e31d77272a10394af4048072d.jpg",
+   "bbox_xywh": [
+    3.0,
+    15.0,
+    121.17,
+    493.75
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.315,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:11367",
+   "IMAGE": "train/54691_jpg.rf.2090653d8e0141fb4f607bd85b198c39.jpg",
+   "bbox_xywh": [
+    186.0,
+    454.0,
+    38.44,
+    126.48
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.263,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2584",
+   "IMAGE": "train/55153_jpg.rf.9d67c70d736ac63b1e8461ef017fc05f.jpg",
+   "bbox_xywh": [
+    872.0,
+    75.0,
+    97.02,
+    309.09
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.306,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8627",
+   "IMAGE": "train/55076_jpg.rf.64303f44151bcee4832b3742dcb50b72.jpg",
+   "bbox_xywh": [
+    1244.0,
+    309.0,
+    36.02,
+    94.62
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.256,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:2940",
+   "IMAGE": "train/55207_jpg.rf.9adb3a2e8db074e546f4e4c0d3190155.jpg",
+   "bbox_xywh": [
+    445.0,
+    273.0,
+    41.1,
+    80.7
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.649,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:4061",
+   "IMAGE": "valid/54565_jpg.rf.f909a1690c8fa558fdf57b7fefd2d551.jpg",
+   "bbox_xywh": [
+    673.0,
+    314.0,
+    33.75,
+    83.64
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.626,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:1060",
+   "IMAGE": "test/55172_jpg.rf.81f1cc8e9f9405fcfcf45aa9f1ac7092.jpg",
+   "bbox_xywh": [
+    207.0,
+    239.0,
+    72.52,
+    151.05
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.523,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:8499",
+   "IMAGE": "train/54796_jpg.rf.60aec02a6d2279ebd72ec93996752feb.jpg",
+   "bbox_xywh": [
+    212.0,
+    435.0,
+    35.28,
+    91.43
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.71,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:4173",
+   "IMAGE": "valid/54788_jpg.rf.ea28a026944e8f624f12dbb6d8060294.jpg",
+   "bbox_xywh": [
+    1139.0,
+    51.0,
+    140.8,
+    458.75
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.664,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:4335",
+   "IMAGE": "valid/54743_jpg.rf.005b6ad3b8307f6b4bba8756857d8dd7.jpg",
+   "bbox_xywh": [
+    1123.0,
+    295.0,
+    28.08,
+    82.27
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "large",
+    "detector_conf_band": "mid",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.502,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:808",
+   "IMAGE": "valid/54638_jpg.rf.3a4c3aa1328f742241c703c4d0797985.jpg",
+   "bbox_xywh": [
+    738.0,
+    194.0,
+    23.24,
+    57.29
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.813,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1010",
+   "IMAGE": "train/55018_jpg.rf.81982d7ce9e19ed664e6aad785e9253a.jpg",
+   "bbox_xywh": [
+    555.0,
+    418.0,
+    14.95,
+    43.5
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.899,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:15083",
+   "IMAGE": "train/54635_jpg.rf.ef436b258268159b8a85994ab8cc2066.jpg",
+   "bbox_xywh": [
+    410.0,
+    178.0,
+    23.29,
+    63.62
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.813,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:639",
+   "IMAGE": "test/55031_jpg.rf.579e6fc9b6c93041a18eda1c12b8ae3b.jpg",
+   "bbox_xywh": [
+    326.0,
+    409.0,
+    26.43,
+    65.41
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.838,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:2960",
+   "IMAGE": "valid/54744_jpg.rf.bd47e84f1fda9dd50ccf229a3589d2f1.jpg",
+   "bbox_xywh": [
+    887.0,
+    280.0,
+    33.14,
+    76.07
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.878,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:14445",
+   "IMAGE": "train/54568_jpg.rf.e86c987b4355b2f18774f84072837d91.jpg",
+   "bbox_xywh": [
+    1039.0,
+    395.0,
+    25.5,
+    77.34
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "hi",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.846,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "test:542",
+   "IMAGE": "test/54701_jpg.rf.486205ee06e0f31da9d4fb27b9f34b17.jpg",
+   "bbox_xywh": [
+    782.0,
+    108.0,
+    21.09,
+    56.92
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.415,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "valid:1118",
+   "IMAGE": "valid/54647_jpg.rf.4ef85889853d38b28f6c0b260d039ceb.jpg",
+   "bbox_xywh": [
+    760.0,
+    344.0,
+    33.88,
+    63.66
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "centre",
+    "depth": "near"
+   },
+   "detector_conf": 0.331,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:1681",
+   "IMAGE": "train/55127_jpg.rf.8beffff7705d1116b271be07b130e83a.jpg",
+   "bbox_xywh": [
+    324.0,
+    166.0,
+    22.06,
+    57.14
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "far"
+   },
+   "detector_conf": 0.496,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5934",
+   "IMAGE": "train/54587_jpg.rf.3b626b7102b186e24c87e16d229cec49.jpg",
+   "bbox_xywh": [
+    360.0,
+    512.0,
+    21.94,
+    49.6
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "left",
+    "depth": "near"
+   },
+   "detector_conf": 0.413,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:13467",
+   "IMAGE": "train/54518_jpg.rf.d84c58eae35c0349ace64e93335bae22.jpg",
+   "bbox_xywh": [
+    1062.0,
+    296.0,
+    25.24,
+    54.88
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "far"
+   },
+   "detector_conf": 0.426,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:5564",
+   "IMAGE": "train/55115_jpg.rf.34ea34652dce3e76fecfbe291410f703.jpg",
+   "bbox_xywh": [
+    1064.0,
+    311.0,
+    32.9,
+    73.78
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "lo",
+    "region": "right",
+    "depth": "near"
+   },
+   "detector_conf": 0.454,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  },
+  {
+   "BOX_ID": "train:7996",
+   "IMAGE": "train/54824_jpg.rf.572f50f736b93ad40d3d4473a2cc1891.jpg",
+   "bbox_xywh": [
+    782.0,
+    210.0,
+    12.91,
+    40.54
+   ],
+   "run": "plain_B",
+   "stratum": {
+    "size": "medium",
+    "detector_conf_band": "mid",
+    "region": "centre",
+    "depth": "far"
+   },
+   "detector_conf": 0.506,
+   "HUMAN_ANSWER": null,
+   "allowed": [
+    "TRUE_PLAYER",
+    "MISSED_GOALKEEPER",
+    "MISSED_REFEREE",
+    "UNCERTAIN"
+   ]
+  }
+ ]
+}

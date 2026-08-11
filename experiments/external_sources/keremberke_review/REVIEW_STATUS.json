@@ -1,0 +1,83 @@
+{
+ "review_status": "AWAITING_HUMAN_REVIEW",
+ "human_decisions_recorded": 0,
+ "candidate_boxes": 4153,
+ "candidates_reviewed": 0,
+ "candidates_uncertain": 0,
+ "qa_likely_player": {
+  "sample": 250,
+  "answered": 0,
+  "missed_officials": 0,
+  "missed_rate": null,
+  "tolerance": 0.02
+ },
+ "qa_no_candidate": {
+  "images": 57,
+  "answered": 0,
+  "images_with_a_missed_official": 0,
+  "note": "this is a CENSUS, not a sample: only 57 images have no candidate at all, so every one is reviewed"
+ },
+ "gate": [
+  {
+   "condition": "A all candidate boxes reviewed",
+   "result": "FAIL",
+   "detail": "0/4153"
+  },
+  {
+   "condition": "B all uncertain resolved or explicitly excluded",
+   "result": "PASS",
+   "detail": "0 still uncertain"
+  },
+  {
+   "condition": "C LIKELY_PLAYER QA completed",
+   "result": "FAIL",
+   "detail": "0/250"
+  },
+  {
+   "condition": "D no-candidate image QA completed",
+   "result": "FAIL",
+   "detail": "0/57 images"
+  },
+  {
+   "condition": "E no systematic missed officials",
+   "result": "FAIL",
+   "detail": "not measured; 0 no-candidate images with an official"
+  },
+  {
+   "condition": "F class counts and label integrity validated",
+   "result": "PENDING",
+   "detail": "checked on --apply"
+  },
+  {
+   "condition": "G ball boxes geometry identical",
+   "result": "PENDING",
+   "detail": "checked on --apply"
+  },
+  {
+   "condition": "H no boxes added or deleted",
+   "result": "PENDING",
+   "detail": "checked on --apply"
+  }
+ ],
+ "current_class_counts": {
+  "ball": 1263,
+  "player (unreviewed)": 21615
+ },
+ "reclassifications": {},
+ "ball_counts_preserved": {
+  "instances": 1263,
+  "le5": 90,
+  "le8": 474,
+  "le12": 969,
+  "bins": {
+   "<3": 0,
+   "3-5": 90,
+   ">5-8": 384,
+   ">8-12": 495,
+   ">12-20": 196,
+   ">20-40": 26,
+   ">40": 72
+  },
+  "convention": "stored pixels, 1280x720, unchanged from the completed audit"
+ }
+}

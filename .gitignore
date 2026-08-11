@@ -213,3 +213,12 @@ experiments/tracking_v2/bakeoff/outputs/
 experiments/tracking_v2/t2/outputs/
 experiments/tracking_v2/t2/meta/
 experiments/tracking_v2/bakeoff/meta/
+
+# Keremberke review package: the ledger, queue and working copy regenerate
+# deterministically from the immutable export plus the triage, and the ledger
+# alone is 13 MB. decisions.json is the opposite -- it is irreplaceable human
+# work and is tracked explicitly.
+experiments/external_sources/keremberke_review/ledger.json
+experiments/external_sources/keremberke_review/review_queue.json
+experiments/external_sources/keremberke_review/working_copy/
+!experiments/external_sources/keremberke_review/decisions.json

@@ -314,3 +314,117 @@ class TestKeremberkeClassRepair:
             assert names <= {'player', 'football', 'football-players'}, names
             assert 'goalkeeper' not in names and 'referee' not in names, (
                 'the original export must still be two-class')
+
+
+class TestKeremberkeReviewPackage:
+    """The review package must be ready for a human and must not pre-empt one."""
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def man(self):
+        p = self.PKG / 'PACKAGE_MANIFEST.json'
+        if not p.exists():
+            pytest.skip('review package not built')
+        return load(p)
+
+    def test_no_human_decision_has_been_fabricated(self, man):
+        assert man['human_decisions_recorded'] == 0
+        assert man['review_status'] == 'PACKAGE_BUILT_AWAITING_HUMAN'
+        assert man['no_proposal_is_ground_truth'] is True
+        d = self.PKG / 'decisions.json'
+        assert not d.exists() or not d.read_text(encoding='utf-8').strip()
+
+    def test_ledger_starts_with_every_final_class_empty(self):
+        p = self.PKG / 'ledger.json'
+        if not p.exists():
+            pytest.skip('ledger regenerated on demand')
+        led = load(p)
+        assert len(led) == 22878
+        assert all(r['HUMAN_FINAL_CLASS'] is None for r in led)
+        # the two must be kept distinct forever
+        for r in led:
+            assert 'PROPOSED_CLASS' in r and 'ORIGINAL_CLASS' in r
+
+    def test_original_export_is_immutable_and_hashed(self, man):
+        assert man['original_source_immutable'] is True
+        assert man['geometry_may_change'] is False
+        assert man['only_class_ids_may_change'] is True
+        import hashlib
+        base = (REPO / 'EyeCU_external_data/huggingface'
+                / 'keremberke_football_object_detection/extracted')
+        if not base.exists():
+            pytest.skip('keremberke not extracted')
+        for split, expect in man['original_annotation_sha256'].items():
+            aj = list((base / split).rglob('_annotations.coco.json'))
+            h = hashlib.sha256(aj[0].read_bytes()).hexdigest()
+            assert h == expect, f'{split} original annotation changed'
+
+    def test_queue_is_ordered_by_run_then_priority(self):
+        p = self.PKG / 'review_queue.json'
+        if not p.exists():
+            pytest.skip('queue regenerated on demand')
+        q = load(p)
+        assert len(q) == 1170
+        assert sum(len(x['candidate_box_ids']) for x in q) == 4153
+        runs = [x['run'] for x in q]
+        # each run appears as one contiguous block
+        seen, blocks = set(), 0
+        prev = None
+        for r in runs:
+            if r != prev:
+                blocks += 1
+                assert r not in seen, f'run {r} is not contiguous in the queue'
+                seen.add(r)
+                prev = r
+        assert blocks == len(seen)
+
+    def test_two_independent_qa_samples_exist(self):
+        qp = load(self.PKG / 'qa_likely_player.json')
+        qn = load(self.PKG / 'qa_no_candidate_images.json')
+        assert qp['sample_size'] == 250 and qp['answers_recorded'] == 0
+        # the stratum tuple is size x confidence-band x region x depth, so 3*3*3*2
+        # = 54 is the CEILING, not a shortfall. Run is tracked separately.
+        assert qp['strata_covered'] == 54, 'stratification collapsed'
+        assert {r['run'] for r in qp['rows']} == {'plain_A', 'plain_B', 'pp_A', 'pp_B'}
+        for f in ('size', 'detector_conf_band', 'region', 'depth'):
+            vals = {r['stratum'][f] for r in qp['rows']}
+            assert len(vals) >= 2, f'{f} did not vary in the sample'
+        assert qn['answers_recorded'] == 0
+        assert qn['kept_separate_from_candidate_precision'] is True
+        assert set(qp['rows'][0]['allowed']) == {
+            'TRUE_PLAYER', 'MISSED_GOALKEEPER', 'MISSED_REFEREE', 'UNCERTAIN'}
+
+    def test_no_candidate_qa_is_a_census(self):
+        qn = load(self.PKG / 'qa_no_candidate_images.json')
+        assert qn['sample_size'] == qn['population'], (
+            'only 57 images have no candidate, so all of them are reviewed')
+
+    def test_reference_sheet_per_run(self):
+        d = self.PKG / 'reference_sheets'
+        assert {p.stem for p in d.glob('*_kits.jpg')} == {
+            'plain_A_kits', 'plain_B_kits', 'pp_A_kits', 'pp_B_kits'}
+
+    def test_gate_blocks_while_review_is_incomplete(self):
+        p = self.PKG / 'REVIEW_STATUS.json'
+        if not p.exists():
+            pytest.skip('gate not yet run')
+        s = load(p)
+        assert s['review_status'] == 'AWAITING_HUMAN_REVIEW'
+        failing = [g for g in s['gate'] if g['result'] == 'FAIL']
+        assert failing, 'the gate must not pass with zero decisions'
+        assert s['candidates_reviewed'] == 0
+
+    def test_ball_counts_are_reported_on_the_frozen_convention(self):
+        p = self.PKG / 'REVIEW_STATUS.json'
+        if not p.exists():
+            pytest.skip('gate not yet run')
+        b = load(p)['ball_counts_preserved']
+        assert b['instances'] == 1263
+        assert (b['le5'], b['le8'], b['le12']) == (90, 474, 969)
+        assert 'stored pixels' in b['convention']
+
+    def test_decisions_file_is_tracked_but_bulk_is_not(self):
+        gi = (REPO / '.gitignore').read_text(encoding='utf-8')
+        assert 'keremberke_review/ledger.json' in gi
+        assert '!experiments/external_sources/keremberke_review/decisions.json' in gi
