@@ -1,0 +1,16 @@
+{
+ "sequence": "women_1_239",
+ "benchmark": "EyeCU-Tracking-Val-v1.1",
+ "received": "2026-08-10",
+ "annotations_xml_sha256": "5d19d3e672a7377788de6b1d3173fc59b3104118b18b7109123517b3635da55b",
+ "annotations_xml_bytes": 457552,
+ "raw_export_modified": false,
+ "record_created_retrospectively": true,
+ "retrospective_note": "This sidecar was written on 2026-08-11, after the fact, when the provenance convention introduced for youth was applied backwards. The unmodified claim is not taken on trust: the file has been tracked in git since commit 58dba7ca373f and has no working-tree diff, so its content is the content first committed.",
+ "first_committed_in": "58dba7ca373fb0568ea2eab1c6587c16755484e2",
+ "sha256_of_first_committed_blob_lf_normalised": "5d19d3e672a7377788de6b1d3173fc59b3104118b18b7109123517b3635da55b",
+ "matches_first_commit": true,
+ "zip_preserved": false,
+ "zip_note": "The original zip was not kept for this sequence. It was extracted before the preserve-the-zip convention existed, and that gap is recorded rather than papered over. The XML it contained is intact and is the same bytes CVAT produced.",
+ "note": "The XML is unedited. Corrections belong in records, never in evidence."
+}

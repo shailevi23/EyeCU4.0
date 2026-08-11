@@ -158,9 +158,9 @@
       "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all three sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
     },
     "bayern_munich_3-1_chelsea_228": {
-      "identity_status": "ANNOTATED_PENDING_QC",
+      "identity_status": "IDENTITY_ACCEPTED_PENDING_FINAL_QC",
       "imported": "2026-08-11",
-      "review_source": null,
+      "review_source": "human annotator",
       "tracker_output_used": false,
       "embeddings_used": false,
       "reid_used": false,
@@ -168,7 +168,21 @@
       "long_gap_events_total": 0,
       "automated_qc_issues": 0,
       "raw_export_provenance": "cvat_exports/bayern_munich_3-1_chelsea_228.provenance.json",
-      "note": "Structural validation passed and the automated QC found no issue. Awaiting the human box-QC decision; identity has no open events because no track has a disappearance/re-entry gap."
+      "note": "Sequence-level acceptance only. VERIFIED still requires the whole-benchmark final QC to be accepted by a human.",
+      "accepted": "2026-08-11",
+      "acceptances": [
+        "ROLE_LABELS_HUMAN_ACCEPTED",
+        "BOX_GEOMETRY_HUMAN_ACCEPTED",
+        "IDENTITY_TRACKS_HUMAN_ACCEPTED"
+      ],
+      "role_composition": {
+        "player": 20,
+        "goalkeeper": 1,
+        "referee": 3
+      },
+      "goalkeeper_count_note": "Exactly one goalkeeper is visible and targeted in this window, confirmed by the annotator. It is not a missing or mislabelled second goalkeeper, and no QC may raise an event, search for one, or relabel a player on position, kit, detector output or football expectation.",
+      "long_gap_decisions": "qc_identity/bayern_munich_3-1_chelsea_228/identity_gap_decisions.json",
+      "box_geometry": "BOX_GEOMETRY_HUMAN_ACCEPTED"
     }
   },
   "benchmark_definition": {
@@ -292,12 +306,16 @@
     "roles_generated_from": "CVAT track labels (single source of truth)"
   },
   "whole_benchmark_final_qc": {
-    "status": "NOT STARTED",
-    "required_over": [
+    "status": "REPORT GENERATED, AWAITING HUMAN ACCEPTANCE",
+    "generated": "2026-08-11",
+    "scope": "structural invariants only",
+    "must_not": "reinterpret human-confirmed semantic labels. Role composition is reported, never judged; no goalkeeper-count rule exists.",
+    "report": "qc/final_benchmark_qc.json",
+    "covers": [
       "women_1_239",
       "youth_premier_league_1133",
       "bayern_munich_3-1_chelsea_228"
     ],
-    "gate": "identity GT may become VERIFIED only after the whole-benchmark final QC is accepted. Sequence-level acceptance is not benchmark verification."
+    "gate": "identity GT becomes VERIFIED only when a human accepts this QC via tools/confirm_tracking_gt_qc.py, which writes the hash record the export gate re-checks."
   }
 }
