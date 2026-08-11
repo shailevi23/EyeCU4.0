@@ -67,8 +67,19 @@ class TestPackage:
         assert manifest['target']['ball_excluded'] is True
         assert 'ball' in manifest['target']['not_targets']
 
-    def test_manifest_marks_gt_unannotated(self, manifest):
-        assert manifest['identity_gt_status'] == 'UNANNOTATED'
+    def test_manifest_never_claims_verified_without_a_qc_record(self, manifest):
+        """
+        The status may legitimately advance as sequences arrive; what must
+        never happen is VERIFIED without the QC confirmation that backs it.
+        Asserting the literal UNANNOTATED was only meaningful while sequences
+        were missing.
+        """
+        status = manifest['identity_gt_status']
+        assert status in ('UNANNOTATED', 'ANNOTATED_PENDING_QC', 'VERIFIED')
+        if status == 'VERIFIED':
+            from tools.confirm_tracking_gt_qc import qc_record_valid
+            ok, why = qc_record_valid(ROOT, manifest)
+            assert ok, why
 
     def test_manifest_records_manual_identity_provenance(self, manifest):
         assert 'NOT generated from tracker' in manifest['identity_provenance']
@@ -102,10 +113,17 @@ class TestPreannotationCarriesNoIdentity:
 
 
 class TestPostStageRefusesWithoutAnnotation:
-    def test_unannotated_package_cannot_pass_as_final_gt(self):
-        errors, n = validate_post(ROOT)
-        assert errors, 'an unannotated benchmark passed as final GT'
-        assert any('UNANNOTATED' in e for e in errors)
+    def test_annotated_but_unconfirmed_gt_cannot_pass_as_final(self):
+        """
+        Post validation may pass once every sequence is imported. The gate that
+        must hold regardless is the verified one: no QC record, no evaluation.
+        """
+        errors, _ = validate_verified(ROOT)
+        man = json.loads((ROOT / 'manifest.json').read_text(encoding='utf-8'))
+        if man['identity_gt_status'] != 'VERIFIED':
+            assert errors, 'unconfirmed GT passed the verified gate'
+            assert any('QC confirmation' in e or 'only VERIFIED' in e
+                       for e in errors), errors
 
     def test_mot_export_refuses_without_annotation(self):
         from tools.export_tracking_gt_mot import export

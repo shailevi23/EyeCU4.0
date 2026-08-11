@@ -4,7 +4,7 @@
   "created": "2026-08-09T19:46:04+00:00",
   "code_commit": "b25c840214cfc1c0c72a1d80fb662127423940f9",
   "build_tool_sha256": "49e21a57238360d10a6e59b4efb7c1bd202cc60baaba73abe9c8c56ddde1b5a8",
-  "identity_gt_status": "UNANNOTATED",
+  "identity_gt_status": "ANNOTATED_PENDING_QC",
   "identity_provenance": "Identity ground truth MUST be assigned manually by a human and was NOT generated from tracker IDs. Preannotations contain box geometry and a detector class hint only -- no tracker id, no temporal link, no identity.",
   "target": {
     "classes": [
@@ -156,6 +156,19 @@
       "raw_export_provenance": "cvat_exports/youth_premier_league_1133.provenance.json",
       "density_note": "The >=10 humans/frame rule was a selection-time detector proxy (12.2 for this window). The human GT count of 8.40 is descriptive and is NOT a retrospective eligibility test. See experiments/tracking_v2/gt_conventions.json -> density_eligibility_rule.",
       "note": "Sequence-level acceptance only. identity_gt_status stays UNANNOTATED until all three sequences are imported, and VERIFIED still requires the whole-benchmark QC confirmation."
+    },
+    "bayern_munich_3-1_chelsea_228": {
+      "identity_status": "ANNOTATED_PENDING_QC",
+      "imported": "2026-08-11",
+      "review_source": null,
+      "tracker_output_used": false,
+      "embeddings_used": false,
+      "reid_used": false,
+      "long_gap_events_open": 0,
+      "long_gap_events_total": 0,
+      "automated_qc_issues": 0,
+      "raw_export_provenance": "cvat_exports/bayern_munich_3-1_chelsea_228.provenance.json",
+      "note": "Structural validation passed and the automated QC found no issue. Awaiting the human box-QC decision; identity has no open events because no track has a disappearance/re-entry gap."
     }
   },
   "benchmark_definition": {
@@ -271,5 +284,20 @@
     "B_official": "TrackEval COMBINED_SEQ, the official combined calculation",
     "C_macro_mean": "unweighted mean of the three per-match HOTA / AssA / IDF1 values, a descriptive robustness check only",
     "precedence": "View B is the official result. View C never replaces it; it exists so a result carried by one long sequence is visible as such."
+  },
+  "identity_import": {
+    "canonical_format": "CVAT for video 1.1",
+    "importer": "tools/import_tracking_gt_cvat.py",
+    "frame_conversion": "CVAT frame 0 -> package frame 1",
+    "roles_generated_from": "CVAT track labels (single source of truth)"
+  },
+  "whole_benchmark_final_qc": {
+    "status": "NOT STARTED",
+    "required_over": [
+      "women_1_239",
+      "youth_premier_league_1133",
+      "bayern_munich_3-1_chelsea_228"
+    ],
+    "gate": "identity GT may become VERIFIED only after the whole-benchmark final QC is accepted. Sequence-level acceptance is not benchmark verification."
   }
 }

@@ -1,0 +1,1144 @@
+{
+ "sequence": "bayern_munich_3-1_chelsea_228",
+ "purpose": "visual audit of GT box tightness",
+ "authoritative": false,
+ "alters_annotations": false,
+ "sampling": {
+  "seed": 20260810,
+  "n": 40,
+  "strata": [
+   "time",
+   "size",
+   "role",
+   "occlusion"
+  ],
+  "height_terciles_px": [
+   16.59,
+   19.57
+  ],
+  "occlusion_source": "annotator occluded=\"1\" in the CVAT export, not inferred"
+ },
+ "detector_box_status": "comparison context only; the frozen detector is not the authority on box convention",
+ "observations": [
+  {
+   "frame": 4,
+   "id": 18,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    363.31,
+    66.22,
+    369.05,
+    78.53
+   ],
+   "gt_w": 5.74,
+   "gt_h": 12.31,
+   "gt_aspect_h_over_w": 2.145,
+   "detector_bbox": [
+    363.27,
+    68.38,
+    370.27,
+    86.5
+   ],
+   "iou_with_detector": 0.418,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 7,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    26.6,
+    108.98,
+    35.54,
+    130.34
+   ],
+   "gt_w": 8.94,
+   "gt_h": 21.36,
+   "gt_aspect_h_over_w": 2.389,
+   "detector_bbox": [
+    27.94,
+    110.04,
+    35.49,
+    129.94
+   ],
+   "iou_with_detector": 0.787,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 8,
+   "id": 18,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    365.25,
+    65.8,
+    370.99,
+    78.51
+   ],
+   "gt_w": 5.74,
+   "gt_h": 12.71,
+   "gt_aspect_h_over_w": 2.214,
+   "detector_bbox": [
+    365.66,
+    69.2,
+    373.34,
+    86.95
+   ],
+   "iou_with_detector": 0.311,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 18,
+   "id": 9,
+   "role": "referee",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    231.47,
+    53.26,
+    238.77,
+    67.76
+   ],
+   "gt_w": 7.3,
+   "gt_h": 14.5,
+   "gt_aspect_h_over_w": 1.986,
+   "detector_bbox": [
+    231.65,
+    52.33,
+    238.75,
+    67.21
+   ],
+   "iou_with_detector": 0.881,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 23,
+   "id": 14,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    311.33,
+    149.52,
+    321.84,
+    171.14
+   ],
+   "gt_w": 10.51,
+   "gt_h": 21.62,
+   "gt_aspect_h_over_w": 2.057,
+   "detector_bbox": [
+    312.94,
+    150.35,
+    320.84,
+    170.13
+   ],
+   "iou_with_detector": 0.688,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 39,
+   "id": 21,
+   "role": "referee",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    432.43,
+    106.42,
+    439.29,
+    125.5
+   ],
+   "gt_w": 6.86,
+   "gt_h": 19.08,
+   "gt_aspect_h_over_w": 2.781,
+   "detector_bbox": [
+    432.66,
+    106.79,
+    439.9,
+    125.67
+   ],
+   "iou_with_detector": 0.864,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 41,
+   "id": 8,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    202.7,
+    86.23,
+    208.7,
+    102.4
+   ],
+   "gt_w": 6.0,
+   "gt_h": 16.17,
+   "gt_aspect_h_over_w": 2.695,
+   "detector_bbox": [
+    203.66,
+    86.31,
+    210.2,
+    100.81
+   ],
+   "iou_with_detector": 0.615,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 42,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    53.46,
+    105.93,
+    62.95,
+    126.37
+   ],
+   "gt_w": 9.49,
+   "gt_h": 20.44,
+   "gt_aspect_h_over_w": 2.154,
+   "detector_bbox": [
+    53.65,
+    105.54,
+    63.66,
+    124.91
+   ],
+   "iou_with_detector": 0.835,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 45,
+   "id": 16,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    371.83,
+    85.01,
+    380.1,
+    102.61
+   ],
+   "gt_w": 8.27,
+   "gt_h": 17.6,
+   "gt_aspect_h_over_w": 2.128,
+   "detector_bbox": [
+    372.55,
+    84.41,
+    380.52,
+    101.16
+   ],
+   "iou_with_detector": 0.776,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 47,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    290.7,
+    119.95,
+    297.15,
+    139.98
+   ],
+   "gt_w": 6.45,
+   "gt_h": 20.03,
+   "gt_aspect_h_over_w": 3.105,
+   "detector_bbox": [
+    290.67,
+    119.9,
+    299.14,
+    139.05
+   ],
+   "iou_with_detector": 0.732,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 48,
+   "id": 12,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    292.03,
+    119.69,
+    298.73,
+    139.25
+   ],
+   "gt_w": 6.7,
+   "gt_h": 19.56,
+   "gt_aspect_h_over_w": 2.919,
+   "detector_bbox": [
+    290.26,
+    119.86,
+    298.68,
+    139.17
+   ],
+   "iou_with_detector": 0.777,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 56,
+   "id": 21,
+   "role": "referee",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    427.83,
+    105.89,
+    434.68,
+    124.38
+   ],
+   "gt_w": 6.85,
+   "gt_h": 18.49,
+   "gt_aspect_h_over_w": 2.699,
+   "detector_bbox": [
+    427.72,
+    105.86,
+    434.37,
+    124.23
+   ],
+   "iou_with_detector": 0.931,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 78,
+   "id": 23,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    456.25,
+    86.5,
+    465.58,
+    102.4
+   ],
+   "gt_w": 9.33,
+   "gt_h": 15.9,
+   "gt_aspect_h_over_w": 1.704,
+   "detector_bbox": [
+    457.26,
+    87.43,
+    463.92,
+    101.53
+   ],
+   "iou_with_detector": 0.633,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 81,
+   "id": 19,
+   "role": "player",
+   "stratum": {
+    "time": "begin",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    364.82,
+    111.87,
+    371.85,
+    129.76
+   ],
+   "gt_w": 7.03,
+   "gt_h": 17.89,
+   "gt_aspect_h_over_w": 2.545,
+   "detector_bbox": [
+    364.61,
+    112.13,
+    371.09,
+    130.44
+   ],
+   "iou_with_detector": 0.826,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 85,
+   "id": 2,
+   "role": "referee",
+   "stratum": {
+    "time": "begin",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    497.58,
+    319.05,
+    512.92,
+    348.75
+   ],
+   "gt_w": 15.34,
+   "gt_h": 29.7,
+   "gt_aspect_h_over_w": 1.936,
+   "detector_bbox": [
+    496.42,
+    318.11,
+    513.63,
+    349.5
+   ],
+   "iou_with_detector": 0.843,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 107,
+   "id": 23,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    434.74,
+    81.72,
+    443.57,
+    96.64
+   ],
+   "gt_w": 8.83,
+   "gt_h": 14.92,
+   "gt_aspect_h_over_w": 1.69,
+   "detector_bbox": [
+    435.72,
+    81.71,
+    442.82,
+    95.97
+   ],
+   "iou_with_detector": 0.768,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 114,
+   "id": 17,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    285.35,
+    82.38,
+    292.13,
+    96.84
+   ],
+   "gt_w": 6.78,
+   "gt_h": 14.46,
+   "gt_aspect_h_over_w": 2.133,
+   "detector_bbox": [
+    285.1,
+    83.94,
+    292.35,
+    100.18
+   ],
+   "iou_with_detector": 0.682,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 123,
+   "id": 19,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    333.13,
+    105.45,
+    340.92,
+    122.76
+   ],
+   "gt_w": 7.79,
+   "gt_h": 17.31,
+   "gt_aspect_h_over_w": 2.222,
+   "detector_bbox": [
+    333.49,
+    104.71,
+    340.07,
+    122.82
+   ],
+   "iou_with_detector": 0.813,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 124,
+   "id": 13,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    244.05,
+    105.87,
+    252.17,
+    124.54
+   ],
+   "gt_w": 8.12,
+   "gt_h": 18.67,
+   "gt_aspect_h_over_w": 2.299,
+   "detector_bbox": [
+    244.45,
+    105.99,
+    251.9,
+    123.38
+   ],
+   "iou_with_detector": 0.855,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 127,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    10.64,
+    110.88,
+    20.39,
+    129.18
+   ],
+   "gt_w": 9.75,
+   "gt_h": 18.3,
+   "gt_aspect_h_over_w": 1.877,
+   "detector_bbox": [
+    10.94,
+    109.96,
+    19.71,
+    128.64
+   ],
+   "iou_with_detector": 0.835,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 144,
+   "id": 2,
+   "role": "referee",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    504.76,
+    303.23,
+    518.07,
+    333.7
+   ],
+   "gt_w": 13.31,
+   "gt_h": 30.47,
+   "gt_aspect_h_over_w": 2.289,
+   "detector_bbox": [
+    504.28,
+    304.44,
+    519.82,
+    333.31
+   ],
+   "iou_with_detector": 0.818,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 145,
+   "id": 9,
+   "role": "referee",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    212.12,
+    45.76,
+    217.82,
+    60.26
+   ],
+   "gt_w": 5.7,
+   "gt_h": 14.5,
+   "gt_aspect_h_over_w": 2.544,
+   "detector_bbox": [
+    212.14,
+    46.07,
+    218.62,
+    59.95
+   ],
+   "iou_with_detector": 0.841,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 147,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    6.02,
+    111.31,
+    15.9,
+    129.77
+   ],
+   "gt_w": 9.88,
+   "gt_h": 18.46,
+   "gt_aspect_h_over_w": 1.868,
+   "detector_bbox": [
+    6.1,
+    110.94,
+    14.66,
+    130.0
+   ],
+   "iou_with_detector": 0.843,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 148,
+   "id": 17,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    226.2,
+    94.77,
+    236.95,
+    111.03
+   ],
+   "gt_w": 10.75,
+   "gt_h": 16.26,
+   "gt_aspect_h_over_w": 1.513,
+   "detector_bbox": [
+    226.24,
+    94.46,
+    234.72,
+    111.24
+   ],
+   "iou_with_detector": 0.769,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 151,
+   "id": 9,
+   "role": "referee",
+   "stratum": {
+    "time": "middle",
+    "size": "small",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    213.87,
+    45.84,
+    219.57,
+    60.34
+   ],
+   "gt_w": 5.7,
+   "gt_h": 14.5,
+   "gt_aspect_h_over_w": 2.544,
+   "detector_bbox": [
+    214.09,
+    46.81,
+    220.77,
+    60.52
+   ],
+   "iou_with_detector": 0.741,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 159,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    3.45,
+    112.17,
+    14.82,
+    132.48
+   ],
+   "gt_w": 11.37,
+   "gt_h": 20.31,
+   "gt_aspect_h_over_w": 1.786,
+   "detector_bbox": [
+    4.14,
+    111.81,
+    15.44,
+    132.54
+   ],
+   "iou_with_detector": 0.874,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 168,
+   "id": 21,
+   "role": "referee",
+   "stratum": {
+    "time": "middle",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    382.07,
+    103.11,
+    388.97,
+    120.78
+   ],
+   "gt_w": 6.9,
+   "gt_h": 17.67,
+   "gt_aspect_h_over_w": 2.561,
+   "detector_bbox": [
+    381.78,
+    104.09,
+    388.2,
+    120.16
+   ],
+   "iou_with_detector": 0.778,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 174,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    1.68,
+    114.99,
+    13.3,
+    135.61
+   ],
+   "gt_w": 11.62,
+   "gt_h": 20.62,
+   "gt_aspect_h_over_w": 1.775,
+   "detector_bbox": [
+    2.37,
+    115.81,
+    11.45,
+    135.08
+   ],
+   "iou_with_detector": 0.73,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 178,
+   "id": 4,
+   "role": "player",
+   "stratum": {
+    "time": "middle",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    480.78,
+    181.59,
+    489.53,
+    201.41
+   ],
+   "gt_w": 8.75,
+   "gt_h": 19.82,
+   "gt_aspect_h_over_w": 2.265,
+   "detector_bbox": [
+    480.28,
+    181.31,
+    489.8,
+    201.46
+   ],
+   "iou_with_detector": 0.904,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 203,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    0.0,
+    118.34,
+    9.82,
+    138.96
+   ],
+   "gt_w": 9.82,
+   "gt_h": 20.62,
+   "gt_aspect_h_over_w": 2.1,
+   "detector_bbox": [
+    0.08,
+    117.28,
+    8.36,
+    138.0
+   ],
+   "iou_with_detector": 0.771,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 204,
+   "id": 7,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    178.5,
+    164.12,
+    190.17,
+    181.53
+   ],
+   "gt_w": 11.67,
+   "gt_h": 17.41,
+   "gt_aspect_h_over_w": 1.492,
+   "detector_bbox": [
+    181.23,
+    164.54,
+    189.03,
+    180.48
+   ],
+   "iou_with_detector": 0.612,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 205,
+   "id": 1,
+   "role": "goalkeeper",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "goalkeeper",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    0.0,
+    118.34,
+    8.3,
+    138.96
+   ],
+   "gt_w": 8.3,
+   "gt_h": 20.62,
+   "gt_aspect_h_over_w": 2.484,
+   "detector_bbox": [
+    0.02,
+    116.48,
+    6.52,
+    136.56
+   ],
+   "iou_with_detector": 0.646,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 227,
+   "id": 24,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "small",
+    "role": "player",
+    "occlusion": "occluded"
+   },
+   "gt_bbox": [
+    457.2,
+    80.65,
+    463.38,
+    93.3
+   ],
+   "gt_w": 6.18,
+   "gt_h": 12.65,
+   "gt_aspect_h_over_w": 2.047,
+   "detector_bbox": [
+    456.65,
+    80.21,
+    463.56,
+    95.54
+   ],
+   "iou_with_detector": 0.738,
+   "annotator_marked_occluded": true
+  },
+  {
+   "frame": 240,
+   "id": 2,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    540.39,
+    291.07,
+    552.18,
+    317.55
+   ],
+   "gt_w": 11.79,
+   "gt_h": 26.48,
+   "gt_aspect_h_over_w": 2.246,
+   "detector_bbox": [
+    541.0,
+    290.29,
+    552.53,
+    318.29
+   ],
+   "iou_with_detector": 0.873,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 243,
+   "id": 16,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "small",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    393.55,
+    104.0,
+    404.0,
+    120.45
+   ],
+   "gt_w": 10.45,
+   "gt_h": 16.45,
+   "gt_aspect_h_over_w": 1.574,
+   "detector_bbox": [
+    391.66,
+    103.85,
+    405.76,
+    120.2
+   ],
+   "iou_with_detector": 0.726,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 252,
+   "id": 5,
+   "role": "player",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "player",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    347.26,
+    201.75,
+    358.9,
+    226.26
+   ],
+   "gt_w": 11.64,
+   "gt_h": 24.51,
+   "gt_aspect_h_over_w": 2.106,
+   "detector_bbox": [
+    348.51,
+    201.29,
+    357.24,
+    225.86
+   ],
+   "iou_with_detector": 0.728,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 255,
+   "id": 21,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    336.8,
+    105.86,
+    344.98,
+    122.65
+   ],
+   "gt_w": 8.18,
+   "gt_h": 16.79,
+   "gt_aspect_h_over_w": 2.053,
+   "detector_bbox": [
+    337.01,
+    105.96,
+    343.94,
+    122.47
+   ],
+   "iou_with_detector": 0.833,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 265,
+   "id": 9,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "small",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    187.15,
+    37.97,
+    193.58,
+    51.84
+   ],
+   "gt_w": 6.43,
+   "gt_h": 13.87,
+   "gt_aspect_h_over_w": 2.157,
+   "detector_bbox": [
+    187.16,
+    36.88,
+    194.03,
+    51.16
+   ],
+   "iou_with_detector": 0.825,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 289,
+   "id": 21,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "medium",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    306.14,
+    113.43,
+    314.37,
+    130.97
+   ],
+   "gt_w": 8.23,
+   "gt_h": 17.54,
+   "gt_aspect_h_over_w": 2.131,
+   "detector_bbox": [
+    305.26,
+    112.8,
+    313.8,
+    130.95
+   ],
+   "iou_with_detector": 0.813,
+   "annotator_marked_occluded": false
+  },
+  {
+   "frame": 297,
+   "id": 2,
+   "role": "referee",
+   "stratum": {
+    "time": "end",
+    "size": "large",
+    "role": "referee",
+    "occlusion": "normal"
+   },
+   "gt_bbox": [
+    537.53,
+    274.88,
+    550.69,
+    303.94
+   ],
+   "gt_w": 13.16,
+   "gt_h": 29.06,
+   "gt_aspect_h_over_w": 2.208,
+   "detector_bbox": [
+    533.09,
+    274.88,
+    550.28,
+    304.38
+   ],
+   "iou_with_detector": 0.714,
+   "annotator_marked_occluded": false
+  }
+ ]
+}

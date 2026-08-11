@@ -1,0 +1,23 @@
+{
+ "sequence": "bayern_munich_3-1_chelsea_228",
+ "benchmark": "EyeCU-Tracking-Val-v1.1",
+ "received": "2026-08-11",
+ "original_upload_filename": "bayernchelsea_manuel_cvat_300_frames.zip",
+ "zip_sha256": "922ac87633225f489b5b4ac06374c2f45c19efb95c78dc67d389d8732d83da8b",
+ "zip_bytes": 955477,
+ "annotations_xml_sha256": "c6bffa3c02b9f0b92e386e6edb4e51609ebaa98a8b77ec69cc5535ea1e7281ed",
+ "annotations_xml_bytes": 955349,
+ "raw_export_modified": false,
+ "sequence_identity_verified": {
+  "method": "content consistency against the frozen per-sequence detections; filename not trusted alone",
+  "match_against_own_sequence": 0.996,
+  "controls": {
+   "women_1_239": 0.009,
+   "youth_premier_league_1133": 0.002
+  },
+  "metric": "share of GT boxes with a detector box at IoU >= 0.3",
+  "tracker_output_used": false,
+  "verdict": "correct frozen sequence"
+ },
+ "note": "The XML is extracted byte-for-byte from the zip and neither is edited. Corrections belong in records, never in evidence."
+}
