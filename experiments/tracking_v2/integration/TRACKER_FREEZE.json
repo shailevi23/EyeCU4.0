@@ -1,0 +1,27 @@
+{
+ "production_tracker": "CBIoUTracker",
+ "source": "vendored trackers==2.6.0 equivalent (rf_trackers/)",
+ "config": "exact LIBRARY_DEFAULTS; production supplies only frame_rate",
+ "tracker_status": "QUALIFIED, NOT YET FROZEN",
+ "frozen": "2026-08-11",
+ "evidence_class": "POST-HOC / DEVELOPMENT QUALIFICATION -- not independent confirmation",
+ "rollback": "FootballTracker(tracker_backend='legacy') -> supervision sv.ByteTrack(), retained",
+ "gates": {
+  "exact_output_equivalence_vs_T2": "PASS (byte-identical, max box delta 0.0000)",
+  "trackeval_regression": "PASS (all metric deltas 0.000000)",
+  "eyecu_invariants": "PASS (9/9)",
+  "paired_end_to_end_runtime": "PASS (-0.115% vs legacy, criterion <= +10%)"
+ },
+ "supporting_hashes": {
+  "T2_spec": "5f8d2a752c57aef1fd4fd82719d2b6bfd9bc8c7cb9e28b9433b114761a756f60",
+  "T2_verdict": "4f39ca51951df6dd1004f2e9fd1c9594dcc604f946c0b8b600bdea2aa33abad7",
+  "adoption_criteria": "0c987578baa023e3cc44e40065e31ef54d5ce2c8da01ffb7780c104bda8b6f76",
+  "vendor_provenance": "4162c4bc9e700b2c90790c165ed95c3e0a2ad4e31ec88e998caaf27682c52ec1",
+  "equivalence": "62d59400ccecec2e2b15fd4843ba56f25da728235152494b7d43613e84228ea8",
+  "paired_runtime": "b43b98f839ff9e4587270673bbde017484ad64bfb4b71b3bbce52f0bdb4eee08"
+ },
+ "test_accessed": false,
+ "production_default": "legacy",
+ "why_not_frozen": "All four gates PASS, including the paired runtime at -0.115%. Flipping the default was attempted and reverted: 17 tests in test_ball_tracker_isolation and test_human_candidate_pool were written against legacy semantics and, on receiving CBIoU, fail because CBIoU withholds an id until minimum_consecutive_frames=2 is met -- their synthetic fixtures are 1-2 frames long. That is a test-fixture problem, not a CBIoU defect, but pinning the backend in each and re-verifying is real work and I will not ship a red suite to claim a freeze.",
+ "remaining_work": "pin tracker_backend='legacy' in the 17 legacy-semantics tests (or parametrise them over both backends), re-run, then flip the default and set tracker_status FROZEN"
+}

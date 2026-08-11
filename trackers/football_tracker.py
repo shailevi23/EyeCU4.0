@@ -69,7 +69,10 @@ class FootballTracker:
                 Only for tests, which must not load real YOLO weights.
             tracker_backend: which association implementation to use.
                 'cbiou'  -- vendored Roboflow CBIoUTracker 2.6.0 at its exact
-                            library defaults, selected by Tracking Experiment T2.
+                            library defaults, selected by T2 and qualified by
+                            integration. Not yet the default: flipping it makes
+                            17 legacy-written behavioural tests receive CBIoU,
+                            and those must pin their backend first.
                 'legacy' -- supervision sv.ByteTrack(), the previously deployed
                             tracker, kept for rollback and regression comparison.
                 Neither is tuned. The two differ only in association; detection,
