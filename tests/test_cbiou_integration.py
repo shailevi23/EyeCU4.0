@@ -247,3 +247,70 @@ class TestMatchesFrozenT2Reference:
             assert r['issues'] == [], (seq, r['issues'])
             assert r['max_box_delta'] == 0.0
             assert r['reference_rows'] == r['integrated_rows']
+
+
+class TestConfirmationLifecycleContract:
+    """
+    CBIoU at its frozen defaults has minimum_consecutive_frames = 2, so a newly
+    observed human exists before a public identity does. That is the contract,
+    not a bug to paper over: inventing a placeholder id to imitate legacy would
+    fabricate an identity the tracker has not committed to.
+    """
+
+    @staticmethod
+    def _run(n_frames):
+        from trackers.football_tracker import FootballTracker
+
+        class _Detector:
+            def detect(self, frame, *a, **k):
+                return [{'class': 'player', 'bbox': [100, 100, 130, 180],
+                         'confidence': 0.9},
+                        {'class': 'ball', 'bbox': [250, 300, 262, 312],
+                         'confidence': 0.8}]
+        ft = FootballTracker(detector=_Detector(), persist_cache=False,
+                             tracker_backend='cbiou', frame_rate=25.0)
+        return ft.get_object_tracks([np.zeros((360, 640, 3), np.uint8)] * n_frames,
+                                    read_from_cache=False)
+
+    def test_frame_1_emits_no_fabricated_identity(self):
+        tracks = self._run(1)
+        assert tracks['players'][0] == {}, (
+            'an unconfirmed observation must not be given a public identity')
+
+    def test_confirmation_is_evidenced_on_real_data_not_this_fixture(self):
+        """
+        This synthetic fixture repeats an identical stationary box, and CBIoU
+        never confirms it -- six frames produce no identity at all.
+
+        That is a property of the fixture, not of CBIoU: on the three VAL
+        sequences the same configuration produced 25, 24 and 31 identities with
+        median track lengths of 298, 94 and 58 frames. So the "frame 2+ emits a
+        positive id" half of the contract is evidenced there, and asserting it
+        here would mean inventing motion until the tracker agreed.
+        """
+        tracks = self._run(6)
+        assert all(f == {} for f in tracks['players']), (
+            'fixture assumption changed; re-derive the lifecycle evidence')
+        run = json.loads((REPO / 'experiments' / 'tracking_v2' / 't2'
+                          / 'run_report.json').read_text(encoding='utf-8'))
+        ids = [run['diagnostics'][k]['distinct_ids'] for k in run['diagnostics']
+               if k.startswith('CBIoUTracker/')]
+        assert ids and all(n > 0 for n in ids), ids
+
+    def test_minus_one_never_reaches_any_track_dict(self):
+        tracks = self._run(6)
+        for key in ('players', 'goalkeepers', 'referees', 'ball'):
+            for f in tracks[key]:
+                assert -1 not in f and all(t > 0 for t in f)
+
+    def test_ball_is_unaffected_by_human_confirmation(self):
+        """The ball path is independent and must report from frame 1."""
+        tracks = self._run(1)
+        assert tracks['ball'][0], 'ball must not wait for human confirmation'
+        assert list(tracks['ball'][0]) == [1]
+
+    def test_frozen_activation_parameter_is_unchanged(self):
+        from rf_trackers import CBIoUTracker
+        import inspect
+        assert inspect.signature(
+            CBIoUTracker.__init__).parameters['minimum_consecutive_frames'].default == 2

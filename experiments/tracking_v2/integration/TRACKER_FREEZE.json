@@ -2,10 +2,10 @@
  "production_tracker": "CBIoUTracker",
  "source": "vendored trackers==2.6.0 equivalent (rf_trackers/)",
  "config": "exact LIBRARY_DEFAULTS; production supplies only frame_rate",
- "tracker_status": "QUALIFIED, NOT YET FROZEN",
+ "tracker_status": "FROZEN",
  "frozen": "2026-08-11",
  "evidence_class": "POST-HOC / DEVELOPMENT QUALIFICATION -- not independent confirmation",
- "rollback": "FootballTracker(tracker_backend='legacy') -> supervision sv.ByteTrack(), retained",
+ "rollback": "FootballTracker(tracker_backend='legacy') -> sv.ByteTrack(), retained and tested",
  "gates": {
   "exact_output_equivalence_vs_T2": "PASS (byte-identical, max box delta 0.0000)",
   "trackeval_regression": "PASS (all metric deltas 0.000000)",
@@ -21,7 +21,30 @@
   "paired_runtime": "b43b98f839ff9e4587270673bbde017484ad64bfb4b71b3bbce52f0bdb4eee08"
  },
  "test_accessed": false,
- "production_default": "legacy",
- "why_not_frozen": "All four gates PASS, including the paired runtime at -0.115%. Flipping the default was attempted and reverted: 17 tests in test_ball_tracker_isolation and test_human_candidate_pool were written against legacy semantics and, on receiving CBIoU, fail because CBIoU withholds an id until minimum_consecutive_frames=2 is met -- their synthetic fixtures are 1-2 frames long. That is a test-fixture problem, not a CBIoU defect, but pinning the backend in each and re-verifying is real work and I will not ship a red suite to claim a freeze.",
- "remaining_work": "pin tracker_backend='legacy' in the 17 legacy-semantics tests (or parametrise them over both backends), re-run, then flip the default and set tracker_status FROZEN"
+ "production_default": "cbiou",
+ "confirmation_lifecycle_contract": {
+  "minimum_consecutive_frames": 2,
+  "contract": "A newly observed human may exist before a positive public tracker identity is emitted. Identity -1 / unconfirmed is NEVER exposed: it is filtered before becoming a dict key. No placeholder identity is invented to imitate legacy.",
+  "evidence": "frame-1 fabrication and -1 leakage asserted on synthetic fixtures; confirmation itself evidenced on the three VAL sequences (25/24/31 identities, median track lengths 298/94/58)"
+ },
+ "downstream_audit": {
+  "result": "PASS",
+  "finding": "every consumer iterates frame_tracks.items() and consumes the keys present, so an unconfirmed frame yields an empty dict rather than a -1 player. No component assumes a positive id on first observation, and none required a fix.",
+  "checked": [
+   "camera_movement",
+   "position adjustment",
+   "rendering/draw_ellipse",
+   "team assignment",
+   "statistics",
+   "report generation",
+   "caches"
+  ]
+ },
+ "public_detection_vs_identity": "EyeCU already emitted only TRACKED humans -- the pre-existing data contract is tracked-only output, unchanged by this switch. An accepted detection whose identity is unconfirmed is withheld for that frame, exactly as a sub-threshold tracked box already was. Ball is unaffected and still reported from frame 1 via its own isolated path.",
+ "test_classification": {
+  "legacy_specific": 10,
+  "backend_invariant": 0,
+  "fixture_assumption": 7,
+  "note": "the 7 ball-isolation tests are fixture-assumption cases whose invariants are separately asserted for BOTH backends on 8-frame fixtures in test_cbiou_integration"
+ }
 }

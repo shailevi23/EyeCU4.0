@@ -49,7 +49,7 @@ class FootballTracker:
                 max_ball_gap=15,
                 human_candidate_pool=False,
                 detector=None,
-                tracker_backend='legacy',
+                tracker_backend='cbiou',
                 frame_rate=30.0):
         """
         Initialize the football tracker

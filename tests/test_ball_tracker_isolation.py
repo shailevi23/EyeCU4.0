@@ -8,6 +8,13 @@ the ball 9 tracker ids of its own while it competed for IoU matches against
 people moving an order of magnitude slower.
 """
 
+# LEGACY-SPECIFIC FIXTURES: these scripts are 1-2 frames long and assume a
+# positive tracker id on first observation, which is sv.ByteTrack's
+# lifecycle. CBIoU withholds an id until minimum_consecutive_frames=2.
+# The same invariants -- ball isolation, roles in their own buckets,
+# goalkeeper never folded into player -- are asserted for BOTH backends on
+# 8-frame fixtures in tests/test_cbiou_integration.py.
+
 import numpy as np
 import pytest
 
@@ -33,7 +40,7 @@ class Stub:
 
 
 def run(script, **kw):
-    t = FootballTracker(detector=Stub(script), persist_cache=False, **kw)
+    t = FootballTracker(tracker_backend='legacy', detector=Stub(script), persist_cache=False, **kw)
     frames = [np.zeros((360, 640, 3), dtype=np.uint8) for _ in script]
     return t, t.get_object_tracks(frames, read_from_cache=False, cache_path=None)
 
@@ -43,7 +50,7 @@ class TestBallIsolation:
         seen = []
 
         script = [[det('player', 10, 10, 40, 90), det('ball', 300, 200, 306, 206)]] * 3
-        t = FootballTracker(detector=Stub(script), persist_cache=False)
+        t = FootballTracker(tracker_backend='legacy', detector=Stub(script), persist_cache=False)
         real = t.tracker.update_with_detections
 
         def spy(detections):

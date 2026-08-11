@@ -7,6 +7,8 @@ so that a future upgrade which changes these boundaries fails loudly instead of
 silently invalidating the audit. Nothing here modifies supervision.
 """
 
+# LEGACY-SPECIFIC: this audits the supervision wrapper itself.
+
 import json
 from pathlib import Path
 
@@ -177,7 +179,7 @@ class TestDiagnosticRunnerSafety:
                 return [{'bbox': [10, 10, 50, 110], 'class': 'player',
                          'confidence': 0.9}]
 
-        t = FootballTracker(detector=Stub(), persist_cache=False)
+        t = FootballTracker(tracker_backend='legacy', detector=Stub(), persist_cache=False)
         frames = [np.zeros((360, 640, 3), dtype=np.uint8) for _ in range(3)]
         tracks = t.get_object_tracks(frames, read_from_cache=False, cache_path=None)
         assert any(f for f in tracks['players'])
