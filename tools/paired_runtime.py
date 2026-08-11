@@ -43,6 +43,9 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--out', default='experiments/tracking_v2/integration/paired_runtime.json')
+    ap.add_argument('--max-frames', type=int, default=0,
+                    help='bounded sanity mode: cap frames per sequence')
+    ap.add_argument('--repeats', type=int, default=REPEATS)
     args = ap.parse_args()
 
     import cv2
@@ -57,7 +60,8 @@ def main():
         d = gt / 'sequences' / s['sequence'] / 'img1'
         frames[s['sequence']] = [
             cv2.imdecode(np.fromfile(str(d / f'{i:06d}.jpg'), dtype=np.uint8),
-                         cv2.IMREAD_COLOR) for i in range(1, s['frame_count'] + 1)]
+                         cv2.IMREAD_COLOR)
+            for i in range(1, (args.max_frames or s['frame_count']) + 1)]
     print(f'decoded {sum(len(v) for v in frames.values())} frames once')
 
     # one detector per arm: a shared one would let arm A warm a cache for arm B
@@ -65,7 +69,7 @@ def main():
                               confidence=0.25, imgsz=960) for a in ARMS}
 
     def run_sequence(s, record=True):
-        seq, n = s['sequence'], s['frame_count']
+        seq = s['sequence']; n = len(frames[s['sequence']])
         ft = {a: FootballTracker(detector=det[a], persist_cache=False,
                                  tracker_backend=a,
                                  frame_rate=float(s['native_fps']))
@@ -136,7 +140,7 @@ def main():
     run_sequence(seqs[0], record=False)
 
     raw = []
-    for rep in range(REPEATS):
+    for rep in range(args.repeats):
         rot = seqs[rep % len(seqs):] + seqs[:rep % len(seqs)]
         print(f'repeat {rep + 1}  sequence order {[s["sequence"][:10] for s in rot]}')
         for s in rot:
@@ -171,7 +175,7 @@ def main():
 
     out = {
         'method': 'paired frame-interleaved, arm-first alternating by frame parity',
-        'repeats': REPEATS, 'warmup': 1,
+        'repeats': args.repeats, 'warmup': 1,
         'sequence_order': 'rotated across repeats',
         'independent_detector_per_arm': True,
         'independent_tracker_state_per_arm': True,

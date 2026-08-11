@@ -2,7 +2,7 @@
  "production_tracker": "CBIoUTracker",
  "source": "vendored trackers==2.6.0 equivalent (rf_trackers/)",
  "config": "exact LIBRARY_DEFAULTS; production supplies only frame_rate",
- "tracker_status": "FROZEN (re-affirmed on corrected results)",
+ "tracker_status": "FROZEN",
  "frozen": "2026-08-11",
  "evidence_class": "POST-HOC / DEVELOPMENT QUALIFICATION -- not independent confirmation",
  "rollback": "FootballTracker(tracker_backend='legacy') -> sv.ByteTrack(), retained and tested",
@@ -47,7 +47,7 @@
   "fixture_assumption": 7,
   "note": "the 7 ball-isolation tests are fixture-assumption cases whose invariants are separately asserted for BOTH backends on 8-frame fixtures in test_cbiou_integration"
  },
- "status": "SELECTION_REVIEW_REQUIRED -> RESOLVED, CBIoU re-selected",
+ "status": "FROZEN",
  "edge_case": {
   "found": "2026-08-11",
   "summary": "CBIoU track ids are 0-BASED; the EyeCU filter discards id 0 as if it were unconfirmed.",
@@ -89,5 +89,33 @@
   "selected": "CBIoUTracker",
   "note": "CBIoU wins on both branches: higher COMBINED_SEQ HOTA and lower cost. BoTSORT has no paired end-to-end measurement, so its criterion 8 is unestablished and it could not be selected without one."
  },
- "adapter": "raw < 0 dropped; raw >= 0 -> public id raw + 1 (modern only; legacy untouched)"
+ "adapter": "raw < 0 dropped; raw >= 0 -> public id raw + 1 (modern only; legacy untouched)",
+ "public_identity_contract": "positive integer IDs",
+ "modern_raw_id_mapping": "public_id = raw_id + 1",
+ "raw_id_negative": "unconfirmed -- not emitted",
+ "legacy_rollback": "available via tracker_backend='legacy' (1-based, unshifted)",
+ "selection_branch": "exactly one candidate passed ALL nine criteria",
+ "qualification": {
+  "CBIoUTracker": "QUALIFIED / SELECTED",
+  "BoTSORTTracker": "NOT QUALIFIED -- criterion 8 unestablished",
+  "LEGACY_SUPERVISION_BYTETRACK": "rollback / reference"
+ },
+ "tie_break_invoked": false,
+ "authoritative_corrected_hashes": {
+  "corrected_bakeoff_primary": "3be9cc8ceba76ae2d20cd1ec5031d739e95c36e1badab4670643bcfe61931c9a",
+  "corrected_bakeoff_diagnostic": "338a36453034bcfe1fa4cd5ad5058dc5981f6b4f62a98a51bec7b03c4d9258db",
+  "corrected_t2_metrics": "a74fb32f72ddee84c607beb62ae7c1d572ebe19e8c657454321b5b0673517c16",
+  "corrected_t2_verdict": "30e07c9185edd04bd79f3b4684ca8911cba58906cf8a669546e9d6ee3279b0cf",
+  "corrected_t2_run_report": "7baf148bc7e9e1a6a17e5beb8ce29df6ada91b0e6d9f4a719ec899aea46f10b7",
+  "equivalence_vs_corrected_reference": "8a3b595339d5c9bbb9f8fe174c2e6611692244c49d2ff1f8c7a9012c9138bfd9",
+  "original_paired_runtime": "b43b98f839ff9e4587270673bbde017484ad64bfb4b71b3bbce52f0bdb4eee08",
+  "post_id_normalization_runtime_sanity": "928d1c685cd22e5ce4ca36801ec713df867edbd45d310c815cae544b4628c5dc"
+ },
+ "historical_prefix_results": "INVALIDATED_FOR_TRACKER_SELECTION, preserved not overwritten",
+ "runtime": {
+  "original_paired": "-0.115%",
+  "POST_ID_NORMALIZATION_RUNTIME_SANITY": "-0.803% VALID (bounded: 60 frames x 3 sequences x 2 repeats)",
+  "boundary": "+10%",
+  "margin": "nowhere near the boundary in either measurement"
+ }
 }

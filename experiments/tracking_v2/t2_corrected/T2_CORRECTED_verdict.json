@@ -48,14 +48,15 @@
      "9/9 (validated outputs, 0 invalid rows)"
     ],
     "8_runtime<=+10%": [
-     null,
-     "CBIoU paired -0.115%; BoTSORT not paired-measured"
+     true,
+     "PASS -- paired end-to-end -0.115% vs legacy"
     ],
     "9_no_tuning": [
      true,
      "exact 2.6.0 defaults, config MATCH 3/3"
     ]
-   }
+   },
+   "overall_pass": true
   },
   "BoTSORTTracker": {
    "combined": {
@@ -104,18 +105,31 @@
      "9/9 (validated outputs, 0 invalid rows)"
     ],
     "8_runtime<=+10%": [
-     null,
-     "CBIoU paired -0.115%; BoTSORT not paired-measured"
+     false,
+     "NOT ESTABLISHED -- no valid paired end-to-end measurement exists"
     ],
     "9_no_tuning": [
      true,
      "exact 2.6.0 defaults, config MATCH 3/3"
     ]
-   }
+   },
+   "overall_pass": false
   }
  },
  "hota_gap": 0.4,
- "tie_break": "gap < 0.5 -> lower end-to-end ms/frame",
+ "tie_break": "NOT INVOKED -- only one candidate passed all nine criteria",
  "selection": "CBIoUTracker",
- "note": "BoTSORT has no paired end-to-end measurement, so its criterion 8 is not established; CBIoU passes 8 at -0.115%. CBIoU also has the higher COMBINED_SEQ HOTA, so it wins on both branches."
+ "note": "BoTSORT has no paired end-to-end measurement, so its criterion 8 is not established; CBIoU passes 8 at -0.115%. CBIoU also has the higher COMBINED_SEQ HOTA, so it wins on both branches.",
+ "selection_logic_correction": {
+  "recorded": "2026-08-11",
+  "error": "The verdict invoked the <0.5 HOTA tie-break between CBIoU and BoTSORT. That branch requires BOTH candidates to have passed ALL nine criteria. BoTSORT had criterion 8 NOT ESTABLISHED, and an unestablished mandatory criterion is not a pass.",
+  "correct_branch": "exactly one candidate passes ALL criteria -> select it",
+  "consequence": "The selection is CBIoU either way, but for the right reason: it is the only qualified candidate, not the winner of a comparison BoTSORT was never eligible to enter."
+ },
+ "qualification": {
+  "CBIoUTracker": "QUALIFIED / SELECTED",
+  "BoTSORTTracker": "NOT QUALIFIED -- criterion 8 unestablished",
+  "LEGACY_SUPERVISION_BYTETRACK": "rollback / reference"
+ },
+ "botsort_runtime_not_measured": "deliberately not measured: the exactly-one-passes branch already decides, so measuring BoTSORT would be work that cannot change the outcome"
 }
