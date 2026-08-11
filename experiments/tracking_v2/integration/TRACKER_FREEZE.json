@@ -46,5 +46,25 @@
   "backend_invariant": 0,
   "fixture_assumption": 7,
   "note": "the 7 ball-isolation tests are fixture-assumption cases whose invariants are separately asserted for BOTH backends on 8-frame fixtures in test_cbiou_integration"
+ },
+ "status": "PRODUCTION_EDGE_CASE_REVIEW_REQUIRED",
+ "edge_case": {
+  "found": "2026-08-11",
+  "summary": "CBIoU track ids are 0-BASED; the EyeCU filter discards id 0 as if it were unconfirmed.",
+  "root_cause": {
+   "location": "trackers/football_tracker.py -- `if raw_id is None or int(raw_id) <= 0: continue`",
+   "fact": "CBIoUTracker emits ids 0, 1, 2, ... and uses -1 for a track that has not met minimum_consecutive_frames. sv.ByteTrack is 1-based, so the `<= 0` guard was written for legacy semantics and silently drops CBIoU's first track.",
+   "classification": "EyeCU INTEGRATION BUG -- not upstream behaviour, not fixture pathology",
+   "correct_predicate": "int(raw_id) < 0"
+  },
+  "my_earlier_explanation_was_wrong": "I reported the stationary synthetic fixture as \"CBIoU never confirms it\". It confirms immediately as id 0; my filter then removed it. Motion was never the variable -- all four regimes (identical box, 1px jitter, 1px/frame, modest motion) return id 0 on every frame.",
+  "scope": {
+   "women_1_239": "id==0 rows dropped: 10 of 2,755 emitted (0.36%)",
+   "effect": "one genuine identity withheld per sequence while it holds id 0",
+   "unconfirmed_rows_correctly_dropped": 1485
+  },
+  "metrics_impact": "The T2 reference runner used the same `<= 0` filter, so reference-vs-integrated equivalence is genuine and the bake-off comparison was internally consistent. But the frozen HOTA/AssA/IDF1 describe the FILTERED output, so they under-count CBIoU slightly rather than flattering it.",
+  "not_done": "No fix applied, no tuning, no default change -- audit only, per instruction.",
+  "recommended": "change the predicate to < 0, re-run equivalence and the T2 metrics, and re-freeze; CBIoU configuration itself must not change"
  }
 }
