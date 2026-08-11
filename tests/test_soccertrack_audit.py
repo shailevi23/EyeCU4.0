@@ -154,13 +154,19 @@ class TestScopeWasRespected:
 
     def test_integrity_flags(self, summary):
         i = summary['audit_integrity']
-        assert i == {'downloaded_assets_modified': False,
-                     'eyecu_train_val_test_modified': False,
-                     'detector_or_tracker_changed': False,
-                     'training_performed': False,
-                     'test_evaluation_performed': False,
-                     'further_download_initiated': False}
+        for k in ('downloaded_assets_modified', 'eyecu_train_val_test_modified',
+                  'detector_or_tracker_changed', 'training_performed',
+                  'test_evaluation_performed',
+                  'further_dataset_download_completed',
+                  'eyecu_dependencies_or_environment_modified'):
+            assert i[k] is False, k
         assert summary['test_accessed_for_performance'] == 'NO'
+
+    def test_the_fetches_that_did_happen_are_declared(self, summary):
+        """A 'nothing was downloaded' flag must not survive a download attempt."""
+        i = summary['audit_integrity']
+        assert len(i['downloads_that_DID_happen']) == 2
+        assert any('401' in d for d in i['downloads_that_DID_happen'])
 
     def test_recommendation_does_not_request_more_video(self, summary):
         d = summary['should_we_download_more']
@@ -173,3 +179,41 @@ class TestScopeWasRespected:
         # the duplicated raw archive under gsr/ must be recorded as identical
         raw1 = h['raw/raw-20260811T095104Z-1-001.zip']['sha256']
         assert h['gsr/raw-20260811T095104Z-1-001.zip']['sha256'] == raw1
+
+
+class TestUpstreamRepositoryFindings:
+    """Added after fetching the project's own repo while attempting the MOT download."""
+
+    def test_the_mot_recommendation_was_corrected_not_quietly_changed(self, summary):
+        exc = summary['should_we_download_more']['single_exception']
+        assert 'CORRECTION' in exc
+        assert 'cannot overturn' in exc['CORRECTION']
+
+    def test_boxes_are_documented_upstream_as_regression_output(self, summary):
+        u = summary['upstream_repository_findings']['CORRECTS_the_earlier_recommendation']
+        assert 'regression models' in u['why_that_is_now_wrong']
+        assert 'SAME position-to-size regression' in u['consequence']
+
+    def test_132831_flag_is_corroborated_upstream(self, summary):
+        c = summary['upstream_repository_findings']['CORROBORATES_the_132831_calibration_flag']
+        assert '1260.95' in c['this_audit_found']
+        assert 'TRANSPOSED' in c['upstream_docs_calibration-findings_md']
+
+    def test_mot_class_does_not_encode_role(self, summary):
+        m = summary['upstream_repository_findings']['MOT_format_now_known_from_docs_not_data']
+        assert "class is 1" in m['class_semantics'].lower()
+        assert 'disagree about referees' in m['documentation_vs_data_discrepancy']
+
+    def test_license_is_now_sourced_and_quoted(self, summary):
+        r = summary['license_metadata']['RESOLVED_from_the_upstream_repository']
+        assert r['source_code_license'].startswith('MIT')
+        assert 'CC BY 4.0' in r['dataset_license']
+        assert r['no_legal_conclusion_is_drawn_beyond_these_quoted_terms'] is True
+        # the licence text and the delivered files disagree; that must be recorded
+        assert 'DOES carry full player names' in r['OBSERVED_DISCREPANCY']
+
+    def test_download_was_attempted_and_not_completed(self, summary):
+        d = summary['upstream_repository_findings']['download_attempt_2026_08_11']
+        assert d['result'] == 'NOT DOWNLOADED'
+        assert 'GATED' in d['blocker_1_auth']
+        assert d['eyecu_dependencies_modified'] is False

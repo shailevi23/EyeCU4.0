@@ -208,6 +208,43 @@
   "test_handling": "TEST images were hashed only. No TEST label was opened and nothing was evaluated."
  },
 
+ "upstream_repository_findings": {
+  "note": "Added 2026-08-11 after fetching github.com/AtomScott/SoccerTrack-v2 (commit 6f5c47c) while attempting the MOT re-download. These are the project's own documents, and they corroborate or correct findings above.",
+
+  "CORRECTS_the_earlier_recommendation": {
+   "what_was_said": "Re-fetching MOT was called 'the only remaining way SoccerTrack could supply usable boxes'.",
+   "why_that_is_now_wrong": "docs/ground_truth_creation.md describes the pipeline step that produces the MOT ground truth: 'Convert image plane coordinates to bounding boxes using position-based size estimation ... Analyzes the relationship between player position and bounding box dimensions ... Creates regression models for width and height prediction ... Generates ground truth MOT files with position-appropriate bounding boxes' (scripts/convert_coordinates_to_bboxes.sh).",
+   "consequence": "MOT boxes come from the SAME position-to-size regression as GSR bbox_image. Re-fetching MOT will not produce person-tight boxes. It is still worth fetching to complete the inventory and to measure the regression's spread, but it can no longer overturn the 'no usable detector boxes' finding.",
+   "measurement_that_predicted_this": "height took 13 distinct values across 38,261 boxes, varied under 2 px within a track across a whole half, and correlated +0.98 with image row -- the empirical signature of exactly this regression."
+  },
+
+  "CORROBORATES_the_132831_calibration_flag": {
+   "this_audit_found": "132831 calibration rms 1260.95, an outlying homography, flagged as unusable without re-solving",
+   "upstream_docs_calibration-findings_md": "Same defect, same number. Root cause: two TRANSPOSED keypoint labels -- '(88.5,13.84)' and '(105,54.16)' hold each other's image coordinates. Corrected rms 18.07. A fixed file is committed at data_corrections/132831_keypoints.json.",
+   "additional_upstream_warning": "132831 is in the dataset's TEST split, its GSR labels were generated through the degenerate maps and still need regenerating, and the unmerged 'for_soccernet' branch removes CALIB_CHECK_COND, turning a correct refusal into silent corruption.",
+   "per_match_rms_agreement": "the upstream table (117093 8.64, 128058 9.35, 128057 9.27, 118577 9.40, 118578 9.73, 132877 9.78, 118576 9.88, 118575 10.04, 117092 30.63) matches this audit's independently measured values exactly"
+  },
+
+  "MOT_format_now_known_from_docs_not_data": {
+   "source": "docs/format-mot.md",
+   "schema": "MOTChallenge gt.txt: frame,id,bb_left,bb_top,bb_width,bb_height,conf,class,visibility[,unused]; 1-indexed frames; 25 fps; seqinfo.ini per sequence",
+   "class_semantics": "class is 1 ('pedestrian') for EVERY entity. Role is NOT encoded in MOT -- the doc says explicitly 'Class is not role ... recover player vs. goalkeeper vs. referee from GSR, not from MOT'.",
+   "consequence_for_eyecu": "MOT alone cannot supply EyeCU's four classes, and GSR -- the documented place to recover role -- contains zero referee annotations.",
+   "documentation_vs_data_discrepancy": "format-mot.md says MOT records 'player, goalkeeper, referee'. The 20 downloaded GSR halves contain ZERO referee annotations. The audit does not claim to know which is right; it records that the documentation and the delivered GSR data disagree about referees.",
+   "still_unmeasured": "actual sequence count, frame counts, box counts, identity behaviour, visibility values and ignore regions -- none of that is in the docs, and the MOT archive is still empty"
+  },
+
+  "download_attempt_2026_08_11": {
+   "requested": "scripts/download.sh --dest ../soccertrack_mot --include 'mot/*'",
+   "result": "NOT DOWNLOADED",
+   "blocker_1_auth": "atomscott/soccertrack-v2 is GATED. Anonymous requests to the dataset API return 401 even for a file listing. It needs a Hugging Face token AND an approved access request. 'hf auth login' is interactive and a token must not be pasted into an agent transcript, so this cannot be completed from here.",
+   "blocker_2_ssl_FIXED": "This machine is behind a TLS-intercepting proxy whose root CA is in the Windows certificate store but not in certifi's bundle: stdlib urllib reached huggingface.co, requests/huggingface_hub failed with CERTIFICATE_VERIFY_FAILED. Fixed without installing anything by writing EyeCU_external_data/ca_bundle_system.pem (certifi + 108 Windows store roots) and pointing REQUESTS_CA_BUNDLE at it. The CLI then reached the API and returned a clean 401 instead of an SSL error.",
+   "runner": "tools/st2_download_mot.sh -- sets the bundle, refuses to run unauthenticated, then invokes upstream download.sh",
+   "guard_bug_found_and_fixed": "'hf auth whoami' prints 'Not logged in' and still exits 0, so an exit-code check passes when logged out. The first version of the runner sailed past its own guard into a 401; it now checks the output text. Upstream scripts/download.sh has the same flaw.",
+   "eyecu_dependencies_modified": false
+  }
+ },
+
  "license_metadata": {
   "shipped_with_the_download": "NONE",
   "searched": ["all six archives, every entry name",
@@ -218,7 +255,19 @@
   "dataset_license": "not present in this download",
   "attribution_requirements": "not stated in this download",
   "third_party_media_caveats": "not stated in this download",
-  "note": "EyeCU's earlier paper study (docs/research/EXTERNAL_DATASETS.md) records SoccerTrack v2 as CC BY 4.0 data / MIT code from the project's public pages. That claim is NOT corroborated by anything in this download and is not restated here as fact. No legal conclusion is drawn beyond what the files contain, which is nothing."
+  "note": "EyeCU's earlier paper study (docs/research/EXTERNAL_DATASETS.md) records SoccerTrack v2 as CC BY 4.0 data / MIT code from the project's public pages. That claim is NOT corroborated by anything in this DOWNLOAD and is not restated here as fact on the download's evidence.",
+  "RESOLVED_from_the_upstream_repository": {
+   "obtained": "github.com/AtomScott/SoccerTrack-v2 commit 6f5c47c, files LICENSE and LICENSE-DATA",
+   "source_code_license": "MIT License, Copyright (c) 2025 Atom Scott and SoccerTrack v2 contributors",
+   "dataset_license": "Creative Commons Attribution 4.0 International (CC BY 4.0), covering 'the panoramic 4K videos and the associated GSR, BAS, and MOT annotation files distributed via Hugging Face and Google Drive'",
+   "attribution_requirement": "quoted: 'you must give appropriate credit, provide a link to the licence, and indicate if changes were made. When you use the dataset in academic work, please cite the SoccerTrack v2 paper'",
+   "commercial_use": "quoted: 'for any purpose, even commercially, under the following terms'",
+   "no_additional_restrictions": "quoted: 'you may not apply legal terms or technological measures that legally restrict others from doing anything the licence permits'",
+   "ethics_and_consent_as_stated": "quoted: 'collected with approval from the university ethics board, covering university-level amateur matches under informed consent. No player names are included; identification is jersey-number based only.'",
+   "OBSERVED_DISCREPANCY": "The licence states no player names are included. The downloaded RAW <match_id>_tracker_box_metadata.xml DOES carry full player names (e.g. name / nameEn attributes on every <player> element), and <match_id>_player_nodes.csv carries given and family names. This is a factual observation about the delivered files against the licence text; it is not a legal conclusion, and it is the kind of thing the project asks to be raised as a GitHub issue.",
+   "access_gate": "Separately from the licence, the Hugging Face dataset atomscott/soccertrack-v2 is GATED and requires an approved access request.",
+   "no_legal_conclusion_is_drawn_beyond_these_quoted_terms": true
+  }
  },
 
  "scorecard": {
@@ -243,9 +292,11 @@
   "reason": "The questions that would justify 6.7 GB per additional match are already answered, and answered no: there are no ball boxes, no referee annotations, and no usable person boxes anywhere in SoccerTrack v2. More video is more pixels for annotations that cannot be attached to them. The one high-value component -- calibration -- is already downloaded in full for all ten matches, because it is small and lives in RAW.",
   "single_exception": {
    "what": "re-fetch the MOT archive only",
-   "why": "mot-20260811T095052Z-1-001.zip is 158 bytes and empty, so the entire MOT audit is unanswered rather than answered. It is small, and it is the only component that could still overturn the 'no usable boxes' finding.",
+   "why": "mot-20260811T095052Z-1-001.zip is 158 bytes and empty, so the entire MOT audit is unanswered rather than answered. It is small and completes the inventory.",
    "not_a_match_download": true,
-   "size": "unknown, but MOT ground truth is text and is orders of magnitude smaller than a video"
+   "size": "unknown, but MOT ground truth is text and is orders of magnitude smaller than a video",
+   "CORRECTION": "This was first written as 'the only component that could still overturn the no-usable-boxes finding'. The upstream pipeline documentation shows MOT ground truth is produced by the same position-to-size regression as GSR bbox_image, so it cannot overturn that finding. Fetch it to complete the inventory and to measure the regression's spread, not in the expectation of usable detector boxes.",
+   "blocked_on": "the dataset is gated; a Hugging Face token and an approved access request are required, and neither can be supplied from an agent session"
   },
   "explicitly_not_recommended": [
    "the remaining nine matches' videos (~60 GB) -- they add one venue, one rig and one shot type",
@@ -261,7 +312,17 @@
   "detector_or_tracker_changed": false,
   "training_performed": false,
   "test_evaluation_performed": false,
-  "further_download_initiated": false
+  "further_dataset_download_completed": false,
+  "downloads_that_DID_happen": [
+   "github.com/AtomScott/SoccerTrack-v2 source repository, 38.6 MB, public MIT-licensed code and documentation, fetched 2026-08-11 at the user's explicit request as the first step of the MOT re-download",
+   "an attempted huggingface download of atomscott/soccertrack-v2 'mot/*', which returned 401 and transferred no dataset content"
+  ],
+  "note": "The original audit recorded 'further_download_initiated: false' and that was true at the time. The user subsequently asked for the MOT download to be attempted, so the flag is restated rather than left to imply nothing was fetched.",
+  "eyecu_dependencies_or_environment_modified": false,
+  "files_written_outside_the_audit_workspace": [
+   "EyeCU_external_data/SoccerTrack-v2/ (repo checkout, gitignored)",
+   "EyeCU_external_data/ca_bundle_system.pem (certifi + Windows store roots, gitignored)"
+  ]
  },
  "test_accessed_for_performance": "NO"
 }
