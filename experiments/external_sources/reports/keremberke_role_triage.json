@@ -1,0 +1,46 @@
+{
+ "method": "existing boxes are never redrawn; each is matched by IoU to a frozen-detector prediction and independently scored for kit distinctness. Proposals are candidate filters, not labels.",
+ "detector": "best_A_960.pt (frozen, production A) -- ANNOTATION ASSIST ONLY",
+ "detector_is_not_annotation_authority": true,
+ "iou_match_threshold": 0.5,
+ "conf": 0.25,
+ "total_human_boxes": 21615,
+ "triage_counts": {
+  "LIKELY_PLAYER": 17462,
+  "AMBIGUOUS": 2374,
+  "POSSIBLE_REFEREE": 1189,
+  "POSSIBLE_GOALKEEPER": 590
+ },
+ "agreement_counts": {
+  "BOTH_SIGNALS": 17721,
+  "KIT_ONLY": 910,
+  "DETECTOR_ONLY": 1520,
+  "NO_DETECTOR_MATCH": 1464
+ },
+ "by_run": {
+  "plain_B": {
+   "LIKELY_PLAYER": 6114,
+   "AMBIGUOUS": 1130,
+   "POSSIBLE_REFEREE": 360,
+   "POSSIBLE_GOALKEEPER": 167
+  },
+  "plain_A": {
+   "LIKELY_PLAYER": 1920,
+   "POSSIBLE_GOALKEEPER": 92,
+   "AMBIGUOUS": 286,
+   "POSSIBLE_REFEREE": 197
+  },
+  "pp_B": {
+   "POSSIBLE_GOALKEEPER": 299,
+   "LIKELY_PLAYER": 8509,
+   "POSSIBLE_REFEREE": 572,
+   "AMBIGUOUS": 832
+  },
+  "pp_A": {
+   "AMBIGUOUS": 126,
+   "LIKELY_PLAYER": 919,
+   "POSSIBLE_GOALKEEPER": 32,
+   "POSSIBLE_REFEREE": 60
+  }
+ }
+}

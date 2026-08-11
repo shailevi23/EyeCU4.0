@@ -1,0 +1,174 @@
+{
+ "audit": "Keremberke class-repair feasibility",
+ "date": "2026-08-11",
+ "scope": "FEASIBILITY ONLY. No training, no relabelling performed, no merge into EyeCU TRAIN, no Experiment D, original dataset unmodified.",
+
+ "the_problem": "keremberke annotates every human as 'player'. Goalkeepers and referees ARE boxed -- the geometry is fine -- but they carry the wrong class. Mixing as-is would teach EyeCU that goalkeepers and referees are players, damaging the two classes EyeCU is weakest on.",
+
+ "box_counts": {
+  "total_human_boxes": 21615,
+  "images": 1232,
+  "LIKELY_PLAYER": 17462,
+  "AMBIGUOUS": 2374,
+  "POSSIBLE_REFEREE": 1189,
+  "POSSIBLE_GOALKEEPER": 590,
+  "candidates_needing_a_human_decision": 4153,
+  "share_of_boxes_needing_review_pct": 19.2,
+  "estimated_true_player_boxes": "17,462 confirmed-looking plus most of the 2,374 ambiguous; the ambiguous crops are dominated by red and blue TEAM kits that the kit heuristic flagged only because a frame had few boxes to establish its dominant hues",
+  "no_box_geometry_is_redrawn": true
+ },
+
+ "method": {
+  "signal_1": "frozen EyeCU detector best_A_960.pt, matched to each existing box by IoU >= 0.5; its class becomes a PROPOSAL",
+  "signal_2": "kit-colour distinctness within the same frame -- officials and keepers wear kits unlike either team; this signal comes from pixels, not from any model",
+  "fusion": "both signals agree -> confident; detector only or kit only -> weaker; neither -> AMBIGUOUS",
+  "detector_is_annotation_authority": false,
+  "why_two_signals": "the frozen detector's weakness on goalkeeper and referee is the reason this data was wanted, so using it alone as authority would be circular",
+  "agreement_counts": {"BOTH_SIGNALS": 17721, "DETECTOR_ONLY": 1520,
+                       "NO_DETECTOR_MATCH": 1464, "KIT_ONLY": 910},
+  "proposal_precision_spot_check": "24/24 sampled POSSIBLE_REFEREE crops are match officials in the Euro 2020 teal or yellow official kit; 24/24 sampled POSSIBLE_GOALKEEPER crops are keepers, several mid-dive with gloves. Evidence: kb_triage_POSSIBLE_REFEREE.jpg, kb_triage_POSSIBLE_GOALKEEPER.jpg",
+  "recall_caveat": "precision of the proposals is high; RECALL is not established. Any goalkeeper or referee the detector missed is sitting inside LIKELY_PLAYER and would survive as a wrong label. Magnitudes are reassuring -- 590 GK and 1,189 referee proposals across 1,232 broadcast frames is about what a 0.5 GK and 1 official per frame rate predicts -- but this is an argument, not a measurement."
+ },
+
+ "temporal_grouping": {
+  "verdict": "IDENTITY PROPAGATION IS NOT VIABLE ON THIS DATASET",
+  "correction": "The first pass assumed consecutive filename indices were consecutive VIDEO frames and linked candidate boxes by IoU across them. That was wrong and the linking silently failed -- median tracklet length 1.",
+  "measurement": "over 120 consecutive-id pairs the frame-to-frame correlation is ~0.52 median, and 55 of 60 plain-family pairs fall below 0.8. The images are sparsely sampled from four broadcast runs, so players are in different places between consecutive ids.",
+  "what_does_hold": "the four runs are real: plain 5451-5686, plain 54503-55284, pp 0-53, pp 100-540, with gap=1 dominating the id sequence. Within one run the officials and keepers are the same few people in the same few kits all match, so candidate boxes cluster by kit colour into a small number of ROLE GROUPS. That is a fact about football, not an invented identity.",
+  "role_groups_by_kit_within_run": {"plain_B": 28, "pp_B": 16, "plain_A": 8, "pp_A": 7},
+  "approximate_distinct_role_groups": 59,
+  "no_persistent_ids_invented": true
+ },
+
+ "human_review_workload": {
+  "per_box_upper_bound": 4153,
+  "per_image_upper_bound": 1170,
+  "images_containing_at_least_one_candidate": "1,170 of 1,227 (95%)",
+  "role_group_lower_bound": 59,
+  "gk_candidates_appear_in_images": 550,
+  "ref_candidates_appear_in_images": 834,
+  "candidates_per_image_mode": "2-4",
+  "realistic_estimate": "3 to 6 hours. This is CLASS SELECTION on boxes that already exist, not box drawing: a reviewer settles the kit/role rule once per run (59 groups), then confirms 4,153 pre-proposed boxes at a few seconds each. For scale, EyeCU's own 659 hand-corrected frames took roughly 40 hours, but that included drawing geometry.",
+  "what_makes_it_cheap": "high proposal precision means most decisions are confirmations, and the 2,374 ambiguous boxes are dominated by team-kit false alarms that reject at a glance",
+  "what_makes_it_not_free": "95% of images contain at least one candidate, so there is no small corner of the dataset to review instead"
+ },
+
+ "clean_subset_option": {
+  "note": "reported at three strictness levels, because a single rule produced 17 images and that says more about the rule than the data",
+  "STRICT_both_signals_agree_on_every_box": {
+   "images": 17, "share_pct": 1.4, "ball_instances": 14,
+   "stored_px": {"median": 9.93, "le5": 0, "le8": 2, "le12": 8},
+   "px_1920_equiv": {"median": 14.89, "le5": 0, "le8": 1, "le12": 2},
+   "verdict": "useless -- one missed detection anywhere in an image disqualifies it"},
+  "MODERATE_no_candidate_and_no_ambiguous_box": {
+   "images": 57, "share_pct": 4.6, "ball_instances": 38,
+   "stored_px": {"median": 52.36, "le5": 0, "le8": 2, "le12": 8},
+   "px_1920_equiv": {"median": 78.55, "le5": 0, "le8": 1, "le12": 2},
+   "verdict": "still tiny, and the surviving balls are LARGE -- median 52 px stored. These are close-up frames, the opposite of what EyeCU needs."},
+  "PERMISSIVE_no_gk_or_referee_candidate": {
+   "images": 267, "share_pct": 21.8, "ball_instances": 217,
+   "stored_px": {"median": 11.55, "le5": 18, "le8": 51, "le12": 115},
+   "px_1920_equiv": {"median": 17.32, "le5": 1, "le8": 22, "le12": 51},
+   "broadcast_runs": {"plain_A": 177, "plain_B": 2497, "pp_B": 375, "pp_A": 103},
+   "verdict": "the only version with usable volume, and it still keeps only 217 of 1,263 balls (17%) and 51 of 474 balls <=8 px stored (11%)"},
+  "human_verifiable": true,
+  "honesty_caveat": "'clean' here means NO SIGNAL FLAGGED IT, which is not the same as verified. A human must still confirm the subset. The permissive level keeps images with AMBIGUOUS boxes, so it is NOT free of officials -- it is free of FLAGGED officials.",
+  "conclusion": "a genuinely clean subset exists but costs 83% of the ball data, and most of the tiny-ball data, which is the entire reason keremberke was interesting"
+ },
+
+ "ignore_region_support": {
+  "verdict": "NOT_SUPPORTED",
+  "corollary": "CUSTOM_TRAINING_REQUIRED to achieve it",
+  "environment": "ultralytics 8.4.116, EyeCU training path is notebooks/EyeCU_Train_Colab.ipynb calling model.train(data=football.yaml) with no custom trainer, loss or dataset class",
+  "evidence": [
+   {"file": "ultralytics/data/utils.py:291",
+    "code": "assert lb.shape[1] == 5, f\"labels require 5 columns, {lb.shape[1]} columns detected\"",
+    "means": "a detection label row must be exactly `class cx cy w h`. There is no sixth column, so a per-box ignore flag cannot even be expressed in the label format, let alone honoured."},
+   {"file": "ultralytics/utils/loss.py:438-441",
+    "code": "bce_loss = self.bce(pred_scores, target_scores.to(dtype)) ... loss[1] = bce_loss.sum() / target_scores_sum",
+    "means": "classification loss is summed over EVERY anchor. An anchor not assigned to a ground-truth box has target 0 and contributes background loss. There is no per-anchor exclusion path."},
+   {"file": "ultralytics/utils/tal.py:63",
+    "code": "def forward(self, pd_scores, pd_bboxes, anc_points, gt_labels, gt_bboxes, mask_gt)",
+    "means": "TaskAlignedAssigner's only mask, mask_gt, marks which GT rows are PADDING. It cannot mark an image region as not-to-be-scored."},
+   {"file": "ultralytics/data/converter.py:299 and ultralytics/data/dataset.py:723",
+    "code": "if ann.get(\"iscrowd\", False): continue",
+    "means": "the only iscrowd handling in the package DISCARDS the annotation. A discarded object becomes background -- the exact opposite of an ignore region. dataset.py:723 is inside GroundingDataset (open-vocabulary), not the detection path EyeCU uses."},
+   {"file": "ultralytics/cfg/default.yaml",
+    "code": "no ignore / crowd / region-mask key exists for detection; overlap_mask and mask_ratio are segmentation-only",
+    "means": "there is no configuration switch to turn this on."}
+  ],
+  "against_the_four_conditions": {
+   "prevents_unlabelled_humans_contributing_background_loss": false,
+   "does_not_change_model_architecture": "true, but irrelevant -- the mechanism does not exist",
+   "does_not_require_custom_loss_or_trainer": false,
+   "already_compatible_with_our_pipeline": false
+  },
+  "what_it_would_take": "a custom dataset class to carry a 6th column past the 5-column assertion, a custom collate to pass ignore boxes through, and a modified assigner/loss to zero the BCE on anchors falling inside them. That is new training behaviour, not new data.",
+  "not_implemented_in_this_task": true
+ },
+
+ "option_comparison": {
+  "A_RECLASSIFY_EXISTING_GK_REF_BOXES": {
+   "manual_effort": "3-6 h: 4,153 class decisions on existing boxes across 1,170 images, guided by 59 kit/role groups. No geometry drawn.",
+   "code_changes": "NONE to training. One import script that rewrites class ids in a COPY of the labels.",
+   "scientific_cleanliness": "HIGH -- four-class ontology preserved exactly, every box carries a human-confirmed class",
+   "risk_to_player_gk_referee": "LOW, bounded by proposal RECALL: a missed official stays labelled player. Mitigated by spot-checking LIKELY_PLAYER, and by the fact that residual contamination is a small fraction of EyeCU's existing 431 GK / 1,453 referee boxes.",
+   "retained_ball_instances": 1263,
+   "retained_tiny_ball_le8_stored": 474,
+   "experiment_d_stays_data_only": true},
+  "B_HUMAN_VERIFIED_CLEAN_SUBSET": {
+   "manual_effort": "1-2 h to verify 267 images -- cheapest",
+   "code_changes": "NONE",
+   "scientific_cleanliness": "HIGH if verified, but the subset is selected BY the same signals being tested, which correlates the selection with the model",
+   "risk_to_player_gk_referee": "LOW-MEDIUM -- permissive level still admits AMBIGUOUS boxes, so unflagged officials can survive",
+   "retained_ball_instances": 217,
+   "retained_tiny_ball_le8_stored": 51,
+   "experiment_d_stays_data_only": true,
+   "fatal_objection": "discards 83% of the ball data and 89% of the tiny-ball data, which is the entire reason for using keremberke"},
+  "C_IGNORE_REGION_TRAINING": {
+   "manual_effort": "NONE for labels",
+   "code_changes": "custom dataset + custom collate + custom assigner/loss; the 5-column assertion must be bypassed",
+   "scientific_cleanliness": "LOW for a FIRST experiment -- it changes data AND training behaviour simultaneously, so a result could not be attributed to the data",
+   "risk_to_player_gk_referee": "UNKNOWN and unvalidated; a hand-written ignore path is a new source of silent error in the loss",
+   "retained_ball_instances": 1263,
+   "retained_tiny_ball_le8_stored": 474,
+   "experiment_d_stays_data_only": false,
+   "fatal_objection": "not supported natively, so it is not the cheap controlled path -- it is a training-code research project"}
+ },
+
+ "recommendation": {
+  "choice": "A -- RECLASSIFY EXISTING GK/REFEREE BOXES",
+  "why": [
+   "It is the only option that preserves the four-class ontology AND keeps all 1,263 ball boxes including all 474 at or under 8 px stored -- the tiny-ball supply that made keremberke worth having.",
+   "It requires ZERO changes to the training path, so Experiment D stays a clean data-only intervention and its result stays interpretable.",
+   "The work is class selection on existing boxes, not annotation: 3-6 hours, against 40 hours for EyeCU's own 659 frames.",
+   "It never treats a visible human as background, which is what both B (unflagged officials) and C (unvalidated ignore loss) risk in different ways."
+  ],
+  "against_B": "cheaper by 2-4 hours, but costs 83% of the ball data -- paying the wrong currency",
+  "against_C": "not natively supported; would change training behaviour and data at once, making Experiment D uninterpretable",
+  "conditions_on_A": [
+   "the frozen detector's proposals are candidate filters and must be human-confirmed box by box; no proposal becomes GT automatically",
+   "spot-check a sample of LIKELY_PLAYER boxes to bound the recall risk, since a missed official is the one error mode this method cannot see",
+   "write the reclassified labels to a COPY; the original keremberke export stays immutable",
+   "the result is TRAIN-only and never enters VAL or TEST"
+  ]
+ },
+
+ "is_keremberke_ready_for_experiment_d": {
+  "answer": "NO",
+  "why": "the data is suitable and the path is now known, but the reclassification has not been done. Keremberke becomes ready the moment a human completes the 4,153 class decisions.",
+  "blocking_item": "one human review pass, estimated 3-6 hours"
+ },
+
+ "exact_next_action": "Build the review package for Option A: a per-image review sheet for the 1,170 images containing candidates, boxes pre-coloured by proposal, ordered by broadcast run so the reviewer settles each run's kit/role rule once. Then a human confirms or corrects the 4,153 proposals and spot-checks a sample of LIKELY_PLAYER. Only after that does Experiment D get designed.",
+
+ "constraints_respected": {
+  "training_performed": false,
+  "keremberke_original_modified": false,
+  "merged_into_eyecu_train": false,
+  "experiment_d_started": false,
+  "boxes_redrawn": false,
+  "detector_predictions_became_gt": false,
+  "custom_ignore_loss_implemented": false
+ }
+}

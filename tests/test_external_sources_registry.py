@@ -217,3 +217,100 @@ class TestPriorityMatrixAndGate:
         never = pm['experiment_d_gate']['design_constraints_for_a_future_D']['never']
         assert any('goalkeeper or referee collapsed' in n for n in never)
         assert any('VAL or TEST' in n for n in never)
+
+
+class TestKeremberkeClassRepair:
+    """The class-repair feasibility audit, including the two claims I got wrong first."""
+
+    @pytest.fixture(scope='class')
+    def cr(self):
+        p = XS / 'reports' / 'KEREMBERKE_CLASS_REPAIR.json'
+        if not p.exists():
+            pytest.skip('class-repair audit not present')
+        return load(p)
+
+    def test_ignore_regions_are_not_natively_supported(self, cr):
+        ig = cr['ignore_region_support']
+        assert ig['verdict'] == 'NOT_SUPPORTED'
+        assert ig['corollary'] == 'CUSTOM_TRAINING_REQUIRED to achieve it'
+        assert ig['not_implemented_in_this_task'] is True
+        # every one of the four conditions must be answered, not skipped
+        c = ig['against_the_four_conditions']
+        assert c['prevents_unlabelled_humans_contributing_background_loss'] is False
+        assert c['does_not_require_custom_loss_or_trainer'] is False
+        assert c['already_compatible_with_our_pipeline'] is False
+
+    def test_ignore_verdict_cites_real_code(self, cr):
+        ev = cr['ignore_region_support']['evidence']
+        files = {e['file'].split(':')[0] for e in ev}
+        assert 'ultralytics/data/utils.py' in files
+        assert 'ultralytics/utils/loss.py' in files
+        assert any('labels require 5 columns' in e['code'] for e in ev)
+        assert any('bce_loss.sum()' in e['code'] for e in ev)
+
+    def test_the_five_column_assertion_still_exists_in_the_installed_package(self):
+        """The verdict rests on this line; if ultralytics changes it, retest."""
+        p = (REPO / 'eye_env' / 'Lib' / 'site-packages' / 'ultralytics'
+             / 'data' / 'utils.py')
+        if not p.exists():
+            pytest.skip('ultralytics not installed here')
+        assert 'labels require 5 columns' in p.read_text(encoding='utf-8')
+
+    def test_temporal_propagation_was_corrected_not_quietly_dropped(self, cr):
+        t = cr['temporal_grouping']
+        assert t['verdict'].startswith('IDENTITY PROPAGATION IS NOT VIABLE')
+        assert 'was wrong' in t['correction']
+        assert '0.52' in t['measurement']
+        assert t['no_persistent_ids_invented'] is True
+
+    def test_box_counts_are_internally_consistent(self, cr):
+        b = cr['box_counts']
+        assert (b['LIKELY_PLAYER'] + b['AMBIGUOUS'] + b['POSSIBLE_REFEREE']
+                + b['POSSIBLE_GOALKEEPER']) == b['total_human_boxes'] == 21615
+        assert (b['AMBIGUOUS'] + b['POSSIBLE_REFEREE'] + b['POSSIBLE_GOALKEEPER']
+                ) == b['candidates_needing_a_human_decision']
+        assert b['no_box_geometry_is_redrawn'] is True
+
+    def test_detector_is_not_annotation_authority(self, cr):
+        assert cr['method']['detector_is_annotation_authority'] is False
+        assert 'recall_caveat' in cr['method']
+        assert cr['constraints_respected']['detector_predictions_became_gt'] is False
+
+    def test_clean_subset_reports_its_cost_not_just_its_size(self, cr):
+        s = cr['clean_subset_option']['PERMISSIVE_no_gk_or_referee_candidate']
+        assert s['images'] == 267 and s['ball_instances'] == 217
+        assert '17%' in s['verdict']
+        assert 'NOT free of officials' in cr['clean_subset_option']['honesty_caveat']
+
+    def test_recommendation_is_A_and_keeps_the_ball_data(self, cr):
+        r = cr['recommendation']
+        assert r['choice'].startswith('A')
+        A = cr['option_comparison']['A_RECLASSIFY_EXISTING_GK_REF_BOXES']
+        B = cr['option_comparison']['B_HUMAN_VERIFIED_CLEAN_SUBSET']
+        assert A['retained_ball_instances'] == 1263
+        assert A['retained_ball_instances'] > B['retained_ball_instances'] * 5
+        assert A['experiment_d_stays_data_only'] is True
+        assert cr['option_comparison']['C_IGNORE_REGION_TRAINING'][
+            'experiment_d_stays_data_only'] is False
+
+    def test_keremberke_is_not_yet_ready(self, cr):
+        assert cr['is_keremberke_ready_for_experiment_d']['answer'] == 'NO'
+        assert cr['constraints_respected']['experiment_d_started'] is False
+        assert cr['constraints_respected']['keremberke_original_modified'] is False
+
+    def test_original_labels_are_untouched(self):
+        """The audit must not have rewritten a single class id."""
+        import json as _j
+        base = (REPO / 'EyeCU_external_data/huggingface'
+                / 'keremberke_football_object_detection/extracted')
+        if not base.exists():
+            pytest.skip('keremberke not extracted')
+        for split in ('train', 'valid', 'test'):
+            aj = list((base / split).rglob('_annotations.coco.json'))
+            if not aj:
+                continue
+            a = _j.loads(aj[0].read_text(encoding='utf-8'))
+            names = {c['name'] for c in a['categories']}
+            assert names <= {'player', 'football', 'football-players'}, names
+            assert 'goalkeeper' not in names and 'referee' not in names, (
+                'the original export must still be two-class')
