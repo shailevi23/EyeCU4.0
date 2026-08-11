@@ -72,7 +72,13 @@ class TestLibraryDefaultsCannotWinRetroactively:
 
 
 class TestProductionUnchanged:
-    def test_no_modern_tracker_in_production_code(self):
+    def test_only_the_selected_tracker_reached_production(self):
+        """
+        The closed bake-off rejected all four modern trackers. T2 then
+        qualified CBIoU alone, so CBIoU may appear in production and the other
+        three still may not -- that distinction is the whole point of running
+        two experiments instead of adopting whatever looked good.
+        """
         prod = [REPO / 'trackers' / 'football_tracker.py',
                 REPO / 'trackers' / 'detector.py',
                 REPO / 'full_pipeline.py', REPO / 'run_pipeline.py']
@@ -80,14 +86,15 @@ class TestProductionUnchanged:
             if not p.exists():
                 continue
             src = p.read_text(encoding='utf-8')
-            for name in ('BoTSORT', 'CBIoU', 'OCSORT', 'ByteTrackTracker',
+            for name in ('BoTSORTTracker', 'OCSORT', 'ByteTrackTracker',
                          'bakeoff'):
                 assert name not in src, f'{name} reached {p.name}'
 
-    def test_production_still_uses_supervision_bytetrack(self):
+    def test_legacy_backend_remains_available_for_rollback(self):
         src = (REPO / 'trackers' / 'football_tracker.py').read_text(encoding='utf-8')
         assert 'sv.ByteTrack()' in src
         assert 'update_with_detections' in src
+        assert "tracker_backend not in ('legacy', 'cbiou')" in src
 
     def test_external_trackers_is_not_a_production_dependency(self):
         req = (REPO / 'requirements.txt').read_text(encoding='utf-8')

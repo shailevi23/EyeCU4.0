@@ -1,0 +1,119 @@
+{
+ "vendored_from": {
+  "package": "trackers",
+  "version": "2.6.0",
+  "author": "Roboflow et al. <develop@roboflow.com>",
+  "license": "Apache-2.0",
+  "site_packages": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\1cda262c-8a61-4138-8348-a3c993b62013\\t2_env\\venv\\Lib\\site-packages",
+  "wheel": "trackers-2.6.0-py3-none-any.whl",
+  "wheel_sha256": "4d5dfec12ba146c8df6b82d699ecb44a56fe50fed375ba42c635a95b81987277"
+ },
+ "vendored_as": "rf_trackers",
+ "reason": "EyeCU owns a top-level package named trackers/; the external package imports under the same name. Renaming the vendored copy makes every import deterministic without any sys.path or sys.modules manipulation.",
+ "root_module": "trackers.core.cbiou.tracker",
+ "modules": [
+  {
+   "module": "trackers.core.base",
+   "vendored_path": "rf_trackers/core/base.py",
+   "original_sha256": "5d1fbff9928ce859e436d0441ae6529471a276dc6a0210aced3b1a20223ad958",
+   "vendored_sha256": "3d35ea3ec3e612ad8e4138565c668b95d61ec190c1b9f17554c862a9c8be2bbb",
+   "import_lines_rewritten": 3
+  },
+  {
+   "module": "trackers.core.botsort.tracker",
+   "vendored_path": "rf_trackers/core/botsort/tracker.py",
+   "original_sha256": "52bc0a0f9c24379a2143374c0695271cb5ac2134cf83088b937f0b412a5a12c1",
+   "vendored_sha256": "dffebff4a2ce7a6fc5548bda91da19f94231a80d53f0784e12850c49b934cd1e",
+   "import_lines_rewritten": 7
+  },
+  {
+   "module": "trackers.core.botsort.tracklet",
+   "vendored_path": "rf_trackers/core/botsort/tracklet.py",
+   "original_sha256": "3c929522bd0905ebd9c005c8b12f12372c48ea6a54ba8ae527a33d60767a9109",
+   "vendored_sha256": "85813dd38315ab467caf9c82cda237ee5723666291f219db2d339247e56360fa",
+   "import_lines_rewritten": 5
+  },
+  {
+   "module": "trackers.core.botsort.utils",
+   "vendored_path": "rf_trackers/core/botsort/utils.py",
+   "original_sha256": "4023405e940aa0abe4193da93f90962324eb3f47ed068d8c25d717a995e47d19",
+   "vendored_sha256": "63422138ab791c0705191fa78f38c9a3516f62950c3cbd76e0b8e39010e96c8a",
+   "import_lines_rewritten": 2
+  },
+  {
+   "module": "trackers.core.cbiou.tracker",
+   "vendored_path": "rf_trackers/core/cbiou/tracker.py",
+   "original_sha256": "c185f6a2f8bd09a68dcd6359d0585d7e203153f8cf9a1d3194a9a4157008ab59",
+   "vendored_sha256": "bbf04c912f7f556ec2a6671e542f2029eafa80f366e6f895ac4818522186b7ca",
+   "import_lines_rewritten": 7
+  },
+  {
+   "module": "trackers.utils.base_tracklet",
+   "vendored_path": "rf_trackers/utils/base_tracklet.py",
+   "original_sha256": "1fc353b52abd1810822eb7ff7bd1af5b7f039f0f1fea6d0d643ca78e81d0a54a",
+   "vendored_sha256": "ffe0aade672f1164d9d57633b11e8e1e351a69a973f65c5ee27207f935d3137d",
+   "import_lines_rewritten": 2
+  },
+  {
+   "module": "trackers.utils.cmc",
+   "vendored_path": "rf_trackers/utils/cmc.py",
+   "original_sha256": "49c76af28a6a79ef8e248c9ba5876878295a41910e98e7aec5048fbe6fa3cf23",
+   "vendored_sha256": "9e547bab82d9b4fd214f406e227111fbbf71ceb92ef2dbdd4b00ea5a23def05e",
+   "import_lines_rewritten": 3
+  },
+  {
+   "module": "trackers.utils.converters",
+   "vendored_path": "rf_trackers/utils/converters.py",
+   "original_sha256": "a15fd4425b6062a79e2db0a09eccd809d6195e9f98a54a50a3b64c83e97df3a2",
+   "vendored_sha256": "a89685cc6c32609d643dafeafc2089595c6cdff97309904c6d846b1398a5797d",
+   "import_lines_rewritten": 0
+  },
+  {
+   "module": "trackers.utils.detections",
+   "vendored_path": "rf_trackers/utils/detections.py",
+   "original_sha256": "ca2084d75c4064b98720b71ebf06df3a2e3ca16039a928ace957be3fafde6d3b",
+   "vendored_sha256": "ba993c1d2f19e2a7a335efbda75a5b80cb97637001dc3a34ac567a478a0bd5fa",
+   "import_lines_rewritten": 0
+  },
+  {
+   "module": "trackers.utils.iou",
+   "vendored_path": "rf_trackers/utils/iou.py",
+   "original_sha256": "cb6d85ab2e2b142bf9c6f3812bb6e46ac700c823998fc24514a61c78c54eea81",
+   "vendored_sha256": "dc8a11e521b3403a68e79a73adfebe1bc68de4dea3289ae9fd43f8ab277b68e1",
+   "import_lines_rewritten": 0
+  },
+  {
+   "module": "trackers.utils.kalman_filter",
+   "vendored_path": "rf_trackers/utils/kalman_filter.py",
+   "original_sha256": "8ed6db31f4ed5f6790017b94bf9b3a53af66a522b0410c99d269ec41228c39b2",
+   "vendored_sha256": "c7c35d2121ae5777f9906b5e274150ec55878de5134daa279e6e0222690a4e35",
+   "import_lines_rewritten": 0
+  },
+  {
+   "module": "trackers.utils.motion_models",
+   "vendored_path": "rf_trackers/utils/motion_models.py",
+   "original_sha256": "ccb9b99030ba13c46d8769176d21206380339cdadac8e4d20b8f22f51d3130c3",
+   "vendored_sha256": "de8bed58a04e48c6c8213b9742867988cc9d5f20be7c8d5d0adecda46f5d228c",
+   "import_lines_rewritten": 1
+  },
+  {
+   "module": "trackers.utils.predict_timing",
+   "vendored_path": "rf_trackers/utils/predict_timing.py",
+   "original_sha256": "6c9efd41f395ba12e9963ab39f598b079be2fffcbf9f7e73636766c8c8af7d67",
+   "vendored_sha256": "4f8097559e446b6ac01ce79c9affe810b8a3e6004ef090b072e6bd945bed13c5",
+   "import_lines_rewritten": 0
+  },
+  {
+   "module": "trackers.utils.state_representations",
+   "vendored_path": "rf_trackers/utils/state_representations.py",
+   "original_sha256": "7db45970850783bd1da31cdc3371fa8a3a5615267b29df9018152946de945b0d",
+   "vendored_sha256": "a87f9a00728415df225a7b4857f81178f421ceffe9c7d8a8d832a56d504b21dc",
+   "import_lines_rewritten": 3
+  }
+ ],
+ "created": "2026-08-11T07:53:43+00:00",
+ "license_file": "rf_trackers/LICENSE",
+ "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+ "import_lines_rewritten_total": 33,
+ "only_change": "import statements naming the vendored package; no other byte was altered"
+}

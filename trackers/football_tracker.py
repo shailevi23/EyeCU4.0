@@ -48,7 +48,9 @@ class FootballTracker:
                 imgsz=960,
                 max_ball_gap=15,
                 human_candidate_pool=False,
-                detector=None):
+                detector=None,
+                tracker_backend='legacy',
+                frame_rate=30.0):
         """
         Initialize the football tracker
 
@@ -65,6 +67,17 @@ class FootballTracker:
                 reported as unknown rather than frozen in place.
             detector: Pre-built detector to use instead of constructing one.
                 Only for tests, which must not load real YOLO weights.
+            tracker_backend: which association implementation to use.
+                'cbiou'  -- vendored Roboflow CBIoUTracker 2.6.0 at its exact
+                            library defaults, selected by Tracking Experiment T2.
+                'legacy' -- supervision sv.ByteTrack(), the previously deployed
+                            tracker, kept for rollback and regression comparison.
+                Neither is tuned. The two differ only in association; detection,
+                ball handling and role semantics are identical either way.
+            frame_rate: the frame rate of the stream the TRACKER sees. When the
+                pipeline skips frames this is the effective rate, not the source
+                rate -- a tracker told 30 fps while receiving 10 mis-scales
+                every motion prediction it makes.
         """
         self.model_path = model_path
         self.max_ball_gap = max_ball_gap
@@ -90,8 +103,20 @@ class FootballTracker:
             human_candidate_pool=human_candidate_pool,
         )
 
-        # Initialize tracker using supervision
-        self.tracker = sv.ByteTrack()
+        # Association backend. CBIoU is vendored under rf_trackers rather than
+        # installed as `trackers`, because EyeCU owns that name; see
+        # rf_trackers/VENDOR_PROVENANCE.json.
+        if tracker_backend not in ('legacy', 'cbiou'):
+            raise ValueError(f'unknown tracker_backend {tracker_backend!r}')
+        self.tracker_backend = tracker_backend
+        self.frame_rate = float(frame_rate)
+        if tracker_backend == 'cbiou':
+            from rf_trackers import CBIoUTracker
+            # exact T2 configuration: every parameter is a library default and
+            # only the frame rate, which the API asks for, is supplied
+            self.tracker = CBIoUTracker(frame_rate=self.frame_rate)
+        else:
+            self.tracker = sv.ByteTrack()
 
         # Populated by get_object_tracks(); read by the pipeline's final report.
         self.tracks = None
@@ -258,20 +283,33 @@ class FootballTracker:
                     confidence=np.array(confidences)
                 )
 
-                # Update tracker
-                tracked_detections = self.tracker.update_with_detections(detections)
+                # Update tracker. Both backends return a Detections carrying the
+                # original class_id and confidence, so the identity is attached
+                # to EyeCU's detection rather than replacing it: the semantic
+                # class and the score are the detector's and are never rewritten
+                # by association.
+                if self.tracker_backend == 'cbiou':
+                    tracked_detections = self.tracker.update(detections)
+                else:
+                    tracked_detections = self.tracker.update_with_detections(detections)
 
                 for i in range(len(tracked_detections.xyxy)):
                     key = HUMAN_TRACK_KEY.get(int(tracked_detections.class_id[i]))
                     if key is None:
                         continue  # nothing but humans should reach here
+                    raw_id = tracked_detections.tracker_id[i]
+                    if raw_id is None or int(raw_id) <= 0:
+                        # CBIoU reports -1 for a track that has not yet met
+                        # minimum_consecutive_frames. It is not an identity and
+                        # must not become a dictionary key.
+                        continue
                     conf = float(tracked_detections.confidence[i])
                     if conf < self.human_accept_conf:
                         # Association evidence only. It kept the identity alive
                         # through this frame; it must not appear in reports,
                         # counts, statistics or the rendered video.
                         continue
-                    track_id = int(tracked_detections.tracker_id[i])
+                    track_id = int(raw_id)
                     tracks[key][frame_idx][track_id] = {
                         "bbox": tracked_detections.xyxy[i].tolist(),
                         "confidence": conf,

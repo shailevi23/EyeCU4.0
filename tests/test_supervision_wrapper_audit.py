@@ -52,11 +52,24 @@ class TestInstalledSemantics:
         assert sv.ByteTrack(frame_rate=60).max_time_lost == 60
 
     def test_production_uses_bare_constructor(self):
-        """EyeCU passes no arguments, so frame_rate is 30 even on 25 fps video."""
+        """
+        The LEGACY backend passes no arguments, so its frame_rate is 30 even on
+        25 fps video -- the historical semantics this audit documented.
+
+        Checked on the sv.ByteTrack construction specifically rather than by
+        searching the whole file: the CBIoU backend legitimately receives a
+        frame_rate, and a file-wide string check would confuse the two.
+        """
         src = (Path(__file__).resolve().parents[1] /
                'trackers' / 'football_tracker.py').read_text(encoding='utf-8')
         assert 'sv.ByteTrack()' in src
-        assert 'frame_rate=' not in src
+        constructions = [l.strip() for l in src.splitlines()
+                         if 'self.tracker = sv.ByteTrack(' in l]
+        assert constructions, 'legacy backend construction not found'
+        for line in constructions:
+            assert line == 'self.tracker = sv.ByteTrack()', line
+        assert 'CBIoUTracker(frame_rate=' in src, (
+            'CBIoU is given the real frame rate; only legacy is left bare')
 
 
 class TestConfidenceBoundaries:
