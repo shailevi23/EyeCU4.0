@@ -1,0 +1,147 @@
+{
+ "profile": "EYECU_SCORE_POLICY_V1",
+ "repeats": 3,
+ "warmup": 1,
+ "order": "rotated between repeats",
+ "detector_excluded": true,
+ "frame_decode_excluded_from_timer": true,
+ "statistic": "median of repeats, then median across sequences",
+ "trackers": {
+  "ByteTrackTracker": {
+   "per_sequence_ms_per_frame": {
+    "bayern_munich_3-1_chelsea_228": 0.908,
+    "women_1_239": 0.603,
+    "youth_premier_league_1133": 0.691
+   },
+   "all_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     0.892,
+     0.908,
+     0.933
+    ],
+    "women_1_239": [
+     0.598,
+     0.604,
+     0.603
+    ],
+    "youth_premier_league_1133": [
+     0.691,
+     0.689,
+     0.708
+    ]
+   },
+   "median_ms_per_frame": 0.691,
+   "tracker_ms_per_frame_pct_vs_legacy": -63.1,
+   "total_ms_per_frame_pct_vs_legacy": null
+  },
+  "BoTSORTTracker": {
+   "per_sequence_ms_per_frame": {
+    "bayern_munich_3-1_chelsea_228": 4.378,
+    "women_1_239": 3.763,
+    "youth_premier_league_1133": 3.943
+   },
+   "all_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     4.254,
+     4.426,
+     4.378
+    ],
+    "women_1_239": [
+     3.737,
+     4.395,
+     3.763
+    ],
+    "youth_premier_league_1133": [
+     3.764,
+     4.063,
+     3.943
+    ]
+   },
+   "median_ms_per_frame": 3.943,
+   "tracker_ms_per_frame_pct_vs_legacy": 110.6,
+   "total_ms_per_frame_pct_vs_legacy": null
+  },
+  "CBIoUTracker": {
+   "per_sequence_ms_per_frame": {
+    "bayern_munich_3-1_chelsea_228": 1.616,
+    "women_1_239": 0.982,
+    "youth_premier_league_1133": 1.176
+   },
+   "all_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     1.584,
+     1.616,
+     1.621
+    ],
+    "women_1_239": [
+     0.982,
+     1.038,
+     0.974
+    ],
+    "youth_premier_league_1133": [
+     1.172,
+     1.226,
+     1.176
+    ]
+   },
+   "median_ms_per_frame": 1.176,
+   "tracker_ms_per_frame_pct_vs_legacy": -37.2,
+   "total_ms_per_frame_pct_vs_legacy": null
+  },
+  "OCSORTTracker": {
+   "per_sequence_ms_per_frame": {
+    "bayern_munich_3-1_chelsea_228": 1.539,
+    "women_1_239": 0.99,
+    "youth_premier_league_1133": 1.219
+   },
+   "all_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     1.554,
+     1.539,
+     1.529
+    ],
+    "women_1_239": [
+     0.99,
+     0.982,
+     0.991
+    ],
+    "youth_premier_league_1133": [
+     1.217,
+     1.25,
+     1.219
+    ]
+   },
+   "median_ms_per_frame": 1.219,
+   "tracker_ms_per_frame_pct_vs_legacy": -34.9,
+   "total_ms_per_frame_pct_vs_legacy": null
+  },
+  "LEGACY_SUPERVISION_BYTETRACK": {
+   "per_sequence_ms_per_frame": {
+    "bayern_munich_3-1_chelsea_228": 3.15,
+    "women_1_239": 1.753,
+    "youth_premier_league_1133": 1.873
+   },
+   "all_samples": {
+    "bayern_munich_3-1_chelsea_228": [
+     3.266,
+     3.15,
+     2.854
+    ],
+    "women_1_239": [
+     1.753,
+     1.752,
+     1.761
+    ],
+    "youth_premier_league_1133": [
+     1.87,
+     1.873,
+     1.873
+    ]
+   },
+   "median_ms_per_frame": 1.873,
+   "tracker_ms_per_frame_pct_vs_legacy": 0.0,
+   "total_ms_per_frame_pct_vs_legacy": null
+  }
+ },
+ "end_to_end_note": "Full-pipeline detector+tracker runtime was NOT measured. Criterion 8 applies to shortlisted production candidates, and no candidate reached the shortlist: every modern tracker failed the accuracy criteria on the primary profile. Measuring end-to-end runtime for a candidate that cannot be adopted would not change any decision. The tracker-side figures above are reported as evidence, not as criterion 8."
+}

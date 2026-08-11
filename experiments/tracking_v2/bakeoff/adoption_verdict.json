@@ -1,0 +1,232 @@
+{
+ "profile": "EYECU_SCORE_POLICY_V1",
+ "baseline": "LEGACY_SUPERVISION_BYTETRACK",
+ "criteria_sha256": "0c987578baa023e3cc44e40065e31ef54d5ce2c8da01ffb7780c104bda8b6f76",
+ "trackers": {
+  "BoTSORTTracker": {
+   "combined": {
+    "HOTA": 53.57,
+    "DetA": 54.82,
+    "AssA": 52.61,
+    "MOTA": 64.11,
+    "IDF1": 67.62
+   },
+   "deltas_vs_legacy": {
+    "HOTA": -2.14,
+    "AssA": -1.05,
+    "IDF1": -3.17
+   },
+   "per_sequence_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": -1.61,
+    "women_1_239": -1.75,
+    "youth_premier_league_1133": -1.66
+   },
+   "criteria": {
+    "1_combined_HOTA_ge_+2.0": {
+     "value": -2.14,
+     "pass": false
+    },
+    "2_combined_AssA_ge_+3.0": {
+     "value": -1.05,
+     "pass": false
+    },
+    "3_combined_IDF1_regression_le_0.5": {
+     "value": -3.17,
+     "pass": false
+    },
+    "4_HOTA_improves_in_ge_2_of_3": {
+     "value": "0/3 []",
+     "pass": false
+    },
+    "5_remaining_match_not_worse_than_-2.0_HOTA": {
+     "value": -1.75,
+     "pass": true
+    },
+    "6_no_catastrophic_identity_failure": {
+     "value": "0 invalid outputs",
+     "pass": true
+    },
+    "7_eyecu_invariants_preserved": {
+     "value": "class=1, visibility=1, no ball, no duplicate id/frame",
+     "pass": true
+    },
+    "8_end_to_end_runtime_regression_le_10pct": {
+     "value": "NOT MEASURED (end-to-end). Tracker-side +110.6% vs legacy.",
+     "pass": null
+    }
+   },
+   "overall_pass": false
+  },
+  "ByteTrackTracker": {
+   "combined": {
+    "HOTA": 41.9,
+    "DetA": 50.8,
+    "AssA": 34.85,
+    "MOTA": 50.74,
+    "IDF1": 48.35
+   },
+   "deltas_vs_legacy": {
+    "HOTA": -13.8,
+    "AssA": -18.81,
+    "IDF1": -22.43
+   },
+   "per_sequence_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": -18.63,
+    "women_1_239": -4.23,
+    "youth_premier_league_1133": -6.94
+   },
+   "criteria": {
+    "1_combined_HOTA_ge_+2.0": {
+     "value": -13.8,
+     "pass": false
+    },
+    "2_combined_AssA_ge_+3.0": {
+     "value": -18.81,
+     "pass": false
+    },
+    "3_combined_IDF1_regression_le_0.5": {
+     "value": -22.43,
+     "pass": false
+    },
+    "4_HOTA_improves_in_ge_2_of_3": {
+     "value": "0/3 []",
+     "pass": false
+    },
+    "5_remaining_match_not_worse_than_-2.0_HOTA": {
+     "value": -18.63,
+     "pass": false
+    },
+    "6_no_catastrophic_identity_failure": {
+     "value": "0 invalid outputs",
+     "pass": true
+    },
+    "7_eyecu_invariants_preserved": {
+     "value": "class=1, visibility=1, no ball, no duplicate id/frame",
+     "pass": true
+    },
+    "8_end_to_end_runtime_regression_le_10pct": {
+     "value": "NOT MEASURED (end-to-end). Tracker-side -63.1% vs legacy.",
+     "pass": null
+    }
+   },
+   "overall_pass": false
+  },
+  "CBIoUTracker": {
+   "combined": {
+    "HOTA": 53.49,
+    "DetA": 55.0,
+    "AssA": 52.24,
+    "MOTA": 64.37,
+    "IDF1": 67.47
+   },
+   "deltas_vs_legacy": {
+    "HOTA": -2.21,
+    "AssA": -1.41,
+    "IDF1": -3.32
+   },
+   "per_sequence_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": -2.77,
+    "women_1_239": 0.52,
+    "youth_premier_league_1133": -0.97
+   },
+   "criteria": {
+    "1_combined_HOTA_ge_+2.0": {
+     "value": -2.21,
+     "pass": false
+    },
+    "2_combined_AssA_ge_+3.0": {
+     "value": -1.41,
+     "pass": false
+    },
+    "3_combined_IDF1_regression_le_0.5": {
+     "value": -3.32,
+     "pass": false
+    },
+    "4_HOTA_improves_in_ge_2_of_3": {
+     "value": "1/3 ['women_1_239']",
+     "pass": false
+    },
+    "5_remaining_match_not_worse_than_-2.0_HOTA": {
+     "value": -2.77,
+     "pass": false
+    },
+    "6_no_catastrophic_identity_failure": {
+     "value": "0 invalid outputs",
+     "pass": true
+    },
+    "7_eyecu_invariants_preserved": {
+     "value": "class=1, visibility=1, no ball, no duplicate id/frame",
+     "pass": true
+    },
+    "8_end_to_end_runtime_regression_le_10pct": {
+     "value": "NOT MEASURED (end-to-end). Tracker-side -37.2% vs legacy.",
+     "pass": null
+    }
+   },
+   "overall_pass": false
+  },
+  "OCSORTTracker": {
+   "combined": {
+    "HOTA": 42.82,
+    "DetA": 54.5,
+    "AssA": 33.85,
+    "MOTA": 64.95,
+    "IDF1": 50.69
+   },
+   "deltas_vs_legacy": {
+    "HOTA": -12.88,
+    "AssA": -19.81,
+    "IDF1": -20.1
+   },
+   "per_sequence_HOTA_delta": {
+    "bayern_munich_3-1_chelsea_228": -15.29,
+    "women_1_239": -8.19,
+    "youth_premier_league_1133": -11.15
+   },
+   "criteria": {
+    "1_combined_HOTA_ge_+2.0": {
+     "value": -12.88,
+     "pass": false
+    },
+    "2_combined_AssA_ge_+3.0": {
+     "value": -19.81,
+     "pass": false
+    },
+    "3_combined_IDF1_regression_le_0.5": {
+     "value": -20.1,
+     "pass": false
+    },
+    "4_HOTA_improves_in_ge_2_of_3": {
+     "value": "0/3 []",
+     "pass": false
+    },
+    "5_remaining_match_not_worse_than_-2.0_HOTA": {
+     "value": -15.29,
+     "pass": false
+    },
+    "6_no_catastrophic_identity_failure": {
+     "value": "0 invalid outputs",
+     "pass": true
+    },
+    "7_eyecu_invariants_preserved": {
+     "value": "class=1, visibility=1, no ball, no duplicate id/frame",
+     "pass": true
+    },
+    "8_end_to_end_runtime_regression_le_10pct": {
+     "value": "NOT MEASURED (end-to-end). Tracker-side -34.9% vs legacy.",
+     "pass": null
+    }
+   },
+   "overall_pass": false
+  }
+ },
+ "baseline_combined": {
+  "HOTA": 55.7,
+  "DetA": 58.09,
+  "AssA": 53.66,
+  "MOTA": 71.85,
+  "IDF1": 70.79
+ },
+ "passing_trackers": [],
+ "recommendation": "KEEP LEGACY SUPERVISION BYTETRACK"
+}

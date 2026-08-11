@@ -155,3 +155,9 @@ third_party/
 third_party/
 
 !data/tracking_val_gt/mot/**/*.ini
+
+# Bake-off: the records, configs, metrics and verdict are the evidence and are
+# tracked. Raw per-frame tracker outputs are large and regenerate exactly from
+# the frozen detections, so they stay local.
+experiments/tracking_v2/bakeoff/outputs/
+experiments/tracking_v2/bakeoff/meta/
