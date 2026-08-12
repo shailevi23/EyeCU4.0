@@ -104,7 +104,12 @@ def main():
                      if m == 'missing_target_box'}
     missing_res = {b: v for (m, b), v in last.items()
                    if m == 'missing_target_resolution'}
-    missing_pending = [b for b in missing_flags if b not in missing_res]
+    # A retracted flag was withdrawn by the human -- typically an accidental
+    # duplicate. It stays in the log for audit but is not outstanding work and
+    # must not block the gate forever.
+    missing_ret = {b for (m, b) in last if m == 'missing_target_retraction'}
+    missing_pending = [b for b in missing_flags
+                       if b not in missing_res and b not in missing_ret]
     manual_dec = {b: v for (m, b), v in last.items() if m == 'missed_role_manual'}
     _mk = kb_decisions.classify_manual(PKG / 'decisions.json')
     manual_kinds = dict(Counter(v['kind'] for v in _mk.values()))
@@ -214,9 +219,9 @@ def main():
          'verified by test_original_export_is_immutable_and_hashed'),
         ('P no TEST performance accessed', True, 'no evaluation run in this task'),
     ]
-    print(f'{"SECOND-PASS GATE":<52}{"RESULT":<8}DETAIL')
+    print(f'{"SECOND-PASS GATE":<66}{"RESULT":<8}DETAIL')
     for n, ok, d in G:
-        print(f'{n:<52}{"PASS" if ok else "FAIL":<8}{d}')
+        print(f'{n:<66}{"PASS" if ok else "FAIL":<8}{d}')
     fails = [g for g in G if not g[1]]
 
     rep = {
@@ -232,7 +237,8 @@ def main():
         'missing_target_boxes': {
             'flagged': len(missing_flags),
             'pending': len(missing_pending),
-            'resolved': len(missing_flags) - len(missing_pending),
+            'resolved': len([b for b in missing_flags if b in missing_res]),
+            'retracted': len([b for b in missing_flags if b in missing_ret]),
             'images': len({b.split('#')[0].removeprefix('MISSING:')
                            for b in missing_flags}),
             'by_role': dict(Counter(missing_flags.values())),

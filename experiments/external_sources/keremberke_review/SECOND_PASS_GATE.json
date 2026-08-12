@@ -107,6 +107,7 @@
   "flagged": 0,
   "pending": 0,
   "resolved": 0,
+  "retracted": 0,
   "images": 0,
   "by_role": {},
   "note": "a real target with no annotation box; resolved by drawing one and classifying it, or by excluding the image. No box is created automatically."

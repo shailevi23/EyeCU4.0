@@ -698,7 +698,11 @@ class TestImageCentricReviewServer:
         m = _re.search(r"MODES = \(([^)]*)\)", src)
         modes = {x.strip().strip("'") for x in m.group(1).split(',') if x.strip()}
         assert modes == {'missed_role', 'missed_role_manual',
-                         'missing_target_box'}
+                         'missing_target_box', 'missing_target_retraction'}
+        # the modes that settle other passes stay out of reach of this server
+        assert not modes & {'candidates', 'qa_player', 'qa_nocand',
+                            'u_resolution', 'final_target',
+                            'missing_target_resolution'}
         assert "d.get('mode') not in MODES" in src
 
     def test_it_appends_and_never_rewrites(self):
@@ -1128,7 +1132,10 @@ class TestManualCorrectionClassification:
         assert r, 'manual clicks exist and must all be classified'
         for box, v in r.items():
             assert v['kind'] in (kb.NO_OP, kb.NEW_CORRECTION, kb.OVERRIDE,
-                                 kb.FLAGGED), box
+                                 kb.FLAGGED, kb.DISPOSITIONED), box
+            if v['kind'] == kb.DISPOSITIONED:
+                assert v['manual_class'] in kb.U_CATEGORIES, box
+                continue
             if v['kind'] == kb.NO_OP and v['manual_class'] != 'player':
                 assert v['manual_class'] == v['prior_class'], box
             if v['kind'] == kb.NEW_CORRECTION:
@@ -1148,9 +1155,22 @@ class TestManualCorrectionClassification:
 
     def test_server_stamps_the_kind_at_write_time(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
-        assert "d['manual_kind'] = kind" in src
+        assert 'kb_decisions.classify_click(' in src
         assert "d['prior_class'] = pv" in src
         assert 'trusted from the page' in src
+
+    def test_server_and_auditor_share_one_classifier(self):
+        """Two copies of the rule would drift, and the drift would be silent.
+
+        The kind stamped at write time is what the reviewer sees in the panel;
+        the kind the auditor recomputes is what the gate reports. If they were
+        computed by two separate blocks of code -- as they were -- a disposition
+        could be stamped HUMAN_OVERRIDE live and DISPOSITION_SET in the audit.
+        """
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'kb_decisions.prior_non_manual(' in src
+        assert 'elif pv in kb_decisions.ROLES' not in src, \
+            'the server must not carry its own copy of the rule'
 
     def test_ui_says_already_resolved(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
@@ -1212,7 +1232,10 @@ class TestMissingTargetBoxFlag:
         cond = [c for c in g['gate'] if c['condition'].startswith('N2')]
         assert cond, 'the missing-target condition must be in the gate'
         mt = g['missing_target_boxes']
-        assert mt['flagged'] - mt['pending'] == mt['resolved']
+        # a flag leaves the pending set exactly one way: resolved, or withdrawn
+        settled = mt['flagged'] - mt['pending']
+        assert max(mt['resolved'], mt['retracted']) <= settled \
+            <= mt['resolved'] + mt['retracted']
 
     def test_multiple_flags_per_image_are_possible(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
@@ -1225,3 +1248,138 @@ class TestMissingTargetBoxFlag:
                       "k==='n'&&!qMode"):
             assert guard in src, guard
         assert "if(e.key==='Escape')" in src, 'flagging must be cancellable'
+
+
+class TestNonActiveMatchHuman:
+    """M -- bench, coach, ball person, medical, sideline staff.
+
+    These are real humans and a reviewer will meet them constantly, but they are
+    outside the four-class EyeCU ontology. Without a key for them the only
+    available answers were a wrong role or 'uncertain': the first poisons the
+    training set with a class the model must not learn, the second manufactures
+    unresolved work that no later pass can ever settle, because there is nothing
+    to settle -- the box is simply not an EyeCU target.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def kb(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        return kb_decisions
+
+    def test_the_key_maps_to_the_existing_bucket_not_a_new_name(self, kb):
+        """A second name for the same thing would split the count in two."""
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "NON_ACTIVE = 'NON_TARGET_HUMAN'" in src, \
+            'M must reuse the category the first pass already recorded'
+        assert 'NON_TARGET_HUMAN' in kb.U_CATEGORIES
+        assert 'NON_ACTIVE_MATCH_HUMAN' not in kb.U_CATEGORIES, \
+            'the vocabulary must not grow a synonym'
+
+    def test_it_is_accepted_for_required_and_for_context_boxes(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'ROLE_VALUES = ' in src
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_review_server2')
+        assert m.NON_ACTIVE in m.ROLE_VALUES
+        assert 'missed_role' in m.MODES and 'missed_role_manual' in m.MODES
+
+    def test_it_is_a_disposition_and_never_becomes_a_class(self, kb, tmp_path):
+        p = tmp_path / 'd.json'
+        p.write_text(json.dumps({'mode': 'missed_role', 'BOX_ID': 'x:9',
+                                 'HUMAN_FINAL_CLASS': 'NON_TARGET_HUMAN',
+                                 'recorded_utc': '2026-08-12T10:00:00Z'}),
+                     encoding='utf-8')
+        r = kb.resolve(p)['x:9']
+        assert r['final_class'] is None, 'a coach must never become a player'
+        assert r['disposition'] == 'NON_TARGET_HUMAN'
+        assert r['action'] == 'REMOVE_ANNOTATION_KEEP_IMAGE'
+
+    def test_a_manual_click_on_it_is_not_a_missed_role_discovery(self, kb):
+        assert kb.classify_click(None, 'NON_TARGET_HUMAN') == kb.DISPOSITIONED
+        assert kb.classify_click('player', 'NON_TARGET_HUMAN') == kb.DISPOSITIONED
+        assert kb.classify_click(None, 'referee') == kb.NEW_CORRECTION
+
+    def test_the_applier_settles_it_rather_than_leaving_it_pending(self):
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert 'elif cls in kb_decisions.U_CATEGORIES' in src
+        assert 'len(dispositioned)' in src, 'a disposition must count as settled'
+
+    def test_a_non_active_human_cannot_be_flagged_as_a_missing_target(self):
+        """Otherwise M would create annotation work for a box that must not exist."""
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'a non-active human is not a missing TARGET' in src
+
+
+class TestMissingTargetRetraction:
+    """A flag raised by mistake must be withdrawable, and auditably so.
+
+    Two flags on one image are legitimate -- two officials can both be unboxed --
+    so the fix cannot be de-duplication. It has to be an explicit, reasoned
+    withdrawal of one named flag, leaving the other untouched.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    def test_retraction_is_its_own_mode_and_needs_a_reason(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "'missing_target_retraction'" in src
+        assert 'a retraction needs a reason' in src
+        assert 'only a MISSING: flag can be retracted' in src
+
+    def test_only_a_flag_can_be_retracted_not_a_real_annotation(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_review_server2')
+        assert 'missing_target_retraction' in m.MODES
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        # a retraction is the one other mode that may carry a MISSING: key
+        assert "d['mode'] != 'missing_target_retraction'" in src
+
+    def test_the_log_is_never_rewritten(self):
+        """History is the point: a withdrawn flag stays visible, marked."""
+        src = (REPO / 'tools' / 'kb_missing_targets_queue.py').read_text(
+            encoding='utf-8')
+        assert 'stays in history' in src
+        assert 'RETRACTED' in src
+        for tool in ('kb_review_server2.py', 'kb_missing_targets_queue.py'):
+            t = (REPO / 'tools' / tool).read_text(encoding='utf-8')
+            assert "open(PKG / 'decisions.json', 'w'" not in t
+
+    def test_a_retracted_flag_is_not_pending_work(self):
+        q = self.PKG / 'missing_target_queue.json'
+        if not q.exists():
+            pytest.skip('queue not built')
+        d = load(q)
+        assert d['flags'] - d['pending'] == d['resolved'] + d['retracted']
+        assert 'does not block the gate' in d['retraction_note']
+        for r in d['rows']:
+            assert r['status'] in ('PENDING', 'RESOLVED', 'RETRACTED')
+            if r['status'] == 'RETRACTED':
+                assert r['retraction_reason'], 'a withdrawal must say why'
+
+    def test_a_retracted_flag_does_not_block_the_gate(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert 'missing_ret' in src
+        assert 'b not in missing_ret' in src, \
+            'N2 must exclude retracted flags from pending'
+
+    def test_the_reviewer_can_see_the_flags_on_the_current_image(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'retract' in src
+        assert "'missing_target_retraction'" in src
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_review_server2')
+        st = m.build_state()
+        for f in st['missing']:
+            assert 'retracted' in f and 'retraction_reason' in f
+        assert st['total_boxes'] == 6684, \
+            'retraction must not disturb the required queue'

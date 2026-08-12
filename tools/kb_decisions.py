@@ -125,6 +125,46 @@ NEW_CORRECTION = 'NEW_MISSED_ROLE_CORRECTION'
 OVERRIDE = 'HUMAN_OVERRIDE'
 NO_OP = 'NO_OP_CONFIRMATION'
 FLAGGED = 'FLAGGED_UNCERTAIN'
+DISPOSITIONED = 'DISPOSITION_SET'
+
+
+def prior_non_manual(path: Path, box: str):
+    """The box's state before any manual click: (raw value, mode) or (None, None).
+
+    Manual clicks are excluded deliberately. "Did this click find a missed
+    official" is a question about what the earlier passes had recorded, so an
+    earlier manual click on the same box must not be what a later one is judged
+    against -- otherwise a correction followed by a re-confirmation would read as
+    two separate findings.
+    """
+    hist = sorted((d for d in read_log(path)
+                   if d['BOX_ID'] == box and d['mode'] != MANUAL_MODE), key=_key)
+    if not hist:
+        return None, None
+    return hist[-1]['HUMAN_FINAL_CLASS'], hist[-1]['mode']
+
+
+def classify_click(prior_value, value):
+    """One click, classified against what the box held before it. One rule.
+
+    The server classifies a click as it arrives and the auditor re-classifies the
+    whole log afterwards. Those two answers have to agree, so they call this.
+    """
+    if value in U_CATEGORIES:
+        # e.g. NON_TARGET_HUMAN on a context box: a real decision that
+        # settles the box, but not a role and not a missed-role discovery
+        return DISPOSITIONED
+    if value == UNRESOLVED:
+        return FLAGGED
+    if prior_value is not None and value == prior_value:
+        return NO_OP
+    if prior_value in (None, 'player') and value in ('goalkeeper', 'referee'):
+        return NEW_CORRECTION
+    if prior_value in (None, 'player') and value == 'player':
+        return NO_OP
+    if prior_value in ROLES:
+        return OVERRIDE
+    return NO_OP
 
 
 def classify_manual(path: Path):
@@ -144,6 +184,9 @@ def classify_manual(path: Path):
                                     to a different one -- intentional, kept
         NO_OP_CONFIRMATION          the answer matches what was already there
         FLAGGED_UNCERTAIN           marked uncertain; neither a find nor a no-op
+        DISPOSITION_SET             a disposition such as NON_TARGET_HUMAN --
+                                    settles the box, but is not a role and is
+                                    not a missed-role discovery
     """
     rows = read_log(path)
     per = {}
@@ -159,18 +202,7 @@ def classify_manual(path: Path):
         pv = prior[-1]['HUMAN_FINAL_CLASS'] if prior else None
         pm = prior[-1]['mode'] if prior else None
         v = d['HUMAN_FINAL_CLASS']
-        if v == UNRESOLVED:
-            kind = FLAGGED
-        elif pv is not None and v == pv:
-            kind = NO_OP
-        elif pv in (None, 'player') and v in ('goalkeeper', 'referee'):
-            kind = NEW_CORRECTION
-        elif pv in (None, 'player') and v == 'player':
-            kind = NO_OP
-        elif pv in ROLES:
-            kind = OVERRIDE
-        else:
-            kind = NO_OP
+        kind = classify_click(pv, v)
         # a later manual click supersedes an earlier one on the same box
         out[d['BOX_ID']] = {'kind': kind, 'manual_class': v,
                             'prior_class': pv, 'prior_mode': pm,

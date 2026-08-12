@@ -42,7 +42,20 @@ import kb_decisions                                              # noqa: E402
 
 PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
 IMGROOT = REPO / 'EyeCU_external_data/huggingface/keremberke_football_object_detection/extracted'
-MODES = ('missed_role', 'missed_role_manual', 'missing_target_box')
+MODES = ('missed_role', 'missed_role_manual', 'missing_target_box',
+         'missing_target_retraction')
+# M -- a real human who is not taking part: bench, coach, ball person, medical
+# or technical staff, anyone on the touchline. It is a DISPOSITION, never an
+# EyeCU class, and it must never quietly become `player`.
+#
+# The value recorded is NON_TARGET_HUMAN, which the u_resolution pass already
+# defines as exactly this ("coach, bench, ball person, medical, staff") and
+# which 22 boxes already carry. Introducing a second name for one concept would
+# split the bucket and make every later count remember to add both. The label
+# NON_ACTIVE_MATCH_HUMAN is kept on the record so the audit trail still shows
+# which key was pressed.
+NON_ACTIVE = 'NON_TARGET_HUMAN'
+ROLE_VALUES = ('player', 'goalkeeper', 'referee', 'uncertain', NON_ACTIVE)
 # An image-level flag for a real EyeCU target that has NO annotation at all, so
 # there is nothing to click. It cannot use a real BOX_ID because no box exists;
 # the key is synthetic and namespaced so it can never collide with `split:id`,
@@ -98,6 +111,7 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
   <b id="mNo" style="color:#888">no-op 0</b> · <b id="mFl" class="un">flagged 0</b>
   <span style="color:#666">| G <b id="mG">0</b> R <b id="mR">0</b>
    P <b id="mP">0</b> U <b id="mU">0</b></span></span>
+ <span class="pill">non-active <b id="cM" style="color:#aaa">0</b></span>
  <span class="pill" style="border-color:#7a3a3a">missing-box flags
   <b id="fT" style="color:#ff7a7a">0</b> targets in
   <b id="fI" style="color:#ff7a7a">0</b> images</span>
@@ -106,6 +120,7 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
   <span class="k">G</span> <span class="k">R</span> <span class="k">U</span> ·
   <span class="k">1-9</span> pick box · <span class="k">A</span> all=player ·
   <span class="k">Enter</span> accept proposals · <span class="k">N</span>/<span class="k">B</span> nav ·
+  <span class="k">M</span> non-active human (bench/coach/staff) ·
   <b>click any black box</b> to correct a missed role</span>
 </div>
 <div id="qbanner" style="display:none;position:sticky;top:36px;z-index:10;
@@ -132,7 +147,9 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
 let S=null,i=0,sel=null,selKind='cand',dec={},man={},kind={},seen={};
 let missing=[],qMode=false;
 const CLS={player:'pl',goalkeeper:'gk',referee:'ref',uncertain:'un'};
-const COLV={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a',uncertain:'#b06cff'};
+const COLV={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a',
+            uncertain:'#b06cff',NON_TARGET_HUMAN:'#8a8a8a'};
+const NONACT='NON_TARGET_HUMAN';
 async function boot(){
  S=await (await fetch('/api/state')).json(); dec=S.decisions; man=S.manual;
  kind=S.manual_kind; missing=S.missing||[];
@@ -237,6 +254,9 @@ function stats(){
  document.getElementById('cR').textContent='R '+c.referee;
  document.getElementById('cP').textContent='P '+c.player;
  document.getElementById('cU').textContent='U '+c.uncertain;
+ document.getElementById('cM').textContent=
+   Object.values(dec).filter(v=>v===NONACT).length+
+   Object.values(man).filter(v=>v===NONACT).length;
  document.querySelector('#bar>i').style.width=(100*done/tot)+'%';
  const mc={player:0,goalkeeper:0,referee:0,uncertain:0};
  Object.values(man).forEach(v=>mc[v]!==undefined&&mc[v]++);
@@ -254,9 +274,21 @@ function stats(){
  document.getElementById('fT').textContent=missing.length;
  document.getElementById('fI').textContent=new Set(missing.map(m=>m.IMAGE)).size;
  const here=missing.filter(m=>m.IMAGE===cur().IMAGE);
+ const live=here.filter(m=>!m.retracted);
  document.getElementById('qhere').innerHTML=here.length
-  ? '<b style="color:#ff9a9a">'+here.length+' missing target'+(here.length>1?'s':'')+
-    ' flagged on this image:</b> '+here.map(m=>m.missing_role).join(', ')
+  ? '<b style="color:#ff9a9a">'+live.length+' missing target'+
+    (live.length===1?'':'s')+' flagged here</b>'+
+    (here.length>live.length?' <span style="color:#666">('+
+      (here.length-live.length)+' retracted)</span>':'')+
+    '<div style="color:#8a8a8a;margin:3px 0">each row is a SEPARATE target; '+
+    'retract only an accidental duplicate</div>'+
+    here.map((m,n)=>`<div class="row" style="opacity:${m.retracted?0.4:1}">
+      <b>#${n+1}</b><span style="color:${COLV[m.missing_role]||'#ccc'}">
+      ${m.missing_role}</span>
+      <span style="color:#666;font-size:10px">${(m.recorded_utc||'').slice(11,19)}</span>
+      ${m.retracted?'<span style="color:#888;margin-left:auto">retracted</span>'
+        :`<button style="margin-left:auto;padding:0 5px"
+           onclick="retract('${m.key}')">retract</button>`}</div>`).join('')
   : '';
 }
 async function post(box,cls,note,mode){
@@ -269,6 +301,19 @@ async function post(box,cls,note,mode){
  if(m==='missed_role_manual'){
   try{const j=await rsp.json(); if(j.manual_kind) kind[box]=j.manual_kind;}catch(e){}
  }
+}
+async function retract(key){
+ const why=prompt('Why is this flag being retracted?
+'+
+  '(e.g. "accidental duplicate of the flag above", "misread the image")');
+ if(!why||!why.trim())return;
+ await fetch('/api/decide',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({mode:'missing_target_retraction',BOX_ID:key,
+                       IMAGE:cur().IMAGE,reason:why.trim()})});
+ const m=missing.find(x=>x.key===key);
+ if(m){m.retracted=true;m.retraction_reason=why.trim();}
+ stats();
 }
 async function flagMissing(role){
  const it=cur();
@@ -355,13 +400,19 @@ def build_state():
     manual = {b: v for (m, b), v in per_mode.items() if m == 'missed_role_manual'}
     manual_kind = {b: r['kind'] for b, r in
                    kb_decisions.classify_manual(PKG / 'decisions.json').items()}
-    missing = []
+    missing, retracted = [], {}
     for r in kb_decisions.read_log(PKG / 'decisions.json'):
         if r['mode'] == 'missing_target_box':
             missing.append({'key': r['BOX_ID'], 'IMAGE': r.get('IMAGE'),
                             'run': r.get('run'),
                             'missing_role': r['HUMAN_FINAL_CLASS'],
                             'recorded_utc': r.get('recorded_utc')})
+        elif r['mode'] == 'missing_target_retraction':
+            retracted[r['BOX_ID']] = r.get('reason')
+    # retracted flags stay in history but are no longer live
+    for m in missing:
+        m['retracted'] = m['key'] in retracted
+        m['retraction_reason'] = retracted.get(m['key'])
 
     per, order = {}, {}
     for row in mrq['rows']:
@@ -446,9 +497,23 @@ class H(BaseHTTPRequestHandler):
             return self._send(
                 400, b'{"error":"this server writes only missed_role and '
                      b'missed_role_manual"}')
-        if d.get('HUMAN_FINAL_CLASS') not in ('player', 'goalkeeper', 'referee',
-                                              'uncertain'):
+        if d['mode'] == 'missing_target_retraction':
+            if not str(d.get('BOX_ID', '')).startswith(MISSING_PREFIX):
+                return self._send(
+                    400, b'{"error":"only a MISSING: flag can be retracted"}')
+            if not str(d.get('reason', '')).strip():
+                return self._send(
+                    400, b'{"error":"a retraction needs a reason"}')
+        elif d.get('HUMAN_FINAL_CLASS') not in ROLE_VALUES:
             return self._send(400, b'{"error":"value not in the role vocabulary"}')
+        if (d['mode'] == 'missing_target_box'
+                and d.get('HUMAN_FINAL_CLASS') == NON_ACTIVE):
+            # A bench player or a coach is not a missing EyeCU TARGET, so
+            # flagging one would create annotation work for something that
+            # should never be annotated.
+            return self._send(
+                400, b'{"error":"a non-active human is not a missing TARGET; '
+                     b'do not flag one"}')
         if d['mode'] == 'missing_target_box':
             if not str(d.get('BOX_ID', '')).startswith(MISSING_PREFIX):
                 return self._send(
@@ -456,33 +521,30 @@ class H(BaseHTTPRequestHandler):
                          b'MISSING: key, never a real BOX_ID"}')
             d['image_level'] = True
             d['no_box_exists'] = True
-        elif str(d.get('BOX_ID', '')).startswith(MISSING_PREFIX):
+        elif (d['mode'] != 'missing_target_retraction'
+                and str(d.get('BOX_ID', '')).startswith(MISSING_PREFIX)):
+            # a retraction names the flag it withdraws, so it is the one other
+            # mode that legitimately carries a MISSING: key
             return self._send(
                 400, b'{"error":"MISSING: keys belong to missing_target_box"}')
         d['recorded_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
         d['author'] = 'human reviewer'
+        if d['mode'] == 'missing_target_retraction':
+            d.setdefault('HUMAN_FINAL_CLASS', None)
+            d['retracts'] = d['BOX_ID']
         if d['mode'] == 'missed_role_manual':
             # What this click actually did, computed from the log rather than
             # trusted from the page. Re-confirming a role a box already carries
             # is a NO_OP_CONFIRMATION, not a newly found official, and must not
             # inflate the number this pass exists to produce.
-            prior = kb_decisions.resolve(PKG / 'decisions.json').get(d['BOX_ID'])
-            pv = prior['final_class'] if prior else None
-            pm = prior['decided_in_mode'] if prior else None
-            val = d['HUMAN_FINAL_CLASS']
-            if val == 'uncertain':
-                kind = kb_decisions.FLAGGED
-            elif pv is not None and val == pv:
-                kind = kb_decisions.NO_OP
-            elif pv in (None, 'player') and val in ('goalkeeper', 'referee'):
-                kind = kb_decisions.NEW_CORRECTION
-            elif pv in (None, 'player') and val == 'player':
-                kind = kb_decisions.NO_OP
-            elif pv in kb_decisions.ROLES:
-                kind = kb_decisions.OVERRIDE
-            else:
-                kind = kb_decisions.NO_OP
-            d['manual_kind'] = kind
+            # Same rule and same prior state the offline auditor uses, so the
+            # kind stored here can never disagree with the audited counts.
+            pv, pm = kb_decisions.prior_non_manual(PKG / 'decisions.json',
+                                                   d['BOX_ID'])
+            d['manual_kind'] = kb_decisions.classify_click(
+                pv, d['HUMAN_FINAL_CLASS'])
+            d['prior_class'] = pv
+            d['prior_mode'] = pm
             d['prior_class'] = pv
             d['prior_mode'] = pm
         with LOCK:

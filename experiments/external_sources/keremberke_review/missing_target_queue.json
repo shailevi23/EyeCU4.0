@@ -13,6 +13,8 @@
  "images": 0,
  "pending": 0,
  "resolved": 0,
+ "retracted": 0,
+ "retraction_note": "a retracted flag stays in this file for audit but is not pending work and does not block the gate",
  "by_missing_role": {},
  "by_run": {},
  "rows": []
