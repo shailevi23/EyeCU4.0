@@ -16,6 +16,17 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
+
+# Every mode any review tool is permitted to write. Passes are added as the
+# review deepens, so pinning a literal set here would fail the moment a new one
+# ships -- which is a snapshot, not an invariant. The invariant is that a mode in
+# the log must be one some tool actually declares, so an unrecognised mode still
+# fails loudly. Kept in one place because two copies drifted apart once already.
+KNOWN_MODES = {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
+               'final_target', 'missed_role', 'missed_role_manual',
+               'missing_target_box', 'missing_target_resolution',
+               'missing_target_retraction'}
+
 EXT = REPO / 'EyeCU_external_data'
 XS = REPO / 'experiments' / 'external_sources'
 REG = EXT / 'MASTER_EXTERNAL_SOURCE_REGISTRY.json'
@@ -224,12 +235,28 @@ class TestBulkIsNotCommittable:
         assert ('experiments/external_sources/keremberke_review/decisions.json'
                 in set(self._tracked()))
 
+    # decisions.json is irreplaceable human work and is tracked deliberately.
+    # It grows without bound as the review proceeds, so a size cap on it would
+    # mean "stop reviewing"; the cap exists to catch regenerable bulk, which
+    # decisions.json is not.
+    ALWAYS_TRACKED = {'experiments/external_sources/keremberke_review/'
+                      'decisions.json'}
+
     def test_no_oversized_file_in_the_review_package(self):
         big = [(f, (REPO / f).stat().st_size) for f in self._tracked()
                if f.startswith('experiments/external_sources/keremberke_review/')
+               and f not in self.ALWAYS_TRACKED
                and (REPO / f).exists()
                and (REPO / f).stat().st_size > 4_000_000]
         assert not big, f'oversized review-package files: {big}'
+
+    def test_the_regenerable_bulk_is_still_untracked(self):
+        """The cap above is not the only guard, and must not become it."""
+        tracked = set(self._tracked())
+        for f in ('ledger.json', 'review_queue.json',
+                  'working_copy/train_annotations.coco.json'):
+            p = 'experiments/external_sources/keremberke_review/' + f
+            assert p not in tracked, f'{f} regenerates; it must not be tracked'
 
 
 class TestPriorityMatrixAndGate:
@@ -392,9 +419,7 @@ class TestKeremberkeReviewPackage:
                 authors.add(r.get('author'))
                 modes.add(r.get('mode', 'candidates'))
         assert authors == {'human reviewer'}, authors
-        assert modes <= {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
-                         'missed_role', 'missed_role_manual',
-                         'final_target'}, modes
+        assert modes <= KNOWN_MODES, modes - KNOWN_MODES
 
     def test_ledger_starts_with_every_final_class_empty(self):
         p = self.PKG / 'ledger.json'
@@ -677,9 +702,7 @@ class TestSecondPassProgressReachesTheGate:
         modes = {json.loads(l).get('mode') for l in
                  d.read_text(encoding='utf-8').splitlines() if l.strip()}
         assert {'candidates', 'qa_player', 'qa_nocand'} <= modes, modes
-        assert modes <= {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
-                         'missed_role', 'missed_role_manual',
-                         'final_target'}, modes
+        assert modes <= KNOWN_MODES, modes - KNOWN_MODES
 
     def test_condition_G_requires_resolution_not_absence_of_history(self):
         src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
@@ -1352,9 +1375,12 @@ class TestKeyboardShortcutsActuallyFire:
         assert fired['button']['post']['HUMAN_FINAL_CLASS'] == 'NON_TARGET_HUMAN'
 
     def test_the_live_counter_increments(self, fired):
-        assert int(fired['counters']['before']) == 0
-        assert int(fired['counters']['after_candidate']) == 1
-        assert int(fired['counters']['after_context']) == 2
+        """One per click. The starting value rises as the review proceeds, so
+        only the increment is an invariant."""
+        c = fired['counters']
+        base = int(c['before'])
+        assert int(c['after_candidate']) == base + 1
+        assert int(c['after_context']) == base + 2
 
     def test_m_does_not_advance_to_the_next_image(self, fired):
         assert fired['image_index_unchanged']
