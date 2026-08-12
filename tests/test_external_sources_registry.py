@@ -1302,6 +1302,128 @@ class TestReviewPageActuallyParses:
         assert r.returncode == 0, r.stderr
 
 
+class TestKeyboardShortcutsActuallyFire:
+    """Press the keys against the real page, in a JS engine.
+
+    M was advertised in the legend, had its counter, its colour and its whole
+    server-side path, and did nothing: the keydown handler had no 'm' branch at
+    all. Asserting on the page source would not have caught it -- 'M' appeared
+    in the file several times. The only check that catches a dead shortcut is
+    dispatching the event and watching for the POST.
+
+    The page script is executed under a small DOM shim with fetch stubbed, so
+    nothing is written and no server is needed.
+    """
+
+    HARNESS = REPO / 'tests' / 'js' / 'press_keys.js'
+
+    @pytest.fixture(scope='class')
+    def fired(self, tmp_path_factory):
+        node = shutil.which('node')
+        if not node:
+            pytest.skip('node not installed')
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        srv = importlib.import_module('kb_review_server2')
+        d = tmp_path_factory.mktemp('keys')
+        (d / 'page.html').write_text(srv.PAGE, encoding='utf-8')
+        (d / 'state.json').write_text(json.dumps(srv.build_state()),
+                                      encoding='utf-8')
+        r = subprocess.run([node, str(self.HARNESS), str(d / 'page.html'),
+                            str(d / 'state.json')], capture_output=True,
+                           text=True)
+        assert r.returncode == 0, r.stderr[:2000]
+        return json.loads(r.stdout)
+
+    def test_m_fires_on_a_required_candidate(self, fired):
+        p = fired['posts'][0]['post']
+        assert p['mode'] == 'missed_role'
+        assert p['HUMAN_FINAL_CLASS'] == 'NON_TARGET_HUMAN'
+
+    def test_m_fires_on_a_clickable_context_box(self, fired):
+        p = fired['posts'][1]['post']
+        assert p['mode'] == 'missed_role_manual'
+        assert p['HUMAN_FINAL_CLASS'] == 'NON_TARGET_HUMAN'
+
+    def test_the_visible_button_does_the_same_thing(self, fired):
+        """A dead key must never be able to block the review again."""
+        assert fired['button']['wired'] and fired['button']['posted']
+        assert fired['button']['post']['HUMAN_FINAL_CLASS'] == 'NON_TARGET_HUMAN'
+
+    def test_the_live_counter_increments(self, fired):
+        assert int(fired['counters']['before']) == 0
+        assert int(fired['counters']['after_candidate']) == 1
+        assert int(fired['counters']['after_context']) == 2
+
+    def test_m_does_not_advance_to_the_next_image(self, fired):
+        assert fired['image_index_unchanged']
+
+    def test_m_during_a_flag_prompt_cancels_it_and_posts_nothing(self, fired):
+        """Q then M must not send a value the server would reject."""
+        assert fired['m_during_q']['posted_anything'] is False
+        assert fired['m_during_q']['qMode_after'] is False
+        assert fired['m_during_q']['banner'] == 'none'
+
+    def test_every_other_shortcut_still_fires(self, fired):
+        k = fired['other_keys']
+        assert (k['p'], k['g'], k['r'], k['u']) == \
+            ('player', 'goalkeeper', 'referee', 'uncertain')
+        assert k['n = next image'] == 'advanced', 'N must still navigate'
+        assert k['b = previous'].startswith('i=')
+
+
+class TestRevisitingUncertainBoxes:
+    """M was advertised while its key was dead, so U absorbed non-active humans.
+
+    Those boxes are not wrong -- U is an honest answer -- but some of them were
+    only U because the reviewer had no other key that worked. Nothing about them
+    is changed automatically: they are surfaced so the reviewer can look again
+    and decide, which is the only correct way to revisit a human decision.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def st(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        return importlib.import_module('kb_review_server2').build_state()
+
+    def test_open_uncertain_boxes_are_exposed(self, st):
+        assert 'u_open' in st
+        for u in st['u_open']:
+            assert u['BOX_ID'] and u['IMAGE']
+
+    def test_only_still_unresolved_boxes_are_listed(self, st):
+        """A U later superseded by a role must not be dragged back up."""
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        res = kb_decisions.resolve(self.PKG / 'decisions.json')
+        for u in st['u_open']:
+            assert res[u['BOX_ID']]['disposition'] == 'UNRESOLVED', u['BOX_ID']
+            assert res[u['BOX_ID']]['final_class'] is None
+
+    def test_the_list_matches_the_log(self, st):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        bm = kb_decisions.by_mode(self.PKG / 'decisions.json')
+        res = kb_decisions.resolve(self.PKG / 'decisions.json')
+        expect = {b for (m, b), v in bm.items()
+                  if m in ('missed_role', 'missed_role_manual')
+                  and v == 'uncertain'
+                  and res[b]['disposition'] == 'UNRESOLVED'}
+        assert {u['BOX_ID'] for u in st['u_open']} == expect
+
+    def test_nothing_is_rewritten_to_expose_them(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'nothing is changed here' in src
+        assert "open(PKG / 'decisions.json', 'w'" not in src
+
+
 class TestNonActiveMatchHuman:
     """M -- bench, coach, ball person, medical, sideline staff.
 

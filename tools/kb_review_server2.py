@@ -137,15 +137,22 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  <button class="big" id="allP">ALL CURRENT CANDIDATES = PLAYER <span class="k">A</span></button>
  <button class="big" id="acc">ACCEPT ALL PROPOSALS <span class="k">Enter</span></button>
  <div id="accnote" style="color:#8a8a8a;margin-top:5px"></div>
+ <button class="big" id="nonact" style="border-color:#6a6a6a">NON-ACTIVE MATCH HUMAN
+  <span class="k">M</span></button>
+ <div style="color:#8a8a8a;font-size:11px;margin:-2px 0 6px">
+  bench/substitute, coach, ball person, medical or other sideline staff &mdash;
+  a real human, but not one of the four EyeCU classes. Works on the selected
+  candidate or on a clicked black box.</div>
  <div id="qhere" style="font-size:11px;padding:4px 0"></div>
  <button class="big" id="flagQ" style="border-color:#7a3a3a">FLAG MISSING TARGET BOX
   <span class="k">Q</span></button>
+ <button class="big" id="uJump" style="border-color:#5a3a7a;display:none"></button>
  <button class="big" id="next">NEXT UNRESOLVED IMAGE <span class="k">N</span></button>
  <button class="big" id="prev">PREVIOUS <span class="k">B</span></button>
 </div>
 <script>
 let S=null,i=0,sel=null,selKind='cand',dec={},man={},kind={},seen={};
-let missing=[],qMode=false;
+let missing=[],qMode=false,uAt=-1;
 const CLS={player:'pl',goalkeeper:'gk',referee:'ref',uncertain:'un'};
 const COLV={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a',
             uncertain:'#b06cff',NON_TARGET_HUMAN:'#8a8a8a'};
@@ -254,6 +261,12 @@ function stats(){
  document.getElementById('cR').textContent='R '+c.referee;
  document.getElementById('cP').textContent='P '+c.player;
  document.getElementById('cU').textContent='U '+c.uncertain;
+ const uo=(S.u_open||[]).filter(u=>dec[u.BOX_ID]==='uncertain'
+                                 ||man[u.BOX_ID]==='uncertain').length;
+ const ub=document.getElementById('uJump');
+ ub.style.display=uo?'block':'none';
+ // textContent, so a plain hyphen rather than an entity or a literal em dash
+ ub.textContent='REVISIT U BOXES ('+uo+') - press M if non-active';
  document.getElementById('cM').textContent=
    Object.values(dec).filter(v=>v===NONACT).length+
    Object.values(man).filter(v=>v===NONACT).length;
@@ -327,6 +340,10 @@ async function flagMissing(role){
  stats();
 }
 async function decide(cls){
+ // a coach is never a MISSING TARGET, so M cancels the flag prompt rather
+ // than sending a value the server would reject
+ if(qMode&&cls===NONACT){qMode=false;
+   document.getElementById('qbanner').style.display='none';return;}
  if(qMode){await flagMissing(cls);return;}
  if(!sel)return;
  if(selKind==='ctx'){
@@ -362,6 +379,22 @@ document.getElementById('allP').onclick=allPlayer;
 document.getElementById('acc').onclick=acceptAll;
 document.getElementById('flagQ').onclick=()=>{qMode=true;
  document.getElementById('qbanner').style.display='block';};
+document.getElementById('nonact').onclick=()=>decide(NONACT);
+// Revisit boxes parked on U. Some are only U because M was advertised while its
+// key was dead. Jumping to one changes nothing until the reviewer answers.
+function uJump(){
+ const open=(S.u_open||[]).filter(u=>dec[u.BOX_ID]==='uncertain'
+                                  ||man[u.BOX_ID]==='uncertain');
+ if(!open.length)return;
+ uAt=(uAt+1)%open.length;
+ const t=open[uAt];
+ const k=S.items.findIndex(x=>x.IMAGE===t.IMAGE);
+ if(k>=0){i=k;render();
+  sel=t.BOX_ID;
+  selKind=S.items[k].candidates.some(c=>c.BOX_ID===t.BOX_ID)?'cand':'ctx';
+  draw();list();}
+}
+document.getElementById('uJump').onclick=uJump;
 document.getElementById('next').onclick=nextUnresolved;
 document.getElementById('prev').onclick=()=>{i=Math.max(0,i-1);render();};
 document.onkeydown=e=>{
@@ -375,6 +408,9 @@ document.onkeydown=e=>{
  else if(k==='a'&&!qMode){e.preventDefault();allPlayer();}
  else if(e.key==='Enter'&&!qMode){e.preventDefault();acceptAll();}
  else if(k==='n'&&!qMode){e.preventDefault();nextUnresolved();}
+ // no !qMode guard: M must never be silently inert. During a flag prompt
+ // decide() cancels it, which is the same thing the button does.
+ else if(k==='m'){e.preventDefault();decide(NONACT);}
  else if(k==='b'){i=Math.max(0,i-1);render();}
  else if(/^[1-9]$/.test(k)){const it=cur();const c=it.candidates[+k-1];
    if(c){sel=c.BOX_ID;draw();}}
@@ -413,6 +449,15 @@ def build_state():
         m['retracted'] = m['key'] in retracted
         m['retraction_reason'] = retracted.get(m['key'])
 
+    # Boxes parked on 'uncertain' in this pass and still unresolved. Most of them
+    # are genuinely unreadable, but some are only U because M was advertised in
+    # the UI while its key was never wired, so U was the only way to park a
+    # bench player or a coach. Exposed for revisiting; nothing is changed here.
+    u_open = [{'BOX_ID': b, 'IMAGE': ledger.get(b, {}).get('IMAGE')}
+              for b, v in list(dec.items()) + list(manual.items())
+              if v == kb_decisions.UNRESOLVED
+              and resolved[b]['disposition'] == 'UNRESOLVED']
+
     per, order = {}, {}
     for row in mrq['rows']:
         per.setdefault(row['IMAGE'], []).append(row)
@@ -448,7 +493,7 @@ def build_state():
         })
 
     return {'items': items, 'decisions': dec, 'manual': manual,
-            'manual_kind': manual_kind, 'missing': missing,
+            'manual_kind': manual_kind, 'missing': missing, 'u_open': u_open,
             'total_boxes': len(mrq['rows']), 'total_images': len(items)}
 
 
