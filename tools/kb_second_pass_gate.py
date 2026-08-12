@@ -35,11 +35,19 @@ def main():
     apply = '--apply' in sys.argv
     ledger = load(PKG / 'ledger.json')
     by_id = {r['BOX_ID']: r for r in ledger}
-    last = {}
-    for line in (PKG / 'decisions.json').read_text(encoding='utf-8').splitlines():
-        if line.strip():
-            d = json.loads(line)
-            last[(d.get('mode', 'candidates'), d['BOX_ID'])] = d['HUMAN_FINAL_CLASS']
+    # Two folds of the same log, and they answer different questions.
+    #   last      latest answer PER MODE -- completion accounting only
+    #   effective the box's actual state under the documented precedence rule
+    # Both come from kb_decisions so the rule has one implementation. This gate
+    # used to re-derive `last` by raw file order, which is chronological only by
+    # accident and would diverge the moment two servers appended concurrently.
+    last = kb_decisions.by_mode(PKG / 'decisions.json')
+    effective = kb_decisions.resolve(PKG / 'decisions.json')
+    # Every number below is folded from the log here and now. No derived report
+    # is read as state -- missing_target_queue.json once said 0 flags while 51
+    # were on record, and a gate that trusted it would have passed N2 on a file
+    # that had simply not been regenerated.
+    log_v = kb_decisions.log_version(PKG / 'decisions.json')
     cand = {b: v for (m, b), v in last.items() if m == 'candidates'}
     qa = {b: v for (m, b), v in last.items() if m == 'qa_player'}
     noc = {b: v for (m, b), v in last.items() if m == 'qa_nocand'}
@@ -108,8 +116,19 @@ def main():
     # duplicate. It stays in the log for audit but is not outstanding work and
     # must not block the gate forever.
     missing_ret = {b for (m, b) in last if m == 'missing_target_retraction'}
+    # A resolution counts only if it is one of the documented outcomes: a box was
+    # drawn and classified, or the image was excluded. Anything else leaves the
+    # obligation open, so an unrecognised value must not discharge it.
+    MISSING_OK = {'boxed_player', 'boxed_goalkeeper', 'boxed_referee',
+                  'EXCLUDE_IMAGE'}
+    missing_done = {b for b, v in missing_res.items() if v in MISSING_OK}
+    missing_bad = {b: v for b, v in missing_res.items() if v not in MISSING_OK}
     missing_pending = [b for b in missing_flags
-                       if b not in missing_res and b not in missing_ret]
+                       if b not in missing_done and b not in missing_ret]
+    missing_boxed = sum(1 for b, v in missing_res.items()
+                        if b in missing_flags and v.startswith('boxed_'))
+    missing_excl = sum(1 for b, v in missing_res.items()
+                       if b in missing_flags and v == 'EXCLUDE_IMAGE')
     manual_dec = {b: v for (m, b), v in last.items() if m == 'missed_role_manual'}
     _mk = kb_decisions.classify_manual(PKG / 'decisions.json')
     manual_kinds = dict(Counter(v['kind'] for v in _mk.values()))
@@ -134,8 +153,20 @@ def main():
     mr_rows = mrq.get('rows', [])
     mr_done = [r for r in mr_rows if r.get('HUMAN_ANSWER')]
 
-    mr_unresolved = [b for b, v in mr_dec.items() if v == 'uncertain']
-    qa_unresolved = [b for b, v in {**qa, **noc}.items() if v == 'uncertain']
+    # "Still unresolved" is a question about the box's EFFECTIVE state, not about
+    # what some earlier pass happened to answer. A box answered 'uncertain' in
+    # qa_player and later settled in missed_role is resolved; reading the stale
+    # per-mode answer made it block the gate forever, with nothing left to
+    # review -- the same defect as a gate condition asserting a historical fact.
+    #
+    # by_mode still decides COMPLETION ("has this queue been worked through"),
+    # because that genuinely is a per-mode question. It never decides state.
+    def _still_unresolved(boxes):
+        return sorted(b for b in boxes
+                      if effective.get(b, {}).get('disposition') == 'UNRESOLVED')
+
+    mr_unresolved = _still_unresolved(mr_dec)
+    qa_unresolved = _still_unresolved({**qa, **noc})
     qa_missed = sum(1 for v in qa.values() if v in ('goalkeeper', 'referee'))
     qa_rate = qa_missed / len(qa) if qa else None
     noc_bad_imgs = {by_id[b]['IMAGE'] for b, v in noc.items()
@@ -213,7 +244,7 @@ def main():
              'recommendation' in v for v in run_audit.get('runs', {}).values()),
          'recommendations present' if run_audit.get('runs') else 'RUN_AUDIT missing'),
         ('N2 every flagged MISSING_TARGET_BOX boxed or its image excluded',
-         not missing_pending,
+         not missing_pending and not missing_bad,
          f'{len(missing_flags)} flagged, {len(missing_pending)} still pending'),
         ('O original dataset immutable', True,
          'verified by test_original_export_is_immutable_and_hashed'),
@@ -225,6 +256,7 @@ def main():
     fails = [g for g in G if not g[1]]
 
     rep = {
+        'source_log': log_v,
         'gate': [{'condition': n, 'result': 'PASS' if ok else 'FAIL', 'detail': d}
                  for n, ok, d in G],
         'passed': not fails,
@@ -237,7 +269,10 @@ def main():
         'missing_target_boxes': {
             'flagged': len(missing_flags),
             'pending': len(missing_pending),
-            'resolved': len([b for b in missing_flags if b in missing_res]),
+            'resolved': len([b for b in missing_flags if b in missing_done]),
+            'boxed': missing_boxed,
+            'excluded': missing_excl,
+            'unrecognised_resolution_values': missing_bad,
             'retracted': len([b for b in missing_flags if b in missing_ret]),
             'images': len({b.split('#')[0].removeprefix('MISSING:')
                            for b in missing_flags}),

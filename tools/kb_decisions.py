@@ -29,6 +29,7 @@ do with the annotation -- and never masquerade as a class.
 Nothing here mutates decisions.json. It is append-only and is never rewritten.
 """
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -49,6 +50,34 @@ DISPOSITION_ACTION = {
     'OCCLUDED_UNCLEAR': 'RESOLVE_OR_EXCLUDE_IMAGE',
     'EXCLUDE_IMAGE': 'EXCLUDE_IMAGE_FROM_CANDIDATE_SET',
 }
+
+
+def log_version(path: Path):
+    """Fingerprint of the decision log a derived report was built from.
+
+    missing_target_queue.json once read `0 flags` while 51 were on record,
+    because it had not been regenerated since the flags were made. Nothing said
+    so: it looked like a current report showing no outstanding work, and a
+    reader would reasonably have concluded there was none.
+
+    Every derived report embeds this. A consumer that finds a mismatch knows the
+    report describes an older log and must regenerate rather than trust it.
+    """
+    p = Path(path)
+    raw = p.read_bytes() if p.exists() else b''
+    return {'decisions_sha256': hashlib.sha256(raw).hexdigest(),
+            'decisions_lines': len([l for l in raw.decode('utf-8').splitlines()
+                                    if l.strip()]),
+            'note': ('regenerate this report if it does not match the current '
+                     'decisions.json; a stale report must never be read as state')}
+
+
+def is_stale(report: dict, path: Path):
+    """True when a derived report was built from a different log. Fail closed."""
+    v = (report or {}).get('source_log')
+    if not v:
+        return True                       # no fingerprint at all -- cannot trust it
+    return v.get('decisions_sha256') != log_version(path)['decisions_sha256']
 
 
 def read_log(path: Path):

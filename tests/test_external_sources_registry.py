@@ -622,11 +622,16 @@ class TestKeremberkeSecondPass:
 
     def test_gate_file_blocks_apply(self):
         g = load(self.PKG / 'SECOND_PASS_GATE.json')
-        assert g['passed'] is False
-        assert g['apply_permitted'] is False
-        # D was blocking before the U pass ran; F is blocking until the
-        # retrospective sweep is done. Only F is guaranteed at every stage.
-        assert 'F MISSED_ROLE_REVIEW complete' in set(g['blocking'])
+        # WHICH condition blocks changes as the review proceeds -- D before the U
+        # pass, F until the sweep finished, N2 while targets need boxes. Naming
+        # one pins a moment. The invariant is that blocking and passed agree, and
+        # that a failure always blocks apply.
+        assert (g['passed'] is False) == bool(g['blocking'])
+        if g['blocking']:
+            assert g['apply_permitted'] is False
+        failed = {c['condition'] for c in g['gate'] if c['result'] == 'FAIL'}
+        assert failed == set(g['blocking']), \
+            'every failing condition must appear in blocking'
 
     def test_second_pass_queues_exist_and_are_unanswered(self):
         u = load(self.PKG / 'u_resolution_queue.json')
@@ -723,11 +728,14 @@ class TestImageCentricReviewServer:
         m = _re.search(r"MODES = \(([^)]*)\)", src)
         modes = {x.strip().strip("'") for x in m.group(1).split(',') if x.strip()}
         assert modes == {'missed_role', 'missed_role_manual',
-                         'missing_target_box', 'missing_target_retraction'}
+                         'missing_target_box', 'missing_target_retraction',
+                         # only to drop the image of an unreadable target
+                         'final_target'}
         # the modes that settle other passes stay out of reach of this server
         assert not modes & {'candidates', 'qa_player', 'qa_nocand',
-                            'u_resolution', 'final_target',
-                            'missing_target_resolution'}
+                            'u_resolution', 'missing_target_resolution'}
+        # and final_target here may record one thing only
+        assert 'final_target here records only' in src
         assert "d.get('mode') not in MODES" in src
 
     def test_it_appends_and_never_rewrites(self):
@@ -1625,6 +1633,249 @@ class TestNonActiveMatchHuman:
         """Otherwise M would create annotation work for a box that must not exist."""
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
         assert 'a non-active human is not a missing TARGET' in src
+
+
+class TestEffectiveStateDecidesResolution:
+    """G asked the wrong fold of the log.
+
+    valid:2887 was answered 'uncertain' in qa_player and later settled as
+    NON_TARGET_HUMAN in missed_role. Condition G read the stale per-mode answer
+    and counted it unresolved, so it blocked the gate with nothing left to
+    review -- the same shape as a condition asserting a historical fact.
+
+    by_mode still answers completion ("was this queue worked through"), which
+    genuinely is a per-mode question. It must never answer state.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def kb(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        return kb_decisions
+
+    def test_a_later_cross_mode_answer_resolves_an_earlier_uncertain(self, kb,
+                                                                     tmp_path):
+        p = tmp_path / 'd.json'
+        p.write_text('\n'.join(json.dumps(r) for r in [
+            {'mode': 'qa_player', 'BOX_ID': 'x:1', 'HUMAN_FINAL_CLASS': 'uncertain',
+             'recorded_utc': '2026-08-12T09:00:00Z'},
+            {'mode': 'missed_role', 'BOX_ID': 'x:1',
+             'HUMAN_FINAL_CLASS': 'NON_TARGET_HUMAN',
+             'recorded_utc': '2026-08-12T10:00:00Z'}]), encoding='utf-8')
+        assert kb.resolve(p)['x:1']['disposition'] == 'NON_TARGET_HUMAN'
+        assert kb.by_mode(p)[('qa_player', 'x:1')] == 'uncertain', \
+            'per-mode completion still sees the QA answer'
+
+    def test_an_uncertain_that_was_never_revisited_stays_unresolved(self, kb,
+                                                                    tmp_path):
+        """G must not be weakened: a real open uncertain still blocks."""
+        p = tmp_path / 'd.json'
+        p.write_text(json.dumps(
+            {'mode': 'missed_role', 'BOX_ID': 'x:2',
+             'HUMAN_FINAL_CLASS': 'uncertain',
+             'recorded_utc': '2026-08-12T10:00:00Z'}), encoding='utf-8')
+        assert kb.resolve(p)['x:2']['disposition'] == 'UNRESOLVED'
+
+    def test_the_gate_uses_the_resolver_not_the_per_mode_fold(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert 'effective = kb_decisions.resolve(' in src
+        assert 'last = kb_decisions.by_mode(' in src
+        assert "effective.get(b, {}).get('disposition') == 'UNRESOLVED'" in src
+        assert 'valid:2887' not in src, 'no box may be special-cased'
+
+    def test_condition_G_is_not_implied_by_F(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        g = src[src.index('G no systematic'):src.index('H non-target')]
+        assert 'mr_unresolved' in g and 'qa_unresolved' in g, \
+            'G must still require resolution, not just completion'
+
+    def test_the_real_package_has_no_stale_qa_blocker(self):
+        g = load(self.PKG / 'SECOND_PASS_GATE.json')
+        cond = [c for c in g['gate'] if c['condition'].startswith('G')][0]
+        # whatever G says, it must not be blocked by a box that is settled
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        res = kb_decisions.resolve(self.PKG / 'decisions.json')
+        bm = kb_decisions.by_mode(self.PKG / 'decisions.json')
+        stale = [b for (m, b), v in bm.items()
+                 if m in ('qa_player', 'qa_nocand') and v == 'uncertain'
+                 and res[b]['disposition'] != 'UNRESOLVED']
+        assert stale, 'this test exists because such a box exists; keep it honest'
+        for b in stale:
+            assert b not in cond['detail'], f'{b} is settled and must not block'
+
+
+class TestDerivedReportsCannotGoStaleSilently:
+    """missing_target_queue.json read `0 flags` while 51 were on record.
+
+    Nothing marked it stale, so it read as a current report showing no
+    outstanding work. A gate that trusted such a file would pass N2 on a stale
+    artefact rather than on the state of the review.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def kb(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        return kb_decisions
+
+    def test_derived_reports_carry_the_log_fingerprint(self, kb):
+        for name in ('missing_target_queue.json', 'SECOND_PASS_GATE.json'):
+            d = load(self.PKG / name)
+            assert 'source_log' in d, name
+            assert d['source_log']['decisions_sha256']
+
+    def test_a_report_from_another_log_is_detected(self, kb, tmp_path):
+        d = tmp_path / 'd.json'
+        d.write_text(json.dumps({'mode': 'candidates', 'BOX_ID': 'x:1',
+                                 'HUMAN_FINAL_CLASS': 'player'}), encoding='utf-8')
+        good = {'source_log': kb.log_version(d)}
+        assert kb.is_stale(good, d) is False
+        d.write_text(d.read_text(encoding='utf-8') + '\n' + json.dumps(
+            {'mode': 'candidates', 'BOX_ID': 'x:2',
+             'HUMAN_FINAL_CLASS': 'referee'}), encoding='utf-8')
+        assert kb.is_stale(good, d) is True, 'an appended decision must invalidate it'
+
+    def test_a_report_with_no_fingerprint_fails_closed(self, kb, tmp_path):
+        d = tmp_path / 'd.json'
+        d.write_text('', encoding='utf-8')
+        assert kb.is_stale({}, d) is True
+        assert kb.is_stale(None, d) is True
+
+    def test_the_gate_folds_from_the_log_not_from_a_report(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert "load(PKG / 'missing_target_queue.json'" not in src, \
+            'the gate must not read the derived queue as state'
+
+    def test_apply_refuses_a_stale_gate_report(self):
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert 'kb_decisions.is_stale(sp' in src
+        assert 'built from a different' in src
+
+    def test_the_drawing_tool_folds_from_the_log(self):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert 'missing_target_queue.json' not in src.split('"""')[2], \
+            'the tool must not build its queue from the derived report'
+
+
+class TestMissingTargetDrawingTool:
+    """The 48 targets that have no annotation and therefore no BOX_ID."""
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def m(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        return importlib.import_module('kb_missing_target_server')
+
+    def test_geometry_is_validated_against_the_original_image(self, m):
+        W, H = 1280, 720
+        ok, err = m.validate_bbox([10.0, 20.0, 30.0, 40.0], W, H)
+        assert err is None and ok == [10.0, 20.0, 30.0, 40.0]
+        for bad, why in (([-5, 10, 20, 20], 'negative origin'),
+                         ([10, -5, 20, 20], 'negative origin'),
+                         ([10, 10, 0, 20], 'zero width'),
+                         ([10, 10, 20, -3], 'negative height'),
+                         ([W - 2, 10, 500, 20], 'off the right edge'),
+                         ([10, H - 2, 20, 500], 'off the bottom'),
+                         ([10, 10, 0.4, 0.4], 'sub-pixel'),
+                         ('nope', 'not a list'),
+                         ([1, 2, 3], 'wrong length')):
+            got, e = m.validate_bbox(bad, W, H)
+            assert got is None and e, why
+
+    def test_dimensions_must_be_known(self, m):
+        got, err = m.validate_bbox([1, 1, 2, 2], None, None)
+        assert got is None and 'dimensions' in err
+
+    def test_geometry_is_stored_in_image_coordinates(self, m):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert "'coordinate_space': 'original image pixels'" in src
+        assert 'ORIGINAL IMAGE COORDINATES' in src
+        # the drawing surface converts on the way in, so a resize cannot move it
+        assert 'function toImage(ev)' in src
+        assert 'getBoundingClientRect' in src
+
+    def test_no_model_proposal_may_create_geometry(self, m):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert "'geometry_author': 'human drawn'" in src
+        assert "'no_model_proposal_used': True" in src
+        assert 'No model runs here' in src
+
+    def test_a_resolution_must_name_one_live_flag(self, m):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert 'unknown or retracted flag' in src
+        assert "'missing_target_id': key" in src
+
+    def test_a_drawn_target_cannot_be_left_uncertain(self, m):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert 'not \\n' not in src
+        assert b'uncertain' in src.encode() and 'must be classified' in src
+        assert m.ROLES == ('player', 'goalkeeper', 'referee')
+
+    def test_exclusion_needs_a_reason_and_is_scoped_to_one_image(self, m):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert 'an exclusion needs a reason' in src
+        assert "f.get('IMAGE') == img" in src
+        assert 'resolves_flags_in_image' in src
+        assert 'and nothing else' in src
+
+    def test_the_log_is_append_only(self, m):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert "open(PKG / 'decisions.json', 'a'" in src
+        assert "open(PKG / 'decisions.json', 'w'" not in src
+        assert "'supersedes'" in src, 'a redraw records what it replaces'
+
+    def test_the_queue_is_only_the_live_flags(self, m):
+        st = m.build_state()
+        assert st['targets'], 'there is outstanding work'
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        rows = kb_decisions.read_log(self.PKG / 'decisions.json')
+        retr = {r['BOX_ID'] for r in rows
+                if r['mode'] == 'missing_target_retraction'}
+        keys = {t['key'] for t in st['targets']}
+        assert keys & retr == set(), 'a retracted flag is not work'
+        assert all(k.startswith('MISSING:') for k in keys)
+
+    def test_it_carries_existing_annotations_for_context_only(self, m):
+        st = m.build_state()
+        t = st['targets'][0]
+        assert t['existing'], 'context must be visible'
+        assert 'BOX_ID' not in str(t['existing'][0]), \
+            'context is drawn, not made editable here'
+
+    def test_the_gate_accepts_only_documented_resolutions(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert "MISSING_OK = {'boxed_player', 'boxed_goalkeeper', 'boxed_referee'," in src
+        assert 'missing_bad' in src, 'an unrecognised value must not discharge N2'
+        g = load(self.PKG / 'SECOND_PASS_GATE.json')['missing_target_boxes']
+        assert g['flagged'] - g['pending'] == \
+            g['boxed'] + g['excluded'] + g['retracted']
+
+    def test_uncertain_targets_can_be_excluded_rather_than_left_open(self):
+        """A target with no readable role must have an honest way out."""
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "id=\"uExcl\"" in src
+        assert 'final_target' in src and 'an exclusion needs a reason' in src
+        assert 'EXCLUDE = ' in src
 
 
 class TestMissingTargetRetraction:

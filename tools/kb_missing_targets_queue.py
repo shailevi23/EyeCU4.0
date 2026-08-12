@@ -85,6 +85,7 @@ def main():
     imgs = {r['IMAGE'] for r in rows if r['status'] != 'RETRACTED'}
 
     q = {
+        'source_log': kb_decisions.log_version(PKG / 'decisions.json'),
         'purpose': ('images where a human saw a real EyeCU target with NO '
                     'annotation box; each entry is a request to draw one or to '
                     'exclude the image'),

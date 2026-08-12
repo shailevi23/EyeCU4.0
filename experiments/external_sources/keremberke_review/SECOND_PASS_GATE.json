@@ -1,4 +1,9 @@
 {
+ "source_log": {
+  "decisions_sha256": "9fa92a12552b4dd55ba7f570e5ba5435d19e78d4f300ad06a826794b44f824a9",
+  "decisions_lines": 26356,
+  "note": "regenerate this report if it does not match the current decisions.json; a stale report must never be read as state"
+ },
  "gate": [
   {
    "condition": "A original candidate review complete",
@@ -107,6 +112,9 @@
   "flagged": 51,
   "pending": 48,
   "resolved": 0,
+  "boxed": 0,
+  "excluded": 0,
+  "unrecognised_resolution_values": {},
   "retracted": 3,
   "images": 41,
   "by_role": {

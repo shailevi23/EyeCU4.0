@@ -259,6 +259,14 @@ def main():
                             capture_output=True, text=True, encoding='utf-8',
                             cwd=str(REPO))
     sp = json.loads((PKG / 'SECOND_PASS_GATE.json').read_text(encoding='utf-8'))
+    # A PASS is only meaningful for the log it was computed from. Reading a
+    # report that predates the current decisions.json would let a stale file
+    # authorise a write -- the same failure that made missing_target_queue.json
+    # report 0 outstanding flags while 51 were on record.
+    if kb_decisions.is_stale(sp, PKG / 'decisions.json'):
+        print('\nREFUSED: SECOND_PASS_GATE.json was built from a different '
+              'decisions.json. Re-run the gate. Nothing written.')
+        sys.exit(1)
     if not sp.get('passed'):
         print('\nREFUSED: the SECOND-PASS gate has not passed. Nothing written.')
         for n in sp.get('blocking', []):

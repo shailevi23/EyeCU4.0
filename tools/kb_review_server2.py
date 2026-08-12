@@ -43,7 +43,7 @@ import kb_decisions                                              # noqa: E402
 PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
 IMGROOT = REPO / 'EyeCU_external_data/huggingface/keremberke_football_object_detection/extracted'
 MODES = ('missed_role', 'missed_role_manual', 'missing_target_box',
-         'missing_target_retraction')
+         'missing_target_retraction', 'final_target')
 # M -- a real human who is not taking part: bench, coach, ball person, medical
 # or technical staff, anyone on the touchline. It is a DISPOSITION, never an
 # EyeCU class, and it must never quietly become `player`.
@@ -56,6 +56,11 @@ MODES = ('missed_role', 'missed_role_manual', 'missing_target_box',
 # which key was pressed.
 NON_ACTIVE = 'NON_TARGET_HUMAN'
 ROLE_VALUES = ('player', 'goalkeeper', 'referee', 'uncertain', NON_ACTIVE)
+# The escape hatch for a target whose role genuinely cannot be read. Leaving one
+# on 'uncertain' leaves it labelled `player`, which is a wrong label in TRAIN if
+# it is a keeper or an official -- so the honest alternative is to drop its
+# image, explicitly and on the record, rather than guess or leave it open.
+EXCLUDE = 'EXCLUDE_IMAGE'
 # An image-level flag for a real EyeCU target that has NO annotation at all, so
 # there is nothing to click. It cannot use a real BOX_ID because no box exists;
 # the key is synthetic and namespaced so it can never collide with `split:id`,
@@ -157,6 +162,8 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  <button class="big" id="flagQ" style="border-color:#7a3a3a">FLAG MISSING TARGET BOX
   <span class="k">Q</span></button>
  <button class="big" id="uJump" style="border-color:#5a3a7a;display:none"></button>
+ <button class="big" id="uExcl" style="border-color:#7a3a3a;display:none">EXCLUDE
+  THIS IMAGE (role unreadable)</button>
  <button class="big" id="next">NEXT UNRESOLVED IMAGE <span class="k">N</span></button>
  <button class="big" id="prev">PREVIOUS <span class="k">B</span></button>
 </div>
@@ -342,6 +349,9 @@ function stats(){
                                  ||man[u.BOX_ID]==='uncertain').length;
  const ub=document.getElementById('uJump');
  ub.style.display=uo?'block':'none';
+ // the exclusion escape hatch is offered only while a U box is selected
+ document.getElementById('uExcl').style.display=
+   (uo&&(dec[sel]==='uncertain'||man[sel]==='uncertain'))?'block':'none';
  // textContent, so a plain hyphen rather than an entity or a literal em dash
  ub.textContent='REVISIT U BOXES ('+uo+') - press M if non-active';
  document.getElementById('cM').textContent=
@@ -473,6 +483,24 @@ function uJump(){
   draw();list();}
 }
 document.getElementById('uJump').onclick=uJump;
+// The honest way out for a target whose role cannot be read. Leaving it on U
+// leaves it labelled player, which is a wrong label if it is an official.
+async function uExclude(){
+ const b=sel; if(!b)return;
+ if(!confirm('Exclude '+cur().IMAGE+' because the role of '+b+
+   ' cannot be read?\n\nThe image and its annotations are not deleted; the '
+   +'image is dropped from the repaired candidate set.'))return;
+ const why=prompt('Why can this target not be classified?');
+ if(!why||!why.trim())return;
+ await fetch('/api/decide',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({mode:'final_target',BOX_ID:b,IMAGE:cur().IMAGE,
+   HUMAN_FINAL_CLASS:'EXCLUDE_IMAGE',reason:why.trim()})});
+ delete dec[b]; man[b]='EXCLUDE_IMAGE';
+ S.u_open=(S.u_open||[]).filter(u=>u.BOX_ID!==b);
+ draw();stats();
+}
+document.getElementById('uExcl').onclick=uExclude;
 document.getElementById('next').onclick=nextUnresolved;
 document.getElementById('prev').onclick=()=>{i=Math.max(0,i-1);render();};
 document.onkeydown=e=>{
@@ -685,6 +713,15 @@ class H(BaseHTTPRequestHandler):
             if not str(d.get('reason', '')).strip():
                 return self._send(
                     400, b'{"error":"a retraction needs a reason"}')
+        elif d['mode'] == 'final_target':
+            # only ever used to drop the image of a target whose role is
+            # unreadable; a role answer belongs in the pass that asked for it
+            if d.get('HUMAN_FINAL_CLASS') != EXCLUDE:
+                return self._send(
+                    400, b'{"error":"final_target here records only '
+                         b'EXCLUDE_IMAGE"}')
+            if not str(d.get('reason', '')).strip():
+                return self._send(400, b'{"error":"an exclusion needs a reason"}')
         elif d.get('HUMAN_FINAL_CLASS') not in ROLE_VALUES:
             return self._send(400, b'{"error":"value not in the role vocabulary"}')
         if (d['mode'] == 'missing_target_box'
