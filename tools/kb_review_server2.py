@@ -303,8 +303,7 @@ async function post(box,cls,note,mode){
  }
 }
 async function retract(key){
- const why=prompt('Why is this flag being retracted?
-'+
+ const why=prompt('Why is this flag being retracted?\n'+
   '(e.g. "accidental duplicate of the flag above", "misread the image")');
  if(!why||!why.trim())return;
  await fetch('/api/decide',{method:'POST',
@@ -453,6 +452,59 @@ def build_state():
             'total_boxes': len(mrq['rows']), 'total_images': len(items)}
 
 
+def page_script_defects(page=None):
+    """Unterminated ' or " literals in the served script. Empty means clean.
+
+    A single raw newline inside a JS string literal is a whole-file syntax error:
+    the browser parses nothing, so every handler, the fetch of /api/state and the
+    first render all fail silently at once. The page still returns 200, the state
+    endpoint still returns the full 2.9 MB, and the server log looks perfectly
+    healthy -- the only symptom is a blank page with zeroed counters, which reads
+    like lost work rather than a typo. That is exactly what happened.
+
+    The page is a raw Python string, so the linters that would catch this never
+    see it as code. This does, and main() refuses to serve a page that fails.
+    """
+    src = PAGE if page is None else page
+    i = src.find('<script')
+    if i < 0:
+        return ['no <script> block in the page']
+    js = src[src.find('>', i) + 1:src.rfind('</script>')]
+    out, quote, esc, line, start = [], '', False, 1, 0
+    depth = 0                       # nesting of ${ } inside template literals
+    k = 0
+    while k < len(js):
+        c = js[k]
+        if c == '\n':
+            if quote in ("'", '"'):
+                out.append(f'line {start}: unterminated {quote} string literal '
+                           f'-- a raw newline inside it breaks the whole script')
+                quote = ''
+            line += 1
+        elif esc:
+            esc = False
+        elif c == '\\':
+            esc = True
+        elif quote:
+            if c == quote and not (quote == '`' and depth):
+                quote = ''
+            elif quote == '`' and c == '$' and js[k + 1:k + 2] == '{':
+                depth += 1
+                k += 1
+            elif quote == '`' and c == '}' and depth:
+                depth -= 1
+        elif c in '\'"`':
+            quote, start = c, line
+        elif c == '/' and js[k + 1:k + 2] == '/':
+            while k < len(js) and js[k] != '\n':
+                k += 1
+            continue
+        k += 1
+    if quote:
+        out.append(f'line {start}: {quote} string literal never closed')
+    return out
+
+
 class H(BaseHTTPRequestHandler):
     # HTTP/1.0 + a single large write truncated the 1.8 MB state payload on
     # Windows: the socket closed with ~54 KB still unsent, so the browser got a
@@ -562,6 +614,13 @@ def main():
     ap.add_argument('--port', type=int, default=8740)
     ap.add_argument('--no-browser', action='store_true')
     args = ap.parse_args()
+    bad = page_script_defects()
+    if bad:
+        print('REFUSING TO SERVE: the review page would not parse in a browser.')
+        for b in bad:
+            print('  ' + b)
+        print('\nNo decision has been touched. Fix the page and relaunch.')
+        sys.exit(1)
     st = build_state()
     done = len(st['decisions'])
     imgs_done = sum(1 for it in st['items']

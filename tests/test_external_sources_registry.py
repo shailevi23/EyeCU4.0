@@ -9,6 +9,8 @@ promoted to KEEP_ACTIVE without the evidence that justifies it.
 """
 
 import json
+import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -1248,6 +1250,56 @@ class TestMissingTargetBoxFlag:
                       "k==='n'&&!qMode"):
             assert guard in src, guard
         assert "if(e.key==='Escape')" in src, 'flagging must be cancellable'
+
+
+class TestReviewPageActuallyParses:
+    """The page is a raw Python string, so no linter ever sees it as code.
+
+    A single raw newline inside a JS string literal made the whole script fail to
+    parse. Every symptom pointed at lost work -- blank image, zeroed counters, no
+    population -- while the server was in fact healthy: 200 on /, the full 2.9 MB
+    on /api/state, 4,140 decisions loaded, and a clean log. Nothing in the Python
+    test suite could see it, because nothing executed the page.
+    """
+
+    @pytest.fixture(scope='class')
+    def srv(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        return importlib.import_module('kb_review_server2')
+
+    def test_the_served_script_has_no_unterminated_literal(self, srv):
+        assert srv.page_script_defects() == []
+
+    def test_the_check_catches_the_defect_it_exists_for(self, srv):
+        broken = srv.PAGE.replace('retracted?\\n', 'retracted?\n')
+        assert broken != srv.PAGE, 'the prompt string moved; update this test'
+        d = srv.page_script_defects(broken)
+        assert d and 'unterminated' in d[0]
+
+    def test_a_multiline_template_literal_is_not_a_false_positive(self, srv):
+        """Backticked HTML spans lines legitimately and must stay legal."""
+        assert srv.page_script_defects(
+            '<script>const a=`line one\nline two ${x?`${y}`:1}`;</script>') == []
+
+    def test_the_server_refuses_to_serve_a_broken_page(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'REFUSING TO SERVE' in src
+        assert 'bad = page_script_defects()' in src
+        assert 'No decision has been touched' in src
+
+    def test_node_agrees_when_node_is_available(self, srv, tmp_path):
+        node = shutil.which('node')
+        if not node:
+            pytest.skip('node not installed')
+        i = srv.PAGE.find('<script')
+        js = srv.PAGE[srv.PAGE.find('>', i) + 1:srv.PAGE.rfind('</script>')]
+        f = tmp_path / 'page.js'
+        f.write_text(js, encoding='utf-8')
+        r = subprocess.run([node, '--check', str(f)], capture_output=True,
+                           text=True)
+        assert r.returncode == 0, r.stderr
 
 
 class TestNonActiveMatchHuman:
