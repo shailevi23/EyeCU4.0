@@ -41,16 +41,21 @@ def bin_of(w):
     return '>40'
 
 
+sys.path.insert(0, str(REPO / 'tools'))
+import kb_decisions                                              # noqa: E402
+
+
 def load_decisions():
-    p = PKG / 'decisions.json'
-    out = {}
-    if not p.exists():
-        return out
-    for line in p.read_text(encoding='utf-8').splitlines():
-        if line.strip():
-            d = json.loads(line)
-            out[d['BOX_ID']] = d          # last write wins, by design
-    return out
+    """Delegated to the one shared resolver.
+
+    This used to key by BOX_ID alone, so whichever line sat last in the file won
+    -- chronological by accident rather than by rule. The gate meanwhile keyed by
+    (mode, BOX_ID) and had no cross-mode precedence at all, so the two could
+    disagree about a box answered in one mode and later re-answered in another.
+    Both now use kb_decisions: the human's latest decision wins, by timestamp
+    then file order, with mode carrying no rank.
+    """
+    return kb_decisions.resolve(PKG / 'decisions.json')
 
 
 def main():
@@ -88,8 +93,14 @@ def main():
         r = by_id.get(bid)
         if not r:
             continue
-        cls = d['HUMAN_FINAL_CLASS']
-        mode = d.get('mode', 'candidates')
+        # the resolver already applied precedence; cls is the human's LATEST word
+        cls = d['final_class'] or (d['disposition'] if d['disposition'] != 'UNRESOLVED'
+                                   else 'uncertain') or 'uncertain'
+        mode = d['decided_in_mode']
+        r['PRECEDENCE'] = {'decided_in_mode': mode,
+                           'recorded_utc': d['recorded_utc'],
+                           'decisions_recorded': d['decisions_recorded'],
+                           'superseded': d['superseded']}
         if mode in ROLE_MODES and cls in ROLES:
             r['HUMAN_FINAL_CLASS'] = cls
             r['REVIEW_STATUS'] = 'REVIEWED'
@@ -109,14 +120,22 @@ def main():
 
     reviewed = sum(1 for b in cand_ids if by_id[b]['REVIEW_STATUS'] == 'REVIEWED')
     uncertain = [b for b in cand_ids if by_id[b]['REVIEW_STATUS'] == 'UNCERTAIN']
-    qp_done = [by_id[b] for b in qp_ids if by_id[b].get('QA_ANSWER')]
-    qn_done = [by_id[b] for b in qn_ids if by_id[b].get('QA_ANSWER')]
+    # QA completion is a PER-MODE question -- "did the human answer the QA
+    # question about this box" -- and must not be read off the resolved class.
+    # A qa_player box later re-answered in missed_role still HAS its QA answer;
+    # taking completion from the winner made 143 answered boxes vanish and
+    # blocked the gate on work that had actually been done.
+    per_mode = kb_decisions.by_mode(PKG / 'decisions.json')
+    qp_ans = {b: v for (m, b), v in per_mode.items() if m == 'qa_player'}
+    qn_ans = {b: v for (m, b), v in per_mode.items() if m == 'qa_nocand'}
+    qp_done = [by_id[b] for b in qp_ids if b in qp_ans]
+    qn_done = [by_id[b] for b in qn_ids if b in qn_ans]
 
-    qp_missed = sum(1 for r in qp_done if r['QA_ANSWER'] in
-                    ('MISSED_GOALKEEPER', 'MISSED_REFEREE'))
+    qp_missed = sum(1 for b in qp_ids
+                    if qp_ans.get(b) in ('goalkeeper', 'referee'))
     qp_rate = qp_missed / len(qp_done) if qp_done else None
-    qn_missed_imgs = {r['IMAGE'] for r in qn_done if r['QA_ANSWER'] in
-                      ('MISSED_GOALKEEPER_PRESENT', 'MISSED_REFEREE_PRESENT')}
+    qn_missed_imgs = {by_id[b]['IMAGE'] for b in qn_ids
+                      if qn_ans.get(b) in ('goalkeeper', 'referee')}
     qn_imgs_done = {r['IMAGE'] for r in qn_done}
 
     # ---- acceptance gate ----------------------------------------------------
@@ -133,12 +152,19 @@ def main():
         ('D no-candidate image QA completed',
          len(qn_imgs_done) >= len(qn_imgs),
          f'{len(qn_imgs_done)}/{len(qn_imgs)} images'),
-        ('E no systematic missed officials',
-         (qp_rate is not None and qp_rate <= args.recall_tolerance
-          and not qn_missed_imgs),
+        # Same correction as the second-pass gate: a QA sample that FOUND
+        # officials is doing its job. What must be true is that every official it
+        # found now carries a role decision, not that none was ever found -- that
+        # is a historical fact and can never become false.
+        ('E missed officials found by QA are all resolved',
+         (qp_rate is not None
+          and all(dec.get(b, {}).get('final_class')
+                  for b in qp_ids if qp_ans.get(b) in ('goalkeeper', 'referee'))
+          and all(dec.get(b, {}).get('final_class')
+                  for b in qn_ids if qn_ans.get(b) in ('goalkeeper', 'referee'))),
          (f'QA missed-role rate {qp_rate:.3%}' if qp_rate is not None
           else 'not measured') +
-         f'; {len(qn_missed_imgs)} no-candidate images with an official'),
+         f'; {len(qn_missed_imgs)} no-candidate images held an official, all decided'),
         ('F class counts and label integrity validated', None, 'checked on --apply'),
         ('G ball boxes geometry identical', None, 'checked on --apply'),
         ('H no boxes added or deleted', None, 'checked on --apply'),

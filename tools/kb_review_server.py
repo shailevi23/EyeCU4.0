@@ -210,6 +210,10 @@ def build_state():
 
 
 class H(BaseHTTPRequestHandler):
+    # Same truncation fix as kb_review_server2: a single large write over
+    # HTTP/1.0 dropped the tail of a multi-megabyte body on Windows.
+    protocol_version = 'HTTP/1.1'
+
     def log_message(self, *a):
         pass
 
@@ -218,7 +222,10 @@ class H(BaseHTTPRequestHandler):
         self.send_header('Content-Type', ctype)
         self.send_header('Content-Length', str(len(body)))
         self.end_headers()
-        self.wfile.write(body)
+        view = memoryview(body)
+        for i in range(0, len(view), 1 << 16):
+            self.wfile.write(view[i:i + (1 << 16)])
+        self.wfile.flush()
 
     def do_GET(self):
         p = unquote(urlparse(self.path).path)

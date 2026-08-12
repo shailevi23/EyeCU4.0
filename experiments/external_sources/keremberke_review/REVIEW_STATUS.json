@@ -1,47 +1,47 @@
 {
  "review_status": "AWAITING_HUMAN_REVIEW",
- "human_decisions_recorded": 0,
+ "human_decisions_recorded": 4722,
  "candidate_boxes": 4153,
- "candidates_reviewed": 0,
- "candidates_uncertain": 0,
+ "candidates_reviewed": 4105,
+ "candidates_uncertain": 48,
  "qa_likely_player": {
   "sample": 250,
-  "answered": 0,
-  "missed_officials": 0,
-  "missed_rate": null,
+  "answered": 250,
+  "missed_officials": 15,
+  "missed_rate": 0.06,
   "tolerance": 0.02
  },
  "qa_no_candidate": {
   "images": 57,
-  "answered": 0,
-  "images_with_a_missed_official": 0,
+  "answered": 57,
+  "images_with_a_missed_official": 25,
   "note": "this is a CENSUS, not a sample: only 57 images have no candidate at all, so every one is reviewed"
  },
  "gate": [
   {
    "condition": "A all candidate boxes reviewed",
-   "result": "FAIL",
-   "detail": "0/4153"
+   "result": "PASS",
+   "detail": "4153/4153"
   },
   {
    "condition": "B all uncertain resolved or explicitly excluded",
-   "result": "PASS",
-   "detail": "0 still uncertain"
+   "result": "FAIL",
+   "detail": "48 still uncertain"
   },
   {
    "condition": "C LIKELY_PLAYER QA completed",
-   "result": "FAIL",
-   "detail": "0/250"
+   "result": "PASS",
+   "detail": "250/250"
   },
   {
    "condition": "D no-candidate image QA completed",
-   "result": "FAIL",
-   "detail": "0/57 images"
+   "result": "PASS",
+   "detail": "57/57 images"
   },
   {
    "condition": "E no systematic missed officials",
    "result": "FAIL",
-   "detail": "not measured; 0 no-candidate images with an official"
+   "detail": "QA missed-role rate 6.000%; 25 no-candidate images with an official"
   },
   {
    "condition": "F class counts and label integrity validated",
@@ -61,9 +61,15 @@
  ],
  "current_class_counts": {
   "ball": 1263,
-  "player (unreviewed)": 21615
+  "player (unreviewed)": 16942,
+  "referee": 1558,
+  "player": 2268,
+  "goalkeeper": 847
  },
- "reclassifications": {},
+ "reclassifications": {
+  "player -> referee": 1558,
+  "player -> goalkeeper": 847
+ },
  "ball_counts_preserved": {
   "instances": 1263,
   "le5": 90,

@@ -267,6 +267,13 @@ def build_state():
 
 
 class H(BaseHTTPRequestHandler):
+    # HTTP/1.0 + a single large write truncated the 1.8 MB state payload on
+    # Windows: the socket closed with ~54 KB still unsent, so the browser got a
+    # short body and could not parse it. It happened to succeed in an earlier
+    # test, which is worse than failing every time. HTTP/1.1 keeps the connection
+    # framed by Content-Length, and the body is written in chunks and flushed.
+    protocol_version = 'HTTP/1.1'
+
     def log_message(self, *a):
         pass
 
@@ -275,7 +282,10 @@ class H(BaseHTTPRequestHandler):
         self.send_header('Content-Type', ctype)
         self.send_header('Content-Length', str(len(body)))
         self.end_headers()
-        self.wfile.write(body)
+        view = memoryview(body)
+        for i in range(0, len(view), 1 << 16):
+            self.wfile.write(view[i:i + (1 << 16)])
+        self.wfile.flush()
 
     def do_GET(self):
         p = unquote(urlparse(self.path).path)

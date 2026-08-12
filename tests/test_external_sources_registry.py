@@ -421,14 +421,20 @@ class TestKeremberkeReviewPackage:
             'plain_A_kits', 'plain_B_kits', 'pp_A_kits', 'pp_B_kits'}
 
     def test_gate_blocks_while_review_is_incomplete(self):
+        """The first pass is now done, so this asserts the gate still BLOCKS.
+
+        It originally asserted candidates_reviewed == 0, which expired the moment
+        the human started. What must stay true is that the gate refuses while the
+        second pass is outstanding.
+        """
         p = self.PKG / 'REVIEW_STATUS.json'
         if not p.exists():
             pytest.skip('gate not yet run')
         s = load(p)
-        assert s['review_status'] == 'AWAITING_HUMAN_REVIEW'
         failing = [g for g in s['gate'] if g['result'] == 'FAIL']
-        assert failing, 'the gate must not pass with zero decisions'
-        assert s['candidates_reviewed'] == 0
+        assert failing, 'the gate must not pass while the second pass is outstanding'
+        g2 = load(self.PKG / 'SECOND_PASS_GATE.json')
+        assert g2['passed'] is False and g2['apply_permitted'] is False
 
     def test_ball_counts_are_reported_on_the_frozen_convention(self):
         p = self.PKG / 'REVIEW_STATUS.json'
@@ -549,7 +555,10 @@ class TestKeremberkeSecondPass:
         u = load(self.PKG / 'u_resolution_queue.json')
         m = load(self.PKG / 'missed_role_queue.json')
         assert u['count'] == 48 and u['answers_recorded'] == 0
-        assert m['queue_boxes'] == 6984 and m['answers_recorded'] == 0
+        # 6,984 originally; 300 already-answered boxes were removed and recorded
+        # in `prefilled`, so the live queue is 6,684
+        assert m['queue_boxes'] == 6684 and m['answers_recorded'] == 0
+        assert m['deduplication']['original_queue_boxes'] == 6984
         assert all(r['U_RESOLUTION_CATEGORY'] is None for r in u['rows'])
 
 
@@ -603,7 +612,7 @@ class TestSecondPassProgressReachesTheGate:
             fline = [l for l in out.stdout.splitlines()
                      if l.startswith('F MISSED_ROLE')][0]
             assert '48/48' in dline, dline
-            assert '50/6984' in fline, fline
+            assert '50/6684' in fline, fline
         finally:
             shutil.rmtree(self.PKG)
             bak.rename(self.PKG)
@@ -652,3 +661,129 @@ class TestImageCentricReviewServer:
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
         assert 'key=lambda k: -order[k]' in src, 'highest-score-first must survive'
         assert "'context':" in src, 'surrounding context boxes must be shown'
+
+
+class TestDecisionPrecedence:
+    """One documented rule, one implementation, verified through the real applier."""
+
+    PKG = XS / 'keremberke_review'
+
+    def test_both_consumers_use_the_shared_resolver(self):
+        ap = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert 'kb_decisions.resolve' in ap
+        assert 'kb_decisions.by_mode' in ap, 'QA completion is a per-mode question'
+
+    def test_rule_is_time_then_line_and_mode_carries_no_rank(self):
+        src = (REPO / 'tools' / 'kb_decisions.py').read_text(encoding='utf-8')
+        assert 'mode is NOT a rank' in src
+        assert 'later recorded_utc wins' in src
+
+    def test_later_decision_wins_regardless_of_mode_or_file_position(self, tmp_path):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        p = tmp_path / 'd.json'
+        rows = [
+            # later timestamp appears FIRST in the file: the clock must still win
+            {'mode': 'missed_role', 'BOX_ID': 'x:1', 'HUMAN_FINAL_CLASS': 'goalkeeper',
+             'recorded_utc': '2026-08-12T20:00:00Z'},
+            {'mode': 'qa_nocand', 'BOX_ID': 'x:1', 'HUMAN_FINAL_CLASS': 'player',
+             'recorded_utc': '2026-08-12T09:00:00Z'},
+            # identical timestamps: later line wins
+            {'mode': 'qa_player', 'BOX_ID': 'x:2', 'HUMAN_FINAL_CLASS': 'player',
+             'recorded_utc': '2026-08-12T12:00:00Z'},
+            {'mode': 'missed_role', 'BOX_ID': 'x:2', 'HUMAN_FINAL_CLASS': 'referee',
+             'recorded_utc': '2026-08-12T12:00:00Z'},
+            # a later 'uncertain' clears an earlier role
+            {'mode': 'candidates', 'BOX_ID': 'x:3', 'HUMAN_FINAL_CLASS': 'referee',
+             'recorded_utc': '2026-08-12T10:00:00Z'},
+            {'mode': 'missed_role', 'BOX_ID': 'x:3', 'HUMAN_FINAL_CLASS': 'uncertain',
+             'recorded_utc': '2026-08-12T11:00:00Z'},
+            # a disposition is not a class
+            {'mode': 'u_resolution', 'BOX_ID': 'x:4',
+             'HUMAN_FINAL_CLASS': 'FALSE_POSITIVE',
+             'recorded_utc': '2026-08-12T10:00:00Z'},
+        ]
+        p.write_text('\n'.join(json.dumps(r) for r in rows), encoding='utf-8')
+        r = kb_decisions.resolve(p)
+        assert r['x:1']['final_class'] == 'goalkeeper'
+        assert r['x:1']['decided_in_mode'] == 'missed_role'
+        assert r['x:2']['final_class'] == 'referee'
+        assert r['x:3']['final_class'] is None
+        assert r['x:3']['disposition'] == 'UNRESOLVED'
+        assert r['x:4']['final_class'] is None
+        assert r['x:4']['disposition'] == 'FALSE_POSITIVE'
+        assert r['x:4']['action'] == 'REMOVE_ANNOTATION'
+        # every superseded answer is retained, never dropped
+        assert r['x:1']['superseded'] and r['x:1']['decisions_recorded'] == 2
+
+    def test_by_mode_keeps_qa_answers_visible_after_a_later_override(self, tmp_path):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        p = tmp_path / 'd.json'
+        p.write_text('\n'.join(json.dumps(r) for r in [
+            {'mode': 'qa_player', 'BOX_ID': 'x:9', 'HUMAN_FINAL_CLASS': 'goalkeeper',
+             'recorded_utc': '2026-08-12T10:00:00Z'},
+            {'mode': 'missed_role', 'BOX_ID': 'x:9', 'HUMAN_FINAL_CLASS': 'player',
+             'recorded_utc': '2026-08-12T11:00:00Z'}]), encoding='utf-8')
+        assert kb_decisions.resolve(p)['x:9']['final_class'] == 'player'
+        assert kb_decisions.by_mode(p)[('qa_player', 'x:9')] == 'goalkeeper'
+
+
+class TestMissedRoleQueueIsDeduplicated:
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def q(self):
+        p = self.PKG / 'missed_role_queue.json'
+        if not p.exists():
+            pytest.skip('queue absent')
+        return load(p)
+
+    def test_no_already_settled_box_is_requeued(self, q):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        res = kb_decisions.resolve(self.PKG / 'decisions.json')
+        settled = [r['BOX_ID'] for r in q['rows']
+                   if res.get(r['BOX_ID'], {}).get('final_class')]
+        assert settled == [], f'{len(settled)} already-answered boxes re-queued'
+
+    def test_unresolved_boxes_are_kept(self, q):
+        assert q['deduplication']['kept_because_still_unresolved'] >= 1
+
+    def test_removals_are_recorded_not_silent(self, q):
+        d = q['deduplication']
+        assert d['nothing_deleted_silently'] is True
+        assert len(q['prefilled']) == d['removed_already_answered']
+        assert (d['original_queue_boxes']
+                == q['queue_boxes'] + d['removed_already_answered'])
+        for p in q['prefilled']:
+            assert p['already_answered'] and p['answered_in_mode']
+
+    def test_qa_nocand_officials_are_box_level_and_modifiable(self):
+        """An image-level flag would be useless to the applier."""
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        led = {r['BOX_ID']: r for r in load(self.PKG / 'ledger.json')}
+        per = kb_decisions.by_mode(self.PKG / 'decisions.json')
+        offs = [b for (m, b), v in per.items()
+                if m == 'qa_nocand' and v in ('goalkeeper', 'referee')]
+        assert len(offs) == 25
+        for b in offs:
+            assert b in led, f'{b} has no ledger row to modify'
+            assert led[b]['bbox_xywh'] and len(led[b]['bbox_xywh']) == 4
+
+    def test_large_responses_are_not_truncated(self):
+        """A 1.8 MB state payload lost its tail over HTTP/1.0 on Windows.
+
+        It succeeded intermittently, which is worse than failing outright: the
+        browser would silently receive a short body and fail to parse it.
+        """
+        for f in ('kb_review_server.py', 'kb_review_server2.py'):
+            src = (REPO / 'tools' / f).read_text(encoding='utf-8')
+            assert "protocol_version = 'HTTP/1.1'" in src, f
+            assert 'self.wfile.flush()' in src, f
+            assert 'memoryview(body)' in src, f

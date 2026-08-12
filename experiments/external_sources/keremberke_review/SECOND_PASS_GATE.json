@@ -28,12 +28,12 @@
   {
    "condition": "F MISSED_ROLE_REVIEW complete",
    "result": "FAIL",
-   "detail": "0/6984"
+   "detail": "0/6684"
   },
   {
    "condition": "G no systematic unresolved GK/ref misses",
    "result": "FAIL",
-   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 0/6984 reviewed, 0 left uncertain"
+   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 0/6684 reviewed, 0 left uncertain"
   },
   {
    "condition": "H non-target humans handled consistently",
@@ -97,7 +97,7 @@
  "u_boxes": 48,
  "u_categorized": 0,
  "missed_role_queue": {
-  "boxes": 6984,
+  "boxes": 6684,
   "reviewed": 0
  },
  "ball_counts": {
