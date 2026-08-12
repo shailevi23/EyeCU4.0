@@ -787,3 +787,67 @@ class TestMissedRoleQueueIsDeduplicated:
             assert "protocol_version = 'HTTP/1.1'" in src, f
             assert 'self.wfile.flush()' in src, f
             assert 'memoryview(body)' in src, f
+
+
+class TestUResolutionIsNotPrefilledByTheFirstPass:
+    """48/48 with zero resolutions: the first-pass U was counted as an answer.
+
+    An original `U` is the QUESTION this pass exists to answer. Counting it as
+    progress showed a finished pass and would have let the whole review be
+    skipped.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    def test_dedicated_server_counts_only_its_own_mode(self):
+        src = (REPO / 'tools' / 'kb_u_resolution_server.py').read_text(encoding='utf-8')
+        assert "if d.get('mode') == MODE:" in src
+        assert "MODE = 'u_resolution'" in src
+        assert 'deliberately ignored' in src
+
+    def test_it_starts_at_zero_not_forty_eight(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        if not (self.PKG / 'u_resolution_queue.json').exists():
+            pytest.skip('queue absent')
+        import importlib
+        m = importlib.import_module('kb_u_resolution_server')
+        st = m.build_state()
+        assert st['total_boxes'] == 48 and st['total_images'] == 42
+        # the 48 first-pass 'uncertain' answers must not appear as progress
+        assert len(st['decisions']) == 0
+
+    def test_all_six_categories_plus_roles_are_offered(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_u_resolution_server')
+        keys = {c[0] for c in m.CHOICES}
+        vals = {c[1] for c in m.CHOICES}
+        assert keys == set('PGRAONBFX')
+        assert vals == {'player', 'goalkeeper', 'referee', 'AMBIGUOUS_TARGET',
+                        'OCCLUDED_UNCLEAR', 'NON_TARGET_HUMAN',
+                        'BALL_WRONG_HUMAN_BOX', 'FALSE_POSITIVE',
+                        'PARTIAL_BODY_BAD_BOX'}
+        # every option must carry a human-readable meaning shown on screen
+        assert all(len(c[2]) > 10 for c in m.CHOICES)
+
+    def test_b_means_ball_not_back(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_u_resolution_server')
+        assert dict((c[0], c[1]) for c in m.CHOICES)['B'] == 'BALL_WRONG_HUMAN_BOX'
+        src = (REPO / 'tools' / 'kb_u_resolution_server.py').read_text(encoding='utf-8')
+        assert "e.key==='ArrowLeft'" in src, 'previous must move off the B key'
+
+    def test_multimode_server_no_longer_serves_second_pass_modes(self):
+        src = (REPO / 'tools' / 'kb_review_server.py').read_text(encoding='utf-8')
+        assert "modes['u_resolution']" not in src
+        assert "modes['missed_role']" not in src
+        assert "if d.get('mode', 'candidates') in served:" in src
+
+    def test_second_pass_writes_are_vocabulary_checked(self):
+        src = (REPO / 'tools' / 'kb_u_resolution_server.py').read_text(encoding='utf-8')
+        assert 'value not in the U-resolution vocabulary' in src
+        assert 'this server only writes u_resolution' in src

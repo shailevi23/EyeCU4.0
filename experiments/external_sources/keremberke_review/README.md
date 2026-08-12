@@ -46,10 +46,35 @@ run's referee, goalkeeper, team and ambiguous kits side by side.
 The first pass completed and did **not** close role coverage: 6.40% of sampled
 LIKELY_PLAYER boxes were officials that were never queued. Two queues resolve it.
 
+Each second pass has its OWN mode-isolated tool. The multi-mode server keyed
+progress by `BOX_ID` across modes, so the first-pass `candidates: uncertain` on
+the 48 U boxes counted as a completed resolution and it read **48/48 having
+resolved nothing**. It no longer serves either second-pass mode.
+
 ```bash
-python tools/kb_review_server.py        # mode u_resolution -- 48 boxes, ~15 min
-python tools/kb_review_server2.py       # missed_role -- 6,984 boxes, image-centric
+python tools/kb_u_resolution_server.py   # 48 U boxes  -> http://127.0.0.1:8770/
+python tools/kb_review_server2.py        # 6,684 missed_role -> :8740/
 ```
+
+### U resolution (48 boxes, 42 images, ~15 min)
+
+An original `U` is the **question**, not an answer, and is shown as context on
+every box. Progress starts at 0/48.
+
+| key | meaning |
+|---|---|
+| `P` `G` `R` | resolved player / goalkeeper / **any on-field official** |
+| `A` | AMBIGUOUS_TARGET — real target, role not distinguishable |
+| `O` | OCCLUDED_UNCLEAR — substantially occluded |
+| `N` | NON_TARGET_HUMAN — coach / bench / ball person / medical / staff |
+| `B` | BALL_WRONG_HUMAN_BOX — the "human" box is on the ball |
+| `F` | FALSE_POSITIVE — no relevant human at all |
+| `X` | PARTIAL_BODY_BAD_BOX — real person, box is a fragment |
+| `N`… | *next unresolved*; `←` `→` move by image; `1`-`9` pick a box |
+
+All nine options are listed on screen with their meanings. The server writes
+`mode: u_resolution` only and rejects both a foreign mode and an out-of-vocabulary
+value with HTTP 400.
 
 `kb_review_server2.py` is built for this queue's shape: 6,984 boxes in 1,184
 images is 5.9 per image, so it shows **every candidate in an image at once**,
