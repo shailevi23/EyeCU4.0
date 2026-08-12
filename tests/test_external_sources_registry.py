@@ -329,11 +329,26 @@ class TestKeremberkeReviewPackage:
         return load(p)
 
     def test_no_human_decision_has_been_fabricated(self, man):
-        assert man['human_decisions_recorded'] == 0
-        assert man['review_status'] == 'PACKAGE_BUILT_AWAITING_HUMAN'
+        """Originally asserted zero decisions; the human has since reviewed.
+
+        The claim worth protecting is not "no decisions exist" -- that expired
+        the moment the reviewer started -- but that every decision on record was
+        made by the human, with no tool-authored rows slipped in.
+        """
         assert man['no_proposal_is_ground_truth'] is True
         d = self.PKG / 'decisions.json'
-        assert not d.exists() or not d.read_text(encoding='utf-8').strip()
+        if not d.exists() or not d.read_text(encoding='utf-8').strip():
+            assert man['human_decisions_recorded'] == 0
+            return
+        authors, modes = set(), set()
+        for line in d.read_text(encoding='utf-8').splitlines():
+            if line.strip():
+                r = json.loads(line)
+                authors.add(r.get('author'))
+                modes.add(r.get('mode', 'candidates'))
+        assert authors == {'human reviewer'}, authors
+        assert modes <= {'candidates', 'qa_player', 'qa_nocand',
+                         'u_resolution', 'missed_role'}, modes
 
     def test_ledger_starts_with_every_final_class_empty(self):
         p = self.PKG / 'ledger.json'
@@ -428,3 +443,111 @@ class TestKeremberkeReviewPackage:
         gi = (REPO / '.gitignore').read_text(encoding='utf-8')
         assert 'keremberke_review/ledger.json' in gi
         assert '!experiments/external_sources/keremberke_review/decisions.json' in gi
+
+
+class TestKeremberkeSecondPass:
+    """The coverage failure the first gate would have missed."""
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def sp(self):
+        p = XS / 'reports' / 'KEREMBERKE_SECOND_PASS.json'
+        if not p.exists():
+            pytest.skip('second pass not present')
+        return load(p)
+
+    def test_first_pass_really_is_complete(self, sp):
+        c = sp['actual_review_completion']
+        assert c['candidates']['complete'] and c['qa_player']['complete']
+        assert c['qa_nocand']['complete']
+        assert c['verified_from'].startswith('decisions.json')
+        # log lines must not be reported as decisions
+        assert c['log_lines'] > c['unique_decisions']
+
+    def test_completeness_is_not_treated_as_sufficiency(self, sp):
+        assert sp['verdicts']['MISSED_ROLE_COVERAGE'] == 'FAIL'
+        assert sp['second_pass_gate']['result'] == 'FAIL'
+        assert sp['second_pass_gate']['apply_permitted'] is False
+
+    def test_recall_failure_is_quantified_with_its_uncertainty(self, sp):
+        q = sp['qa_player_results']
+        assert q['missed_role_rate'] == 0.064
+        assert q['MISSED_GOALKEEPER'] == 8 and q['MISSED_REFEREE'] == 8
+        assert q['reported_separately_not_combined'] is True
+        e = q['extrapolation']
+        assert e['ci95'][0] < e['point_estimate'] < e['ci95'][1]
+        assert 'small basis' in e['caveat']
+
+    def test_nocand_limitation_is_stated(self, sp):
+        assert 'cannot close the coverage gap' in \
+            sp['qa_nocand_results']['limitation_confirmed']
+
+    def test_retro_queue_does_not_overclaim(self, sp):
+        r = sp['retrospective_missed_role_queue']
+        assert r['boxes'] == 6984
+        assert r['no_role_assigned_automatically'] is True
+        assert r['no_identity_propagated'] is True
+        assert '16/16' in r['validation']['honest_caveat']
+        assert 'NOT a small bounded queue' in r['honest_assessment']
+
+    def test_detector_contribution_is_stated_as_nil(self, sp):
+        r = sp['retrospective_missed_role_queue']
+        assert 'constant across every candidate' in \
+            r['the_detector_contributes_nothing_here']
+
+    def test_unestablished_scopes_are_not_invented(self, sp):
+        for k in ('bad_geometry_scope', 'non_target_human_scope'):
+            assert sp[k]['status'] == 'NOT_ESTABLISHED'
+            assert sp[k].get('count') is None
+        assert sp['u_resolution']['counts_per_category'].startswith('NOT_ESTABLISHED')
+
+    def test_non_target_policy_protects_real_targets(self, sp):
+        pol = sp['non_target_human_scope']['policy_already_fixed']
+        assert any('NEVER become player' in p for p in pol)
+        assert any('NEVER be removed and left as unlabelled background' in p
+                   for p in pol)
+
+    def test_run_totals_reconcile_with_the_audit(self, sp):
+        r = sp['run_level_analysis']
+        runs = [r[k] for k in ('plain_A', 'plain_B', 'pp_A', 'pp_B')]
+        assert sum(x['le8'] for x in runs) + 0 == 474
+        assert sum(x['le5'] for x in runs) == 90
+        assert r['totals_reconcile'] == {'balls': 1263, 'le5': 90, 'le8': 474,
+                                         'le12': 969}
+
+    def test_high_wide_answer_is_both_not_one_sided(self, sp):
+        w = sp['rare_wide_angle']
+        assert w['answer_to_the_explicit_question'].startswith('BOTH')
+        assert w['share_of_le8_pct'] == 83.8
+        assert w['recommended_policy'].startswith('KEEP_ALL')
+        assert 'why_not_exclude' in w and 'why_not_keep_blindly' in w
+
+    def test_ball_gt_untouched(self, sp):
+        b = sp['ball_counts_preserved']
+        assert b['pre_repair'] == b['current']
+        assert b['current'] == {'total': 1263, 'le5': 90, 'le8': 474, 'le12': 969}
+
+    def test_nothing_was_applied_or_guessed(self, sp):
+        c = sp['constraints_respected']
+        for k in ('training_performed', 'merged_into_eyecu_train',
+                  'experiment_d_started', 'original_dataset_modified',
+                  'apply_run', 'model_prediction_promoted_to_gt',
+                  'unresolved_classes_guessed', 'annotations_silently_deleted',
+                  'geometry_silently_repaired', 'test_performance_accessed'):
+            assert c[k] is False, k
+        assert sp['verdicts']['READY_TO_DESIGN_EXPERIMENT_D'] == 'NO'
+
+    def test_gate_file_blocks_apply(self):
+        g = load(self.PKG / 'SECOND_PASS_GATE.json')
+        assert g['passed'] is False
+        assert g['apply_permitted'] is False
+        assert set(g['blocking']) >= {'D all original U categorized',
+                                      'F MISSED_ROLE_REVIEW complete'}
+
+    def test_second_pass_queues_exist_and_are_unanswered(self):
+        u = load(self.PKG / 'u_resolution_queue.json')
+        m = load(self.PKG / 'missed_role_queue.json')
+        assert u['count'] == 48 and u['answers_recorded'] == 0
+        assert m['queue_boxes'] == 6984 and m['answers_recorded'] == 0
+        assert all(r['U_RESOLUTION_CATEGORY'] is None for r in u['rows'])

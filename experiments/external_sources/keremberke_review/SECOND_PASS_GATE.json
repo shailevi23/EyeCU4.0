@@ -1,0 +1,111 @@
+{
+ "gate": [
+  {
+   "condition": "A original candidate review complete",
+   "result": "PASS",
+   "detail": "4153/4153"
+  },
+  {
+   "condition": "B qa_player complete",
+   "result": "PASS",
+   "detail": "250/250"
+  },
+  {
+   "condition": "C qa_nocand complete",
+   "result": "PASS",
+   "detail": "57/57 images"
+  },
+  {
+   "condition": "D all original U categorized",
+   "result": "FAIL",
+   "detail": "0/48"
+  },
+  {
+   "condition": "E all resolvable U resolved",
+   "result": "FAIL",
+   "detail": "0/48 categorized; 0 real targets left unresolved and not excluded"
+  },
+  {
+   "condition": "F MISSED_ROLE_REVIEW complete",
+   "result": "FAIL",
+   "detail": "0/6984"
+  },
+  {
+   "condition": "G no systematic unresolved GK/ref misses",
+   "result": "FAIL",
+   "detail": "qa_player missed-role 6.40%; 25 no-candidate images held an official; retrospective queue 0/6984 reviewed"
+  },
+  {
+   "condition": "H non-target humans handled consistently",
+   "result": "PASS",
+   "detail": "0 categorized"
+  },
+  {
+   "condition": "I false-positive annotations handled",
+   "result": "PASS",
+   "detail": "0 categorized"
+  },
+  {
+   "condition": "J ball-as-human errors handled",
+   "result": "PASS",
+   "detail": "0 categorized"
+  },
+  {
+   "condition": "K bad geometry quantified with a documented policy",
+   "result": "PASS",
+   "detail": "0 categorized"
+  },
+  {
+   "condition": "L unresolved real targets resolved or their images excluded",
+   "result": "PASS",
+   "detail": "0 outstanding"
+  },
+  {
+   "condition": "M ball GT preservation verified",
+   "result": "PASS",
+   "detail": "{'instances': 1263, 'le5': 90, 'le8': 474, 'le12': 969}"
+  },
+  {
+   "condition": "N run-level domain decision recorded",
+   "result": "PASS",
+   "detail": "recommendations present"
+  },
+  {
+   "condition": "O original dataset immutable",
+   "result": "PASS",
+   "detail": "verified by test_original_export_is_immutable_and_hashed"
+  },
+  {
+   "condition": "P no TEST performance accessed",
+   "result": "PASS",
+   "detail": "no evaluation run in this task"
+  }
+ ],
+ "passed": false,
+ "blocking": [
+  "D all original U categorized",
+  "E all resolvable U resolved",
+  "F MISSED_ROLE_REVIEW complete",
+  "G no systematic unresolved GK/ref misses"
+ ],
+ "qa_player": {
+  "sampled": 250,
+  "missed_officials": 16,
+  "missed_role_rate": 0.064
+ },
+ "qa_nocand_images_with_missed_official": 25,
+ "u_boxes": 48,
+ "u_categorized": 0,
+ "missed_role_queue": {
+  "boxes": 6984,
+  "reviewed": 0
+ },
+ "ball_counts": {
+  "instances": 1263,
+  "le5": 90,
+  "le8": 474,
+  "le12": 969
+ },
+ "ball_preserved": true,
+ "apply_permitted": false
+}

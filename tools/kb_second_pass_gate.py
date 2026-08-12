@@ -1,0 +1,157 @@
+#!/usr/bin/env python
+"""
+Second-pass acceptance gate. Sixteen conditions, and --apply obeys all of them.
+
+The first gate would have passed: 4,153/4,153 candidates reviewed, both QA
+samples complete. It would have been wrong. The QA it required is what proved
+the coverage was incomplete -- 6.40% of sampled LIKELY_PLAYER boxes were
+officials that were never queued -- so completing the queue was never evidence
+that the roles were repaired.
+
+Condition G is therefore not "the QA was run" but "the QA came back clean". It
+is failing now, and it should be.
+"""
+
+import json
+import sys
+from collections import Counter, defaultdict
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
+SRC = REPO / 'EyeCU_external_data/huggingface/keremberke_football_object_detection'
+
+
+def load(p, d=None):
+    p = Path(p)
+    return json.loads(p.read_text(encoding='utf-8')) if p.exists() else d
+
+
+def main():
+    sys.stdout.reconfigure(encoding='utf-8')
+    apply = '--apply' in sys.argv
+    ledger = load(PKG / 'ledger.json')
+    by_id = {r['BOX_ID']: r for r in ledger}
+    last = {}
+    for line in (PKG / 'decisions.json').read_text(encoding='utf-8').splitlines():
+        if line.strip():
+            d = json.loads(line)
+            last[(d.get('mode', 'candidates'), d['BOX_ID'])] = d['HUMAN_FINAL_CLASS']
+    cand = {b: v for (m, b), v in last.items() if m == 'candidates'}
+    qa = {b: v for (m, b), v in last.items() if m == 'qa_player'}
+    noc = {b: v for (m, b), v in last.items() if m == 'qa_nocand'}
+    ures = load(PKG / 'u_resolution_queue.json', {})
+    mrq = load(PKG / 'missed_role_queue.json', {})
+    comp = load(PKG / 'REVIEW_COMPLETION.json', {})
+
+    cand_ids = {r['BOX_ID'] for r in ledger if r['REVIEW_STATUS'] == 'PENDING'}
+    u_ids = [b for b, v in cand.items() if v == 'uncertain']
+    u_rows = ures.get('rows', [])
+    u_done = [r for r in u_rows if r.get('U_RESOLUTION_CATEGORY')]
+    mr_rows = mrq.get('rows', [])
+    mr_done = [r for r in mr_rows if r.get('HUMAN_ANSWER')]
+
+    qa_missed = sum(1 for v in qa.values() if v in ('goalkeeper', 'referee'))
+    qa_rate = qa_missed / len(qa) if qa else None
+    noc_bad_imgs = {by_id[b]['IMAGE'] for b, v in noc.items()
+                    if v in ('goalkeeper', 'referee')}
+
+    cats = Counter(r.get('U_RESOLUTION_CATEGORY') for r in u_done)
+    unresolved_targets = [r for r in u_done
+                          if r.get('U_RESOLUTION_CATEGORY') in
+                          ('AMBIGUOUS_TARGET', 'OCCLUDED_UNCLEAR')
+                          and not r.get('FINAL_CLASS')
+                          and r.get('FINAL_ACTION') != 'EXCLUDE_IMAGE']
+
+    ball = load(SRC / 'manifests' / 'ball_instances.json', [])
+    w = [b['w'] for b in ball]
+    ball_now = {'instances': len(ball),
+                'le5': sum(1 for x in w if x <= 5),
+                'le8': sum(1 for x in w if x <= 8),
+                'le12': sum(1 for x in w if x <= 12)}
+    ball_ok = (ball_now == {'instances': 1263, 'le5': 90, 'le8': 474, 'le12': 969})
+
+    run_audit = load(PKG / 'RUN_AUDIT.json', {})
+
+    G = [
+        ('A original candidate review complete',
+         len({b for b in cand if b in cand_ids}) == len(cand_ids),
+         f'{len({b for b in cand if b in cand_ids})}/{len(cand_ids)}'),
+        ('B qa_player complete', len(qa) >= 250, f'{len(qa)}/250'),
+        ('C qa_nocand complete',
+         len({by_id[b]["IMAGE"] for b in noc}) >= 57,
+         f'{len({by_id[b]["IMAGE"] for b in noc})}/57 images'),
+        ('D all original U categorized', len(u_done) >= len(u_ids),
+         f'{len(u_done)}/{len(u_ids)}'),
+        ('E all resolvable U resolved', len(u_done) >= len(u_ids)
+         and not unresolved_targets,
+         (f'{len(u_done)}/{len(u_ids)} categorized; '
+          f'{len(unresolved_targets)} real targets left unresolved and not excluded')),
+        ('F MISSED_ROLE_REVIEW complete', len(mr_done) >= len(mr_rows) and mr_rows,
+         f'{len(mr_done)}/{len(mr_rows)}'),
+        ('G no systematic unresolved GK/ref misses',
+         bool(mr_rows) and len(mr_done) >= len(mr_rows) and not noc_bad_imgs,
+         (f'qa_player missed-role {qa_rate:.2%}; '
+          f'{len(noc_bad_imgs)} no-candidate images held an official; '
+          f'retrospective queue {len(mr_done)}/{len(mr_rows)} reviewed')),
+        ('H non-target humans handled consistently',
+         cats.get('NON_TARGET_HUMAN', 0) == 0
+         or all(r.get('FINAL_ACTION') for r in u_done
+                if r.get('U_RESOLUTION_CATEGORY') == 'NON_TARGET_HUMAN'),
+         f'{cats.get("NON_TARGET_HUMAN", 0)} categorized'),
+        ('I false-positive annotations handled',
+         all(r.get('FINAL_ACTION') for r in u_done
+             if r.get('U_RESOLUTION_CATEGORY') == 'FALSE_POSITIVE'),
+         f'{cats.get("FALSE_POSITIVE", 0)} categorized'),
+        ('J ball-as-human errors handled',
+         all(r.get('FINAL_ACTION') for r in u_done
+             if r.get('U_RESOLUTION_CATEGORY') == 'BALL_WRONG_HUMAN_BOX'),
+         f'{cats.get("BALL_WRONG_HUMAN_BOX", 0)} categorized'),
+        ('K bad geometry quantified with a documented policy',
+         bool(cats.get('PARTIAL_BODY_BAD_BOX', 0) == 0
+              or all(r.get('FINAL_ACTION') for r in u_done
+                     if r.get('U_RESOLUTION_CATEGORY') == 'PARTIAL_BODY_BAD_BOX')),
+         f'{cats.get("PARTIAL_BODY_BAD_BOX", 0)} categorized'),
+        ('L unresolved real targets resolved or their images excluded',
+         not unresolved_targets, f'{len(unresolved_targets)} outstanding'),
+        ('M ball GT preservation verified', ball_ok, str(ball_now)),
+        ('N run-level domain decision recorded',
+         bool(run_audit.get('runs')) and all(
+             'recommendation' in v for v in run_audit.get('runs', {}).values()),
+         'recommendations present' if run_audit.get('runs') else 'RUN_AUDIT missing'),
+        ('O original dataset immutable', True,
+         'verified by test_original_export_is_immutable_and_hashed'),
+        ('P no TEST performance accessed', True, 'no evaluation run in this task'),
+    ]
+    print(f'{"SECOND-PASS GATE":<52}{"RESULT":<8}DETAIL')
+    for n, ok, d in G:
+        print(f'{n:<52}{"PASS" if ok else "FAIL":<8}{d}')
+    fails = [g for g in G if not g[1]]
+
+    rep = {
+        'gate': [{'condition': n, 'result': 'PASS' if ok else 'FAIL', 'detail': d}
+                 for n, ok, d in G],
+        'passed': not fails,
+        'blocking': [n for n, ok, _ in G if not ok],
+        'qa_player': {'sampled': len(qa), 'missed_officials': qa_missed,
+                      'missed_role_rate': qa_rate},
+        'qa_nocand_images_with_missed_official': len(noc_bad_imgs),
+        'u_boxes': len(u_ids), 'u_categorized': len(u_done),
+        'missed_role_queue': {'boxes': len(mr_rows), 'reviewed': len(mr_done)},
+        'ball_counts': ball_now, 'ball_preserved': ball_ok,
+        'apply_permitted': False,
+    }
+    (PKG / 'SECOND_PASS_GATE.json').write_text(json.dumps(rep, indent=1),
+                                               encoding='utf-8')
+    print(f'\nGATE: {"PASS" if not fails else "FAIL"}  '
+          f'({len(fails)} blocking condition(s))')
+    if apply:
+        print('\nREFUSED: --apply is not permitted while the second-pass gate fails.')
+        for n in rep['blocking']:
+            print(f'   blocked by: {n}')
+        sys.exit(1)
+    print(f'wrote SECOND_PASS_GATE.json')
+
+
+if __name__ == '__main__':
+    main()

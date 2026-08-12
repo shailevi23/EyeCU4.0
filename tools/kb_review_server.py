@@ -132,6 +132,11 @@ document.onkeydown=e=>{
  const k=e.key.toLowerCase();
  if(k==='p')decide('player'); else if(k==='g')decide('goalkeeper');
  else if(k==='r')decide('referee'); else if(k==='u')decide('uncertain');
+ // second-pass U categories; only meaningful in u_resolution mode
+ else if(mode==='u_resolution'&&['a','o','n','f','x'].includes(k)){
+   decide({a:'AMBIGUOUS_TARGET',o:'OCCLUDED_UNCLEAR',n:'NON_TARGET_HUMAN',
+           f:'FALSE_POSITIVE',x:'PARTIAL_BODY_BAD_BOX'}[k]);}
+ else if(mode==='u_resolution'&&k==='c')decide('BALL_WRONG_HUMAN_BOX');
  else if(k==='a')acceptAll();
  else if(k==='tab'){e.preventDefault();const it=items[i];sel=(sel+1)%Math.max(1,it.candidate_ids.length);draw();}
  else if(k==='n'||k===' '){e.preventDefault();i++;sel=0;load();}
@@ -171,6 +176,28 @@ def build_state():
                                             by_img[r['IMAGE']]
                                             if b['eyecu_original_class'] == 'player'])
                           for r in qn['rows'] if r['IMAGE'] in by_img]
+
+    # ---- second pass -------------------------------------------------------
+    up = PKG / 'u_resolution_queue.json'
+    if up.exists():
+        u = json.loads(up.read_text(encoding='utf-8'))
+        per = {}
+        for r in u['rows']:
+            per.setdefault(r['IMAGE'], []).append(r['BOX_ID'])
+        modes['u_resolution'] = [pack(k, v) for k, v in per.items()]
+    mp = PKG / 'missed_role_queue.json'
+    if mp.exists():
+        m = json.loads(mp.read_text(encoding='utf-8'))
+        per = {}
+        for r in m['rows']:
+            per.setdefault(r['IMAGE'], []).append(r['BOX_ID'])
+        # highest-scoring images first: the reviewer meets the likeliest
+        # missed officials while their eye for this run's kits is fresh
+        order = {}
+        for r in m['rows']:
+            order[r['IMAGE']] = max(order.get(r['IMAGE'], 0), r['score'])
+        modes['missed_role'] = [pack(k, v) for k, v in
+                                sorted(per.items(), key=lambda kv: -order[kv[0]])]
 
     dpath = PKG / 'decisions.json'
     dec = {}

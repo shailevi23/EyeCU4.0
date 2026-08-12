@@ -1,0 +1,55 @@
+{
+ "log_lines": 5095,
+ "unique_decisions": 4725,
+ "boxes_revised_by_reviewer": 115,
+ "modes": {
+  "candidates": {
+   "population": 4153,
+   "answered": 4153,
+   "complete": true,
+   "unanswered": 0,
+   "unanswered_examples": [],
+   "P_player": 1740,
+   "G_goalkeeper": 832,
+   "R_referee": 1533,
+   "U_unresolved": 48,
+   "decisions_outside_the_candidate_queue": 0
+  },
+  "qa_player": {
+   "population": 250,
+   "answered": 250,
+   "complete": true,
+   "TRUE_PLAYER": 233,
+   "MISSED_GOALKEEPER": 8,
+   "MISSED_REFEREE": 8,
+   "UNCERTAIN": 1,
+   "missed_role_rate": 0.064,
+   "note": "reported as separate GK and referee counts, never one combined error number"
+  },
+  "qa_nocand": {
+   "population_images": 57,
+   "answered_images": 57,
+   "complete": true,
+   "boxes_answered": 322,
+   "images_with_missed_goalkeeper": 8,
+   "images_with_missed_referee": 17,
+   "images_with_uncertain": 0,
+   "clean_images": 32,
+   "limitation": "this mode only covered images with ZERO original candidates. It cannot detect the failure where one candidate exists in an image while a second goalkeeper or referee remains an unqueued context box."
+  }
+ },
+ "U_boxes": {
+  "count": 48,
+  "by_run": {
+   "plain_A": 8,
+   "plain_B": 17,
+   "pp_A": 6,
+   "pp_B": 17
+  },
+  "by_original_proposal": {
+   "ambiguous": 46,
+   "referee": 2
+  },
+  "images": 42
+ }
+}
