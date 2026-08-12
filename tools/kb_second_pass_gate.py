@@ -44,6 +44,47 @@ def main():
     mrq = load(PKG / 'missed_role_queue.json', {})
     comp = load(PKG / 'REVIEW_COMPLETION.json', {})
 
+    # DEFECT FIXED HERE. This gate used to read U_RESOLUTION_CATEGORY and
+    # HUMAN_ANSWER out of the queue JSON files, but the review server only ever
+    # writes decisions.json -- it never edits a queue file. Conditions D, E and F
+    # would therefore have read 0/48 and 0/6,984 no matter how much reviewing was
+    # done, and 5-8 hours of the second pass would have registered as nothing.
+    # decisions.json is the single source of truth; the queues define the
+    # population, not the progress.
+    ures_dec = {b: v for (m, b), v in last.items() if m == 'u_resolution'}
+    mr_dec = {b: v for (m, b), v in last.items() if m == 'missed_role'}
+
+    # A U decision is either a second-pass CATEGORY or a role the reviewer could
+    # finally see. Both are legitimate answers and are recorded distinctly.
+    U_CATS = {'AMBIGUOUS_TARGET', 'OCCLUDED_UNCLEAR', 'NON_TARGET_HUMAN',
+              'BALL_WRONG_HUMAN_BOX', 'FALSE_POSITIVE', 'PARTIAL_BODY_BAD_BOX'}
+    # Documented, deterministic action per category -- policy, not a guess.
+    ACTION = {
+        'NON_TARGET_HUMAN': 'REMOVE_ANNOTATION_KEEP_IMAGE',
+        'FALSE_POSITIVE': 'REMOVE_ANNOTATION',
+        'BALL_WRONG_HUMAN_BOX': 'REMOVE_HUMAN_BOX_AND_CHECK_EXISTING_BALL_GT',
+        'PARTIAL_BODY_BAD_BOX': 'QUANTIFY_THEN_REPAIR_OR_EXCLUDE',
+        'AMBIGUOUS_TARGET': 'RESOLVE_OR_EXCLUDE_IMAGE',
+        'OCCLUDED_UNCLEAR': 'RESOLVE_OR_EXCLUDE_IMAGE',
+    }
+    for r in ures.get('rows', []):
+        v = ures_dec.get(r['BOX_ID'])
+        if not v:
+            continue
+        if v in U_CATS:
+            r['U_RESOLUTION_CATEGORY'] = v
+            r['FINAL_ACTION'] = ACTION[v]
+        elif v in ('player', 'goalkeeper', 'referee'):
+            r['U_RESOLUTION_CATEGORY'] = 'RESOLVED_ON_SECOND_LOOK'
+            r['FINAL_CLASS'] = v
+            r['FINAL_ACTION'] = 'RECLASSIFY'
+        elif v == 'uncertain':
+            r['U_RESOLUTION_CATEGORY'] = None      # still genuinely unresolved
+    for r in mrq.get('rows', []):
+        v = mr_dec.get(r['BOX_ID'])
+        if v:
+            r['HUMAN_ANSWER'] = v
+
     cand_ids = {r['BOX_ID'] for r in ledger if r['REVIEW_STATUS'] == 'PENDING'}
     u_ids = [b for b, v in cand.items() if v == 'uncertain']
     u_rows = ures.get('rows', [])
@@ -51,6 +92,8 @@ def main():
     mr_rows = mrq.get('rows', [])
     mr_done = [r for r in mr_rows if r.get('HUMAN_ANSWER')]
 
+    mr_unresolved = [b for b, v in mr_dec.items() if v == 'uncertain']
+    qa_unresolved = [b for b, v in {**qa, **noc}.items() if v == 'uncertain']
     qa_missed = sum(1 for v in qa.values() if v in ('goalkeeper', 'referee'))
     qa_rate = qa_missed / len(qa) if qa else None
     noc_bad_imgs = {by_id[b]['IMAGE'] for b, v in noc.items()
@@ -89,11 +132,19 @@ def main():
           f'{len(unresolved_targets)} real targets left unresolved and not excluded')),
         ('F MISSED_ROLE_REVIEW complete', len(mr_done) >= len(mr_rows) and mr_rows,
          f'{len(mr_done)}/{len(mr_rows)}'),
+        # The word that matters is UNRESOLVED. Requiring that no no-candidate
+        # image ever held an official demands a historical fact be false: those
+        # 25 images did hold officials, a human found them, and each carries a
+        # role decision. They are resolved. What must be true is that the
+        # retrospective sweep is finished and nothing is left sitting as
+        # 'uncertain' in any second-pass mode.
         ('G no systematic unresolved GK/ref misses',
-         bool(mr_rows) and len(mr_done) >= len(mr_rows) and not noc_bad_imgs,
-         (f'qa_player missed-role {qa_rate:.2%}; '
-          f'{len(noc_bad_imgs)} no-candidate images held an official; '
-          f'retrospective queue {len(mr_done)}/{len(mr_rows)} reviewed')),
+         bool(mr_rows) and len(mr_done) >= len(mr_rows)
+         and not mr_unresolved and not qa_unresolved,
+         (f'qa_player missed-role {qa_rate:.2%} (its {qa_missed} officials carry '
+          f'decisions); {len(noc_bad_imgs)} no-candidate images held an official, '
+          f'all decided; retrospective queue {len(mr_done)}/{len(mr_rows)} '
+          f'reviewed, {len(mr_unresolved)} left uncertain')),
         ('H non-target humans handled consistently',
          cats.get('NON_TARGET_HUMAN', 0) == 0
          or all(r.get('FINAL_ACTION') for r in u_done

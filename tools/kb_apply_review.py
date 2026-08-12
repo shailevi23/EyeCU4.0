@@ -76,17 +76,34 @@ def main():
     cand_ids = {r['BOX_ID'] for r in ledger if r['REVIEW_STATUS'] == 'PENDING'}
 
     # ---- fold decisions into the ledger ------------------------------------
+    # Every mode that can carry a ROLE must reach the output. Folding only the
+    # candidates mode would silently drop the 16 officials the qa_player sample
+    # found, every official found in a no-candidate image, and the entire
+    # retrospective sweep -- the exact findings that proved the repair was
+    # incomplete. QA answers are still recorded separately for measurement.
+    ROLES = ('player', 'goalkeeper', 'referee')
+    ROLE_MODES = ('candidates', 'qa_player', 'qa_nocand', 'missed_role',
+                  'u_resolution')
     for bid, d in dec.items():
         r = by_id.get(bid)
         if not r:
             continue
         cls = d['HUMAN_FINAL_CLASS']
         mode = d.get('mode', 'candidates')
-        if mode == 'candidates':
+        if mode in ROLE_MODES and cls in ROLES:
             r['HUMAN_FINAL_CLASS'] = cls
-            r['REVIEW_STATUS'] = 'UNCERTAIN' if cls == 'uncertain' else 'REVIEWED'
-            r['REASON_OR_GROUP'] = f"run={r['run']} proposed={r['PROPOSED_CLASS']} signals={r['signals']}"
-        else:
+            r['REVIEW_STATUS'] = 'REVIEWED'
+            r['DECIDED_IN_MODE'] = mode
+            r['REASON_OR_GROUP'] = (f"run={r['run']} proposed={r['PROPOSED_CLASS']} "
+                                    f"signals={r['signals']} mode={mode}")
+        elif mode in ROLE_MODES and cls == 'uncertain':
+            r['HUMAN_FINAL_CLASS'] = None
+            r['REVIEW_STATUS'] = 'UNCERTAIN'
+            r['DECIDED_IN_MODE'] = mode
+        elif mode == 'u_resolution':
+            r['U_RESOLUTION_CATEGORY'] = cls
+            r['REVIEW_STATUS'] = 'SECOND_PASS_CATEGORY'
+        if mode in ('qa_player', 'qa_nocand'):
             r['QA_ANSWER'] = (QA_MAP if mode == 'qa_player' else NC_MAP).get(cls, cls)
             r['QA_MODE'] = mode
 

@@ -551,3 +551,104 @@ class TestKeremberkeSecondPass:
         assert u['count'] == 48 and u['answers_recorded'] == 0
         assert m['queue_boxes'] == 6984 and m['answers_recorded'] == 0
         assert all(r['U_RESOLUTION_CATEGORY'] is None for r in u['rows'])
+
+
+class TestSecondPassProgressReachesTheGate:
+    """The defect that would have silently discarded the whole second pass.
+
+    The gate read U_RESOLUTION_CATEGORY and HUMAN_ANSWER out of the queue JSON
+    files; the review server only ever appends to decisions.json and never edits
+    a queue. Conditions D, E and F therefore read 0/48 and 0/6,984 no matter how
+    much reviewing was done. Proven by simulation before the fix, and pinned here.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    def test_gate_reads_decisions_not_the_queue_files(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert "m == 'u_resolution'" in src and "m == 'missed_role'" in src
+        assert 'DEFECT FIXED HERE' in src
+
+    def test_gate_registers_simulated_second_pass_work(self, tmp_path):
+        """End to end: feed decisions the way the server writes them."""
+        import shutil
+        import subprocess
+        import sys as _s
+        if not (self.PKG / 'missed_role_queue.json').exists():
+            pytest.skip('queues absent')
+        bak = self.PKG.with_name('kr__pytest_bak')
+        if bak.exists():
+            shutil.rmtree(bak)
+        shutil.copytree(self.PKG, bak)
+        try:
+            u = load(self.PKG / 'u_resolution_queue.json')
+            m = load(self.PKG / 'missed_role_queue.json')
+            with open(self.PKG / 'decisions.json', 'a', encoding='utf-8') as f:
+                for r in u['rows']:
+                    f.write(json.dumps({'mode': 'u_resolution', 'BOX_ID': r['BOX_ID'],
+                                        'IMAGE': r['IMAGE'],
+                                        'HUMAN_FINAL_CLASS': 'FALSE_POSITIVE',
+                                        'author': 'human reviewer'}) + '\n')
+                for r in m['rows'][:50]:
+                    f.write(json.dumps({'mode': 'missed_role', 'BOX_ID': r['BOX_ID'],
+                                        'IMAGE': r['IMAGE'],
+                                        'HUMAN_FINAL_CLASS': 'player',
+                                        'author': 'human reviewer'}) + '\n')
+            out = subprocess.run([_s.executable, 'tools/kb_second_pass_gate.py'],
+                                 capture_output=True, text=True, encoding='utf-8',
+                                 cwd=str(REPO))
+            assert 'D all original U categorized' in out.stdout
+            dline = [l for l in out.stdout.splitlines()
+                     if l.startswith('D all original U')][0]
+            fline = [l for l in out.stdout.splitlines()
+                     if l.startswith('F MISSED_ROLE')][0]
+            assert '48/48' in dline, dline
+            assert '50/6984' in fline, fline
+        finally:
+            shutil.rmtree(self.PKG)
+            bak.rename(self.PKG)
+
+    def test_prior_decisions_survive_that_round_trip(self):
+        d = self.PKG / 'decisions.json'
+        modes = {json.loads(l).get('mode') for l in
+                 d.read_text(encoding='utf-8').splitlines() if l.strip()}
+        assert modes == {'candidates', 'qa_player', 'qa_nocand'}, modes
+
+    def test_condition_G_requires_resolution_not_absence_of_history(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert 'mr_unresolved' in src and 'qa_unresolved' in src
+        assert 'historical fact be false' in src
+
+    def test_applier_folds_every_role_bearing_mode(self):
+        """qa_player found 16 officials; they must not be dropped at write time."""
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert "ROLE_MODES = ('candidates', 'qa_player', 'qa_nocand', 'missed_role'," in src
+        assert 'silently drop the 16 officials' in src
+
+
+class TestImageCentricReviewServer:
+    def test_server_only_writes_missed_role(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "if d.get('mode') != 'missed_role':" in src
+        assert 'this server only writes missed_role' in src
+
+    def test_it_appends_and_never_rewrites(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "open(PKG / 'decisions.json', 'a'" in src
+        assert 'f.flush()' in src, 'autosave must hit disk immediately'
+
+    def test_bulk_actions_are_scoped_to_the_current_image(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        # both bulk paths iterate cur().candidates only
+        assert 'ALL CURRENT CANDIDATES = PLAYER, this image only' in src
+        assert 'accept-all after every candidate was displayed' in src
+        assert "getElementById('acc').disabled=!all" in src
+
+    def test_it_resumes_only_its_own_mode(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "if d.get('mode') == 'missed_role':" in src
+
+    def test_ordering_and_context_are_preserved(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'key=lambda k: -order[k]' in src, 'highest-score-first must survive'
+        assert "'context':" in src, 'surrounding context boxes must be shown'

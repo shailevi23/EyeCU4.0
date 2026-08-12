@@ -33,7 +33,7 @@
   {
    "condition": "G no systematic unresolved GK/ref misses",
    "result": "FAIL",
-   "detail": "qa_player missed-role 6.40%; 25 no-candidate images held an official; retrospective queue 0/6984 reviewed"
+   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 0/6984 reviewed, 0 left uncertain"
   },
   {
    "condition": "H non-target humans handled consistently",

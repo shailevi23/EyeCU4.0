@@ -41,6 +41,38 @@ Three modes in the dropdown, and they must not be mixed:
 Before starting a run, open `reference_sheets/<run>_kits.jpg`: it shows that
 run's referee, goalkeeper, team and ambiguous kits side by side.
 
+## Second pass -- the retrospective role sweep
+
+The first pass completed and did **not** close role coverage: 6.40% of sampled
+LIKELY_PLAYER boxes were officials that were never queued. Two queues resolve it.
+
+```bash
+python tools/kb_review_server.py        # mode u_resolution -- 48 boxes, ~15 min
+python tools/kb_review_server2.py       # missed_role -- 6,984 boxes, image-centric
+```
+
+`kb_review_server2.py` is built for this queue's shape: 6,984 boxes in 1,184
+images is 5.9 per image, so it shows **every candidate in an image at once**,
+colour-coded by proposed role (goalkeeper amber, referee orange), with the
+image's other human boxes drawn in grey for context.
+
+| key | action |
+|---|---|
+| click a box, or `1`-`9` | select a candidate |
+| `P` `G` `R` `U` | set that candidate's class, then jump to the next undecided one |
+| `A` | **ALL CURRENT CANDIDATES = PLAYER** — this image only |
+| `Enter` | **ACCEPT ALL PROPOSALS** — disabled until every candidate has been displayed |
+| `N` | next **unresolved** image · `B` previous |
+
+The header shows images completed / 1,184, boxes decided / 6,984, live G/R/P/U
+counts and remaining. Every decision is appended and flushed to `decisions.json`
+immediately, so a crash costs nothing and a restart resumes exactly where you
+stopped. The server writes `mode: missed_role` only and rejects anything else
+with HTTP 400, so it cannot reach or overwrite first-pass work. Highest-score
+images come first, so stopping early still takes the most probable misses.
+
+Nothing propagates between images and no identity is ever asserted.
+
 ## Then
 
 ```bash
