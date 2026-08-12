@@ -16,6 +16,7 @@ compared before and after, and a mismatch is a failure, not a warning.
 import argparse
 import hashlib
 import json
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -88,7 +89,7 @@ def main():
     # incomplete. QA answers are still recorded separately for measurement.
     ROLES = ('player', 'goalkeeper', 'referee')
     ROLE_MODES = ('candidates', 'qa_player', 'qa_nocand', 'missed_role',
-                  'u_resolution')
+                  'missed_role_manual', 'final_target', 'u_resolution')
     for bid, d in dec.items():
         r = by_id.get(bid)
         if not r:
@@ -111,15 +112,26 @@ def main():
             r['HUMAN_FINAL_CLASS'] = None
             r['REVIEW_STATUS'] = 'UNCERTAIN'
             r['DECIDED_IN_MODE'] = mode
-        elif mode == 'u_resolution':
+        elif cls in kb_decisions.U_CATEGORIES:
+            # A disposition settles a box whichever mode produced it. Matching
+            # only u_resolution left the EXCLUDE_IMAGE decision from final_target
+            # stuck at PENDING, one box short of a complete review.
             r['U_RESOLUTION_CATEGORY'] = cls
             r['REVIEW_STATUS'] = 'SECOND_PASS_CATEGORY'
+            r['DECIDED_IN_MODE'] = mode
         if mode in ('qa_player', 'qa_nocand'):
             r['QA_ANSWER'] = (QA_MAP if mode == 'qa_player' else NC_MAP).get(cls, cls)
             r['QA_MODE'] = mode
 
     reviewed = sum(1 for b in cand_ids if by_id[b]['REVIEW_STATUS'] == 'REVIEWED')
     uncertain = [b for b in cand_ids if by_id[b]['REVIEW_STATUS'] == 'UNCERTAIN']
+    # A candidate settled as a DISPOSITION -- NON_TARGET_HUMAN, FALSE_POSITIVE,
+    # BALL_WRONG_HUMAN_BOX, PARTIAL_BODY_BAD_BOX -- is reviewed; it simply has no
+    # role. Counting only REVIEWED and UNCERTAIN made 35 fully-settled boxes read
+    # as outstanding and blocked the applier on work that was done.
+    dispositioned = [b for b in cand_ids
+                     if by_id[b]['REVIEW_STATUS'] == 'SECOND_PASS_CATEGORY']
+    settled = reviewed + len(uncertain) + len(dispositioned)
     # QA completion is a PER-MODE question -- "did the human answer the QA
     # question about this box" -- and must not be read off the resolved class.
     # A qa_player box later re-answered in missed_role still HAS its QA answer;
@@ -141,8 +153,10 @@ def main():
     # ---- acceptance gate ----------------------------------------------------
     gate = [
         ('A all candidate boxes reviewed',
-         reviewed + len(uncertain) == len(cand_ids),
-         f'{reviewed + len(uncertain)}/{len(cand_ids)}'),
+         settled == len(cand_ids),
+         f'{settled}/{len(cand_ids)} '
+         f'({reviewed} role, {len(dispositioned)} disposition, '
+         f'{len(uncertain)} uncertain)'),
         ('B all uncertain resolved or explicitly excluded',
          len(uncertain) == 0,
          f'{len(uncertain)} still uncertain'),
@@ -234,6 +248,21 @@ def main():
         print('\nREFUSED: the acceptance gate has not passed. Nothing written.')
         for n, o, d in blocking:
             print(f'   blocked by: {n} -- {d}')
+        sys.exit(1)
+
+    # This file carries the FIRST-pass gate. The authoritative one for the repair
+    # is the second pass, and two gates that can disagree is how something gets
+    # written while a condition is still failing -- a sandbox run wrote with the
+    # second-pass gate reporting FAIL. --apply now obeys both.
+    second = subprocess.run([sys.executable, str(REPO / 'tools' /
+                                                 'kb_second_pass_gate.py')],
+                            capture_output=True, text=True, encoding='utf-8',
+                            cwd=str(REPO))
+    sp = json.loads((PKG / 'SECOND_PASS_GATE.json').read_text(encoding='utf-8'))
+    if not sp.get('passed'):
+        print('\nREFUSED: the SECOND-PASS gate has not passed. Nothing written.')
+        for n in sp.get('blocking', []):
+            print(f'   blocked by: {n}')
         sys.exit(1)
 
     # ---- apply: class ids only ---------------------------------------------

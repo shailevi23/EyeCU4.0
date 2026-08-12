@@ -390,8 +390,9 @@ class TestKeremberkeReviewPackage:
                 authors.add(r.get('author'))
                 modes.add(r.get('mode', 'candidates'))
         assert authors == {'human reviewer'}, authors
-        assert modes <= {'candidates', 'qa_player', 'qa_nocand',
-                         'u_resolution', 'missed_role'}, modes
+        assert modes <= {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
+                         'missed_role', 'missed_role_manual',
+                         'final_target'}, modes
 
     def test_ledger_starts_with_every_final_class_empty(self):
         p = self.PKG / 'ledger.json'
@@ -661,7 +662,9 @@ class TestSecondPassProgressReachesTheGate:
             fline = [l for l in out.stdout.splitlines()
                      if l.startswith('F MISSED_ROLE')][0]
             assert '48/48' in dline, dline
-            assert '50/6684' in fline, fline
+            # >= because the reviewer may already have real decisions on record
+            n = int(fline.split()[-1].split('/')[0])
+            assert n >= 50, fline
         finally:
             shutil.rmtree(self.PKG)
             bak.rename(self.PKG)
@@ -688,10 +691,11 @@ class TestSecondPassProgressReachesTheGate:
 
 
 class TestImageCentricReviewServer:
-    def test_server_only_writes_missed_role(self):
+    def test_server_only_writes_its_two_modes(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
-        assert "if d.get('mode') != 'missed_role':" in src
-        assert 'this server only writes missed_role' in src
+        assert "MODES = ('missed_role', 'missed_role_manual')" in src
+        assert "d.get('mode') not in MODES" in src
+        assert 'writes only missed_role and' in src
 
     def test_it_appends_and_never_rewrites(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
@@ -705,9 +709,10 @@ class TestImageCentricReviewServer:
         assert 'accept-all after every candidate was displayed' in src
         assert "getElementById('acc').disabled=!all" in src
 
-    def test_it_resumes_only_its_own_mode(self):
+    def test_it_resumes_only_its_own_modes(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
-        assert "if d.get('mode') == 'missed_role':" in src
+        assert "dec = {b: v for (m, b), v in per_mode.items() if m == 'missed_role'}" in src
+        assert "manual = {b: v for (m, b), v in per_mode.items() "                "if m == 'missed_role_manual'}" in src
 
     def test_ordering_and_context_are_preserved(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
@@ -793,14 +798,22 @@ class TestMissedRoleQueueIsDeduplicated:
             pytest.skip('queue absent')
         return load(p)
 
-    def test_no_already_settled_box_is_requeued(self, q):
+    def test_no_box_settled_ELSEWHERE_is_requeued(self, q):
+        """Boxes the reviewer answers WITHIN this pass are expected to be settled.
+
+        What must not happen is a box already answered in another mode being put
+        back in front of the reviewer -- that is the redundant work the dedup
+        removed, and re-asking a settled question invites a contradictory answer.
+        """
         import sys as _s
         _s.path.insert(0, str(REPO / 'tools'))
         import kb_decisions
-        res = kb_decisions.resolve(self.PKG / 'decisions.json')
-        settled = [r['BOX_ID'] for r in q['rows']
-                   if res.get(r['BOX_ID'], {}).get('final_class')]
-        assert settled == [], f'{len(settled)} already-answered boxes re-queued'
+        per = kb_decisions.by_mode(self.PKG / 'decisions.json')
+        elsewhere = {b for (m, b), v in per.items()
+                     if m not in ('missed_role', 'missed_role_manual')
+                     and v in ('player', 'goalkeeper', 'referee')}
+        bad = [r['BOX_ID'] for r in q['rows'] if r['BOX_ID'] in elsewhere]
+        assert bad == [], f'{len(bad)} boxes answered elsewhere were re-queued'
 
     def test_unresolved_boxes_are_kept(self, q):
         assert q['deduplication']['kept_because_still_unresolved'] >= 1
@@ -968,3 +981,71 @@ class TestFinalTargetResolution:
         assert 'EXCLUDE_IMAGE' not in kb_decisions.ROLES
         assert kb_decisions.DISPOSITION_ACTION['EXCLUDE_IMAGE'] == \
             'EXCLUDE_IMAGE_FROM_CANDIDATE_SET'
+
+
+class TestManualContextCorrections:
+    """Black context boxes are actionable in the same missed_role pass.
+
+    The retrospective ranking's recall was measured on 16 held-out positives, so
+    a real official can sit in a box the queue never scored highly. Catching that
+    during the pass is the difference between one sweep and two.
+    """
+
+    def test_context_boxes_carry_a_box_id_and_prior_state(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_review_server2')
+        st = m.build_state()
+        ctx = [b for it in st['items'][:40] for b in it['context']]
+        assert ctx, 'no context boxes surfaced'
+        for b in ctx:
+            assert b['BOX_ID'] and len(b['bbox']) == 4
+            assert 'already' in b and 'already_mode' in b
+
+    def test_manual_mode_is_separate_from_the_required_queue(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_review_server2')
+        st = m.build_state()
+        cand = {c['BOX_ID'] for it in st['items'] for c in it['candidates']}
+        ctx = {b['BOX_ID'] for it in st['items'] for b in it['context']}
+        assert not (cand & ctx), 'a box cannot be both required and optional'
+        assert st['total_boxes'] == 6684, 'manual work must not enlarge the queue'
+        assert 'manual' in st
+
+    def test_server_accepts_both_modes_and_only_role_values(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "MODES = ('missed_role', 'missed_role_manual')" in src
+        assert "d.get('mode') not in MODES" in src
+        assert 'value not in the role vocabulary' in src
+
+    def test_bulk_actions_never_touch_context_boxes(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'context boxes are never bulk-assigned' in src
+        assert "for(const c of it.candidates) if(!dec[c.BOX_ID])" in src
+
+    def test_applier_includes_manual_mode(self):
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert "'missed_role_manual'" in src
+        assert "'final_target'" in src
+
+    def test_gate_records_manual_corrections_without_requiring_them(self):
+        g = load(XS / 'keremberke_review' / 'SECOND_PASS_GATE.json')
+        assert 'manual_context_corrections' in g
+        mc = g['manual_context_corrections']
+        assert set(mc['by_class']) == {'player', 'goalkeeper', 'referee', 'uncertain'}
+        assert 'never add required workload' in mc['note']
+
+    def test_a_disposition_counts_as_settled_whatever_mode_made_it(self):
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert 'elif cls in kb_decisions.U_CATEGORIES:' in src
+        assert 'one box short of a complete review' in src
+
+    def test_apply_obeys_both_gates(self):
+        """A sandbox run wrote while the second-pass gate reported FAIL."""
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert 'kb_second_pass_gate.py' in src
+        assert 'REFUSED: the SECOND-PASS gate has not passed' in src
+        assert "if not sp.get('passed'):" in src

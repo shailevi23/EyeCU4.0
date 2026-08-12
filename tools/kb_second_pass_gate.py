@@ -89,6 +89,12 @@ def main():
     # real EyeCU target with no role, and leaving it that way leaves it labelled
     # `player` -- wrong if it is a keeper or an official. final_target settles
     # each one with a role, or with an explicit decision to drop its image.
+    # Optional corrections a reviewer made on an existing context box while
+    # working through the missed_role queue. They are NOT part of the required
+    # 6,684 -- they are extra coverage, taken only when a miss was noticed -- so
+    # they never enlarge the workload, and a box corrected here is resolved and
+    # must not be asked again.
+    manual_dec = {b: v for (m, b), v in last.items() if m == 'missed_role_manual'}
     ft_dec = {b: v for (m, b), v in last.items() if m == 'final_target'}
     excluded_images = set()
     for r in ures.get('rows', []):
@@ -207,6 +213,13 @@ def main():
         'qa_nocand_images_with_missed_official': len(noc_bad_imgs),
         'u_boxes': len(u_ids), 'u_categorized': len(u_done),
         'missed_role_queue': {'boxes': len(mr_rows), 'reviewed': len(mr_done)},
+        'manual_context_corrections': {
+            'count': len(manual_dec),
+            'by_class': {c: sum(1 for v in manual_dec.values() if v == c)
+                         for c in ('player', 'goalkeeper', 'referee', 'uncertain')},
+            'note': ('optional corrections on existing context boxes; they add '
+                     'coverage and never add required workload'),
+        },
         'ball_counts': ball_now, 'ball_preserved': ball_ok,
         'apply_permitted': False,
     }

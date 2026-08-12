@@ -37,8 +37,12 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / 'tools'))
+import kb_decisions                                              # noqa: E402
+
 PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
 IMGROOT = REPO / 'EyeCU_external_data/huggingface/keremberke_football_object_detection/extracted'
+MODES = ('missed_role', 'missed_role_manual')
 LOCK = threading.Lock()
 
 PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role review</title>
@@ -54,7 +58,8 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  #wrap{position:relative;margin:10px auto;width:fit-content}
  img{display:block;max-width:98vw;max-height:74vh}
  .bx{position:absolute;border:2px solid;box-sizing:border-box;cursor:pointer}
- .bx.ctx{border-color:var(--ctx);border-width:1px;cursor:default}
+ .bx.ctx{border-color:var(--ctx);border-width:1px}
+ .bx.selctx{box-shadow:0 0 0 2px #fff inset;border-color:#b06cff!important;border-width:2px}
  .bx.done{border-style:solid;border-width:3px}
  .bx:hover{filter:brightness(1.6)}
  .tag{position:absolute;font:11px/1.3 monospace;background:#000d;padding:1px 4px;
@@ -82,10 +87,14 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
   <span class="ref" id="cR">R 0</span> · <span class="pl" id="cP">P 0</span> ·
   <span class="un" id="cU">U 0</span></span>
  <span class="pill" id="rem"></span>
+ <span class="pill" style="border-color:#555">manual context corrections
+  <b id="mG" class="gk">G 0</b> · <b id="mR" class="ref">R 0</b> ·
+  <b id="mP" class="pl">P 0</b> · <b id="mU" class="un">U 0</b></span>
  <span id="hint"><span class="k">click</span> a box, then <span class="k">P</span>
   <span class="k">G</span> <span class="k">R</span> <span class="k">U</span> ·
   <span class="k">1-9</span> pick box · <span class="k">A</span> all=player ·
-  <span class="k">Enter</span> accept proposals · <span class="k">N</span>/<span class="k">B</span> nav</span>
+  <span class="k">Enter</span> accept proposals · <span class="k">N</span>/<span class="k">B</span> nav ·
+  <b>click any black box</b> to correct a missed role</span>
 </div>
 <div id="wrap"><img id="im"><div id="ov"></div></div>
 <div id="panel">
@@ -97,11 +106,11 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  <button class="big" id="prev">PREVIOUS <span class="k">B</span></button>
 </div>
 <script>
-let S=null,i=0,sel=null,dec={},seen={};
+let S=null,i=0,sel=null,selKind='cand',dec={},man={},seen={};
 const CLS={player:'pl',goalkeeper:'gk',referee:'ref',uncertain:'un'};
 const COLV={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a',uncertain:'#b06cff'};
 async function boot(){
- S=await (await fetch('/api/state')).json(); dec=S.decisions;
+ S=await (await fetch('/api/state')).json(); dec=S.decisions; man=S.manual;
  i=S.items.findIndex(x=>x.candidates.some(c=>!dec[c.BOX_ID])); if(i<0)i=0;
  render();
 }
@@ -112,6 +121,7 @@ function render(){
  document.getElementById('run').textContent='run '+it.run;
  const im=document.getElementById('im'); im.onload=draw; im.src='/img/'+it.IMAGE;
  sel=it.candidates.find(c=>!dec[c.BOX_ID])?.BOX_ID||it.candidates[0].BOX_ID;
+ selKind='cand';
  seen[it.IMAGE]=seen[it.IMAGE]||new Set();
  stats();
 }
@@ -120,10 +130,22 @@ function draw(){
  const sx=im.clientWidth/it.img_w, sy=im.clientHeight/it.img_h;
  ov.innerHTML='';
  it.context.forEach(b=>{
-  const e=document.createElement('div'); e.className='bx ctx';
+  // subdued until it carries a human answer, or until it is selected
+  const mine=man[b.BOX_ID], other=b.already;
+  const col=mine?COLV[mine]:(other&&other!=='player'?COLV[other]:null);
+  const e=document.createElement('div');
+  e.className='bx ctx'+(b.BOX_ID===sel&&selKind==='ctx'?' selctx':'');
   e.style.cssText=`left:${b.bbox[0]*sx}px;top:${b.bbox[1]*sy}px;
-   width:${b.bbox[2]*sx}px;height:${b.bbox[3]*sy}px`;
+   width:${b.bbox[2]*sx}px;height:${b.bbox[3]*sy}px;cursor:pointer;`+
+   (col?`border-color:${col};border-width:2px;`:'');
+  e.title='existing annotation -- click if you can see its role was missed';
+  e.onclick=()=>{sel=b.BOX_ID;selKind='ctx';draw();list();};
   ov.appendChild(e);
+  if(mine||other){
+   const t2=document.createElement('div'); t2.className='tag';
+   t2.style.cssText=`left:${b.bbox[0]*sx}px;top:${b.bbox[1]*sy}px;color:${col||'#888'}`;
+   t2.textContent=mine?('MANUAL: '+mine):(other+' ('+b.already_mode+')');
+   ov.appendChild(t2);}
  });
  it.candidates.forEach((c,n)=>{
   const d=dec[c.BOX_ID];
@@ -133,7 +155,7 @@ function draw(){
   e.style.cssText=`left:${c.bbox[0]*sx}px;top:${c.bbox[1]*sy}px;
    width:${c.bbox[2]*sx}px;height:${c.bbox[3]*sy}px;border-color:${col};
    ${c.BOX_ID===sel?'box-shadow:0 0 0 2px #fff inset;':''}`;
-  e.onclick=()=>{sel=c.BOX_ID;draw();list();};
+  e.onclick=()=>{sel=c.BOX_ID;selKind='cand';draw();list();};
   ov.appendChild(e);
   const t=document.createElement('div'); t.className='tag';
   t.style.cssText=`left:${c.bbox[0]*sx}px;top:${c.bbox[1]*sy}px;color:${col}`;
@@ -152,6 +174,17 @@ function list(){
    <span class="${CLS[d||c.proposed]}">${d?d:'?'+c.proposed}</span>
    <span style="color:#777;margin-left:auto">${c.score.toFixed(2)}</span></div>`;
  }).join('');
+ const isCtx=selKind==='ctx';
+ const ctxb=isCtx?it.context.find(b=>b.BOX_ID===sel):null;
+ document.getElementById('list').innerHTML+=isCtx
+  ? `<div class="row" style="background:#241d2e;margin-top:6px">
+      <b>ctx</b><span class="un">manual correction</span>
+      <span style="color:#888;margin-left:auto">${sel}</span></div>
+     <div style="color:#8a8a8a;font-size:11px;padding:2px 0">
+      existing annotation, not part of the 6,684. P/G/R/U records it as
+      <b>missed_role_manual</b>.${ctxb&&ctxb.already?
+      ' Already '+ctxb.already+' via '+ctxb.already_mode+'.':''}</div>`
+  : '';
  const all=it.candidates.every(c=>seen[it.IMAGE]&&seen[it.IMAGE].has(c.BOX_ID));
  document.getElementById('acc').disabled=!all;
  document.getElementById('accnote').textContent=all
@@ -171,20 +204,35 @@ function stats(){
  document.getElementById('cP').textContent='P '+c.player;
  document.getElementById('cU').textContent='U '+c.uncertain;
  document.querySelector('#bar>i').style.width=(100*done/tot)+'%';
+ const mc={player:0,goalkeeper:0,referee:0,uncertain:0};
+ Object.values(man).forEach(v=>mc[v]!==undefined&&mc[v]++);
+ document.getElementById('mG').textContent='G '+mc.goalkeeper;
+ document.getElementById('mR').textContent='R '+mc.referee;
+ document.getElementById('mP').textContent='P '+mc.player;
+ document.getElementById('mU').textContent='U '+mc.uncertain;
 }
-async function post(box,cls,note){
- dec[box]=cls;
+async function post(box,cls,note,mode){
+ const m=mode||'missed_role';
+ if(m==='missed_role') dec[box]=cls; else man[box]=cls;
  await fetch('/api/decide',{method:'POST',headers:{'Content-Type':'application/json'},
-  body:JSON.stringify({mode:'missed_role',BOX_ID:box,IMAGE:cur().IMAGE,
+  body:JSON.stringify({mode:m,BOX_ID:box,IMAGE:cur().IMAGE,
    HUMAN_FINAL_CLASS:cls,note:note||'per-box click'})});
 }
 async function decide(cls){
- if(!sel)return; await post(sel,cls);
+ if(!sel)return;
+ if(selKind==='ctx'){
+  // optional correction on an existing annotation; never advances the queue
+  await post(sel,cls,'manual correction on an existing context box',
+             'missed_role_manual');
+  draw();stats();return;
+ }
+ await post(sel,cls);
  const it=cur(); const nxt=it.candidates.find(c=>!dec[c.BOX_ID]);
- if(nxt){sel=nxt.BOX_ID;draw();stats();} else {stats();draw();}
+ if(nxt){sel=nxt.BOX_ID;selKind='cand';draw();stats();} else {stats();draw();}
 }
 async function allPlayer(){
  const it=cur();
+ // candidates only -- context boxes are never bulk-assigned
  for(const c of it.candidates) if(!dec[c.BOX_ID])
    await post(c.BOX_ID,'player','ALL CURRENT CANDIDATES = PLAYER, this image only');
  draw();stats();
@@ -228,6 +276,13 @@ def build_state():
         by_img.setdefault(r['IMAGE'], []).append(r)
     mrq = json.loads((PKG / 'missed_role_queue.json').read_text(encoding='utf-8'))
 
+    # Every mode's latest word, so a context box that some other pass already
+    # settled shows its class instead of inviting the same decision twice.
+    resolved = kb_decisions.resolve(PKG / 'decisions.json')
+    per_mode = kb_decisions.by_mode(PKG / 'decisions.json')
+    dec = {b: v for (m, b), v in per_mode.items() if m == 'missed_role'}
+    manual = {b: v for (m, b), v in per_mode.items() if m == 'missed_role_manual'}
+
     per, order = {}, {}
     for row in mrq['rows']:
         per.setdefault(row['IMAGE'], []).append(row)
@@ -246,23 +301,23 @@ def build_state():
                             'proposed': z['proposed_missed_role'],
                             'score': z['score'],
                             'evidence': z['evidence']} for z in rows],
-            'context': [{'bbox': b['bbox_xywh']} for b in by_img[img]
+            # Context boxes are now CLICKABLE. The retrospective ranking is
+            # high-recall but not perfect -- its recall was measured on 16 held-out
+            # positives -- so a real official can sit in a box the queue never
+            # scored highly. Making them actionable in the same pass is the
+            # difference between catching that and needing a second full sweep.
+            # They are NOT added to the required 6,684: they are optional
+            # corrections, taken only when the reviewer notices one.
+            'context': [{'BOX_ID': b['BOX_ID'], 'bbox': b['bbox_xywh'],
+                         'already': resolved.get(b['BOX_ID'], {}).get('final_class'),
+                         'already_mode': resolved.get(b['BOX_ID'], {}).get(
+                             'decided_in_mode')}
+                        for b in by_img[img]
                         if b['BOX_ID'] not in cand_ids
                         and b['eyecu_original_class'] == 'player'],
         })
 
-    # Resume: replay the same append-only log the gate reads. Only missed_role
-    # rows are surfaced here, so a first-pass decision can never be shown or
-    # overwritten by this tool.
-    dec = {}
-    p = PKG / 'decisions.json'
-    if p.exists():
-        for line in p.read_text(encoding='utf-8').splitlines():
-            if line.strip():
-                d = json.loads(line)
-                if d.get('mode') == 'missed_role':
-                    dec[d['BOX_ID']] = d['HUMAN_FINAL_CLASS']
-    return {'items': items, 'decisions': dec,
+    return {'items': items, 'decisions': dec, 'manual': manual,
             'total_boxes': len(mrq['rows']), 'total_images': len(items)}
 
 
@@ -306,8 +361,13 @@ class H(BaseHTTPRequestHandler):
             return self._send(404, b'', 'text/plain')
         n = int(self.headers.get('Content-Length', 0))
         d = json.loads(self.rfile.read(n) or b'{}')
-        if d.get('mode') != 'missed_role':
-            return self._send(400, b'{"error":"this server only writes missed_role"}')
+        if d.get('mode') not in MODES:
+            return self._send(
+                400, b'{"error":"this server writes only missed_role and '
+                     b'missed_role_manual"}')
+        if d.get('HUMAN_FINAL_CLASS') not in ('player', 'goalkeeper', 'referee',
+                                              'uncertain'):
+            return self._send(400, b'{"error":"value not in the role vocabulary"}')
         d['recorded_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
         d['author'] = 'human reviewer'
         with LOCK:
