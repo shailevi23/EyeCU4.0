@@ -13,9 +13,10 @@ can build the general-purpose product from a standing start.
 **How to read this:** sections 1–3 are the product argument. Sections 4–9 document
 what actually exists in EyeCU today, with real numbers, and are the factual base.
 Sections 10–14 are the generalised domain model. Section 15 is the failure
-catalogue and is the single most valuable part of this document. Sections 16–26
-are forward-looking design, explicitly speculative. Section 27 is the activation
-checklist.
+catalogue and is the single most valuable part of this document. Sections 16–27
+are forward-looking design, explicitly speculative — of these, **§23 is a
+long-term direction and not part of the first release**. Section 29 is the
+activation checklist.
 
 Anything describing EyeCU's current behaviour was verified against the code and
 data on the date above. Anything describing the future product is a proposal and
@@ -1125,6 +1126,17 @@ video/temporal, identity propagation, active learning, ensembles, reviewer
 agreement metrics, comments, issue assignment, API, CI integration, dataset
 versioning, plugin architecture, any non-detection task.
 
+**Explicitly not MVP, and worth naming separately: the closed-loop retraining
+system of §23.** No retraining, no model rounds, no automatic next-round queue
+generation, no model comparison. The MVP stays:
+
+```
+analyze existing annotations -> human review/correction -> validate -> export
+```
+
+The loop is a later product phase, viable only once the annotation engine is
+stable and trusted (§23.4).
+
 ### One-paragraph statement
 
 > A local-first desktop-in-browser application where a user imports an existing
@@ -1153,9 +1165,213 @@ assignment · team accounts · cloud storage · hosted inference · public API �
 dataset validation · Git-like dataset revisions · FiftyOne integration ·
 browser-based drawing/editing at scale · segmentation and keypoints.
 
+**MUCH LATER (a distinct product phase, not a feature):** the closed-loop
+retraining system described in §23. It is deliberately listed separately because
+it is not one backlog item — it is what the product could become once the
+annotation engine is stable and trusted.
+
 ---
 
-## 23. Extraction policy
+## 23. FUTURE DIRECTION — the human-feedback learning loop
+
+**Status: speculative.** None of this exists. Nothing in this section is an MVP
+requirement, and §21 remains the definition of the first release. This is a
+long-term direction to keep in view while building the engine, so that the engine
+does not accidentally foreclose it.
+
+### 23.1 The loop
+
+Everything the MVP does is one iteration of something larger. The review engine
+produces corrected supervised data; corrected supervised data produces a better
+model; a better model produces a *different and smaller* set of questions worth
+asking a human. Run that repeatedly and the product stops being a dataset-cleaning
+tool and becomes a continuous improvement system.
+
+```mermaid
+flowchart TD
+  M[Model v_n predicts] --> S[System identifies uncertain,<br/>suspicious and missing annotations]
+  S --> H[Human reviews and corrects]
+  H --> D[Corrections become trusted<br/>supervised data]
+  D --> T[Model retrained / fine-tuned -> v_n+1]
+  T --> C[v_n+1 compared against v_n<br/>on frozen validation data]
+  C --> Q[System selects the next<br/>highest-value examples]
+  Q --> M
+  C -.->|stopping criteria met| STOP([Stop: diminishing returns])
+```
+
+The EyeCU work is one full turn of this loop executed by hand: a frozen detector
+proposed candidates, a human corrected them, the corrections would become training
+data, and a retrained detector would then propose a different candidate set. The
+product's opportunity is to make that turn cheap, repeatable and *measured*.
+
+### 23.2 What this is, and what it is not
+
+This must be stated precisely, because the informal analogy is tempting and
+technically wrong.
+
+| | Classic RLHF | This product's loop |
+| --- | --- | --- |
+| Human signal | Preferences/rankings between model outputs | Corrected annotations — direct labels |
+| What is learned | A reward or preference model | Nothing; the labels *are* the supervision |
+| Optimisation | Policy optimisation against a learned reward (PPO/DPO-family) | Ordinary supervised training on a better dataset |
+| Objective | Align generation with human preference | Reduce label error and improve detection metrics |
+| Feedback shape | Relative | Absolute and localised (this box, this class, this geometry) |
+
+**Do not call the implementation RLHF.** It is not. What is proposed is:
+
+```
+human-in-the-loop annotation
+  + active learning
+  + supervised dataset refinement
+  + iterative retraining
+```
+
+That combination is well-established and well-understood, which is a strength: it
+has no reward-model instability, no reward hacking, no preference-collection
+overhead, and every intermediate artefact is directly inspectable by a human.
+
+*"RLHF for computer vision"* may be usable as an **informal framing in
+conversation** — it communicates the shape quickly to people who know RLHF. It
+must never appear in technical documentation, an architecture description, or any
+claim about how the system works. The honest framings are:
+
+```
+Human Feedback Loop for Computer Vision
+Continuous Human-in-the-Loop Model Improvement
+```
+
+Both are accurate. Neither implies a reward model.
+
+### 23.3 Capabilities this phase would need
+
+**1. Versioned model rounds.** Each round is a first-class record: model
+`v1/v2/v3`, the exact dataset snapshot it trained on, the exact set of human
+corrections added since the previous round, the training configuration, and the
+resulting metrics. A round is reproducible or it does not count.
+
+**2. Active learning.** Prioritise examples where human review is likely to have
+the highest training value, rather than by raw model uncertainty alone. Signals
+worth considering: prediction uncertainty, disagreement between the current model
+and the previous round, disagreement between an ensemble, rarity of the class,
+proximity to a known failure mode, and density in an embedding space (to avoid
+spending review budget on near-duplicates). **The honest caveat:** the training
+value of a specific example cannot be known in advance without training on it, so
+these are heuristics and must be described as heuristics.
+
+**3. Error-mining loop.** Remember recurring failure types — "small objects near
+the frame edge", "class X confused with class Y under motion blur" — and search
+the dataset for more instances of the same shape. EyeCU's precedent: the missed
+officials clustered by broadcast run and kit colour, and the retrospective queue
+was built from exactly that observed structure, scoring 6,684 boxes with
+human-readable evidence per box. Failure types should become durable, named,
+searchable project objects.
+
+**4. Model comparison.** Compare the new model against the previous one on
+**frozen** validation data, per class and per domain slice, and surface
+regressions as prominently as improvements. A round that raises mAP overall while
+destroying the rarest class is a bad round, and an aggregate number will hide it.
+This is the same discipline EyeCU applies by holding TEST in reserve.
+
+**5. Human feedback value.** Quantify which reviewed examples actually mattered.
+**This is where the strongest temptation to overclaim lives.** Correlational
+attribution — "these 200 corrections were followed by +3 mAP" — is not causal.
+Establishing causal impact requires an actual experiment: ablation rounds,
+held-out correction subsets, matched controls, and repeated seeds, because
+run-to-run training variance can easily exceed the effect being measured. Report
+correlation as correlation. Only claim causation when an experiment supports it,
+and say which experiment.
+
+**6. Automatic next-round generation.** After retraining, generate a new review
+queue from the updated model, prioritising newly uncertain or newly disagreeing
+cases rather than re-reviewing the dataset. Two invariants carried directly from
+§15.5 and §12: already-settled items are not re-queued, and a human answer is
+never invalidated merely because a new model disagrees with it — model
+disagreement raises a *question*, and the question is resolved by a human.
+
+**7. Dataset and model lineage.** Every model points to the exact export, gate
+result and decision history that produced it; every export points to the decision
+events it folded. The chain must be walkable in both directions, so that
+"why does this model behave this way" is answerable down to an individual human
+click. EyeCU already has the raw material: an append-only decision log with
+timestamps, modes and provenance, plus source hashes in the manifest.
+
+**8. Stopping criteria.** The loop must not run forever, and "keep reviewing" is
+not a plan. Candidate criteria, to be defined measurably before the loop is built:
+
+- QA-estimated residual label error falls below a stated threshold with a stated
+  confidence interval;
+- validation improvement per round falls below the run-to-run noise floor;
+- the newly generated queue is dominated by items the human keeps confirming as
+  already correct (a rising `NO_OP_CONFIRMATION` rate, in EyeCU's taxonomy);
+- review coverage of the population reaches a target;
+- the marginal cost per corrected error exceeds its value.
+
+The rising-no-op signal is particularly attractive because the taxonomy in §7.4
+already produces it and it needs no new instrumentation.
+
+**9. Human remains the authority.** Unchanged, and *more* important under
+automation, not less. In a loop, the pressure to let a confident model auto-accept
+its own predictions is enormous — it is the obvious way to make the loop cheap.
+It is also the way the loop silently converges on the model's own biases, with
+each round laundering the previous round's errors into "ground truth". §8 applies
+at every round: a model prediction may generate, prioritise and suggest; it may
+never silently become GT. If auto-acceptance is ever offered, it must be an
+explicit, recorded, per-round decision with its own provenance marker, and the
+resulting labels must remain distinguishable from human-reviewed ones forever.
+
+**10. Optional one-click automation.** Eventually:
+
+```
+Review corrections -> Validate dataset -> Train candidate model
+                   -> Evaluate -> Generate next review queue
+```
+
+as a single action. The requirement that makes it safe rather than reckless:
+**every step stays reproducible and explicitly versioned**, and the gate (§13)
+still blocks between validate and train. One click may not mean one unrecorded
+leap; it means the same recorded steps, run without waiting for a human between
+them.
+
+### 23.4 Why this is a later phase
+
+Three reasons, in order of importance:
+
+1. **Trust must precede automation.** A loop amplifies whatever the engine does.
+   If the review engine still has a §15-class defect, the loop industrialises it.
+   EyeCU found a gate reading the wrong file, an applier ignoring modes, and an
+   undefined precedence rule — each would have been catastrophic if it had been
+   feeding a retraining pipeline instead of a single human's queue.
+2. **The measurement problem is harder than the loop.** Building the loop is
+   ordinary engineering. Knowing whether a round *helped* — separating real
+   improvement from training variance and from validation-set overfitting across
+   many rounds — is the genuinely difficult part, and it is the part that would
+   make the product credible.
+3. **Repeated evaluation erodes the validation set.** Selecting rounds against the
+   same validation data across many iterations is a slow leak: the loop optimises
+   the model against that specific split. A held-out set that is touched *once*,
+   at the end, is required — exactly the discipline EyeCU applies to TEST. Design
+   the loop with three splits from the start, not two.
+
+### 23.5 What to preserve in the MVP so this stays possible
+
+Nothing here needs building now, but a few cheap decisions keep the door open:
+
+- Decisions are events with timestamps and provenance (already the design).
+- Exports are immutable, hashed, and identified — never overwritten in place.
+- The gate result is a stored artefact attached to an export, not a transient
+  console print.
+- Queue generation is a pure function of (model output, dataset, decision history)
+  so a second round is a re-invocation, not a special case.
+- The model adapter (§19.1) returns normalised detections, so swapping in round
+  *n+1*'s model changes nothing else.
+
+Each of those is already the right design for the MVP on its own merits. That is
+the test of whether this section is affecting the plan appropriately: **if a
+proposal here would change the MVP, it is out of scope.**
+
+---
+
+## 24. Extraction policy
 
 Classification: **A** reimplement cleanly · **B** potentially portable ·
 **C** EyeCU-specific, do not port · **D** reference only.
@@ -1187,7 +1403,7 @@ as UX specifications rather than code.
 
 ---
 
-## 24. Repository blueprint (proposed, do not create)
+## 25. Repository blueprint (proposed, do not create)
 
 ```
 annotation-review-platform/
@@ -1225,7 +1441,7 @@ Two structural rules learned directly from §15:
 
 ---
 
-## 25. Extraction phases
+## 26. Extraction phases
 
 | Phase | Work |
 | --- | --- |
@@ -1254,9 +1470,9 @@ pain and no collaboration.
 
 ---
 
-## 26. Cross-cutting concerns
+## 27. Cross-cutting concerns
 
-### 26.1 Security and privacy (future work, no implementation now)
+### 27.1 Security and privacy (future work, no implementation now)
 Local datasets may contain private imagery — local-first mode must upload nothing,
 verifiably. Bind to localhost only. Arbitrary model loading is arbitrary code
 execution (`torch.load` / pickle): warn, sandbox, or require explicit
@@ -1264,7 +1480,7 @@ acknowledgement. Handle malicious archives (zip-slip, path traversal, decompress
 bombs). Strip or surface EXIF, including GPS. Do not log full filesystem paths or
 credentials. Hosted mode needs authentication and hard project isolation.
 
-### 26.2 Licensing and dependencies (must be audited before extraction)
+### 27.2 Licensing and dependencies (must be audited before extraction)
 Source-code ownership · third-party dependency licences · **model licences** ·
 **dataset licences** (keremberke and every demo dataset carry their own terms) ·
 UI libraries · annotation-drawing libraries. Do not assume EyeCU's dependency set
@@ -1273,7 +1489,7 @@ chooses its licence deliberately, informed by whether hosted/commercial use is e
 intended; MIT/Apache-2.0 (permissive) versus AGPL (protects against hosted
 free-riding) is the live axis. **No choice is made here.**
 
-### 26.3 Differentiation
+### 27.3 Differentiation
 Traditional annotation tool: *a human annotates a dataset.*
 This product: *a dataset already exists; AI plus a QA engine finds likely problems;
 a human makes high-value corrections; the system estimates remaining risk; export
@@ -1289,9 +1505,16 @@ The strongest of these is coverage estimation, because it is the only one that
 answers a question the user cannot answer for themselves. No commercial claims are
 made here; none have been tested against a market.
 
+Longer term, the closed loop of §23 is a second differentiator of a different
+kind: it moves the product from *fix this dataset once* to *keep this model
+improving from human feedback*. It is also the one most easily overclaimed, so the
+terminology discipline in §23.2 matters commercially as well as technically —
+describing supervised retraining as RLHF would be a claim the system does not
+support.
+
 ---
 
-## 27. Open questions (deliberately deferred)
+## 28. Open questions (deliberately deferred)
 
 Product name · open-source vs closed · licence · desktop app vs browser ·
 React/Svelte vs server-rendered · Python backend framework (FastAPI vs Flask vs
@@ -1301,15 +1524,23 @@ GPU support and detection · hosted inference · collaboration model · authenti
 segmentation support · plugin architecture · whether QA coverage estimation should
 be the headline feature or a supporting one.
 
+On §23 specifically, all deferred: whether the loop is a product phase or a
+separate product · whether training runs locally, remotely or not at all (the
+product may only *prepare* rounds and leave training to the user's own pipeline) ·
+which active-learning signal is worth implementing first · what the stopping
+criteria thresholds actually are · whether model comparison needs its own
+evaluation harness or should integrate with an existing one · how many held-out
+splits the loop requires (§23.4 argues three).
+
 ---
 
-## 28. WHEN WE DECIDE TO BUILD THIS
+## 29. WHEN WE DECIDE TO BUILD THIS
 
 1. **Re-read this document end to end**, especially §15.
 2. Re-read §15 again. Every entry is a bug that shipped.
 3. Freeze the EyeCU source references: record the commit SHA of the EyeCU repo
    that these notes describe, so archaeology is never repeated.
-4. Complete the licence and dependency audit (§26.2) **before** writing code.
+4. Complete the licence and dependency audit (§27.2) **before** writing code.
 5. Create the new repository. Choose and record the licence.
 6. Choose the stack. Record the decision and its reasoning in `docs/`.
 7. Write MVP acceptance criteria as executable tests **first**, from §20.
@@ -1332,6 +1563,9 @@ be the headline feature or a supporting one.
 20. Iterate on the review surface only. Resist adding features until the core loop
     is boring.
 21. Decide whether hosted deployment is justified by observed demand.
+22. Only once the engine is boring and trusted, re-read §23 and decide whether the
+    closed retraining loop is the next phase. Do not start it while any §15-class
+    defect is still plausible — a loop industrialises whatever the engine does.
 
 ---
 
@@ -1352,6 +1586,10 @@ be the headline feature or a supporting one.
 | **QA sample** | A sample drawn from what the candidate generator *rejected*, used to estimate what it missed. |
 | **Fold / resolve** | Computing current state from the full decision history. |
 | **`--apply`** | The EyeCU command that writes the corrected dataset. Refuses unless both gates pass. |
+| **Model round** | One iteration of the §23 loop: a model version plus the dataset snapshot, corrections and configuration that produced it. |
+| **Active learning** | Choosing which unlabelled or unreviewed examples to put in front of a human, to maximise training value per unit of human effort. |
+| **Human-feedback loop** | The §23 cycle: predict → flag → human corrects → retrain → compare → re-flag. **Not RLHF** — see §23.2. |
+| **RLHF** | Reinforcement learning from human feedback: preference data trains a reward model which then guides policy optimisation. Structurally different from this product's loop. Use only as an informal analogy, never as a technical description. |
 
 ## Appendix B — facts worth quoting, with provenance
 
