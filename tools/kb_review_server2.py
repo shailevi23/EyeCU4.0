@@ -76,7 +76,11 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  .gk{color:var(--gk)}.ref{color:var(--ref)}.pl{color:var(--pl)}.un{color:var(--un)}
  #wrap{position:relative;margin:10px auto;width:fit-content}
  img{display:block;max-width:98vw;max-height:74vh}
- .bx{position:absolute;border:2px solid;box-sizing:border-box;cursor:pointer}
+ /* pointer-events:none so a click reaches the overlay and is resolved by
+    GEOMETRY, not by which element happens to be painted last. A small box
+    inside a large one is otherwise unreachable. */
+ .bx{position:absolute;border:2px solid;box-sizing:border-box;pointer-events:none}
+ #ov{position:absolute;inset:0;cursor:crosshair}
  .bx.ctx{border-color:var(--ctx);border-width:1px}
  .bx.selctx{box-shadow:0 0 0 2px #fff inset;border-color:#b06cff!important;border-width:2px}
  .bx.done{border-style:solid;border-width:3px}
@@ -121,7 +125,9 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
   <span class="k">1-9</span> pick box · <span class="k">A</span> all=player ·
   <span class="k">Enter</span> accept proposals · <span class="k">N</span>/<span class="k">B</span> nav ·
   <span class="k">M</span> non-active human (bench/coach/staff) ·
-  <b>click any black box</b> to correct a missed role</span>
+  <b>click any black box</b> to correct a missed role ·
+  <span class="k">Tab</span> cycle overlapping boxes (or click the same spot again;
+  smallest first)</span>
 </div>
 <div id="qbanner" style="display:none;position:sticky;top:36px;z-index:10;
      background:#3a1414;border-bottom:1px solid #7a3a3a;padding:6px 12px">
@@ -133,6 +139,10 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
 </div>
 <div id="wrap"><img id="im"><div id="ov"></div></div>
 <div id="panel">
+ <div id="selinfo" style="border-bottom:1px solid #222;padding-bottom:5px;
+      margin-bottom:5px"></div>
+ <div id="ovbox" style="display:none;background:#221c0c;border:1px solid #4a3c14;
+      border-radius:4px;padding:5px;margin-bottom:6px"></div>
  <div id="list"></div>
  <button class="big" id="allP">ALL CURRENT CANDIDATES = PLAYER <span class="k">A</span></button>
  <button class="big" id="acc">ACCEPT ALL PROPOSALS <span class="k">Enter</span></button>
@@ -164,6 +174,55 @@ async function boot(){
  render();
 }
 function cur(){return S.items[i];}
+// ---------------------------------------------------------------------------
+// Hit-testing. A click is resolved against box GEOMETRY, never against which
+// element sits on top: candidates were appended after context boxes, so a small
+// context box under a large candidate could not be clicked at all, and a small
+// box fully inside a larger one was unreachable whichever order they were in.
+//
+// Every box containing the point is collected, smallest area first, so the most
+// specific box is the first thing offered. Clicking again in the same place
+// walks outward through the group and wraps, which is the only way to reach a
+// large box whose interior is covered by smaller ones.
+// ---------------------------------------------------------------------------
+let ovlp=[],ovlpAt=0,ovlpX=null,ovlpY=null;
+const SAME_SPOT=6;                       // px, so a small hand tremor still cycles
+function area(b){return Math.max(b[2],0)*Math.max(b[3],0);}
+function boxesAt(x,y){
+ const it=cur(),out=[];
+ const inside=b=>x>=b[0]&&x<=b[0]+b[2]&&y>=b[1]&&y<=b[1]+b[3];
+ it.candidates.forEach(c=>{if(inside(c.bbox))
+   out.push({BOX_ID:c.BOX_ID,kind:'cand',a:area(c.bbox)});});
+ it.context.forEach(b=>{if(inside(b.bbox))
+   out.push({BOX_ID:b.BOX_ID,kind:'ctx',a:area(b.bbox)});});
+ // smallest first, then a stable tie-break so the cycle order never wobbles
+ out.sort((p,q)=>p.a-q.a||(p.BOX_ID<q.BOX_ID?-1:1));
+ return out;
+}
+function sameGroup(g){
+ return g.length===ovlp.length&&g.every((b,n)=>b.BOX_ID===ovlp[n].BOX_ID);
+}
+function pick(n){
+ if(!ovlp.length)return;
+ ovlpAt=((n%ovlp.length)+ovlp.length)%ovlp.length;
+ sel=ovlp[ovlpAt].BOX_ID; selKind=ovlp[ovlpAt].kind;
+ draw();
+}
+function cycle(step){if(ovlp.length>1)pick(ovlpAt+step);}
+function hit(ev){
+ if(qMode)return;                        // flagging a missing target selects nothing
+ const it=cur(),im=document.getElementById('im');
+ const r=im.getBoundingClientRect();
+ const x=(ev.clientX-r.left)*it.img_w/im.clientWidth;
+ const y=(ev.clientY-r.top)*it.img_h/im.clientHeight;
+ const g=boxesAt(x,y);
+ if(!g.length){ovlp=[];ovlpAt=0;ovlpX=ovlpY=null;draw();return;}
+ const near=ovlpX!==null&&Math.abs(ev.clientX-ovlpX)<=SAME_SPOT
+                        &&Math.abs(ev.clientY-ovlpY)<=SAME_SPOT;
+ const advance=near&&sameGroup(g);
+ ovlp=g; ovlpX=ev.clientX; ovlpY=ev.clientY;
+ pick(advance?ovlpAt+1:0);               // same spot walks outward, else smallest
+}
 function render(){
  const it=cur(); if(!it)return;
  document.getElementById('pos').textContent=`image ${i+1}/${S.items.length}`;
@@ -171,6 +230,7 @@ function render(){
  const im=document.getElementById('im'); im.onload=draw; im.src='/img/'+it.IMAGE;
  sel=it.candidates.find(c=>!dec[c.BOX_ID])?.BOX_ID||it.candidates[0].BOX_ID;
  selKind='cand';
+ ovlp=[];ovlpAt=0;ovlpX=ovlpY=null;      // a new image starts a new overlap group
  seen[it.IMAGE]=seen[it.IMAGE]||new Set();
  stats();
 }
@@ -188,7 +248,6 @@ function draw(){
    width:${b.bbox[2]*sx}px;height:${b.bbox[3]*sy}px;cursor:pointer;`+
    (col?`border-color:${col};border-width:2px;`:'');
   e.title='existing annotation -- click if you can see its role was missed';
-  e.onclick=()=>{sel=b.BOX_ID;selKind='ctx';draw();list();};
   ov.appendChild(e);
   if(mine||other){
    const t2=document.createElement('div'); t2.className='tag';
@@ -204,7 +263,6 @@ function draw(){
   e.style.cssText=`left:${c.bbox[0]*sx}px;top:${c.bbox[1]*sy}px;
    width:${c.bbox[2]*sx}px;height:${c.bbox[3]*sy}px;border-color:${col};
    ${c.BOX_ID===sel?'box-shadow:0 0 0 2px #fff inset;':''}`;
-  e.onclick=()=>{sel=c.BOX_ID;selKind='cand';draw();list();};
   ov.appendChild(e);
   const t=document.createElement('div'); t.className='tag';
   t.style.cssText=`left:${c.bbox[0]*sx}px;top:${c.bbox[1]*sy}px;color:${col}`;
@@ -216,6 +274,25 @@ function draw(){
 }
 function list(){
  const it=cur();
+ // What is selected right now, and whether anything else sits under the click.
+ const curRole=dec[sel]||man[sel]||
+   (it.context.find(b=>b.BOX_ID===sel)||{}).already||null;
+ document.getElementById('selinfo').innerHTML=
+  `<div style="font:11px monospace;color:#bbb">${sel||'-'}
+    <span style="color:#777">${selKind==='ctx'?'context box':'candidate'}</span></div>`
+  +`<div style="font-size:11px;color:#8a8a8a">current: <b>${curRole||'no answer yet'}</b></div>`;
+ const ob=document.getElementById('ovbox');
+ if(ovlp.length>1){
+  ob.style.display='block';
+  ob.innerHTML=`<b style="color:#ffc400">OVERLAPPING BOXES
+    ${ovlpAt+1}/${ovlp.length}</b>
+   <div style="font-size:11px;color:#8a8a8a;margin:2px 0">smallest first; click the
+    same spot again, or use <span class="k">Tab</span> /
+    <span class="k">Shift+Tab</span>, to reach the ones underneath</div>`;
+  const mk=(lab,step)=>{const b=document.createElement('button');
+    b.textContent=lab;b.onclick=()=>cycle(step);return b;};
+  ob.appendChild(mk('< prev',-1)); ob.appendChild(mk('next >',1));
+ } else ob.style.display='none';
  document.getElementById('list').innerHTML=it.candidates.map((c,n)=>{
   const d=dec[c.BOX_ID];
   return `<div class="row" style="${c.BOX_ID===sel?'background:#1d1d1d':''}">
@@ -379,6 +456,7 @@ document.getElementById('allP').onclick=allPlayer;
 document.getElementById('acc').onclick=acceptAll;
 document.getElementById('flagQ').onclick=()=>{qMode=true;
  document.getElementById('qbanner').style.display='block';};
+document.getElementById('ov').onclick=hit;
 document.getElementById('nonact').onclick=()=>decide(NONACT);
 // Revisit boxes parked on U. Some are only U because M was advertised while its
 // key was dead. Jumping to one changes nothing until the reviewer answers.
@@ -401,6 +479,11 @@ document.onkeydown=e=>{
  const k=e.key.toLowerCase();
  if(e.key==='Escape'){qMode=false;
    document.getElementById('qbanner').style.display='none';return;}
+ // Tab walks the overlap group without moving the mouse. preventDefault stops
+ // the browser moving focus to a button, which would make the next P/G/R land
+ // somewhere unexpected.
+ if(e.key==='Tab'&&ovlp.length>1){e.preventDefault();
+   cycle(e.shiftKey?-1:1);return;}
  if(k==='q'&&!qMode){e.preventDefault();qMode=true;
    document.getElementById('qbanner').style.display='block';return;}
  if(k==='p')decide('player'); else if(k==='g')decide('goalkeeper');
@@ -413,7 +496,8 @@ document.onkeydown=e=>{
  else if(k==='m'){e.preventDefault();decide(NONACT);}
  else if(k==='b'){i=Math.max(0,i-1);render();}
  else if(/^[1-9]$/.test(k)){const it=cur();const c=it.candidates[+k-1];
-   if(c){sel=c.BOX_ID;draw();}}
+   // picking by number is an explicit choice, so it ends any overlap cycle
+   if(c){sel=c.BOX_ID;selKind='cand';ovlp=[];ovlpAt=0;ovlpX=ovlpY=null;draw();}}
 };
 boot();
 </script></body></html>"""

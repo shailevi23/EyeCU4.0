@@ -1399,6 +1399,117 @@ class TestKeyboardShortcutsActuallyFire:
         assert k['b = previous'].startswith('i=')
 
 
+class TestOverlappingBoxHitTesting:
+    """A small box inside a large one has to be reachable.
+
+    Boxes were absolutely-positioned divs each carrying its own onclick, so the
+    click went to whichever element the browser painted last -- candidates were
+    appended after context boxes, and within each group the order came from the
+    ledger. A small context box under a large candidate could not be selected at
+    all, and the reviewer could not mark the person inside it.
+
+    Selection is now resolved from box geometry: every box containing the point,
+    smallest area first, cycling outward on repeated clicks in the same spot.
+    The fixture is synthetic geometry driven through the real served script, so
+    no real decision is touched.
+    """
+
+    HARNESS = REPO / 'tests' / 'js' / 'overlap_hit_test.js'
+
+    @pytest.fixture(scope='class')
+    def r(self, tmp_path_factory):
+        node = shutil.which('node')
+        if not node:
+            pytest.skip('node not installed')
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        srv = importlib.import_module('kb_review_server2')
+        d = tmp_path_factory.mktemp('overlap')
+        (d / 'page.html').write_text(srv.PAGE, encoding='utf-8')
+        (d / 'state.json').write_text(json.dumps(srv.build_state()),
+                                      encoding='utf-8')
+        out = subprocess.run([node, str(self.HARNESS), str(d / 'page.html'),
+                              str(d / 'state.json')], capture_output=True,
+                             text=True)
+        assert out.returncode == 0, out.stderr[:2000]
+        return json.loads(out.stdout)
+
+    def test_selection_is_not_decided_by_dom_order(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'pointer-events:none' in src, 'boxes must not swallow the click'
+        assert "getElementById('ov').onclick=hit" in src
+        assert 'e.onclick=()=>{sel=b.BOX_ID' not in src, 'per-box onclick is back'
+        assert 'e.onclick=()=>{sel=c.BOX_ID' not in src, 'per-box onclick is back'
+
+    def test_every_containing_box_is_collected_smallest_first(self, r):
+        assert r['group'] == ['fx:ctx_small', 'fx:ctx_done',
+                              'fx:cand_big', 'fx:ctx_huge']
+
+    def test_a_small_box_inside_a_large_one_is_selected_first(self, r):
+        """The reported bug, exactly: large box wholly containing a smaller one."""
+        assert r['small_inside_large']['group'] == ['fx:cand_big', 'fx:ctx_huge']
+        assert r['small_inside_large']['sequence'] == \
+            ['fx:cand_big', 'fx:ctx_huge', 'fx:cand_big']
+
+    def test_repeated_clicks_cycle_and_wrap(self, r):
+        assert r['cycle'] == ['fx:ctx_small', 'fx:ctx_done', 'fx:cand_big',
+                              'fx:ctx_huge', 'fx:ctx_small']
+
+    def test_a_single_box_selects_with_no_overlap_ui(self, r):
+        assert r['single']['sel'] == 'fx:cand_far'
+        assert r['single']['group'] == ['fx:cand_far']
+        assert r['single']['panel'] == 'none'
+
+    def test_partial_overlap_works_too(self, r):
+        assert r['partial']['group'] == ['fx:cand_big', 'fx:ctx_huge']
+        assert r['partial']['sel'] == 'fx:cand_big'
+
+    def test_an_already_resolved_box_stays_reachable(self, r):
+        """fx:ctx_done carries a role already; re-selecting it is deliberate."""
+        assert 'fx:ctx_done' in r['group']
+
+    def test_tab_and_shift_tab_cycle_without_the_mouse(self, r):
+        assert r['tab'] == ['fx:ctx_small', 'fx:ctx_done', 'fx:cand_big',
+                            'fx:ctx_done']
+
+    def test_m_applies_to_the_selected_box_only(self, r):
+        p = r['m_post']
+        assert p['BOX_ID'] == 'fx:ctx_small'
+        assert p['mode'] == 'missed_role_manual'
+        assert p['HUMAN_FINAL_CLASS'] == 'NON_TARGET_HUMAN'
+        assert r['post_boxes'] == ['fx:ctx_small'], \
+            'no other box may be written by any of these clicks'
+
+    def test_roles_behave_the_same_way(self, r):
+        for v, got in r['roles'].items():
+            assert got['box'] == 'fx:ctx_small' and got['value'] == v
+            assert got['mode'] == 'missed_role_manual'
+
+    def test_numeric_keys_still_select_candidates(self, r):
+        assert r['numeric']['sel'] == 'fx:cand_far'
+        assert r['numeric']['kind'] == 'cand'
+        assert r['numeric']['group'] == [], 'picking by number ends the cycle'
+
+    def test_flag_mode_selects_nothing(self, r):
+        assert r['qmode']['selected_changed'] is False
+        assert r['qmode']['qMode'] is True
+        assert r['qmode']['group'] == []
+
+    def test_the_panel_shows_the_overlap_position(self, r):
+        assert 'OVERLAPPING BOXES 1/4' in r['panel']['html']
+        assert r['panel']['buttons'] == 2, 'prev and next'
+        assert 'fx:ctx_small' in r['selinfo']
+
+    def test_bulk_actions_remain_candidate_only(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        block = src[src.index('async function allPlayer'):
+                    src.index('function nextUnresolved')]
+        assert 'it.context' not in block, \
+            'A and Enter must never touch context boxes'
+        assert block.count('it.candidates') == 2
+
+
 class TestRevisitingUncertainBoxes:
     """M was advertised while its key was dead, so U absorbed non-active humans.
 
