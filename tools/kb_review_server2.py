@@ -87,9 +87,11 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
   <span class="ref" id="cR">R 0</span> · <span class="pl" id="cP">P 0</span> ·
   <span class="un" id="cU">U 0</span></span>
  <span class="pill" id="rem"></span>
- <span class="pill" style="border-color:#555">manual context corrections
-  <b id="mG" class="gk">G 0</b> · <b id="mR" class="ref">R 0</b> ·
-  <b id="mP" class="pl">P 0</b> · <b id="mU" class="un">U 0</b></span>
+ <span class="pill" style="border-color:#555">manual
+  <b id="mNew" class="ref">new 0</b> · <b id="mOv" class="gk">override 0</b> ·
+  <b id="mNo" style="color:#888">no-op 0</b> · <b id="mFl" class="un">flagged 0</b>
+  <span style="color:#666">| G <b id="mG">0</b> R <b id="mR">0</b>
+   P <b id="mP">0</b> U <b id="mU">0</b></span></span>
  <span id="hint"><span class="k">click</span> a box, then <span class="k">P</span>
   <span class="k">G</span> <span class="k">R</span> <span class="k">U</span> ·
   <span class="k">1-9</span> pick box · <span class="k">A</span> all=player ·
@@ -106,11 +108,12 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  <button class="big" id="prev">PREVIOUS <span class="k">B</span></button>
 </div>
 <script>
-let S=null,i=0,sel=null,selKind='cand',dec={},man={},seen={};
+let S=null,i=0,sel=null,selKind='cand',dec={},man={},kind={},seen={};
 const CLS={player:'pl',goalkeeper:'gk',referee:'ref',uncertain:'un'};
 const COLV={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a',uncertain:'#b06cff'};
 async function boot(){
  S=await (await fetch('/api/state')).json(); dec=S.decisions; man=S.manual;
+ kind=S.manual_kind;
  i=S.items.findIndex(x=>x.candidates.some(c=>!dec[c.BOX_ID])); if(i<0)i=0;
  render();
 }
@@ -176,14 +179,23 @@ function list(){
  }).join('');
  const isCtx=selKind==='ctx';
  const ctxb=isCtx?it.context.find(b=>b.BOX_ID===sel):null;
+ const resolved=ctxb?(man[ctxb.BOX_ID]||ctxb.already):null;
+ const rmode=ctxb?(man[ctxb.BOX_ID]?'missed_role_manual':ctxb.already_mode):null;
  document.getElementById('list').innerHTML+=isCtx
   ? `<div class="row" style="background:#241d2e;margin-top:6px">
       <b>ctx</b><span class="un">manual correction</span>
-      <span style="color:#888;margin-left:auto">${sel}</span></div>
-     <div style="color:#8a8a8a;font-size:11px;padding:2px 0">
-      existing annotation, not part of the 6,684. P/G/R/U records it as
-      <b>missed_role_manual</b>.${ctxb&&ctxb.already?
-      ' Already '+ctxb.already+' via '+ctxb.already_mode+'.':''}</div>`
+      <span style="color:#888;margin-left:auto">${sel}</span></div>`
+    +(resolved?`<div style="background:#1b2a1b;border:1px solid #2f4a2f;
+       border-radius:4px;padding:5px;margin:4px 0;font-size:11px">
+       <b style="color:#8fe08f">ALREADY RESOLVED</b> &mdash;
+       <b>${resolved}</b> via <i>${rmode}</i>.<br>
+       choosing <b>${resolved}</b> again records a NO_OP_CONFIRMATION, not a new
+       missed role. A DIFFERENT class is kept as a HUMAN_OVERRIDE.
+       ${kind[ctxb.BOX_ID]?'<br>last manual click: <b>'+kind[ctxb.BOX_ID]+'</b>':''}
+      </div>`
+     :`<div style="color:#8a8a8a;font-size:11px;padding:2px 0">
+       unresolved existing annotation, not part of the 6,684. P/G/R/U records it
+       as <b>missed_role_manual</b>.</div>`)
   : '';
  const all=it.candidates.every(c=>seen[it.IMAGE]&&seen[it.IMAGE].has(c.BOX_ID));
  document.getElementById('acc').disabled=!all;
@@ -206,17 +218,28 @@ function stats(){
  document.querySelector('#bar>i').style.width=(100*done/tot)+'%';
  const mc={player:0,goalkeeper:0,referee:0,uncertain:0};
  Object.values(man).forEach(v=>mc[v]!==undefined&&mc[v]++);
- document.getElementById('mG').textContent='G '+mc.goalkeeper;
- document.getElementById('mR').textContent='R '+mc.referee;
- document.getElementById('mP').textContent='P '+mc.player;
- document.getElementById('mU').textContent='U '+mc.uncertain;
+ document.getElementById('mG').textContent=mc.goalkeeper;
+ document.getElementById('mR').textContent=mc.referee;
+ document.getElementById('mP').textContent=mc.player;
+ document.getElementById('mU').textContent=mc.uncertain;
+ const kc={NEW_MISSED_ROLE_CORRECTION:0,HUMAN_OVERRIDE:0,
+           NO_OP_CONFIRMATION:0,FLAGGED_UNCERTAIN:0};
+ Object.values(kind).forEach(v=>kc[v]!==undefined&&kc[v]++);
+ document.getElementById('mNew').textContent='new '+kc.NEW_MISSED_ROLE_CORRECTION;
+ document.getElementById('mOv').textContent='override '+kc.HUMAN_OVERRIDE;
+ document.getElementById('mNo').textContent='no-op '+kc.NO_OP_CONFIRMATION;
+ document.getElementById('mFl').textContent='flagged '+kc.FLAGGED_UNCERTAIN;
 }
 async function post(box,cls,note,mode){
  const m=mode||'missed_role';
  if(m==='missed_role') dec[box]=cls; else man[box]=cls;
- await fetch('/api/decide',{method:'POST',headers:{'Content-Type':'application/json'},
+ const rsp=await fetch('/api/decide',{method:'POST',
+  headers:{'Content-Type':'application/json'},
   body:JSON.stringify({mode:m,BOX_ID:box,IMAGE:cur().IMAGE,
    HUMAN_FINAL_CLASS:cls,note:note||'per-box click'})});
+ if(m==='missed_role_manual'){
+  try{const j=await rsp.json(); if(j.manual_kind) kind[box]=j.manual_kind;}catch(e){}
+ }
 }
 async function decide(cls){
  if(!sel)return;
@@ -282,6 +305,8 @@ def build_state():
     per_mode = kb_decisions.by_mode(PKG / 'decisions.json')
     dec = {b: v for (m, b), v in per_mode.items() if m == 'missed_role'}
     manual = {b: v for (m, b), v in per_mode.items() if m == 'missed_role_manual'}
+    manual_kind = {b: r['kind'] for b, r in
+                   kb_decisions.classify_manual(PKG / 'decisions.json').items()}
 
     per, order = {}, {}
     for row in mrq['rows']:
@@ -318,6 +343,7 @@ def build_state():
         })
 
     return {'items': items, 'decisions': dec, 'manual': manual,
+            'manual_kind': manual_kind,
             'total_boxes': len(mrq['rows']), 'total_images': len(items)}
 
 
@@ -370,11 +396,36 @@ class H(BaseHTTPRequestHandler):
             return self._send(400, b'{"error":"value not in the role vocabulary"}')
         d['recorded_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
         d['author'] = 'human reviewer'
+        if d['mode'] == 'missed_role_manual':
+            # What this click actually did, computed from the log rather than
+            # trusted from the page. Re-confirming a role a box already carries
+            # is a NO_OP_CONFIRMATION, not a newly found official, and must not
+            # inflate the number this pass exists to produce.
+            prior = kb_decisions.resolve(PKG / 'decisions.json').get(d['BOX_ID'])
+            pv = prior['final_class'] if prior else None
+            pm = prior['decided_in_mode'] if prior else None
+            val = d['HUMAN_FINAL_CLASS']
+            if val == 'uncertain':
+                kind = kb_decisions.FLAGGED
+            elif pv is not None and val == pv:
+                kind = kb_decisions.NO_OP
+            elif pv in (None, 'player') and val in ('goalkeeper', 'referee'):
+                kind = kb_decisions.NEW_CORRECTION
+            elif pv in (None, 'player') and val == 'player':
+                kind = kb_decisions.NO_OP
+            elif pv in kb_decisions.ROLES:
+                kind = kb_decisions.OVERRIDE
+            else:
+                kind = kb_decisions.NO_OP
+            d['manual_kind'] = kind
+            d['prior_class'] = pv
+            d['prior_mode'] = pm
         with LOCK:
             with open(PKG / 'decisions.json', 'a', encoding='utf-8') as f:
                 f.write(json.dumps(d) + '\n')
                 f.flush()
-        return self._send(200, b'{"ok":true}')
+        return self._send(200, json.dumps(
+            {'ok': True, 'manual_kind': d.get('manual_kind')}).encode())
 
 
 def main():

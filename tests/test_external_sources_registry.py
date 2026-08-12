@@ -675,8 +675,9 @@ class TestSecondPassProgressReachesTheGate:
         modes = {json.loads(l).get('mode') for l in
                  d.read_text(encoding='utf-8').splitlines() if l.strip()}
         assert {'candidates', 'qa_player', 'qa_nocand'} <= modes, modes
-        assert modes <= {'candidates', 'qa_player', 'qa_nocand',
-                         'u_resolution', 'missed_role', 'final_target'}, modes
+        assert modes <= {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
+                         'missed_role', 'missed_role_manual',
+                         'final_target'}, modes
 
     def test_condition_G_requires_resolution_not_absence_of_history(self):
         src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
@@ -1049,3 +1050,98 @@ class TestManualContextCorrections:
         assert 'kb_second_pass_gate.py' in src
         assert 'REFUSED: the SECOND-PASS gate has not passed' in src
         assert "if not sp.get('passed'):" in src
+
+
+class TestManualCorrectionClassification:
+    """A click that agrees with an existing role is not a discovery.
+
+    Counting one would inflate the single number this pass exists to produce --
+    how many officials the retrospective sweep missed -- with re-confirmations of
+    officials that were already found.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def kb(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        return kb_decisions
+
+    def _classify(self, kb, tmp, rows):
+        p = tmp / 'd.json'
+        p.write_text('\n'.join(json.dumps(r) for r in rows), encoding='utf-8')
+        return kb.classify_manual(p)
+
+    def test_same_class_reconfirmation_is_a_no_op(self, kb, tmp_path):
+        r = self._classify(kb, tmp_path, [
+            {'mode': 'candidates', 'BOX_ID': 'x:1', 'HUMAN_FINAL_CLASS': 'referee',
+             'recorded_utc': '2026-08-12T09:00:00Z'},
+            {'mode': 'missed_role_manual', 'BOX_ID': 'x:1',
+             'HUMAN_FINAL_CLASS': 'referee', 'recorded_utc': '2026-08-12T10:00:00Z'}])
+        assert r['x:1']['kind'] == kb.NO_OP
+        assert r['x:1']['prior_class'] == 'referee'
+        assert r['x:1']['prior_mode'] == 'candidates'
+
+    def test_unresolved_to_official_is_a_real_discovery(self, kb, tmp_path):
+        for prior in (None, 'player'):
+            rows = []
+            if prior:
+                rows.append({'mode': 'candidates', 'BOX_ID': 'x:2',
+                             'HUMAN_FINAL_CLASS': prior,
+                             'recorded_utc': '2026-08-12T09:00:00Z'})
+            rows.append({'mode': 'missed_role_manual', 'BOX_ID': 'x:2',
+                         'HUMAN_FINAL_CLASS': 'goalkeeper',
+                         'recorded_utc': '2026-08-12T10:00:00Z'})
+            r = self._classify(kb, tmp_path, rows)
+            assert r['x:2']['kind'] == kb.NEW_CORRECTION, prior
+
+    def test_changing_one_official_to_another_is_an_override(self, kb, tmp_path):
+        r = self._classify(kb, tmp_path, [
+            {'mode': 'candidates', 'BOX_ID': 'x:3', 'HUMAN_FINAL_CLASS': 'referee',
+             'recorded_utc': '2026-08-12T09:00:00Z'},
+            {'mode': 'missed_role_manual', 'BOX_ID': 'x:3',
+             'HUMAN_FINAL_CLASS': 'goalkeeper',
+             'recorded_utc': '2026-08-12T10:00:00Z'}])
+        assert r['x:3']['kind'] == kb.OVERRIDE, 'an intentional change must be kept'
+
+    def test_confirming_a_player_is_not_a_discovery(self, kb, tmp_path):
+        r = self._classify(kb, tmp_path, [
+            {'mode': 'missed_role_manual', 'BOX_ID': 'x:4',
+             'HUMAN_FINAL_CLASS': 'player', 'recorded_utc': '2026-08-12T10:00:00Z'}])
+        assert r['x:4']['kind'] == kb.NO_OP
+
+    def test_uncertain_is_neither_find_nor_no_op(self, kb, tmp_path):
+        r = self._classify(kb, tmp_path, [
+            {'mode': 'missed_role_manual', 'BOX_ID': 'x:5',
+             'HUMAN_FINAL_CLASS': 'uncertain',
+             'recorded_utc': '2026-08-12T10:00:00Z'}])
+        assert r['x:5']['kind'] == kb.FLAGGED
+
+    def test_the_existing_three_are_all_no_ops(self, kb):
+        r = kb.classify_manual(self.PKG / 'decisions.json')
+        assert len(r) == 3
+        assert {v['kind'] for v in r.values()} == {kb.NO_OP}
+        for v in r.values():
+            assert v['manual_class'] == v['prior_class'], 'same class = no-op'
+
+    def test_gate_reports_true_discoveries_separately(self):
+        g = load(self.PKG / 'SECOND_PASS_GATE.json')
+        m = g['manual_context_corrections']
+        assert 'by_kind' in m and 'true_missed_role_discoveries' in m
+        assert m['true_missed_role_discoveries'] == \
+            m['by_kind'].get('NEW_MISSED_ROLE_CORRECTION', 0)
+        assert 'must not inflate that number' in m['note']
+
+    def test_server_stamps_the_kind_at_write_time(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "d['manual_kind'] = kind" in src
+        assert "d['prior_class'] = pv" in src
+        assert 'trusted from the page' in src
+
+    def test_ui_says_already_resolved(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert 'ALREADY RESOLVED' in src
+        assert 'NO_OP_CONFIRMATION, not a new' in src
+        assert 'HUMAN_OVERRIDE' in src

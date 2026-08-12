@@ -28,12 +28,12 @@
   {
    "condition": "F MISSED_ROLE_REVIEW complete",
    "result": "FAIL",
-   "detail": "2/6684"
+   "detail": "13/6684"
   },
   {
    "condition": "G no systematic unresolved GK/ref misses",
    "result": "FAIL",
-   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 2/6684 reviewed, 0 left uncertain"
+   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 13/6684 reviewed, 0 left uncertain"
   },
   {
    "condition": "H non-target humans handled consistently",
@@ -96,17 +96,21 @@
  "u_categorized": 48,
  "missed_role_queue": {
   "boxes": 6684,
-  "reviewed": 2
+  "reviewed": 13
  },
  "manual_context_corrections": {
-  "count": 0,
+  "count": 3,
   "by_class": {
    "player": 0,
-   "goalkeeper": 0,
-   "referee": 0,
+   "goalkeeper": 1,
+   "referee": 2,
    "uncertain": 0
   },
-  "note": "optional corrections on existing context boxes; they add coverage and never add required workload"
+  "by_kind": {
+   "NO_OP_CONFIRMATION": 3
+  },
+  "true_missed_role_discoveries": 0,
+  "note": "optional corrections on existing context boxes; they add coverage and never add required workload. Only NEW_MISSED_ROLE_CORRECTION counts as an official the retrospective sweep missed -- re-confirming a box that already carried the same role is a NO_OP_CONFIRMATION and must not inflate that number."
  },
  "ball_counts": {
   "instances": 1263,

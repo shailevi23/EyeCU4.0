@@ -120,6 +120,64 @@ def by_mode(path: Path):
     return {k: sorted(v, key=_key)[-1]['HUMAN_FINAL_CLASS'] for k, v in per.items()}
 
 
+MANUAL_MODE = 'missed_role_manual'
+NEW_CORRECTION = 'NEW_MISSED_ROLE_CORRECTION'
+OVERRIDE = 'HUMAN_OVERRIDE'
+NO_OP = 'NO_OP_CONFIRMATION'
+FLAGGED = 'FLAGGED_UNCERTAIN'
+
+
+def classify_manual(path: Path):
+    """What each manual context-box click actually did.
+
+    Clicking a box that already carries the same human role is not a discovery.
+    Counting it as one would inflate the headline number this whole pass exists
+    to produce -- "how many officials did the retrospective sweep miss" -- with
+    re-confirmations of officials that were already found.
+
+    Each missed_role_manual decision is compared against the box's state as it
+    stood BEFORE that click, taken from any other mode:
+
+        NEW_MISSED_ROLE_CORRECTION  it was unresolved or plain player, and is now
+                                    goalkeeper or referee -- a real find
+        HUMAN_OVERRIDE              it already had a role and the human changed it
+                                    to a different one -- intentional, kept
+        NO_OP_CONFIRMATION          the answer matches what was already there
+        FLAGGED_UNCERTAIN           marked uncertain; neither a find nor a no-op
+    """
+    rows = read_log(path)
+    per = {}
+    for d in rows:
+        per.setdefault(d['BOX_ID'], []).append(d)
+    out = {}
+    for d in rows:
+        if d['mode'] != MANUAL_MODE:
+            continue
+        hist = sorted(per[d['BOX_ID']], key=_key)
+        prior = [h for h in hist
+                 if _key(h) < _key(d) and h['mode'] != MANUAL_MODE]
+        pv = prior[-1]['HUMAN_FINAL_CLASS'] if prior else None
+        pm = prior[-1]['mode'] if prior else None
+        v = d['HUMAN_FINAL_CLASS']
+        if v == UNRESOLVED:
+            kind = FLAGGED
+        elif pv is not None and v == pv:
+            kind = NO_OP
+        elif pv in (None, 'player') and v in ('goalkeeper', 'referee'):
+            kind = NEW_CORRECTION
+        elif pv in (None, 'player') and v == 'player':
+            kind = NO_OP
+        elif pv in ROLES:
+            kind = OVERRIDE
+        else:
+            kind = NO_OP
+        # a later manual click supersedes an earlier one on the same box
+        out[d['BOX_ID']] = {'kind': kind, 'manual_class': v,
+                            'prior_class': pv, 'prior_mode': pm,
+                            'recorded_utc': d.get('recorded_utc')}
+    return out
+
+
 def conflicts(path: Path):
     """Boxes whose latest answer differs from an earlier one. Not an error."""
     out = []

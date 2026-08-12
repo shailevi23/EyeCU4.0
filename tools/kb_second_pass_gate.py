@@ -18,6 +18,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / 'tools'))
+import kb_decisions                                              # noqa: E402
+
 PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
 SRC = REPO / 'EyeCU_external_data/huggingface/keremberke_football_object_detection'
 
@@ -95,6 +98,8 @@ def main():
     # they never enlarge the workload, and a box corrected here is resolved and
     # must not be asked again.
     manual_dec = {b: v for (m, b), v in last.items() if m == 'missed_role_manual'}
+    _mk = kb_decisions.classify_manual(PKG / 'decisions.json')
+    manual_kinds = dict(Counter(v['kind'] for v in _mk.values()))
     ft_dec = {b: v for (m, b), v in last.items() if m == 'final_target'}
     excluded_images = set()
     for r in ures.get('rows', []):
@@ -217,8 +222,15 @@ def main():
             'count': len(manual_dec),
             'by_class': {c: sum(1 for v in manual_dec.values() if v == c)
                          for c in ('player', 'goalkeeper', 'referee', 'uncertain')},
+            'by_kind': manual_kinds,
+            'true_missed_role_discoveries': manual_kinds.get(
+                'NEW_MISSED_ROLE_CORRECTION', 0),
             'note': ('optional corrections on existing context boxes; they add '
-                     'coverage and never add required workload'),
+                     'coverage and never add required workload. Only '
+                     'NEW_MISSED_ROLE_CORRECTION counts as an official the '
+                     'retrospective sweep missed -- re-confirming a box that '
+                     'already carried the same role is a NO_OP_CONFIRMATION and '
+                     'must not inflate that number.'),
         },
         'ball_counts': ball_now, 'ball_preserved': ball_ok,
         'apply_permitted': False,
