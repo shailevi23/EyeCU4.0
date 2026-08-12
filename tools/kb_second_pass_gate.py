@@ -85,6 +85,24 @@ def main():
         if v:
             r['HUMAN_ANSWER'] = v
 
+    # The third look. A box categorised AMBIGUOUS_TARGET or OCCLUDED_UNCLEAR is a
+    # real EyeCU target with no role, and leaving it that way leaves it labelled
+    # `player` -- wrong if it is a keeper or an official. final_target settles
+    # each one with a role, or with an explicit decision to drop its image.
+    ft_dec = {b: v for (m, b), v in last.items() if m == 'final_target'}
+    excluded_images = set()
+    for r in ures.get('rows', []):
+        v = ft_dec.get(r['BOX_ID'])
+        if not v:
+            continue
+        if v in ('player', 'goalkeeper', 'referee'):
+            r['U_RESOLUTION_CATEGORY'] = 'RESOLVED_ON_THIRD_LOOK'
+            r['FINAL_CLASS'] = v
+            r['FINAL_ACTION'] = 'RECLASSIFY'
+        elif v == 'EXCLUDE_IMAGE':
+            r['FINAL_ACTION'] = 'EXCLUDE_IMAGE'
+            excluded_images.add(r['IMAGE'])
+
     cand_ids = {r['BOX_ID'] for r in ledger if r['REVIEW_STATUS'] == 'PENDING'}
     u_ids = [b for b, v in cand.items() if v == 'uncertain']
     u_rows = ures.get('rows', [])

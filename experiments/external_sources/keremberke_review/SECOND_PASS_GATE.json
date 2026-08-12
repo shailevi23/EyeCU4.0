@@ -17,13 +17,13 @@
   },
   {
    "condition": "D all original U categorized",
-   "result": "FAIL",
-   "detail": "0/48"
+   "result": "PASS",
+   "detail": "48/48"
   },
   {
    "condition": "E all resolvable U resolved",
    "result": "FAIL",
-   "detail": "0/48 categorized; 0 real targets left unresolved and not excluded"
+   "detail": "48/48 categorized; 3 real targets left unresolved and not excluded"
   },
   {
    "condition": "F MISSED_ROLE_REVIEW complete",
@@ -38,27 +38,27 @@
   {
    "condition": "H non-target humans handled consistently",
    "result": "PASS",
-   "detail": "0 categorized"
+   "detail": "19 categorized"
   },
   {
    "condition": "I false-positive annotations handled",
    "result": "PASS",
-   "detail": "0 categorized"
+   "detail": "3 categorized"
   },
   {
    "condition": "J ball-as-human errors handled",
    "result": "PASS",
-   "detail": "0 categorized"
+   "detail": "5 categorized"
   },
   {
    "condition": "K bad geometry quantified with a documented policy",
    "result": "PASS",
-   "detail": "0 categorized"
+   "detail": "7 categorized"
   },
   {
    "condition": "L unresolved real targets resolved or their images excluded",
-   "result": "PASS",
-   "detail": "0 outstanding"
+   "result": "FAIL",
+   "detail": "3 outstanding"
   },
   {
    "condition": "M ball GT preservation verified",
@@ -83,10 +83,10 @@
  ],
  "passed": false,
  "blocking": [
-  "D all original U categorized",
   "E all resolvable U resolved",
   "F MISSED_ROLE_REVIEW complete",
-  "G no systematic unresolved GK/ref misses"
+  "G no systematic unresolved GK/ref misses",
+  "L unresolved real targets resolved or their images excluded"
  ],
  "qa_player": {
   "sampled": 250,
@@ -95,7 +95,7 @@
  },
  "qa_nocand_images_with_missed_official": 25,
  "u_boxes": 48,
- "u_categorized": 0,
+ "u_categorized": 48,
  "missed_role_queue": {
   "boxes": 6684,
   "reviewed": 0

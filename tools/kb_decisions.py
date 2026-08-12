@@ -35,7 +35,10 @@ from pathlib import Path
 ROLES = ('player', 'goalkeeper', 'referee')
 UNRESOLVED = 'uncertain'
 U_CATEGORIES = ('AMBIGUOUS_TARGET', 'OCCLUDED_UNCLEAR', 'NON_TARGET_HUMAN',
-                'BALL_WRONG_HUMAN_BOX', 'FALSE_POSITIVE', 'PARTIAL_BODY_BAD_BOX')
+                'BALL_WRONG_HUMAN_BOX', 'FALSE_POSITIVE', 'PARTIAL_BODY_BAD_BOX',
+                # a real target whose role could not be read even on a third look;
+                # the honest answer is to drop its image rather than guess a class
+                'EXCLUDE_IMAGE')
 # Documented action per disposition. Policy, applied deterministically.
 DISPOSITION_ACTION = {
     'NON_TARGET_HUMAN': 'REMOVE_ANNOTATION_KEEP_IMAGE',
@@ -44,6 +47,7 @@ DISPOSITION_ACTION = {
     'PARTIAL_BODY_BAD_BOX': 'QUANTIFY_THEN_REPAIR_OR_EXCLUDE',
     'AMBIGUOUS_TARGET': 'RESOLVE_OR_EXCLUDE_IMAGE',
     'OCCLUDED_UNCLEAR': 'RESOLVE_OR_EXCLUDE_IMAGE',
+    'EXCLUDE_IMAGE': 'EXCLUDE_IMAGE_FROM_CANDIDATE_SET',
 }
 
 

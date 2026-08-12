@@ -174,17 +174,60 @@ class TestDownloadRecords:
 
 
 class TestBulkIsNotCommittable:
-    def test_gitignore_excludes_dataset_bulk(self):
-        gi = (REPO / '.gitignore').read_text(encoding='utf-8')
-        assert 'EyeCU_external_data/*' in gi
-        assert '!EyeCU_external_data/MASTER_EXTERNAL_SOURCE_REGISTRY.json' in gi
+    """Asserts the OUTCOME, not one particular .gitignore spelling.
 
-    def test_registry_and_manifests_are_allowed_through(self):
-        gi = (REPO / '.gitignore').read_text(encoding='utf-8')
-        for keep in ('!EyeCU_external_data/roboflow_audit/manifests/',
-                     '!EyeCU_external_data/huggingface/download_logs/',
-                     '!EyeCU_external_data/soccertrack_v2/manifests/'):
-            assert keep in gi
+    These originally pinned exact ignore rules, which broke the moment the file
+    was edited while the thing that matters -- no dataset bulk in the repo -- was
+    still true. What is checked now is git's actual index.
+    """
+
+    def _tracked(self):
+        import subprocess
+        out = subprocess.run(['git', 'ls-files'], cwd=str(REPO),
+                             capture_output=True, text=True).stdout
+        return [l for l in out.splitlines() if l.strip()]
+
+    def test_no_external_dataset_bulk_is_tracked(self):
+        """Scoped to the external-source workspace.
+
+        A first version swept the whole repo and failed on artifacts that were
+        committed deliberately long ago -- the hand-corrected annotation ZIPs,
+        the raw CVAT exports, the evidence renders. Those are the project's
+        irreplaceable human work, not bulk, and a test that condemns them is
+        wrong about the repo rather than right about a regression.
+        """
+        bad = []
+        for f in self._tracked():
+            if not f.startswith(('EyeCU_external_data/',
+                                 'experiments/external_sources/')):
+                continue
+            p = REPO / f
+            if not p.exists():
+                continue
+            if p.suffix.lower() in ('.mp4', '.zip', '.npy', '.npz', '.pt'):
+                bad.append(f)
+            elif p.suffix.lower() in ('.png', '.jpg') and                     'contact_sheets' not in f and 'reference_sheets' not in f:
+                bad.append(f)
+        assert not bad, f'external dataset bulk is tracked: {bad[:5]}'
+
+    def test_regenerable_review_artifacts_are_not_tracked(self):
+        tracked = set(self._tracked())
+        for f in ('experiments/external_sources/keremberke_review/ledger.json',
+                  'experiments/external_sources/keremberke_review/review_queue.json'):
+            assert f not in tracked, f'{f} regenerates and must not be committed'
+        assert not any(f.startswith('experiments/external_sources/keremberke_review/'
+                                    'working_copy/') for f in tracked)
+
+    def test_the_irreplaceable_human_work_IS_tracked(self):
+        assert ('experiments/external_sources/keremberke_review/decisions.json'
+                in set(self._tracked()))
+
+    def test_no_oversized_file_in_the_review_package(self):
+        big = [(f, (REPO / f).stat().st_size) for f in self._tracked()
+               if f.startswith('experiments/external_sources/keremberke_review/')
+               and (REPO / f).exists()
+               and (REPO / f).stat().st_size > 4_000_000]
+        assert not big, f'oversized review-package files: {big}'
 
 
 class TestPriorityMatrixAndGate:
@@ -446,9 +489,14 @@ class TestKeremberkeReviewPackage:
         assert 'stored pixels' in b['convention']
 
     def test_decisions_file_is_tracked_but_bulk_is_not(self):
-        gi = (REPO / '.gitignore').read_text(encoding='utf-8')
-        assert 'keremberke_review/ledger.json' in gi
-        assert '!experiments/external_sources/keremberke_review/decisions.json' in gi
+        """Checked against git's index rather than a .gitignore spelling."""
+        import subprocess
+        tracked = set(subprocess.run(['git', 'ls-files'], cwd=str(REPO),
+                                     capture_output=True, text=True).stdout.split())
+        assert ('experiments/external_sources/keremberke_review/decisions.json'
+                in tracked)
+        assert ('experiments/external_sources/keremberke_review/ledger.json'
+                not in tracked)
 
 
 class TestKeremberkeSecondPass:
@@ -548,8 +596,9 @@ class TestKeremberkeSecondPass:
         g = load(self.PKG / 'SECOND_PASS_GATE.json')
         assert g['passed'] is False
         assert g['apply_permitted'] is False
-        assert set(g['blocking']) >= {'D all original U categorized',
-                                      'F MISSED_ROLE_REVIEW complete'}
+        # D was blocking before the U pass ran; F is blocking until the
+        # retrospective sweep is done. Only F is guaranteed at every stage.
+        assert 'F MISSED_ROLE_REVIEW complete' in set(g['blocking'])
 
     def test_second_pass_queues_exist_and_are_unanswered(self):
         u = load(self.PKG / 'u_resolution_queue.json')
@@ -618,10 +667,13 @@ class TestSecondPassProgressReachesTheGate:
             bak.rename(self.PKG)
 
     def test_prior_decisions_survive_that_round_trip(self):
+        """Modes grow as passes complete; none may ever disappear."""
         d = self.PKG / 'decisions.json'
         modes = {json.loads(l).get('mode') for l in
                  d.read_text(encoding='utf-8').splitlines() if l.strip()}
-        assert modes == {'candidates', 'qa_player', 'qa_nocand'}, modes
+        assert {'candidates', 'qa_player', 'qa_nocand'} <= modes, modes
+        assert modes <= {'candidates', 'qa_player', 'qa_nocand',
+                         'u_resolution', 'missed_role', 'final_target'}, modes
 
     def test_condition_G_requires_resolution_not_absence_of_history(self):
         src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
@@ -814,8 +866,14 @@ class TestUResolutionIsNotPrefilledByTheFirstPass:
         m = importlib.import_module('kb_u_resolution_server')
         st = m.build_state()
         assert st['total_boxes'] == 48 and st['total_images'] == 42
-        # the 48 first-pass 'uncertain' answers must not appear as progress
-        assert len(st['decisions']) == 0
+        # The 48 first-pass 'uncertain' answers must never appear as progress.
+        # Once the human has actually done the pass this reads 48; what must
+        # never happen is it reading 48 with zero u_resolution rows on record.
+        import kb_decisions
+        real = sum(1 for (mode, _), _ in
+                   kb_decisions.by_mode(self.PKG / 'decisions.json').items()
+                   if mode == 'u_resolution')
+        assert len(st['decisions']) == real
 
     def test_all_six_categories_plus_roles_are_offered(self):
         import sys as _s
@@ -851,3 +909,62 @@ class TestUResolutionIsNotPrefilledByTheFirstPass:
         src = (REPO / 'tools' / 'kb_u_resolution_server.py').read_text(encoding='utf-8')
         assert 'value not in the U-resolution vocabulary' in src
         assert 'this server only writes u_resolution' in src
+
+
+class TestFinalTargetResolution:
+    """48/48 U cases REVIEWED is complete work; 3 target ROLES remain unresolved.
+
+    The two must never be conflated. The first is a finished pass; the second is
+    three boxes that would otherwise stay labelled `player` -- wrong, if any of
+    them is a goalkeeper or an official.
+    """
+
+    def test_exactly_three_unresolved_targets(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_final_targets_server')
+        st = m.build_state()
+        assert st['u_reviewed'] == 48 and st['u_total'] == 48, 'the U pass IS complete'
+        assert len(st['items']) == 3
+        assert {x['BOX_ID'] for x in st['items']} == {
+            'train:5089', 'train:7331', 'train:8656'}
+        assert all(x['U_CATEGORY'] in ('AMBIGUOUS_TARGET', 'OCCLUDED_UNCLEAR')
+                   for x in st['items'])
+        assert all(x['FIRST_HUMAN_DECISION'] == 'U' for x in st['items'])
+
+    def test_exclude_is_a_first_class_answer(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_final_targets_server')
+        assert dict((c[0], c[1]) for c in m.CHOICES) == {
+            'P': 'player', 'G': 'goalkeeper', 'R': 'referee', 'E': 'EXCLUDE_IMAGE'}
+        assert 'drop this IMAGE' in dict((c[1], c[2]) for c in m.CHOICES)['EXCLUDE_IMAGE']
+
+    def test_ui_separates_reviewed_from_unresolved(self):
+        src = (REPO / 'tools' / 'kb_final_targets_server.py').read_text(encoding='utf-8')
+        assert '48/48 U cases REVIEWED' in src
+        assert 'this pass is complete' in src
+        assert 'still UNRESOLVED' in src
+
+    def test_writes_are_mode_and_vocabulary_isolated(self):
+        src = (REPO / 'tools' / 'kb_final_targets_server.py').read_text(encoding='utf-8')
+        assert "MODE = 'final_target'" in src
+        assert 'this server only writes final_target' in src
+        assert 'value not in the final-target vocabulary' in src
+
+    def test_gate_honours_a_role_or_an_exclusion(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert "ft_dec = {b: v for (m, b), v in last.items() if m == 'final_target'}" in src
+        assert "'RESOLVED_ON_THIRD_LOOK'" in src
+        assert "r['FINAL_ACTION'] = 'EXCLUDE_IMAGE'" in src
+
+    def test_exclude_image_is_a_disposition_not_a_class(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        assert 'EXCLUDE_IMAGE' in kb_decisions.U_CATEGORIES
+        assert 'EXCLUDE_IMAGE' not in kb_decisions.ROLES
+        assert kb_decisions.DISPOSITION_ACTION['EXCLUDE_IMAGE'] == \
+            'EXCLUDE_IMAGE_FROM_CANDIDATE_SET'
