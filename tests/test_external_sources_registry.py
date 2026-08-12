@@ -692,11 +692,14 @@ class TestSecondPassProgressReachesTheGate:
 
 
 class TestImageCentricReviewServer:
-    def test_server_only_writes_its_two_modes(self):
+    def test_server_only_writes_its_own_modes(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
-        assert "MODES = ('missed_role', 'missed_role_manual')" in src
+        import re as _re
+        m = _re.search(r"MODES = \(([^)]*)\)", src)
+        modes = {x.strip().strip("'") for x in m.group(1).split(',') if x.strip()}
+        assert modes == {'missed_role', 'missed_role_manual',
+                         'missing_target_box'}
         assert "d.get('mode') not in MODES" in src
-        assert 'writes only missed_role and' in src
 
     def test_it_appends_and_never_rewrites(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
@@ -1016,9 +1019,9 @@ class TestManualContextCorrections:
         assert st['total_boxes'] == 6684, 'manual work must not enlarge the queue'
         assert 'manual' in st
 
-    def test_server_accepts_both_modes_and_only_role_values(self):
+    def test_server_accepts_its_modes_and_only_role_values(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
-        assert "MODES = ('missed_role', 'missed_role_manual')" in src
+        assert "'missed_role_manual'" in src and "'missing_target_box'" in src
         assert "d.get('mode') not in MODES" in src
         assert 'value not in the role vocabulary' in src
 
@@ -1119,12 +1122,21 @@ class TestManualCorrectionClassification:
              'recorded_utc': '2026-08-12T10:00:00Z'}])
         assert r['x:5']['kind'] == kb.FLAGGED
 
-    def test_the_existing_three_are_all_no_ops(self, kb):
+    def test_every_manual_click_is_classified_consistently(self, kb):
+        """Counts move as the reviewer works; the rules must not."""
         r = kb.classify_manual(self.PKG / 'decisions.json')
-        assert len(r) == 3
-        assert {v['kind'] for v in r.values()} == {kb.NO_OP}
-        for v in r.values():
-            assert v['manual_class'] == v['prior_class'], 'same class = no-op'
+        assert r, 'manual clicks exist and must all be classified'
+        for box, v in r.items():
+            assert v['kind'] in (kb.NO_OP, kb.NEW_CORRECTION, kb.OVERRIDE,
+                                 kb.FLAGGED), box
+            if v['kind'] == kb.NO_OP and v['manual_class'] != 'player':
+                assert v['manual_class'] == v['prior_class'], box
+            if v['kind'] == kb.NEW_CORRECTION:
+                assert v['prior_class'] in (None, 'player'), box
+                assert v['manual_class'] in ('goalkeeper', 'referee'), box
+            if v['kind'] == kb.OVERRIDE:
+                assert v['prior_class'] in kb.ROLES
+                assert v['manual_class'] != v['prior_class'], box
 
     def test_gate_reports_true_discoveries_separately(self):
         g = load(self.PKG / 'SECOND_PASS_GATE.json')
@@ -1145,3 +1157,71 @@ class TestManualCorrectionClassification:
         assert 'ALREADY RESOLVED' in src
         assert 'NO_OP_CONFIRMATION, not a new' in src
         assert 'HUMAN_OVERRIDE' in src
+
+
+class TestMissingTargetBoxFlag:
+    """Some real targets carry no annotation at all, so nothing can be clicked.
+
+    Flagging them in-pass is what avoids a third sweep of all 1,133 images.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    def test_flag_is_image_level_and_cannot_use_a_real_box_id(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "MISSING_PREFIX = 'MISSING:'" in src
+        assert 'a missing-target flag must use a ' in src
+        assert "MISSING: keys belong to missing_target_box" in src
+        assert "d['image_level'] = True" in src
+        assert "d['no_box_exists'] = True" in src
+
+    def test_no_box_is_created_or_inferred(self):
+        src = (REPO / 'tools' / 'kb_missing_targets_queue.py').read_text(encoding='utf-8')
+        assert 'No box is created or inferred here' in src
+        q = self.PKG / 'missing_target_queue.json'
+        if q.exists():
+            assert load(q)['no_box_created_or_inferred'] is True
+
+    def test_flags_do_not_touch_the_required_queue(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_review_server2')
+        st = m.build_state()
+        assert st['total_boxes'] == 6684, 'flags must not enlarge the queue'
+        assert 'missing' in st
+        # a flag key can never be mistaken for a real annotation
+        for f in st['missing']:
+            assert f['key'].startswith('MISSING:')
+
+    def test_queue_contains_only_flagged_images(self):
+        q = self.PKG / 'missing_target_queue.json'
+        if not q.exists():
+            pytest.skip('queue not built')
+        d = load(q)
+        assert d['images'] <= d['flags']
+        assert 'not the 1,133 reviewed' in d['not_another_full_pass']
+        assert set(d['allowed_resolutions']) == {
+            'boxed_player', 'boxed_goalkeeper', 'boxed_referee', 'EXCLUDE_IMAGE'}
+
+    def test_gate_blocks_until_every_flag_is_resolved(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert 'N2 every flagged MISSING_TARGET_BOX boxed or its image excluded' in src
+        assert 'missing_pending' in src
+        g = load(self.PKG / 'SECOND_PASS_GATE.json')
+        cond = [c for c in g['gate'] if c['condition'].startswith('N2')]
+        assert cond, 'the missing-target condition must be in the gate'
+        mt = g['missing_target_boxes']
+        assert mt['flagged'] - mt['pending'] == mt['resolved']
+
+    def test_multiple_flags_per_image_are_possible(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        # the key carries a timestamp, so two flags on one image cannot collide
+        assert "'MISSING:'+it.IMAGE+'#'+Date.now()" in src
+
+    def test_bulk_actions_and_nav_are_disabled_while_flagging(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        for guard in ("k==='a'&&!qMode", "e.key==='Enter'&&!qMode",
+                      "k==='n'&&!qMode"):
+            assert guard in src, guard
+        assert "if(e.key==='Escape')" in src, 'flagging must be cancellable'

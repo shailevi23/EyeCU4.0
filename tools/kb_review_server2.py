@@ -42,7 +42,13 @@ import kb_decisions                                              # noqa: E402
 
 PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
 IMGROOT = REPO / 'EyeCU_external_data/huggingface/keremberke_football_object_detection/extracted'
-MODES = ('missed_role', 'missed_role_manual')
+MODES = ('missed_role', 'missed_role_manual', 'missing_target_box')
+# An image-level flag for a real EyeCU target that has NO annotation at all, so
+# there is nothing to click. It cannot use a real BOX_ID because no box exists;
+# the key is synthetic and namespaced so it can never collide with `split:id`,
+# and the applier skips ids it does not recognise. No box is created or inferred
+# here -- flagging is a request for annotation, recorded for a later pass.
+MISSING_PREFIX = 'MISSING:'
 LOCK = threading.Lock()
 
 PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role review</title>
@@ -92,11 +98,23 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
   <b id="mNo" style="color:#888">no-op 0</b> · <b id="mFl" class="un">flagged 0</b>
   <span style="color:#666">| G <b id="mG">0</b> R <b id="mR">0</b>
    P <b id="mP">0</b> U <b id="mU">0</b></span></span>
- <span id="hint"><span class="k">click</span> a box, then <span class="k">P</span>
+ <span class="pill" style="border-color:#7a3a3a">missing-box flags
+  <b id="fT" style="color:#ff7a7a">0</b> targets in
+  <b id="fI" style="color:#ff7a7a">0</b> images</span>
+ <span id="hint"><span class="k">Q</span> flag a target with NO box ·
+  <span class="k">click</span> a box, then <span class="k">P</span>
   <span class="k">G</span> <span class="k">R</span> <span class="k">U</span> ·
   <span class="k">1-9</span> pick box · <span class="k">A</span> all=player ·
   <span class="k">Enter</span> accept proposals · <span class="k">N</span>/<span class="k">B</span> nav ·
   <b>click any black box</b> to correct a missed role</span>
+</div>
+<div id="qbanner" style="display:none;position:sticky;top:36px;z-index:10;
+     background:#3a1414;border-bottom:1px solid #7a3a3a;padding:6px 12px">
+ <b style="color:#ff9a9a">MISSING TARGET BOX</b> &mdash; a real target with no
+ annotation at all. Press <b class="k">G</b> goalkeeper &middot;
+ <b class="k">R</b> referee &middot; <b class="k">P</b> player &middot;
+ <b class="k">U</b> role unclear &nbsp;|&nbsp; <b class="k">Esc</b> cancel.
+ No box is created here &mdash; this records a request for annotation.
 </div>
 <div id="wrap"><img id="im"><div id="ov"></div></div>
 <div id="panel">
@@ -104,16 +122,20 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  <button class="big" id="allP">ALL CURRENT CANDIDATES = PLAYER <span class="k">A</span></button>
  <button class="big" id="acc">ACCEPT ALL PROPOSALS <span class="k">Enter</span></button>
  <div id="accnote" style="color:#8a8a8a;margin-top:5px"></div>
+ <div id="qhere" style="font-size:11px;padding:4px 0"></div>
+ <button class="big" id="flagQ" style="border-color:#7a3a3a">FLAG MISSING TARGET BOX
+  <span class="k">Q</span></button>
  <button class="big" id="next">NEXT UNRESOLVED IMAGE <span class="k">N</span></button>
  <button class="big" id="prev">PREVIOUS <span class="k">B</span></button>
 </div>
 <script>
 let S=null,i=0,sel=null,selKind='cand',dec={},man={},kind={},seen={};
+let missing=[],qMode=false;
 const CLS={player:'pl',goalkeeper:'gk',referee:'ref',uncertain:'un'};
 const COLV={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a',uncertain:'#b06cff'};
 async function boot(){
  S=await (await fetch('/api/state')).json(); dec=S.decisions; man=S.manual;
- kind=S.manual_kind;
+ kind=S.manual_kind; missing=S.missing||[];
  i=S.items.findIndex(x=>x.candidates.some(c=>!dec[c.BOX_ID])); if(i<0)i=0;
  render();
 }
@@ -229,6 +251,13 @@ function stats(){
  document.getElementById('mOv').textContent='override '+kc.HUMAN_OVERRIDE;
  document.getElementById('mNo').textContent='no-op '+kc.NO_OP_CONFIRMATION;
  document.getElementById('mFl').textContent='flagged '+kc.FLAGGED_UNCERTAIN;
+ document.getElementById('fT').textContent=missing.length;
+ document.getElementById('fI').textContent=new Set(missing.map(m=>m.IMAGE)).size;
+ const here=missing.filter(m=>m.IMAGE===cur().IMAGE);
+ document.getElementById('qhere').innerHTML=here.length
+  ? '<b style="color:#ff9a9a">'+here.length+' missing target'+(here.length>1?'s':'')+
+    ' flagged on this image:</b> '+here.map(m=>m.missing_role).join(', ')
+  : '';
 }
 async function post(box,cls,note,mode){
  const m=mode||'missed_role';
@@ -241,7 +270,20 @@ async function post(box,cls,note,mode){
   try{const j=await rsp.json(); if(j.manual_kind) kind[box]=j.manual_kind;}catch(e){}
  }
 }
+async function flagMissing(role){
+ const it=cur();
+ const key='MISSING:'+it.IMAGE+'#'+Date.now();
+ const rec={mode:'missing_target_box',BOX_ID:key,IMAGE:it.IMAGE,run:it.run,
+            HUMAN_FINAL_CLASS:role,
+            note:'image-level flag: real target present with no annotation box'};
+ await fetch('/api/decide',{method:'POST',
+  headers:{'Content-Type':'application/json'},body:JSON.stringify(rec)});
+ missing.push({key:key,IMAGE:it.IMAGE,run:it.run,missing_role:role});
+ qMode=false; document.getElementById('qbanner').style.display='none';
+ stats();
+}
 async function decide(cls){
+ if(qMode){await flagMissing(cls);return;}
  if(!sel)return;
  if(selKind==='ctx'){
   // optional correction on an existing annotation; never advances the queue
@@ -274,15 +316,21 @@ function nextUnresolved(){
 }
 document.getElementById('allP').onclick=allPlayer;
 document.getElementById('acc').onclick=acceptAll;
+document.getElementById('flagQ').onclick=()=>{qMode=true;
+ document.getElementById('qbanner').style.display='block';};
 document.getElementById('next').onclick=nextUnresolved;
 document.getElementById('prev').onclick=()=>{i=Math.max(0,i-1);render();};
 document.onkeydown=e=>{
  const k=e.key.toLowerCase();
+ if(e.key==='Escape'){qMode=false;
+   document.getElementById('qbanner').style.display='none';return;}
+ if(k==='q'&&!qMode){e.preventDefault();qMode=true;
+   document.getElementById('qbanner').style.display='block';return;}
  if(k==='p')decide('player'); else if(k==='g')decide('goalkeeper');
  else if(k==='r')decide('referee'); else if(k==='u')decide('uncertain');
- else if(k==='a'){e.preventDefault();allPlayer();}
- else if(e.key==='Enter'){e.preventDefault();acceptAll();}
- else if(k==='n'){e.preventDefault();nextUnresolved();}
+ else if(k==='a'&&!qMode){e.preventDefault();allPlayer();}
+ else if(e.key==='Enter'&&!qMode){e.preventDefault();acceptAll();}
+ else if(k==='n'&&!qMode){e.preventDefault();nextUnresolved();}
  else if(k==='b'){i=Math.max(0,i-1);render();}
  else if(/^[1-9]$/.test(k)){const it=cur();const c=it.candidates[+k-1];
    if(c){sel=c.BOX_ID;draw();}}
@@ -307,6 +355,13 @@ def build_state():
     manual = {b: v for (m, b), v in per_mode.items() if m == 'missed_role_manual'}
     manual_kind = {b: r['kind'] for b, r in
                    kb_decisions.classify_manual(PKG / 'decisions.json').items()}
+    missing = []
+    for r in kb_decisions.read_log(PKG / 'decisions.json'):
+        if r['mode'] == 'missing_target_box':
+            missing.append({'key': r['BOX_ID'], 'IMAGE': r.get('IMAGE'),
+                            'run': r.get('run'),
+                            'missing_role': r['HUMAN_FINAL_CLASS'],
+                            'recorded_utc': r.get('recorded_utc')})
 
     per, order = {}, {}
     for row in mrq['rows']:
@@ -343,7 +398,7 @@ def build_state():
         })
 
     return {'items': items, 'decisions': dec, 'manual': manual,
-            'manual_kind': manual_kind,
+            'manual_kind': manual_kind, 'missing': missing,
             'total_boxes': len(mrq['rows']), 'total_images': len(items)}
 
 
@@ -394,6 +449,16 @@ class H(BaseHTTPRequestHandler):
         if d.get('HUMAN_FINAL_CLASS') not in ('player', 'goalkeeper', 'referee',
                                               'uncertain'):
             return self._send(400, b'{"error":"value not in the role vocabulary"}')
+        if d['mode'] == 'missing_target_box':
+            if not str(d.get('BOX_ID', '')).startswith(MISSING_PREFIX):
+                return self._send(
+                    400, b'{"error":"a missing-target flag must use a '
+                         b'MISSING: key, never a real BOX_ID"}')
+            d['image_level'] = True
+            d['no_box_exists'] = True
+        elif str(d.get('BOX_ID', '')).startswith(MISSING_PREFIX):
+            return self._send(
+                400, b'{"error":"MISSING: keys belong to missing_target_box"}')
         d['recorded_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
         d['author'] = 'human reviewer'
         if d['mode'] == 'missed_role_manual':

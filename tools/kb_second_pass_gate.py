@@ -97,6 +97,14 @@ def main():
     # 6,684 -- they are extra coverage, taken only when a miss was noticed -- so
     # they never enlarge the workload, and a box corrected here is resolved and
     # must not be asked again.
+    # Image-level flags: a real target with NO annotation box. Each must end
+    # with a box drawn and classified, or its image excluded -- otherwise a known
+    # missing official silently becomes background in TRAIN.
+    missing_flags = {b: v for (m, b), v in last.items()
+                     if m == 'missing_target_box'}
+    missing_res = {b: v for (m, b), v in last.items()
+                   if m == 'missing_target_resolution'}
+    missing_pending = [b for b in missing_flags if b not in missing_res]
     manual_dec = {b: v for (m, b), v in last.items() if m == 'missed_role_manual'}
     _mk = kb_decisions.classify_manual(PKG / 'decisions.json')
     manual_kinds = dict(Counter(v['kind'] for v in _mk.values()))
@@ -199,6 +207,9 @@ def main():
          bool(run_audit.get('runs')) and all(
              'recommendation' in v for v in run_audit.get('runs', {}).values()),
          'recommendations present' if run_audit.get('runs') else 'RUN_AUDIT missing'),
+        ('N2 every flagged MISSING_TARGET_BOX boxed or its image excluded',
+         not missing_pending,
+         f'{len(missing_flags)} flagged, {len(missing_pending)} still pending'),
         ('O original dataset immutable', True,
          'verified by test_original_export_is_immutable_and_hashed'),
         ('P no TEST performance accessed', True, 'no evaluation run in this task'),
@@ -218,6 +229,17 @@ def main():
         'qa_nocand_images_with_missed_official': len(noc_bad_imgs),
         'u_boxes': len(u_ids), 'u_categorized': len(u_done),
         'missed_role_queue': {'boxes': len(mr_rows), 'reviewed': len(mr_done)},
+        'missing_target_boxes': {
+            'flagged': len(missing_flags),
+            'pending': len(missing_pending),
+            'resolved': len(missing_flags) - len(missing_pending),
+            'images': len({b.split('#')[0].removeprefix('MISSING:')
+                           for b in missing_flags}),
+            'by_role': dict(Counter(missing_flags.values())),
+            'note': ('a real target with no annotation box; resolved by drawing '
+                     'one and classifying it, or by excluding the image. No box '
+                     'is created automatically.'),
+        },
         'manual_context_corrections': {
             'count': len(manual_dec),
             'by_class': {c: sum(1 for v in manual_dec.values() if v == c)

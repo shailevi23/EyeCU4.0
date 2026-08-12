@@ -1,0 +1,19 @@
+{
+ "purpose": "images where a human saw a real EyeCU target with NO annotation box; each entry is a request to draw one or to exclude the image",
+ "no_box_created_or_inferred": true,
+ "not_another_full_pass": "contains only flagged images -- 0, not the 1,133 reviewed",
+ "allowed_resolutions": [
+  "boxed_player",
+  "boxed_goalkeeper",
+  "boxed_referee",
+  "EXCLUDE_IMAGE"
+ ],
+ "resolution_mode": "missing_target_resolution",
+ "flags": 0,
+ "images": 0,
+ "pending": 0,
+ "resolved": 0,
+ "by_missing_role": {},
+ "by_run": {},
+ "rows": []
+}
