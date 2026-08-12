@@ -27,13 +27,13 @@
   },
   {
    "condition": "F MISSED_ROLE_REVIEW complete",
-   "result": "FAIL",
-   "detail": "4140/6684"
+   "result": "PASS",
+   "detail": "6684/6684"
   },
   {
    "condition": "G no systematic unresolved GK/ref misses",
    "result": "FAIL",
-   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 4140/6684 reviewed, 6 left uncertain"
+   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 6684/6684 reviewed, 7 left uncertain"
   },
   {
    "condition": "H non-target humans handled consistently",
@@ -72,8 +72,8 @@
   },
   {
    "condition": "N2 every flagged MISSING_TARGET_BOX boxed or its image excluded",
-   "result": "PASS",
-   "detail": "0 flagged, 0 still pending"
+   "result": "FAIL",
+   "detail": "51 flagged, 48 still pending"
   },
   {
    "condition": "O original dataset immutable",
@@ -88,8 +88,8 @@
  ],
  "passed": false,
  "blocking": [
-  "F MISSED_ROLE_REVIEW complete",
-  "G no systematic unresolved GK/ref misses"
+  "G no systematic unresolved GK/ref misses",
+  "N2 every flagged MISSING_TARGET_BOX boxed or its image excluded"
  ],
  "qa_player": {
   "sampled": 250,
@@ -101,30 +101,36 @@
  "u_categorized": 48,
  "missed_role_queue": {
   "boxes": 6684,
-  "reviewed": 4140
+  "reviewed": 6684
  },
  "missing_target_boxes": {
-  "flagged": 0,
-  "pending": 0,
+  "flagged": 51,
+  "pending": 48,
   "resolved": 0,
-  "retracted": 0,
-  "images": 0,
-  "by_role": {},
+  "retracted": 3,
+  "images": 41,
+  "by_role": {
+   "referee": 27,
+   "player": 20,
+   "goalkeeper": 3,
+   "uncertain": 1
+  },
   "note": "a real target with no annotation box; resolved by drawing one and classifying it, or by excluding the image. No box is created automatically."
  },
  "manual_context_corrections": {
-  "count": 24,
+  "count": 46,
   "by_class": {
    "player": 2,
-   "goalkeeper": 9,
-   "referee": 13,
+   "goalkeeper": 15,
+   "referee": 20,
    "uncertain": 0
   },
   "by_kind": {
    "NO_OP_CONFIRMATION": 11,
-   "NEW_MISSED_ROLE_CORRECTION": 13
+   "NEW_MISSED_ROLE_CORRECTION": 26,
+   "DISPOSITION_SET": 9
   },
-  "true_missed_role_discoveries": 13,
+  "true_missed_role_discoveries": 26,
   "note": "optional corrections on existing context boxes; they add coverage and never add required workload. Only NEW_MISSED_ROLE_CORRECTION counts as an official the retrospective sweep missed -- re-confirming a box that already carried the same role is a NO_OP_CONFIRMATION and must not inflate that number."
  },
  "ball_counts": {
