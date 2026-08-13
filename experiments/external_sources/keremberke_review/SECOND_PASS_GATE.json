@@ -145,5 +145,19 @@
   "le12": 969
  },
  "ball_preserved": true,
- "apply_permitted": false
+ "apply_permitted": false,
+ "unresolved_case_policies": [
+  "test:221 PARTIAL_BODY_BAD_BOX",
+  "train:10172 PARTIAL_BODY_BAD_BOX",
+  "train:11514 BALL_WRONG_HUMAN_BOX",
+  "train:12631 PARTIAL_BODY_BAD_BOX",
+  "train:14904 PARTIAL_BODY_BAD_BOX",
+  "train:15737 BALL_WRONG_HUMAN_BOX",
+  "train:1858 BALL_WRONG_HUMAN_BOX",
+  "train:4500 PARTIAL_BODY_BAD_BOX",
+  "train:7716 PARTIAL_BODY_BAD_BOX",
+  "train:9397 PARTIAL_BODY_BAD_BOX",
+  "train:9614 BALL_WRONG_HUMAN_BOX",
+  "valid:2721 BALL_WRONG_HUMAN_BOX"
+ ]
 }

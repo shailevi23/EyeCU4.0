@@ -248,6 +248,15 @@ def main():
     for n, ok, d in G:
         print(f'{n:<66}{"PASS" if ok else "FAIL":<8}{d}')
     fails = [g for g in G if not g[1]]
+    # kb_export_v2 owns the per-case policy question; asking it here keeps one
+    # implementation rather than a second copy that could drift from it.
+    try:
+        import kb_export_v2
+        unresolved_policy = [f'{b} {d}' for b, d in
+                             kb_export_v2.unresolved_policies(
+                                 kb_export_v2.load_state())]
+    except Exception as e:                      # never let the gate pass on a bug
+        unresolved_policy = [f'could not evaluate export policies: {e}']
 
     rep = {
         'source_log': log_v,
@@ -290,7 +299,13 @@ def main():
                      'must not inflate that number.'),
         },
         'ball_counts': ball_now, 'ball_preserved': ball_ok,
-        'apply_permitted': False,
+        # Two independent preconditions, and both must hold. The gate answers
+        # "is the review finished"; the export contract answers "is every
+        # per-case policy recorded". A completed review with an unrecorded
+        # PARTIAL_BODY_BAD_BOX or BALL_WRONG_HUMAN_BOX policy is exactly the
+        # state where a default would get chosen by whichever tool ran first.
+        'apply_permitted': (not fails) and not unresolved_policy,
+        'unresolved_case_policies': unresolved_policy,
     }
     (PKG / 'SECOND_PASS_GATE.json').write_text(json.dumps(rep, indent=1),
                                                encoding='utf-8')

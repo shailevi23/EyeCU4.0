@@ -149,6 +149,38 @@ def by_mode(path: Path):
     return {k: sorted(v, key=_key)[-1]['HUMAN_FINAL_CLASS'] for k, v in per.items()}
 
 
+GEOMETRY_MODE = 'geometry_repair'
+BALL_MODE = 'ball_case_resolution'
+# The three answers to a BALL_WRONG_HUMAN_BOX case. Removing the box was the
+# obvious first policy and it is wrong on its own: all five of these images hold
+# no ball GT at all, so removing the mis-drawn human box would leave a visible
+# ball as background -- teaching the detector that a ball there is nothing.
+BALL_ACTIONS = ('RECLASSIFY_TO_BALL', 'DRAW_BALL_BOX', 'REMOVE_ONLY')
+
+
+def geometry_repairs(path: Path):
+    """Effective replacement geometry per BOX_ID. Latest human repair wins.
+
+    A repair never edits the source or the earlier event. The original bbox is
+    carried on every repair record, so the annotation's first geometry stays
+    recoverable from the log forever.
+    """
+    out = {}
+    for d in sorted(read_log(path), key=_key):
+        if d['mode'] == GEOMETRY_MODE:
+            out[d['BOX_ID']] = d
+    return out
+
+
+def ball_cases(path: Path):
+    """Effective decision per BALL_WRONG_HUMAN_BOX case. Latest wins."""
+    out = {}
+    for d in sorted(read_log(path), key=_key):
+        if d['mode'] == BALL_MODE:
+            out[d['BOX_ID']] = d
+    return out
+
+
 FLAG_MODE = 'missing_target_box'
 RETRACT_MODE = 'missing_target_retraction'
 RESOLVE_MODE = 'missing_target_resolution'

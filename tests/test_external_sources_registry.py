@@ -12,6 +12,7 @@ import json
 import re
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -494,21 +495,24 @@ class TestKeremberkeReviewPackage:
         assert {p.stem for p in d.glob('*_kits.jpg')} == {
             'plain_A_kits', 'plain_B_kits', 'pp_A_kits', 'pp_B_kits'}
 
-    def test_gate_blocks_while_review_is_incomplete(self):
-        """The first pass is now done, so this asserts the gate still BLOCKS.
+    def test_the_gate_and_apply_permission_agree(self):
+        """Whether the gate passes changes as the review finishes; that it and
+        apply_permitted always agree does not.
 
-        It originally asserted candidates_reviewed == 0, which expired the moment
-        the human started. What must stay true is that the gate refuses while the
-        second pass is outstanding.
+        This asserted `passed is False` while the second pass was outstanding.
+        The second pass finished and all seventeen conditions now pass, so the
+        assertion was pinning a moment. The invariant is the agreement, plus the
+        separate guarantee that a written export still cannot happen while any
+        per-case policy is unrecorded -- which kb_export_v2 enforces.
         """
-        p = self.PKG / 'REVIEW_STATUS.json'
-        if not p.exists():
-            pytest.skip('gate not yet run')
-        s = load(p)
-        failing = [g for g in s['gate'] if g['result'] == 'FAIL']
-        assert failing, 'the gate must not pass while the second pass is outstanding'
         g2 = load(self.PKG / 'SECOND_PASS_GATE.json')
-        assert g2['passed'] is False and g2['apply_permitted'] is False
+        failing = {c['condition'] for c in g2['gate'] if c['result'] == 'FAIL'}
+        assert (g2['passed'] is True) == (not failing)
+        assert set(g2['blocking']) == failing
+        # apply is permitted only when the review AND the export policies are
+        # both settled; a passing gate alone is not enough
+        assert g2['apply_permitted'] == (g2['passed']
+                                         and not g2['unresolved_case_policies'])
 
     def test_ball_counts_are_reported_on_the_frozen_convention(self):
         p = self.PKG / 'REVIEW_STATUS.json'
@@ -2117,6 +2121,146 @@ class TestMissingTargetDrawingTool:
         assert "id=\"uExcl\"" in src
         assert 'final_target' in src and 'an exclusion needs a reason' in src
         assert 'EXCLUDE = ' in src
+
+
+class TestContractV2:
+    """The export contract the review actually needs, and its two open policies.
+
+    v1 promised "only class ids may change" and enforced it with one assertion
+    over the whole annotation list. The review then produced 46 additions, 37
+    removals, 7 geometry repairs and an image exclusion -- every one of which
+    that assertion aborts on. The fix is not a looser check but a narrower one
+    per kind of change, each traced to the decision that authorised it.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def E(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        return importlib.import_module('kb_export_v2')
+
+    @pytest.fixture(scope='class')
+    def kb(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        return kb_decisions
+
+    def test_the_exporter_decides_no_policy(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert 'THIS FILE DECIDES NOTHING' in src
+        assert 'BALL_WRONG_HUMAN_BOX is NOT here' in src, \
+            'ball cases must not default to removal'
+        assert 'BALL_WRONG_HUMAN_BOX' not in E.REMOVE
+        assert 'PARTIAL_BODY_BAD_BOX' not in E.REMOVE
+
+    def test_it_refuses_while_a_case_policy_is_unrecorded(self, E):
+        """Choosing a default here would BE the policy decision."""
+        S = E.load_state()
+        blockers = E.unresolved_policies(S)
+        for b, d in blockers:
+            assert d in E.NEEDS_CASE
+        r = subprocess.run([sys.executable, 'tools/kb_export_v2.py', '--check'],
+                           capture_output=True, text=True, cwd=str(REPO))
+        if blockers:
+            assert r.returncode == 1 and 'REFUSED' in r.stdout
+        else:
+            assert r.returncode == 0
+
+    def test_a_repaired_box_is_found_by_its_event_not_its_disposition(self, E):
+        """A geometry_repair records a role, which clears the disposition.
+
+        Reading the effective disposition would make a repaired box look like an
+        ordinary class change and silently drop its new geometry.
+        """
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert "if b in S['reps']:" in src
+        assert "if b in S['balls']:" in src
+        assert 'dispositioned_ever' in src
+
+    def test_repairs_and_reclassifications_keep_their_annotation_id(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        block = src[src.index('def new_ids'):src.index('def build')]
+        assert 'keep their original id' in block
+        assert "P['repaired']" not in block, 'a repair must not be given a new id'
+
+    def test_new_ids_are_deterministic_and_collision_safe(self, E):
+        S = E.load_state()
+        if E.unresolved_policies(S):
+            pytest.skip('export blocked; ids exercised in the sandbox run')
+        _, P, out, rep = E.build(None)
+        wc = {s: json.loads((self.PKG / 'working_copy' /
+                             f'{s}_annotations.coco.json').read_text('utf-8'))
+              for s in E.SPLITS}
+        src_ids = {f'{s}:{a["id"]}' for s in E.SPLITS for a in wc[s]['annotations']}
+        for b, i in rep['id_map'].items():
+            s = P['added'][b]['IMAGE'].split('/')[0] if b in P['added'] \
+                else b.split(':')[0]
+            assert f'{s}:{i}' not in src_ids
+        _, _, _, rep2 = E.build(None)
+        assert rep['id_map'] == rep2['id_map']
+
+    def test_the_ball_rule_is_narrowed_not_loosened(self, E, kb):
+        """Originals set-identical; only human-approved repairs may be added."""
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert 'C6  every ORIGINAL ball annotation survives set-identical' in src
+        assert 'only explicitly' in src and 'human-approved ball repairs' in src
+        assert kb.BALL_ACTIONS == ('RECLASSIFY_TO_BALL', 'DRAW_BALL_BOX',
+                                   'REMOVE_ONLY')
+
+    def test_an_excluded_image_leaves_the_split_entirely(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert "a['images'] = [im for im in a['images'] if im['id'] not in drop_img]" in src
+        assert "if b in P['excluded_ann'] or b in P['removed']" in src
+        assert 'keeps its file' in src
+
+    def test_reconciliation_is_set_equal_not_count_equal(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert 'out_orig == expect' in src
+        assert 'SET-equal' in src
+
+    def test_geometry_is_frozen_except_for_authorised_repairs(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert 'moved <= authorised' in src
+
+    def test_the_repair_tool_never_proposes_geometry(self):
+        src = (REPO / 'tools' / 'kb_geometry_repair_server.py').read_text(
+            encoding='utf-8')
+        assert 'No model runs' in src
+        assert "'geometry_author': 'human drawn'" in src
+        assert "'no_model_proposal_used': True" in src
+        assert "'annotation_id_preserved': True" in src
+        assert "'original_bbox_xywh': l['bbox_xywh']" in src
+
+    def test_the_repair_tool_membership_is_historical(self):
+        """Otherwise a repaired box drops out of its own queue."""
+        src = (REPO / 'tools' / 'kb_geometry_repair_server.py').read_text(
+            encoding='utf-8')
+        assert 'Membership is historical' in src
+        assert "d.get('HUMAN_FINAL_CLASS') == want" in src
+
+    def test_the_two_queues_are_the_right_size(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_geometry_repair_server')
+        assert len(m.queue_ids('partial')) == 7
+        assert len(m.queue_ids('ball')) == 5
+
+    def test_a_ball_case_action_must_be_one_of_the_three(self, kb):
+        src = (REPO / 'tools' / 'kb_geometry_repair_server.py').read_text(
+            encoding='utf-8')
+        assert 'kb_decisions.BALL_ACTIONS' in src
+        assert 'documented ball outcomes' in src
+
+    def test_v1_apply_cannot_write_a_v2_export(self):
+        """v1 asserts the whole (id, bbox) set is unchanged; v2 changes it."""
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        assert 'assert before == after' in src, \
+            'if this assertion goes, v1 must have been replaced deliberately'
 
 
 class TestImageExclusionIsReversible:
