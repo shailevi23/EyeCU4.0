@@ -47,7 +47,7 @@ const document = {
 els['im'] = mkEl('im'); els['im'].clientWidth = 1000; els['im'].clientHeight = 1000;
 
 const ctx = {
-  document, window: {}, console,
+  document, window: {}, console, location: { search: '' },
   Image: function () { return mkEl('img'); },
   Date, Math, JSON, Object, Array, String, Number, RegExp, Promise,
   setTimeout, prompt: () => 'sandbox reason',

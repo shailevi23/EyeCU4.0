@@ -32,7 +32,7 @@ const document = {
   onkeydown: null,
 };
 const ctx = {
-  document, window: {}, console,
+  document, window: {}, console, location: { search: '' },
   Image: function () { return mkEl('img'); },
   Date, Math, JSON, Object, Array, String, Number, RegExp, Promise,
   setTimeout, prompt: () => 'sandbox reason',

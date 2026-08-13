@@ -89,6 +89,10 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  #ov{position:absolute;inset:0;cursor:crosshair}
  .bx.ctx{border-color:var(--ctx);border-width:1px}
  .bx.selctx{box-shadow:0 0 0 2px #fff inset;border-color:#b06cff!important;border-width:2px}
+ /* the one box a revisit item is about, so it cannot be mistaken for context */
+ .bx.utarget{border-color:#b06cff!important;border-width:4px!important;
+   box-shadow:0 0 0 3px #000,0 0 14px 4px #b06cffcc;animation:upulse 1.4s infinite}
+ @keyframes upulse{50%{box-shadow:0 0 0 3px #000,0 0 6px 2px #b06cff77}}
  .bx.done{border-style:solid;border-width:3px}
  .bx:hover{filter:brightness(1.6)}
  .tag{position:absolute;font:11px/1.3 monospace;background:#000d;padding:1px 4px;
@@ -106,7 +110,7 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  #hint{color:#8a8a8a}
 </style></head><body>
 <div id="top">
- <b>missed_role</b>
+ <b id="mode">missed_role</b>
  <span id="pos" class="pill"></span>
  <span id="run" class="pill"></span>
  <span id="imgs" class="pill"></span>
@@ -135,6 +139,8 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
   <span class="k">Tab</span> cycle overlapping boxes (or click the same spot again;
   smallest first)</span>
 </div>
+<div id="ubanner" style="display:none;position:sticky;top:36px;z-index:10;
+     background:#132a13;border-bottom:1px solid #2f5a2f;padding:6px 12px"></div>
 <div id="qbanner" style="display:none;position:sticky;top:36px;z-index:10;
      background:#3a1414;border-bottom:1px solid #7a3a3a;padding:6px 12px">
  <b style="color:#ff9a9a">MISSING TARGET BOX</b> &mdash; a real target with no
@@ -145,6 +151,8 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
 </div>
 <div id="wrap"><img id="im"><div id="ov"></div></div>
 <div id="panel">
+ <div id="urow" style="display:none;background:#1d1526;border:1px solid #4a3a5e;
+      border-radius:4px;padding:6px;margin-bottom:6px"></div>
  <div id="selinfo" style="border-bottom:1px solid #222;padding-bottom:5px;
       margin-bottom:5px"></div>
  <div id="ovbox" style="display:none;background:#221c0c;border:1px solid #4a3c14;
@@ -165,17 +173,79 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8"><title>missed_role r
  <button class="big" id="uJump" style="border-color:#5a3a7a;display:none"></button>
  <button class="big" id="uExcl" style="border-color:#7a3a3a;display:none">EXCLUDE
   THIS IMAGE (role unreadable)</button>
+ <button class="big" id="uBack" style="border-color:#3a5a7a;display:none">RETURN TO
+  FULL REVIEW</button>
  <button class="big" id="next">NEXT UNRESOLVED IMAGE <span class="k">N</span></button>
  <button class="big" id="prev">PREVIOUS <span class="k">B</span></button>
 </div>
 <script>
 let S=null,i=0,sel=null,selKind='cand',dec={},man={},kind={},seen={};
 let missing=[],qMode=false,uAt=-1;
+// U REVISIT is its own queue, not a jump inside the 6,684. The retrospective
+// pass is finished -- 6684/6684, 1133/1133 -- and re-entering it to clean up
+// seven boxes puts the reviewer back in a population that has no work left,
+// where N walks 1,133 images to find the next one. Everything below is scoped
+// to the seven: the header, the navigation, and what "remaining" counts.
+let uMode=false;
+function uQueue(){
+ // built from the SERVER's resolve() output, filtered by what is still
+ // effectively uncertain right now, so a box answered in this session leaves
+ // the queue immediately and a historically-uncertain box never enters it
+ return (S.u_open||[]).filter(u=>dec[u.BOX_ID]==='uncertain'
+                              ||man[u.BOX_ID]==='uncertain');
+}
+function uEnter(){
+ if(!uQueue().length)return;
+ uMode=true; uAt=0; uShow();
+}
+function uExit(){
+ uMode=false;
+ document.getElementById('ubanner').style.display='none';
+ i=S.items.findIndex(x=>x.candidates.some(c=>!dec[c.BOX_ID]));
+ if(i<0)i=0;
+ render();
+}
+function uShow(){
+ const q=uQueue();
+ if(!q.length){uDone();return;}
+ uAt=((uAt%q.length)+q.length)%q.length;
+ const t=q[uAt];
+ const k=S.items.findIndex(x=>x.IMAGE===t.IMAGE);
+ if(k<0){uAt++;uShow();return;}
+ i=k;
+ const it=S.items[i];
+ // draw() records which candidates have been displayed; without this the
+ // revisit view walks into an image the full pass never opened and throws
+ seen[it.IMAGE]=seen[it.IMAGE]||new Set();
+ document.getElementById('run').textContent='run '+it.run;
+ const im=document.getElementById('im');
+ im.onload=()=>{uSelect(t);};
+ im.src='/img/'+it.IMAGE;
+ uSelect(t);
+ stats();
+}
+function uSelect(t){
+ const it=cur(); if(!it)return;
+ sel=t.BOX_ID;
+ selKind=it.candidates.some(c=>c.BOX_ID===t.BOX_ID)?'cand':'ctx';
+ ovlp=[];ovlpAt=0;ovlpX=ovlpY=null;
+ draw();
+}
+function uDone(){
+ document.getElementById('ubanner').style.display='block';
+ document.getElementById('ubanner').innerHTML=
+  '<b style="color:#8fe08f">U REVISIT COMPLETE</b> &mdash; effective unresolved '
+  +'uncertain boxes: <b>0</b>. Gate condition G no longer has an uncertain box '
+  +'to block on; re-run <code>tools/kb_second_pass_gate.py</code> to confirm. '
+  +'<button id="ubk" style="margin-left:8px">RETURN TO FULL REVIEW</button>';
+ document.getElementById('ubk').onclick=uExit;
+ stats();
+}
 const CLS={player:'pl',goalkeeper:'gk',referee:'ref',uncertain:'un'};
 const COLV={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a',
             uncertain:'#b06cff',NON_TARGET_HUMAN:'#8a8a8a'};
 const NONACT='NON_TARGET_HUMAN';
-async function boot(){
+var boot=async function(){
  S=await (await fetch('/api/state')).json(); dec=S.decisions; man=S.manual;
  kind=S.manual_kind; missing=S.missing||[];
  i=S.items.findIndex(x=>x.candidates.some(c=>!dec[c.BOX_ID])); if(i<0)i=0;
@@ -232,6 +302,7 @@ function hit(ev){
  pick(advance?ovlpAt+1:0);               // same spot walks outward, else smallest
 }
 function render(){
+ if(uMode){uShow();return;}
  const it=cur(); if(!it)return;
  document.getElementById('pos').textContent=`image ${i+1}/${S.items.length}`;
  document.getElementById('run').textContent='run '+it.run;
@@ -251,7 +322,8 @@ function draw(){
   const mine=man[b.BOX_ID], other=b.already;
   const col=mine?COLV[mine]:(other&&other!=='player'?COLV[other]:null);
   const e=document.createElement('div');
-  e.className='bx ctx'+(b.BOX_ID===sel&&selKind==='ctx'?' selctx':'');
+  e.className='bx ctx'+(b.BOX_ID===sel&&selKind==='ctx'?' selctx':'')
+   +(uMode&&b.BOX_ID===sel?' utarget':'');
   e.style.cssText=`left:${b.bbox[0]*sx}px;top:${b.bbox[1]*sy}px;
    width:${b.bbox[2]*sx}px;height:${b.bbox[3]*sy}px;cursor:pointer;`+
    (col?`border-color:${col};border-width:2px;`:'');
@@ -267,7 +339,7 @@ function draw(){
   const d=dec[c.BOX_ID];
   const col=d?COLV[d]:COLV[c.proposed];
   const e=document.createElement('div');
-  e.className='bx'+(d?' done':'');
+  e.className='bx'+(d?' done':'')+(uMode&&c.BOX_ID===sel?' utarget':'');
   e.style.cssText=`left:${c.bbox[0]*sx}px;top:${c.bbox[1]*sy}px;
    width:${c.bbox[2]*sx}px;height:${c.bbox[3]*sy}px;border-color:${col};
    ${c.BOX_ID===sel?'box-shadow:0 0 0 2px #fff inset;':''}`;
@@ -289,6 +361,24 @@ function list(){
   `<div style="font:11px monospace;color:#bbb">${sel||'-'}
     <span style="color:#777">${selKind==='ctx'?'context box':'candidate'}</span></div>`
   +`<div style="font-size:11px;color:#8a8a8a">current: <b>${curRole||'no answer yet'}</b></div>`;
+ const ur=document.getElementById('urow');
+ if(uMode){
+  const q=uQueue(), t=q[Math.min(uAt,q.length-1)];
+  const led=it.candidates.find(c=>c.BOX_ID===sel);
+  ur.style.display='block';
+  ur.innerHTML=q.length?`<b style="color:#b06cff">UNCERTAIN REVISIT
+    ${Math.min(uAt+1,q.length)}/${q.length}</b>
+   <div style="font:11px monospace;color:#bbb;margin-top:3px">${sel}</div>
+   <div style="font-size:11px;color:#8a8a8a">current answer:
+    <b class="un">uncertain</b>${led?' · proposed <b>'+led.proposed+'</b>':''}
+    · ${selKind==='ctx'?'existing annotation':'queued candidate'}</div>
+   <div style="font-size:11px;color:#8a8a8a;margin-top:4px">answer
+    <span class="k">P</span> <span class="k">G</span> <span class="k">R</span>
+    <span class="k">M</span>, or exclude the image if the role really cannot be
+    read. <span class="k">N</span>/<span class="k">B</span> move within these
+    ${q.length} only.</div>`
+   :'<b style="color:#8fe08f">U REVISIT COMPLETE</b>';
+ } else ur.style.display='none';
  const ob=document.getElementById('ovbox');
  if(ovlp.length>1){
   ob.style.display='block';
@@ -339,26 +429,40 @@ function stats(){
  const c={player:0,goalkeeper:0,referee:0,uncertain:0};
  Object.values(dec).forEach(v=>c[v]!==undefined&&c[v]++);
  const imgsDone=S.items.filter(x=>x.candidates.every(z=>dec[z.BOX_ID])).length;
- document.getElementById('imgs').textContent=`images ${imgsDone}/${S.items.length}`;
- document.getElementById('boxes').textContent=`boxes ${done}/${tot}`;
- document.getElementById('rem').textContent=`remaining ${tot-done}`;
+ const uq=uQueue();
+ document.getElementById('mode').textContent=uMode?'UNCERTAIN REVISIT':'missed_role';
+ document.getElementById('mode').style.color=uMode?'#b06cff':'';
+ if(uMode){
+  // the 6,684 population is finished and is NOT what is being counted here
+  document.getElementById('pos').textContent=
+    uq.length?`item ${Math.min(uAt+1,uq.length)}/${uq.length}`:'0 items';
+  document.getElementById('imgs').textContent=`${uq.length} remaining`;
+  document.getElementById('boxes').textContent='cleanup queue only';
+  document.getElementById('rem').textContent='candidates 6,684/6,684 complete';
+  document.querySelector('#bar>i').style.width=
+    (uq.length?100*uAt/uq.length:100)+'%';
+ } else {
+  document.getElementById('imgs').textContent=`images ${imgsDone}/${S.items.length}`;
+  document.getElementById('boxes').textContent=`boxes ${done}/${tot}`;
+  document.getElementById('rem').textContent=`remaining ${tot-done}`;
+  document.querySelector('#bar>i').style.width=(100*done/tot)+'%';
+ }
  document.getElementById('cG').textContent='G '+c.goalkeeper;
  document.getElementById('cR').textContent='R '+c.referee;
  document.getElementById('cP').textContent='P '+c.player;
  document.getElementById('cU').textContent='U '+c.uncertain;
- const uo=(S.u_open||[]).filter(u=>dec[u.BOX_ID]==='uncertain'
-                                 ||man[u.BOX_ID]==='uncertain').length;
+ const uo=uq.length;
  const ub=document.getElementById('uJump');
- ub.style.display=uo?'block':'none';
+ ub.style.display=(uo&&!uMode)?'block':'none';
+ // textContent, so a plain hyphen rather than an entity or a literal em dash
+ ub.textContent='REVISIT U BOXES ('+uo+') - open the cleanup queue';
+ document.getElementById('uBack').style.display=uMode?'block':'none';
  // the exclusion escape hatch is offered only while a U box is selected
  document.getElementById('uExcl').style.display=
-   (uo&&(dec[sel]==='uncertain'||man[sel]==='uncertain'))?'block':'none';
- // textContent, so a plain hyphen rather than an entity or a literal em dash
- ub.textContent='REVISIT U BOXES ('+uo+') - press M if non-active';
+   (dec[sel]==='uncertain'||man[sel]==='uncertain')?'block':'none';
  document.getElementById('cM').textContent=
    Object.values(dec).filter(v=>v===NONACT).length+
    Object.values(man).filter(v=>v===NONACT).length;
- document.querySelector('#bar>i').style.width=(100*done/tot)+'%';
  const mc={player:0,goalkeeper:0,referee:0,uncertain:0};
  Object.values(man).forEach(v=>mc[v]!==undefined&&mc[v]++);
  document.getElementById('mG').textContent=mc.goalkeeper;
@@ -434,6 +538,14 @@ async function decide(cls){
    document.getElementById('qbanner').style.display='none';return;}
  if(qMode){await flagMissing(cls);return;}
  if(!sel)return;
+ if(uMode){
+  // answering a revisit item resolves it and moves to the next of the seven.
+  // The mode is deliberate: it records against the same box in the same mode
+  // it was answered in before, so nothing about the 6,684 population changes.
+  await post(sel,cls,'uncertain revisit',
+             selKind==='ctx'?'missed_role_manual':'missed_role');
+  uShow();return;
+ }
  if(selKind==='ctx'){
   // optional correction on an existing annotation; never advances the queue
   await post(sel,cls,'manual correction on an existing context box',
@@ -483,7 +595,8 @@ function uJump(){
   selKind=S.items[k].candidates.some(c=>c.BOX_ID===t.BOX_ID)?'cand':'ctx';
   draw();list();}
 }
-document.getElementById('uJump').onclick=uJump;
+document.getElementById('uJump').onclick=uEnter;
+document.getElementById('uBack').onclick=uExit;
 // The honest way out for a target whose role cannot be read. Leaving it on U
 // leaves it labelled player, which is a wrong label if it is an official.
 async function uExclude(){
@@ -502,8 +615,10 @@ async function uExclude(){
  draw();stats();
 }
 document.getElementById('uExcl').onclick=uExclude;
-document.getElementById('next').onclick=nextUnresolved;
-document.getElementById('prev').onclick=()=>{i=Math.max(0,i-1);render();};
+document.getElementById('next').onclick=()=>{
+  if(uMode){uAt++;uShow();} else nextUnresolved();};
+document.getElementById('prev').onclick=()=>{
+  if(uMode){uAt--;uShow();} else {i=Math.max(0,i-1);render();}};
 document.onkeydown=e=>{
  const k=e.key.toLowerCase();
  if(e.key==='Escape'){qMode=false;
@@ -519,15 +634,20 @@ document.onkeydown=e=>{
  else if(k==='r')decide('referee'); else if(k==='u')decide('uncertain');
  else if(k==='a'&&!qMode){e.preventDefault();allPlayer();}
  else if(e.key==='Enter'&&!qMode){e.preventDefault();acceptAll();}
- else if(k==='n'&&!qMode){e.preventDefault();nextUnresolved();}
+ else if(k==='n'&&!qMode){e.preventDefault();
+   if(uMode){uAt++;uShow();} else nextUnresolved();}
  // no !qMode guard: M must never be silently inert. During a flag prompt
  // decide() cancels it, which is the same thing the button does.
  else if(k==='m'){e.preventDefault();decide(NONACT);}
- else if(k==='b'){i=Math.max(0,i-1);render();}
+ else if(k==='b'){if(uMode){uAt--;uShow();} else {i=Math.max(0,i-1);render();}}
  else if(/^[1-9]$/.test(k)){const it=cur();const c=it.candidates[+k-1];
    // picking by number is an explicit choice, so it ends any overlap cycle
    if(c){sel=c.BOX_ID;selKind='cand';ovlp=[];ovlpAt=0;ovlpX=ovlpY=null;draw();}}
 };
+// ?u=1 opens straight into the cleanup queue, so the finished pass is not
+// the thing a reviewer has to navigate out of first
+if(location.search.indexOf('u=1')>=0){const _b=boot;boot=async()=>{await _b();
+  if(uQueue().length)uEnter(); else uDone();};}
 boot();
 </script></body></html>"""
 
@@ -786,6 +906,8 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--port', type=int, default=8740)
     ap.add_argument('--no-browser', action='store_true')
+    ap.add_argument('--u-revisit', action='store_true',
+                    help='open the uncertain cleanup queue instead of the finished 6,684 pass')
     args = ap.parse_args()
     bad = page_script_defects()
     if bad:
@@ -802,7 +924,11 @@ def main():
           f"({st['total_boxes']/max(st['total_images'],1):.1f} per image)")
     print(f'already decided: {done} boxes, {imgs_done} images complete '
           f'-- resumed from decisions.json')
-    url = f'http://127.0.0.1:{args.port}/'
+    if args.u_revisit:
+        url_suffix = '?u=1'
+    else:
+        url_suffix = ''
+    url = f'http://127.0.0.1:{args.port}/{url_suffix}'
     print(f'\nreview at {url}   Ctrl-C to stop')
     if not args.no_browser:
         threading.Timer(1.0, lambda: webbrowser.open(url)).start()

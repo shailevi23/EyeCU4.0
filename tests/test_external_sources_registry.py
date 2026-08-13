@@ -1521,6 +1521,115 @@ class TestOverlappingBoxHitTesting:
         assert block.count('it.candidates') == 2
 
 
+class TestUncertainRevisitIsItsOwnQueue:
+    """Cleaning up seven boxes must not mean re-entering a finished pass.
+
+    REVISIT U BOXES used to jump inside the 6,684-box population: the header
+    still read `image X/1133`, N still walked 1,133 images looking for work that
+    no longer existed, and the reviewer had to navigate a completed queue to
+    reach seven items. The queue is now its own thing -- its own header, its own
+    navigation, its own idea of "remaining" -- and it is built from the effective
+    state, so a box that was uncertain and has since been answered never enters.
+    """
+
+    HARNESS = REPO / 'tests' / 'js' / 'u_revisit.js'
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def r(self, tmp_path_factory):
+        node = shutil.which('node')
+        if not node:
+            pytest.skip('node not installed')
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        srv = importlib.import_module('kb_review_server2')
+        d = tmp_path_factory.mktemp('urev')
+        (d / 'page.html').write_text(srv.PAGE, encoding='utf-8')
+        (d / 'state.json').write_text(json.dumps(srv.build_state()),
+                                      encoding='utf-8')
+        out = subprocess.run([node, str(self.HARNESS), str(d / 'page.html'),
+                              str(d / 'state.json')], capture_output=True,
+                             text=True)
+        assert out.returncode == 0, out.stderr[:2000]
+        return json.loads(out.stdout)
+
+    def test_the_header_stops_counting_the_finished_population(self, r):
+        h = r['revisit_header']
+        assert h['mode'] == 'UNCERTAIN REVISIT'
+        assert h['pos'] == 'item 1/7'
+        assert h['imgs'] == '7 remaining'
+        assert '1133' not in json.dumps(h) and '/6684' not in json.dumps(h)
+        assert '6,684/6,684 complete' in h['rem'], \
+            'the finished pass is stated, not re-counted'
+
+    def test_the_queue_is_only_the_effective_uncertains(self, r):
+        assert len(r['queue']) == 7
+        assert 'fx:ctx1' not in r['queue'], \
+            'a box that was uncertain and is now resolved must never appear'
+
+    def test_the_exact_box_is_auto_selected_and_highlighted(self, r):
+        assert r['first']['sel'] == r['queue'][0]
+        assert r['first']['at'] == 0
+        assert r['highlight'] == 1, 'exactly one box carries the revisit highlight'
+        assert 'UNCERTAIN REVISIT 1/7' in r['panel']
+
+    def test_navigation_stays_inside_the_queue(self, r):
+        assert r['n_stayed_in_queue']
+        assert r['n_walk'][:7] == r['queue'], 'N walks the seven in order'
+        assert r['n_walk'][7] == r['queue'][0], 'and wraps rather than escaping'
+        assert r['after_b'] in r['queue']
+
+    def test_answering_shrinks_the_queue_and_advances(self, r):
+        assert r['after_answer']['queue'] == 6
+        assert r['after_answer']['header'] == 'item 1/6'
+        assert r['after_answer']['advanced_to'] != r['answered']['box']
+
+    def test_an_answer_lands_on_that_box_only_and_in_its_own_mode(self, r):
+        assert r['answered']['post']['BOX_ID'] == r['answered']['box']
+        assert r['answered']['post']['HUMAN_FINAL_CLASS'] == 'goalkeeper'
+        assert set(r['boxes_written']) == set(r['queue']), \
+            'no box outside the queue was written'
+        by_mode = {p['box']: p['mode'] for p in r['posts']}
+        assert by_mode['fx:cand0'] == 'missed_role'
+        assert by_mode['fx:ctx0'] == 'missed_role_manual', \
+            'a context box keeps recording as a manual correction'
+
+    def test_completion_is_announced(self, r):
+        assert r['final']['queue'] == 0
+        assert r['final']['banner_shown'] == 'block'
+        assert 'U REVISIT COMPLETE' in r['final']['banner']
+
+    def test_returning_to_the_full_review_restores_it(self, r):
+        assert r['back_mode'] is False
+        assert r['back_header']['mode'] == 'missed_role'
+        assert r['back_header']['pos'].startswith('image ')
+
+    def test_the_population_comes_from_the_resolver(self):
+        """u_open is server-side, folded by resolve(), not by a queue file."""
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        block = src[src.index('u_open = ['):src.index('per, order = {}, {}')]
+        assert "resolved[b]['disposition'] == 'UNRESOLVED'" in block
+        assert 'kb_decisions.UNRESOLVED' in block
+
+    def test_the_real_open_uncertains_match_the_resolver(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        import kb_decisions
+        srv = importlib.import_module('kb_review_server2')
+        st = srv.build_state()
+        res = kb_decisions.resolve(self.PKG / 'decisions.json')
+        for u in st['u_open']:
+            assert res[u['BOX_ID']]['disposition'] == 'UNRESOLVED', u
+        assert st['total_boxes'] == 6684, 'the cleanup queue never resizes the pass'
+
+    def test_the_tool_can_open_straight_into_the_queue(self):
+        src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
+        assert "'--u-revisit'" in src
+        assert "location.search.indexOf('u=1')" in src
+
+
 class TestRevisitingUncertainBoxes:
     """M was advertised while its key was dead, so U absorbed non-active humans.
 
