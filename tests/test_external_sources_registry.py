@@ -2123,6 +2123,102 @@ class TestMissingTargetDrawingTool:
         assert 'EXCLUDE = ' in src
 
 
+class TestExclusionRevisit:
+    """Excluding an image is a decision about one box that costs the whole image.
+
+    The cost is invisible when the decision is made -- the reviewer is looking at
+    one unreadable box, not at the ten other annotations that leave with it. For
+    the one exclusion in force that is a valid original ball annotation plus
+    three boxes a human had already corrected to goalkeeper and referee, which is
+    precisely what the retrospective sweep existed to find.
+
+    Keeping the exclusion may still be right. The tool exists so the choice is
+    made against the number rather than despite it.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def m(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        return importlib.import_module('kb_exclusion_revisit_server')
+
+    def test_the_queue_is_effective_exclusions_only(self, m):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        st = m.build_state()
+        res = kb_decisions.resolve(self.PKG / 'decisions.json')
+        for t in st['items']:
+            assert res[t['BOX_ID']]['disposition'] == 'EXCLUDE_IMAGE'
+        # a withdrawn or superseded exclusion must not reappear here
+        ever = {d['BOX_ID'] for d in kb_decisions.read_log(
+            self.PKG / 'decisions.json')
+            if d.get('HUMAN_FINAL_CLASS') == 'EXCLUDE_IMAGE'}
+        assert {t['BOX_ID'] for t in st['items']} <= ever
+
+    def test_it_shows_the_full_cost_of_the_exclusion(self, m):
+        st = m.build_state()
+        if not st['items']:
+            pytest.skip('no exclusion outstanding')
+        t = st['items'][0]
+        assert t['others'], 'the other annotations must be listed'
+        assert t['history'], 'how it got here must be shown'
+        for o in t['others']:
+            assert 'effective' in o and 'original_class' in o
+        src = (REPO / 'tools' / 'kb_exclusion_revisit_server.py').read_text(
+            encoding='utf-8')
+        assert 'EXCLUDING THIS IMAGE ALSO DISCARDS' in src
+        assert 'valid original ball GT' in src
+        assert 'human-corrected' in src
+
+    def test_keep_excluded_writes_nothing(self, m):
+        """Looking again and not changing your mind is not a new decision."""
+        src = (REPO / 'tools' / 'kb_exclusion_revisit_server.py').read_text(
+            encoding='utf-8')
+        keep = src[src.index('function keep()'):src.index('document.onkeydown')]
+        assert 'fetch(' not in keep, 'KEEP EXCLUDED must not call the server'
+        assert 'writes nothing' in src
+
+    def test_only_a_role_or_non_target_may_supersede(self, m):
+        assert m.ANSWERS == ('player', 'goalkeeper', 'referee',
+                             'NON_TARGET_HUMAN')
+        src = (REPO / 'tools' / 'kb_exclusion_revisit_server.py').read_text(
+            encoding='utf-8')
+        assert 'answer must be player, goalkeeper, ' in src
+        assert 'is not currently ' in src and 'excluding its image' in src
+
+    def test_an_answer_supersedes_by_ordinary_precedence(self, m, tmp_path):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        p = tmp_path / 'd.json'
+        p.write_text('\n'.join(json.dumps(r) for r in [
+            {'mode': 'u_resolution', 'BOX_ID': 'x:1',
+             'HUMAN_FINAL_CLASS': 'OCCLUDED_UNCLEAR',
+             'recorded_utc': '2026-08-12T08:26:36Z'},
+            {'mode': 'final_target', 'BOX_ID': 'x:1',
+             'HUMAN_FINAL_CLASS': 'EXCLUDE_IMAGE',
+             'recorded_utc': '2026-08-12T08:46:48Z'},
+            {'mode': 'final_target', 'BOX_ID': 'x:1',
+             'HUMAN_FINAL_CLASS': 'referee', 'supersedes': 'EXCLUDE_IMAGE',
+             'recorded_utc': '2026-08-13T12:00:00Z'}]), encoding='utf-8')
+        r = kb_decisions.resolve(p)['x:1']
+        assert r['final_class'] == 'referee'
+        assert r['disposition'] is None, 'the image is no longer excluded'
+        assert any(h['value'] == 'EXCLUDE_IMAGE' for h in r['history']), \
+            'the exclusion stays in history'
+
+    def test_the_source_is_never_touched(self, m):
+        src = (REPO / 'tools' / 'kb_exclusion_revisit_server.py').read_text(
+            encoding='utf-8')
+        assert "open(PKG / 'decisions.json', 'a'" in src
+        assert "open(PKG / 'decisions.json', 'w'" not in src
+        assert 'source is untouched' in src
+
+
 class TestContractV2:
     """The export contract the review actually needs, and its two open policies.
 
