@@ -1,7 +1,7 @@
 {
  "source_log": {
-  "decisions_sha256": "9fa92a12552b4dd55ba7f570e5ba5435d19e78d4f300ad06a826794b44f824a9",
-  "decisions_lines": 26356,
+  "decisions_sha256": "8227b8709afde07379b7b1059f02ddbf7bedcfcc5f6d66622d580ed8940fdf27",
+  "decisions_lines": 26414,
   "note": "regenerate this report if it does not match the current decisions.json; a stale report must never be read as state"
  },
  "gate": [
@@ -77,8 +77,8 @@
   },
   {
    "condition": "N2 every flagged MISSING_TARGET_BOX boxed or its image excluded",
-   "result": "FAIL",
-   "detail": "51 flagged, 48 still pending"
+   "result": "PASS",
+   "detail": "51 flagged, 0 still pending"
   },
   {
    "condition": "O original dataset immutable",
@@ -93,8 +93,7 @@
  ],
  "passed": false,
  "blocking": [
-  "G no systematic unresolved GK/ref misses",
-  "N2 every flagged MISSING_TARGET_BOX boxed or its image excluded"
+  "G no systematic unresolved GK/ref misses"
  ],
  "qa_player": {
   "sampled": 250,
@@ -110,12 +109,12 @@
  },
  "missing_target_boxes": {
   "flagged": 51,
-  "pending": 48,
-  "resolved": 0,
-  "boxed": 0,
+  "pending": 0,
+  "resolved": 46,
+  "boxed": 46,
   "excluded": 0,
   "unrecognised_resolution_values": {},
-  "retracted": 3,
+  "retracted": 5,
   "images": 41,
   "by_role": {
    "referee": 27,

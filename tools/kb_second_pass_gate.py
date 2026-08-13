@@ -108,27 +108,21 @@ def main():
     # Image-level flags: a real target with NO annotation box. Each must end
     # with a box drawn and classified, or its image excluded -- otherwise a known
     # missing official silently becomes background in TRAIN.
-    missing_flags = {b: v for (m, b), v in last.items()
-                     if m == 'missing_target_box'}
-    missing_res = {b: v for (m, b), v in last.items()
-                   if m == 'missing_target_resolution'}
-    # A retracted flag was withdrawn by the human -- typically an accidental
-    # duplicate. It stays in the log for audit but is not outstanding work and
-    # must not block the gate forever.
-    missing_ret = {b for (m, b) in last if m == 'missing_target_retraction'}
-    # A resolution counts only if it is one of the documented outcomes: a box was
-    # drawn and classified, or the image was excluded. Anything else leaves the
-    # obligation open, so an unrecognised value must not discharge it.
-    MISSING_OK = {'boxed_player', 'boxed_goalkeeper', 'boxed_referee',
-                  'EXCLUDE_IMAGE'}
-    missing_done = {b for b, v in missing_res.items() if v in MISSING_OK}
-    missing_bad = {b: v for b, v in missing_res.items() if v not in MISSING_OK}
-    missing_pending = [b for b in missing_flags
-                       if b not in missing_done and b not in missing_ret]
-    missing_boxed = sum(1 for b, v in missing_res.items()
-                        if b in missing_flags and v.startswith('boxed_'))
-    missing_excl = sum(1 for b, v in missing_res.items()
-                       if b in missing_flags and v == 'EXCLUDE_IMAGE')
+    # One fold, shared with the queue and the drawing tool. It also decides what
+    # an exclusion currently MEANS: an image exclusion that has been retracted is
+    # ignored, so the boxes it buried become effective again. Reading "has an
+    # EXCLUDE_IMAGE event ever existed" would make an accidental keypress
+    # permanent -- the same shape as a condition asserting a historical fact.
+    mt = kb_decisions.missing_targets(PKG / 'decisions.json')
+    missing_flags = {b: v['flag_role'] for b, v in mt.items()}
+    missing_ret = {b for b, v in mt.items() if v['state'] == 'RETRACTED'}
+    missing_pending = sorted(b for b, v in mt.items() if v['state'] == 'PENDING')
+    missing_bad = {}
+    missing_boxed = sum(1 for v in mt.values() if v['state'] == 'BOXED')
+    missing_excl = sum(1 for v in mt.values() if v['state'] == 'EXCLUDED')
+    missing_done = {b for b, v in mt.items()
+                    if v['state'] in ('BOXED', 'EXCLUDED')}
+    missing_res = {b: v['state'] for b, v in mt.items()}
     manual_dec = {b: v for (m, b), v in last.items() if m == 'missed_role_manual'}
     _mk = kb_decisions.classify_manual(PKG / 'decisions.json')
     manual_kinds = dict(Counter(v['kind'] for v in _mk.values()))

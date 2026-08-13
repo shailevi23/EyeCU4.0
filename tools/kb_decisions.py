@@ -149,6 +149,92 @@ def by_mode(path: Path):
     return {k: sorted(v, key=_key)[-1]['HUMAN_FINAL_CLASS'] for k, v in per.items()}
 
 
+FLAG_MODE = 'missing_target_box'
+RETRACT_MODE = 'missing_target_retraction'
+RESOLVE_MODE = 'missing_target_resolution'
+UNEXCLUDE_MODE = 'missing_target_exclusion_retraction'
+EXCLUDE_IMAGE = 'EXCLUDE_IMAGE'
+BOXED = ('boxed_player', 'boxed_goalkeeper', 'boxed_referee')
+
+
+def missing_targets(path: Path):
+    """Effective state of every missing-target flag. One fold, used everywhere.
+
+    Image exclusion is recorded as one resolution per flag, so it lands on top of
+    any box already drawn for those flags -- which is correct while the exclusion
+    stands, and catastrophic when it was pressed by mistake. A reviewer excluded
+    an image meaning to retract two duplicate flags and buried two good boxes
+    under it.
+
+    Nothing is deleted to recover from that. A retraction event names the
+    exclusion it withdraws, and this fold then IGNORES the withdrawn exclusion,
+    so whatever each flag held before it becomes effective again by itself. The
+    exclusion, the boxes and the retraction all stay in the log.
+
+    Returns {flag_id: {IMAGE, flag_role, state, role, bbox_xywh, excluded,
+                       retracted, history}} where state is one of
+    PENDING / BOXED / EXCLUDED / RETRACTED.
+    """
+    rows = read_log(path)
+    flags, hist = {}, {}
+    retracted, unexcluded = set(), set()
+    per = {}
+    for d in rows:
+        m, b = d['mode'], d['BOX_ID']
+        if m not in (FLAG_MODE, RETRACT_MODE, RESOLVE_MODE, UNEXCLUDE_MODE):
+            continue
+        hist.setdefault(b, []).append(d)
+        if m == FLAG_MODE:
+            flags[b] = d
+        elif m == RETRACT_MODE:
+            retracted.add(b)
+        elif m == UNEXCLUDE_MODE:
+            unexcluded.add(b)
+        elif m == RESOLVE_MODE:
+            per.setdefault(b, []).append(d)
+
+    out = {}
+    for b, f in flags.items():
+        evs = sorted(per.get(b, []), key=_key)
+        # a withdrawn exclusion is not a resolution at all
+        live_evs = [e for e in evs
+                    if not (e['HUMAN_FINAL_CLASS'] == EXCLUDE_IMAGE
+                            and b in unexcluded)]
+        win = live_evs[-1] if live_evs else None
+        if b in retracted:
+            state = 'RETRACTED'
+        elif win is None:
+            state = 'PENDING'
+        elif win['HUMAN_FINAL_CLASS'] == EXCLUDE_IMAGE:
+            state = 'EXCLUDED'
+        elif win['HUMAN_FINAL_CLASS'] in BOXED:
+            state = 'BOXED'
+        else:
+            state = 'PENDING'                 # unrecognised value discharges nothing
+        out[b] = {
+            'IMAGE': f.get('IMAGE'), 'run': f.get('run'),
+            'flag_role': f['HUMAN_FINAL_CLASS'],
+            'flagged_utc': f.get('recorded_utc'),
+            'state': state,
+            'role': win.get('role') if state == 'BOXED' else None,
+            'bbox_xywh': win.get('bbox_xywh') if state == 'BOXED' else None,
+            'excluded': state == 'EXCLUDED',
+            'retracted': b in retracted,
+            'exclusion_withdrawn': b in unexcluded,
+            'history': [{'mode': h['mode'], 'value': h.get('HUMAN_FINAL_CLASS'),
+                         'bbox_xywh': h.get('bbox_xywh'), 'role': h.get('role'),
+                         'reason': h.get('reason'),
+                         'recorded_utc': h.get('recorded_utc'),
+                         'line': h['_line']} for h in hist.get(b, [])],
+        }
+    return out
+
+
+def excluded_images(path: Path):
+    """Images excluded and not un-excluded. Effective state, not history."""
+    return {v['IMAGE'] for v in missing_targets(path).values() if v['excluded']}
+
+
 MANUAL_MODE = 'missed_role_manual'
 NEW_CORRECTION = 'NEW_MISSED_ROLE_CORRECTION'
 OVERRIDE = 'HUMAN_OVERRIDE'

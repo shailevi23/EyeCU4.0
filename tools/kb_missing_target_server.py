@@ -119,7 +119,7 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
    excluded <b id="cX">0</b> · pending <b id="cP" style="color:#ff7a7a">0</b></span>
  <span id="hint">drag to draw · <span class="k">P</span> <span class="k">G</span>
   <span class="k">R</span> save with a class · <span class="k">Z</span> undo draw ·
-  <span class="k">X</span> exclude image · <span class="k">N</span>/<span class="k">B</span>
+  <span class="k">D</span> retract this flag · <span class="k">X</span> exclude WHOLE image · <span class="k">N</span>/<span class="k">B</span>
   next/prev target · <span class="k">+</span>/<span class="k">-</span> zoom</span>
 </div>
 <div id="imgerr" style="display:none;margin:10px 290px 10px 10px;background:#3a1414;
@@ -132,8 +132,15 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <button class="big" id="bG">GOALKEEPER <span class="k">G</span></button>
  <button class="big" id="bR">REFEREE <span class="k">R</span></button>
  <button class="big" id="bZ">UNDO DRAW <span class="k">Z</span></button>
- <button class="big" id="bX" style="border-color:#7a3a3a">EXCLUDE THIS IMAGE
+ <button class="big" id="bD" style="border-color:#5a3a7a">RETRACT THIS FLAG ONLY
+  <span class="k">D</span></button>
+ <div style="color:#8a8a8a;font-size:11px;margin:-2px 0 8px">this one flag was a
+  duplicate or a mistake. Nothing else on the image is affected.</div>
+ <button class="big" id="bX" style="border-color:#7a3a3a">EXCLUDE THE WHOLE IMAGE
   <span class="k">X</span></button>
+ <div style="color:#8a8a8a;font-size:11px;margin:-2px 0 8px">drops the entire
+  image and resolves <b>every</b> target on it. Not the same as retracting a flag.</div>
+ <div id="unexcl" style="display:none"></div>
  <div id="siblings" style="font-size:11px;margin-top:8px"></div>
  <button class="big" id="bN">NEXT TARGET <span class="k">N</span></button>
  <button class="big" id="bB">PREVIOUS <span class="k">B</span></button>
@@ -223,9 +230,18 @@ function panel(){
     <b class="${t.flag_role==='goalkeeper'?'gk':t.flag_role==='referee'?'ref':'pl'}">
     ${t.flag_role}</b></div>`;
  const st=document.getElementById('state');
- if(t.resolution&&t.resolution.action==='EXCLUDE_IMAGE')
-   st.innerHTML='<div class="ok">IMAGE EXCLUDED &mdash; this target needs no box. '
-     +'Redrawing a box here would override that.</div>';
+ const ux=document.getElementById('unexcl');
+ ux.style.display='none'; ux.innerHTML='';
+ if(t.resolution&&t.resolution.action==='EXCLUDE_IMAGE'){
+   st.innerHTML='<div class="warn">IMAGE EXCLUDED &mdash; every target here is '
+     +'resolved by that exclusion. If that was not what you meant, withdraw it: '
+     +'each flag reverts to whatever it held before, including any box already '
+     +'drawn.</div>';
+   ux.style.display='block';
+   ux.innerHTML='<button class="big" style="border-color:#5a7a3a">'
+     +'WITHDRAW THIS IMAGE EXCLUSION</button>';
+   ux.firstElementChild.onclick=unexclude;
+ }
  else if(t.resolution)
    st.innerHTML=`<div class="ok">SAVED <b>${t.resolution.role}</b> at
      [${t.resolution.bbox_xywh.map(v=>Math.round(v)).join(', ')}].
@@ -296,17 +312,63 @@ async function save(role){
                  recorded_utc:j.recorded_utc});
  draft=null; draw(); stats();
 }
+const REASONS=['duplicate flag','target was already annotated','mistaken flag'];
+async function retractFlag(){
+ const t=cur();
+ const pick=prompt('Retract THIS FLAG ONLY -- '+t.key.split('#')[1]+'\n\n'
+   +'This says the flag itself was a mistake. It does NOT exclude the image and\n'
+   +'does NOT affect any other target here.\n\n'
+   +'1 = duplicate flag\n2 = target was already annotated\n3 = mistaken flag\n'
+   +'or type your own reason');
+ if(pick===null)return;
+ const why=({'1':REASONS[0],'2':REASONS[1],'3':REASONS[2]})[pick.trim()]||pick.trim();
+ if(!why)return;
+ const r=await fetch('/api/retract_flag',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({missing_target_id:t.key,reason:why})});
+ const j=await r.json();
+ if(!r.ok){alert(j.error||'refused');return;}
+ S.targets.splice(i,1);
+ if(i>=S.targets.length)i=Math.max(0,S.targets.length-1);
+ if(!S.targets.length){alert('no targets left');return;}
+ render();
+}
+async function unexclude(){
+ const t=cur();
+ const why=prompt('Why is this image exclusion being withdrawn?');
+ if(!why||!why.trim())return;
+ const r=await fetch('/api/unexclude',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({IMAGE:t.IMAGE,reason:why.trim()})});
+ const j=await r.json();
+ if(!r.ok){alert(j.error||'refused');return;}
+ S=await (await fetch('/api/state')).json();
+ render();
+}
 async function exclude(){
  const t=cur();
- if(!confirm('Exclude '+t.IMAGE+' from the repaired candidate set?\n\n'
-   +'This resolves EVERY missing-target flag in this image. The image and its '
-   +'original annotations are not deleted.'))return;
+ const sibs=sameImage();
+ const boxed=sibs.filter(o=>o.resolution&&o.resolution.bbox_xywh);
+ let msg='This will EXCLUDE THE ENTIRE IMAGE and resolve ALL '+sibs.length
+   +' target(s) on it.\n\nIt is NOT the same as retracting one flag.\n'
+   +'To drop a single duplicate flag, press D instead.\n\n'+t.IMAGE;
+ if(boxed.length){
+  msg='WARNING -- '+boxed.length+' target(s) on this image ALREADY HAVE a '
+    +'human-drawn box.\nExcluding the image OVERRIDES them:\n\n'
+    +boxed.map(o=>'  '+o.resolution.role+' '
+       +o.resolution.bbox_xywh.map(v=>Math.round(v)).join(',')).join('\n')
+    +'\n\n'+msg;
+ }
+ if(!confirm(msg))return;
+ if(boxed.length&&prompt('Type EXCLUDE to override '+boxed.length
+    +' drawn box(es).')!=='EXCLUDE')return;
  const why=prompt('Why is this image being excluded?');
  if(!why||!why.trim())return;
  const r=await fetch('/api/resolve',{method:'POST',
   headers:{'Content-Type':'application/json'},
   body:JSON.stringify({missing_target_id:t.key,IMAGE:t.IMAGE,
-   HUMAN_FINAL_CLASS:'EXCLUDE_IMAGE',reason:why.trim()})});
+   HUMAN_FINAL_CLASS:'EXCLUDE_IMAGE',reason:why.trim(),
+   acknowledge_overrides_boxes:boxed.length>0})});
  const j=await r.json();
  if(!r.ok){alert(j.error||'refused');return;}
  (j.applied_to||[]).forEach(k=>{
@@ -322,6 +384,7 @@ document.getElementById('bP').onclick=()=>save('player');
 document.getElementById('bG').onclick=()=>save('goalkeeper');
 document.getElementById('bR').onclick=()=>save('referee');
 document.getElementById('bZ').onclick=()=>{draft=null;draw();};
+document.getElementById('bD').onclick=retractFlag;
 document.getElementById('bX').onclick=exclude;
 document.getElementById('bN').onclick=()=>go(i+1);
 document.getElementById('bB').onclick=()=>go(i-1);
@@ -330,6 +393,7 @@ document.onkeydown=e=>{
  if(k==='p')save('player'); else if(k==='g')save('goalkeeper');
  else if(k==='r')save('referee');
  else if(k==='z'){draft=null;draw();}
+ else if(k==='d'){e.preventDefault();retractFlag();}
  else if(k==='x'){e.preventDefault();exclude();}
  else if(k==='n'){e.preventDefault();go(i+1);}
  else if(k==='b'){go(i-1);}
@@ -339,6 +403,15 @@ document.onkeydown=e=>{
 };
 boot();
 </script></body></html>"""
+
+
+def append(records):
+    """Append-only. Nothing in this file ever rewrites a line."""
+    with LOCK:
+        with open(PKG / 'decisions.json', 'a', encoding='utf-8') as fh:
+            for r in records:
+                fh.write(json.dumps(r) + '\n')
+            fh.flush()
 
 
 def collect():
@@ -372,37 +445,37 @@ def build_state():
     by_img = {}
     for r in led:
         by_img.setdefault(r['IMAGE'], []).append(r)
-    live, res, hist = collect()
+    # kb_decisions.missing_targets is the one fold. It knows that a retracted
+    # image exclusion is not in force, so boxes it buried come back by themselves.
+    mt = kb_decisions.missing_targets(PKG / 'decisions.json')
     targets = []
-    for key, f in sorted(live.items(),
-                         key=lambda kv: (kv[1].get('IMAGE') or '',
-                                         kv[1].get('recorded_utc') or '')):
-        img = f.get('IMAGE')
+    for key, v in sorted(mt.items(),
+                         key=lambda kv: (kv[1]['IMAGE'] or '',
+                                         kv[1]['flagged_utc'] or '')):
+        if v['state'] == 'RETRACTED':
+            continue                          # withdrawn: not work, not shown
+        img = v['IMAGE']
         rows = by_img.get(img, [])
-        r = res.get(key)
         resolution = None
-        if r:
-            v = r.get('HUMAN_FINAL_CLASS')
-            if v == EXCLUDE:
-                resolution = {'role': None, 'bbox_xywh': None,
-                              'action': 'EXCLUDE_IMAGE'}
-            else:
-                resolution = {'role': r.get('role') or v,
-                              'bbox_xywh': r.get('bbox_xywh'),
-                              'action': 'BOX_DRAWN'}
+        if v['state'] == 'EXCLUDED':
+            resolution = {'role': None, 'bbox_xywh': None,
+                          'action': 'EXCLUDE_IMAGE'}
+        elif v['state'] == 'BOXED':
+            resolution = {'role': v['role'], 'bbox_xywh': v['bbox_xywh'],
+                          'action': 'BOX_DRAWN'}
         targets.append({
-            'key': key, 'IMAGE': img, 'run': f.get('run'),
-            'flag_role': f['HUMAN_FINAL_CLASS'],
-            'flagged_utc': f.get('recorded_utc'),
+            'key': key, 'IMAGE': img, 'run': v['run'],
+            'flag_role': v['flag_role'], 'flagged_utc': v['flagged_utc'],
             'img_w': rows[0]['img_w'] if rows else None,
             'img_h': rows[0]['img_h'] if rows else None,
             'existing': [{'bbox': z['bbox_xywh'], 'cls': z['eyecu_original_class']}
                          for z in rows],
             'resolution': resolution,
-            'history': hist.get(key, []),
+            'history': v['history'],
         })
     return {'targets': targets,
             'images': len({t['IMAGE'] for t in targets}),
+            'retracted': sum(1 for v in mt.values() if v['state'] == 'RETRACTED'),
             'source_log': kb_decisions.log_version(PKG / 'decisions.json')}
 
 
@@ -475,40 +548,103 @@ class H(BaseHTTPRequestHandler):
         return self._send(404, b'not found', 'text/plain')
 
     def do_POST(self):
-        if urlparse(self.path).path != '/api/resolve':
+        route = urlparse(self.path).path
+        if route not in ('/api/resolve', '/api/retract_flag', '/api/unexclude'):
             return self._send(404, b'', 'text/plain')
         n = int(self.headers.get('Content-Length', 0))
         d = json.loads(self.rfile.read(n) or b'{}')
         key = str(d.get('missing_target_id', ''))
-        live, res, _ = collect()
+        mt = kb_decisions.missing_targets(PKG / 'decisions.json')
+        now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+
+        # ---- retract ONE flag -------------------------------------------
+        # "this flag was a mistake" is a different statement from "this image
+        # should be dropped", and conflating them is what buried two good boxes.
+        if route == '/api/retract_flag':
+            if key not in mt:
+                return self._send(400, b'{"error":"unknown flag"}')
+            if not str(d.get('reason', '')).strip():
+                return self._send(400, b'{"error":"a retraction needs a reason"}')
+            append([{'mode': kb_decisions.RETRACT_MODE, 'BOX_ID': key,
+                     'missing_target_id': key, 'IMAGE': mt[key]['IMAGE'],
+                     'HUMAN_FINAL_CLASS': None, 'retracts': key,
+                     'scope': 'THIS FLAG ONLY',
+                     'reason': d['reason'].strip(),
+                     'recorded_utc': now, 'author': 'human reviewer'}])
+            return self._send(200, json.dumps(
+                {'ok': True, 'recorded_utc': now}).encode())
+
+        # ---- withdraw an image exclusion --------------------------------
+        if route == '/api/unexclude':
+            img = d.get('IMAGE') or (mt.get(key) or {}).get('IMAGE')
+            hit = [b for b, v in mt.items()
+                   if v['IMAGE'] == img and v['excluded']]
+            if not hit:
+                return self._send(400, b'{"error":"this image is not currently '
+                                       b'excluded"}')
+            if not str(d.get('reason', '')).strip():
+                return self._send(400, b'{"error":"a retraction needs a reason"}')
+            recs = []
+            for b in hit:
+                ev = [h for h in mt[b]['history']
+                      if h['mode'] == kb_decisions.RESOLVE_MODE
+                      and h['value'] == EXCLUDE]
+                recs.append({'mode': kb_decisions.UNEXCLUDE_MODE, 'BOX_ID': b,
+                             'missing_target_id': b, 'IMAGE': img,
+                             'HUMAN_FINAL_CLASS': None,
+                             'retracts_exclusion_recorded_utc':
+                                 ev[-1]['recorded_utc'] if ev else None,
+                             'retracts_exclusion_line': ev[-1]['line'] if ev else None,
+                             'reason': d['reason'].strip(),
+                             'note': ('the exclusion event stays in the log; this '
+                                      'withdraws it, so each flag reverts to '
+                                      'whatever it held before'),
+                             'recorded_utc': now, 'author': 'human reviewer'})
+            append(recs)
+            after = kb_decisions.missing_targets(PKG / 'decisions.json')
+            return self._send(200, json.dumps(
+                {'ok': True, 'recorded_utc': now, 'restored': len(hit),
+                 'states': {b: after[b]['state'] for b in hit}}).encode())
+
+        live = {b: v for b, v in mt.items() if v['state'] != 'RETRACTED'}
+        res = {b: v for b, v in mt.items() if v['state'] in ('BOXED', 'EXCLUDED')}
         if key not in live:
             return self._send(400, b'{"error":"unknown or retracted flag; a '
                                    b'resolution must name one live flag"}')
         val = d.get('HUMAN_FINAL_CLASS')
-        img = live[key].get('IMAGE')
-        now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+        img = live[key]['IMAGE']
 
         if val == EXCLUDE:
             if not str(d.get('reason', '')).strip():
                 return self._send(400, b'{"error":"an exclusion needs a reason"}')
+            # Excluding an image overrides boxes already drawn in it. The reviewer
+            # who hit X meaning "drop this duplicate flag" buried two good ones,
+            # so the page must have said so and the server must insist it did.
+            would_bury = [b for b, v in live.items()
+                          if v['IMAGE'] == img and v['state'] == 'BOXED']
+            if would_bury and not d.get('acknowledge_overrides_boxes'):
+                return self._send(409, json.dumps(
+                    {'error': ('this image already has human-drawn boxes; '
+                               'excluding it overrides them'),
+                     'boxed_flags': sorted(would_bury),
+                     'hint': ('to retract ONE mistaken flag use retract_flag; '
+                              'resend with acknowledge_overrides_boxes to '
+                              'exclude anyway')}).encode())
             # Documented exclusion rule: excluding an image resolves EVERY live
             # flag in THAT image and nothing else. Written as one event per flag
             # so each obligation is discharged explicitly and the fold stays
             # per-flag -- an image-wide event would make "is this flag resolved"
             # depend on parsing a different entity.
-            keys = [k for k, f in live.items() if f.get('IMAGE') == img]
-            with LOCK:
-                with open(PKG / 'decisions.json', 'a', encoding='utf-8') as fh:
-                    for k in keys:
-                        fh.write(json.dumps({
-                            'mode': RESOLVE_MODE, 'BOX_ID': k,
-                            'missing_target_id': k, 'IMAGE': img,
-                            'HUMAN_FINAL_CLASS': EXCLUDE,
-                            'action': 'EXCLUDE_IMAGE_FROM_CANDIDATE_SET',
-                            'reason': d['reason'].strip(),
-                            'resolves_flags_in_image': keys,
-                            'recorded_utc': now, 'author': 'human reviewer'}) + '\n')
-                    fh.flush()
+            keys = [k for k, v in live.items() if v['IMAGE'] == img]
+            append([{'mode': RESOLVE_MODE, 'BOX_ID': k,
+                     'missing_target_id': k, 'IMAGE': img,
+                     'HUMAN_FINAL_CLASS': EXCLUDE,
+                     'action': 'EXCLUDE_IMAGE_FROM_CANDIDATE_SET',
+                     'reason': d['reason'].strip(),
+                     'resolves_flags_in_image': keys,
+                     'overrode_boxed_flags': sorted(would_bury),
+                     'recorded_utc': now, 'author': 'human reviewer'}
+                    for k in keys])
             return self._send(200, json.dumps(
                 {'ok': True, 'applied_to': keys, 'recorded_utc': now}).encode())
 
@@ -529,16 +665,14 @@ class H(BaseHTTPRequestHandler):
             'bbox_xywh': bbox,
             'coordinate_space': 'original image pixels',
             'img_w': dims[0], 'img_h': dims[1],
-            'flagged_role': live[key]['HUMAN_FINAL_CLASS'],
+            'flagged_role': live[key]['flag_role'],
             'geometry_author': 'human drawn',
             'no_model_proposal_used': True,
-            'supersedes': (res[key].get('recorded_utc') if key in res else None),
+            'supersedes': (res[key]['history'][-1]['recorded_utc']
+                           if key in res and res[key]['history'] else None),
             'recorded_utc': now, 'author': 'human reviewer',
         }
-        with LOCK:
-            with open(PKG / 'decisions.json', 'a', encoding='utf-8') as fh:
-                fh.write(json.dumps(rec) + '\n')
-                fh.flush()
+        append([rec])
         return self._send(200, json.dumps(
             {'ok': True, 'bbox_xywh': bbox, 'recorded_utc': now}).encode())
 

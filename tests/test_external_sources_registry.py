@@ -9,6 +9,7 @@ promoted to KEEP_ACTIVE without the evidence that justifies it.
 """
 
 import json
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -25,7 +26,9 @@ REPO = Path(__file__).resolve().parents[1]
 KNOWN_MODES = {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
                'final_target', 'missed_role', 'missed_role_manual',
                'missing_target_box', 'missing_target_resolution',
-               'missing_target_retraction'}
+               'missing_target_retraction',
+               # withdraws an image exclusion; never deletes it
+               'missing_target_exclusion_retraction'}
 
 EXT = REPO / 'EyeCU_external_data'
 XS = REPO / 'experiments' / 'external_sources'
@@ -1960,7 +1963,7 @@ class TestMissingTargetDrawingTool:
         src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
             encoding='utf-8')
         assert 'an exclusion needs a reason' in src
-        assert "f.get('IMAGE') == img" in src
+        assert "v['IMAGE'] == img" in src
         assert 'resolves_flags_in_image' in src
         assert 'and nothing else' in src
 
@@ -1993,8 +1996,8 @@ class TestMissingTargetDrawingTool:
 
     def test_the_gate_accepts_only_documented_resolutions(self):
         src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
-        assert "MISSING_OK = {'boxed_player', 'boxed_goalkeeper', 'boxed_referee'," in src
-        assert 'missing_bad' in src, 'an unrecognised value must not discharge N2'
+        assert "kb_decisions.missing_targets(" in src
+        assert "v['state'] == 'PENDING'" in src,             'an unrecognised value must leave the flag PENDING'
         g = load(self.PKG / 'SECOND_PASS_GATE.json')['missing_target_boxes']
         assert g['flagged'] - g['pending'] == \
             g['boxed'] + g['excluded'] + g['retracted']
@@ -2005,6 +2008,151 @@ class TestMissingTargetDrawingTool:
         assert "id=\"uExcl\"" in src
         assert 'final_target' in src and 'an exclusion needs a reason' in src
         assert 'EXCLUDE = ' in src
+
+
+class TestImageExclusionIsReversible:
+    """A reviewer pressed X meaning "drop this duplicate flag".
+
+    X excluded the whole image, and because exclusion is recorded as one
+    resolution per flag it landed on top of two boxes that had already been
+    drawn -- burying twelve minutes of correct work under a keypress meant for
+    something else. Nothing was lost, because the log is append-only, but the
+    EFFECTIVE state was wrong and there was no way back.
+
+    The fold now ignores a withdrawn exclusion, so each flag reverts to whatever
+    it held before by itself. Nothing is reconstructed and nothing is deleted.
+    """
+
+    PKG = XS / 'keremberke_review'
+    IMG = 'valid/54622_jpg.rf.8626a293639ac4a1eb395d11358994ae.jpg'
+
+    @pytest.fixture(scope='class')
+    def kb(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_decisions
+        return kb_decisions
+
+    def _log(self, tmp, rows):
+        p = tmp / 'd.json'
+        p.write_text('\n'.join(json.dumps(r) for r in rows), encoding='utf-8')
+        return p
+
+    def _scenario(self, kb, tmp, withdraw=False, retract=()):
+        """4 flags: two boxed, two pending, then the image is excluded."""
+        img = 'valid/x.jpg'
+        keys = [f'MISSING:{img}#{n}' for n in range(1, 5)]
+        rows = []
+        for n, k in enumerate(keys):
+            rows.append({'mode': kb.FLAG_MODE, 'BOX_ID': k, 'IMAGE': img,
+                         'HUMAN_FINAL_CLASS': ['player', 'goalkeeper',
+                                               'goalkeeper', 'player'][n],
+                         'recorded_utc': f'2026-08-12T19:0{n}:00Z'})
+        rows.append({'mode': kb.RESOLVE_MODE, 'BOX_ID': keys[0], 'IMAGE': img,
+                     'HUMAN_FINAL_CLASS': 'boxed_player', 'role': 'player',
+                     'bbox_xywh': [861.2, 138.6, 63.0, 207.0],
+                     'recorded_utc': '2026-08-13T08:14:06Z'})
+        rows.append({'mode': kb.RESOLVE_MODE, 'BOX_ID': keys[1], 'IMAGE': img,
+                     'HUMAN_FINAL_CLASS': 'boxed_goalkeeper', 'role': 'goalkeeper',
+                     'bbox_xywh': [1082.2, 165.6, 42.0, 86.0],
+                     'recorded_utc': '2026-08-13T08:14:14Z'})
+        for k in keys:
+            rows.append({'mode': kb.RESOLVE_MODE, 'BOX_ID': k, 'IMAGE': img,
+                         'HUMAN_FINAL_CLASS': 'EXCLUDE_IMAGE',
+                         'reason': 'oops', 'recorded_utc': '2026-08-13T08:14:40Z'})
+        if withdraw:
+            for k in keys:
+                rows.append({'mode': kb.UNEXCLUDE_MODE, 'BOX_ID': k, 'IMAGE': img,
+                             'HUMAN_FINAL_CLASS': None, 'reason': 'accidental',
+                             'recorded_utc': '2026-08-13T09:00:00Z'})
+        for k in retract:
+            rows.append({'mode': kb.RETRACT_MODE, 'BOX_ID': keys[k], 'IMAGE': img,
+                         'HUMAN_FINAL_CLASS': None, 'reason': 'duplicate flag',
+                         'recorded_utc': '2026-08-13T09:0%d:00Z' % (k + 1)})
+        return keys, kb.missing_targets(self._log(tmp, rows))
+
+    def test_exclusion_makes_all_four_excluded(self, kb, tmp_path):
+        keys, mt = self._scenario(kb, tmp_path)
+        assert [mt[k]['state'] for k in keys] == ['EXCLUDED'] * 4
+
+    def test_withdrawal_restores_boxes_and_pending_states(self, kb, tmp_path):
+        keys, mt = self._scenario(kb, tmp_path, withdraw=True)
+        assert [mt[k]['state'] for k in keys] == \
+            ['BOXED', 'BOXED', 'PENDING', 'PENDING']
+
+    def test_restored_geometry_is_identical(self, kb, tmp_path):
+        keys, mt = self._scenario(kb, tmp_path, withdraw=True)
+        assert mt[keys[0]]['role'] == 'player'
+        assert mt[keys[0]]['bbox_xywh'] == [861.2, 138.6, 63.0, 207.0]
+        assert mt[keys[1]]['role'] == 'goalkeeper'
+        assert mt[keys[1]]['bbox_xywh'] == [1082.2, 165.6, 42.0, 86.0]
+
+    def test_retracting_one_flag_leaves_the_others_alone(self, kb, tmp_path):
+        keys, mt = self._scenario(kb, tmp_path, withdraw=True, retract=(2,))
+        assert [mt[k]['state'] for k in keys] == \
+            ['BOXED', 'BOXED', 'RETRACTED', 'PENDING']
+
+    def test_the_intended_final_state(self, kb, tmp_path):
+        keys, mt = self._scenario(kb, tmp_path, withdraw=True, retract=(2, 3))
+        states = [mt[k]['state'] for k in keys]
+        assert states == ['BOXED', 'BOXED', 'RETRACTED', 'RETRACTED']
+        assert states.count('EXCLUDED') == 0 and states.count('PENDING') == 0
+
+    def test_the_image_is_no_longer_excluded(self, kb, tmp_path):
+        keys, mt = self._scenario(kb, tmp_path, withdraw=True, retract=(2, 3))
+        assert not any(v['excluded'] for v in mt.values())
+
+    def test_the_exclusion_event_is_never_deleted(self, kb, tmp_path):
+        keys, mt = self._scenario(kb, tmp_path, withdraw=True, retract=(2, 3))
+        for k in keys:
+            vals = [h['value'] for h in mt[k]['history']]
+            assert 'EXCLUDE_IMAGE' in vals, 'history must stay auditable'
+            assert mt[k]['exclusion_withdrawn'] is True
+
+    def test_the_real_image_recovered(self, kb):
+        """The actual incident, as it now stands in the real log."""
+        mt = kb.missing_targets(self.PKG / 'decisions.json')
+        here = {k: v for k, v in mt.items() if v['IMAGE'] == self.IMG}
+        assert len(here) == 4
+        boxed = [v for v in here.values() if v['state'] == 'BOXED']
+        retr = [v for v in here.values() if v['state'] == 'RETRACTED']
+        assert len(boxed) == 2 and len(retr) == 2
+        assert not any(v['excluded'] for v in here.values())
+        assert {v['role'] for v in boxed} == {'player', 'goalkeeper'}
+        # every one of the four still carries the accidental exclusion in history
+        assert all(any(h['value'] == 'EXCLUDE_IMAGE' for h in v['history'])
+                   for v in here.values())
+
+    def test_the_gate_reads_effective_exclusion_not_history(self):
+        src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
+        assert 'kb_decisions.missing_targets(' in src
+        assert 'asserting a historical fact' in src
+
+    def test_a_withdrawal_and_a_flag_retraction_are_different_actions(self):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert '/api/retract_flag' in src and '/api/unexclude' in src
+        assert "'scope': 'THIS FLAG ONLY'" in src
+        assert 'a retraction needs a reason' in src
+        # and the UI must not let them be confused
+        assert 'RETRACT THIS FLAG ONLY' in src
+        assert 'EXCLUDE THE WHOLE IMAGE' in src
+        assert 'It is NOT the same as retracting one flag' in src
+
+    def test_excluding_over_a_drawn_box_needs_acknowledgement(self):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert 'acknowledge_overrides_boxes' in src
+        assert "'boxed_flags': sorted(would_bury)" in src
+        assert 'ALREADY HAVE a ' in src, 'the page must warn before the server does'
+        assert "prompt('Type EXCLUDE to override" in src
+
+    def test_D_is_bound_and_does_not_collide(self):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert "k==='d'" in src and 'retractFlag()' in src
+        keys = re.findall(r"k===\'([a-z])\'", src)
+        assert len(keys) == len(set(keys)), f'duplicate shortcut: {keys}'
 
 
 class TestMissingTargetRetraction:
@@ -2057,9 +2205,9 @@ class TestMissingTargetRetraction:
 
     def test_a_retracted_flag_does_not_block_the_gate(self):
         src = (REPO / 'tools' / 'kb_second_pass_gate.py').read_text(encoding='utf-8')
-        assert 'missing_ret' in src
-        assert 'b not in missing_ret' in src, \
-            'N2 must exclude retracted flags from pending'
+        assert "v['state'] == 'RETRACTED'" in src
+        assert "v['state'] == 'PENDING'" in src, \
+            'N2 must count only PENDING flags, which excludes retracted ones'
 
     def test_the_reviewer_can_see_the_flags_on_the_current_image(self):
         src = (REPO / 'tools' / 'kb_review_server2.py').read_text(encoding='utf-8')
