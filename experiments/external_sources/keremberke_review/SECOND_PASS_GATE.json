@@ -1,7 +1,7 @@
 {
  "source_log": {
-  "decisions_sha256": "4986bad2c4914402a18276af49f15c7ab0dac69e81b665f56600c62d896cd7c9",
-  "decisions_lines": 26423,
+  "decisions_sha256": "8bc9eaa2d01af433e7ac7b4bd2ca93fad88fee3aac56140b0acd465570f2b3bd",
+  "decisions_lines": 26436,
   "note": "regenerate this report if it does not match the current decisions.json; a stale report must never be read as state"
  },
  "gate": [
@@ -145,19 +145,6 @@
   "le12": 969
  },
  "ball_preserved": true,
- "apply_permitted": false,
- "unresolved_case_policies": [
-  "test:221 PARTIAL_BODY_BAD_BOX",
-  "train:10172 PARTIAL_BODY_BAD_BOX",
-  "train:11514 BALL_WRONG_HUMAN_BOX",
-  "train:12631 PARTIAL_BODY_BAD_BOX",
-  "train:14904 PARTIAL_BODY_BAD_BOX",
-  "train:15737 BALL_WRONG_HUMAN_BOX",
-  "train:1858 BALL_WRONG_HUMAN_BOX",
-  "train:4500 PARTIAL_BODY_BAD_BOX",
-  "train:7716 PARTIAL_BODY_BAD_BOX",
-  "train:9397 PARTIAL_BODY_BAD_BOX",
-  "train:9614 BALL_WRONG_HUMAN_BOX",
-  "valid:2721 BALL_WRONG_HUMAN_BOX"
- ]
+ "apply_permitted": true,
+ "unresolved_case_policies": []
 }

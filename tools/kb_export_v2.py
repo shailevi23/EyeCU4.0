@@ -37,7 +37,10 @@ only tool that touches the package, and only when both gates pass.
 import argparse
 import hashlib
 import json
+import shutil
 import sys
+import tempfile
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -317,14 +320,226 @@ def verify(S, P, out):
     ]
 
 
+def preconditions(S):
+    """Everything that must hold before a real write. Fails closed on each.
+
+    Returns a list of (name, ok, detail). Any False refuses the apply. These are
+    deliberately re-derived here rather than read from a report: a report can be
+    stale, and the one time a stale report was trusted it said zero outstanding
+    flags while fifty-one were on record.
+    """
+    import subprocess as _sp
+    mfst = json.loads((PKG / 'PACKAGE_MANIFEST.json').read_text(encoding='utf-8'))
+    # Read the gate report AS IT STANDS first. Regenerating it before checking
+    # staleness would make that check vacuous -- it can never be stale against a
+    # log it was just rebuilt from, so a reviewer who appended a decision after
+    # their last --check would sail straight through the guard meant to catch
+    # exactly that. The stored report must have been computed from THIS log.
+    gate_path = PKG / 'SECOND_PASS_GATE.json'
+    stored = json.loads(gate_path.read_text(encoding='utf-8')) \
+        if gate_path.exists() else {}
+    was_current = not kb_decisions.is_stale(stored, DEC)
+    _sp.run([sys.executable, str(REPO / 'tools' / 'kb_second_pass_gate.py')],
+            capture_output=True, text=True, encoding='utf-8', cwd=str(REPO))
+    gate = json.loads(gate_path.read_text(encoding='utf-8'))
+    live = {s: hashlib.sha256((SRC / s / '_annotations.coco.json').read_bytes())
+            .hexdigest() == mfst['original_annotation_sha256'][s]
+            for s in SPLITS}
+    open_u = [b for b, r in S['res'].items()
+              if r['disposition'] == 'UNRESOLVED' and not b.startswith('MISSING:')]
+    pending_mt = [b for b, v in S['mt'].items() if v['state'] == 'PENDING']
+    unresolved = unresolved_policies(S)
+    geo_open = [b for b in dispositioned_ever('PARTIAL_BODY_BAD_BOX')
+                if b in S['led'] and b not in S['reps']
+                and S['res'][b]['disposition'] == 'PARTIAL_BODY_BAD_BOX']
+    ball_open = [b for b in dispositioned_ever('BALL_WRONG_HUMAN_BOX')
+                 if b in S['led'] and b not in S['balls']
+                 and S['res'][b]['disposition'] == 'BALL_WRONG_HUMAN_BOX']
+    known = set(kb_decisions.ROLES) | set(kb_decisions.U_CATEGORIES) | {
+        kb_decisions.UNRESOLVED, None} | set(BOXED_VALUES) | set(
+        kb_decisions.BALL_ACTIONS)
+    unknown = sorted({d.get('HUMAN_FINAL_CLASS') for d in kb_decisions.read_log(DEC)
+                      if d.get('HUMAN_FINAL_CLASS') not in known})
+    return [
+        ('second-pass gate PASS', gate.get('passed') is True,
+         f'{len(gate.get("blocking", []))} blocking'),
+        ('a --check was run against THIS log', was_current,
+         'stored gate fingerprint' if was_current
+         else 'decisions.json changed since the last check -- re-run --check'),
+        ('live source hashes match the manifest', all(live.values()),
+         ', '.join(f'{s}={"ok" if v else "MISMATCH"}' for s, v in live.items())),
+        ('0 unresolved uncertain', not open_u, f'{len(open_u)} open'),
+        ('0 pending missing targets', not pending_mt, f'{len(pending_mt)} pending'),
+        ('all geometry-repair cases resolved', not geo_open,
+         f'{len(geo_open)} outstanding'),
+        ('all ball-review cases resolved', not ball_open,
+         f'{len(ball_open)} outstanding'),
+        ('no unrecorded per-case policy', not unresolved,
+         f'{len(unresolved)} outstanding'),
+        ('no unknown decision value', not unknown, str(unknown or 'none')),
+    ]
+
+
+BOXED_VALUES = ('boxed_player', 'boxed_goalkeeper', 'boxed_referee',
+                'EXCLUDE_IMAGE')
+
+
+def git_commit():
+    import subprocess as _sp
+    try:
+        r = _sp.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True,
+                    cwd=str(REPO), timeout=20)
+        return r.stdout.strip() or None
+    except Exception:
+        return None
+
+
+def manifest(S, P, out, rep):
+    """Provenance for every change, traceable to the event that authorised it."""
+    mf = json.loads((PKG / 'PACKAGE_MANIFEST.json').read_text(encoding='utf-8'))
+    cls = {}
+    for s in SPLITS:
+        names = {c['id']: c['name'] for c in out[s]['categories']}
+        cls[s] = dict(Counter(names[a['category_id']] for a in out[s]['annotations']))
+    total_cls = Counter()
+    for v in cls.values():
+        total_cls.update(v)
+    return {
+        'contract_version': 2,
+        'created_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+        'tool': 'tools/kb_export_v2.py',
+        'git_commit': git_commit(),
+        'immutable_source': {
+            'sha256_per_split': mf['original_annotation_sha256'],
+            'verified_live_at_apply': True},
+        'decisions_log': kb_decisions.log_version(DEC),
+        'counts': {'per_split': rep['per_split'],
+                   'total': sum(v['total'] for v in rep['per_split'].values()),
+                   'by_class': dict(total_cls), 'by_split_class': cls},
+        'additions': [
+            {'annotation_id': rep['id_map'][b], 'split': v['IMAGE'].split('/')[0],
+             'IMAGE': v['IMAGE'], 'class': v['role'], 'bbox_xywh': v['bbox_xywh'],
+             'missing_target_id': b, 'flagged_role': v['flag_role'],
+             'flagged_utc': v['flagged_utc'], 'geometry_author': 'human drawn'}
+            for b, v in sorted(P['added'].items())],
+        'removals': [
+            {'BOX_ID': b, 'reason': why,
+             'decided_in_mode': S['res'][b]['decided_in_mode'],
+             'recorded_utc': S['res'][b]['recorded_utc']}
+            for b, why in sorted(P['removed'].items())],
+        'class_changes': [
+            {'BOX_ID': b, 'to': c,
+             'decided_in_mode': S['res'][b]['decided_in_mode'],
+             'recorded_utc': S['res'][b]['recorded_utc']}
+            for b, c in sorted(P['changed'].items())],
+        'geometry_repairs': [
+            {'BOX_ID': b, 'class': r['HUMAN_FINAL_CLASS'],
+             'original_bbox_xywh': r['original_bbox_xywh'],
+             'replacement_bbox_xywh': r['replacement_bbox_xywh'],
+             'geometry_author': r['geometry_author'],
+             'recorded_utc': r['recorded_utc']}
+            for b, r in sorted(P['repaired'].items())],
+        'ball_changes': [
+            {'BOX_ID': b, 'action': r['action'],
+             'original_bbox_xywh': r['original_bbox_xywh'],
+             'ball_bbox_xywh': r.get('ball_bbox_xywh'),
+             'human_approved': True, 'recorded_utc': r['recorded_utc']}
+            for b, r in sorted(P['ball_fix'].items())],
+        'retracted_missing_target_flags': sorted(
+            b for b, v in S['mt'].items() if v['state'] == 'RETRACTED'),
+        'effective_image_exclusions': sorted(S['excluded']),
+        'excluded_annotations': sorted(P['excluded_ann']),
+        'ball_integrity_rule': (
+            'every ORIGINAL ball annotation survives set-identical; only '
+            'explicitly human-approved ball repairs may be added'),
+        'no_model_geometry': True,
+        'every_change_traceable_to_a_human_event': True,
+    }
+
+
+def apply_atomic(dest):
+    """Stage, verify the STAGED bytes, then promote. Never a partial overwrite."""
+    S = load_state()
+    fingerprint = kb_decisions.log_version(DEC)['decisions_sha256']
+    pre = preconditions(S)
+    print(f'{"precondition":<44}{"":>2}detail')
+    for name, ok, detail in pre:
+        print(f'  {"PASS" if ok else "FAIL"}  {name:<40} {detail}')
+    if not all(ok for _, ok, _ in pre):
+        print('\nREFUSED: a precondition failed. Nothing written.')
+        return 1
+
+    staging = Path(tempfile.mkdtemp(prefix='kb_export_v2_stage_'))
+    S, P, out, rep = build(staging)
+    checks = verify(S, P, out)
+    for name, ok in checks:
+        print(f'  {"PASS" if ok else "FAIL"}  {name}')
+    if not all(ok for _, ok in checks):
+        shutil.rmtree(staging, ignore_errors=True)
+        print('\nREFUSED: a contract clause failed. Nothing written.')
+        return 1
+
+    mf = manifest(S, P, out, rep)
+    (staging / 'EXPORT_MANIFEST.json').write_text(
+        json.dumps(mf, indent=1), encoding='utf-8')
+
+    # Re-read the log AFTER staging. If a review server appended while this ran,
+    # the staged bytes describe a state that no longer exists.
+    if kb_decisions.log_version(DEC)['decisions_sha256'] != fingerprint:
+        shutil.rmtree(staging, ignore_errors=True)
+        print('\nREFUSED: decisions.json changed while the export was being '
+              'built. Re-run --check and apply again. Nothing written.')
+        return 1
+
+    # Verify the STAGED FILES, not the in-memory objects: what gets promoted is
+    # what was written, and a serialisation fault would otherwise go unnoticed.
+    staged = {s: json.loads((staging / f'{s}_annotations.coco.json')
+                            .read_text(encoding='utf-8')) for s in SPLITS}
+    if any(len(staged[s]['annotations']) != rep['per_split'][s]['total']
+           for s in SPLITS):
+        shutil.rmtree(staging, ignore_errors=True)
+        print('\nREFUSED: staged files do not match the plan. Nothing written.')
+        return 1
+
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    prev = dest.with_name(dest.name + '.previous')
+    if prev.exists():
+        shutil.rmtree(prev)
+    # Promote by rename: the destination is never half-written. If this raises,
+    # the source and the previous export are both still intact.
+    if dest.exists():
+        dest.rename(prev)
+    try:
+        Path(staging).rename(dest)
+    except Exception:
+        if prev.exists():
+            prev.rename(dest)
+        raise
+    print(f'\nPROMOTED to {dest.relative_to(REPO)}')
+    if prev.exists():
+        print(f'previous export retained at {prev.name}')
+    print(f'manifest: {(dest / "EXPORT_MANIFEST.json").relative_to(REPO)}')
+    print('original source untouched; working copy untouched.')
+    return 0
+
+
 def main():
     sys.stdout.reconfigure(encoding='utf-8')
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--dry-run', action='store_true')
     ap.add_argument('--check', action='store_true')
+    ap.add_argument('--apply', action='store_true',
+                    help='stage, verify, then atomically promote the repaired '
+                         'export. Refuses unless every precondition holds.')
+    ap.add_argument('--dest', default=str(PKG / 'repaired_export'),
+                    help='destination for --apply')
     ap.add_argument('--out')
     args = ap.parse_args()
+
+    if args.apply:
+        sys.exit(apply_atomic(args.dest))
 
     S = load_state()
     blockers = unresolved_policies(S)
@@ -362,6 +577,14 @@ def main():
         ok &= bool(good)
         print(f'  {"PASS" if good else "FAIL"}  {name}')
     print(f'\nCONTRACT v2: {"PASS" if ok else "FAIL"}')
+    if ok:
+        # Refresh the gate report so its fingerprint records that a check ran
+        # against THIS log. --apply requires that, which is what makes "check,
+        # then apply" a real sequence rather than two independent commands.
+        import subprocess as _sp
+        _sp.run([sys.executable, str(REPO / 'tools' / 'kb_second_pass_gate.py')],
+                capture_output=True, cwd=str(REPO))
+        print('gate report refreshed; --apply will accept this log')
     if args.out:
         print(f'written to {args.out}  (dry run; the package is untouched)')
     sys.exit(0 if ok else 1)

@@ -29,7 +29,11 @@ KNOWN_MODES = {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
                'missing_target_box', 'missing_target_resolution',
                'missing_target_retraction',
                # withdraws an image exclusion; never deletes it
-               'missing_target_exclusion_retraction'}
+               'missing_target_exclusion_retraction',
+               # the two per-case policies: a redrawn box keeps its annotation
+               # id, and a ball case records which of the three outcomes was
+               # chosen. Both replace a default the exporter must never pick.
+               'geometry_repair', 'ball_case_resolution'}
 
 EXT = REPO / 'EyeCU_external_data'
 XS = REPO / 'experiments' / 'external_sources'
@@ -2121,6 +2125,156 @@ class TestMissingTargetDrawingTool:
         assert "id=\"uExcl\"" in src
         assert 'final_target' in src and 'an exclusion needs a reason' in src
         assert 'EXCLUDE = ' in src
+
+
+class TestV1ApplyIsRetired:
+    """The historical rule must never become the production repair rule again.
+
+    v1 could only change class ids and asserted `before == after` over every
+    (id, bbox) in the split. The human review produced 46 additions, 33 removals
+    and 7 geometry repairs; that assertion aborts on all of them. Relaxing it in
+    place would have left a second export implementation that could silently
+    disagree with the one actually verified, so the write path was removed
+    rather than loosened.
+    """
+
+    def test_the_assert_is_no_longer_executable_code(self):
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        live = [l for l in src.splitlines()
+                if 'assert before == after' in l and not l.strip().startswith('#')]
+        assert not live, 'the v1 contract is executable again'
+        assert 'v1 WRITE PATH RETIRED' in src
+
+    def test_it_writes_nothing_and_says_why(self):
+        src = (REPO / 'tools' / 'kb_apply_review.py').read_text(encoding='utf-8')
+        tail = src[src.index('v1 WRITE PATH RETIRED'):]
+        assert 'wc.write_text' not in tail, 'the retired path must not write'
+        assert 'kb_export_v2.py --apply' in tail, 'it must point at the successor'
+        assert 'sys.exit(2)' in tail
+
+    def test_there_is_exactly_one_export_implementation(self):
+        """Two would be able to disagree, which is the whole hazard."""
+        apply_src = (REPO / 'tools' / 'kb_apply_review.py').read_text(
+            encoding='utf-8')
+        after = apply_src[apply_src.index('v1 WRITE PATH RETIRED'):]
+        for token in ("ann['category_id'] =", "a['annotations'] =",
+                      'name_to_id'):
+            assert token not in after, f'{token} still builds an export here'
+
+    def test_check_and_apply_share_one_code_path(self):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        # both routes go through build() and verify()
+        assert 'def apply_atomic' in src
+        apply_block = src[src.index('def apply_atomic'):src.index('def main')]
+        assert 'build(staging)' in apply_block and 'verify(S, P, out)' in apply_block
+
+
+class TestContractV2Apply:
+    """Preconditions, atomicity and provenance for the real write."""
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def E(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        return importlib.import_module('kb_export_v2')
+
+    def test_every_precondition_is_evaluated(self, E):
+        S = E.load_state()
+        names = [n for n, _, _ in E.preconditions(S)]
+        for required in ('second-pass gate PASS', 'live source hashes',
+                         '0 unresolved uncertain', '0 pending missing targets',
+                         'geometry-repair cases resolved',
+                         'ball-review cases resolved',
+                         'no unrecorded per-case policy',
+                         'no unknown decision value'):
+            assert any(required in n for n in names), required
+
+    def test_apply_fails_closed_on_any_precondition(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert 'if not all(ok for _, ok, _ in pre):' in src
+        assert 'REFUSED: a precondition failed. Nothing written.' in src
+        assert 'REFUSED: a contract clause failed. Nothing written.' in src
+
+    def test_the_staleness_check_is_not_vacuous(self, E):
+        """Regenerating the gate before checking it would make the guard useless.
+
+        The stored report has to have been computed from THIS log; a report the
+        apply itself just rebuilt can never look stale, so a decision appended
+        after the last --check would have sailed through the guard meant to
+        catch exactly that.
+        """
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        block = src[src.index('def preconditions'):src.index('BOXED_VALUES = (')]
+        stale_at = block.index('was_current = not kb_decisions.is_stale')
+        regen_at = block.index('kb_second_pass_gate.py')
+        assert stale_at < regen_at, \
+            'staleness must be measured BEFORE the gate is regenerated'
+        assert 'would make that check vacuous' in block
+
+    def test_a_changed_log_between_check_and_write_refuses(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert 'decisions.json changed while the export was being' in src
+        assert 'fingerprint = kb_decisions.log_version(DEC)' in src
+
+    def test_the_write_is_staged_then_promoted(self, E):
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert 'tempfile.mkdtemp(prefix=' in src
+        assert 'Path(staging).rename(dest)' in src, 'promotion must be a rename'
+        assert 'prev.rename(dest)' in src, 'a failed promotion must roll back'
+        assert 'the destination is never half-written' in src
+
+    def test_the_staged_files_are_verified_not_the_objects(self, E):
+        """A serialisation fault would otherwise be promoted unnoticed."""
+        src = (REPO / 'tools' / 'kb_export_v2.py').read_text(encoding='utf-8')
+        assert "staged = {s: json.loads((staging / f'{s}_annotations.coco.json')" in src
+        assert 'staged files do not match the plan' in src
+
+    def test_the_manifest_traces_every_change(self, E):
+        S = E.load_state()
+        if E.unresolved_policies(S):
+            pytest.skip('export blocked')
+        S, P, out, rep = E.build(None)
+        mf = E.manifest(S, P, out, rep)
+        assert mf['contract_version'] == 2
+        for key in ('immutable_source', 'decisions_log', 'additions', 'removals',
+                    'class_changes', 'geometry_repairs', 'ball_changes',
+                    'retracted_missing_target_flags',
+                    'effective_image_exclusions', 'counts'):
+            assert key in mf, key
+        assert len(mf['additions']) == len(P['added'])
+        assert len(mf['removals']) == len(P['removed'])
+        assert len(mf['geometry_repairs']) == len(P['repaired'])
+        for a in mf['additions']:
+            assert a['missing_target_id'] and a['geometry_author'] == 'human drawn'
+        for r in mf['removals']:
+            assert r['decided_in_mode'] and r['recorded_utc']
+        for g in mf['geometry_repairs']:
+            assert g['original_bbox_xywh'] and g['replacement_bbox_xywh']
+        assert mf['no_model_geometry'] is True
+
+    def test_new_annotation_ids_never_collide(self, E):
+        S = E.load_state()
+        if E.unresolved_policies(S):
+            pytest.skip('export blocked')
+        S, P, out, rep = E.build(None)
+        wc = {s: json.loads((self.PKG / 'working_copy' /
+                             f'{s}_annotations.coco.json').read_text('utf-8'))
+              for s in E.SPLITS}
+        src_ids = {f'{s}:{a["id"]}' for s in E.SPLITS for a in wc[s]['annotations']}
+        for b, i in rep['id_map'].items():
+            s = P['added'][b]['IMAGE'].split('/')[0]
+            assert f'{s}:{i}' not in src_ids
+
+    def test_repaired_and_reclassified_boxes_keep_their_id(self, E):
+        S = E.load_state()
+        if E.unresolved_policies(S):
+            pytest.skip('export blocked')
+        S, P, out, rep = E.build(None)
+        for b in list(P['repaired']) + list(P['ball_fix']):
+            assert b not in rep['id_map'], f'{b} must keep its original id'
 
 
 class TestExclusionRevisit:

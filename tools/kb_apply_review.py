@@ -273,35 +273,29 @@ def main():
             print(f'   blocked by: {n}')
         sys.exit(1)
 
-    # ---- apply: class ids only ---------------------------------------------
-    name_to_id = {}
-    for split in ('train', 'valid', 'test'):
-        wc = PKG / 'working_copy' / f'{split}_annotations.coco.json'
-        a = json.loads(wc.read_text(encoding='utf-8'))
-        have = {c['name']: c['id'] for c in a['categories']}
-        nxt = max(have.values()) + 1
-        for nm in ('goalkeeper', 'referee'):
-            if nm not in have:
-                have[nm] = nxt
-                a['categories'].append({'id': nxt, 'name': nm,
-                                        'supercategory': 'none'})
-                nxt += 1
-        name_to_id[split] = have
-        before = [(x['id'], tuple(round(float(v), 4) for v in x['bbox'])) for x in a['annotations']]
-        changed = 0
-        for ann in a['annotations']:
-            r = by_id.get(f'{split}:{ann["id"]}')
-            if not r or not r['HUMAN_FINAL_CLASS'] or r['HUMAN_FINAL_CLASS'] == 'uncertain':
-                continue
-            if r['HUMAN_FINAL_CLASS'] in ('goalkeeper', 'referee'):
-                ann['category_id'] = have[r['HUMAN_FINAL_CLASS']]
-                changed += 1
-        after = [(x['id'], tuple(round(float(v), 4) for v in x['bbox'])) for x in a['annotations']]
-        assert before == after, f'{split}: geometry or box set changed -- refusing'
-        wc.write_text(json.dumps(a), encoding='utf-8')
-        print(f'{split}: {changed} class ids changed, geometry identical, '
-              f'{len(a["annotations"])} boxes unchanged in count')
-    print('\nAPPLIED to the working copy. Original export untouched.')
+    # ---- v1 WRITE PATH RETIRED ---------------------------------------------
+    # What used to be here changed category_id and nothing else, guarded by
+    #     assert before == after   over every (id, bbox) in the split.
+    # That was the right rule for the repair anyone expected in advance, and the
+    # human review then produced 46 additions, 33 removals, 7 geometry repairs
+    # and reclassified balls. The assertion aborts on every one of them, and
+    # relaxing it would have left a second export implementation here that could
+    # silently disagree with the one that was actually verified.
+    #
+    # There is one implementation now. kb_export_v2 derives the export from
+    # effective human state and is the same code path behind --check and
+    # --apply, so what was verified is what gets written. This file keeps the
+    # first-pass gate and hands over rather than writing anything itself.
+    print()
+    print('The v1 apply path is retired and wrote nothing.')
+    print('It could only change class ids, and asserted the box set was')
+    print('unchanged. The review produced additions, removals and geometry')
+    print('repairs, which that rule forbids. Contract v2 is the only export')
+    print('implementation:')
+    print()
+    print('  python tools/kb_export_v2.py --check      verify, writes nothing')
+    print('  python tools/kb_export_v2.py --apply      stage, verify, promote')
+    sys.exit(2)
 
 
 if __name__ == '__main__':
