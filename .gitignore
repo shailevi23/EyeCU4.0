@@ -222,3 +222,12 @@ experiments/external_sources/keremberke_review/ledger.json
 experiments/external_sources/keremberke_review/review_queue.json
 experiments/external_sources/keremberke_review/working_copy/
 !experiments/external_sources/keremberke_review/decisions.json
+
+# The promoted repaired export regenerates byte-identically from decisions.json
+# plus the immutable source -- verified by running --apply twice -- so the
+# annotations themselves are bulk. The manifest is not: it is the provenance
+# record naming the log hash, the source hashes and every authorised change, and
+# it is what makes the export reproducible at all.
+experiments/external_sources/keremberke_review/repaired_export/*
+!experiments/external_sources/keremberke_review/repaired_export/EXPORT_MANIFEST.json
+experiments/external_sources/keremberke_review/repaired_export.previous/
