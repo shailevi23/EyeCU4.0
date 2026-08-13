@@ -1766,6 +1766,135 @@ class TestDerivedReportsCannotGoStaleSilently:
             'the tool must not build its queue from the derived report'
 
 
+class TestImageResolutionIsDeterministic:
+    """Two copies of the image path differed by one character.
+
+    kb_review_server2 read `extracted`; kb_missing_target_server read `extract`.
+    The queue, the state and the whole panel loaded correctly and every single
+    image 404'd -- the worst split available, because everything says the tool
+    works except the thing being reviewed. Both copies also searched by BASENAME
+    with rglob, which returns whichever file the filesystem walked first if two
+    ever share a name.
+
+    IMAGE is metadata, not a search key: `<split>/<file>` resolves to exactly one
+    path or to nothing.
+    """
+
+    PKG = XS / 'keremberke_review'
+
+    @pytest.fixture(scope='class')
+    def I(self):
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import kb_images
+        return kb_images
+
+    def test_there_is_one_resolver_and_both_servers_use_it(self):
+        for tool in ('kb_review_server2.py', 'kb_missing_target_server.py'):
+            src = (REPO / 'tools' / tool).read_text(encoding='utf-8')
+            assert 'import kb_images' in src, tool
+            assert 'IMGROOT = kb_images.IMGROOT' in src, tool
+            assert 'kb_images.read(' in src, tool
+            assert '.rglob(' not in src, f'{tool} still searches by basename'
+
+    def test_the_image_root_exists_and_holds_the_three_splits(self, I):
+        assert I.IMGROOT.is_dir(), I.IMGROOT
+        for s in I.SPLITS:
+            assert (I.IMGROOT / s).is_dir(), s
+
+    def test_a_split_prefixed_image_maps_to_one_path(self, I):
+        p = I.path_for('test/x.jpg')
+        assert p == I.IMGROOT / 'test' / 'x.jpg'
+        assert I.path_for('test\\x.jpg') == p, 'backslashes normalise'
+        assert I.path_for('/test/x.jpg') == p, 'a leading slash is not a new root'
+
+    def test_traversal_and_junk_are_refused(self, I):
+        for bad in ('train/../../secret.jpg', '../x.jpg', 'nosuchsplit/x.jpg',
+                    'x.jpg', '', None, '/'):
+            with pytest.raises(I.ImageError):
+                I.path_for(bad)
+
+    def test_each_split_serves(self, I):
+        led = json.loads((self.PKG / 'ledger.json').read_text(encoding='utf-8'))
+        seen = {}
+        for r in led:
+            seen.setdefault(r['IMAGE'].split('/', 1)[0], r['IMAGE'])
+        assert set(seen) == set(I.SPLITS), seen
+        for split, im in seen.items():
+            body, ctype = I.read(im)
+            assert body[:2] == b'\xff\xd8', f'{split} is not a JPEG'
+            assert ctype == 'image/jpeg'
+
+    def test_a_non_ascii_parent_path_works(self, I, tmp_path):
+        """The project lives under a Hebrew path; cv2.imread already failed on it."""
+        root = tmp_path / 'שולחן העבודה' / 'תמונות'
+        (root / 'train').mkdir(parents=True)
+        (root / 'train' / 'זה.jpg').write_bytes(b'\xff\xd8\xff\xe0stub')
+        body, ctype = I.read('train/זה.jpg', root=root)
+        assert body[:2] == b'\xff\xd8' and ctype == 'image/jpeg'
+
+    def test_a_url_encoded_path_resolves(self, I, tmp_path):
+        from urllib.parse import quote, unquote
+        root = tmp_path / 'r'
+        (root / 'valid').mkdir(parents=True)
+        name = 'a b+c%d.jpg'
+        (root / 'valid' / name).write_bytes(b'\xff\xd8ok')
+        # the servers unquote before handing the value over
+        assert I.read(unquote(quote(f'valid/{name}')), root=root)[0][:2] == b'\xff\xd8'
+
+    def test_a_missing_image_names_the_path_it_looked_for(self, I):
+        with pytest.raises(I.ImageError) as e:
+            I.resolve('train/__definitely_not_here__.jpg')
+        assert 'no file at' in str(e.value)
+        assert 'extracted' in str(e.value), 'the message must show the root used'
+
+    def test_the_servers_return_an_explicit_404_and_log_it(self):
+        for tool in ('kb_review_server2.py', 'kb_missing_target_server.py'):
+            src = (REPO / 'tools' / tool).read_text(encoding='utf-8')
+            assert "print(f'IMAGE 404" in src, tool
+            assert "{'error': str(e), 'IMAGE': want}" in src, tool
+
+    def test_the_page_shows_a_banner_not_a_broken_icon(self):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert 'im.onerror' in src
+        assert 'IMAGE COULD NOT BE LOADED' in src
+        assert 'Do not resolve this target' in src
+
+    def test_the_tool_refuses_to_start_if_an_image_is_unresolvable(self):
+        src = (REPO / 'tools' / 'kb_missing_target_server.py').read_text(
+            encoding='utf-8')
+        assert 'REFUSING TO START' in src
+        assert 'kb_images.preflight(pending)' in src
+        assert 'No decision has been touched' in src
+
+    def test_preflight_reports_every_problem_not_just_the_first(self, I, tmp_path):
+        root = tmp_path / 'r'
+        (root / 'train').mkdir(parents=True)
+        (root / 'train' / 'here.jpg').write_bytes(b'\xff\xd8')
+        ok, probs = I.preflight(['train/here.jpg', 'train/gone.jpg',
+                                 'train/also_gone.jpg'], root=root)
+        assert ok is False and len(probs) == 2
+        ok2, probs2 = I.preflight(['train/here.jpg'], root=root)
+        assert ok2 is True and probs2 == []
+
+    def test_every_live_missing_target_image_resolves(self, I):
+        """The read-only preflight over the real queue."""
+        import sys as _s
+        _s.path.insert(0, str(REPO / 'tools'))
+        import importlib
+        m = importlib.import_module('kb_missing_target_server')
+        st = m.build_state()
+        imgs = {t['IMAGE'] for t in st['targets']}
+        assert imgs, 'there is outstanding work'
+        ok, probs = I.preflight(imgs)
+        assert ok, probs
+        for im in imgs:
+            assert I.resolve(im).stat().st_size > 0
+        # one flag -> one image, and no image resolves two ways
+        assert len({I.path_for(i) for i in imgs}) == len(imgs)
+
+
 class TestMissingTargetDrawingTool:
     """The 48 targets that have no annotation and therefore no BOX_ID."""
 

@@ -48,10 +48,13 @@ from urllib.parse import unquote, urlparse
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / 'tools'))
 import kb_decisions                                              # noqa: E402
+import kb_images                                                 # noqa: E402
 
 PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
-IMGROOT = (REPO / 'EyeCU_external_data' / 'huggingface'
-           / 'keremberke_football_object_detection' / 'extract')
+# One resolver, shared with kb_review_server2. This file had its own copy of the
+# image root and it read `extract` where the working server reads `extracted`,
+# so every image 404'd while the rest of the UI loaded normally.
+IMGROOT = kb_images.IMGROOT
 LOCK = threading.Lock()
 
 FLAG_MODE = 'missing_target_box'
@@ -119,6 +122,8 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
   <span class="k">X</span> exclude image · <span class="k">N</span>/<span class="k">B</span>
   next/prev target · <span class="k">+</span>/<span class="k">-</span> zoom</span>
 </div>
+<div id="imgerr" style="display:none;margin:10px 290px 10px 10px;background:#3a1414;
+     border:1px solid #7a3a3a;border-radius:6px;padding:12px;max-width:640px"></div>
 <div id="wrap"><div id="stage"><img id="im"><div id="ov"></div><div id="hit"></div></div></div>
 <div id="panel">
  <div id="who"></div>
@@ -150,7 +155,22 @@ function render(){
  document.getElementById('img').textContent=t.IMAGE;
  draft=null;
  const im=document.getElementById('im');
- im.onload=()=>{applyZoom();draw();};
+ const err=document.getElementById('imgerr');
+ err.style.display='none'; im.style.display='block';
+ im.onload=()=>{err.style.display='none';applyZoom();draw();};
+ // A broken-image icon says nothing. Ask the server why and show it, so a
+ // wrong image root announces itself instead of looking like a bad file.
+ im.onerror=async()=>{
+  im.style.display='none';
+  let why='the server did not return an image';
+  try{const r=await fetch('/img/'+t.IMAGE);
+      const j=await r.json(); why=j.error||why;}catch(e){}
+  err.style.display='block';
+  err.innerHTML='<b>IMAGE COULD NOT BE LOADED</b><br>'
+   +'<span style="font:11px monospace">'+t.IMAGE+'</span><br>'+why
+   +'<br><br>Do not resolve this target. Stop and fix the image path first &mdash; '
+   +'a box drawn on a picture you cannot see is not a human decision.';
+ };
  im.src='/img/'+t.IMAGE;
  stats();
 }
@@ -441,11 +461,17 @@ class H(BaseHTTPRequestHandler):
         if p == '/api/state':
             return self._send(200, json.dumps(build_state()).encode('utf-8'))
         if p.startswith('/img/'):
-            split, name = p[len('/img/'):].split('/', 1)
-            for c in (IMGROOT / split).rglob(name):
-                return self._send(200, c.read_bytes(),
-                                  mimetypes.guess_type(name)[0] or 'image/jpeg')
-            return self._send(404, b'not found', 'text/plain')
+            want = p[len('/img/'):]
+            try:
+                body, ctype = kb_images.read(want)
+            except kb_images.ImageError as e:
+                # say which image and why, in the response and on the console.
+                # A bare 404 is indistinguishable from a typo'd URL, which is
+                # exactly how a wrong image root went unnoticed.
+                print(f'IMAGE 404  {want}  --  {e}', flush=True)
+                return self._send(404, json.dumps(
+                    {'error': str(e), 'IMAGE': want}).encode())
+            return self._send(200, body, ctype)
         return self._send(404, b'not found', 'text/plain')
 
     def do_POST(self):
@@ -529,6 +555,23 @@ def main():
     if not st['targets']:
         print('no live missing-target flags; nothing to do')
         return
+    # Preflight. Opening a browser and then 404-ing on the first image wastes the
+    # reviewer's setup and tells them nothing -- the panel loads, the queue looks
+    # right, and only the picture is missing. Checking every pending target up
+    # front turns that into one message before anything opens.
+    pending = [t['IMAGE'] for t in st['targets'] if not t['resolution']]
+    ok, problems = kb_images.preflight(pending)
+    if not ok:
+        print(f'REFUSING TO START: {len(problems)} of '
+              f'{len(set(pending))} pending target images cannot be resolved.')
+        for im, why in problems[:10]:
+            print(f'  {im}\n    {why}')
+        if len(problems) > 10:
+            print(f'  ... and {len(problems) - 10} more')
+        print(f'\nimage root: {kb_images.IMGROOT}')
+        print('No decision has been touched.')
+        sys.exit(1)
+    print(f'preflight: {len(set(pending))} pending target images all resolve')
     print(f"{len(st['targets'])} live targets across {st['images']} images")
     print(f'already resolved: {done}  pending: {len(st["targets"]) - done}')
     print('\nHUMAN-DRAWN GEOMETRY ONLY. No model runs here and no box is proposed.')

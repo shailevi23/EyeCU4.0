@@ -39,9 +39,10 @@ from urllib.parse import unquote, urlparse
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / 'tools'))
 import kb_decisions                                              # noqa: E402
+import kb_images                                                 # noqa: E402
 
 PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
-IMGROOT = REPO / 'EyeCU_external_data/huggingface/keremberke_football_object_detection/extracted'
+IMGROOT = kb_images.IMGROOT
 MODES = ('missed_role', 'missed_role_manual', 'missing_target_box',
          'missing_target_retraction', 'final_target')
 # M -- a real human who is not taking part: bench, coach, ball person, medical
@@ -690,11 +691,17 @@ class H(BaseHTTPRequestHandler):
         if p == '/api/state':
             return self._send(200, json.dumps(build_state()).encode('utf-8'))
         if p.startswith('/img/'):
-            split, name = p[len('/img/'):].split('/', 1)
-            for c in (IMGROOT / split).rglob(name):
-                return self._send(200, c.read_bytes(),
-                                  mimetypes.guess_type(name)[0] or 'image/jpeg')
-            return self._send(404, b'not found', 'text/plain')
+            # kb_images is the single resolver. The rglob that used to live here
+            # found files by basename, which returns whichever the filesystem
+            # walked first if two ever share a name.
+            want = p[len('/img/'):]
+            try:
+                body, ctype = kb_images.read(want)
+            except kb_images.ImageError as e:
+                print(f'IMAGE 404  {want}  --  {e}', flush=True)
+                return self._send(404, json.dumps(
+                    {'error': str(e), 'IMAGE': want}).encode())
+            return self._send(200, body, ctype)
         return self._send(404, b'not found', 'text/plain')
 
     def do_POST(self):
