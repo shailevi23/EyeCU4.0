@@ -247,31 +247,63 @@ exactly the parts we looked at.
 
 Under SRSWOR every image carries the same inclusion probability, so the
 estimator is the unweighted proportion p̂ = (positive images)/300 — exactly, not
-approximately — with **Clopper–Pearson exact 95% intervals**:
+approximately.
 
-| positives | p̂ | exact 95% CI |
-| --- | --- | --- |
-| **0** | 0.00% | **[0.00%, 1.22%]** |
-| 1 | 0.33% | [0.01%, 1.84%] |
-| 2 | 0.67% | [0.08%, 2.39%] |
-| 3 | 1.00% | [0.21%, 2.89%] |
-| 4 | 1.33% | [0.36%, 3.38%] |
-| 5 | 1.67% | [0.54%, 3.85%] |
-| 9 | 3.00% | [1.38%, 5.62%] |
-| 10 | 3.33% | [1.61%, 6.04%] |
+**Revision 4, 2026-08-14: the interval now matches the design.** Sampling is
+without replacement from a finite N = 1,232, so the positive count is
+**hypergeometric, not binomial**. The primary 95% interval is obtained by
+**inverting the hypergeometric sampling distribution** — the set of population
+positive-counts M under which the observed x falls in neither 2.5% tail:
 
-These are **conservative** for this design: sampling is without replacement from
-a finite N = 1,232, and the finite-population correction is √((N−n)/(N−1)) =
-**0.870**. Reporting the uncorrected binomial interval overstates the width by
-about 13%, which is the safe direction and keeps the interval interpretable
-without a survey package.
+    M_lo = min{ M : P(X ≥ x | N, M, n) ≥ 0.025 }
+    M_hi = max{ M : P(X ≤ x | N, M, n) ≥ 0.025 }
+
+Both probabilities are monotone in M and there are only 1,233 candidate values,
+so the endpoints are found by exact search — no root-finding, no continuity
+correction, no normal approximation.
+
+| positives | p̂ | **exact finite-population 95% CI** | as image counts /1,232 | binomial reference |
+| --- | --- | --- | --- | --- |
+| **0** | 0.00% | **[0.00%, 1.06%]** | **[0, 13]** | [0.00%, 1.22%] |
+| 1 | 0.33% | [0.08%, 1.62%] | [1, 20] | [0.01%, 1.84%] |
+| 2 | 0.67% | [0.16%, 2.11%] | [2, 26] | [0.08%, 2.39%] |
+| 3 | 1.00% | [0.32%, 2.60%] | [4, 32] | [0.21%, 2.89%] |
+| 4 | 1.33% | [0.49%, 3.08%] | [6, 38] | [0.36%, 3.38%] |
+| 5 | 1.67% | [0.73%, 3.49%] | [9, 43] | [0.54%, 3.85%] |
+| 9 | 3.00% | [1.62%, 5.28%] | [20, 65] | [1.38%, 5.62%] |
+| 10 | 3.33% | [1.87%, 5.68%] | [23, 70] | [1.61%, 6.04%] |
+
+**The endpoints are integer counts of images**, which is what the estimand
+actually is; the percentages are those counts divided by 1,232.
+
+Clopper–Pearson remains in the report but is labelled a **conservative binomial
+reference**. It assumes sampling with replacement from an infinite population,
+discarding the information that 300 of the 1,232 images were genuinely
+inspected, so it is uniformly wider. It is **not** the exact interval for this
+design and must not be described as one.
+
+One consequence worth understanding rather than patching: **M_lo can exceed x.**
+At x = 3 the lower bound is 4, because if the population held exactly 3
+positives, drawing all 3 of them in a 300-image sample has probability 0.0143 —
+itself a 2.5%-tail event. Observing 3 is mild evidence that more than 3 exist.
+
+**No interval before the round is complete.** `--interim` reports counts only —
+answered, outstanding, positive images, missing objects drawn, UNSURE — plus the
+*logical* bounds on the final positive count (minimum = current positives;
+maximum = current + outstanding + UNSURE). Those bounds carry no sampling
+probability and are not a confidence interval. A partial sample has no
+denominator, since the unreviewed images are not negatives, and a number printed
+beside the word "CI" gets quoted regardless of its caption. **The frozen report
+is the first place a prevalence interval may appear.**
 
 **If equal inclusion probability is ever broken** — an image found unreadable
 and dropped, the population changed, any image reviewed outside the drawn
 sample — the unweighted interval stops being valid and the report must say so
-rather than quote it. A "0/300 → [0, 1.2%]" that does not come from an equal-
-probability sample of the stated population is a false precision claim. The
-report checks this and refuses rather than adjusting silently.
+rather than quote it. A "0/300 → [0, 1.06%]" that does not come from an equal-
+probability sample of the stated population is a false precision claim — and the
+hypergeometric inversion makes that worse, not better, since it assumes the 300
+were drawn from exactly these 1,232. The report checks this and refuses rather
+than adjusting silently.
 
 Alongside the interval, report:
 
@@ -499,7 +531,9 @@ much time and destroys the interval that is its entire purpose.
   sample was not allocated by run, so subgroup counts are incidental and small.
 
 ### HIGH-CONFIDENCE
-- **Round 0 extended to 600 images** — halves the CI width; 0/600 → [0, 0.61%].
+- **Round 0 extended to 600 images** — 0/600 → **[0.00%, 0.41%]**, i.e. at most
+  5 of the 1,232 images. (The binomial reference would say 0.61%; sampling half
+  the population is where the finite-population correction really bites.)
   ~5 h
 - Plus a **100-image double-review** of Round-0 images by the same reviewer on a
   different day, to estimate the **reviewer miss rate**. A human sweeping for a
@@ -524,11 +558,12 @@ and BALANCED's escalation path leads there anyway.
 ## 10. Stopping and escalation rule — fixed before any review
 
 Set now, on the **primary endpoint** (positive images / 300), so the result
-cannot be rationalised afterwards. `n = 300`, SRSWOR, Clopper–Pearson.
+cannot be rationalised afterwards. `n = 300`, SRSWOR, exact finite-population
+interval.
 
 | Round-0 result | Action |
 | --- | --- |
-| **0 positive images** | **Stop.** Report [0.00%, 1.22%]. No Round 1. Experiment D proceeds. Review the 72 + 3, which are geometry questions, not prevalence ones. |
+| **0 positive images** | **Stop.** Report [0.00%, 1.06%] — at most 13 of the 1,232 images. No Round 1. Experiment D proceeds. Review the 72 + 3, which are geometry questions, not prevalence ones. |
 | **1–3 positive (≤1.0%)**, all found balls >12 px | Correct later if desired. **No Round 1.** Report the rate with CI. The defensible statement is: **"no evidence from Round 0 of a tiny-ball-specific missing-label problem."** **Do not claim a cause.** The reason those large balls were missed is unknown — fatigue, ambiguous frames, a systematic rule the original annotators followed, or chance — and Round 0 cannot distinguish them. Establishing a cause requires a separate investigation. |
 | **1–3 positive, any found ball ≤8 px** | Correct, and **extend Round 0 to 600**. A small ball missed even once at n=300 bears directly on the one use case this data was acquired for. Round 1 is triggered if the extension confirms. |
 | **4–9 positive (1.3–3.0%)** | Correct, extend Round 0 to 600, characterise by run / size / region, and **trigger Round 1** as the correction mechanism. |
@@ -562,7 +597,7 @@ has reported.**
 | --- | --- | --- | --- |
 | 1 | `kb_ball_qa_sample.py` | Draw the seeded SRSWOR Round-0 sample; write the manifest with the population fingerprint, N, n, seed, inclusion probability, the ordered image IDs and their descriptive metadata | `kb_build_review_package` sampling |
 | 2 | `kb_ball_qa_server.py` | Round-0 review UI: whole image, GT drawn, zoom to 8×, three answers, multi-object drawing | `kb_geometry_repair_server` almost entirely — drawing, zoom, image-coordinate conversion, `kb_images` resolver, preflight |
-| 3 | `kb_ball_round0_report.py` | Fold the log, compute p̂ and the Clopper–Pearson interval, emit the **frozen** report bound to a log fingerprint; refuse to run on a stale snapshot | `kb_second_pass_gate` staleness guards |
+| 3 | `kb_ball_round0_report.py` | Fold the log, compute p̂ and the exact finite-population interval, emit the **frozen** report bound to a log fingerprint; `--interim` gives counts with no CI; refuses on a stale or incomplete snapshot | `kb_second_pass_gate` staleness guards |
 | 4 | `kb_ball_geometry_review.py` | `OVERSIZED_BALL_REVIEW` (72) + `BALL_OVERLAP_REVIEW` (3) | tool 2, different queue |
 | 5 | `kb_ball_candidates.py` | *Round 1 only.* Frozen detector at a low floor, matched to GT, ranked queue | `kb_role_triage` matching logic |
 | 6 | `kb_ball_gate.py` | Ball-specific gate conditions before any new export is promoted | `kb_second_pass_gate` structure |

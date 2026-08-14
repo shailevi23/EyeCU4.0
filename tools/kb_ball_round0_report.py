@@ -15,15 +15,28 @@ missed in an image is unknowable. So objects are reported as counts and as a
 size distribution, and any ratio built from them would be a number with no
 sampling interpretation dressed up as a measurement.
 
-Clopper-Pearson is used rather than a normal approximation because the expected
-count is small and may well be zero, where the Wald interval degenerates to the
-useless [0, 0]. It is computed from the Beta quantile identity, so nothing
-outside the standard library and scipy is needed, and it is conservative in the
-right direction. The finite-population correction (0.870 here) is NOT applied:
-ignoring it widens the interval slightly, which is the safe direction.
+THE INTERVAL MATCHES THE DESIGN. 300 images were drawn WITHOUT replacement from
+a finite population of 1,232, so the sampling distribution of the positive count
+is hypergeometric, not binomial. The primary interval is therefore obtained by
+inverting that distribution: it is the set of population positive-counts M for
+which the observed x is not in either 2.5% tail. Its endpoints are integer
+counts of images out of 1,232 -- which is what the estimand actually is. There
+are only 1,233 candidate values of M, so the inversion is an exact search, not
+an approximation.
+
+Clopper-Pearson is still reported, but labelled for what it is: a CONSERVATIVE
+BINOMIAL REFERENCE that pretends the population is infinite. It is uniformly
+wider (at x=0, [0, 1.22%] against the finite-population [0, 1.06%]) because it
+discards the information that 300 of the 1,232 images were actually inspected.
+Calling it "the exact interval" for this design would be wrong.
+
+NO PREVALENCE INTERVAL BEFORE THE ROUND IS COMPLETE. --interim prints counts
+only. An interval computed from 40 answers is not an early view of the result;
+it is a different quantity with a denominator that does not exist yet, and a
+number printed beside the word "CI" gets quoted no matter how it is captioned.
 
     python tools/kb_ball_round0_report.py              # freeze, once complete
-    python tools/kb_ball_round0_report.py --interim    # status while in progress
+    python tools/kb_ball_round0_report.py --interim    # counts only, no CI
 
 The report embeds three fingerprints -- the export, the sample manifest and the
 decision log -- so a later reader can tell whether it still describes the
@@ -51,11 +64,53 @@ BUCKETS = ((5, '<=5px'), (8, '<=8px'), (12, '<=12px'), (float('inf'), '>12px'))
 
 
 def clopper_pearson(k, n, alpha=0.05):
-    """Exact binomial CI. (lo, hi), both in [0, 1]."""
+    """Binomial CI. Conservative REFERENCE only -- not this design's interval.
+
+    Correct when sampling with replacement from an infinite population. Here it
+    ignores that 300 of 1,232 images were inspected, so it is uniformly wider
+    than the truth. Reported for comparability, never as the primary result.
+    """
     from scipy.stats import beta
     lo = 0.0 if k == 0 else float(beta.ppf(alpha / 2, k, n - k + 1))
     hi = 1.0 if k == n else float(beta.ppf(1 - alpha / 2, k + 1, n - k))
     return lo, hi
+
+
+def hypergeometric_ci(x, N, n, alpha=0.05):
+    """Exact SRSWOR interval for M, the number of positive images in the
+    population of N. Returns (M_lo, M_hi) as integer image counts.
+
+    Inversion of the hypergeometric sampling distribution:
+
+        M_lo = min{ M : P(X >= x | N, M, n) >= alpha/2 }
+        M_hi = max{ M : P(X <= x | N, M, n) >= alpha/2 }
+
+    i.e. every M kept in the interval is one under which the observed x would
+    not be a 2.5%-tail event. Both probabilities are monotone in M, so a linear
+    scan over the 0..N candidates finds the exact endpoints -- no root-finding
+    and no continuity correction.
+
+    The estimand is a COUNT of images out of N, and this interval reports it as
+    one. A consequence worth understanding rather than patching: M_lo can exceed
+    x. At x=3, N=1232, n=300 the bound is M=4, because if the population held
+    exactly 3 positives, drawing all 3 of them in a 300-image sample has
+    probability 0.0143 -- itself a 2.5%-tail event. Observing 3 is mild evidence
+    that more than 3 exist.
+    """
+    from scipy.stats import hypergeom
+    if not (0 <= x <= n <= N):
+        raise ValueError(f'need 0 <= x <= n <= N, got x={x} n={n} N={N}')
+    lo = N
+    for M in range(0, N + 1):
+        if float(hypergeom.sf(x - 1, N, M, n)) >= alpha / 2:
+            lo = M
+            break
+    hi = x
+    for M in range(N, -1, -1):
+        if float(hypergeom.cdf(x, N, M, n)) >= alpha / 2:
+            hi = M
+            break
+    return int(lo), int(hi)
 
 
 def size_bucket(w):
@@ -126,7 +181,9 @@ def build(data):
                             'split': meta[im]['split'], 'run': meta[im]['run'],
                             'gt_state': meta[im]['gt_state']})
 
-    lo, hi = clopper_pearson(k, n)
+    N = man['population']['N']
+    m_lo, m_hi = hypergeometric_ci(k, N, n)
+    b_lo, b_hi = clopper_pearson(k, n)
     per_image = Counter(len(data['answers'][im]['missing']) for im in pos)
 
     def cut(field, images):
@@ -151,11 +208,25 @@ def build(data):
                            'football that lacks an annotation'),
             'positive_images': k,
             'n': n,
+            'N': N,
             'rate': k / n,
-            'ci95_clopper_pearson': [lo, hi],
-            'ci_method': 'Clopper-Pearson exact; finite-population correction '
-                         '(0.870) deliberately NOT applied, which widens the '
-                         'interval slightly -- the conservative direction',
+            'ci_method': ('exact finite-population interval, by inversion of '
+                          'the hypergeometric sampling distribution for SRSWOR '
+                          f'(N={N}, n={n})'),
+            'ci95_finite_population': [m_lo / N, m_hi / N],
+            'ci95_population_counts': [m_lo, m_hi],
+            'ci95_counts_note': ('endpoints are integer numbers of positive '
+                                 f'IMAGES out of {N}, which is what the '
+                                 'estimand is; the rates above are those counts '
+                                 f'divided by {N}'),
+            'conservative_binomial_reference': {
+                'ci95_clopper_pearson': [b_lo, b_hi],
+                'note': ('reference only. Clopper-Pearson assumes sampling with '
+                         'replacement from an infinite population, so it '
+                         'discards the finite-population information and is '
+                         'uniformly wider. It is NOT the exact interval for '
+                         'this design.'),
+            },
             'estimator_note': ('every image had inclusion probability exactly '
                                f'{man["inclusion_probability"]:.9f}, so the '
                                'unweighted proportion is the estimator with no '
@@ -183,6 +254,15 @@ def build(data):
             'sample_by_split': cut('split', data['sampled']),
             'sample_by_run': cut('run', data['sampled']),
             'sample_by_gt_state': cut('gt_state', data['sampled']),
+        },
+        # Logical bounds, not inference: what the final count COULD be once the
+        # outstanding and UNSURE images resolve. No probability is attached and
+        # none should be -- these are the arithmetic extremes.
+        'interim_bounds': {
+            'min_possible_positives': k,
+            'max_possible_positives': k + len(unans) + len(unsure),
+            'note': ('logical bounds, not a confidence interval: no sampling '
+                     'probability is attached to either endpoint'),
         },
         'unresolved': {
             'unsure_images': len(unsure),
@@ -246,24 +326,68 @@ def _escalate(k, objects, n_unsure):
                     'to the human first'}
 
 
-def _print(rep, data):
+def _header(rep):
+    f = rep['fingerprints']
+    print(f'design       : {rep["design"]}, no detector consulted')
+    print(f'population   : {f["population_sha256"][:16]}...  '
+          f'matches live export: {f["population_matches_live_export"]}')
+    print(f'decisions log: {f["decisions_log"]["decisions_sha256"][:16]}...  '
+          f'{f["decisions_log"]["decisions_lines"]} lines')
+
+
+def _print_interim(rep):
+    """Counts only. No prevalence estimate and no interval of any kind.
+
+    A partial sample has no denominator: the 260 images not yet looked at are
+    not negatives, and an interval built as though they were would be measuring
+    the images that happened to be reviewed first. Worse, a number printed next
+    to "CI" gets quoted regardless of the caption around it -- so the honest
+    move is not to compute one until the round is complete.
+    """
+    p, s, u = rep['primary'], rep['secondary'], rep['unresolved']
+    n = p['n']
+    answered = n - u['unanswered_images']
+    print('=' * 72)
+    print('BALL QA ROUND 0 -- INTERIM STATUS')
+    print('=' * 72)
+    _header(rep)
+    print('\nPROGRESS (counts only -- no prevalence estimate is available yet)')
+    print(f'  answered           : {answered} / {n}')
+    print(f'  outstanding        : {u["unanswered_images"]}')
+    print(f'  positive images    : {p["positive_images"]}')
+    print(f'  missing objects    : {s["total_missing_objects"]}')
+    print(f'  UNSURE             : {u["unsure_images"]}')
+    b = rep['interim_bounds']
+    print(f'\nLOGICAL BOUNDS on the final positive count (not a confidence '
+          f'interval)')
+    print(f'  minimum possible   : {b["min_possible_positives"]}   '
+          f'(every remaining image resolves negative)')
+    print(f'  maximum possible   : {b["max_possible_positives"]}   '
+          f'(every outstanding and UNSURE image resolves positive)')
+    print(f'  {b["note"]}')
+    print(f'\nNO CONFIDENCE INTERVAL IS REPORTED HERE. A Round-0 prevalence '
+          f'estimate\nexists only once all {n} images have an effective '
+          f'outcome; the frozen report\nis the first place it may appear.')
+
+
+def _print_frozen(rep):
     p = rep['primary']
     print('=' * 72)
-    print('BALL QA ROUND 0 -- ' + ('FROZEN RESULT' if rep['frozen']
-                                   else 'INTERIM STATUS (not a final result)'))
+    print('BALL QA ROUND 0 -- FROZEN RESULT')
     print('=' * 72)
-    print(f'design       : {rep["design"]}, no detector consulted')
-    print(f'population   : {rep["fingerprints"]["population_sha256"][:16]}...  '
-          f'matches live export: '
-          f'{rep["fingerprints"]["population_matches_live_export"]}')
-    print(f'decisions log: '
-          f'{rep["fingerprints"]["decisions_log"]["decisions_sha256"][:16]}...  '
-          f'{rep["fingerprints"]["decisions_log"]["decisions_lines"]} lines')
+    _header(rep)
     print(f'\nPRIMARY -- {p["endpoint"]}')
     print(f'  positive images    : {p["positive_images"]} / {p["n"]}')
-    print(f'  defect rate        : {100 * p["rate"]:.2f}%')
-    print(f'  95% CI (exact)     : [{100 * p["ci95_clopper_pearson"][0]:.2f}%, '
-          f'{100 * p["ci95_clopper_pearson"][1]:.2f}%]')
+    print(f'  estimated prevalence: {100 * p["rate"]:.2f}%')
+    lo, hi = p['ci95_population_counts']
+    rlo, rhi = p['ci95_finite_population']
+    print(f'  exact 95% CI (finite population, SRSWOR N={p["N"]} n={p["n"]}):')
+    print(f'      [{100 * rlo:.2f}%, {100 * rhi:.2f}%]   '
+          f'= [{lo}, {hi}] positive images out of {p["N"]}')
+    b = p['conservative_binomial_reference']['ci95_clopper_pearson']
+    print(f'  conservative binomial reference (Clopper-Pearson, not this '
+          f'design):')
+    print(f'      [{100 * b[0]:.2f}%, {100 * b[1]:.2f}%]')
     s = rep['secondary']
     print(f'\nSECONDARY (counts, never a rate)')
     print(f'  missing objects    : {s["total_missing_objects"]}')
@@ -318,10 +442,11 @@ def main():
               'Run with --interim for status without a result.')
         sys.exit(3)
 
-    _print(rep, data)
     if args.interim:
+        _print_interim(rep)
         print('\n--interim: nothing written. This is a status, not a result.')
         return
+    _print_frozen(rep)
     Path(args.out).write_text(json.dumps(rep, indent=1) + '\n', encoding='utf-8')
     print(f'\nfrozen result written: {Path(args.out).relative_to(REPO)}')
     print('the export was not modified and no correction was applied; '

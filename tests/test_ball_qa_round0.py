@@ -10,6 +10,7 @@ population changes, and a report that refuses rather than guesses.
 """
 
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -395,6 +396,173 @@ def test_clopper_pearson_matches_known_values():
     assert abs(lo - 0.00207) < 5e-4 and abs(hi - 0.02893) < 5e-4
     lo, hi = REPORT.clopper_pearson(10, 300)
     assert abs(lo - 0.01614) < 5e-4 and abs(hi - 0.06035) < 5e-4
+
+
+# ------------------------------- the exact finite-population interval
+
+
+N_POP, N_SAMP = 1232, 300
+
+
+@pytest.mark.parametrize('x,want_lo,want_hi', [
+    (0, 0, 13),
+    (1, 1, 20),
+    (3, 4, 32),
+    (10, 23, 70),
+])
+def test_hypergeometric_ci_endpoints(x, want_lo, want_hi):
+    assert REPORT.hypergeometric_ci(x, N_POP, N_SAMP) == (want_lo, want_hi)
+
+
+@pytest.mark.parametrize('x', [0, 1, 3, 10])
+def test_hypergeometric_ci_satisfies_its_defining_inequalities(x):
+    """The endpoints are exactly where the 2.5% tails begin, not near them.
+
+    This is the property the interval IS, so it is checked directly rather than
+    against remembered numbers: one step beyond either endpoint must tip the
+    relevant tail probability below alpha/2.
+    """
+    from scipy.stats import hypergeom
+    lo, hi = REPORT.hypergeometric_ci(x, N_POP, N_SAMP)
+    a = 0.025
+    assert hypergeom.cdf(x, N_POP, hi, N_SAMP) >= a
+    if hi < N_POP:
+        assert hypergeom.cdf(x, N_POP, hi + 1, N_SAMP) < a, 'hi is not maximal'
+    assert hypergeom.sf(x - 1, N_POP, lo, N_SAMP) >= a
+    if lo > 0:
+        assert hypergeom.sf(x - 1, N_POP, lo - 1, N_SAMP) < a, 'lo is not minimal'
+
+
+@pytest.mark.parametrize('x', [0, 1, 3, 10])
+def test_interval_endpoints_are_valid_integer_population_counts(x):
+    lo, hi = REPORT.hypergeometric_ci(x, N_POP, N_SAMP)
+    assert isinstance(lo, int) and isinstance(hi, int)
+    assert 0 <= lo <= hi <= N_POP
+    for v in (lo, hi):
+        assert v == int(v), 'a count of images cannot be fractional'
+        assert 0.0 <= v / N_POP <= 1.0
+
+
+@pytest.mark.parametrize('x', [0, 1, 3, 10])
+def test_finite_population_interval_is_deterministic(x):
+    a = REPORT.hypergeometric_ci(x, N_POP, N_SAMP)
+    for _ in range(4):
+        assert REPORT.hypergeometric_ci(x, N_POP, N_SAMP) == a
+
+
+@pytest.mark.parametrize('x', [0, 1, 3, 10])
+def test_finite_population_interval_is_narrower_than_binomial(x):
+    """The FPC is the information Clopper-Pearson throws away."""
+    lo, hi = REPORT.hypergeometric_ci(x, N_POP, N_SAMP)
+    b_lo, b_hi = REPORT.clopper_pearson(x, N_SAMP)
+    assert hi / N_POP < b_hi, 'the finite-population upper bound must be tighter'
+    assert lo / N_POP >= b_lo - 1e-9
+
+
+def test_hypergeometric_ci_covers_the_point_estimate_region():
+    """x=0 must admit M=0; a sample of everything must pin M exactly."""
+    assert REPORT.hypergeometric_ci(0, N_POP, N_SAMP)[0] == 0
+    assert REPORT.hypergeometric_ci(7, 50, 50) == (7, 7), 'census leaves no doubt'
+
+
+def test_hypergeometric_ci_rejects_impossible_inputs():
+    with pytest.raises(ValueError):
+        REPORT.hypergeometric_ci(301, N_POP, N_SAMP)
+    with pytest.raises(ValueError):
+        REPORT.hypergeometric_ci(-1, N_POP, N_SAMP)
+
+
+def test_frozen_report_uses_the_finite_population_interval(tmp_path):
+    ids = [r['IMAGE'] for r in SAMPLE.build()['sample'][:10]]
+    ans = {i: ('NO_MISSING_BALL', []) for i in ids}
+    sp, log, _ = _fake(tmp_path, ans, n=10)
+    data, blocking = REPORT.collect(sp, log)
+    assert not blocking
+    p = REPORT.build(data)['primary']
+    assert 'hypergeometric' in p['ci_method']
+    lo, hi = p['ci95_population_counts']
+    assert (lo, hi) == REPORT.hypergeometric_ci(0, p['N'], 10)
+    assert p['ci95_finite_population'] == [lo / p['N'], hi / p['N']]
+    ref = p['conservative_binomial_reference']
+    assert 'NOT the exact interval' in ref['note']
+    assert 'ci95_clopper_pearson' in ref
+    # the old top-level key must be gone, so nothing keeps reading it as primary
+    assert 'ci95_clopper_pearson' not in p
+
+
+# -------------------------------------------- interim reports no interval
+
+
+def _interim_text(tmp_path, answers, n):
+    sp, log, _ = _fake(tmp_path, answers, n=n)
+    data, blocking = REPORT.collect(sp, log)
+    assert not blocking
+    return REPORT.build(data)
+
+
+def test_interim_emits_no_confidence_interval(tmp_path, capsys):
+    ids = [r['IMAGE'] for r in SAMPLE.build()['sample'][:20]]
+    ans = {i: ('NO_MISSING_BALL', []) for i in ids[:8]}
+    ans[ids[8]] = ('MISSING_BALL', [[10, 10, 4, 4], [20, 20, 5, 5]])
+    rep = _interim_text(tmp_path, ans, n=20)
+    REPORT._print_interim(rep)
+    out = capsys.readouterr().out
+    for banned in ('95%', 'Clopper', 'hypergeometric', 'binomial'):
+        assert banned not in out, f'interim printed {banned!r}'
+    # no percentage anywhere, and no bracketed numeric pair that could be read
+    # as an interval -- the caption is not what stops a number being quoted
+    assert '%' not in out, 'interim printed a rate'
+    assert not re.search(r'\[\s*[\d.]+\s*,\s*[\d.]+\s*\]', out), \
+        'interim printed something shaped like an interval'
+    assert 'NO CONFIDENCE INTERVAL IS REPORTED HERE' in out
+    for shown in ('answered', 'outstanding', 'positive images',
+                  'missing objects', 'UNSURE'):
+        assert shown in out
+
+
+def test_interim_reports_the_five_required_counts(tmp_path):
+    ids = [r['IMAGE'] for r in SAMPLE.build()['sample'][:20]]
+    ans = {i: ('NO_MISSING_BALL', []) for i in ids[:8]}
+    ans[ids[8]] = ('MISSING_BALL', [[10, 10, 4, 4], [20, 20, 5, 5]])
+    ans[ids[9]] = ('UNSURE', [])
+    rep = _interim_text(tmp_path, ans, n=20)
+    assert rep['unresolved']['unanswered_images'] == 10
+    assert rep['primary']['positive_images'] == 1
+    assert rep['secondary']['total_missing_objects'] == 2
+    assert rep['unresolved']['unsure_images'] == 1
+
+
+def test_interim_logical_bounds_are_arithmetic_not_inference(tmp_path):
+    ids = [r['IMAGE'] for r in SAMPLE.build()['sample'][:20]]
+    ans = {i: ('NO_MISSING_BALL', []) for i in ids[:8]}
+    ans[ids[8]] = ('MISSING_BALL', [[10, 10, 4, 4]])
+    ans[ids[9]] = ('UNSURE', [])
+    b = _interim_text(tmp_path, ans, n=20)['interim_bounds']
+    assert b['min_possible_positives'] == 1
+    assert b['max_possible_positives'] == 1 + 10 + 1
+    assert 'not a confidence interval' in b['note']
+
+
+def test_interim_writes_nothing(tmp_path):
+    out = subprocess.run(
+        [sys.executable, str(REPO / 'tools' / 'kb_ball_round0_report.py'),
+         '--interim'], capture_output=True, text=True, timeout=180,
+        cwd=str(REPO))
+    assert out.returncode == 0, out.stderr
+    assert '95%' not in out.stdout and 'Clopper' not in out.stdout
+    assert '%' not in out.stdout, 'interim must not print a rate'
+    assert not re.search(r'\[\s*[\d.]+\s*,\s*[\d.]+\s*\]', out.stdout)
+    assert not REPORT.REPORT.exists(), 'interim must not write a result file'
+
+
+def test_frozen_report_still_refuses_while_outstanding(tmp_path):
+    out = subprocess.run(
+        [sys.executable, str(REPO / 'tools' / 'kb_ball_round0_report.py')],
+        capture_output=True, text=True, timeout=180, cwd=str(REPO))
+    assert out.returncode == 3
+    assert 'REFUSING TO FREEZE' in out.stdout
+    assert '95%' not in out.stdout, 'a refusal must not leak an interval'
+    assert not REPORT.REPORT.exists()
 
 
 @pytest.mark.parametrize('k,boxes,unsure,band', [
