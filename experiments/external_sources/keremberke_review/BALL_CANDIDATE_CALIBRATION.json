@@ -1,0 +1,809 @@
+{
+ "calibration": "PROPOSAL RECALL ON HUMAN_CONFIRMED_ADDITIONS",
+ "not_detector_recall": "the reviewed images are HUMAN_REVIEWED_PARTIAL, not gold. Existing blue GT was never exhaustively validated and one annotation proved to be a player, so the denominator is the 248 human-drawn additions only.",
+ "frame": {
+  "reviewed_pp_images": 256,
+  "human_confirmed_additions": 248,
+  "size_mix": {
+   ">5-8px": 112,
+   ">8-12px": 132,
+   "<=5px": 2,
+   ">12px": 2
+  }
+ },
+ "model": {
+  "weights": "best_A_960.pt",
+  "weights_sha256": "5eaf2e81d7f6b28fd0c665e769a5fb66ec71dc6be7f0d51576300a8370768e4a",
+  "imgsz": 1280,
+  "floor": 0.03
+ },
+ "matching_rule": "centre distance <= max(1.5 * box width, 8 px), the same rule the review tooling uses",
+ "stats": {
+  "raw": 1591,
+  "matched_existing_gt": 239,
+  "implausible": 2
+ },
+ "curve": [
+  {
+   "threshold": 0.03,
+   "proposals_total": 1589,
+   "proposals_unmatched_to_existing_gt": 1350,
+   "confirmed_covered": 57,
+   "confirmed_missed": 191,
+   "confirmed_recall": 0.22983870967741934,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 18
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 37
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   },
+   "missed_examples": [
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1200.27,
+      197.47,
+      8.0,
+      6.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1100.27,
+      87.47,
+      8.0,
+      7.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1268.27,
+      202.2,
+      10.0,
+      9.0
+     ],
+     "width": 10.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1164.27,
+      88.2,
+      11.0,
+      10.0
+     ],
+     "width": 11.0
+    },
+    {
+     "IMAGE": "train/104_pp_jpg.rf.6dde5e0c8e25b7c707d29eec2a331f4e.jpg",
+     "bbox_xywh": [
+      1174.27,
+      92.2,
+      8.0,
+      8.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1078.64,
+      110.57,
+      6.25,
+      6.75
+     ],
+     "width": 6.25
+    },
+    {
+     "IMAGE": "train/112_pp_jpg.rf.3501bb836f3ab986c878633e559ae498.jpg",
+     "bbox_xywh": [
+      1168.16,
+      90.82,
+      7.75,
+      7.75
+     ],
+     "width": 7.75
+    },
+    {
+     "IMAGE": "train/117_pp_jpg.rf.deb5e9bec440b8080629ef5eeb6e1157.jpg",
+     "bbox_xywh": [
+      1186.93,
+      75.14,
+      5.75,
+      5.5
+     ],
+     "width": 5.75
+    }
+   ]
+  },
+  {
+   "threshold": 0.05,
+   "proposals_total": 1172,
+   "proposals_unmatched_to_existing_gt": 965,
+   "confirmed_covered": 46,
+   "confirmed_missed": 202,
+   "confirmed_recall": 0.18548387096774194,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 16
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 29
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 1
+    }
+   },
+   "missed_examples": [
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1200.27,
+      197.47,
+      8.0,
+      6.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1100.27,
+      87.47,
+      8.0,
+      7.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1268.27,
+      202.2,
+      10.0,
+      9.0
+     ],
+     "width": 10.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1164.27,
+      88.2,
+      11.0,
+      10.0
+     ],
+     "width": 11.0
+    },
+    {
+     "IMAGE": "train/104_pp_jpg.rf.6dde5e0c8e25b7c707d29eec2a331f4e.jpg",
+     "bbox_xywh": [
+      1174.27,
+      92.2,
+      8.0,
+      8.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1078.64,
+      110.57,
+      6.25,
+      6.75
+     ],
+     "width": 6.25
+    },
+    {
+     "IMAGE": "train/112_pp_jpg.rf.3501bb836f3ab986c878633e559ae498.jpg",
+     "bbox_xywh": [
+      1168.16,
+      90.82,
+      7.75,
+      7.75
+     ],
+     "width": 7.75
+    },
+    {
+     "IMAGE": "train/117_pp_jpg.rf.deb5e9bec440b8080629ef5eeb6e1157.jpg",
+     "bbox_xywh": [
+      1186.93,
+      75.14,
+      5.75,
+      5.5
+     ],
+     "width": 5.75
+    }
+   ]
+  },
+  {
+   "threshold": 0.075,
+   "proposals_total": 901,
+   "proposals_unmatched_to_existing_gt": 716,
+   "confirmed_covered": 38,
+   "confirmed_missed": 210,
+   "confirmed_recall": 0.1532258064516129,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 13
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 24
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 1
+    }
+   },
+   "missed_examples": [
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1200.27,
+      197.47,
+      8.0,
+      6.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1100.27,
+      87.47,
+      8.0,
+      7.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1268.27,
+      202.2,
+      10.0,
+      9.0
+     ],
+     "width": 10.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1164.27,
+      88.2,
+      11.0,
+      10.0
+     ],
+     "width": 11.0
+    },
+    {
+     "IMAGE": "train/104_pp_jpg.rf.6dde5e0c8e25b7c707d29eec2a331f4e.jpg",
+     "bbox_xywh": [
+      1174.27,
+      92.2,
+      8.0,
+      8.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1078.64,
+      110.57,
+      6.25,
+      6.75
+     ],
+     "width": 6.25
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1195.66,
+      234.48,
+      9.5,
+      8.25
+     ],
+     "width": 9.5
+    },
+    {
+     "IMAGE": "train/112_pp_jpg.rf.3501bb836f3ab986c878633e559ae498.jpg",
+     "bbox_xywh": [
+      1168.16,
+      90.82,
+      7.75,
+      7.75
+     ],
+     "width": 7.75
+    }
+   ]
+  },
+  {
+   "threshold": 0.1,
+   "proposals_total": 768,
+   "proposals_unmatched_to_existing_gt": 593,
+   "confirmed_covered": 31,
+   "confirmed_missed": 217,
+   "confirmed_recall": 0.125,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 10
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 20
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 1
+    }
+   },
+   "missed_examples": [
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1200.27,
+      197.47,
+      8.0,
+      6.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1100.27,
+      87.47,
+      8.0,
+      7.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1268.27,
+      202.2,
+      10.0,
+      9.0
+     ],
+     "width": 10.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1164.27,
+      88.2,
+      11.0,
+      10.0
+     ],
+     "width": 11.0
+    },
+    {
+     "IMAGE": "train/104_pp_jpg.rf.6dde5e0c8e25b7c707d29eec2a331f4e.jpg",
+     "bbox_xywh": [
+      1174.27,
+      92.2,
+      8.0,
+      8.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1078.64,
+      110.57,
+      6.25,
+      6.75
+     ],
+     "width": 6.25
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1195.66,
+      234.48,
+      9.5,
+      8.25
+     ],
+     "width": 9.5
+    },
+    {
+     "IMAGE": "train/112_pp_jpg.rf.3501bb836f3ab986c878633e559ae498.jpg",
+     "bbox_xywh": [
+      1168.16,
+      90.82,
+      7.75,
+      7.75
+     ],
+     "width": 7.75
+    }
+   ]
+  },
+  {
+   "threshold": 0.15,
+   "proposals_total": 576,
+   "proposals_unmatched_to_existing_gt": 422,
+   "confirmed_covered": 22,
+   "confirmed_missed": 226,
+   "confirmed_recall": 0.08870967741935484,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 6
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 15
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 1
+    }
+   },
+   "missed_examples": [
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1200.27,
+      197.47,
+      8.0,
+      6.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1100.27,
+      87.47,
+      8.0,
+      7.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1268.27,
+      202.2,
+      10.0,
+      9.0
+     ],
+     "width": 10.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1164.27,
+      88.2,
+      11.0,
+      10.0
+     ],
+     "width": 11.0
+    },
+    {
+     "IMAGE": "train/104_pp_jpg.rf.6dde5e0c8e25b7c707d29eec2a331f4e.jpg",
+     "bbox_xywh": [
+      1174.27,
+      92.2,
+      8.0,
+      8.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1078.64,
+      110.57,
+      6.25,
+      6.75
+     ],
+     "width": 6.25
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1195.66,
+      234.48,
+      9.5,
+      8.25
+     ],
+     "width": 9.5
+    },
+    {
+     "IMAGE": "train/112_pp_jpg.rf.3501bb836f3ab986c878633e559ae498.jpg",
+     "bbox_xywh": [
+      1168.16,
+      90.82,
+      7.75,
+      7.75
+     ],
+     "width": 7.75
+    }
+   ]
+  },
+  {
+   "threshold": 0.2,
+   "proposals_total": 450,
+   "proposals_unmatched_to_existing_gt": 309,
+   "confirmed_covered": 16,
+   "confirmed_missed": 232,
+   "confirmed_recall": 0.06451612903225806,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 5
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 10
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 1
+    }
+   },
+   "missed_examples": [
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1200.27,
+      197.47,
+      8.0,
+      6.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1100.27,
+      87.47,
+      8.0,
+      7.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1268.27,
+      202.2,
+      10.0,
+      9.0
+     ],
+     "width": 10.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1164.27,
+      88.2,
+      11.0,
+      10.0
+     ],
+     "width": 11.0
+    },
+    {
+     "IMAGE": "train/104_pp_jpg.rf.6dde5e0c8e25b7c707d29eec2a331f4e.jpg",
+     "bbox_xywh": [
+      1174.27,
+      92.2,
+      8.0,
+      8.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1078.64,
+      110.57,
+      6.25,
+      6.75
+     ],
+     "width": 6.25
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1195.66,
+      234.48,
+      9.5,
+      8.25
+     ],
+     "width": 9.5
+    },
+    {
+     "IMAGE": "train/112_pp_jpg.rf.3501bb836f3ab986c878633e559ae498.jpg",
+     "bbox_xywh": [
+      1168.16,
+      90.82,
+      7.75,
+      7.75
+     ],
+     "width": 7.75
+    }
+   ]
+  },
+  {
+   "threshold": 0.25,
+   "proposals_total": 377,
+   "proposals_unmatched_to_existing_gt": 246,
+   "confirmed_covered": 13,
+   "confirmed_missed": 235,
+   "confirmed_recall": 0.05241935483870968,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 4
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 8
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 1
+    }
+   },
+   "missed_examples": [
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1200.27,
+      197.47,
+      8.0,
+      6.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/101_pp_jpg.rf.81b1071d21d3e01c5929494c389e7835.jpg",
+     "bbox_xywh": [
+      1100.27,
+      87.47,
+      8.0,
+      7.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1268.27,
+      202.2,
+      10.0,
+      9.0
+     ],
+     "width": 10.0
+    },
+    {
+     "IMAGE": "train/103_pp_jpg.rf.156a3c3e58cd99b0e7db34c5404dac2f.jpg",
+     "bbox_xywh": [
+      1164.27,
+      88.2,
+      11.0,
+      10.0
+     ],
+     "width": 11.0
+    },
+    {
+     "IMAGE": "train/104_pp_jpg.rf.6dde5e0c8e25b7c707d29eec2a331f4e.jpg",
+     "bbox_xywh": [
+      1174.27,
+      92.2,
+      8.0,
+      8.0
+     ],
+     "width": 8.0
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1078.64,
+      110.57,
+      6.25,
+      6.75
+     ],
+     "width": 6.25
+    },
+    {
+     "IMAGE": "train/111_pp_jpg.rf.655361695356f0de72430f85f0484c6a.jpg",
+     "bbox_xywh": [
+      1195.66,
+      234.48,
+      9.5,
+      8.25
+     ],
+     "width": 9.5
+    },
+    {
+     "IMAGE": "train/112_pp_jpg.rf.3501bb836f3ab986c878633e559ae498.jpg",
+     "bbox_xywh": [
+      1168.16,
+      90.82,
+      7.75,
+      7.75
+     ],
+     "width": 7.75
+    }
+   ]
+  }
+ ],
+ "tiers": {
+  "T1_min_conf": 0.03,
+  "T2_min_conf": 0.03,
+  "target_recall": 0.95,
+  "target_reachable": false,
+  "expected_confirmed_recall_at_T1": 0.22983870967741934,
+  "counts": {
+   "TIER_1": 488,
+   "TIER_2": 0,
+   "TIER_3": 0
+  },
+  "recommendation": "DO NOT TIER -- the premise does not hold"
+ },
+ "residual_risk": "candidates left unreviewed are UNRESOLVED, not negatives. This calibration says nothing about footballs neither the human nor the model found -- that is what the residual full-frame QA is for, and it stays mandatory.",
+ "generated_utc": "2026-08-14T14:36:53Z",
+ "second_detector_probe": {
+  "source": "yolov8n.pt COCO class 32 (sports ball) @ conf 0.02, imgsz 1280",
+  "frame": "first 60 reviewed pp images, 35 confirmed additions",
+  "detections": 217,
+  "confirmed_covered": 1,
+  "recall": 0.0286,
+  "verdict": "NOT USEFUL",
+  "why": "2.9% against the primary generator 23.0%. A second source is only worth unioning if it finds things the first misses; this one finds almost nothing at broadcast ball scale, so agreement between the two would carry no information and unioning would only add false proposals to the review load."
+ },
+ "headline_finding": "The generator recalls 23.0% of human-confirmed additions at its lowest threshold. Tiering cannot help: there is no confidence band to discard, because the recall shortfall is not in the tail -- it is everywhere. Reviewing all 488 candidates would surface roughly 21 of the ~98 footballs those 101 images are expected to hold."
+}
