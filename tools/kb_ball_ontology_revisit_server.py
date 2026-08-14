@@ -155,6 +155,11 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  #legend{font-size:11px;color:#888;margin:6px 0}
  #legend i{display:inline-block;width:10px;height:10px;margin-right:4px;
            vertical-align:middle}
+ #gthelp{font-size:11px;color:#aaa;line-height:1.7}
+ #gthelp .k{min-width:16px;display:inline-block;text-align:center}
+ #selhdr{background:#10243a;border:1px solid #2f5a8a;border-radius:4px;
+         padding:6px;margin:6px 0;font-size:11px}
+ #selhdr b{color:#8fc4ff}
 </style></head><body>
 <div id="top">
  <b>BALL ONTOLOGY REVISIT</b>
@@ -164,6 +169,9 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <div id="bar"><i></i></div>
  <span id="zoomp" class="pill"></span>
  <span id="flagc" class="pill" style="font-size:11px"></span>
+ <span class="pill" style="font:10px monospace;color:#777"
+       title="the build this server process is actually running">build
+  __BUILD__</span>
  <span style="color:#8a8a8a;font-size:11px">magenta: A active &middot; X
   non-active &middot; U unsure &nbsp;|&nbsp; blue GT: [ ] select &middot; E
   non-active &middot; F false &middot; V bad box &middot; C retract</span>
@@ -189,8 +197,18 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <button class="big" id="aU"><span class="k">U</span>UNSURE</button>
  <div class="note">the image does not settle it &mdash; do not guess</div>
  <div style="border-top:1px solid #2a2a2a;margin:9px 0 6px"></div>
- <div style="font-size:11px;color:#8a8a8a">existing ball GT &mdash; flag only,
-  nothing is changed</div>
+ <div style="font-size:11px;font-weight:600;color:#4aa3ff;margin-bottom:3px">
+  EXISTING BLUE BALL GT</div>
+ <div id="gthelp">
+  <div><span class="k">[</span><span class="k">]</span>previous / next GT</div>
+  <div><span class="k">E</span>NON-ACTIVE EXISTING BALL</div>
+  <div><span class="k">F</span>FALSE BALL</div>
+  <div><span class="k">V</span>BAD BOX</div>
+  <div><span class="k">C</span>RETRACT</div>
+  <div><span class="k">Esc</span>deselect</div>
+ </div>
+ <div class="note" style="margin-top:5px">observation only &mdash; no annotation
+  is changed and the magenta object is not answered</div>
  <div id="gtsel"></div>
  <div style="border-top:1px solid #2a2a2a;margin:9px 0 6px"></div>
  <div style="font-size:11px;color:#8a8a8a">tile sweep</div>
@@ -393,15 +411,15 @@ function gtpanel(){
  NAME[S.FALSE_BALL]='SUSPECT FALSE BALL';
  NAME[S.BAD_BOX]='SUSPECT BAD BOX';
  NAME[S.EXISTING_NON_ACTIVE]='EXISTING NON-ACTIVE BALL';
- const flagged=b.flag
-  ?`<div class="${b.flag===S.FALSE_BALL?'warn':'non'}">OBSERVED:
-     <b>${NAME[b.flag]}</b></div>`:'';
+ const at=t.ball_gt.findIndex(x=>x.BOX_ID===b.BOX_ID);
  el.innerHTML=`
-  <div style="font:11px monospace;color:#bbb">${b.BOX_ID}</div>
-  <div style="font-size:11px">class <b>football</b> · box
-   <span style="font:11px monospace">${b.bbox.map(v=>Math.round(v)).join(', ')}</span>
-   (${Math.round(b.bbox[2])}x${Math.round(b.bbox[3])} px)</div>
-  ${flagged}
+  <div id="selhdr">
+   SELECTED GT: <b>${b.BOX_ID}</b><br>
+   GT <b>${at+1}/${t.ball_gt.length}</b> in this image · class <b>football</b><br>
+   box <span style="font:11px monospace">${b.bbox.map(v=>Math.round(v)).join(', ')}</span>
+   (${Math.round(b.bbox[2])}x${Math.round(b.bbox[3])} px)<br>
+   observation: <b>${b.flag?NAME[b.flag]:'none yet'}</b>
+  </div>
   <button class="big" id="fE"><span class="k">E</span>EXISTING NON-ACTIVE BALL</button>
   <div class="note">correct annotation of a real ball that is not the one in
    play &mdash; not a defect</div>
@@ -671,6 +689,26 @@ def append(rec):
             fh.flush()
 
 
+def build_id_info():
+    """Identity of the source this process is actually running.
+
+    A server started before an edit keeps serving the old page forever. Hashing
+    the file at request time would lie the other way (it would report the new
+    file while serving the old page), so the hash is taken of THIS module's
+    source as loaded, which is what the running process really has.
+    """
+    src = Path(__file__).read_bytes()
+    return {'build': hashlib.sha256(src).hexdigest()[:12],
+            'file_sha256': hashlib.sha256(src).hexdigest(),
+            'has_gt_navigation': "e.key===']'" in PAGE,
+            'has_gt_observations': "k==='e'" in PAGE,
+            'flag_types': list(FLAG_TYPES)}
+
+
+def build_id():
+    return build_id_info()['build']
+
+
 def ball_gt_index(decisions: Path = DECISIONS):
     """{BOX_ID: {IMAGE, bbox, annotation_id, split}} for every EXISTING ball GT
     in the images that hold a Round-0 finding.
@@ -728,8 +766,15 @@ class H(BaseHTTPRequestHandler):
     def do_GET(self):
         p = unquote(urlparse(self.path).path)
         if p == '/':
-            return self._send(200, PAGE.encode('utf-8'),
-                              'text/html; charset=utf-8')
+            # A long-running server holds PAGE in memory from whenever it
+            # started. Editing this file changes nothing until it restarts, and
+            # the symptom is a UI that silently lacks features that demonstrably
+            # exist in the source -- which is exactly what happened. The stamp
+            # makes the served build identifiable without guessing.
+            body = PAGE.replace('__BUILD__', build_id()).encode('utf-8')
+            return self._send(200, body, 'text/html; charset=utf-8')
+        if p == '/api/build':
+            return self._send(200, json.dumps(build_id_info()).encode())
         if p == '/api/state':
             return self._send(200, json.dumps(
                 build_state(self.SHOW_CONTEXT)).encode())

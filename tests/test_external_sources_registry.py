@@ -47,12 +47,19 @@ def _declared_modes():
             v = getattr(kb_decisions, name)
             if isinstance(v, str):
                 out.add(v)
-    for mod, attr in (('kb_ball_qa_server', 'QA_MODE'),
-                      ('kb_ball_ontology_revisit_server', 'ONTOLOGY_MODE')):
+    # Any *_MODE constant a review tool declares, so adding a mode to a tool
+    # does not require editing this list. Reading only kb_decisions missed the
+    # two flag modes that live in the ontology tool.
+    for mod in ('kb_ball_qa_server', 'kb_ball_ontology_revisit_server'):
         try:
-            out.add(getattr(__import__(mod), attr))
+            m = __import__(mod)
         except Exception:                     # tool absent in a partial checkout
-            pass
+            continue
+        for name in dir(m):
+            if name.endswith('_MODE'):
+                v = getattr(m, name)
+                if isinstance(v, str):
+                    out.add(v)
     return out
 
 
