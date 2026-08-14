@@ -24,16 +24,39 @@ REPO = Path(__file__).resolve().parents[1]
 # ships -- which is a snapshot, not an invariant. The invariant is that a mode in
 # the log must be one some tool actually declares, so an unrecognised mode still
 # fails loudly. Kept in one place because two copies drifted apart once already.
-KNOWN_MODES = {'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
-               'final_target', 'missed_role', 'missed_role_manual',
-               'missing_target_box', 'missing_target_resolution',
-               'missing_target_retraction',
-               # withdraws an image exclusion; never deletes it
-               'missing_target_exclusion_retraction',
-               # the two per-case policies: a redrawn box keeps its annotation
-               # id, and a ball case records which of the three outcomes was
-               # chosen. Both replace a default the exporter must never pick.
-               'geometry_repair', 'ball_case_resolution'}
+#
+# The declared modes are now READ FROM THE TOOLS rather than restated here. The
+# literal list had to be edited by hand for every new pass, and each time it
+# failed it was the test that was stale, never the log -- which trains exactly
+# the wrong reflex. A mode a tool defines is legitimate by construction; a mode
+# nothing defines still fails, which is the property worth keeping.
+_HISTORIC_MODES = {
+    # written by earlier passes whose tools have since been retired or folded
+    # into others. They are real history in the log and cannot be re-derived.
+    'candidates', 'qa_player', 'qa_nocand', 'u_resolution',
+    'final_target', 'missed_role',
+}
+
+
+def _declared_modes():
+    sys.path.insert(0, str(REPO / 'tools'))
+    out = set(_HISTORIC_MODES)
+    import kb_decisions
+    for name in dir(kb_decisions):
+        if name.endswith('_MODE') or name == 'MANUAL_MODE':
+            v = getattr(kb_decisions, name)
+            if isinstance(v, str):
+                out.add(v)
+    for mod, attr in (('kb_ball_qa_server', 'QA_MODE'),
+                      ('kb_ball_ontology_revisit_server', 'ONTOLOGY_MODE')):
+        try:
+            out.add(getattr(__import__(mod), attr))
+        except Exception:                     # tool absent in a partial checkout
+            pass
+    return out
+
+
+KNOWN_MODES = _declared_modes()
 
 EXT = REPO / 'EyeCU_external_data'
 XS = REPO / 'experiments' / 'external_sources'

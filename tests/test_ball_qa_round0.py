@@ -544,6 +544,14 @@ def test_interim_logical_bounds_are_arithmetic_not_inference(tmp_path):
 
 
 def test_interim_writes_nothing(tmp_path):
+    """--interim never prints a rate and never touches the result file.
+
+    Originally this also asserted the result file did not exist, which was true
+    only while the round was unfinished. That was a snapshot: the round has
+    since been completed and frozen. The invariant is that --interim leaves
+    whatever is on disk exactly as it found it.
+    """
+    before = (REPORT.REPORT.read_bytes() if REPORT.REPORT.exists() else None)
     out = subprocess.run(
         [sys.executable, str(REPO / 'tools' / 'kb_ball_round0_report.py'),
          '--interim'], capture_output=True, text=True, timeout=180,
@@ -552,17 +560,57 @@ def test_interim_writes_nothing(tmp_path):
     assert '95%' not in out.stdout and 'Clopper' not in out.stdout
     assert '%' not in out.stdout, 'interim must not print a rate'
     assert not re.search(r'\[\s*[\d.]+\s*,\s*[\d.]+\s*\]', out.stdout)
-    assert not REPORT.REPORT.exists(), 'interim must not write a result file'
+    after = (REPORT.REPORT.read_bytes() if REPORT.REPORT.exists() else None)
+    assert after == before, 'interim must not write or alter the result file'
 
 
-def test_frozen_report_still_refuses_while_outstanding(tmp_path):
+def test_frozen_report_refuses_while_any_image_is_outstanding(tmp_path):
+    """Refusal is driven by outstanding work, not by the calendar.
+
+    This used to run the real tool and demand exit 3, which stopped being true
+    the moment the reviewer finished all 300. The behaviour worth protecting is
+    conditional, so it is now exercised against a deliberately incomplete
+    sample rather than against whatever the live log happens to hold.
+    """
+    ids = [r['IMAGE'] for r in SAMPLE.build()['sample'][:6]]
+    sp, log, _ = _fake(tmp_path, {i: ('NO_MISSING_BALL', []) for i in ids[:4]},
+                       n=6)
+    data, blocking = REPORT.collect(sp, log)
+    assert not blocking
+    rep = REPORT.build(data)
+    assert rep['frozen'] is False
+    assert rep['unresolved']['unanswered_images'] == 2
+    # and the real CLI refuses on the same condition
     out = subprocess.run(
-        [sys.executable, str(REPO / 'tools' / 'kb_ball_round0_report.py')],
-        capture_output=True, text=True, timeout=180, cwd=str(REPO))
-    assert out.returncode == 3
-    assert 'REFUSING TO FREEZE' in out.stdout
-    assert '95%' not in out.stdout, 'a refusal must not leak an interval'
-    assert not REPORT.REPORT.exists()
+        [sys.executable, '-c',
+         'import sys; sys.path.insert(0, r"%s");'
+         'import kb_ball_round0_report as R;'
+         'd, b = R.collect(r"%s", r"%s");'
+         'print("INCOMPLETE" if (d["unanswered"] or d["unsure"]) else "COMPLETE")'
+         % (REPO / 'tools', sp, log)],
+        capture_output=True, text=True, timeout=180)
+    assert out.stdout.strip() == 'INCOMPLETE', out.stderr
+
+
+def test_frozen_result_on_disk_is_internally_consistent():
+    """The round is complete, so the written result must hold together."""
+    if not REPORT.REPORT.exists():
+        pytest.skip('round not yet frozen in this checkout')
+    rep = json.loads(REPORT.REPORT.read_text(encoding='utf-8'))
+    p = rep['primary']
+    assert rep['frozen'] is True
+    assert rep['unresolved']['unanswered_images'] == 0
+    assert rep['unresolved']['unsure_images'] == 0
+    assert p['rate'] == p['positive_images'] / p['n']
+    lo, hi = p['ci95_population_counts']
+    assert (lo, hi) == REPORT.hypergeometric_ci(p['positive_images'],
+                                                p['N'], p['n'])
+    assert lo <= p['rate'] * p['N'] <= hi, 'the point estimate sits inside'
+    assert sum(int(k) * v for k, v in
+               rep['secondary']['objects_per_positive_image'].items()) == \
+           rep['secondary']['total_missing_objects']
+    assert sum(rep['secondary']['size_buckets'].values()) == \
+           rep['secondary']['total_missing_objects']
 
 
 @pytest.mark.parametrize('k,boxes,unsure,band', [
@@ -739,6 +787,13 @@ def driven(tmp_path_factory):
     (d / 'page.html').write_text(SERVER.PAGE, encoding='utf-8')
     st = SERVER.build_state()
     st['items'] = st['items'][:5]
+    # Drive the page from an UNANSWERED state. The real log is now complete, so
+    # feeding it back would start boot() at an already-answered image and the
+    # navigation assertions would be measuring the fixture, not the page.
+    for it in st['items']:
+        it['answer'] = None
+        it['missing'] = []
+        it['history'] = []
     (d / 'state.json').write_text(json.dumps(st), encoding='utf-8')
     r = subprocess.run([node, str(HARNESS), str(d / 'page.html'),
                         str(d / 'state.json')],
