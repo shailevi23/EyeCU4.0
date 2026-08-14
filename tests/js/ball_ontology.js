@@ -47,6 +47,15 @@ const ctx = {
     if (!opt) return { json: async () => ({}), ok: true };
     const body = JSON.parse(opt.body);
     posts.push(body);
+    if (url === '/api/flag') {
+      return {
+        ok: true,
+        json: async () => ({ ok: true,
+                             flag_type: body.retract ? null : body.flag_type,
+                             counts: { false: 1, bad_box: 0 },
+                             recorded_utc: '2026-08-14T00:00:00Z' }),
+      };
+    }
     return {
       ok: true,
       json: async () => ({ ok: true, HUMAN_BALL_ROLE: body.HUMAN_BALL_ROLE,
@@ -60,10 +69,11 @@ vm.createContext(ctx);
 const i = page.indexOf('<script');
 const js = page.slice(page.indexOf('>', i) + 1, page.lastIndexOf('</script>'));
 const probe = `
-globalThis.__get=()=>({i,zoom,tile});
+globalThis.__get=()=>({i,zoom,tile,selGT,cycle});
 globalThis.__cur=()=>cur();
-globalThis.__set=o=>{if('i' in o)i=o.i;};
+globalThis.__set=o=>{if('i' in o)i=o.i;if('selGT' in o)selGT=o.selGT;};
 globalThis.__overlay=()=>document.getElementById('ov').children.length;
+globalThis.__click=(x,y)=>pick({clientX:x*zoom,clientY:y*zoom});
 `;
 vm.runInContext(js + probe, ctx, { filename: 'onto.js' });
 const G = () => ctx.__get();
@@ -137,15 +147,117 @@ const wait = () => new Promise(r => setTimeout(r, 50));
   ctx.__set({ i: 0 });
   press('0'); await wait();
   const z0 = G().zoom;
-  press('c'); await wait();                      // centre on the object
+  press('z'); await wait();                      // centre on the object
   out.zoom = { fit: z0, on_object: G().zoom, tile: G().tile };
   press('0'); await wait();
   out.zoom.back_to_fit = G().zoom;
 
-  // 7. every post names an object that exists in the queue
-  out.all_posted_in_queue = posts.every(
+  // 7. every ontology post names an object that exists in the queue
+  const onto = posts.filter(p => p.object_id);
+  out.all_posted_in_queue = onto.every(
     p => state.items.some(o => o.object_id === p.object_id));
-  out.roles_posted = [...new Set(posts.map(p => p.HUMAN_BALL_ROLE))].sort();
+  out.roles_posted = [...new Set(onto.map(p => p.HUMAN_BALL_ROLE))].sort();
+
+  // ---------------------------------------------------------- GT FLAGS
+  const withGT = state.items.findIndex(o => o.ball_gt.length > 0);
+  ctx.__set({ i: withGT, selGT: null });
+  press('0'); await wait();
+  const item = ctx.__cur();
+  const gt = item.ball_gt[0];
+
+  // 8. F/V/C do nothing with no GT selected, and never touch the ontology
+  const n8 = posts.length;
+  press('f'); await wait();
+  press('v'); await wait();
+  press('c'); await wait();
+  out.flag_without_selection = {
+    posted: posts.length - n8,
+    alerted: !!ctx.__alert,
+  };
+
+  // 9. clicking selects the GT by geometry
+  const cx = gt.bbox[0] + gt.bbox[2] / 2, cy = gt.bbox[1] + gt.bbox[3] / 2;
+  ctx.__click(cx, cy); await wait();
+  out.selection = { selGT: ctx.__get().selGT, expected: gt.BOX_ID,
+                    matched: ctx.__get().selGT === gt.BOX_ID };
+
+  // 10. F flags the SELECTED GT, not the magenta Round-0 object
+  const n10 = posts.length;
+  press('f'); await wait();
+  const fp = posts[posts.length - 1];
+  out.flag_false = {
+    posted: posts.length - n10,
+    BOX_ID: fp.BOX_ID, flag_type: fp.flag_type,
+    targets_existing_gt: fp.BOX_ID === gt.BOX_ID,
+    is_not_the_round0_object: fp.BOX_ID !== item.object_id
+                              && !String(fp.BOX_ID).startsWith('BALLOBJ:'),
+    carries_no_object_id: fp.object_id === undefined,
+  };
+
+  // 11. flagging must NOT advance the queue or answer the ontology object
+  out.flag_is_inert = {
+    index_unchanged: ctx.__get().i === withGT,
+    role_still: ctx.__cur().role,
+    ontology_posts_added: posts.filter(p => p.object_id).length - onto.length,
+  };
+
+  // 12. V then C
+  press('v'); await wait();
+  out.flag_bad_box = { flag_type: posts[posts.length - 1].flag_type };
+  press('c'); await wait();
+  out.flag_clear = { retract: posts[posts.length - 1].retract === true,
+                     BOX_ID: posts[posts.length - 1].BOX_ID };
+
+  // 13. repeated identical flags stay unambiguous: same target, same type
+  const n13 = posts.length;
+  press('f'); await wait();
+  press('f'); await wait();
+  const dup = posts.slice(n13);
+  out.duplicate_flag = {
+    count: dup.length,
+    same_target: dup.every(p => p.BOX_ID === gt.BOX_ID),
+    same_type: new Set(dup.map(p => p.flag_type)).size === 1,
+  };
+
+  // 14. overlapping / multiple GT: deterministic, smallest first, cycles
+  const multi = state.items.findIndex(o => o.ball_gt.length > 1);
+  if (multi >= 0) {
+    ctx.__set({ i: multi, selGT: null });
+    press('0'); await wait();
+    const boxes = ctx.__cur().ball_gt;
+    const areas = boxes.map(b => b.bbox[2] * b.bbox[3]);
+    // click a point inside the largest box; the smallest containing box wins
+    const big = boxes[areas.indexOf(Math.max(...areas))];
+    const px = big.bbox[0] + big.bbox[2] / 2, py = big.bbox[1] + big.bbox[3] / 2;
+    ctx.__click(px, py); await wait();
+    const first = ctx.__get().selGT;
+    ctx.__click(px, py); await wait();
+    const second = ctx.__get().selGT;
+    ctx.__set({ selGT: null });
+    ctx.__click(px, py); await wait();
+    out.overlap = {
+      n_gt: boxes.length,
+      first, second,
+      deterministic: ctx.__get().selGT === first,
+      cycles: boxes.filter(b =>
+        px >= b.bbox[0] && px <= b.bbox[0] + b.bbox[2] &&
+        py >= b.bbox[1] && py <= b.bbox[1] + b.bbox[3]).length > 1
+        ? second !== first : second === first,
+    };
+  }
+
+  // 15. clicking empty space clears the selection
+  ctx.__set({ i: withGT });
+  ctx.__click(gt.bbox[0] + gt.bbox[2] / 2, gt.bbox[1] + gt.bbox[3] / 2);
+  await wait();
+  const had = ctx.__get().selGT;
+  ctx.__click(5, 715); await wait();
+  out.click_empty_clears = { had: !!had, now: ctx.__get().selGT };
+
+  out.flag_posts_all_target_existing_gt = posts
+    .filter(p => p.BOX_ID !== undefined)
+    .every(p => state.items.some(o =>
+      o.ball_gt.some(g => g.BOX_ID === p.BOX_ID)));
 
   console.log(JSON.stringify(out, null, 1));
 })();

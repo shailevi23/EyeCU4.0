@@ -27,6 +27,15 @@ and collapsing those to one answer would destroy exactly the distinction the
 revisit exists to make. The image-level rate is derived afterwards by folding
 objects up, never by asking the human an image-level question.
 
+A SIDE CHANNEL FOR EXISTING GT. While looking hard at these images the reviewer
+also sees existing ball annotations that are plainly wrong -- a player annotated
+as a football, or a real ball with a box that does not fit it. Those are worth
+capturing at the moment they are noticed, because nobody will be looking at
+these frames this closely again. They are recorded as FLAGS and nothing else:
+no annotation is changed, no queue is advanced, no ontology answer is implied,
+and the 128-object denominator is untouched. A flag is an observation with a
+timestamp, and the cleanup queue that consumes it does not exist yet.
+
 WHY THE QUEUE IS BUILT FROM THE EFFECTIVE FOLD. Six images were answered more
 than once during Round 0. Reading missing_balls straight from the log yields 135
 objects; the effective state holds 128. The seven extras are superseded drafts
@@ -69,6 +78,14 @@ NON_ACTIVE = 'NON_ACTIVE_EXTRA_BALL'
 UNSURE = 'UNSURE'
 ROLES = (ACTIVE, NON_ACTIVE, UNSURE)
 
+# Flags on EXISTING ball GT. A separate mode, so no fold that reads ontology
+# answers can ever see one, and vice versa.
+FLAG_MODE = 'ball_gt_flag'
+FLAG_RETRACT_MODE = 'ball_gt_flag_retraction'
+FALSE_BALL = 'SUSPECT_FALSE_BALL_GT'
+BAD_BOX = 'SUSPECT_BAD_BALL_BOX'
+FLAG_TYPES = (FALSE_BALL, BAD_BOX)
+
 PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
 <title>ball ontology revisit</title>
 <style>
@@ -90,6 +107,11 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
           pointer-events:none}
  .ballgt{position:absolute;border:2px solid #4aa3ff;box-sizing:border-box;
          pointer-events:none;box-shadow:0 0 0 1px #000}
+ .ballgt.sel{border-color:#fff;border-width:3px;box-shadow:0 0 0 2px #000,
+             0 0 12px #fff}
+ .ballgt.flagged{border-style:dashed;border-color:#ff6a3d}
+ .ballgt.flaggedbox{border-style:dashed;border-color:#c08a2a}
+ #hit{position:absolute;inset:0;cursor:pointer}
  .ctx{position:absolute;border:1px solid #333;box-sizing:border-box;
       pointer-events:none}
  .tag{position:absolute;font:11px/1.3 monospace;background:#000d;padding:1px 4px;
@@ -127,19 +149,21 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <span id="img" class="pill" style="font:11px monospace"></span>
  <div id="bar"><i></i></div>
  <span id="zoomp" class="pill"></span>
+ <span id="flagc" class="pill" style="font-size:11px"></span>
  <span style="color:#8a8a8a;font-size:11px">A active &middot; X non-active
   &middot; U unsure &middot; J/K move &middot; B previous &middot; T tiles</span>
 </div>
 <div id="imgerr" style="display:none;margin:10px 300px 10px 10px;background:#3a1414;
      border:1px solid #7a3a3a;border-radius:6px;padding:12px;max-width:640px"></div>
-<div id="wrap"><div id="stage"><img id="im"><div id="ov"></div></div></div>
+<div id="wrap"><div id="stage"><img id="im"><div id="ov"></div><div id="hit"></div></div></div>
 <div id="panel">
  <div class="qbox">Is the <span style="color:#ff2fd0">highlighted</span> ball the
   ACTIVE MATCH BALL?</div>
  <div id="legend">
   <div><i style="background:#ff2fd0"></i>the object being classified</div>
   <div><i style="background:#7a7a7a"></i>other Round-0 findings in this image</div>
-  <div><i style="background:#4aa3ff"></i>existing ball annotations</div>
+  <div><i style="background:#4aa3ff"></i>existing ball annotations
+   &mdash; click to select</div>
  </div>
  <div id="state"></div>
  <button class="big act" id="aA"><span class="k">A</span>ACTIVE MATCH BALL</button>
@@ -150,6 +174,10 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <button class="big" id="aU"><span class="k">U</span>UNSURE</button>
  <div class="note">the image does not settle it &mdash; do not guess</div>
  <div style="border-top:1px solid #2a2a2a;margin:9px 0 6px"></div>
+ <div style="font-size:11px;color:#8a8a8a">existing ball GT &mdash; flag only,
+  nothing is changed</div>
+ <div id="gtsel"></div>
+ <div style="border-top:1px solid #2a2a2a;margin:9px 0 6px"></div>
  <div style="font-size:11px;color:#8a8a8a">tile sweep</div>
  <div id="tiles"></div>
  <button class="big" id="bJ"><span class="k">J</span>NEXT UNCLASSIFIED</button>
@@ -158,18 +186,19 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <div id="hist" style="font-size:11px;color:#888;margin-top:8px"></div>
 </div>
 <script>
-let S=null,i=0,zoom=1,tile=-1,seen={};
+let S=null,i=0,zoom=1,tile=-1,seen={},selGT=null,cycle=0;
 const TILE_ZOOM=4,TCOLS=4,TROWS=3,OVERLAP=0.12;
 var boot=async function(){
  S=await (await fetch('/api/state')).json();
  i=S.items.findIndex(x=>!x.role); if(i<0)i=0;
+ flagcounts();
  render();
 };
 function cur(){return S.items[i];}
 function remaining(){return S.items.filter(x=>!x.role).length;}
 function render(){
  const t=cur(); if(!t)return;
- zoom=1; tile=-1;
+ zoom=1; tile=-1; selGT=null; cycle=0;
  if(!seen[t.object_id])seen[t.object_id]={};
  document.getElementById('pos').textContent=`object ${i+1}/${S.items.length}`;
  document.getElementById('rem').textContent=`${remaining()} remaining`;
@@ -241,11 +270,48 @@ function draw(){
    g.textContent=label; ov.appendChild(g);}
  };
  if(S.show_context)t.context.forEach(b=>add('ctx',b.bbox,null,null));
- t.ball_gt.forEach(b=>add('ballgt',b.bbox,'ball GT','#4aa3ff'));
+ t.ball_gt.forEach(b=>{
+  let cls='ballgt';
+  if(b.flag===S.FALSE_BALL)cls+=' flagged';
+  else if(b.flag===S.BAD_BOX)cls+=' flaggedbox';
+  if(selGT===b.BOX_ID)cls+=' sel';
+  let lab='ball GT';
+  if(b.flag===S.FALSE_BALL)lab='FLAGGED false ball';
+  else if(b.flag===S.BAD_BOX)lab='FLAGGED bad box';
+  if(selGT===b.BOX_ID)lab='SELECTED · '+lab;
+  add(cls,b.bbox,lab,b.flag?'#ff6a3d':'#4aa3ff');
+ });
  t.siblings.forEach((b,k)=>add('sibling',b.bbox_xywh,
    'other finding'+(b.role?' → '+b.short:''),'#7a7a7a'));
  add('target',t.bbox_xywh,'CLASSIFY THIS','#ff2fd0');
  panel();
+}
+// Geometry hit-testing, not DOM order: the overlay divs are painted in a fixed
+// sequence, so a small ball inside a larger flagged box would be unreachable if
+// selection followed paint order. Smallest area first, then cycling.
+function gtAt(x,y){
+ return cur().ball_gt.filter(b=>x>=b.bbox[0]&&y>=b.bbox[1]&&
+   x<=b.bbox[0]+b.bbox[2]&&y<=b.bbox[1]+b.bbox[3])
+  .sort((p,q)=>(p.bbox[2]*p.bbox[3])-(q.bbox[2]*q.bbox[3]));
+}
+function pick(ev){
+ const im=document.getElementById('im');
+ const r=im.getBoundingClientRect();
+ const x=(ev.clientX-r.left)/zoom, y=(ev.clientY-r.top)/zoom;
+ // a generous pad so a 5px ball is clickable at fit zoom without the pad
+ // ever letting a click reach a box it is not actually near
+ const pad=Math.max(0,(6/zoom)-1);
+ let hits=gtAt(x,y);
+ if(!hits.length)hits=cur().ball_gt.filter(b=>
+   x>=b.bbox[0]-pad&&y>=b.bbox[1]-pad&&
+   x<=b.bbox[0]+b.bbox[2]+pad&&y<=b.bbox[1]+b.bbox[3]+pad)
+  .sort((p,q)=>(p.bbox[2]*p.bbox[3])-(q.bbox[2]*q.bbox[3]));
+ if(!hits.length){selGT=null;cycle=0;draw();return;}
+ // clicking the same spot again cycles through the boxes under the cursor
+ const idx=hits.findIndex(b=>b.BOX_ID===selGT);
+ selGT=hits[idx>=0?(idx+1)%hits.length:0].BOX_ID;
+ cycle=hits.length;
+ draw();
 }
 function panel(){
  const t=cur();
@@ -258,8 +324,8 @@ function panel(){
  else if(t.role===S.UNSURE)
   st.innerHTML='<div class="warn">classified <b>UNSURE</b> &mdash; reported '
    +'separately, never folded into either category.</div>';
- else st.innerHTML='<div class="warn">not classified yet. Press BALL in the tile '
-   +'bar to jump to this object at 4x.</div>';
+ else st.innerHTML='<div class="warn">not classified yet. Press <b>Z</b> to jump '
+   +'to this object at 4x.</div>';
  document.getElementById('meta').innerHTML=
   `box <b>${t.bbox_xywh.map(v=>Math.round(v)).join(', ')}</b>
    (${Math.round(t.bbox_xywh[2])}x${Math.round(t.bbox_xywh[3])} px)
@@ -270,6 +336,58 @@ function panel(){
  document.getElementById('hist').innerHTML=!t.history.length?'':
   '<b>history</b>'+t.history.map(h=>`<div>${(h.recorded_utc||'').slice(11,19)}
    ${h.role}</div>`).join('');
+ gtpanel();
+}
+function gtpanel(){
+ const t=cur(),el=document.getElementById('gtsel');
+ const b=t.ball_gt.find(x=>x.BOX_ID===selGT);
+ if(!b){
+  el.innerHTML=!t.ball_gt.length
+   ?'<div class="note">this image has no ball annotation to flag</div>'
+   :'<div class="note">click a blue ball GT box to select it'
+    +(cur().ball_gt.length>1?' ('+t.ball_gt.length+' in this image)':'')+'</div>';
+  return;
+ }
+ const flagged=b.flag
+  ?`<div class="${b.flag===S.FALSE_BALL?'warn':'non'}">FLAGGED:
+     <b>${b.flag===S.FALSE_BALL?'SUSPECT FALSE BALL':'SUSPECT BAD BOX'}</b></div>`
+  :'';
+ el.innerHTML=`
+  <div style="font:11px monospace;color:#bbb">${b.BOX_ID}</div>
+  <div style="font-size:11px">class <b>football</b> · box
+   <span style="font:11px monospace">${b.bbox.map(v=>Math.round(v)).join(', ')}</span>
+   (${Math.round(b.bbox[2])}x${Math.round(b.bbox[3])} px)</div>
+  ${flagged}
+  <button class="big" id="fF"><span class="k">F</span>SUSPECT FALSE BALL</button>
+  <button class="big" id="fV"><span class="k">V</span>SUSPECT BAD BOX</button>
+  <button class="big" id="fC"><span class="k">C</span>CLEAR FLAG</button>
+  <div class="note">a flag records an observation for later. It changes no
+   annotation, answers no ontology object, and does not advance the queue.</div>`;
+ document.getElementById('fF').onclick=()=>flag(S.FALSE_BALL);
+ document.getElementById('fV').onclick=()=>flag(S.BAD_BOX);
+ document.getElementById('fC').onclick=()=>flag(null);
+ document.getElementById('fC').disabled=!b.flag;
+}
+function flagcounts(){
+ const c=S.flag_counts||{false:0,bad_box:0};
+ document.getElementById('flagc').textContent=
+  `GT flags — false ${c['false']} · bad box ${c.bad_box}`;
+}
+async function flag(kind){
+ const t=cur(),b=t.ball_gt.find(x=>x.BOX_ID===selGT);
+ if(!b){alert('select an existing ball GT box first');return;}
+ const body={BOX_ID:b.BOX_ID};
+ if(kind===null)body.retract=true; else body.flag_type=kind;
+ const r=await fetch('/api/flag',{method:'POST',
+  headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+ const j=await r.json();
+ if(!r.ok){alert(j.error||'refused');return;}
+ // reflect on every item that shows this annotation, not just this one
+ S.items.forEach(it=>it.ball_gt.forEach(g=>{
+   if(g.BOX_ID===b.BOX_ID)g.flag=j.flag_type;}));
+ if(j.counts)S.flag_counts=j.counts;
+ flagcounts();
+ draw();                       // deliberately no next(): a flag is not an answer
 }
 function stats(){
  const d=S.items.filter(x=>x.role).length;
@@ -298,6 +416,7 @@ function next(){
  for(let k=0;k<S.items.length;k++){if(!S.items[k].role){i=k;render();return;}}
  render();
 }
+document.getElementById('hit').onclick=pick;
 document.getElementById('aA').onclick=()=>classify(S.ACTIVE);
 document.getElementById('aX').onclick=()=>classify(S.NON_ACTIVE);
 document.getElementById('aU').onclick=()=>classify(S.UNSURE);
@@ -313,7 +432,15 @@ document.onkeydown=e=>{
  else if(k==='j'){e.preventDefault();next();}
  else if(k==='k'||k==='b'){if(i>0){i--;render();}}
  else if(k==='t'){gotoTile(tile+1>=TCOLS*TROWS?-1:tile+1);}
- else if(k==='c'){gotoTile(-2);}
+ else if(k==='z'){gotoTile(-2);}
+ // the three flag keys act on the SELECTED existing GT and never on the
+ // magenta Round-0 object, which has no BOX_ID and is not in ball_gt at all
+ else if(k==='f'){if(selGT)flag(S.FALSE_BALL);
+                  else alert('select an existing ball GT box first');}
+ else if(k==='v'){if(selGT)flag(S.BAD_BOX);
+                  else alert('select an existing ball GT box first');}
+ else if(k==='c'){if(selGT)flag(null);}
+ else if(e.key==='Escape'){selGT=null;draw();}
  else if(e.key==='+'||e.key==='='){zoom=Math.min(zoom*1.25,12);applyZoom();}
  else if(e.key==='-'){zoom=Math.max(zoom/1.25,0.25);applyZoom();}
  else if(k==='0'){zoom=1;tile=-1;applyZoom();tilebar();}
@@ -371,9 +498,59 @@ def ontology(decisions: Path = DECISIONS):
     return out
 
 
+def gt_flags(decisions: Path = DECISIONS):
+    """Effective flag state per existing ball annotation. Latest event wins.
+
+    Keyed by `<split>:<annotation id>`, the same BOX_ID convention the exporter
+    uses. Raw COCO ids are NOT unique across splits -- train and valid share
+    4,508 of them -- so a flag keyed on the bare id would land on an unrelated
+    annotation in another split.
+
+    Retraction is an event, not a deletion: a flag that was raised and withdrawn
+    stays in the log with both halves visible, because "somebody looked at this
+    and changed their mind" is itself worth knowing when the cleanup queue is
+    finally built.
+
+    Returns {BOX_ID: {flag_type or None, IMAGE, bbox_xywh, retracted, history}}.
+    """
+    per = {}
+    for d in kb_decisions.read_log(decisions):
+        if d.get('mode') in (FLAG_MODE, FLAG_RETRACT_MODE):
+            per.setdefault(d['BOX_ID'], []).append(d)
+    out = {}
+    for box, evs in per.items():
+        evs = sorted(evs, key=lambda d: (d.get('recorded_utc') or '', d['_line']))
+        win = evs[-1]
+        retracted = win['mode'] == FLAG_RETRACT_MODE
+        last_flag = next((e for e in reversed(evs) if e['mode'] == FLAG_MODE),
+                         None)
+        out[box] = {
+            'flag_type': None if retracted else win.get('flag_type'),
+            'IMAGE': (last_flag or win).get('IMAGE'),
+            'bbox_xywh': (last_flag or win).get('bbox_xywh'),
+            'annotation_id': (last_flag or win).get('annotation_id'),
+            'retracted': retracted,
+            'recorded_utc': win.get('recorded_utc'),
+            'history': [{'mode': e['mode'], 'flag_type': e.get('flag_type'),
+                         'recorded_utc': e.get('recorded_utc')} for e in evs],
+        }
+    return out
+
+
+def flag_counts(decisions: Path = DECISIONS):
+    """Effective counts for the header. Retracted flags count as neither."""
+    eff = gt_flags(decisions)
+    return {
+        'false': sum(1 for v in eff.values() if v['flag_type'] == FALSE_BALL),
+        'bad_box': sum(1 for v in eff.values() if v['flag_type'] == BAD_BOX),
+        'retracted': sum(1 for v in eff.values() if v['retracted']),
+    }
+
+
 def build_state(show_context=False, decisions: Path = DECISIONS):
     objs = round0_objects(decisions)
     onto = ontology(decisions)
+    flags = gt_flags(decisions)
     man = json.loads(kb_ball_qa_sample.MANIFEST.read_text(encoding='utf-8'))
     meta = {r['IMAGE']: r for r in man['sample']}
 
@@ -410,8 +587,13 @@ def build_state(show_context=False, decisions: Path = DECISIONS):
             **o,
             'split': split, 'run': m['run'], 'view_proxy': m['view_proxy'],
             'gt_state': m['gt_state'], 'img_w': m['img_w'], 'img_h': m['img_h'],
-            'ball_gt': [{'bbox': x['bbox']} for x in rows
-                        if x['category_id'] == bc],
+            'ball_gt': [{'bbox': x['bbox'],
+                         'annotation_id': x['id'],
+                         'BOX_ID': f'{split}:{x["id"]}',
+                         'cls': 'football',
+                         'flag': flags.get(f'{split}:{x["id"]}', {}).get(
+                             'flag_type')}
+                        for x in rows if x['category_id'] == bc],
             'context': [{'bbox': x['bbox']} for x in rows
                         if x['category_id'] != bc],
             'siblings': sibs,
@@ -420,6 +602,8 @@ def build_state(show_context=False, decisions: Path = DECISIONS):
         })
     return {'items': items, 'show_context': show_context,
             'ACTIVE': ACTIVE, 'NON_ACTIVE': NON_ACTIVE, 'UNSURE': UNSURE,
+            'FALSE_BALL': FALSE_BALL, 'BAD_BOX': BAD_BOX,
+            'flag_counts': flag_counts(decisions),
             'source_log': kb_decisions.log_version(decisions)}
 
 
@@ -430,10 +614,46 @@ def append(rec):
             fh.flush()
 
 
+def ball_gt_index(decisions: Path = DECISIONS):
+    """{BOX_ID: {IMAGE, bbox, annotation_id, split}} for every EXISTING ball GT
+    in the images that hold a Round-0 finding.
+
+    The server checks a flag target against this rather than trusting the
+    client. A Round-0 missing box is a human drawing that exists only in the
+    decision log, has no annotation id, and is not in here -- so it cannot be
+    flagged as suspect GT even if a crafted request names it. The two
+    populations must never merge: one is what the dataset claims, the other is
+    what the dataset missed.
+    """
+    man = json.loads(kb_ball_qa_sample.MANIFEST.read_text(encoding='utf-8'))
+    meta = {r['IMAGE']: r for r in man['sample']}
+    images = {o['IMAGE'] for o in round0_objects(decisions)}
+    out, cache = {}, {}
+    for image in sorted(images):
+        m = meta[image]
+        split = m['split']
+        if split not in cache:
+            doc = json.loads((kb_ball_qa_sample.EXPORT /
+                              f'{split}_annotations.coco.json')
+                             .read_text(encoding='utf-8'))
+            bc = kb_ball_qa_sample._ball_category(doc['categories'])
+            per = {}
+            for a in doc['annotations']:
+                if a['category_id'] == bc:
+                    per.setdefault(a['image_id'], []).append(a)
+            cache[split] = per
+        for a in cache[split].get(m['coco_image_id'], []):
+            out[f'{split}:{a["id"]}'] = {
+                'IMAGE': image, 'split': split, 'annotation_id': a['id'],
+                'bbox_xywh': a['bbox']}
+    return out
+
+
 class H(BaseHTTPRequestHandler):
     protocol_version = 'HTTP/1.1'
     SHOW_CONTEXT = False
     OBJECTS = {}
+    BALL_GT = {}
 
     def log_message(self, *a):
         pass
@@ -472,10 +692,14 @@ class H(BaseHTTPRequestHandler):
         return self._send(404, b'not found', 'text/plain')
 
     def do_POST(self):
-        if urlparse(self.path).path != '/api/ontology':
-            return self._send(404, b'', 'text/plain')
+        route = urlparse(self.path).path
         n = int(self.headers.get('Content-Length', 0))
         d = json.loads(self.rfile.read(n) or b'{}')
+
+        if route == '/api/flag':
+            return self._flag(d)
+        if route != '/api/ontology':
+            return self._send(404, b'', 'text/plain')
 
         oid = str(d.get('object_id', ''))
         if oid not in self.OBJECTS:
@@ -509,6 +733,70 @@ class H(BaseHTTPRequestHandler):
         return self._send(200, json.dumps(
             {'ok': True, 'HUMAN_BALL_ROLE': role, 'recorded_utc': now}).encode())
 
+    def _flag(self, d):
+        """Flag or retract a flag on an EXISTING ball annotation.
+
+        Nothing is changed by this route. It appends an observation, and the
+        ontology queue, the Round-0 counts and the export are all untouched.
+        """
+        box = str(d.get('BOX_ID', ''))
+        if box not in self.BALL_GT:
+            # This is the guard that matters: object_ids from the 128 drawn
+            # boxes start with BALLOBJ: and are never in BALL_GT, so a
+            # mis-wired client cannot flag a missing-ball finding as bad GT.
+            return self._send(400, json.dumps(
+                {'error': 'not an existing ball annotation in a reviewed image; '
+                          'only annotations already in the export can be '
+                          'flagged, never a Round-0 missing-ball drawing',
+                 'BOX_ID': box}).encode())
+        gt = self.BALL_GT[box]
+        now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+
+        if d.get('retract'):
+            eff = gt_flags(DECISIONS).get(box)
+            if not eff or not eff['flag_type']:
+                return self._send(400, json.dumps(
+                    {'error': 'no effective flag on this annotation to '
+                              'retract'}).encode())
+            append({
+                'mode': FLAG_RETRACT_MODE, 'BOX_ID': box,
+                # kb_decisions.resolve() reads this field on every row it sees,
+                # so an event that omits it crashes the shared reader for the
+                # whole log -- not just for this mode.
+                'HUMAN_FINAL_CLASS': None,
+                'annotation_id': gt['annotation_id'], 'IMAGE': gt['IMAGE'],
+                'target_flag_event': eff['recorded_utc'],
+                'retracts_flag_type': eff['flag_type'],
+                'bbox_xywh': gt['bbox_xywh'],
+                'reason': 'human correction',
+                'annotation_unchanged': True,
+                'recorded_utc': now, 'author': 'human reviewer'})
+            return self._send(200, json.dumps(
+                {'ok': True, 'flag_type': None, 'recorded_utc': now}).encode())
+
+        ft = d.get('flag_type')
+        if ft not in FLAG_TYPES:
+            return self._send(400, json.dumps(
+                {'error': f'flag_type must be one of {FLAG_TYPES}'}).encode())
+        append({
+            'mode': FLAG_MODE, 'BOX_ID': box,
+            'flag_type': ft,
+            'annotation_id': gt['annotation_id'],
+            'IMAGE': gt['IMAGE'], 'split': gt['split'],
+            'bbox_xywh': gt['bbox_xywh'],
+            'current_class': 'football',
+            'reason': 'human visual review',
+            'HUMAN_FINAL_CLASS': None,
+            'annotation_unchanged': True,
+            'no_annotation_modified': True,
+            'no_model_proposal_used': True,
+            'observation_only': ('recorded for a later cleanup queue; this pass '
+                                 'changes nothing'),
+            'recorded_utc': now, 'author': 'human reviewer'})
+        return self._send(200, json.dumps(
+            {'ok': True, 'flag_type': ft, 'recorded_utc': now,
+             'counts': flag_counts(DECISIONS)}).encode())
+
 
 def main():
     sys.stdout.reconfigure(encoding='utf-8')
@@ -531,6 +819,7 @@ def main():
     objs = round0_objects()
     H.SHOW_CONTEXT = args.show_context
     H.OBJECTS = {o['object_id']: o for o in objs}
+    H.BALL_GT = ball_gt_index()
     if len(H.OBJECTS) != len(objs):
         print(f'REFUSING: {len(objs) - len(H.OBJECTS)} objects share an id; '
               f'two identical boxes were drawn in one image.')
@@ -553,16 +842,24 @@ def main():
     onto = ontology()
     done = sum(1 for o in objs if o['object_id'] in onto)
     imgs = len({o['IMAGE'] for o in objs})
+    fc = flag_counts()
     print(f'BALL ONTOLOGY REVISIT -- {len(objs)} Round-0 missing objects '
           f'across {imgs} images')
     print(f'frozen Round 0 stands unchanged: '
           f'{res["primary"]["positive_images"]}/{res["primary"]["n"]} positive '
           f'images, {want} objects')
     print(f'{done} classified, {len(objs) - done} outstanding')
+    print(f'{len(H.BALL_GT)} existing ball annotations in these images are '
+          f'flaggable')
+    print(f'ball GT flags so far: false {fc["false"]}, bad box {fc["bad_box"]}'
+          + (f', retracted {fc["retracted"]}' if fc['retracted'] else ''))
     print('preflight: every image resolves')
-    print('\nNO GEOMETRY IS CREATED OR EDITED. No detector is loaded.')
+    print('\nNO GEOMETRY IS CREATED OR EDITED. No annotation is changed by a '
+          'flag. No detector is loaded.')
     print("Keys: A active  X non-active  U unsure  J next  B/K previous"
           "  ('n' is unbound on purpose)")
+    print('      click a blue ball GT, then F suspect false ball  V suspect bad '
+          'box  C clear flag')
     url = f'http://127.0.0.1:{args.port}/'
     print(f'\nreview at {url}   Ctrl-C to stop')
     if not args.no_browser:

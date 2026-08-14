@@ -280,6 +280,7 @@ def live(tmp_path_factory):
     ONTO.DECISIONS = log
     objs = ONTO.round0_objects(log)
     ONTO.H.OBJECTS = {o['object_id']: o for o in objs}
+    ONTO.H.BALL_GT = ONTO.ball_gt_index(log)
     srv = ThreadingHTTPServer(('127.0.0.1', 0), ONTO.H)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
     yield f'http://127.0.0.1:{srv.server_port}', log, objs
@@ -287,17 +288,31 @@ def live(tmp_path_factory):
     ONTO.DECISIONS = old
 
 
-def _post(base, payload):
+def _route(base, route, payload):
     import urllib.error
     import urllib.request
     req = urllib.request.Request(
-        base + '/api/ontology', data=json.dumps(payload).encode(),
+        base + route, data=json.dumps(payload).encode(),
         headers={'Content-Type': 'application/json'}, method='POST')
     try:
         with urllib.request.urlopen(req, timeout=20) as r:
             return r.status, json.loads(r.read())
     except urllib.error.HTTPError as e:
         return e.code, json.loads(e.read())
+
+
+def _post(base, payload):
+    return _route(base, '/api/ontology', payload)
+
+
+def _flagpost(base, payload):
+    return _route(base, '/api/flag', payload)
+
+
+def _events(log, mode, box):
+    return [json.loads(l) for l in log.read_text(encoding='utf-8').splitlines()
+            if l.strip() and json.loads(l).get('mode') == mode
+            and json.loads(l).get('BOX_ID') == box]
 
 
 def test_server_rejects_an_object_outside_the_128(live):
@@ -377,6 +392,262 @@ def test_server_serves_only_images_holding_a_finding(live):
         assert got == want, f'{path} returned {got}'
 
 
+# ------------------------------------------------------- ball GT flags
+
+
+def test_ball_gt_index_covers_only_existing_annotations():
+    idx = ONTO.ball_gt_index()
+    st = ONTO.build_state()
+    shown = {g['BOX_ID'] for it in st['items'] for g in it['ball_gt']}
+    assert shown == set(idx), 'what the UI offers is what the server accepts'
+    assert idx, 'these images do hold existing ball GT'
+    for box, gt in idx.items():
+        split, _, aid = box.partition(':')
+        assert split in SAMPLE.SPLITS and aid.isdigit()
+        assert gt['annotation_id'] == int(aid)
+
+
+def test_flag_keys_are_split_qualified():
+    """Raw COCO ids collide across splits -- train and valid share 4,508."""
+    ids = {}
+    for sp in SAMPLE.SPLITS:
+        doc = json.loads((EXPORT / f'{sp}_annotations.coco.json')
+                         .read_text(encoding='utf-8'))
+        ids[sp] = {a['id'] for a in doc['annotations']}
+    assert ids['train'] & ids['valid'], 'bare ids are genuinely ambiguous'
+    assert all(':' in b for b in ONTO.ball_gt_index())
+
+
+def test_no_round0_object_can_appear_in_the_flag_index():
+    """The two populations must never merge: one is what the dataset claims,
+    the other is what it missed."""
+    idx = ONTO.ball_gt_index()
+    for o in ONTO.round0_objects():
+        assert o['object_id'] not in idx
+    assert not any(b.startswith('BALLOBJ:') for b in idx)
+
+
+def test_flag_fold_latest_wins_and_retraction_is_append_only(tmp_path):
+    log = tmp_path / 'd.json'
+    box = 'train:1234'
+    rows = [
+        {'mode': ONTO.FLAG_MODE, 'BOX_ID': box, 'flag_type': ONTO.FALSE_BALL,
+         'IMAGE': 'train/a.jpg', 'annotation_id': 1234,
+         'bbox_xywh': [1, 2, 3, 4], 'recorded_utc': '2026-08-14T10:00:00Z'},
+        {'mode': ONTO.FLAG_MODE, 'BOX_ID': box, 'flag_type': ONTO.BAD_BOX,
+         'IMAGE': 'train/a.jpg', 'annotation_id': 1234,
+         'bbox_xywh': [1, 2, 3, 4], 'recorded_utc': '2026-08-14T11:00:00Z'},
+        {'mode': ONTO.FLAG_RETRACT_MODE, 'BOX_ID': box,
+         'target_flag_event': '2026-08-14T11:00:00Z',
+         'reason': 'human correction',
+         'recorded_utc': '2026-08-14T12:00:00Z'},
+    ]
+    log.write_text(''.join(json.dumps(r) + '\n' for r in rows), encoding='utf-8')
+    eff = ONTO.gt_flags(log)[box]
+    assert eff['flag_type'] is None and eff['retracted'] is True
+    assert len(eff['history']) == 3, 'nothing was deleted'
+    assert len(kb_decisions.read_log(log)) == 3
+    assert ONTO.flag_counts(log) == {'false': 0, 'bad_box': 0, 'retracted': 1}
+
+
+def test_flag_can_be_raised_again_after_retraction(tmp_path):
+    log = tmp_path / 'd.json'
+    box = 'train:9'
+    rows = [
+        {'mode': ONTO.FLAG_MODE, 'BOX_ID': box, 'flag_type': ONTO.FALSE_BALL,
+         'IMAGE': 'train/a.jpg', 'recorded_utc': '2026-08-14T10:00:00Z'},
+        {'mode': ONTO.FLAG_RETRACT_MODE, 'BOX_ID': box,
+         'recorded_utc': '2026-08-14T11:00:00Z'},
+        {'mode': ONTO.FLAG_MODE, 'BOX_ID': box, 'flag_type': ONTO.BAD_BOX,
+         'IMAGE': 'train/a.jpg', 'recorded_utc': '2026-08-14T12:00:00Z'},
+    ]
+    log.write_text(''.join(json.dumps(r) + '\n' for r in rows), encoding='utf-8')
+    eff = ONTO.gt_flags(log)[box]
+    assert eff['flag_type'] == ONTO.BAD_BOX and eff['retracted'] is False
+
+
+def test_duplicate_identical_flags_are_unambiguous(tmp_path):
+    """Two identical flags mean the same thing as one. No ambiguity to resolve."""
+    log = tmp_path / 'd.json'
+    box = 'train:5'
+    row = {'mode': ONTO.FLAG_MODE, 'BOX_ID': box, 'flag_type': ONTO.FALSE_BALL,
+           'IMAGE': 'train/a.jpg'}
+    rows = [dict(row, recorded_utc='2026-08-14T10:00:00Z'),
+            dict(row, recorded_utc='2026-08-14T10:00:05Z')]
+    log.write_text(''.join(json.dumps(r) + '\n' for r in rows), encoding='utf-8')
+    eff = ONTO.gt_flags(log)[box]
+    assert eff['flag_type'] == ONTO.FALSE_BALL
+    assert len(eff['history']) == 2
+    assert ONTO.flag_counts(log)['false'] == 1, 'counted once, per annotation'
+
+
+def test_flags_and_ontology_answers_never_read_each_other(tmp_path):
+    log = tmp_path / 'd.json'
+    rows = [
+        {'mode': ONTO.ONTOLOGY_MODE, 'BOX_ID': 'BALLOBJ:aa',
+         'missing_object_id': 'BALLOBJ:aa', 'IMAGE': 'train/a.jpg',
+         'HUMAN_BALL_ROLE': ONTO.ACTIVE, 'recorded_utc': '2026-08-14T10:00:00Z'},
+        {'mode': ONTO.FLAG_MODE, 'BOX_ID': 'train:7',
+         'flag_type': ONTO.FALSE_BALL, 'IMAGE': 'train/a.jpg',
+         'recorded_utc': '2026-08-14T11:00:00Z'},
+    ]
+    log.write_text(''.join(json.dumps(r) + '\n' for r in rows), encoding='utf-8')
+    assert set(ONTO.ontology(log)) == {'BALLOBJ:aa'}
+    assert set(ONTO.gt_flags(log)) == {'train:7'}
+    res = kb_decisions.resolve(log)
+    for k in ('BALLOBJ:aa', 'train:7'):
+        assert res[k]['final_class'] is None and res[k]['disposition'] is None
+
+
+def test_shared_readers_survive_a_row_without_a_classification(tmp_path):
+    """An observation event has no HUMAN_FINAL_CLASS, and resolve() read it
+    with [] rather than .get(). One such row would raise KeyError and take down
+    every consumer of the WHOLE log, not just its own mode -- the flag pass
+    found this the first time it wrote one.
+    """
+    log = tmp_path / 'd.json'
+    rows = [
+        {'mode': 'missed_role_manual', 'BOX_ID': 'train:1',
+         'HUMAN_FINAL_CLASS': 'referee', 'recorded_utc': '2026-08-14T10:00:00Z'},
+        # no HUMAN_FINAL_CLASS key at all
+        {'mode': ONTO.FLAG_MODE, 'BOX_ID': 'train:2',
+         'flag_type': ONTO.FALSE_BALL, 'IMAGE': 'train/a.jpg',
+         'recorded_utc': '2026-08-14T11:00:00Z'},
+    ]
+    log.write_text(''.join(json.dumps(r) + '\n' for r in rows), encoding='utf-8')
+    res = kb_decisions.resolve(log)
+    assert res['train:1']['final_class'] == 'referee'
+    assert res['train:2']['final_class'] is None
+    assert res['train:2']['disposition'] is None
+    assert kb_decisions.by_mode(log)[(ONTO.FLAG_MODE, 'train:2')] is None
+    assert kb_decisions.prior_non_manual(log, 'train:2') == (None, ONTO.FLAG_MODE)
+    # the manual click is still classified; the flag row simply does not appear
+    assert set(kb_decisions.classify_manual(log)) == {'train:1'}
+    assert kb_decisions.conflicts(log) == []
+
+
+def test_flag_events_carry_the_field_shared_readers_expect():
+    """Belt and braces: the tool writes it even though resolve() now tolerates
+    its absence, so an older checkout of kb_decisions cannot be broken by a
+    log this tool produced."""
+    src = (REPO / 'tools' / 'kb_ball_ontology_revisit_server.py').read_text(
+        encoding='utf-8')
+    body = src[src.index('def _flag('):]
+    assert body.count("'HUMAN_FINAL_CLASS': None") == 2, \
+        'both the flag and its retraction must carry the field'
+
+
+def test_flag_server_rejects_a_non_gt_target(live):
+    base, log, objs = live
+    before = log.read_text(encoding='utf-8')
+    for bad in (objs[0]['object_id'], 'train:999999', 'nonsense'):
+        code, body = _flagpost(base, {'BOX_ID': bad,
+                                      'flag_type': ONTO.FALSE_BALL})
+        assert code == 400, f'{bad} was accepted'
+        assert 'not an existing ball annotation' in body['error']
+    assert log.read_text(encoding='utf-8') == before, 'nothing appended'
+
+
+def test_flag_server_rejects_an_unknown_flag_type(live):
+    base, log, objs = live
+    box = next(iter(ONTO.H.BALL_GT))
+    code, body = _flagpost(base, {'BOX_ID': box, 'flag_type': 'LOOKS_ODD'})
+    assert code == 400 and 'flag_type must be one of' in body['error']
+
+
+def test_flag_server_records_false_ball(live):
+    base, log, objs = live
+    box = sorted(ONTO.H.BALL_GT)[0]
+    gt = ONTO.H.BALL_GT[box]
+    code, _ = _flagpost(base, {'BOX_ID': box, 'flag_type': ONTO.FALSE_BALL})
+    assert code == 200
+    ev = _events(log, ONTO.FLAG_MODE, box)[-1]
+    assert ev['flag_type'] == ONTO.FALSE_BALL
+    assert ev['annotation_id'] == gt['annotation_id']
+    assert ev['IMAGE'] == gt['IMAGE']
+    assert ev['bbox_xywh'] == gt['bbox_xywh']
+    assert ev['current_class'] == 'football'
+    assert ev['reason'] == 'human visual review'
+    assert ev['annotation_unchanged'] is True
+    assert ev['no_annotation_modified'] is True
+    assert ev['author'] == 'human reviewer'
+
+
+def test_flag_server_records_bad_box(live):
+    base, log, objs = live
+    box = sorted(ONTO.H.BALL_GT)[1]
+    assert _flagpost(base, {'BOX_ID': box,
+                            'flag_type': ONTO.BAD_BOX})[0] == 200
+    assert _events(log, ONTO.FLAG_MODE, box)[-1]['flag_type'] == ONTO.BAD_BOX
+
+
+def test_flag_server_retraction_names_what_it_withdraws(live):
+    base, log, objs = live
+    box = sorted(ONTO.H.BALL_GT)[2]
+    assert _flagpost(base, {'BOX_ID': box,
+                            'flag_type': ONTO.FALSE_BALL})[0] == 200
+    raised = ONTO.gt_flags(log)[box]['recorded_utc']
+    assert _flagpost(base, {'BOX_ID': box, 'retract': True})[0] == 200
+    ev = _events(log, ONTO.FLAG_RETRACT_MODE, box)[-1]
+    assert ev['target_flag_event'] == raised
+    assert ev['retracts_flag_type'] == ONTO.FALSE_BALL
+    assert ev['reason'] == 'human correction'
+    assert ONTO.gt_flags(log)[box]['flag_type'] is None
+
+
+def test_flag_server_refuses_to_retract_nothing(live):
+    base, log, objs = live
+    box = sorted(ONTO.H.BALL_GT)[3]
+    code, body = _flagpost(base, {'BOX_ID': box, 'retract': True})
+    assert code == 400 and 'no effective flag' in body['error']
+
+
+def test_flagging_does_not_answer_or_advance_the_ontology_queue(live):
+    base, log, objs = live
+    before_onto = ONTO.ontology(log)
+    before_objs = ONTO.round0_objects(log)
+    box = sorted(ONTO.H.BALL_GT)[4]
+    assert _flagpost(base, {'BOX_ID': box,
+                            'flag_type': ONTO.FALSE_BALL})[0] == 200
+    assert ONTO.ontology(log) == before_onto, 'no ontology answer changed'
+    after = ONTO.round0_objects(log)
+    assert len(after) == len(before_objs) == 128, 'denominator untouched'
+    assert [o['object_id'] for o in after] == \
+           [o['object_id'] for o in before_objs]
+
+
+def test_flagging_does_not_alter_round0_answers(live):
+    base, log, objs = live
+    before = QA.answers(log)
+    box = sorted(ONTO.H.BALL_GT)[5]
+    assert _flagpost(base, {'BOX_ID': box, 'flag_type': ONTO.BAD_BOX})[0] == 200
+    assert QA.answers(log) == before
+
+
+def test_flag_restart_reconstructs_effective_state(live):
+    base, log, objs = live
+    box = sorted(ONTO.H.BALL_GT)[6]
+    assert _flagpost(base, {'BOX_ID': box,
+                            'flag_type': ONTO.FALSE_BALL})[0] == 200
+    st = ONTO.build_state(decisions=log)
+    shown = [g for it in st['items'] for g in it['ball_gt']
+             if g['BOX_ID'] == box]
+    assert shown and all(g['flag'] == ONTO.FALSE_BALL for g in shown)
+    assert st['flag_counts']['false'] >= 1
+
+
+def test_flag_counts_ignore_retracted(live):
+    base, log, objs = live
+    counts = ONTO.flag_counts(log)
+    eff = ONTO.gt_flags(log)
+    assert counts['false'] == sum(1 for v in eff.values()
+                                  if v['flag_type'] == ONTO.FALSE_BALL)
+    assert counts['bad_box'] == sum(1 for v in eff.values()
+                                    if v['flag_type'] == ONTO.BAD_BOX)
+    for v in eff.values():
+        assert not (v['retracted'] and v['flag_type'])
+
+
 # ------------------------------------------------- the page, actually driven
 
 
@@ -452,6 +723,61 @@ def test_page_only_ever_posts_queued_objects(driven):
     assert driven['roles_posted'] == sorted(ONTO.ROLES)
 
 
+def test_page_flag_keys_need_a_selection_first(driven):
+    f = driven['flag_without_selection']
+    assert f['posted'] == 0, 'F/V/C with nothing selected must post nothing'
+    assert f['alerted'] is True, 'and must say why'
+
+
+def test_page_click_selects_ball_gt_by_geometry(driven):
+    s = driven['selection']
+    assert s['matched'] is True, f'{s["selGT"]} != {s["expected"]}'
+
+
+def test_page_flag_targets_existing_gt_never_the_round0_object(driven):
+    """The magenta box is a human drawing with no annotation id. F must not
+    reach it -- the whole point is that flags describe what the dataset claims."""
+    f = driven['flag_false']
+    assert f['posted'] == 1
+    assert f['flag_type'] == ONTO.FALSE_BALL
+    assert f['targets_existing_gt'] is True
+    assert f['is_not_the_round0_object'] is True
+    assert f['carries_no_object_id'] is True
+
+
+def test_page_flagging_is_inert_for_the_ontology_pass(driven):
+    i = driven['flag_is_inert']
+    assert i['index_unchanged'] is True, 'a flag must not advance the queue'
+    assert i['ontology_posts_added'] == 0, 'a flag is not an ontology answer'
+
+
+def test_page_v_and_c_keys(driven):
+    assert driven['flag_bad_box']['flag_type'] == ONTO.BAD_BOX
+    assert driven['flag_clear']['retract'] is True
+
+
+def test_page_duplicate_flags_stay_unambiguous(driven):
+    d = driven['duplicate_flag']
+    assert d['count'] == 2 and d['same_target'] and d['same_type']
+
+
+def test_page_overlapping_gt_selection_is_deterministic(driven):
+    o = driven.get('overlap')
+    if not o:
+        pytest.skip('no image with multiple ball GT in this sample')
+    assert o['deterministic'] is True, 'the same click must select the same box'
+    assert o['cycles'] is True, 'repeat clicks cycle only when boxes overlap'
+
+
+def test_page_clicking_empty_space_clears_selection(driven):
+    c = driven['click_empty_clears']
+    assert c['had'] is True and c['now'] is None
+
+
+def test_page_flag_posts_only_ever_name_shown_gt(driven):
+    assert driven['flag_posts_all_target_existing_gt'] is True
+
+
 # ------------------------------------------------------------ immutability
 
 
@@ -494,6 +820,9 @@ def test_ontology_tool_writes_only_append_only_events():
     for bad in ("open(DECISIONS, 'w'", 'DECISIONS.write_text',
                 'RESULT.write_text', 'ROUND0_RESULT.write_text'):
         assert bad not in src, f'{bad} would rewrite an authoritative file'
+    # flags and their retraction are the only two writes the flag path makes,
+    # and both go through the same append()
+    assert src.count('def append(') == 1
     assert 'repaired_export' not in src.replace(
         'kb_ball_qa_sample.EXPORT', ''), 'the export is only read via the sampler'
 

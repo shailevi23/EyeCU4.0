@@ -114,7 +114,11 @@ def resolve(path: Path):
     for box, hist in per.items():
         hist = sorted(hist, key=_key)
         winner = hist[-1]
-        v = winner['HUMAN_FINAL_CLASS']
+        # .get, not [] -- later passes append events that are observations
+        # rather than classifications (a flag on an existing annotation, say),
+        # and one such row without this field would raise KeyError and take
+        # down every consumer of the whole log, not just its own mode.
+        v = winner.get('HUMAN_FINAL_CLASS')
         final_class = v if v in ROLES else None
         disposition = v if v in U_CATEGORIES else (
             'UNRESOLVED' if v == UNRESOLVED else None)
@@ -126,10 +130,10 @@ def resolve(path: Path):
             'recorded_utc': winner.get('recorded_utc'),
             'decisions_recorded': len(hist),
             'superseded': [{'mode': h['mode'],
-                            'value': h['HUMAN_FINAL_CLASS'],
+                            'value': h.get('HUMAN_FINAL_CLASS'),
                             'recorded_utc': h.get('recorded_utc')}
                            for h in hist[:-1]],
-            'history': [{'mode': h['mode'], 'value': h['HUMAN_FINAL_CLASS'],
+            'history': [{'mode': h['mode'], 'value': h.get('HUMAN_FINAL_CLASS'),
                          'recorded_utc': h.get('recorded_utc'),
                          'line': h['_line']} for h in hist],
         }
@@ -146,7 +150,8 @@ def by_mode(path: Path):
     per = {}
     for d in rows:
         per.setdefault((d['mode'], d['BOX_ID']), []).append(d)
-    return {k: sorted(v, key=_key)[-1]['HUMAN_FINAL_CLASS'] for k, v in per.items()}
+    return {k: sorted(v, key=_key)[-1].get('HUMAN_FINAL_CLASS')
+            for k, v in per.items()}
 
 
 GEOMETRY_MODE = 'geometry_repair'
@@ -288,7 +293,7 @@ def prior_non_manual(path: Path, box: str):
                    if d['BOX_ID'] == box and d['mode'] != MANUAL_MODE), key=_key)
     if not hist:
         return None, None
-    return hist[-1]['HUMAN_FINAL_CLASS'], hist[-1]['mode']
+    return hist[-1].get('HUMAN_FINAL_CLASS'), hist[-1]['mode']
 
 
 def classify_click(prior_value, value):
@@ -346,9 +351,9 @@ def classify_manual(path: Path):
         hist = sorted(per[d['BOX_ID']], key=_key)
         prior = [h for h in hist
                  if _key(h) < _key(d) and h['mode'] != MANUAL_MODE]
-        pv = prior[-1]['HUMAN_FINAL_CLASS'] if prior else None
+        pv = prior[-1].get('HUMAN_FINAL_CLASS') if prior else None
         pm = prior[-1]['mode'] if prior else None
-        v = d['HUMAN_FINAL_CLASS']
+        v = d.get('HUMAN_FINAL_CLASS')
         kind = classify_click(pv, v)
         # a later manual click supersedes an earlier one on the same box
         out[d['BOX_ID']] = {'kind': kind, 'manual_class': v,
