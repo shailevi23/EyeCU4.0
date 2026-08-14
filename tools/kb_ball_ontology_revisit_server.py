@@ -174,7 +174,9 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
   __BUILD__</span>
  <span style="color:#8a8a8a;font-size:11px">magenta: A active &middot; X
   non-active &middot; U unsure &nbsp;|&nbsp; blue GT: [ ] select &middot; E
-  non-active &middot; F false &middot; V bad box &middot; C retract</span>
+  non-active &middot; F false &middot; V bad box &middot; C retract
+  &nbsp;|&nbsp; M/&rarr; next &middot; B/&larr; prev &middot; J next
+  unclassified</span>
 </div>
 <div id="imgerr" style="display:none;margin:10px 300px 10px 10px;background:#3a1414;
      border:1px solid #7a3a3a;border-radius:6px;padding:12px;max-width:640px"></div>
@@ -213,8 +215,11 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <div style="border-top:1px solid #2a2a2a;margin:9px 0 6px"></div>
  <div style="font-size:11px;color:#8a8a8a">tile sweep</div>
  <div id="tiles"></div>
- <button class="big" id="bJ"><span class="k">J</span>NEXT UNCLASSIFIED</button>
+ <button class="big" id="bNx"><span class="k">M</span>NEXT IMAGE</button>
  <button class="big" id="bB"><span class="k">B</span>PREVIOUS</button>
+ <button class="big" id="bJ"><span class="k">J</span>NEXT UNCLASSIFIED</button>
+ <div class="note">NEXT IMAGE steps one at a time through all 128, answered or
+  not. NEXT UNCLASSIFIED skips ahead to work still outstanding.</div>
  <div id="meta" style="font-size:11px;color:#777;margin-top:8px"></div>
  <div id="hist" style="font-size:11px;color:#888;margin-top:8px"></div>
 </div>
@@ -488,8 +493,13 @@ document.getElementById('hit').onclick=pick;
 document.getElementById('aA').onclick=()=>classify(S.ACTIVE);
 document.getElementById('aX').onclick=()=>classify(S.NON_ACTIVE);
 document.getElementById('aU').onclick=()=>classify(S.UNSURE);
+// step one forward, whether or not it is answered -- the mirror of PREVIOUS.
+// next() skips to outstanding work, which with 114 of 128 done jumps over
+// nearly everything and makes the queue impossible to simply page through.
+function step(d){const n=i+d; if(n>=0&&n<S.items.length){i=n;render();}}
+document.getElementById('bNx').onclick=()=>step(1);
 document.getElementById('bJ').onclick=next;
-document.getElementById('bB').onclick=()=>{if(i>0){i--;render();}};
+document.getElementById('bB').onclick=()=>step(-1);
 document.onkeydown=e=>{
  const k=e.key.toLowerCase();
  // 'n' is deliberately NOT bound. It reads as both NEXT and NON-ACTIVE, and
@@ -498,7 +508,10 @@ document.onkeydown=e=>{
  else if(k==='x')classify(S.NON_ACTIVE);
  else if(k==='u')classify(S.UNSURE);
  else if(k==='j'){e.preventDefault();next();}
- else if(k==='k'||k==='b'){if(i>0){i--;render();}}
+ else if(k==='m'){e.preventDefault();step(1);}
+ else if(e.key==='ArrowRight'){e.preventDefault();step(1);}
+ else if(e.key==='ArrowLeft'){e.preventDefault();step(-1);}
+ else if(k==='k'||k==='b'){step(-1);}
  else if(k==='t'){gotoTile(tile+1>=TCOLS*TROWS?-1:tile+1);}
  else if(k==='z'){gotoTile(-2);}
  // the observation keys act on the SELECTED existing GT and never on the
@@ -690,18 +703,26 @@ def append(rec):
 
 
 def build_id_info():
-    """Identity of the source this process is actually running.
+    """Identity of the page this process is actually serving.
 
-    A server started before an edit keeps serving the old page forever. Hashing
-    the file at request time would lie the other way (it would report the new
-    file while serving the old page), so the hash is taken of THIS module's
-    source as loaded, which is what the running process really has.
+    The first version hashed __file__ at request time, which reported the file
+    ON DISK -- so a server started before an edit advertised the NEW hash while
+    serving the OLD page, the exact confusion the stamp exists to prevent. It
+    now hashes PAGE, the in-memory string this process will actually send, and
+    reports the on-disk hash separately so a mismatch is visible rather than
+    hidden behind one number.
     """
-    src = Path(__file__).read_bytes()
-    return {'build': hashlib.sha256(src).hexdigest()[:12],
-            'file_sha256': hashlib.sha256(src).hexdigest(),
+    page_sha = hashlib.sha256(PAGE.encode('utf-8')).hexdigest()
+    try:
+        disk_sha = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    except OSError:
+        disk_sha = None
+    return {'build': page_sha[:12],
+            'page_sha256': page_sha,
+            'source_file_sha256_on_disk': disk_sha,
             'has_gt_navigation': "e.key===']'" in PAGE,
             'has_gt_observations': "k==='e'" in PAGE,
+            'has_next_image': 'bNx' in PAGE,
             'flag_types': list(FLAG_TYPES)}
 
 
