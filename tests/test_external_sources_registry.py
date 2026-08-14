@@ -50,7 +50,8 @@ def _declared_modes():
     # Any *_MODE constant a review tool declares, so adding a mode to a tool
     # does not require editing this list. Reading only kb_decisions missed the
     # two flag modes that live in the ontology tool.
-    for mod in ('kb_ball_qa_server', 'kb_ball_ontology_revisit_server'):
+    for mod in ('kb_ball_qa_server', 'kb_ball_ontology_revisit_server',
+                'kb_ball_pp_sweep_server', 'kb_ball_candidate_server'):
         try:
             m = __import__(mod)
         except Exception:                     # tool absent in a partial checkout

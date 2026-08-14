@@ -294,23 +294,30 @@ def test_server_rejects_unknown_answers_and_empty_positives(live):
     assert code == 400 and 'at least one drawn ball' in body['error']
 
 
+def _sweep_events(log, image):
+    return [json.loads(l) for l in log.read_text(encoding='utf-8').splitlines()
+            if l.strip() and json.loads(l).get('mode') == PP.SWEEP_MODE
+            and json.loads(l).get('IMAGE') == image]
+
+
 def test_server_records_multiple_missing_balls_as_one_event(live):
+    """Asserts on the delta it caused, not on absolute counts: the human is
+    still working through this queue, so images acquire real answers between
+    runs and a fixed expectation would decay."""
     base, log, q = live
     im = q['images'][1]['IMAGE']
+    before = len(_sweep_events(log, im))
     code, body = _post(base, {'IMAGE': im, 'answer': 'MISSING_BALL',
                               'missing_balls_xywh': [[10, 10, 4.2, 3.9],
                                                      [700, 400, 9, 9],
                                                      [200, 300, 6, 6]]})
     assert code == 200 and len(body['missing']) == 3
-    rows = [json.loads(l) for l in log.read_text(encoding='utf-8').splitlines()
-            if l.strip()]
-    ev = [r for r in rows if r.get('mode') == PP.SWEEP_MODE
-          and r['IMAGE'] == im]
-    assert len(ev) == 1, 'one image-level event, not one per ball'
-    assert ev[0]['n_missing_objects'] == 3
-    assert ev[0]['ontology'] == 'ALL_VISIBLE_PHYSICAL_FOOTBALLS'
+    ev = _sweep_events(log, im)
+    assert len(ev) == before + 1, 'one image-level event, not one per ball'
+    assert ev[-1]['n_missing_objects'] == 3
+    assert ev[-1]['ontology'] == 'ALL_VISIBLE_PHYSICAL_FOOTBALLS'
     assert all(b['geometry_author'] == 'human drawn'
-               for b in ev[0]['missing_balls'])
+               for b in ev[-1]['missing_balls'])
 
 
 def test_tiny_four_px_ball_survives_the_round_trip(live):
@@ -328,12 +335,15 @@ def test_tiny_four_px_ball_survives_the_round_trip(live):
 def test_server_restart_resumes_from_the_log(live):
     base, log, q = live
     im = q['images'][3]['IMAGE']
+    before = len(_sweep_events(log, im))
     assert _post(base, {'IMAGE': im, 'answer': 'UNSURE'})[0] == 200
     assert PP.answers(log)[im]['answer'] == 'UNSURE'
     assert _post(base, {'IMAGE': im, 'answer': 'NO_MISSING_BALL'})[0] == 200
     a = PP.answers(log)[im]
     assert a['answer'] == 'NO_MISSING_BALL', 'latest wins'
-    assert len(a['history']) == 2, 'the UNSURE event is still on record'
+    assert len(a['history']) == before + 2, 'both events are still on record'
+    assert [h['answer'] for h in a['history'][-2:]] == ['UNSURE',
+                                                        'NO_MISSING_BALL']
 
 
 def test_server_serves_only_queue_images(live):
