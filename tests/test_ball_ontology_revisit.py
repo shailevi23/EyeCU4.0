@@ -182,22 +182,33 @@ def test_ontology_fold_ignores_other_modes(tmp_path):
 def test_restart_reconstructs_progress_from_the_log(tmp_path):
     """Nothing is held in memory: state is rebuilt from the event log."""
     log = tmp_path / 'd.json'
-    src = ONTO.DECISIONS.read_text(encoding='utf-8')
-    objs = ONTO.round0_objects()
+    # the real log by path, not ONTO.DECISIONS -- the module-scoped `live`
+    # fixture repoints that module global, so reading it here would pick up
+    # whichever tests happened to run first
+    real = PKG / 'decisions.json'
+    src = real.read_text(encoding='utf-8')
+    objs = ONTO.round0_objects(real)
+    # relative to whatever the human has already classified: this test is about
+    # reconstruction from the log, not about how far the review has got
+    already = ONTO.ontology(real)
+    fresh = [o for o in objs if o['object_id'] not in already][:5]
+    if len(fresh) < 5:
+        pytest.skip('fewer than 5 unclassified objects remain')
     extra = [{'mode': ONTO.ONTOLOGY_MODE, 'BOX_ID': o['object_id'],
               'missing_object_id': o['object_id'], 'IMAGE': o['IMAGE'],
               'round0_bbox_xywh': o['bbox_xywh'],
               'HUMAN_BALL_ROLE': ONTO.NON_ACTIVE,
-              'recorded_utc': '2026-08-14T12:00:00Z'} for o in objs[:5]]
+              'recorded_utc': '2099-01-01T00:00:00Z'} for o in fresh]
     log.write_text(src + ''.join(json.dumps(r) + '\n' for r in extra),
                    encoding='utf-8')
     st = ONTO.build_state(decisions=log)
-    answered = [it for it in st['items'] if it['role']]
-    assert len(answered) == 5
-    assert {it['object_id'] for it in answered} == \
-           {o['object_id'] for o in objs[:5]}
-    assert all(it['role'] == ONTO.NON_ACTIVE for it in answered)
-    assert len([it for it in st['items'] if not it['role']]) == 123
+    answered = {it['object_id'] for it in st['items'] if it['role']}
+    assert answered == set(already) | {o['object_id'] for o in fresh}
+    by_id = {it['object_id']: it for it in st['items']}
+    for o in fresh:
+        assert by_id[o['object_id']]['role'] == ONTO.NON_ACTIVE
+    assert len(st['items']) == 128, 'the queue itself never changes'
+    assert len(answered) == len(already) + 5
 
 
 def test_resolve_semantics_for_role_annotations_are_untouched(tmp_path):
@@ -315,6 +326,11 @@ def _events(log, mode, box):
             and json.loads(l).get('BOX_ID') == box]
 
 
+def _ontology_events(log, object_id):
+    return [json.loads(l) for l in log.read_text(encoding='utf-8').splitlines()
+            if l.strip() and json.loads(l).get('missing_object_id') == object_id]
+
+
 def test_server_rejects_an_object_outside_the_128(live):
     base, log, objs = live
     before = log.read_text(encoding='utf-8')
@@ -332,33 +348,37 @@ def test_server_rejects_a_role_outside_the_three(live):
 
 
 def test_server_records_geometry_unchanged(live):
+    """The `live` log is module-scoped and shared, so this asserts on the event
+    it just wrote rather than on how many exist -- a count would depend on the
+    order pytest happens to run these in."""
     base, log, objs = live
-    o = objs[0]
+    o = objs[10]
+    before = len(_ontology_events(log, o['object_id']))
     code, _ = _post(base, {'object_id': o['object_id'],
                            'HUMAN_BALL_ROLE': ONTO.NON_ACTIVE})
     assert code == 200
-    rows = [json.loads(l) for l in log.read_text(encoding='utf-8').splitlines()
-            if l.strip()]
-    ev = [r for r in rows if r.get('missing_object_id') == o['object_id']]
-    assert len(ev) == 1
-    assert ev[0]['round0_bbox_xywh'] == o['bbox_xywh'], 'original box carried'
-    assert ev[0]['geometry_unchanged'] is True
-    assert ev[0]['no_new_geometry_created'] is True
-    assert ev[0]['no_model_proposal_used'] is True
-    assert ev[0]['HUMAN_FINAL_CLASS'] is None
-    assert ev[0]['mode'] == ONTO.ONTOLOGY_MODE
+    ev = _ontology_events(log, o['object_id'])
+    assert len(ev) == before + 1, 'exactly one event appended'
+    assert ev[-1]['round0_bbox_xywh'] == o['bbox_xywh'], 'original box carried'
+    assert ev[-1]['geometry_unchanged'] is True
+    assert ev[-1]['no_new_geometry_created'] is True
+    assert ev[-1]['no_model_proposal_used'] is True
+    assert ev[-1]['HUMAN_FINAL_CLASS'] is None
+    assert ev[-1]['mode'] == ONTO.ONTOLOGY_MODE
 
 
 def test_server_re_answer_appends_and_latest_wins(live):
     base, log, objs = live
-    o = objs[1]
+    o = objs[11]
+    before = len(_ontology_events(log, o['object_id']))
     assert _post(base, {'object_id': o['object_id'],
                         'HUMAN_BALL_ROLE': ONTO.UNSURE})[0] == 200
     assert _post(base, {'object_id': o['object_id'],
                         'HUMAN_BALL_ROLE': ONTO.ACTIVE})[0] == 200
     rec = ONTO.ontology(log)[o['object_id']]
-    assert rec['role'] == ONTO.ACTIVE
-    assert [h['role'] for h in rec['history']] == [ONTO.UNSURE, ONTO.ACTIVE]
+    assert rec['role'] == ONTO.ACTIVE, 'latest wins'
+    assert len(rec['history']) == before + 2, 'both events kept'
+    assert [h['role'] for h in rec['history'][-2:]] == [ONTO.UNSURE, ONTO.ACTIVE]
 
 
 def test_server_two_objects_in_one_image_are_independent(live):
@@ -447,7 +467,8 @@ def test_flag_fold_latest_wins_and_retraction_is_append_only(tmp_path):
     assert eff['flag_type'] is None and eff['retracted'] is True
     assert len(eff['history']) == 3, 'nothing was deleted'
     assert len(kb_decisions.read_log(log)) == 3
-    assert ONTO.flag_counts(log) == {'false': 0, 'bad_box': 0, 'retracted': 1}
+    assert ONTO.flag_counts(log) == {'false': 0, 'bad_box': 0, 'non_active': 0,
+                                     'retracted': 1}
 
 
 def test_flag_can_be_raised_again_after_retraction(tmp_path):
@@ -571,6 +592,38 @@ def test_flag_server_records_false_ball(live):
     assert ev['annotation_unchanged'] is True
     assert ev['no_annotation_modified'] is True
     assert ev['author'] == 'human reviewer'
+
+
+def test_flag_server_records_existing_non_active(live):
+    base, log, objs = live
+    box = sorted(ONTO.H.BALL_GT)[7]
+    gt = ONTO.H.BALL_GT[box]
+    code, _ = _flagpost(base, {'BOX_ID': box,
+                               'flag_type': ONTO.EXISTING_NON_ACTIVE})
+    assert code == 200
+    ev = _events(log, ONTO.FLAG_MODE, box)[-1]
+    assert ev['flag_type'] == ONTO.EXISTING_NON_ACTIVE
+    assert ev['BOX_ID'] == box and ev['IMAGE'] == gt['IMAGE']
+    assert ev['bbox_xywh'] == gt['bbox_xywh']
+    assert ev['annotation_unchanged'] is True
+    assert ev['author'] == 'human reviewer'
+    assert ONTO.gt_flags(log)[box]['flag_type'] == ONTO.EXISTING_NON_ACTIVE
+    assert ONTO.flag_counts(log)['non_active'] >= 1
+
+
+def test_existing_non_active_is_not_counted_as_a_defect(live):
+    """E says the annotation is CORRECT but describes a ball that is not in
+    play. Folding it in with the suspect flags would invent defects."""
+    base, log, objs = live
+    c = ONTO.flag_counts(log)
+    eff = ONTO.gt_flags(log)
+    assert c['non_active'] == sum(1 for v in eff.values()
+                                  if v['flag_type'] == ONTO.EXISTING_NON_ACTIVE)
+    non_active_boxes = {b for b, v in eff.items()
+                        if v['flag_type'] == ONTO.EXISTING_NON_ACTIVE}
+    suspect = {b for b, v in eff.items()
+               if v['flag_type'] in (ONTO.FALSE_BALL, ONTO.BAD_BOX)}
+    assert not (non_active_boxes & suspect), 'one effective state per annotation'
 
 
 def test_flag_server_records_bad_box(live):
@@ -776,6 +829,38 @@ def test_page_clicking_empty_space_clears_selection(driven):
 
 def test_page_flag_posts_only_ever_name_shown_gt(driven):
     assert driven['flag_posts_all_target_existing_gt'] is True
+
+
+def test_page_blue_gt_is_selectable_by_click(driven):
+    """The overlay used to sit in normal flow below the image, which made the
+    hit layer's inset:0 resolve against a taller stage -- boxes were visible
+    and every click mapped to the wrong image coordinate."""
+    assert driven['selection']['matched'] is True
+
+
+def test_page_selection_works_after_zoom(driven):
+    z = driven['selection_after_zoom']
+    assert z['zoom'] > 1, 'the test must actually be zoomed in'
+    assert z['matched'] is True, f'selected {z["selGT"]} at {z["zoom"]}x'
+
+
+def test_page_bracket_keys_step_through_ball_gt(driven):
+    """4-8 px balls are 2-3 screen pixels at fit zoom; stepping is the path
+    that does not depend on mouse precision."""
+    s = driven['step_keys']
+    assert s['n_gt'] > 1, 'stepping is only meaningful with several GT'
+    assert s['selects_something'] is True
+    assert s['second'] != s['first'], '] must advance'
+    assert s['back_returns'] is True, '[ must return'
+    assert s['all_in_list'] is True
+
+
+def test_page_e_key_records_existing_non_active(driven):
+    e = driven['flag_existing_non_active']
+    assert e['posted'] == 1
+    assert e['flag_type'] == ONTO.EXISTING_NON_ACTIVE
+    assert e['ontology_untouched'] is True
+    assert e['index_unchanged'] is True, 'E must not advance the queue'
 
 
 # ------------------------------------------------------------ immutability

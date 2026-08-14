@@ -84,7 +84,13 @@ FLAG_MODE = 'ball_gt_flag'
 FLAG_RETRACT_MODE = 'ball_gt_flag_retraction'
 FALSE_BALL = 'SUSPECT_FALSE_BALL_GT'
 BAD_BOX = 'SUSPECT_BAD_BALL_BOX'
-FLAG_TYPES = (FALSE_BALL, BAD_BOX)
+# Not a defect at all: a correct annotation of a real ball that simply is not
+# the one in play. It belongs in the same side channel because it is the same
+# kind of statement -- an observation about existing GT -- and because the
+# ontology question the 128 objects answer will be meaningless later if the
+# existing annotations it is compared against were never sorted the same way.
+EXISTING_NON_ACTIVE = 'EXISTING_NON_ACTIVE_BALL_GT'
+FLAG_TYPES = (FALSE_BALL, BAD_BOX, EXISTING_NON_ACTIVE)
 
 PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
 <title>ball ontology revisit</title>
@@ -111,7 +117,15 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
              0 0 12px #fff}
  .ballgt.flagged{border-style:dashed;border-color:#ff6a3d}
  .ballgt.flaggedbox{border-style:dashed;border-color:#c08a2a}
- #hit{position:absolute;inset:0;cursor:pointer}
+ .ballgt.flaggednon{border-style:dashed;border-color:#9a7fd0}
+ /* #ov had no position, so it sat in normal flow BELOW the image and made the
+    stage taller than the picture. #hit's inset:0 then resolved against that
+    taller box, so its top-left was not the image's top-left and every click
+    mapped to the wrong image coordinate -- boxes were visible and unclickable.
+    Both are now pinned to the image origin. */
+ #ov{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+ #hit{position:absolute;left:0;top:0;width:100%;height:100%;cursor:pointer;
+      z-index:1}
  .ctx{position:absolute;border:1px solid #333;box-sizing:border-box;
       pointer-events:none}
  .tag{position:absolute;font:11px/1.3 monospace;background:#000d;padding:1px 4px;
@@ -150,8 +164,9 @@ PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
  <div id="bar"><i></i></div>
  <span id="zoomp" class="pill"></span>
  <span id="flagc" class="pill" style="font-size:11px"></span>
- <span style="color:#8a8a8a;font-size:11px">A active &middot; X non-active
-  &middot; U unsure &middot; J/K move &middot; B previous &middot; T tiles</span>
+ <span style="color:#8a8a8a;font-size:11px">magenta: A active &middot; X
+  non-active &middot; U unsure &nbsp;|&nbsp; blue GT: [ ] select &middot; E
+  non-active &middot; F false &middot; V bad box &middot; C retract</span>
 </div>
 <div id="imgerr" style="display:none;margin:10px 300px 10px 10px;background:#3a1414;
      border:1px solid #7a3a3a;border-radius:6px;padding:12px;max-width:640px"></div>
@@ -270,16 +285,19 @@ function draw(){
    g.textContent=label; ov.appendChild(g);}
  };
  if(S.show_context)t.context.forEach(b=>add('ctx',b.bbox,null,null));
- t.ball_gt.forEach(b=>{
+ t.ball_gt.forEach((b,n)=>{
   let cls='ballgt';
   if(b.flag===S.FALSE_BALL)cls+=' flagged';
   else if(b.flag===S.BAD_BOX)cls+=' flaggedbox';
+  else if(b.flag===S.EXISTING_NON_ACTIVE)cls+=' flaggednon';
   if(selGT===b.BOX_ID)cls+=' sel';
-  let lab='ball GT';
-  if(b.flag===S.FALSE_BALL)lab='FLAGGED false ball';
-  else if(b.flag===S.BAD_BOX)lab='FLAGGED bad box';
+  let lab='ball GT '+(n+1)+'/'+t.ball_gt.length;
+  if(b.flag===S.FALSE_BALL)lab='FALSE BALL';
+  else if(b.flag===S.BAD_BOX)lab='BAD BOX';
+  else if(b.flag===S.EXISTING_NON_ACTIVE)lab='NON-ACTIVE';
   if(selGT===b.BOX_ID)lab='SELECTED · '+lab;
-  add(cls,b.bbox,lab,b.flag?'#ff6a3d':'#4aa3ff');
+  add(cls,b.bbox,lab,b.flag?(b.flag===S.EXISTING_NON_ACTIVE?'#9a7fd0':'#ff6a3d')
+                          :'#4aa3ff');
  });
  t.siblings.forEach((b,k)=>add('sibling',b.bbox_xywh,
    'other finding'+(b.role?' → '+b.short:''),'#7a7a7a'));
@@ -293,6 +311,25 @@ function gtAt(x,y){
  return cur().ball_gt.filter(b=>x>=b.bbox[0]&&y>=b.bbox[1]&&
    x<=b.bbox[0]+b.bbox[2]&&y<=b.bbox[1]+b.bbox[3])
   .sort((p,q)=>(p.bbox[2]*p.bbox[3])-(q.bbox[2]*q.bbox[3]));
+}
+// Stepping is the reliable path: many of these balls are 4-8 px, which is 2-3
+// screen pixels at fit zoom, so clicking one is a test of mouse precision
+// rather than of judgement. [ and ] walk the list in a fixed order and bring
+// the box into view, so no ball is unreachable however small it is.
+function stepGT(dir){
+ const g=cur().ball_gt;
+ if(!g.length){selGT=null;draw();return;}
+ const at=g.findIndex(b=>b.BOX_ID===selGT);
+ const n=at<0?(dir>0?0:g.length-1):((at+dir)%g.length+g.length)%g.length;
+ selGT=g[n].BOX_ID;
+ revealGT(g[n]);
+ draw();
+}
+function revealGT(b){
+ const wrap=document.getElementById('wrap');
+ if(zoom<TILE_ZOOM){zoom=TILE_ZOOM;applyZoom();tile=-3;tilebar();}
+ wrap.scrollLeft=Math.max(0,(b.bbox[0]+b.bbox[2]/2)*zoom-wrap.clientWidth/2);
+ wrap.scrollTop =Math.max(0,(b.bbox[1]+b.bbox[3]/2)*zoom-wrap.clientHeight/2);
 }
 function pick(ev){
  const im=document.getElementById('im');
@@ -341,37 +378,50 @@ function panel(){
 function gtpanel(){
  const t=cur(),el=document.getElementById('gtsel');
  const b=t.ball_gt.find(x=>x.BOX_ID===selGT);
+ const nav=t.ball_gt.length
+  ?`<div class="note"><span class="k">[</span><span class="k">]</span>step
+     through the ${t.ball_gt.length} ball GT in this image &mdash; easier than
+     clicking a 4 px box</div>`:'';
  if(!b){
   el.innerHTML=!t.ball_gt.length
-   ?'<div class="note">this image has no ball annotation to flag</div>'
-   :'<div class="note">click a blue ball GT box to select it'
-    +(cur().ball_gt.length>1?' ('+t.ball_gt.length+' in this image)':'')+'</div>';
+   ?'<div class="note">this image has no ball annotation to observe</div>'
+   :'<div class="note">click a blue ball GT box, or press <b>]</b>, to select it'
+    +(t.ball_gt.length>1?' ('+t.ball_gt.length+' in this image)':'')+'</div>'+nav;
   return;
  }
+ const NAME={};
+ NAME[S.FALSE_BALL]='SUSPECT FALSE BALL';
+ NAME[S.BAD_BOX]='SUSPECT BAD BOX';
+ NAME[S.EXISTING_NON_ACTIVE]='EXISTING NON-ACTIVE BALL';
  const flagged=b.flag
-  ?`<div class="${b.flag===S.FALSE_BALL?'warn':'non'}">FLAGGED:
-     <b>${b.flag===S.FALSE_BALL?'SUSPECT FALSE BALL':'SUSPECT BAD BOX'}</b></div>`
-  :'';
+  ?`<div class="${b.flag===S.FALSE_BALL?'warn':'non'}">OBSERVED:
+     <b>${NAME[b.flag]}</b></div>`:'';
  el.innerHTML=`
   <div style="font:11px monospace;color:#bbb">${b.BOX_ID}</div>
   <div style="font-size:11px">class <b>football</b> · box
    <span style="font:11px monospace">${b.bbox.map(v=>Math.round(v)).join(', ')}</span>
    (${Math.round(b.bbox[2])}x${Math.round(b.bbox[3])} px)</div>
   ${flagged}
+  <button class="big" id="fE"><span class="k">E</span>EXISTING NON-ACTIVE BALL</button>
+  <div class="note">correct annotation of a real ball that is not the one in
+   play &mdash; not a defect</div>
   <button class="big" id="fF"><span class="k">F</span>SUSPECT FALSE BALL</button>
   <button class="big" id="fV"><span class="k">V</span>SUSPECT BAD BOX</button>
-  <button class="big" id="fC"><span class="k">C</span>CLEAR FLAG</button>
-  <div class="note">a flag records an observation for later. It changes no
+  <button class="big" id="fC"><span class="k">C</span>RETRACT OBSERVATION</button>
+  ${nav}
+  <div class="note">an observation is recorded for later. It changes no
    annotation, answers no ontology object, and does not advance the queue.</div>`;
+ document.getElementById('fE').onclick=()=>flag(S.EXISTING_NON_ACTIVE);
  document.getElementById('fF').onclick=()=>flag(S.FALSE_BALL);
  document.getElementById('fV').onclick=()=>flag(S.BAD_BOX);
  document.getElementById('fC').onclick=()=>flag(null);
  document.getElementById('fC').disabled=!b.flag;
 }
 function flagcounts(){
- const c=S.flag_counts||{false:0,bad_box:0};
+ const c=S.flag_counts||{false:0,bad_box:0,non_active:0};
  document.getElementById('flagc').textContent=
-  `GT flags — false ${c['false']} · bad box ${c.bad_box}`;
+  `GT obs — non-active ${c.non_active||0} · false ${c['false']} · `
+  +`bad box ${c.bad_box}`;
 }
 async function flag(kind){
  const t=cur(),b=t.ball_gt.find(x=>x.BOX_ID===selGT);
@@ -433,13 +483,17 @@ document.onkeydown=e=>{
  else if(k==='k'||k==='b'){if(i>0){i--;render();}}
  else if(k==='t'){gotoTile(tile+1>=TCOLS*TROWS?-1:tile+1);}
  else if(k==='z'){gotoTile(-2);}
- // the three flag keys act on the SELECTED existing GT and never on the
+ // the observation keys act on the SELECTED existing GT and never on the
  // magenta Round-0 object, which has no BOX_ID and is not in ball_gt at all
+ else if(k==='e'){if(selGT)flag(S.EXISTING_NON_ACTIVE);
+                  else alert('select an existing ball GT box first ( ] )');}
  else if(k==='f'){if(selGT)flag(S.FALSE_BALL);
-                  else alert('select an existing ball GT box first');}
+                  else alert('select an existing ball GT box first ( ] )');}
  else if(k==='v'){if(selGT)flag(S.BAD_BOX);
-                  else alert('select an existing ball GT box first');}
+                  else alert('select an existing ball GT box first ( ] )');}
  else if(k==='c'){if(selGT)flag(null);}
+ else if(e.key===']'){e.preventDefault();stepGT(1);}
+ else if(e.key==='['){e.preventDefault();stepGT(-1);}
  else if(e.key==='Escape'){selGT=null;draw();}
  else if(e.key==='+'||e.key==='='){zoom=Math.min(zoom*1.25,12);applyZoom();}
  else if(e.key==='-'){zoom=Math.max(zoom/1.25,0.25);applyZoom();}
@@ -543,6 +597,8 @@ def flag_counts(decisions: Path = DECISIONS):
     return {
         'false': sum(1 for v in eff.values() if v['flag_type'] == FALSE_BALL),
         'bad_box': sum(1 for v in eff.values() if v['flag_type'] == BAD_BOX),
+        'non_active': sum(1 for v in eff.values()
+                          if v['flag_type'] == EXISTING_NON_ACTIVE),
         'retracted': sum(1 for v in eff.values() if v['retracted']),
     }
 
@@ -603,6 +659,7 @@ def build_state(show_context=False, decisions: Path = DECISIONS):
     return {'items': items, 'show_context': show_context,
             'ACTIVE': ACTIVE, 'NON_ACTIVE': NON_ACTIVE, 'UNSURE': UNSURE,
             'FALSE_BALL': FALSE_BALL, 'BAD_BOX': BAD_BOX,
+            'EXISTING_NON_ACTIVE': EXISTING_NON_ACTIVE,
             'flag_counts': flag_counts(decisions),
             'source_log': kb_decisions.log_version(decisions)}
 
@@ -851,15 +908,17 @@ def main():
     print(f'{done} classified, {len(objs) - done} outstanding')
     print(f'{len(H.BALL_GT)} existing ball annotations in these images are '
           f'flaggable')
-    print(f'ball GT flags so far: false {fc["false"]}, bad box {fc["bad_box"]}'
+    print(f'ball GT observations so far: non-active {fc["non_active"]}, '
+          f'false {fc["false"]}, bad box {fc["bad_box"]}'
           + (f', retracted {fc["retracted"]}' if fc['retracted'] else ''))
     print('preflight: every image resolves')
     print('\nNO GEOMETRY IS CREATED OR EDITED. No annotation is changed by a '
           'flag. No detector is loaded.')
     print("Keys: A active  X non-active  U unsure  J next  B/K previous"
           "  ('n' is unbound on purpose)")
-    print('      click a blue ball GT, then F suspect false ball  V suspect bad '
-          'box  C clear flag')
+    print('      [ ] step through the blue ball GT, then E existing non-active '
+          'ball  F suspect false ball')
+    print('      V suspect bad box  C retract   (clicking a box also selects it)')
     url = f'http://127.0.0.1:{args.port}/'
     print(f'\nreview at {url}   Ctrl-C to stop')
     if not args.no_browser:

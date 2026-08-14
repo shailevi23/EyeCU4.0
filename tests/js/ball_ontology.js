@@ -259,5 +259,53 @@ const wait = () => new Promise(r => setTimeout(r, 50));
     .every(p => state.items.some(o =>
       o.ball_gt.some(g => g.BOX_ID === p.BOX_ID)));
 
+  // 16. E records the third observation type
+  ctx.__set({ i: withGT, selGT: null });
+  press('0'); await wait();
+  press(']'); await wait();
+  const n16 = posts.length;
+  press('e'); await wait();
+  out.flag_existing_non_active = {
+    posted: posts.length - n16,
+    flag_type: posts[posts.length - 1].flag_type,
+    BOX_ID: posts[posts.length - 1].BOX_ID,
+    ontology_untouched: posts.filter(p => p.object_id).length === onto.length,
+    index_unchanged: ctx.__get().i === withGT,
+  };
+
+  // 17. ] and [ step the GT list without needing a click. Use an image with
+  // SEVERAL ball GT, or stepping proves nothing about ordering.
+  const multiGT = state.items.findIndex(o => o.ball_gt.length > 1);
+  ctx.__set({ i: multiGT >= 0 ? multiGT : withGT, selGT: null });
+  press('0'); await wait();
+  const gtl = ctx.__cur().ball_gt;
+  press(']'); await wait();
+  const s1 = ctx.__get().selGT;
+  press(']'); await wait();
+  const s2 = ctx.__get().selGT;
+  press('['); await wait();
+  const s3 = ctx.__get().selGT;
+  out.step_keys = {
+    n_gt: gtl.length,
+    first: s1, second: s2, back: s3,
+    selects_something: !!s1,
+    wraps_or_advances: gtl.length > 1 ? s2 !== s1 : s2 === s1,
+    back_returns: s3 === s1,
+    all_in_list: [s1, s2, s3].every(x => gtl.some(g => g.BOX_ID === x)),
+  };
+
+  // 18. selection still works after zooming in (coords divide by zoom)
+  ctx.__set({ i: withGT, selGT: null });
+  press('0'); await wait();
+  press('='); press('='); await wait();       // zoom to 1.5625x
+  const zg = ctx.__cur().ball_gt[0];
+  ctx.__click(zg.bbox[0] + zg.bbox[2] / 2, zg.bbox[1] + zg.bbox[3] / 2);
+  await wait();
+  out.selection_after_zoom = {
+    zoom: ctx.__get().zoom,
+    selGT: ctx.__get().selGT,
+    matched: ctx.__get().selGT === zg.BOX_ID,
+  };
+
   console.log(JSON.stringify(out, null, 1));
 })();
