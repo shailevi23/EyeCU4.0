@@ -181,50 +181,42 @@ and a size distribution, never as a rate**.
 `UNSURE` is a third outcome and is never folded into `NO MISSING BALL`. It is
 reported separately and, in the escalation rule, treated as its own quantity.
 
-### 5.2 Sampling design
+### 5.2 Sampling design — simple random sampling without replacement
 
-Probability sample of **n = 300** images drawn directly from all **N = 1,232**
-images in the promoted export. Fixed seed, reproducible, recorded.
+**Revision 3, 2026-08-14.** An earlier draft of this section used proportional
+stratified allocation by run × GT state. It was *approximately* self-weighting —
+π_h ranged 0.2000 to 0.2667 against f = 0.2435 — and that approximation is the
+problem. "Self-weighting to within rounding" is a claim a reader has to take on
+trust, and it invites exactly the ambiguity the primary estimator must not have:
+if π_h differs by stratum at all, then p̂ = positives/300 is only *nearly* the
+right estimator, and the honest version needs weights.
 
-Proportional (self-weighting) stratified allocation by **run × current GT
-state**, using largest-remainder rounding so Σ n_h = n exactly:
+> **SRSWOR. n = 300 from N = 1,232. Fixed reproducible seed.
+> Every image has inclusion probability exactly 300/1232 = 0.24350649…**
 
-| Run | GT state | N_h | exact n·N_h/N | **n_h** | π_h |
-| --- | --- | --- | --- | --- | --- |
-| plain_A | 0 balls | 38 | 9.25 | **9** | 0.2368 |
-| plain_A | ≥1 ball | 149 | 36.28 | **37** | 0.2483 |
-| plain_B | 0 balls | 112 | 27.27 | **27** | 0.2411 |
-| plain_B | ≥1 ball | 443 | 107.87 | **108** | 0.2438 |
-| pp_A | 0 balls | 15 | 3.65 | **4** | 0.2667 |
-| pp_A | ≥1 ball | 34 | 8.28 | **8** | 0.2353 |
-| pp_B | 0 balls | 90 | 21.92 | **22** | 0.2444 |
-| pp_B | ≥1 ball | 346 | 84.25 | **84** | 0.2428 |
-| unlabelled-run | both | 5 | 1.22 | **1** | 0.2000 |
-| **total** | | **1,232** | **300** | **300** | f = **0.243506** |
+Not approximately. Exactly, by construction, for every image in the population.
+The primary estimator is therefore exactly
 
-**GT-state totals:** 0-ball 255 → 62 sampled · ≥1-ball 972 → 237 sampled.
+    p̂ = positive_images / 300
 
-Two design notes that matter for the analysis:
+with **no weighting ambiguity and no stratum bookkeeping to get wrong.**
 
-- **The five images with no run label are collapsed into one stratum** rather
-  than split by GT state. Split, the `UNLABELLED × 0-ball` cell holds exactly one
-  image and largest-remainder rounding gives it n_h = 0 — an inclusion
-  probability of **zero**, which silently removes an image from the population
-  and breaks the self-weighting claim. Collapsed, its π_h is 0.200.
-- **Maximum departure from f is 0.0435** (pp_A 0-ball, 4/15 = 0.2667 vs
-  0.2435), caused only by integer rounding in small strata. The design is
-  therefore **self-weighting to within rounding**, and the unweighted binomial
-  interpretation holds.
+**No fixed counts are forced by run or GT state.** The realised sample will land
+near the population proportions because that is what random sampling does, and
+where it does not, that is ordinary sampling variation — not a design flaw to
+correct. Correcting it *would* be the flaw.
 
-**View (wide/tight) is deliberately *not* a stratification axis.** It is a
-derived proxy (median player box height) with no validated threshold; adding it
-would produce 18 strata, several under 10 images, and more rounding-induced
-departures from self-weighting than it buys in precision. It is **recorded per
-sampled image and used in reporting**, not in allocation.
+Instead, for every sampled image the manifest **records** descriptive metadata:
+source split · run · current ball GT count · 0-ball vs ≥1-ball · view proxy
+where available · image dimensions. These variables exist for **post-hoc
+descriptive analysis, not for inclusion.** They are read at reporting time and
+never at sampling time.
 
-The sample manifest must record, and the analysis must read back: **N, N_h, n_h,
-seed, the exact allocation rule, π_h per stratum, and the export manifest's
-`decisions_sha256`** — so the measurement is bound to the snapshot it measured.
+The sample manifest records, and the analysis reads back: **the population
+fingerprint (sha256 of the three promoted annotation files), N, n, seed, the
+inclusion probability, and the exact ordered list of sampled image IDs** — so
+the measurement is bound to the snapshot it measured, and a changed source
+fingerprint invalidates the sample rather than silently re-pointing it.
 
 ### 5.3 Human task
 
@@ -253,9 +245,9 @@ exactly the parts we looked at.
 
 ### 5.4 Statistical analysis
 
-The sample is self-weighting to within rounding, so the estimator is the
-unweighted proportion p̂ = (positive images)/300, with **Clopper–Pearson exact
-95% intervals**:
+Under SRSWOR every image carries the same inclusion probability, so the
+estimator is the unweighted proportion p̂ = (positive images)/300 — exactly, not
+approximately — with **Clopper–Pearson exact 95% intervals**:
 
 | positives | p̂ | exact 95% CI |
 | --- | --- | --- |
@@ -274,21 +266,23 @@ a finite N = 1,232, and the finite-population correction is √((N−n)/(N−1))
 about 13%, which is the safe direction and keeps the interval interpretable
 without a survey package.
 
-**If the realised allocation is ever not self-weighting** — a stratum added, a
-population changed, an image found unreadable and dropped — the unweighted
-interval is no longer valid and the analysis **must** switch to the
-Horvitz–Thompson estimator p̂ = (1/N)·Σ_h (N_h/n_h)·y_h with stratified
-variance, and say so in the report. A quoted "0/300 → [0, 1.2%]" from a
-disproportionate sample would be a false precision claim.
+**If equal inclusion probability is ever broken** — an image found unreadable
+and dropped, the population changed, any image reviewed outside the drawn
+sample — the unweighted interval stops being valid and the report must say so
+rather than quote it. A "0/300 → [0, 1.2%]" that does not come from an equal-
+probability sample of the stated population is a false precision claim. The
+report checks this and refuses rather than adjusting silently.
 
 Alongside the interval, report:
 
 - **positive images / 300**, with CI (primary endpoint)
-- **total missing ball objects** found (secondary count, no rate)
+- **total missing ball objects** found, and objects per positive image
+  (secondary counts, no rate)
 - **size distribution** of found objects in the ≤5 / ≤8 / ≤12 / >12 px buckets
-- **run and view distribution** of positives, descriptively — the per-run strata
-  are far too thin (n_h as low as 4) to support a per-run rate or a between-run
-  comparison, and no such comparison may be made
+- **split, run, GT state (0-ball vs ≥1-ball) and view**, descriptively. These
+  are post-hoc cuts of a sample that was not allocated by them, so subgroup
+  counts will be small and unequal; they may **not** be quoted as per-run rates
+  or used for between-run comparison
 - **`UNSURE` count**, separately, with its own images listed
 
 **Round 0 says nothing about candidate-generator recall.** No candidate
@@ -446,16 +440,18 @@ that will be quoted.
    is invisible at fit-to-window on a 1280×720 image.
 3. **Do not rank the Round-0 sample by anything** — not by detector score, not by
    GT count, not by any prior. Ranking is for the Round-1 queue; Round 0 must be
-   a probability sample or it estimates nothing. Presentation order should be
-   shuffled by the seed so that fatigue does not correlate with any stratum.
+   a probability sample or it estimates nothing. Presentation order is the
+   seeded random draw order, so reviewer fatigue cannot align with split, run,
+   or any dataset grouping.
 4. **Report found balls by size bucket** (≤5, ≤8, ≤12, >12) and treat the buckets
    separately in the escalation rule. Three missed 4 px balls mean something very
    different from three missed 30 px balls.
-5. **Force coverage of hard conditions** by including, as *named strata* in the
-   Round-1 candidate queue rather than the Round-0 sample: edge-of-frame regions,
-   balls within a player box (occlusion/adjacency), and high/wide broadcast shots
-   (identified by small median player height). Round 0 gets none of these — a
-   forced hard-case stratum would break self-weighting and bias p̂ upward.
+5. **Force coverage of hard conditions** in the **Round-1** candidate queue, never
+   in Round 0: edge-of-frame regions, balls within a player box
+   (occlusion/adjacency), and high/wide broadcast shots (identified by small
+   median player height). Round 0 gets none of these — deliberately
+   over-representing hard frames would destroy equal inclusion probability and
+   bias p̂ upward, and p̂ is the whole point of Round 0.
 6. **Motion blur and partial occlusion** cannot be detected reliably from metadata
    here. They are handled by the reviewer's `UNSURE` answer, and an image marked
    `UNSURE` is counted separately — never folded into `NO MISSING BALL`. §10 puts
@@ -499,8 +495,8 @@ much time and destroys the interval that is its entire purpose.
 - Effort: **~3 h if Round 0 is clean; ~5 h if it triggers Round 1.**
 - Defensible: a measured prevalence with CI **and**, when needed, a corrected
   dataset. Size-bucketed reporting throughout.
-- Not defensible: a prevalence claim below ~1%, or any per-run claim (strata as
-  thin as n_h = 4).
+- Not defensible: a prevalence claim below ~1%, or any per-run claim — the
+  sample was not allocated by run, so subgroup counts are incidental and small.
 
 ### HIGH-CONFIDENCE
 - **Round 0 extended to 600 images** — halves the CI width; 0/600 → [0, 0.61%].
@@ -528,12 +524,12 @@ and BALANCED's escalation path leads there anyway.
 ## 10. Stopping and escalation rule — fixed before any review
 
 Set now, on the **primary endpoint** (positive images / 300), so the result
-cannot be rationalised afterwards. `n = 300`, self-weighting, Clopper–Pearson.
+cannot be rationalised afterwards. `n = 300`, SRSWOR, Clopper–Pearson.
 
 | Round-0 result | Action |
 | --- | --- |
 | **0 positive images** | **Stop.** Report [0.00%, 1.22%]. No Round 1. Experiment D proceeds. Review the 72 + 3, which are geometry questions, not prevalence ones. |
-| **1–3 positive (≤1.0%)**, all found balls >12 px | Correct them into a new derived export. **No Round 1.** Report the rate with CI. Occasionally missing a large ball is annotation fatigue and does not threaten the small-ball value that is this dataset's reason for existing. |
+| **1–3 positive (≤1.0%)**, all found balls >12 px | Correct later if desired. **No Round 1.** Report the rate with CI. The defensible statement is: **"no evidence from Round 0 of a tiny-ball-specific missing-label problem."** **Do not claim a cause.** The reason those large balls were missed is unknown — fatigue, ambiguous frames, a systematic rule the original annotators followed, or chance — and Round 0 cannot distinguish them. Establishing a cause requires a separate investigation. |
 | **1–3 positive, any found ball ≤8 px** | Correct, and **extend Round 0 to 600**. A small ball missed even once at n=300 bears directly on the one use case this data was acquired for. Round 1 is triggered if the extension confirms. |
 | **4–9 positive (1.3–3.0%)** | Correct, extend Round 0 to 600, characterise by run / size / region, and **trigger Round 1** as the correction mechanism. |
 | **≥10 positive (≥3.3%)** | **Stop reviewing and investigate.** A systematic pocket, not noise. Characterise it, then build a *targeted* Round 1 queue from the pattern — exactly what the 6.40% role finding produced in the 6,684-box sweep. Experiment D waits. |
@@ -564,7 +560,7 @@ has reported.**
 
 | Order | Tool | Purpose | Reuses |
 | --- | --- | --- | --- |
-| 1 | `kb_ball_qa_sample.py` | Draw the seeded self-weighting Round-0 sample; write the manifest with N, N_h, n_h, seed, π_h and the export fingerprint | `kb_build_review_package` sampling |
+| 1 | `kb_ball_qa_sample.py` | Draw the seeded SRSWOR Round-0 sample; write the manifest with the population fingerprint, N, n, seed, inclusion probability, the ordered image IDs and their descriptive metadata | `kb_build_review_package` sampling |
 | 2 | `kb_ball_qa_server.py` | Round-0 review UI: whole image, GT drawn, zoom to 8×, three answers, multi-object drawing | `kb_geometry_repair_server` almost entirely — drawing, zoom, image-coordinate conversion, `kb_images` resolver, preflight |
 | 3 | `kb_ball_round0_report.py` | Fold the log, compute p̂ and the Clopper–Pearson interval, emit the **frozen** report bound to a log fingerprint; refuse to run on a stale snapshot | `kb_second_pass_gate` staleness guards |
 | 4 | `kb_ball_geometry_review.py` | `OVERSIZED_BALL_REVIEW` (72) + `BALL_OVERLAP_REVIEW` (3) | tool 2, different queue |
@@ -631,7 +627,7 @@ before any correction, and Round 1 must not exist before Round 0 has reported.
 | # | Step | Gate |
 | --- | --- | --- |
 | **1** | **Freeze the current `repaired_export` snapshot.** Record file hashes and the manifest's `decisions_sha256` as the measurement's baseline. | Already true today: verified §1, `PROMOTED == CHECKED STATE`. |
-| **2** | **Generate the Round-0 sample** — 300 images, model-independent, seeded, self-weighting, manifest written. | Must bind to the step-1 fingerprint. |
+| **2** | **Generate the Round-0 sample** — 300 images, model-independent, seeded SRSWOR at π = 300/1232 for every image, manifest written. | Must bind to the step-1 fingerprint. |
 | **3** | **Human review**, three answers, whole-image sweep, mandatory zoom, every missing object drawn. | Append-only; no correction promoted. |
 | **4** | **Lock and report the measurement.** p̂, exact CI, object count, size buckets, run/view description, UNSURE count. Frozen at a log fingerprint. | **Nothing is corrected before this line.** |
 | **5** | **`OVERSIZED_BALL_REVIEW` (72) + `BALL_OVERLAP_REVIEW` (3).** Human verdict per box; size is suspicion, not authority. | After step 4 only, so corrections cannot contaminate the baseline. |
