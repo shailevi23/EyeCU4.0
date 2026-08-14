@@ -4,6 +4,15 @@ Plan only. Nothing was implemented, no annotation was modified, no model was run
 no training, no TEST access. Every number below is derived from the promoted
 export and the decision log on 2026-08-13.
 
+**Revision 2 — 2026-08-14: the first measurement is model-independent.** The
+first version made the independent QA a sample of images the *candidate
+generator* rejected. That estimates the generator's recall, not the dataset's
+missing-ball prevalence: the population is defined by a model, so every inclusion
+probability is conditional on detector behaviour and the denominator is not the
+dataset. **BALL QA ROUND 0** (§5) now draws directly from all 1,232 images with
+no detector involved, and candidate generation moves to a conditional **Round 1**
+(§6). The generator-recall question survives, correctly scoped, in §7.
+
 ---
 
 ## 1. Promoted export verification
@@ -116,7 +125,9 @@ Aspect ratio is reassuring: median 0.99, only 11 boxes (0.9%) outside 0.5–2.0.
 ## 4. What is NOT known — the honest list
 
 1. **How many visible footballs have no annotation at all.** Never measured. Not
-   once, by anyone, at any point. This is the entire reason for this plan.
+   once, by anyone, at any point. This is the entire reason for this plan, and
+   **Round 0 (§5) is the instrument that answers it** — items 2 and 5 below are
+   answered by the same 300 images, which is why Round 0 comes first.
 2. **Whether the 256 zero-ball images are correct.** A frame with the ball out of
    play, off-frame, or hidden is legitimately 0-ball. A frame where the ball is
    visible and unlabelled is a training-set defect. The ratio is unknown.
@@ -131,7 +142,175 @@ Aspect ratio is reassuring: median 0.99, only 11 boxes (0.9%) outside 0.5–2.0.
 
 ---
 
-## 5. Candidate-generation design
+## 5. BALL QA ROUND 0 — the model-independent measurement
+
+**Revision, 2026-08-13.** The earlier version of this plan framed the independent
+QA as a sample of images the candidate generator *rejected*. That frame estimates
+the **candidate generator's recall**. It does not estimate the dataset's
+missing-ball prevalence, because the population it draws from is defined by a
+model — every inclusion probability is conditional on detector behaviour, and the
+denominator is not the dataset. It was the right instrument aimed at the wrong
+question.
+
+**Round 0 does not consult the detector at all.**
+
+> **Purpose.** Estimate the image-level prevalence of visible but unannotated
+> footballs in the promoted `repaired_export`, independently of any assisting
+> model.
+
+### 5.1 Primary endpoint
+
+> **Image-level missing-ball defect rate.** An image is **positive** if it
+> contains ≥ 1 visible football that lacks an annotation.
+
+The endpoint is a property of the **image**, not of the ball. An image holding
+three missing balls contributes:
+
+| | |
+| --- | --- |
+| **primary endpoint** | **one positive image** |
+| secondary count | three missing ball objects |
+
+Both are reported; they are never added, averaged, or substituted for each other.
+The primary endpoint is what the confidence interval is computed on, because the
+sampling unit is the image and only the image has a defined inclusion
+probability. The object count has no denominator — there is no enumerable
+population of unannotated balls to sample from — so it is reported as a **count
+and a size distribution, never as a rate**.
+
+`UNSURE` is a third outcome and is never folded into `NO MISSING BALL`. It is
+reported separately and, in the escalation rule, treated as its own quantity.
+
+### 5.2 Sampling design
+
+Probability sample of **n = 300** images drawn directly from all **N = 1,232**
+images in the promoted export. Fixed seed, reproducible, recorded.
+
+Proportional (self-weighting) stratified allocation by **run × current GT
+state**, using largest-remainder rounding so Σ n_h = n exactly:
+
+| Run | GT state | N_h | exact n·N_h/N | **n_h** | π_h |
+| --- | --- | --- | --- | --- | --- |
+| plain_A | 0 balls | 38 | 9.25 | **9** | 0.2368 |
+| plain_A | ≥1 ball | 149 | 36.28 | **37** | 0.2483 |
+| plain_B | 0 balls | 112 | 27.27 | **27** | 0.2411 |
+| plain_B | ≥1 ball | 443 | 107.87 | **108** | 0.2438 |
+| pp_A | 0 balls | 15 | 3.65 | **4** | 0.2667 |
+| pp_A | ≥1 ball | 34 | 8.28 | **8** | 0.2353 |
+| pp_B | 0 balls | 90 | 21.92 | **22** | 0.2444 |
+| pp_B | ≥1 ball | 346 | 84.25 | **84** | 0.2428 |
+| unlabelled-run | both | 5 | 1.22 | **1** | 0.2000 |
+| **total** | | **1,232** | **300** | **300** | f = **0.243506** |
+
+**GT-state totals:** 0-ball 255 → 62 sampled · ≥1-ball 972 → 237 sampled.
+
+Two design notes that matter for the analysis:
+
+- **The five images with no run label are collapsed into one stratum** rather
+  than split by GT state. Split, the `UNLABELLED × 0-ball` cell holds exactly one
+  image and largest-remainder rounding gives it n_h = 0 — an inclusion
+  probability of **zero**, which silently removes an image from the population
+  and breaks the self-weighting claim. Collapsed, its π_h is 0.200.
+- **Maximum departure from f is 0.0435** (pp_A 0-ball, 4/15 = 0.2667 vs
+  0.2435), caused only by integer rounding in small strata. The design is
+  therefore **self-weighting to within rounding**, and the unweighted binomial
+  interpretation holds.
+
+**View (wide/tight) is deliberately *not* a stratification axis.** It is a
+derived proxy (median player box height) with no validated threshold; adding it
+would produce 18 strata, several under 10 images, and more rounding-induced
+departures from self-weighting than it buys in precision. It is **recorded per
+sampled image and used in reporting**, not in allocation.
+
+The sample manifest must record, and the analysis must read back: **N, N_h, n_h,
+seed, the exact allocation rule, π_h per stratum, and the export manifest's
+`decisions_sha256`** — so the measurement is bound to the snapshot it measured.
+
+### 5.3 Human task
+
+The reviewer sees the **entire image with the existing ball GT drawn on it**, and
+mandatory zoom/pan (to 8×; a 4 px ball is invisible at fit-to-window).
+
+Answers, one per image:
+
+| | |
+| --- | --- |
+| `NO MISSING BALL` | sweep complete, nothing unannotated found |
+| `MISSING BALL` | ≥1 visible unannotated football |
+| `UNSURE` | cannot decide — reported separately, never counted as clean |
+
+On `MISSING BALL`, the reviewer draws **every** missing ball visible in that
+image. Each object is recorded separately with its own geometry; **the image is
+counted positive exactly once regardless of object count.** Findings append to
+the decision log under new `ball_qa_r0_*` modes, so `kb_decisions.resolve()`
+remains the single precedence rule.
+
+**Freeze the measurement before any correction is promoted.** The Round-0 result
+is computed from the log at a recorded fingerprint and written to an immutable
+report. A discovered error stays in the measured rate after it is corrected —
+removing it from the numerator would be measuring the dataset after fixing
+exactly the parts we looked at.
+
+### 5.4 Statistical analysis
+
+The sample is self-weighting to within rounding, so the estimator is the
+unweighted proportion p̂ = (positive images)/300, with **Clopper–Pearson exact
+95% intervals**:
+
+| positives | p̂ | exact 95% CI |
+| --- | --- | --- |
+| **0** | 0.00% | **[0.00%, 1.22%]** |
+| 1 | 0.33% | [0.01%, 1.84%] |
+| 2 | 0.67% | [0.08%, 2.39%] |
+| 3 | 1.00% | [0.21%, 2.89%] |
+| 4 | 1.33% | [0.36%, 3.38%] |
+| 5 | 1.67% | [0.54%, 3.85%] |
+| 9 | 3.00% | [1.38%, 5.62%] |
+| 10 | 3.33% | [1.61%, 6.04%] |
+
+These are **conservative** for this design: sampling is without replacement from
+a finite N = 1,232, and the finite-population correction is √((N−n)/(N−1)) =
+**0.870**. Reporting the uncorrected binomial interval overstates the width by
+about 13%, which is the safe direction and keeps the interval interpretable
+without a survey package.
+
+**If the realised allocation is ever not self-weighting** — a stratum added, a
+population changed, an image found unreadable and dropped — the unweighted
+interval is no longer valid and the analysis **must** switch to the
+Horvitz–Thompson estimator p̂ = (1/N)·Σ_h (N_h/n_h)·y_h with stratified
+variance, and say so in the report. A quoted "0/300 → [0, 1.2%]" from a
+disproportionate sample would be a false precision claim.
+
+Alongside the interval, report:
+
+- **positive images / 300**, with CI (primary endpoint)
+- **total missing ball objects** found (secondary count, no rate)
+- **size distribution** of found objects in the ≤5 / ≤8 / ≤12 / >12 px buckets
+- **run and view distribution** of positives, descriptively — the per-run strata
+  are far too thin (n_h as low as 4) to support a per-run rate or a between-run
+  comparison, and no such comparison may be made
+- **`UNSURE` count**, separately, with its own images listed
+
+**Round 0 says nothing about candidate-generator recall.** No candidate
+generator was used. Any recall claim requires the rejected-population QA
+described in §7, which is a *different* measurement of a *different* quantity and
+must not be conflated with this one.
+
+---
+
+## 6. Candidate generation — ROUND 1, conditional on Round 0
+
+Round 1 runs **only after Round 0 is measured, locked and reported.**
+
+| Round 0 result | Round 1 |
+| --- | --- |
+| missing-ball evidence low | **Experiment D may proceed without a full correction campaign.** Round 1 is optional cleanup. |
+| meaningful problem | Run the frozen detector and any other proposal sources to build a **high-recall correction queue**. |
+
+The model-assisted queue is a **CORRECTION mechanism. It is not evidence that the
+dataset was clean** — that evidence is Round 0's, and only Round 0's. The
+generator's own recall is a separate question, measurable afterwards by the
+rejected-population QA in §7.
 
 ### Available signals, each with its blind spot and circularity risk
 
@@ -166,15 +345,28 @@ frozen detector @ conf ≥ 0.03, ball class, 1280 imgsz
 Every prediction is a **proposal**. Nothing becomes GT without a human drawing or
 confirming, exactly as in the role repair.
 
-**Also queue unconditionally, independent of the detector:**
-- the **72 boxes wider than 40 px** (category C/A) — a fixed, complete population
-- the **3 overlapping pairs** in multi-ball images (category D)
+**Also queue, independent of the detector — but AFTER Round 0 is locked:**
 
-Those two need no detector at all and are cheap and certain.
+**`OVERSIZED_BALL_REVIEW` — the 72 boxes wider than 40 px.** Renamed from the
+earlier "false ball population". They are **suspicious and require human review,
+but size alone is not authority.** Close-up, replay and cropped views can contain
+a legitimately large ball, and a 664 px box on a goalmouth replay is a different
+object from a 664 px box on a wide shot. The population is fixed and complete
+(5.7% of ball GT); the *verdict* on each box is a human's, per box, with the
+image in front of them. No box is removed because of its width.
+
+**`BALL_OVERLAP_REVIEW` — the 3 overlapping pairs** (IoU > 0.1) in multi-ball
+images. A deterministic duplicate-review population, also complete.
+
+**Both are reviewed after the Round-0 measurement is locked**, so that correcting
+them cannot contaminate the baseline. If an oversized box is removed before
+Round 0 finishes, the Round-0 sample would be measuring an export that no longer
+exists, and any image containing that box would have been reviewed under a
+different GT state than the one the report names.
 
 ---
 
-## 6. Circularity and blind-spot risks — and why candidate review is not enough
+## 6b. Circularity and blind-spot risks — why Round 1 cannot be the evidence
 
 The role cleanup already ran this experiment. The triage flagged 4,153 candidates;
 a human answered every one; and a stratified QA sample of what the triage
@@ -187,13 +379,22 @@ exactly the object this dataset was acquired to supply. If it misses a 4 px ball
 of the *unlabelled* data — that ball never enters any queue, and no amount of
 candidate review will surface it.
 
-**Therefore the candidate pass cannot be the evidence.** It is the cheap
-correction mechanism. The evidence has to come from a population the detector
-was not consulted about.
+**Therefore Round 1 cannot be the evidence.** It is the cheap correction
+mechanism. The evidence has to come from a population the detector was not
+consulted about — which, after this revision, is the whole dataset, sampled
+directly in Round 0. That is the change: the first version tried to escape the
+circularity by sampling the generator's *rejects*, but a reject population is
+still drawn by the generator, so its blind spot defines the frame. Round 0
+escapes it by never asking the model anything.
 
 ---
 
-## 7. Independent QA design
+## 7. Rejected-population QA — a DIFFERENT measurement, only if Round 1 runs
+
+**This section no longer describes the first measurement.** It measures the
+**candidate generator's recall**, and it only exists if Round 1 was triggered.
+Its denominator is a model-defined population, so it can never be quoted as the
+dataset's missing-ball prevalence — that number comes from Round 0 alone.
 
 Sample from what the candidate generator **rejected**, mirroring `qa_player`.
 
@@ -219,9 +420,13 @@ ball-size regime cannot be a sampling axis — it is only knowable after the
 answer. Instead, **report the size of every ball found**, and treat a found ball
 under 8 px as a distinct and more serious signal than one over 20 px.
 
-**The reviewer's task is a full-image sweep**, not a box judgement: *"is there a
-football visible in this image that is not annotated?"* That is what makes it
-independent of the detector.
+**The reviewer's task is the same full-image sweep as Round 0** — *"is there a
+football visible in this image that is not annotated?"* — so the two are directly
+comparable. What differs is the frame, and that difference is the whole point: a
+positive here is a ball the **generator** missed, and the rate estimates
+generator recall on the population it dismissed. It is **not** independent of the
+detector; nothing sampled from a detector-defined frame can be. Round 0 is the
+independent measurement, and this one is read against it, never in place of it.
 
 ---
 
@@ -231,90 +436,120 @@ The failure mode to design against: a QA that finds only the balls that were eas
 to see, concludes the dataset is fine, and hides the small-ball problem that is
 the dataset's entire value.
 
-Countermeasures:
+These countermeasures apply to **Round 0 first**, because Round 0 is the number
+that will be quoted.
 
 1. **Sample images, not boxes.** Sampling boxes can only find problems where a box
    already exists. Whole-image review is the only way a 4 px unlabelled ball can
-   be found.
+   be found. This is why Round 0's unit — and its endpoint — is the image.
 2. **Mandatory zoom in the UI**, with the reviewer able to pan at 4–8×. A 4 px ball
    is invisible at fit-to-window on a 1280×720 image.
-3. **Do not rank the QA sample by anything.** Ranking is for the candidate queue;
-   the QA sample must be a probability sample or it estimates nothing.
+3. **Do not rank the Round-0 sample by anything** — not by detector score, not by
+   GT count, not by any prior. Ranking is for the Round-1 queue; Round 0 must be
+   a probability sample or it estimates nothing. Presentation order should be
+   shuffled by the seed so that fatigue does not correlate with any stratum.
 4. **Report found balls by size bucket** (≤5, ≤8, ≤12, >12) and treat the buckets
    separately in the escalation rule. Three missed 4 px balls mean something very
    different from three missed 30 px balls.
 5. **Force coverage of hard conditions** by including, as *named strata* in the
-   candidate queue rather than the QA sample: edge-of-frame regions, balls within
-   a player box (occlusion/adjacency), and high/wide broadcast shots (identified
-   by small median player height).
+   Round-1 candidate queue rather than the Round-0 sample: edge-of-frame regions,
+   balls within a player box (occlusion/adjacency), and high/wide broadcast shots
+   (identified by small median player height). Round 0 gets none of these — a
+   forced hard-case stratum would break self-weighting and bias p̂ upward.
 6. **Motion blur and partial occlusion** cannot be detected reliably from metadata
    here. They are handled by the reviewer's `UNSURE` answer, and an image marked
-   `UNSURE` is counted separately — never folded into "no ball visible".
+   `UNSURE` is counted separately — never folded into `NO MISSING BALL`. §10 puts
+   a ceiling on the UNSURE rate for exactly this reason.
+7. **Do not show the reviewer the detector's opinion** during Round 0, even as a
+   hint. Round 0's independence is a property of the *review*, not only of the
+   sampling: a reviewer primed by a model's proposals inherits its blind spots.
 
 ---
 
 ## 9. Workload options
 
-Estimates assume ~15 s per candidate image and ~30 s per QA image (zoom and sweep
-take longer than judging a proposal).
+Estimates assume ~30 s per Round-0 image (a zoomed whole-image sweep is slower
+than judging a proposal) and ~15 s per Round-1 candidate image. 300 × 30 s ≈
+2.5 h.
+
+**Round 0 is now the first and mandatory unit of work in every option.** The
+options differ in what happens *after* it, and none of them can be started
+before it. Round 0 is 300 images regardless — a smaller Round 0 does not save
+much time and destroys the interval that is its entire purpose.
 
 ### MINIMAL
-- Candidate queue: **72 oversized boxes + 3 overlap pairs only.** No detector run.
-- Independent QA: **120 images** (S1 80 / S2 40).
-- Effort: ~20 min + ~1 h ≈ **1.5 h**
-- Defensible: "the obviously wrong ball boxes are fixed"; "no *gross* missing-ball
-  problem, detectable only above roughly 3–4%".
-- **Not** defensible: any claim about small balls, any residual rate below ~3%, any
-  statement that the dataset is clean.
+- **Round 0: 300 images.** ~2.5 h
+- Then `OVERSIZED_BALL_REVIEW` (72) + `BALL_OVERLAP_REVIEW` (3). ~20 min
+- **No detector run at all**, whatever Round 0 says.
+- Effort: ≈ **3 h**
+- Defensible: the dataset's image-level missing-ball rate with an exact CI, and
+  the suspicious-geometry populations reviewed by a human.
+- **Not** defensible: any claim that discovered defects have been *found and
+  fixed at scale*. If Round 0 shows a problem, MINIMAL measures it and leaves it
+  in place.
 
 ### BALANCED — recommended
-- Candidate queue: detector @ conf ≥ 0.03, filtered and ranked. Expect roughly
-  **300–500 candidate images** (extrapolating from role triage, which produced
-  4,153 candidates over 1,170 images at a comparable recall setting; balls are one
-  object per frame rather than 22, so the yield should be far lower). **Plus the 72
-  + 3 fixed populations.**
-- Independent QA: **300 images**, stratified (S1 200 / S2 100).
-- Effort: ~2 h candidates + ~2.5 h QA ≈ **4.5 h**
-- Defensible: a corrected dataset, **plus** a measured residual missing-ball rate
-  with a 95% CI. If 0 found in 300 → CI [0, 1.2%]. Size-bucketed reporting.
-- Not defensible: a residual claim below ~1%, or per-run claims (strata too thin).
+- **Round 0: 300 images.** ~2.5 h
+- Lock and report. Then the 72 + 3. ~20 min
+- **Then, only if Round 0 justifies it:** Round 1 candidate queue, detector @
+  conf ≥ 0.03, filtered and ranked. Expect roughly **300–500 candidate images**
+  (role triage produced 4,153 candidates over 1,170 images at comparable recall,
+  but balls are ~1 object per frame rather than 22, so the yield should be far
+  lower). ~2 h
+- Effort: **~3 h if Round 0 is clean; ~5 h if it triggers Round 1.**
+- Defensible: a measured prevalence with CI **and**, when needed, a corrected
+  dataset. Size-bucketed reporting throughout.
+- Not defensible: a prevalence claim below ~1%, or any per-run claim (strata as
+  thin as n_h = 4).
 
 ### HIGH-CONFIDENCE
-- Candidate queue: as BALANCED at conf ≥ 0.01, plus a **second, independent
-  proposal source** — `yolov8n.pt` COCO `sports ball`, which has a different
-  training distribution and therefore different blind spots. Union the two.
-- Independent QA: **600 images**, and a **100-image double-review** by the same
-  person on a different day to estimate reviewer miss rate — because a human
-  sweeping for a 4 px ball also misses some, and an unmeasured reviewer miss rate
-  silently floors the whole estimate.
-- Effort: ~4 h + ~5 h + ~1 h ≈ **10 h**
-- Defensible: residual rate below ~0.6%, per-size-bucket rates, and a stated
-  reviewer miss rate that bounds the estimate honestly.
+- **Round 0 extended to 600 images** — halves the CI width; 0/600 → [0, 0.61%].
+  ~5 h
+- Plus a **100-image double-review** of Round-0 images by the same reviewer on a
+  different day, to estimate the **reviewer miss rate**. A human sweeping for a
+  4 px ball also misses some, and an unmeasured reviewer miss rate silently
+  floors the whole estimate — this is the only measure that bounds it. ~1 h
+- Then 72 + 3, then Round 1 at conf ≥ 0.01 with a **second independent proposal
+  source** (`yolov8n.pt` COCO `sports ball`, different training distribution,
+  different blind spots), unioned. ~4 h
+- Then the §7 rejected-population QA to measure the generator's recall. ~2 h
+- Effort: ≈ **12 h**
+- Defensible: prevalence below ~0.6%, per-size-bucket rates, a stated reviewer
+  miss rate, and a separately measured candidate-generator recall.
 
-**Recommendation: BALANCED.** MINIMAL cannot say anything about the small balls
-that are the dataset's whole point. HIGH-CONFIDENCE is the right shape but its
-extra 5.5 hours buys precision that only matters if BALANCED finds a problem — and
-its escalation path leads there anyway.
+**Recommendation: BALANCED.** Its first three hours are identical to MINIMAL's,
+so the choice between them can be deferred until Round 0 has actually reported —
+which is the point of measuring first. HIGH-CONFIDENCE is the right shape, but
+its extra nine hours buy precision that only matters if Round 0 finds something,
+and BALANCED's escalation path leads there anyway.
 
 ---
 
 ## 10. Stopping and escalation rule — fixed before any review
 
-Set now so the result cannot be rationalised afterwards. `n = 300`.
+Set now, on the **primary endpoint** (positive images / 300), so the result
+cannot be rationalised afterwards. `n = 300`, self-weighting, Clopper–Pearson.
 
-| QA finding | Action |
+| Round-0 result | Action |
 | --- | --- |
-| **0 missing balls** | Stop. Report 95% CI [0, 1.2%]. Ball labels defensible. |
-| **1–3 missing (≤1%)**, all >12 px | Correct them. Stop. Report the rate with CI. Large balls missed occasionally is a known annotation-fatigue pattern and does not threaten small-ball value. |
-| **1–3 missing, any ≤8 px** | Correct, and **extend QA to 600**. A small ball missed even once at n=300 implies a rate that matters for the exact use case. |
-| **4–9 missing (1.3–3%)** | Correct, extend to 600, and characterise: which run, which size, which region. |
-| **≥10 missing (≥3.3%)** | **Stop reviewing and investigate.** This is a systematic pocket, not noise. Characterise it and build a *targeted* second-pass queue from the pattern — exactly what the 6.40% role finding produced in the 6,684-box sweep. |
+| **0 positive images** | **Stop.** Report [0.00%, 1.22%]. No Round 1. Experiment D proceeds. Review the 72 + 3, which are geometry questions, not prevalence ones. |
+| **1–3 positive (≤1.0%)**, all found balls >12 px | Correct them into a new derived export. **No Round 1.** Report the rate with CI. Occasionally missing a large ball is annotation fatigue and does not threaten the small-ball value that is this dataset's reason for existing. |
+| **1–3 positive, any found ball ≤8 px** | Correct, and **extend Round 0 to 600**. A small ball missed even once at n=300 bears directly on the one use case this data was acquired for. Round 1 is triggered if the extension confirms. |
+| **4–9 positive (1.3–3.0%)** | Correct, extend Round 0 to 600, characterise by run / size / region, and **trigger Round 1** as the correction mechanism. |
+| **≥10 positive (≥3.3%)** | **Stop reviewing and investigate.** A systematic pocket, not noise. Characterise it, then build a *targeted* Round 1 queue from the pattern — exactly what the 6.40% role finding produced in the 6,684-box sweep. Experiment D waits. |
+| **`UNSURE` > 15 (5%)** | The instrument, not the dataset, is the problem. Stop, review the UNSURE images together, and fix the zoom / guidance / criteria before any number is quoted. A high UNSURE rate makes the positive rate a lower bound and the CI meaningless. |
 
-Justification for the thresholds: 3% is roughly half the 6.40% role rate that was
-judged serious enough to force a full retrospective sweep, so it is a defensible
-line for "systematic". 1% is the level below which a residual defect is smaller
-than the reviewer miss rate we cannot measure at BALANCED, so claiming better
-would be claiming precision we do not have.
+Threshold justification. **3.3%** is roughly half the **6.40%** role rate that
+was judged serious enough to force a full retrospective sweep, so it is a
+defensible line for "systematic" in this project's own precedent. **1.0%** is the
+level below which a residual defect is smaller than the reviewer miss rate that
+BALANCED does not measure, so claiming better would be claiming precision we do
+not have. The **size split at 8/12 px** is not arbitrary: 37.5% of labelled balls
+are ≤8 px and 76.7% are ≤12 px, so a miss in those buckets is a miss in the
+dataset's centre of mass, while a miss above 12 px is in its tail.
+
+**Findings stay in the measured rate after correction.** Round 0 is frozen at a
+recorded log fingerprint before any correction is promoted.
 
 **Errors found during QA stay in the measured rate even after correction.**
 Correcting them does not un-find them; removing them from the denominator would
@@ -324,20 +559,27 @@ be measuring the dataset after fixing exactly the parts we looked at.
 
 ## 11. Tools that would need to be built
 
-| Tool | Purpose | Reuses |
-| --- | --- | --- |
-| `kb_ball_candidates.py` | Run the frozen detector at a low floor, match to GT, emit the ranked queue + the 72 oversized + 3 overlaps | `kb_role_triage` matching logic |
-| `kb_ball_qa_sample.py` | Draw the stratified independent QA sample, seeded and reproducible | `kb_build_review_package` sampling |
-| `kb_ball_review_server.py` | The review UI | `kb_geometry_repair_server` almost entirely — drawing, zoom, image-coordinate conversion, `kb_images` resolver, preflight |
-| `kb_ball_gate.py` | Ball-specific gate conditions | `kb_second_pass_gate` structure |
-| extend `kb_export_v2.py` | Ball additions/removals/repairs as new change kinds under contract v2 | the existing clause structure |
+Ordered by when they are needed. **Nothing below Round 0 gets built until Round 0
+has reported.**
 
-**UI answers** (section 7 of the brief): `EXISTING BALL OK` · `MISSING BALL → draw`
-· `FALSE BALL → remove` · `BAD BALL BOX → redraw` · `NO BALL VISIBLE` · `UNSURE`.
-Whole image visible, zoom to 8×, every ball in a multi-ball image independently
-actionable, all existing annotations shown as context. Same rules as the last
-three tools: append-only events, human geometry only, no model proposal ever
-becomes GT, provenance on every change.
+| Order | Tool | Purpose | Reuses |
+| --- | --- | --- | --- |
+| 1 | `kb_ball_qa_sample.py` | Draw the seeded self-weighting Round-0 sample; write the manifest with N, N_h, n_h, seed, π_h and the export fingerprint | `kb_build_review_package` sampling |
+| 2 | `kb_ball_qa_server.py` | Round-0 review UI: whole image, GT drawn, zoom to 8×, three answers, multi-object drawing | `kb_geometry_repair_server` almost entirely — drawing, zoom, image-coordinate conversion, `kb_images` resolver, preflight |
+| 3 | `kb_ball_round0_report.py` | Fold the log, compute p̂ and the Clopper–Pearson interval, emit the **frozen** report bound to a log fingerprint; refuse to run on a stale snapshot | `kb_second_pass_gate` staleness guards |
+| 4 | `kb_ball_geometry_review.py` | `OVERSIZED_BALL_REVIEW` (72) + `BALL_OVERLAP_REVIEW` (3) | tool 2, different queue |
+| 5 | `kb_ball_candidates.py` | *Round 1 only.* Frozen detector at a low floor, matched to GT, ranked queue | `kb_role_triage` matching logic |
+| 6 | `kb_ball_gate.py` | Ball-specific gate conditions before any new export is promoted | `kb_second_pass_gate` structure |
+| 7 | extend `kb_export_v2.py` | Ball additions / removals / repairs as new change kinds under contract v2 | the existing clause structure |
+
+**Round-0 UI answers** are exactly the three in §5.3 — `NO MISSING BALL`,
+`MISSING BALL` (draw every one), `UNSURE`. The richer per-box vocabulary
+(`FALSE BALL`, `BAD BALL BOX`, `EXISTING BALL OK`) belongs to tools 4 and 5, not
+to Round 0: Round 0 asks one question with one denominator, and mixing box
+verdicts into it would blur the endpoint it exists to estimate.
+
+Same rules as the last three tools throughout: append-only events, human geometry
+only, no model proposal ever becomes GT, provenance on every change.
 
 ## 12. Dataset safety
 
@@ -368,13 +610,35 @@ falsifiable.
    frames that have a ball. That does not fix the dataset, but it makes the
    experiment valid without the QA, at the cost of discarding 256 images.
 
-**Recommendation: run BALANCED ball QA first, but only the 300-image independent
-sample** — about 2.5 hours — before Experiment D. If it returns 0–1 missing balls,
-proceed to Experiment D immediately and treat the candidate correction pass as
-optional cleanup. If it returns more, the candidate pass has become necessary and
-you will know that before spending compute on an experiment whose result you
-could not have interpreted.
+**Recommendation: run Round 0 — the 300-image model-independent sample, about
+2.5 hours — before Experiment D.** If it returns 0–1 positive images, proceed to
+Experiment D immediately and treat Round 1 as optional cleanup. If it returns
+more, Round 1 has become necessary and you will know that before spending compute
+on an experiment whose result you could not have interpreted.
 
 That inverts the usual order deliberately: **measure first, correct second.** The
 role cleanup did it the other way round and the QA is what revealed that the
 correction had been incomplete.
+
+---
+
+## 14. Order of operations
+
+Each step's output is the next step's input, and three of the boundaries are
+hard: the snapshot must be frozen before sampling, the measurement must be locked
+before any correction, and Round 1 must not exist before Round 0 has reported.
+
+| # | Step | Gate |
+| --- | --- | --- |
+| **1** | **Freeze the current `repaired_export` snapshot.** Record file hashes and the manifest's `decisions_sha256` as the measurement's baseline. | Already true today: verified §1, `PROMOTED == CHECKED STATE`. |
+| **2** | **Generate the Round-0 sample** — 300 images, model-independent, seeded, self-weighting, manifest written. | Must bind to the step-1 fingerprint. |
+| **3** | **Human review**, three answers, whole-image sweep, mandatory zoom, every missing object drawn. | Append-only; no correction promoted. |
+| **4** | **Lock and report the measurement.** p̂, exact CI, object count, size buckets, run/view description, UNSURE count. Frozen at a log fingerprint. | **Nothing is corrected before this line.** |
+| **5** | **`OVERSIZED_BALL_REVIEW` (72) + `BALL_OVERLAP_REVIEW` (3).** Human verdict per box; size is suspicion, not authority. | After step 4 only, so corrections cannot contaminate the baseline. |
+| **6** | **Round 1 — model-assisted candidate generation**, *only if step 4 justifies it* under the §10 rule. | Correction mechanism, never evidence. |
+| **7** | **Correct all findings into a NEW derived export.** Contract-v2 gated; `repaired_export/` is immutable input. | Gate must pass before promotion. |
+| **8** | **Optional post-correction QA** — a fresh sample against the new export, and/or the §7 rejected-population QA for generator recall. | Separate measurement, separate denominator. |
+| **9** | **Experiment D.** | Runs after step 4 if Round 0 is clean; after step 7 if it was not. |
+
+Steps 1–4 are the ~2.5 hours that unblock Experiment D. Steps 5–8 are
+conditional, and step 6 may never happen at all.
