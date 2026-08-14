@@ -1,0 +1,97 @@
+{
+ "analysis": "stratified analysis of ball-proposal recall on HUMAN_CONFIRMED_ADDITIONS",
+ "recall": {
+  "FULL": 0.2298,
+  "TILE_2x2": 0.1532,
+  "TILE_3x3": 0.121,
+  "PYRAMID": 0.2581,
+  "ALL": 0.2742
+ },
+ "workload_unmatched_proposals": {
+  "FULL": 1350,
+  "TILE_2x2": 794,
+  "TILE_3x3": 552,
+  "PYRAMID": 1384,
+  "ALL": 1603
+ },
+ "spatial": {
+  "human_additions": {
+   "TOP_y_lt_240": {
+    "n": 191,
+    "full": 49,
+    "best": 57
+   },
+   "REST": {
+    "n": 57,
+    "full": 8,
+    "best": 11
+   },
+   "median_width_px": {
+    "TOP": 8.25,
+    "REST": 8.5
+   }
+  },
+  "existing_source_gt": {
+   "TOP_y_lt_240": {
+    "n": 156,
+    "best": 78
+   },
+   "REST": {
+    "n": 180,
+    "best": 119
+   },
+   "median_width_px": {
+    "TOP": 6.25,
+    "REST": 8.0
+   }
+  },
+  "key_observation": "in the TOP band human additions are LARGER (8.25px) than source GT (6.25px) yet recalled at 29.8% against 50.0%. Size does not explain the gap and position alone does not either."
+ },
+ "temporal": {
+  "additions": 248,
+  "in_group_ge2": 138,
+  "in_group_ge4": 61,
+  "in_group_ge8": 9,
+  "distinct_position_groups": 156,
+  "singletons": 110,
+  "boxes_per_group": 1.59
+ },
+ "missed_by_region": {
+  "upper-background/behind-goal band": 134,
+  "normal pitch region": 28,
+  "lateral sideline strip": 18
+ },
+ "claim_check": {
+  "claim": "the detector was trained to ignore these as non-in-play footballs",
+  "verdict": "NOT SUPPORTED",
+  "evidence": [
+   "the source itself annotates non-active balls -- 22 existing annotations were human-confirmed as spare/ball-boy balls -- so there is no policy of exclusion to inherit",
+   "the detector RECALLS 50.0% of source GT in the same top band where it recalls only 29.8% of human additions, so it is not blind to that region",
+   "no training-set inspection was performed, and none of this evidence describes what the detector was trained on"
+  ],
+  "supported_alternative": "a distribution/context shift: the human additions are drawn from a region and appearance regime under-represented in what the detector learned to call a football. The 20-point recall gap between source GT and human additions IN THE SAME BAND is the measurement; its cause is not established."
+ },
+ "primary_failure_mode": "MIXED, dominated by VIEWPOINT/CONTEXT",
+ "training_concentration": {
+  "additions_pp_vs_plain": {
+   "pp": 362,
+   "plain": 14,
+   "pp_share": 0.963
+  },
+  "unbiased_round0_rate": {
+   "pp": 0.88,
+   "plain": 0.08,
+   "ratio": 11
+  },
+  "top_band_share_additions": 0.77,
+  "top_band_share_source_gt": 0.464,
+  "football_class_after": {
+   "pp": 983,
+   "plain": 660
+  },
+  "football_class_before": {
+   "pp": 621,
+   "plain": 646
+  }
+ }
+}
