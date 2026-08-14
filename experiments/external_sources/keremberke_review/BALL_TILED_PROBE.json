@@ -1,0 +1,249 @@
+{
+ "experiment": "tiled / zoomed inference for tiny-football proposals",
+ "reference": "HUMAN_CONFIRMED_ADDITIONS only; existing GT is unverified",
+ "frame": {
+  "images": 256,
+  "confirmed_additions": 248,
+  "size_mix": {
+   ">5-8px": 112,
+   ">8-12px": 132,
+   "<=5px": 2,
+   ">12px": 2
+  }
+ },
+ "model": {
+  "weights": "best_A_960.pt",
+  "weights_sha256": "5eaf2e81d7f6b28fd0c665e769a5fb66ec71dc6be7f0d51576300a8370768e4a",
+  "conf": 0.03,
+  "imgsz": 1280,
+  "tile_overlap": 0.2
+ },
+ "results": {
+  "FULL": {
+   "proposals_total": 1589,
+   "proposals_unmatched": 1350,
+   "proposals_per_image": 5.27,
+   "confirmed_covered": 57,
+   "confirmed_missed": 191,
+   "confirmed_recall": 0.22983870967741934,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 18
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 37
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  },
+  "TILE_2x2": {
+   "proposals_total": 970,
+   "proposals_unmatched": 794,
+   "proposals_per_image": 3.1,
+   "confirmed_covered": 38,
+   "confirmed_missed": 210,
+   "confirmed_recall": 0.1532258064516129,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 11
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 25
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  },
+  "TILE_3x3": {
+   "proposals_total": 707,
+   "proposals_unmatched": 552,
+   "proposals_per_image": 2.16,
+   "confirmed_covered": 30,
+   "confirmed_missed": 218,
+   "confirmed_recall": 0.12096774193548387,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 6
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 22
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  },
+  "PYRAMID": {
+   "proposals_total": 1573,
+   "proposals_unmatched": 1384,
+   "proposals_per_image": 5.41,
+   "confirmed_covered": 64,
+   "confirmed_missed": 184,
+   "confirmed_recall": 0.25806451612903225,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 19
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 43
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  },
+  "FULL+2x2": {
+   "proposals_total": 1612,
+   "proposals_unmatched": 1423,
+   "proposals_per_image": 5.56,
+   "confirmed_covered": 63,
+   "confirmed_missed": 185,
+   "confirmed_recall": 0.2540322580645161,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 19
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 42
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  },
+  "FULL+3x3": {
+   "proposals_total": 1558,
+   "proposals_unmatched": 1371,
+   "proposals_per_image": 5.36,
+   "confirmed_covered": 64,
+   "confirmed_missed": 184,
+   "confirmed_recall": 0.25806451612903225,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 19
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 43
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  },
+  "FULL+PYRAMID": {
+   "proposals_total": 1573,
+   "proposals_unmatched": 1384,
+   "proposals_per_image": 5.41,
+   "confirmed_covered": 64,
+   "confirmed_missed": 184,
+   "confirmed_recall": 0.25806451612903225,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 19
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 43
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  },
+  "ALL": {
+   "proposals_total": 1800,
+   "proposals_unmatched": 1603,
+   "proposals_per_image": 6.26,
+   "confirmed_covered": 68,
+   "confirmed_missed": 180,
+   "confirmed_recall": 0.27419354838709675,
+   "recall_by_size": {
+    "<=5px": {
+     "n": 2,
+     "covered": 0
+    },
+    ">5-8px": {
+     "n": 112,
+     "covered": 20
+    },
+    ">8-12px": {
+     "n": 132,
+     "covered": 46
+    },
+    ">12px": {
+     "n": 2,
+     "covered": 2
+    }
+   }
+  }
+ },
+ "best_method": "ALL",
+ "best_recall": 0.27419354838709675,
+ "workload_for_recall": {
+  "50%": "NOT REACHABLE at any threshold",
+  "70%": "NOT REACHABLE at any threshold",
+  "80%": "NOT REACHABLE at any threshold",
+  "90%": "NOT REACHABLE at any threshold"
+ },
+ "target_80pc_achievable": false,
+ "verdict": "MODEL_ASSISTED PP COMPLETION NOT VIABLE",
+ "generated_utc": "2026-08-14T15:22:29Z",
+ "diagnosis": {
+  "finding": "Tiling raises recall from 23.0% to 27.4% at best. The 4.4-point gain is real but nowhere near the 80% target, and no threshold on any method reaches even 50%.",
+  "why_scale_is_not_the_cause": "Human additions have a median width of 8.2 px against 6.9 px for existing source GT in the same images -- the balls the detector MISSES are slightly LARGER than the ones it finds. Cropping cannot fix a gap that size does not explain.",
+  "what_the_evidence_points_to": "77% of human additions sit in the top image band (y<240) against 46% of source GT, and 15% sit at positions repeated across four or more consecutive frames. These are static spare balls in the stands and behind the goal -- an object the detector was trained to treat as background. It is a category gap, not a resolution gap, and enlarging a ball does not make it more in-play.",
+  "pipeline_sanity_check": "On 30 images the same 3x3 pyramid covered 20 of 27 EXISTING blue GT annotations (74.1%), against 70.4% full-frame. Coordinate mapping, crop handling and dedup all work: the low number on human additions is a real measurement, not a bug."
+ },
+ "workload_note": "At 6.3 unmatched proposals per image the best union would put roughly 640 candidates in front of a reviewer for the 101 unresolved images, to recover about a quarter of the footballs present."
+}
