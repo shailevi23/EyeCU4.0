@@ -145,3 +145,46 @@ reason is required.
 - **New annotation ids.** Proposal: allocate above `max(existing id)` per split,
   deterministically ordered by `(IMAGE, flag recorded_utc)`, each carrying its
   `missing_target_id`. Not implemented.
+
+---
+
+## C11 — BALL ONTOLOGY (decided 2026-08-14, binding)
+
+    BALL_DETECTOR_ONTOLOGY      = ALL_VISIBLE_PHYSICAL_FOOTBALLS
+    ACTIVE_MATCH_BALL_SELECTION = DOWNSTREAM_TEMPORAL_SELECTOR
+
+The `football` class means **every real physical football visible in the frame**:
+the active match ball, spares, ball-boy balls, balls behind the goal, sideline
+balls. **ACTIVE vs NON_ACTIVE is not a detector-class distinction.** The detector
+answers "is this a football"; which one the play is centred on is a temporal
+question a single frame cannot settle, so it belongs to the downstream selector.
+
+Machine-readable form: [`BALL_ONTOLOGY_POLICY.json`](BALL_ONTOLOGY_POLICY.json).
+Tools assert against that file rather than re-deciding.
+
+**Consequences for the exporter, all binding:**
+
+| | |
+| --- | --- |
+| 103 Round-0 `NON_ACTIVE_EXTRA_BALL` findings | valid football annotations |
+| 25 Round-0 `ACTIVE_MATCH_BALL` findings | valid football annotations |
+| 22 existing `EXISTING_NON_ACTIVE_BALL_GT` annotations | **valid — must not be removed** |
+| `SUSPECT_FALSE_BALL_GT` (1) | still a defect |
+| `SUSPECT_BAD_BALL_BOX` (0) | still a defect |
+
+`EXISTING_NON_ACTIVE_BALL_GT` is **provenance, never a deletion instruction.**
+Removing an annotation merely for being non-active is forbidden without a new
+recorded decision.
+
+**Why this had to be written down.** The source ontology is *mixed*: 22 existing
+annotations are spare or ball-boy balls, so it is not ACTIVE_ONLY; 103 other
+visible spares were unannotated, so it is not ALL_VISIBLE either. With no
+consistent rule in the data, any tool inferring the ontology from the
+annotations would be free to infer either answer. Under this policy the binding
+Round-0 figure is the frozen **28.0% any-visible rate**, not the 8.3%
+active-only rate — every one of those 84 images is missing something the
+detector is now required to find.
+
+Historical decisions are not rewritten. The ACTIVE/NON_ACTIVE classifications
+stay in the log with their original meaning; this clause governs how they are
+*used*.

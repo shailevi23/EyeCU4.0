@@ -1,0 +1,55 @@
+{
+ "policy": "BALL_ONTOLOGY",
+ "decided_utc": "2026-08-14",
+ "decided_by": "human reviewer",
+ "status": "BINDING",
+
+ "BALL_DETECTOR_ONTOLOGY": "ALL_VISIBLE_PHYSICAL_FOOTBALLS",
+ "ACTIVE_MATCH_BALL_SELECTION": "DOWNSTREAM_TEMPORAL_SELECTOR",
+
+ "definition": "The football class means every real physical football visible in the frame: the active match ball, spare balls, ball-boy balls, balls behind the goal, sideline balls, and any other real visible football.",
+
+ "includes": [
+  "active match ball",
+  "spare balls",
+  "ball-boy balls",
+  "balls behind the goal",
+  "sideline balls",
+  "any other real visible football"
+ ],
+
+ "active_vs_non_active": {
+  "is_a_detector_class_distinction": false,
+  "role": "provenance and analysis metadata only",
+  "rationale": "The detector answers 'is this a football'. Which football the play is centred on is a temporal question that a single frame cannot answer reliably, so it belongs to the downstream selector, which can use motion and continuity that a frame-level detector does not have."
+ },
+
+ "consequences": {
+  "round0_non_active_findings_are_valid_football": 103,
+  "round0_active_findings_are_valid_football": 25,
+  "existing_non_active_ball_gt_must_not_be_removed": 22,
+  "note": "The 22 existing annotations a human marked EXISTING_NON_ACTIVE_BALL_GT are CORRECT under this policy. That flag is provenance, never a deletion instruction. Removing an annotation merely for being non-active is forbidden."
+ },
+
+ "flags_that_remain_defect_reports": {
+  "SUSPECT_FALSE_BALL_GT": "not a football at all; still a defect under this policy",
+  "SUSPECT_BAD_BALL_BOX": "a real football whose geometry is wrong; still a defect"
+ },
+
+ "forbidden_without_a_new_recorded_decision": [
+  "treating EXISTING_NON_ACTIVE_BALL_GT as a removal instruction",
+  "filtering the football class down to the active match ball",
+  "dropping NON_ACTIVE_EXTRA_BALL findings when building a corrected export",
+  "reverting BALL_DETECTOR_ONTOLOGY to ACTIVE_ONLY"
+ ],
+
+ "evidence": {
+  "source_ontology_observed": "MIXED",
+  "why": "22 existing annotations are spare or ball-boy balls, so the source is not ACTIVE_ONLY; 103 other visible spares were left unannotated, so it is not ALL_VISIBLE either. The source applied no consistent rule, which is why this policy has to be stated rather than inferred.",
+  "round0_frozen_any_visible_rate": "84/300 = 28.0%",
+  "round0_derived_active_only_rate": "25/300 = 8.3%",
+  "note": "Both rates describe the same 300 images. Under this policy the binding figure is the 28.0% any-visible rate, because every one of those 84 images is missing something the detector is now required to find."
+ },
+
+ "does_not_rewrite_history": "Historical decisions stay exactly as recorded. ACTIVE_MATCH_BALL and NON_ACTIVE_EXTRA_BALL classifications remain in the log with their original meaning; this policy governs how they are USED, not what they said."
+}
