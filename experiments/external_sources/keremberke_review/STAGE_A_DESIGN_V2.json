@@ -1,0 +1,106 @@
+{
+ "correction": "STAGE-A DESIGN v2 -- source holdouts honoured",
+ "date": "2026-08-15",
+ "round0_by_source_split": {
+  "train": 207,
+  "valid": 60,
+  "test": 33
+ },
+ "stage_a_external_train_images": 207,
+ "excluded_as_holdout": {
+  "source_valid": 60,
+  "source_test": 33,
+  "excluded_additions": {
+   "valid_active": 2,
+   "valid_nonactive": 14,
+   "test_active": 1,
+   "test_nonactive": 15
+  }
+ },
+ "train_restricted_additions": {
+  "active": 22,
+  "nonactive": 74,
+  "total": 96,
+  "positive_images": 61
+ },
+ "superseded_counts": {
+  "were": "25/103/128",
+  "now": "22/74/96",
+  "why": "the earlier figures spanned all three source splits; 32 additions live in preserved holdouts"
+ },
+ "arms": {
+  "shared_image_set": 1030,
+  "eyecu_train": 823,
+  "external_added": 207,
+  "A00": "EyeCU TRAIN + Round0 source-train images in OBSERVED (MIXED) source state",
+  "A10": "A00 + 22 ACTIVE_MATCH_BALL additions on those images",
+  "A11": "A10 + 74 NON_ACTIVE_EXTRA_BALL additions on those images",
+  "image_ids_identical": true,
+  "not_clean_ontology_arms": true
+ },
+ "optimizer_audit_correction": {
+  "previous_claim": "label-count differences could make optimizer=auto resolve differently",
+  "status": "WRONG -- retracted",
+  "verified_local": "ultralytics 8.4.116 trainer.py:299 -- iterations = ceil(len(dataset)/max(batch,nbs))*epochs",
+  "depends_on": [
+   "image count",
+   "batch",
+   "nbs",
+   "epochs"
+  ],
+  "not_on": [
+   "annotation box count"
+  ],
+  "consequence": "A00/A10/A11 share one image set, so auto would resolve identically anyway. Pinning is for reproducibility, not to prevent divergence.",
+  "stage_a_iterations": 1360
+ },
+ "pinned": {
+  "optimizer": "AdamW",
+  "lr0": 0.00125,
+  "momentum": 0.9,
+  "warmup_bias_lr": 0.0,
+  "verified_against": "local ultralytics 8.4.116, lr_fit=round(0.002*5/(4+4),6)=0.00125",
+  "accumulate": 21,
+  "effective_weight_decay": 0.0004921875
+ },
+ "training_length": {
+  "epochs": 80,
+  "patience": 0,
+  "primary_checkpoint": "FINAL FIXED EPOCH",
+  "secondary": "best.pt under the frozen ultralytics fitness rule (diagnostic only)"
+ },
+ "version_provenance": {
+  "current_local_ultralytics": "8.4.116",
+  "historical_checkpoint_ultralytics": "8.4.116",
+  "artifacts_found": [
+   "best_A_960.pt"
+  ],
+  "artifacts_absent": [
+   "last.pt",
+   "args.yaml",
+   "results.csv"
+  ],
+  "caveat": "checkpoint[epoch]=-1 and optimizer state stripped -- consistent with a normal ultralytics finalise-on-save, but a later re-save would also look like this. The version field could in principle have been rewritten by a resave under a different install; it cannot be independently corroborated without args.yaml or results.csv.",
+  "torch_cuda_gpu": "UNKNOWN -- trained under /content (Colab); not recorded in the checkpoint",
+  "current_local_torch": "2.8.0+cpu, CUDA unavailable"
+ },
+ "val_wording_correction": {
+  "replaced": "VAL cannot score A11",
+  "with": "standard BALL precision/AP is not a valid PRIMARY metric for A10->A11 under the current non-exhaustive/mismatched ball VAL",
+  "val_remains_valid_for": [
+   "player/GK/referee metrics",
+   "annotated-ball candidate coverage @0.10",
+   "annotated-ball high-confidence coverage @0.25",
+   "candidates/frame",
+   "post-dedupe candidates/frame",
+   "multi-candidate-frame rate",
+   "temporal coverage"
+  ]
+ },
+ "temporal_gt_active_semantics": {
+  "verdict": "NOT ESTABLISHED",
+  "instruction_exists": "data/temporal_val/ANNOTATION.md:12 tells the annotator to label a second football if genuinely visible",
+  "measured": "104 frames, 77 boxes, 0 multi-ball frames",
+  "consequence": "no frame exercises the active-vs-spare distinction, so selector success/error cannot be scored on active semantics. Temporal COVERAGE remains valid."
+ }
+}
