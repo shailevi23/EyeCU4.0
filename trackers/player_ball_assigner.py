@@ -87,13 +87,18 @@ class PlayerBallAssigner:
         # Go through each frame
         num_frames = len(tracks['players'])
         for frame_idx in range(num_frames):
-            # Skip if no ball in this frame
             if not tracks['ball'][frame_idx]:
-                # Use previous value if available
-                if team_ball_control:
-                    team_ball_control.append(team_ball_control[-1])
-                else:
-                    team_ball_control.append(0)  # No control
+                # No reliable ball position -> possession is UNKNOWN, recorded
+                # as 0. This used to carry the previous team's id forward, which
+                # turned one observed frame into an unbounded run of credited
+                # possession: 1 frame of evidence followed by 19 unknown frames
+                # reported as 20 frames of possession, and 100%-0%.
+                #
+                # A ball the selector could recover -- observed, recovered or
+                # interpolated -- still produces a bbox and is handled below, so
+                # this branch is reached only when the evidence genuinely ran
+                # out. Unknown ball position means unknown possession.
+                team_ball_control.append(0)
                 continue
             
             # Get ball position

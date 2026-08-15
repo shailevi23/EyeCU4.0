@@ -338,6 +338,41 @@ any tracking metric on real footage is unknown — no evaluation was run for thi
 change, and none is claimed. The selector's own benchmark figures above predate
 it and are unaffected.
 
+#### Cache correctness — 2026-08-15
+
+The first integration stored only `tracks` in the tracking cache while keeping
+the detector candidate pool in memory. A cache hit therefore left the selector
+without candidates, and its fallback rebuilt them from `tracks['ball']` — which
+contains boxes the tracker **copies forward** during a gap. Those copies came
+back as `state='observed'` carrying the previous detection's confidence, so a
+held position was reported as a measurement, and a cached run disagreed with a
+fresh run on 4 of 12 frames in a synthetic regression case.
+
+The cache is now format v2 (`{cache_format, tracks, ball_candidates}`). A v1
+cache is recomputed rather than upgraded: deriving candidates from tracker
+output is precisely the defect. The fallback is deleted — the selector now
+raises if candidates are missing rather than inventing them.
+
+#### Possession under an unknown ball — 2026-08-15
+
+**A semantics correction, not an accuracy improvement.** No evaluation was run
+and no metric is claimed to have improved.
+
+Frames with no reliable final ball position previously inherited the previous
+frame's team id. One observed frame followed by nineteen unresolved ones was
+reported as twenty frames of possession, splitting 100%–0% on a single
+measurement.
+
+Such frames now record `0` (unknown) and are excluded from the
+possession-percentage denominator, which counts only frames where possession is
+known. A ball the selector *can* resolve — `observed`, `recovered_low_conf` or
+`interpolated_short_gap` — yields a bbox and participates normally; the rule
+applies only where the evidence ran out.
+
+**This changes reported possession percentages on real footage.** Published
+figures elsewhere in this document predate the change and are unaffected; they
+describe the behaviour in force when they were measured.
+
 ### Cross-resolution 2×2 — 2026-08-09
 
 A and B weights each evaluated at 960 and 1280 on the continuous benchmark,

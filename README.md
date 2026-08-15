@@ -12,8 +12,9 @@ live in [docs/results/RESULTS.md](docs/results/RESULTS.md).
 ## What it does today
 
 ```
-video → detector (YOLO26s @960) → ByteTrack association → team assignment
-      → ball possession → annotated video + JSON reports
+video → detector (YOLO26s @960) → CBIoU association → team assignment
+      → ball temporal selection (provenance-tagged) → ball possession
+      → annotated video + JSON reports
 ```
 
 **Four semantic classes, preserved end to end:** `player`, `goalkeeper`,
@@ -67,7 +68,8 @@ Common options:
 | `--conf` | 0.25 | detection confidence threshold |
 | `--skip-frames` | 2 | process every Nth frame |
 | `--max-frames` | all | cap frames processed |
-| `--max-ball-gap` | 15 | frames the last known ball box may be held before the ball is reported unknown |
+| `--max-ball-gap` | 15 | frames the *tracker* may hold the last known ball box during association. Not the final ball output: `BallTemporalSelector` resolves the reported ball, and a frame it cannot resolve stays empty |
+| `--tracker` | `cbiou` | association backend; `legacy` selects supervision ByteTrack for rollback |
 | `--use-cache` | off | reuse cached detections/tracks |
 | `--use-roboflow` | off | opt in to the hosted detector (labelling/benchmark only) |
 | `--show-speed` / `--show-distance` | off | overlay uncalibrated speed/distance |

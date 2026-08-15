@@ -176,16 +176,20 @@ def test_possession_with_no_ball_at_all_does_not_crash_or_invent_control():
     assert set(np.asarray(control).tolist()) == {0}, 'no ball -> no team control'
 
 
-def test_possession_is_not_biased_by_honest_gaps():
+def test_unknown_frames_are_not_credited_to_the_last_holder():
     """A gap must not be scored as possession for whoever held it last on the
-    strength of a ball that was never observed."""
+    strength of a ball that was never observed.
+
+    The previous version of this test asserted only that consecutive OBSERVED
+    frames agreed, and its comment called carry-forward "a documented
+    convention". It was not documented anywhere, and the test passed while the
+    trailing gap was silently credited to team 1.
+    """
     seen = _tracks_with_ball(
         [{1: {'bbox': box(100, 120), 'state': OBSERVED}}] * 2 + [{}] * 2)
     control = PlayerBallAssigner(max_distance=70).compute_team_ball_control(seen)
-    assert len(control) == 4
-    # frames 2-3 carry the carried-forward value, which is a documented
-    # convention -- what matters is that no NEW assignment is manufactured
-    assert control[0] == control[1]
+    assert list(control) == [1, 1, 0, 0], (
+        'the two unknown frames must be 0, not an inherited team id')
 
 
 # --------------------------------- 9. output/visualisation tolerate gaps
@@ -252,17 +256,22 @@ def test_apply_ball_temporal_selection_leaves_unrecoverable_frames_empty():
         'no anchor on the right-hand side, so nothing may be filled')
 
 
-def test_apply_ball_temporal_selection_without_candidates_still_works():
-    """Tracks restored from an older cache carry no candidate record. The
-    selector must degrade to interpolation between accepted observations
-    rather than crash or rescue nothing it should have."""
+def test_apply_ball_temporal_selection_refuses_missing_candidates():
+    """Superseded behaviour, kept as a regression guard.
+
+    This test used to assert that a missing candidate record was tolerated by
+    rebuilding candidates from `ball_positions`. That fallback was the cache
+    bug: `ball_positions` is tracks['ball'], which contains boxes the tracker
+    copied forward, and feeding them back relabelled a held box as `observed`.
+    Refusing is now the correct behaviour -- see tests/test_ball_cache_equivalence.py.
+    """
     t = FootballTracker(detector=object(), persist_cache=False)
     ball = [{1: {'bbox': box(100, 100), 'confidence': 0.9}},
             {},
             {1: {'bbox': box(120, 100), 'confidence': 0.9}}]
-    out = t.apply_ball_temporal_selection(ball, candidates=None, fps=5.0,
-                                          frame_width=640)
-    assert next(iter(out[1].values()))['state'] == INTERPOLATED
+    with pytest.raises(ValueError, match='requires detector candidates'):
+        t.apply_ball_temporal_selection(ball, candidates=None, fps=5.0,
+                                        frame_width=640)
 
 
 def test_tracker_records_candidates_for_the_selector():

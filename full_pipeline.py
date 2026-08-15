@@ -232,7 +232,7 @@ class FootballAnalysisPipeline:
         frame_width = frames[0].shape[1] if len(frames) else None
         tracks["ball"] = self.adv_tracker.apply_ball_temporal_selection(
             tracks["ball"],
-            candidates=getattr(self.adv_tracker, 'ball_candidates', None),
+            candidates=self.adv_tracker.ball_candidates,
             fps=effective_fps,
             frame_width=frame_width,
         )

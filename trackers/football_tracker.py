@@ -1,5 +1,11 @@
 """
-Advanced Football Player Tracking using ByteTrack Algorithm
+Football player tracking.
+
+Association runs on a selectable backend -- CBIoU by default, supervision
+ByteTrack under tracker_backend='legacy'. Humans are tracked; the ball takes a
+separate path and is resolved by BallTemporalSelector, which tags every
+reported position with its provenance.
+
 Dependencies: pip install supervision ultralytics numpy scipy opencv-python
 """
 
@@ -27,15 +33,19 @@ TRACK_KEY = {
 }
 TRACK_KEYS = list(TRACK_KEY.values())
 CLASS_ID_TO_KEY = {CLASS_IDS[name]: key for name, key in TRACK_KEY.items()}
-# Only these reach ByteTrack. The ball is excluded by construction rather than
-# by a downstream filter, so a future edit cannot silently readmit it.
+# Only these reach the association backend. The ball is excluded by
+# construction rather than by a downstream filter, so a future edit cannot
+# silently readmit it.
 HUMAN_TRACK_KEY = {CLASS_IDS[name]: TRACK_KEY[name] for name in HUMAN_CLASSES}
 
 
 class FootballTracker:
     """
-    Comprehensive football video analysis tracker based on ByteTrack
-    Tracks players, goalkeepers, referees and the ball as distinct classes
+    Comprehensive football video analysis tracker.
+
+    Tracks players, goalkeepers, referees and the ball as distinct classes.
+    Human association uses the configured backend (CBIoU by default); the ball
+    bypasses it entirely and is resolved temporally instead.
     """
 
     def __init__(self, model_path='yolov8s.pt',
@@ -132,10 +142,10 @@ class FootballTracker:
 
         # Populated by get_object_tracks(); read by the pipeline's final report.
         self.tracks = None
-        # Per-frame ball candidates, aligned with tracks['ball'] by index.
-        # None means "not available" -- e.g. tracks were restored from a cache
-        # written before candidates were recorded. Consumers must treat that as
-        # missing evidence, not as an empty candidate list.
+        # Per-frame DETECTOR candidates, aligned with tracks['ball'] by index.
+        # None means no run has produced them yet. It is never a licence to
+        # substitute tracks['ball']: that holds tracker output, including boxes
+        # copied forward during a gap.
         self.ball_candidates = None
 
         # Color map for visualization
@@ -186,13 +196,26 @@ class FootballTracker:
         Here, every returned frame is either a ball with an explicit `state`,
         or empty. Empty means unknown, and unknown is a real answer.
 
+        Three things are deliberately kept apart here:
+
+            A  detector candidate   -- a raw detection at any confidence
+            B  tracker observation  -- what tracks['ball'] holds, which
+                                       INCLUDES boxes copied forward by the
+                                       bounded hold
+            C  selector output      -- what this method returns
+
+        Only A may enter the selector as evidence. An earlier version fell back
+        to B when candidates were missing, which relabelled a held box as
+        `observed` carrying the original detector's confidence -- a copied
+        position presented as a measurement. That fallback is gone.
+
         Args:
-            ball_positions: tracks['ball'], one dict per frame.
-            candidates: per-frame candidate lists from get_object_tracks().
-                None (e.g. tracks restored from an older cache) means no
-                low-confidence evidence is available; accepted observations are
-                still used, so the selector degrades to interpolation-only
-                rather than silently rescuing nothing it should have.
+            ball_positions: tracks['ball'], one dict per frame. Used ONLY for
+                the frame count and to keep the ball's track id stable. Its
+                bboxes are never read as evidence.
+            candidates: per-frame detector candidate lists (A) from
+                get_object_tracks(). Required. Passing None raises rather than
+                guessing, because every silent alternative fabricates evidence.
             fps: effective frame rate of the frames actually processed, so a
                 skipped-frame run scales its gap limits correctly.
             frame_width: source width in px; the gate is defined at 640.
@@ -202,27 +225,34 @@ class FootballTracker:
             List of ball dictionaries, one per frame, carrying 'state' and
             'confidence' (None for interpolated points, which are estimates
             and have no detector confidence).
+
+        Raises:
+            ValueError: if `candidates` is None or shorter than the frames.
         """
         from trackers.ball_temporal import (REFERENCE_WIDTH, UNKNOWN,
                                             BallTemporalSelector, FrameInput)
 
         n = len(ball_positions)
+        if candidates is None:
+            raise ValueError(
+                'apply_ball_temporal_selection() requires detector candidates. '
+                'They are produced by get_object_tracks() and stored in the v2 '
+                'cache. Reconstructing them from tracks["ball"] is not a valid '
+                'substitute: that list contains boxes held forward by the '
+                'tracker, and feeding them back would present a copied '
+                'position as a measurement.')
+        if len(candidates) < n:
+            raise ValueError(
+                f'candidate record covers {len(candidates)} frames but there '
+                f'are {n} ball frames; refusing to guess the remainder')
+
         rate = float(fps) if fps else self.frame_rate
         dt = 1.0 / rate if rate > 0 else 0.2
 
         inputs = []
         for i in range(n):
-            if candidates is not None and i < len(candidates):
-                cands = [dict(c) for c in candidates[i]]
-            else:
-                # No candidate record: fall back to whatever was accepted as an
-                # observation, so the selector still anchors and interpolates.
-                cands = [{'bbox': list(info['bbox']),
-                          'confidence': float(info.get('confidence', 0.5))}
-                         for info in ball_positions[i].values()
-                         if info.get('bbox')]
             inputs.append(FrameInput(
-                candidates=cands,
+                candidates=[dict(c) for c in candidates[i]],
                 timestamp=i * dt,
                 dt=dt,
                 cut=bool(cuts[i]) if cuts is not None and i < len(cuts) else False,
@@ -275,25 +305,55 @@ class FootballTracker:
             
         return all_detections
     
+    # Bumped when the cached payload gains a field the pipeline depends on.
+    # v1 was the bare tracks dict; v2 adds the detector candidate pool, which
+    # BallTemporalSelector needs and cannot be reconstructed from tracks.
+    CACHE_FORMAT = 2
+
+    @staticmethod
+    def _unpack_cache(blob):
+        """(tracks, ball_candidates) from a cache payload, or (None, None).
+
+        A v1 cache is REJECTED rather than upgraded. The tempting upgrade --
+        deriving candidates from tracks['ball'] -- is exactly the bug this
+        replaces: that list holds *tracker* boxes, including ones copied
+        forward by the bounded hold, and feeding them back as detector
+        evidence relabels a held box as a measurement. Recomputing costs one
+        detection pass; the alternative silently corrupts provenance.
+        """
+        if isinstance(blob, dict) and blob.get('cache_format') == \
+                FootballTracker.CACHE_FORMAT:
+            return blob.get('tracks'), blob.get('ball_candidates')
+        return None, None
+
     def get_object_tracks(self, frames, read_from_cache=True, cache_path=None):
         """
         Get tracked objects from video frames
-        
+
         Args:
             frames: List of video frames
             read_from_cache: Whether to read from cache if available
             cache_path: Path to cache file
-            
+
         Returns:
             Dictionary of tracked objects
         """
         # Check cache first
         if read_from_cache and cache_path and os.path.exists(cache_path):
-            print(f"Loading tracks from cache: {cache_path}")
             with open(cache_path, 'rb') as f:
-                self.tracks = pickle.load(f)
-            return self.tracks
-        
+                blob = pickle.load(f)
+            tracks, candidates = self._unpack_cache(blob)
+            if tracks is not None:
+                print(f"Loading tracks from cache: {cache_path}")
+                self.tracks = tracks
+                self.ball_candidates = candidates
+                return self.tracks
+            # v1 cache: tracks only, no detector candidates. Recomputed rather
+            # than reused, because the alternative is running the temporal
+            # selector on evidence it was never given -- see _unpack_cache().
+            print(f"Ignoring stale cache without ball candidates: {cache_path}")
+
+
         # Initialize tracks structure -- one list per detector class
         tracks = {key: [] for key in TRACK_KEYS}
 
@@ -305,7 +365,7 @@ class FootballTracker:
 
         # Process each frame
         for frame_idx, frame_detections in enumerate(detections_list):
-            # Prepare detection objects for supervision ByteTrack
+            # Prepare detection objects for the association backend
             boxes = []
             class_ids = []
             confidences = []
@@ -385,7 +445,8 @@ class FootballTracker:
                     }
 
             # The ball's single canonical path. It is written here and nowhere
-            # else: ByteTrack no longer sees it, so it cannot also arrive above
+            # else: the association backend no longer sees it, so it cannot
+            # also arrive above
             # under a tracker id. ID 1 keeps it stable for downstream code.
             ball_found = False
             candidates = []
@@ -439,7 +500,12 @@ class FootballTracker:
         if self.persist_cache and cache_path:
             print(f"Saving tracks to cache: {cache_path}")
             with open(cache_path, 'wb') as f:
-                pickle.dump(tracks, f)
+                # Candidates travel WITH the tracks. Saving tracks alone made a
+                # cached run and a fresh run disagree about the ball, because
+                # only the fresh one still had the detector's candidate pool.
+                pickle.dump({'cache_format': self.CACHE_FORMAT,
+                             'tracks': tracks,
+                             'ball_candidates': ball_candidates}, f)
 
         # Cached so generate_final_report() can write player_statistics.json.
         self.tracks = tracks
@@ -581,8 +647,15 @@ class FootballTracker:
         # Get the number of times each team had ball control
         team_1_frames = team_ball_control_till_frame[team_ball_control_till_frame==1].shape[0]
         team_2_frames = team_ball_control_till_frame[team_ball_control_till_frame==2].shape[0]
+        # KNOWN-possession frames only. 0 means "we do not know who had the
+        # ball" -- no reliable ball position, or one no player was near -- and
+        # such frames are excluded from the denominator rather than counted
+        # against either team. With UNKNOWN no longer inheriting the previous
+        # team's id, this exclusion is what keeps a long blind interval from
+        # silently inflating whoever touched the ball last.
         total_frames = team_1_frames + team_2_frames
-        
+
+
         if total_frames > 0:
             team_1_pct = team_1_frames / total_frames
             team_2_pct = team_2_frames / total_frames
