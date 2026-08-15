@@ -42,7 +42,9 @@ class FootballAnalysisPipeline:
                  imgsz: int = 960,
                  confidence: float = 0.25,
                  max_ball_gap: int = 15,
-                 human_candidate_pool: bool = False):
+                 human_candidate_pool: bool = False,
+                 ball_candidate_pool: bool = True,
+                 tracker_backend: str = 'cbiou'):
         """
         Initialize complete pipeline
         Args:
@@ -67,6 +69,7 @@ class FootballAnalysisPipeline:
         self.max_ball_gap = max_ball_gap
         # Changes what the tracker sees, so it must be part of the cache key.
         self.human_candidate_pool = human_candidate_pool
+        self.ball_candidate_pool = ball_candidate_pool
         # Set per run in _process_video_advanced().
         self.source_fps = None
         self.effective_fps = None
@@ -93,6 +96,8 @@ class FootballAnalysisPipeline:
             imgsz=imgsz,
             max_ball_gap=max_ball_gap,
             human_candidate_pool=human_candidate_pool,
+            ball_candidate_pool=ball_candidate_pool,
+            tracker_backend=tracker_backend,
         )
 
         self.team_assigner = TeamAssigner(num_teams=2)
@@ -175,8 +180,15 @@ class FootballAnalysisPipeline:
                                                         else None),
                                'human_accept_conf': max(self.confidence,
                                                         HUMAN_ACCEPT_CONF)},
+            # Read from the tracker rather than hard-coded. This is a CACHE KEY:
+            # it said 'bytetrack' while the constructor defaulted to CBIoU, so a
+            # cache built by one association backend could be silently reused by
+            # the other. The ball candidate pool changes what the selector has to
+            # work with, so it belongs in the key too.
             tracker_settings={'max_ball_gap': self.max_ball_gap,
-                              'tracker': 'bytetrack'},
+                              'tracker': self.adv_tracker.tracker_backend,
+                              'ball_candidate_pool': self.ball_candidate_pool,
+                              'ball_temporal_selector': 'v1'},
             skip_frames=skip_frames,
             max_frames=max_frames,
         )
@@ -211,9 +223,19 @@ class FootballAnalysisPipeline:
         print("Adding position information...")
         self.adv_tracker.add_position_to_tracks(tracks)
         
-        # 4. Interpolate ball positions
-        print("Interpolating ball positions...")
-        tracks["ball"] = self.adv_tracker.interpolate_ball_positions(tracks["ball"])
+        # 4. Resolve the ball track temporally.
+        # BallTemporalSelector is the authoritative ball post-processing step:
+        # it tags every reported ball with its provenance and leaves a frame
+        # empty when the evidence does not support one. Frames with no ball are
+        # normal output, not an error, and every consumer below handles them.
+        print("Resolving ball positions (temporal selector)...")
+        frame_width = frames[0].shape[1] if len(frames) else None
+        tracks["ball"] = self.adv_tracker.apply_ball_temporal_selection(
+            tracks["ball"],
+            candidates=getattr(self.adv_tracker, 'ball_candidates', None),
+            fps=effective_fps,
+            frame_width=frame_width,
+        )
         
         # 5. Estimate camera movement
         print("Estimating camera movement...")

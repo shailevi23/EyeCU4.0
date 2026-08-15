@@ -32,8 +32,11 @@ Recorded in [../results/RESULTS.md](../results/RESULTS.md) with numbers.
 - **Experiment B** — @1280; better ball, worse GK/referee at a matched threshold, 1.70× cost
 - **Experiment C** — contextual crop/zoom + hard negatives; **rejected**, net −10 ball on continuous val
 - 104-frame continuous temporal benchmark built, hand-annotated and evaluated
-- `BallTemporalSelector` — bounded, provenance-tagged, frozen at v1 settings
-- **Patch 0** — removed the origin-ball fabrication from the production path
+- `BallTemporalSelector` — bounded, provenance-tagged, frozen at v1 settings,
+  and **wired into the production pipeline** (2026-08-15); the legacy
+  `interpolate_ball_positions()` was deleted
+- **Patch 0** — removed the origin-ball fabrication from the tracker. The
+  pipeline kept calling the legacy interpolator until the selector replaced it
 - **Patch 0b** — ball-only duplicate suppression at IoU 0.70; FP 14→10 with TP unchanged
 - Ball candidate threshold study — frozen at 0.10, run once
 - Detector diagnostics — any-human recall, role confusion, per-match ball metrics

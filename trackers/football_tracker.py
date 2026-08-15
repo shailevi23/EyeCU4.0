@@ -9,7 +9,6 @@ import supervision as sv
 import os
 from pathlib import Path
 import pickle
-import pandas as pd
 
 # Import from local modules
 from trackers.detector import (CLASS_IDS, HUMAN_CLASSES,
@@ -48,6 +47,7 @@ class FootballTracker:
                 imgsz=960,
                 max_ball_gap=15,
                 human_candidate_pool=False,
+                ball_candidate_pool=False,
                 detector=None,
                 tracker_backend='cbiou',
                 frame_rate=30.0):
@@ -64,19 +64,26 @@ class FootballTracker:
             imgsz: Inference image size for the local detector
             max_ball_gap: How many consecutive frames the last known ball box may
                 be held for while the ball is undetected. After that the ball is
-                reported as unknown rather than frozen in place.
+                reported as unknown rather than frozen in place. Only used when
+                the pipeline does NOT run BallTemporalSelector; the selector
+                supersedes this hold with a bounded, provenance-tagged decision.
+            ball_candidate_pool: emit ball detections down to the rescue floor
+                (0.10) tagged state='candidate_low_conf'. They are never
+                accepted as observations here -- they are collected per frame
+                as `ball_candidates` for BallTemporalSelector to adjudicate.
             detector: Pre-built detector to use instead of constructing one.
                 Only for tests, which must not load real YOLO weights.
             tracker_backend: which association implementation to use.
                 'cbiou'  -- vendored Roboflow CBIoUTracker 2.6.0 at its exact
-                            library defaults, selected by T2 and qualified by
-                            integration. Not yet the default: flipping it makes
-                            17 legacy-written behavioural tests receive CBIoU,
-                            and those must pin their backend first.
+                            library defaults, selected by T2, qualified by
+                            integration, and the DEFAULT for every entry point.
                 'legacy' -- supervision sv.ByteTrack(), the previously deployed
                             tracker, kept for rollback and regression comparison.
                 Neither is tuned. The two differ only in association; detection,
                 ball handling and role semantics are identical either way.
+                Tests that assert legacy-specific association behaviour pin
+                tracker_backend='legacy' explicitly rather than relying on the
+                default, so the default can move without rewriting them.
             frame_rate: the frame rate of the stream the TRACKER sees. When the
                 pipeline skips frames this is the effective rate, not the source
                 rate -- a tracker told 30 fps while receiving 10 mis-scales
@@ -89,6 +96,7 @@ class FootballTracker:
         # withheld from tracks[], so reports and visualisation are unchanged.
         self.human_accept_conf = max(confidence, HUMAN_ACCEPT_CONF)
         self.human_candidate_pool = human_candidate_pool
+        self.ball_candidate_pool = ball_candidate_pool
         self.use_roboflow = use_roboflow
         self.api_key = api_key
         self.persist_cache = persist_cache
@@ -103,6 +111,7 @@ class FootballTracker:
             api_key=api_key,
             confidence=confidence,
             imgsz=imgsz,
+            ball_candidate_pool=ball_candidate_pool,
             human_candidate_pool=human_candidate_pool,
         )
 
@@ -123,6 +132,11 @@ class FootballTracker:
 
         # Populated by get_object_tracks(); read by the pipeline's final report.
         self.tracks = None
+        # Per-frame ball candidates, aligned with tracks['ball'] by index.
+        # None means "not available" -- e.g. tracks were restored from a cache
+        # written before candidates were recorded. Consumers must treat that as
+        # missing evidence, not as an empty candidate list.
+        self.ball_candidates = None
 
         # Color map for visualization
         self.colors = {
@@ -154,42 +168,83 @@ class FootballTracker:
                     
                     tracks[object_type][frame_num][track_id]['position'] = position
     
-    def interpolate_ball_positions(self, ball_positions):
+    def apply_ball_temporal_selection(self, ball_positions, candidates=None,
+                                      fps=None, frame_width=None, cuts=None):
         """
-        Interpolate missing ball positions
-        
+        Resolve the ball track with BallTemporalSelector. The authoritative
+        ball post-processing step.
+
+        This replaced `interpolate_ball_positions()`, which was removed. That
+        method substituted [0,0,0,0] for a missing ball and then ran
+        interpolate().bfill().ffill() over it. Because the origin is a real
+        bbox rather than NaN, pandas never saw a gap: it interpolated *toward
+        the origin* and back out, then guaranteed a ball on every frame --
+        inventing one before the first detection and holding one after the
+        last. Every frame got a confident answer and none of them were marked
+        as estimates.
+
+        Here, every returned frame is either a ball with an explicit `state`,
+        or empty. Empty means unknown, and unknown is a real answer.
+
         Args:
-            ball_positions: List of ball position dictionaries
-            
+            ball_positions: tracks['ball'], one dict per frame.
+            candidates: per-frame candidate lists from get_object_tracks().
+                None (e.g. tracks restored from an older cache) means no
+                low-confidence evidence is available; accepted observations are
+                still used, so the selector degrades to interpolation-only
+                rather than silently rescuing nothing it should have.
+            fps: effective frame rate of the frames actually processed, so a
+                skipped-frame run scales its gap limits correctly.
+            frame_width: source width in px; the gate is defined at 640.
+            cuts: optional per-frame camera-cut flags from detect_cuts().
+
         Returns:
-            List of interpolated ball positions
+            List of ball dictionaries, one per frame, carrying 'state' and
+            'confidence' (None for interpolated points, which are estimates
+            and have no detector confidence).
         """
-        # Extract ball bboxes
-        ball_bboxes = []
-        for frame_dict in ball_positions:
-            bbox = None
-            # Get the first ball entry (usually just one with ID 1)
-            for ball_id, ball_info in frame_dict.items():
-                bbox = ball_info.get('bbox', [])
-                break
-            ball_bboxes.append(bbox if bbox else [0, 0, 0, 0])
-        
-        # Create DataFrame for easier interpolation
-        df_ball = pd.DataFrame(ball_bboxes, columns=['x1', 'y1', 'x2', 'y2'])
-        
-        # Interpolate missing values
-        df_ball = df_ball.interpolate(method='linear')
-        df_ball = df_ball.fillna(method='bfill')  # Backward fill any remaining NaNs
-        df_ball = df_ball.fillna(method='ffill')  # Forward fill any remaining NaNs
-        
-        # Convert back to original format
-        interpolated_positions = []
-        for i, bbox in enumerate(df_ball.values.tolist()):
-            ball_id = list(ball_positions[i].keys())[0] if ball_positions[i] else 1
-            interpolated_positions.append({ball_id: {"bbox": bbox}})
-            
-        return interpolated_positions
-        
+        from trackers.ball_temporal import (REFERENCE_WIDTH, UNKNOWN,
+                                            BallTemporalSelector, FrameInput)
+
+        n = len(ball_positions)
+        rate = float(fps) if fps else self.frame_rate
+        dt = 1.0 / rate if rate > 0 else 0.2
+
+        inputs = []
+        for i in range(n):
+            if candidates is not None and i < len(candidates):
+                cands = [dict(c) for c in candidates[i]]
+            else:
+                # No candidate record: fall back to whatever was accepted as an
+                # observation, so the selector still anchors and interpolates.
+                cands = [{'bbox': list(info['bbox']),
+                          'confidence': float(info.get('confidence', 0.5))}
+                         for info in ball_positions[i].values()
+                         if info.get('bbox')]
+            inputs.append(FrameInput(
+                candidates=cands,
+                timestamp=i * dt,
+                dt=dt,
+                cut=bool(cuts[i]) if cuts is not None and i < len(cuts) else False,
+            ))
+
+        selector = BallTemporalSelector(
+            frame_width=float(frame_width) if frame_width else REFERENCE_WIDTH)
+        results = selector.run(inputs)
+
+        out = []
+        for i, r in enumerate(results):
+            if r.state == UNKNOWN or r.bbox is None:
+                out.append({})          # honest gap; downstream must tolerate it
+                continue
+            ball_id = next(iter(ball_positions[i]), 1) if ball_positions[i] else 1
+            entry = {'bbox': list(r.bbox), 'state': r.state}
+            if r.confidence is not None:
+                entry['confidence'] = r.confidence
+            out.append({ball_id: entry})
+        return out
+
+
     def detect_objects_in_frames(self, frames):
         """
         Detect objects (players, ball, referees) in video frames
@@ -246,6 +301,7 @@ class FootballTracker:
         detections_list = self.detect_objects_in_frames(frames)
 
         frames_since_ball = 0
+        ball_candidates = []
 
         # Process each frame
         for frame_idx, frame_detections in enumerate(detections_list):
@@ -332,21 +388,38 @@ class FootballTracker:
             # else: ByteTrack no longer sees it, so it cannot also arrive above
             # under a tracker id. ID 1 keeps it stable for downstream code.
             ball_found = False
+            candidates = []
             for det in frame_detections:
+                if det.get('class') != 'ball':
+                    continue
+                # Every ball detection, at any confidence, is recorded as a
+                # candidate. BallTemporalSelector adjudicates them downstream:
+                # it is the only component allowed to promote a low-confidence
+                # detection into a reported ball, and only inside a
+                # motion-predicted gate. Collecting them here does not accept
+                # them -- the observation test below is unchanged.
+                candidates.append({
+                    'bbox': list(det['bbox']),
+                    'confidence': float(det.get('confidence', 0.5)),
+                    'state': det.get('state', 'observed'),
+                })
                 # Detections carrying state='candidate_low_conf' are the rescue
-                # pool. They exist for BallTemporalSelector, which does not
-                # exist yet, so nothing may accept them as observations here.
+                # pool and must never be accepted as observations here.
                 # Detectors without the pool emit no 'state' key at all, and
                 # the default keeps their behaviour identical.
                 if det.get('state', 'observed') != 'observed':
                     continue
-                if det.get('class') == 'ball':
+                if not ball_found:
                     tracks["ball"][frame_idx][1] = {
                         "bbox": det['bbox'],
                         "confidence": det.get('confidence', 0.5),
                     }
                     ball_found = True
-                    break
+
+            # Kept per frame and aligned with tracks['ball'] by index, so the
+            # selector can be applied after tracking without re-running the
+            # detector. Empty list means "no ball candidate at any confidence".
+            ball_candidates.append(candidates)
 
             if ball_found:
                 frames_since_ball = 0
@@ -370,6 +443,10 @@ class FootballTracker:
 
         # Cached so generate_final_report() can write player_statistics.json.
         self.tracks = tracks
+        # Read by apply_ball_temporal_selection(). Not part of tracks[] because
+        # it is detector evidence, not a track, and must not reach consumers
+        # that iterate tracks by class.
+        self.ball_candidates = ball_candidates
         return tracks
     
     def draw_ellipse(self, frame, bbox, color, track_id=None):

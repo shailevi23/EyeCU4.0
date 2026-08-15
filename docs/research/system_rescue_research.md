@@ -48,7 +48,12 @@ generalisation benchmark.
 > EyeCU inherited a variant of the interpolation bug and it was worse: gaps were
 > filled with `[0,0,0,0]`, so the DataFrame contained no NaN, `interpolate()`
 > was a no-op, and a ball was emitted at the frame origin on every missed frame.
-> Removed in Patch 0. Recorded in [../results/RESULTS.md](../results/RESULTS.md).
+> Patch 0 removed the fabrication from the **tracker**, but the pipeline kept
+> calling `interpolate_ball_positions()` afterwards, so the bug survived one
+> step further down than the note originally implied. The method has since been
+> deleted outright and `BallTemporalSelector` is the production ball path; see
+> "Ball temporal recovery (current)" in
+> [../results/RESULTS.md](../results/RESULTS.md).
 
 ---
 
