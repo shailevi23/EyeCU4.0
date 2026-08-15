@@ -1,0 +1,17 @@
+{
+ "payload_images": 4797,
+ "groups": 1799,
+ "groups_with_replays": 1799,
+ "within_group_ncc": {
+  "pairs": 266,
+  "median": 0.0842,
+  "p90": 0.3279,
+  "pairs_at_or_above_0.985": 0
+ },
+ "replay_interpretation": "Action and replay slices of one group are the same moment from a different camera. They are NOT near-duplicate pixels -- the median correlation is low -- but they are not independent samples either, because the same players in the same instant appear in both. Count groups, not frames, when estimating diversity.",
+ "label_evidence": [
+  "soccernet_v3_labels.jpg",
+  "soccernet_v3_ball.jpg"
+ ],
+ "method_note": "quality judged from image and annotation only; no EyeCU detector prediction was used"
+}

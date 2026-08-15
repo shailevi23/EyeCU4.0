@@ -5,7 +5,47 @@ input-videos/
 roboflow_api_key.env
 .pytest_cache/
 .env
-check_datasets/
+
+# ---------------------------------------------------------------------------
+# EyeCU_external_data/ : third-party dataset bulk stays out; the records that
+# make it reproducible go in. Same shape as the data/ block below -- `dir/*`
+# rather than `dir/`, because git will not descend into a directory excluded by
+# name and every negation under it would be silently dead.
+#
+# Out: images, videos, ZIPs, the 55 GB of GSR JSON, the CA bundle, and the
+# SoccerTrack public repo checkout (it clones from upstream).
+# In:  the master registry, per-source manifests, download logs, pointers.
+# ---------------------------------------------------------------------------
+EyeCU_external_data/*
+!EyeCU_external_data/MASTER_EXTERNAL_SOURCE_REGISTRY.json
+!EyeCU_external_data/consolidation_log.json
+
+!EyeCU_external_data/roboflow_audit/
+EyeCU_external_data/roboflow_audit/*
+!EyeCU_external_data/roboflow_audit/manifests/
+!EyeCU_external_data/roboflow_audit/reports/
+
+!EyeCU_external_data/huggingface/
+EyeCU_external_data/huggingface/*
+!EyeCU_external_data/huggingface/manifests/
+!EyeCU_external_data/huggingface/download_logs/
+!EyeCU_external_data/huggingface/keremberke_football_object_detection/
+EyeCU_external_data/huggingface/keremberke_football_object_detection/*
+!EyeCU_external_data/huggingface/keremberke_football_object_detection/manifests/
+!EyeCU_external_data/huggingface/soccernet_v3/
+EyeCU_external_data/huggingface/soccernet_v3/*
+!EyeCU_external_data/huggingface/soccernet_v3/manifests/
+
+!EyeCU_external_data/soccertrack_v2/
+EyeCU_external_data/soccertrack_v2/*
+!EyeCU_external_data/soccertrack_v2/manifests/
+!EyeCU_external_data/soccertrack_v2/reports/
+
+!EyeCU_external_data/research_sources/
+EyeCU_external_data/research_sources/*
+!EyeCU_external_data/research_sources/manifests/
+!EyeCU_external_data/research_sources/teamtrack/
+!EyeCU_external_data/research_sources/sportslabkit/
 
 # One-off diagnostic renders land in the repo root and pile up fast. Keepers
 # belong in experiments/records/evidence/, which is tracked normally; this rule
@@ -156,6 +196,16 @@ third_party/
 
 !data/tracking_val_gt/mot/**/*.ini
 
+# External data audit: the extracted ZIP contents are ~330 MB of somebody
+# else's images and rebuild exactly from the hashed archives, so they stay out.
+# The reports, contact sheets and candidate index ARE the audit and are tracked.
+experiments/external_data_audit/extracted/
+
+# SoccerTrack audit: 2.5 GB of extracted third-party annotation, rebuilt exactly
+# from the hashed archives in EyeCU_external_data/. Reports and contact sheets
+# are the audit and are tracked.
+experiments/soccertrack_audit/extracted/
+
 # Bake-off: the records, configs, metrics and verdict are the evidence and are
 # tracked. Raw per-frame tracker outputs are large and regenerate exactly from
 # the frozen detections, so they stay local.
@@ -163,3 +213,21 @@ experiments/tracking_v2/bakeoff/outputs/
 experiments/tracking_v2/t2/outputs/
 experiments/tracking_v2/t2/meta/
 experiments/tracking_v2/bakeoff/meta/
+
+# Keremberke review package: the ledger, queue and working copy regenerate
+# deterministically from the immutable export plus the triage, and the ledger
+# alone is 13 MB. decisions.json is the opposite -- it is irreplaceable human
+# work and is tracked explicitly.
+experiments/external_sources/keremberke_review/ledger.json
+experiments/external_sources/keremberke_review/review_queue.json
+experiments/external_sources/keremberke_review/working_copy/
+!experiments/external_sources/keremberke_review/decisions.json
+
+# The promoted repaired export regenerates byte-identically from decisions.json
+# plus the immutable source -- verified by running --apply twice -- so the
+# annotations themselves are bulk. The manifest is not: it is the provenance
+# record naming the log hash, the source hashes and every authorised change, and
+# it is what makes the export reproducible at all.
+experiments/external_sources/keremberke_review/repaired_export/*
+!experiments/external_sources/keremberke_review/repaired_export/EXPORT_MANIFEST.json
+experiments/external_sources/keremberke_review/repaired_export.previous/

@@ -115,7 +115,13 @@ class TestFlagOff:
 
     def test_tracker_ignores_rescue_candidates(self, monkeypatch):
         """A low-confidence candidate must never be accepted as an observation
-        while BallTemporalSelector does not exist."""
+        by the tracker.
+
+        BallTemporalSelector now exists and runs in the production pipeline,
+        but promotion stays its exclusive job: it accepts a rescue candidate
+        only inside a motion-predicted gate, which the tracker cannot evaluate.
+        The tracker records candidates and reports none of them as balls.
+        """
         import numpy as np
         from trackers.football_tracker import FootballTracker
 

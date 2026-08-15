@@ -1,0 +1,1516 @@
+{
+ "bas": {
+  "files": {
+   "117092": {
+    "file": "117092_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "117092",
+    "events": 3142,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[1233, 3400, 5360], gameTime=['1 - 0:01', '1 - 0:03', '1 - 0:05'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "117093": {
+    "file": "117093_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "117093",
+    "events": 2252,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[680, 2120, 5400], gameTime=['1 - 0:01', '1 - 0:03', '1 - 0:06'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "118575": {
+    "file": "118575_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "118575",
+    "events": 2117,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[640, 1960, 2976], gameTime=['1 - 0:00', '1 - 0:01', '1 - 0:02'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "118576": {
+    "file": "118576_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "118576",
+    "events": 2131,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[40, 2280, 6240], gameTime=['1 - 0:01', '1 - 0:03', '1 - 0:07'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "118577": {
+    "file": "118577_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "118577",
+    "events": 1946,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[1520, 3160, 4520], gameTime=['1 - 0:01', '1 - 0:03', '1 - 0:04'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "118578": {
+    "file": "118578_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "118578",
+    "events": 2106,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[0, 1832, 5520], gameTime=['1 - 0:01', '1 - 0:02', '1 - 0:06'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "128057": {
+    "file": "128057_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "128057",
+    "events": 1932,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[1480, 3720, 7240], gameTime=['1 - 0:02', '1 - 0:04', '1 - 0:08'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "128058": {
+    "file": "128058_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "128058",
+    "events": 2144,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[160, 1720, 5300], gameTime=['1 - 0:01', '1 - 0:02', '1 - 0:06'], position/1000 vs gameTime seconds consistent=True"
+   },
+   "132831": {
+    "file": "132831_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "132831",
+    "events": 3162,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[1560, 5600, 12200], gameTime=['1 - 0:00', '1 - 0:02', '1 - 0:06'], position/1000 vs gameTime seconds consistent=False"
+   },
+   "132877": {
+    "file": "132877_12_class_events.json",
+    "fps": 25.0,
+    "match_id": "132877",
+    "events": 2731,
+    "top_keys": [
+     "actions",
+     "fps",
+     "match_id"
+    ],
+    "position_semantics": "monotonic=True, first=[920, 1400, 2760], gameTime=['1 - 0:00', '1 - 0:01', '1 - 0:02'], position/1000 vs gameTime seconds consistent=True"
+   }
+  },
+  "event_classes": {
+   "PASS": 10276,
+   "DRIVE": 9106,
+   "HIGH PASS": 1276,
+   "OUT": 867,
+   "CROSS": 438,
+   "THROW IN": 423,
+   "BALL PLAYER BLOCK": 401,
+   "PLAYER SUCCESSFUL TACKLE": 328,
+   "SHOT": 302,
+   "FREE KICK": 164,
+   "GOAL": 47,
+   "HEADER": 35
+  },
+  "schema_keys": {
+   "gameTime": 23663,
+   "label": 23663,
+   "position": 23663,
+   "team": 23663,
+   "player_id": 23555
+  },
+  "events_with_ball_location": 0,
+  "events_with_player": 23555,
+  "total_events": 23663
+ },
+ "metadata": {
+  "matches": {
+   "117092": {
+    "title": "筑波大学 - B vs 筑波大学 - C1",
+    "datetime_local": "2023-11-18 18:00:00+09:00",
+    "timezone": "Asia/Seoul",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "30798",
+      "nameEn": "University of Tsukuba - C1",
+      "side": "away"
+     },
+     {
+      "id": "9834",
+      "nameEn": "University of Tsukuba - B",
+      "side": "home"
+     }
+    ],
+    "players": 346,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "252.0",
+      "frameEnd": "67626.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "67826.0",
+      "fps": "25"
+     },
+     "EXTRA_FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "68501.0",
+      "fps": "25"
+     }
+    }
+   },
+   "117093": {
+    "title": "筑波大学 vs 筑波大学 - B",
+    "datetime_local": "2023-11-25 10:00:00+09:00",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "9701",
+      "nameEn": "University of Tsukuba",
+      "side": "home"
+     },
+     {
+      "id": "9834",
+      "nameEn": "University of Tsukuba - B",
+      "side": "away"
+     }
+    ],
+    "players": 173,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "67900.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "70725.0",
+      "fps": "25"
+     }
+    }
+   },
+   "118575": {
+    "title": "筑波大学 - C3 vs 筑波大学 サッカー同好会",
+    "datetime_local": "2023-12-09 13:30:00+09:00",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "31424",
+      "nameEn": "University of Tsukuba - C3",
+      "side": "home"
+     },
+     {
+      "id": "31425",
+      "nameEn": "University of Tsukuba - Football Society",
+      "side": "away"
+     }
+    ],
+    "players": 185,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "72351.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "73926.0",
+      "fps": "25"
+     }
+    }
+   },
+   "118576": {
+    "title": "筑波大学 - B vs 筑波大学 - C3",
+    "datetime_local": "2023-12-16 12:00:00+09:00",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "9834",
+      "nameEn": "University of Tsukuba - B",
+      "side": "home"
+     },
+     {
+      "id": "31424",
+      "nameEn": "University of Tsukuba - C3",
+      "side": "away"
+     }
+    ],
+    "players": 213,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "73351.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "73301.0",
+      "fps": "25"
+     }
+    }
+   },
+   "118577": {
+    "title": "筑波大学 サッカー同好会 vs 筑波大学 医学サッカー部",
+    "datetime_local": "2023-12-17 13:00:00+09:00",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "31790",
+      "nameEn": "University of Tsukuba - Medical Soccer Club",
+      "side": "away"
+     },
+     {
+      "id": "31425",
+      "nameEn": "University of Tsukuba - Football Society",
+      "side": "home"
+     }
+    ],
+    "players": 276,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "72926.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "73001.0",
+      "fps": "25"
+     }
+    }
+   },
+   "118578": {
+    "title": "筑波大学 - B vs 筑波大学 - C1",
+    "datetime_local": "2023-12-20 19:00:00+09:00",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "9834",
+      "nameEn": "University of Tsukuba - B",
+      "side": "home"
+     },
+     {
+      "id": "30798",
+      "nameEn": "University of Tsukuba - C1",
+      "side": "away"
+     }
+    ],
+    "players": 211,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "70876.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "252.0",
+      "frameEnd": "71476.0",
+      "fps": "25"
+     }
+    }
+   },
+   "128057": {
+    "title": "TSC (Tsukuba Syukyu Club) vs 作新学院大学",
+    "datetime_local": "2024-03-18 10:00:00+09:00",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "34316",
+      "nameEn": "TSC (Tsukuba Syukyu Club)",
+      "side": "home"
+     },
+     {
+      "id": "10581",
+      "nameEn": "Sakushin Gakuin University",
+      "side": "away"
+     }
+    ],
+    "players": 166,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "67900.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "70625.0",
+      "fps": "25"
+     }
+    }
+   },
+   "128058": {
+    "title": "筑波大学 - B1 vs 筑波大学 - B2",
+    "datetime_local": "2024-03-23 09:00:00+09:00",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "9834",
+      "nameEn": "University of Tsukuba - B1",
+      "side": "home"
+     },
+     {
+      "id": "34317",
+      "nameEn": "University of Tsukuba - B2",
+      "side": "away"
+     }
+    ],
+    "players": 194,
+    "periods": {
+     "FIRST_HALF": {
+      "frameStart": "251.0",
+      "frameEnd": "69501.0",
+      "fps": "25"
+     },
+     "SECOND_HALF": {
+      "frameStart": "252.0",
+      "frameEnd": "68276.0",
+      "fps": "25"
+     }
+    }
+   },
+   "132831": {
+    "title": "中央学院大学 vs 筑波大学 - C1",
+    "datetime_local": "2024-04-20T09:00:00+0900",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "15370",
+      "nameEn": "中央学院大学",
+      "side": "home"
+     },
+     {
+      "id": "30798",
+      "nameEn": "筑波大学 - C1",
+      "side": "away"
+     }
+    ],
+    "players": 46,
+    "periods": {}
+   },
+   "132877": {
+    "title": "筑波大学 - B2 vs Matsudo City FC",
+    "datetime_local": "2024-04-20T15:00:00+0900",
+    "timezone": "Asia/Tokyo",
+    "pitch_m": [
+     "105",
+     "68"
+    ],
+    "teams": [
+     {
+      "id": "34317",
+      "nameEn": "筑波大学 - B2",
+      "side": "home"
+     },
+     {
+      "id": "12623",
+      "nameEn": "Matsudo City FC",
+      "side": "away"
+     }
+    ],
+    "players": 41,
+    "periods": {}
+   }
+  },
+  "position_vocabulary": {
+   "null": 1452,
+   "CB": 68,
+   "CM": 65,
+   "CF": 55,
+   "RB": 34,
+   "GK": 32,
+   "LB": 30,
+   "LW": 21,
+   "RW": 20,
+   "": 16,
+   "RM": 16,
+   "CAM": 14,
+   "LM": 14,
+   "CDM": 4,
+   "RWB": 4,
+   "LWB": 3,
+   "None": 3
+  },
+  "role_like_entries": {}
+ },
+ "geometry": {
+  "117092": {
+   "homography": [
+    [
+     1.146452,
+     -22.427293,
+     1937.387891
+    ],
+    [
+     -0.737064,
+     -8.054028,
+     786.330675
+    ],
+    [
+     -0.00091,
+     -0.010694,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    3840,
+    1906
+   ],
+   "K": [
+    [
+     1364.64,
+     0.0,
+     1977.346
+    ],
+    [
+     0.0,
+     945.852,
+     866.291
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.138829,
+    0.06464,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 30.632144071024634,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "647394",
+     "Padding": "660000",
+     "Start Match Time": "0",
+     "End Match Time": "2695000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "647394",
+     "Padding": "4269000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5403000"
+    }
+   ]
+  },
+  "117093": {
+   "homography": [
+    [
+     6.044462,
+     -22.843066,
+     1655.914559
+    ],
+    [
+     -0.002275,
+     -4.183864,
+     406.53958
+    ],
+    [
+     3.7e-05,
+     -0.011661,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1080
+   ],
+   "K": [
+    [
+     1590.842,
+     0.0,
+     2015.077
+    ],
+    [
+     0.0,
+     1667.355,
+     496.344
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.065657,
+    0.028709,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 8.637339003471189,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "650891",
+     "Padding": "1867000",
+     "Start Match Time": "0",
+     "End Match Time": "2706000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "650891",
+     "Padding": "5558000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5519000"
+    }
+   ]
+  },
+  "118575": {
+   "homography": [
+    [
+     6.159977,
+     -22.850772,
+     1661.814941
+    ],
+    [
+     0.016447,
+     -4.480569,
+     434.761891
+    ],
+    [
+     9.2e-05,
+     -0.011616,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1080
+   ],
+   "K": [
+    [
+     1627.584,
+     0.0,
+     2018.52
+    ],
+    [
+     0.0,
+     80777.969,
+     493.698
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.064173,
+    0.022682,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 10.043511250513191,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "657952",
+     "Padding": "8436000",
+     "Start Match Time": "0",
+     "End Match Time": "2874000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "657952",
+     "Padding": "12002000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5637000"
+    }
+   ]
+  },
+  "118576": {
+   "homography": [
+    [
+     5.646951,
+     -22.347929,
+     1642.001255
+    ],
+    [
+     -0.064529,
+     -4.313126,
+     422.210048
+    ],
+    [
+     -7.1e-05,
+     -0.011535,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1080
+   ],
+   "K": [
+    [
+     1617.633,
+     0.0,
+     2004.804
+    ],
+    [
+     0.0,
+     2924.163,
+     494.7
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.064242,
+    0.023958,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 9.883272137360917,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "660774",
+     "Padding": "1741000",
+     "Start Match Time": "0",
+     "End Match Time": "2914000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "660774",
+     "Padding": "5381000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5612000"
+    }
+   ]
+  },
+  "118577": {
+   "homography": [
+    [
+     6.062915,
+     -22.521639,
+     1638.934034
+    ],
+    [
+     0.019631,
+     -4.272881,
+     416.153826
+    ],
+    [
+     8.9e-05,
+     -0.01161,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1080
+   ],
+   "K": [
+    [
+     1613.246,
+     0.0,
+     2005.624
+    ],
+    [
+     0.0,
+     2436.831,
+     492.635
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.066055,
+    0.025493,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 9.39633711887602,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "660969",
+     "Padding": "2070000",
+     "Start Match Time": "0",
+     "End Match Time": "2897000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "660969",
+     "Padding": "5591000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5600000"
+    }
+   ]
+  },
+  "118578": {
+   "homography": [
+    [
+     5.63778,
+     -22.211658,
+     1642.81294
+    ],
+    [
+     -0.221495,
+     -4.125741,
+     418.864853
+    ],
+    [
+     -0.000155,
+     -0.01141,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1080
+   ],
+   "K": [
+    [
+     1606.026,
+     0.0,
+     2007.613
+    ],
+    [
+     0.0,
+     2137.201,
+     493.885
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.065468,
+    0.026527,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 9.733703541715679,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "662154",
+     "Padding": "1901000",
+     "Start Match Time": "0",
+     "End Match Time": "2815000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "662154",
+     "Padding": "5516000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5539000"
+    }
+   ]
+  },
+  "128057": {
+   "homography": [
+    [
+     5.500353,
+     -22.012393,
+     1620.356326
+    ],
+    [
+     -0.198458,
+     -4.330382,
+     430.144468
+    ],
+    [
+     -9.7e-05,
+     -0.011521,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1080
+   ],
+   "K": [
+    [
+     1622.07,
+     0.0,
+     1992.047
+    ],
+    [
+     0.0,
+     3081.679,
+     493.691
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.069431,
+    0.026277,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 9.265534133439013,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "128057",
+     "Padding": "3689000",
+     "Start Match Time": "0",
+     "End Match Time": "2706000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "128057",
+     "Padding": "7201000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5515000"
+    }
+   ]
+  },
+  "128058": {
+   "homography": [
+    [
+     5.665595,
+     -22.058293,
+     1627.567263
+    ],
+    [
+     -0.080914,
+     -4.156208,
+     412.934761
+    ],
+    [
+     -8.5e-05,
+     -0.011458,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1080
+   ],
+   "K": [
+    [
+     1604.919,
+     0.0,
+     1998.269
+    ],
+    [
+     0.0,
+     1844.431,
+     494.285
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.065227,
+    0.026668,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 9.346487584991173,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "128058",
+     "Padding": "6871000",
+     "Start Match Time": "0",
+     "End Match Time": "2760000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "128058",
+     "Padding": "10559000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5411000"
+    }
+   ]
+  },
+  "132831": {
+   "homography": [
+    [
+     21.230465,
+     -61.478192,
+     2170.642937
+    ],
+    [
+     9.805797,
+     -28.395171,
+     1002.563317
+    ],
+    [
+     0.009781,
+     -0.028323,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    3840,
+    1504
+   ],
+   "K": [
+    [
+     1590.1,
+     0.0,
+     1963.855
+    ],
+    [
+     0.0,
+     937.509,
+     693.317
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.475014,
+    0.119095,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 1260.9502477441263,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "132831",
+     "Padding": "183000",
+     "Start Match Time": "0",
+     "End Match Time": "2712000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "132831",
+     "Padding": "3675000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5436000"
+    }
+   ]
+  },
+  "132877": {
+   "homography": [
+    [
+     5.913947,
+     -22.616399,
+     1664.52311
+    ],
+    [
+     -0.080854,
+     -4.103579,
+     412.104297
+    ],
+    [
+     -8e-05,
+     -0.011425,
+     1.0
+    ]
+   ],
+   "undistort_canvas": [
+    4096,
+    1084
+   ],
+   "K": [
+    [
+     1602.532,
+     0.0,
+     2022.885
+    ],
+    [
+     0.0,
+     1825.495,
+     501.221
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "D": [
+    -0.064617,
+    0.026823,
+    0.0,
+    0.0
+   ],
+   "calibration_rms": 9.775348489934935,
+   "pitch_keypoints": 65,
+   "padding_info": [
+    {
+     "Event Period": "FIRST_HALF",
+     "Period Order": "0",
+     "Video": "132877",
+     "Padding": "2007000",
+     "Start Match Time": "0",
+     "End Match Time": "2709000"
+    },
+    {
+     "Event Period": "SECOND_HALF",
+     "Period Order": "1",
+     "Video": "132877",
+     "Padding": "5663000",
+     "Start Match Time": "2700000",
+     "End Match Time": "5475000"
+    }
+   ]
+  }
+ },
+ "camera_geometry_groups": {
+  "rig_1": [
+   "117092"
+  ],
+  "rig_2": [
+   "117093"
+  ],
+  "rig_3": [
+   "118575"
+  ],
+  "rig_4": [
+   "118576"
+  ],
+  "rig_5": [
+   "118577"
+  ],
+  "rig_6": [
+   "118578"
+  ],
+  "rig_7": [
+   "128057"
+  ],
+  "rig_8": [
+   "128058"
+  ],
+  "rig_9": [
+   "132831"
+  ],
+  "rig_10": [
+   "132877"
+  ]
+ },
+ "player_nodes": {
+  "117092": {
+   "rows": 3754,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 60,
+   "event_periods": [
+    "EXTRA_FIRST_HALF",
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "117093": {
+   "rows": 2581,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 42,
+   "event_periods": [
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "118575": {
+   "rows": 2481,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 32,
+   "event_periods": [
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "118576": {
+   "rows": 2448,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 30,
+   "event_periods": [
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "118577": {
+   "rows": 2384,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 35,
+   "event_periods": [
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "118578": {
+   "rows": 2430,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 31,
+   "event_periods": [
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "128057": {
+   "rows": 2268,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 35,
+   "event_periods": [
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "128058": {
+   "rows": 2574,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 39,
+   "event_periods": [
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "132831": {
+   "rows": 3679,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 47,
+   "event_periods": [
+    "EXTRA_FIRST_HALF",
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  },
+  "132877": {
+   "rows": 3140,
+   "columns": [
+    "id",
+    "match_id",
+    "match_full_time",
+    "extra_full_time",
+    "player_id",
+    "back_number",
+    "player_name",
+    "player_last_name",
+    "team_id",
+    "team_name",
+    "event_time",
+    "event_period",
+    "is_side_changed",
+    "event_types",
+    "filtered_event_types",
+    "x",
+    "y",
+    "relative_player_id",
+    "relative_player_name",
+    "relative_player_last_name",
+    "relative_x",
+    "relative_y"
+   ],
+   "distinct_players": 39,
+   "event_periods": [
+    "EXTRA_FIRST_HALF",
+    "FIRST_HALF",
+    "SECOND_HALF"
+   ]
+  }
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "source": "KEREMBERKE",
+ "new_images_compared": 1232,
+ "reference_images": 4802,
+ "method": "8 dihedral orientations, dhash hamming <= 10 candidate, NCC >= 0.95 verification",
+ "test_handling": "EyeCU TEST images hashed only; no TEST label read, no evaluation performed",
+ "by_reference_group": {},
+ "EXTERNAL_vs_EYECU_TRAIN": 0,
+ "EXTERNAL_vs_EYECU_VAL": 0,
+ "EXTERNAL_vs_EYECU_TEST": 0,
+ "hits": []
+}

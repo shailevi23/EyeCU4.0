@@ -1,0 +1,112 @@
+{
+ "audit": "FINAL LOCAL FACT AUDIT BEFORE EXPERIMENT D",
+ "date": "2026-08-15",
+ "train": {
+  "intended_ball_semantics": "UNKNOWN (visibility-only guideline; ball-identity never specified)",
+  "evidence": [
+   "docs/guides/LABELING.md:148 \"Ball only when visually identifiable. If you cannot see it, leave it out.\" -- specifies VISIBILITY, never WHICH ball",
+   "docs/guides/LABELING.md:158 \"Not players: ... ball boys\" -- excludes ball-boy PEOPLE, says nothing about the balls they hold",
+   "data/dataset_baseline/football.yaml declares class 3 ball with no semantic note"
+  ],
+  "empirical_completeness": "NOT_MEASURED",
+  "measured_distribution": {
+   "images": 823,
+   "ball_boxes": 673,
+   "per_image": {
+    "0": 153,
+    "1": 667,
+    "2": 3
+   }
+  }
+ },
+ "val": {
+  "intended_ball_semantics": "UNKNOWN (same guideline governs)",
+  "evidence": [
+   "same LABELING.md governs both splits",
+   "docs/results/RESULTS.md:252-256 states explicitly: \"This validation set cannot detect harm to a spare ball... LABELING.md specifies only visibility, never which ball. A correctly detected second football is already scored as a false positive here.\""
+  ],
+  "empirical_completeness": "NOT_MEASURED",
+  "measured_distribution": {
+   "images": 208,
+   "ball_boxes": 111,
+   "per_image": {
+    "0": 97,
+    "1": 111
+   },
+   "multi_ball_frames": 0
+  }
+ },
+ "round0": {
+  "source_ball_state": "MIXED",
+  "confirmed_existing_nonactive_gt": 22,
+  "all_inside_frozen_300": true,
+  "suspect_false_ball_gt": 1,
+  "consequence": "A00/A10/A11 are marginal LABEL-ADDITION ablations, NOT clean ontology experiments."
+ },
+ "ball_ap_validity": {
+  "CURRENT_SOURCE_STATE": "VALID (diagnostic)",
+  "ACTIVE_ADDITION_COMPARISON": "VALID",
+  "NONACTIVE_ADDITION_COMPARISON": "INVALID -- VAL has 0 multi-ball frames; a correctly detected extra football scores as a false positive",
+  "ruling": "Ball AP/precision MUST NOT be the primary A10->A11 decision metric."
+ },
+ "checkpoint": {
+  "primary": "FIXED_FINAL_STEP",
+  "secondary": "PRODUCTION_BEST_PT_RULE (fitness=mAP50-95, diagnostic only)",
+  "why": "best.pt selects on fitness=mAP50-95 over a VAL whose ball semantics penalise non-active detections, which is exactly the A11 intervention."
+ },
+ "production_path": {
+  "head": "ONE_TO_ONE_END2END",
+  "evidence": "trackers/detector.py:88 -- YOLO26 end-to-end, runs no NMS; the iou arg to predict() is inert, verified against this checkpoint",
+  "candidate_threshold": 0.1,
+  "high_threshold": 0.25,
+  "dedupe": "suppress_ball_duplicates, ball-class only, greedy confidence-descending, IoU>=0.70",
+  "humans_excluded_from_dedupe": true,
+  "opt_in": "LocalDetector(ball_candidate_pool=True)"
+ },
+ "stack": {
+  "ultralytics": "8.4.116",
+  "model": "yolo26s.pt",
+  "imgsz": 960,
+  "batch": 3,
+  "nbs": 64,
+  "accumulation": "ceil(64/3)=22",
+  "epochs_requested": 80,
+  "epochs_completed": 32,
+  "patience": 20,
+  "optimizer_arg": "auto",
+  "resolved_optimizer": "AdamW",
+  "resolved_lr0": 0.00125,
+  "resolved_momentum": 0.9,
+  "resolution_rule": "iterations=ceil(823/max(3,64))*80=1040 <= 10000 -> AdamW, lr_fit=0.002*5/(4+nc)",
+  "warmup_bias_lr": 0.0,
+  "warmup_epochs": 3.0,
+  "warmup_momentum": 0.8,
+  "lrf": 0.01,
+  "weight_decay": 0.0005,
+  "seed": 0,
+  "deterministic": true,
+  "amp": true,
+  "mosaic": 1.0,
+  "close_mosaic": 10,
+  "hsv_h": 0.015,
+  "hsv_s": 0.7,
+  "hsv_v": 0.4,
+  "fliplr": 0.5,
+  "scale": 0.5,
+  "translate": 0.1,
+  "erasing": 0.4,
+  "trained_on": "/content/ (Colab) -- torch/CUDA/GPU NOT recorded in the checkpoint",
+  "checkpoint_date": "2026-08-09T08:12:20Z"
+ },
+ "arms": {
+  "A00": "Round-0 observed source state (MIXED)",
+  "A10_active_additions": 25,
+  "A11_total_additions": 128,
+  "A11_nonactive_additions": 103,
+  "round0_images": 300
+ },
+ "source_split_policy": "PRESERVED_EXTERNAL_HOLDOUTS -- keremberke train/valid/test are intact in the export and have never been wired into any training build",
+ "pp_status": "PP_DEVELOPMENT_STRESS_SET -- not a holdout, must not select the Stage-A winner, no PP training in Stage A",
+ "test": "SEALED -- not accessed",
+ "primary_matching_criterion": "IoU>=0.5 (MATCH_IOU, tools/eval_temporal_val.py:41) -- pre-existing, not invented here"
+}

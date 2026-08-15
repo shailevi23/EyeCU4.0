@@ -1,0 +1,106 @@
+{
+ "purpose": "missed_role boxes answered U. M was advertised in the UI but the key was never wired, so U was the only way to park a non-active human. Listed here so they can be re-answered with M; nothing is changed automatically.",
+ "not_a_correction": true,
+ "how_to_resolve": "open the image in the review UI, click the box, press M (or the NON-ACTIVE MATCH HUMAN button) if it really is bench/coach/staff; leave it U if the role is genuinely unreadable",
+ "count": 7,
+ "rows": [
+  {
+   "BOX_ID": "train:6790",
+   "IMAGE": "train/54542_jpg.rf.47210cc824c2123921c2d0b4a53efb2f.jpg",
+   "run": "plain_B",
+   "bbox_xywh": [
+    8.0,
+    550.0,
+    38.27,
+    90.42
+   ],
+   "answered_U_utc": "2026-08-12T11:42:04Z",
+   "mode": "missed_role",
+   "current_state": "UNRESOLVED"
+  },
+  {
+   "BOX_ID": "train:11563",
+   "IMAGE": "train/160_pp_jpg.rf.25a6d5d46ee7ec27922d0ccba3dee261.jpg",
+   "run": "pp_B",
+   "bbox_xywh": [
+    11.0,
+    245.0,
+    16.86,
+    44.42
+   ],
+   "answered_U_utc": "2026-08-12T11:48:35Z",
+   "mode": "missed_role",
+   "current_state": "UNRESOLVED"
+  },
+  {
+   "BOX_ID": "train:14067",
+   "IMAGE": "train/54621_jpg.rf.df7a35dedd36b9def601db299806ac57.jpg",
+   "run": "plain_B",
+   "bbox_xywh": [
+    900.0,
+    557.0,
+    48.37,
+    113.86
+   ],
+   "answered_U_utc": "2026-08-12T12:05:01Z",
+   "mode": "missed_role",
+   "current_state": "UNRESOLVED"
+  },
+  {
+   "BOX_ID": "train:14068",
+   "IMAGE": "train/54621_jpg.rf.df7a35dedd36b9def601db299806ac57.jpg",
+   "run": "plain_B",
+   "bbox_xywh": [
+    974.0,
+    561.0,
+    40.95,
+    109.95
+   ],
+   "answered_U_utc": "2026-08-12T12:05:01Z",
+   "mode": "missed_role",
+   "current_state": "UNRESOLVED"
+  },
+  {
+   "BOX_ID": "train:14070",
+   "IMAGE": "train/54621_jpg.rf.df7a35dedd36b9def601db299806ac57.jpg",
+   "run": "plain_B",
+   "bbox_xywh": [
+    1160.0,
+    457.0,
+    37.59,
+    101.65
+   ],
+   "answered_U_utc": "2026-08-12T12:05:02Z",
+   "mode": "missed_role",
+   "current_state": "UNRESOLVED"
+  },
+  {
+   "BOX_ID": "train:14071",
+   "IMAGE": "train/54621_jpg.rf.df7a35dedd36b9def601db299806ac57.jpg",
+   "run": "plain_B",
+   "bbox_xywh": [
+    1259.0,
+    433.0,
+    21.01,
+    94.78
+   ],
+   "answered_U_utc": "2026-08-12T12:05:03Z",
+   "mode": "missed_role",
+   "current_state": "UNRESOLVED"
+  },
+  {
+   "BOX_ID": "train:12772",
+   "IMAGE": "train/55274_jpg.rf.cb6a57d4e6a0960bba48785258879372.jpg",
+   "run": "plain_B",
+   "bbox_xywh": [
+    1167.0,
+    463.0,
+    48.92,
+    77.0
+   ],
+   "answered_U_utc": "2026-08-12T14:09:14Z",
+   "mode": "missed_role",
+   "current_state": "UNRESOLVED"
+  }
+ ]
+}

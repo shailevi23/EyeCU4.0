@@ -1,0 +1,910 @@
+{
+ "note": "Stage 2/3/5: inventory, class audit and ball geometry for the six external sets.\n\nNothing is repaired. Malformed rows are counted and kept as evidence; a dataset\nthat needs repair before it can be read is a fact about the dataset.\n\nOne measurement decision dominates this file. Roboflow applied a resize to five\nof the six exports BEFORE writing the images, so the stored pixels are not the\noriginal frame's pixels. A ball 12 px wide in a 1920x1080 broadcast frame is\n4 px wide after a stretch to 640x640. Ball width is therefore reported twice:\n\n    stored_px      measured in the image as exported -- what a model would see\n    native_equiv   back-projected to 1920x1080 using the declared preprocessing\n\nThe second is an inference from declared metadata, not a measurement, and is\nlabelled as such everywhere. Neither is silently substituted for the other.\n\nTwo things the first pass of this audit got wrong, fixed here:\n\n  * S1 mixes YOLO segmentation rows (class + polygon) into a detection export.\n    Reading fields 1..4 of a polygon row as cx,cy,w,h produces box geometry that\n    is not merely imprecise but meaningless. Polygons are converted to their\n    axis-aligned bounds and counted separately.\n  * S6's \"1280x1280\" images are 16:9 content letterboxed into a square canvas --\n    measured content rows 275..1007, i.e. 1280x~724. Projecting from the canvas\n    height would understate every S6 ball by ~44%. The content box is measured\n    from the pixels, not assumed.",
+ "sources": {
+  "S1": {
+   "source": "S1",
+   "project": "modulov/soccer-3ezqd v1",
+   "declared_classes": [
+    "Ball",
+    "Player",
+    "Ref"
+   ],
+   "proposed_eyecu_mapping": {
+    "0": "ball",
+    "1": "player",
+    "2": "referee"
+   },
+   "declared_image_count": 574,
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [
+    "50% probability of horizontal flip",
+    "Random exposure adjustment of between -6 and +6 percent"
+   ],
+   "measured_content_box_xywh": null,
+   "splits": {
+    "train": {
+     "images": 528,
+     "label_files": 528,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "valid": {
+     "images": 27,
+     "label_files": 27,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "test": {
+     "images": 19,
+     "label_files": 19,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    }
+   },
+   "dimensions": {
+    "640x640": 574
+   },
+   "problems": {
+    "segmentation_polygon_rows": 84
+   },
+   "problem_examples": {},
+   "images_total": 574,
+   "boxes_per_class": {
+    "Player": 6732,
+    "Ball": 498,
+    "Ref": 518
+   },
+   "boxes_per_eyecu_class_IF_MAPPED": {
+    "player": 6732,
+    "goalkeeper": 0,
+    "referee": 518,
+    "ball": 498
+   },
+   "boxes_total": 7748,
+   "empty_label_files": 0,
+   "images_with_zero_boxes": 0,
+   "ball": {
+    "instances": 498,
+    "unique_images_with_ball": 478,
+    "projection": "stretch->1920x1080",
+    "stored_px": {
+     "width": {
+      "median": 7.0,
+      "mean": 8.97,
+      "p10": 5.0,
+      "p25": 6.0,
+      "p75": 8.0,
+      "p90": 10.0
+     },
+     "height": {
+      "median": 13.0,
+      "mean": 16.15,
+      "p10": 10.0,
+      "p25": 11.0,
+      "p75": 14.0,
+      "p90": 17.0
+     },
+     "area": {
+      "median": 91.0,
+      "mean": 230.84,
+      "p10": 54.0,
+      "p25": 72.0,
+      "p75": 112.0,
+      "p90": 143.0
+     },
+     "width_bins": {
+      "<3": 7,
+      "3-5": 56,
+      ">5-8": 355,
+      ">8-12": 36,
+      ">12-20": 0,
+      ">20-40": 44,
+      ">40": 0
+     },
+     "le5": 63,
+     "le8": 418,
+     "le12": 454,
+     "w_frac": {
+      "median": 0.01,
+      "mean": 0.01,
+      "p10": 0.01,
+      "p25": 0.01,
+      "p75": 0.01,
+      "p90": 0.02
+     },
+     "h_frac": {
+      "median": 0.02,
+      "mean": 0.03,
+      "p10": 0.02,
+      "p25": 0.02,
+      "p75": 0.02,
+      "p90": 0.03
+     }
+    },
+    "native_equivalent_1920x1080_INFERRED": {
+     "width": {
+      "median": 21.0,
+      "mean": 26.92,
+      "p10": 15.0,
+      "p25": 18.0,
+      "p75": 24.0,
+      "p90": 30.0
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 0,
+      ">5-8": 0,
+      ">8-12": 8,
+      ">12-20": 147,
+      ">20-40": 299,
+      ">40": 44
+     },
+     "le5": 0,
+     "le8": 0,
+     "le12": 8,
+     "caveat": "derived from the DECLARED Roboflow preprocessing, not measured; the original frames are not in the export"
+    }
+   }
+  },
+  "S2": {
+   "source": "S2",
+   "project": "va-sah7v/football-eitpt v1",
+   "declared_classes": [
+    "Arbitre",
+    "Ballon",
+    "Gardien",
+    "Joueur"
+   ],
+   "proposed_eyecu_mapping": {
+    "0": "referee",
+    "1": "ball",
+    "2": "goalkeeper",
+    "3": "player"
+   },
+   "declared_image_count": 439,
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [
+    "Equal probability of one of the following 90-degree rotations: none, clockwise, counter-clockwise",
+    "Randomly crop between 0 and 20 percent of the image",
+    "Random Gaussian blur of between 0 and 2.5 pixels",
+    "Salt and pepper noise was applied to 5 percent of pixels"
+   ],
+   "measured_content_box_xywh": null,
+   "splits": {
+    "train": {
+     "images": 341,
+     "label_files": 341,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "valid": {
+     "images": 36,
+     "label_files": 36,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "test": {
+     "images": 19,
+     "label_files": 19,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    }
+   },
+   "dimensions": {
+    "640x640": 396
+   },
+   "problems": {},
+   "problem_examples": {},
+   "images_total": 396,
+   "boxes_per_class": {
+    "Joueur": 2321,
+    "Ballon": 232,
+    "Gardien": 288,
+    "Arbitre": 291
+   },
+   "boxes_per_eyecu_class_IF_MAPPED": {
+    "player": 2321,
+    "goalkeeper": 288,
+    "referee": 291,
+    "ball": 232
+   },
+   "boxes_total": 3132,
+   "empty_label_files": 0,
+   "images_with_zero_boxes": 0,
+   "declared_vs_actual": "README declares 439 images, archive contains 396",
+   "ball": {
+    "instances": 232,
+    "unique_images_with_ball": 221,
+    "projection": "stretch->1920x1080",
+    "stored_px": {
+     "width": {
+      "median": 17.0,
+      "mean": 31.79,
+      "p10": 7.0,
+      "p25": 10.0,
+      "p75": 42.12,
+      "p90": 69.7
+     },
+     "height": {
+      "median": 21.25,
+      "mean": 41.18,
+      "p10": 10.0,
+      "p25": 13.38,
+      "p75": 61.0,
+      "p90": 84.4
+     },
+     "area": {
+      "median": 378.62,
+      "mean": 3067.68,
+      "p10": 77.55,
+      "p25": 125.5,
+      "p75": 2969.19,
+      "p90": 5393.25
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 9,
+      ">5-8": 33,
+      ">8-12": 47,
+      ">12-20": 44,
+      ">20-40": 36,
+      ">40": 63
+     },
+     "le5": 9,
+     "le8": 42,
+     "le12": 89,
+     "w_frac": {
+      "median": 0.03,
+      "mean": 0.05,
+      "p10": 0.01,
+      "p25": 0.02,
+      "p75": 0.07,
+      "p90": 0.11
+     },
+     "h_frac": {
+      "median": 0.03,
+      "mean": 0.06,
+      "p10": 0.02,
+      "p25": 0.02,
+      "p75": 0.1,
+      "p90": 0.13
+     }
+    },
+    "native_equivalent_1920x1080_INFERRED": {
+     "width": {
+      "median": 51.0,
+      "mean": 95.37,
+      "p10": 21.0,
+      "p25": 30.0,
+      "p75": 126.38,
+      "p90": 209.1
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 0,
+      ">5-8": 0,
+      ">8-12": 1,
+      ">12-20": 21,
+      ">20-40": 75,
+      ">40": 135
+     },
+     "le5": 0,
+     "le8": 0,
+     "le12": 1,
+     "caveat": "derived from the DECLARED Roboflow preprocessing, not measured; the original frames are not in the export"
+    }
+   }
+  },
+  "S3": {
+   "source": "S3",
+   "project": "roboflow-100/soccer-players-5fuqs v1",
+   "declared_classes": [
+    "football",
+    "player",
+    "referee"
+   ],
+   "proposed_eyecu_mapping": {
+    "0": "ball",
+    "1": "player",
+    "2": "referee"
+   },
+   "declared_image_count": 163,
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [],
+   "measured_content_box_xywh": null,
+   "splits": {
+    "train": {
+     "images": 114,
+     "label_files": 114,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "valid": {
+     "images": 33,
+     "label_files": 33,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "test": {
+     "images": 16,
+     "label_files": 16,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    }
+   },
+   "dimensions": {
+    "640x640": 163
+   },
+   "problems": {},
+   "problem_examples": {},
+   "images_total": 163,
+   "boxes_per_class": {
+    "player": 1766,
+    "referee": 96,
+    "football": 141
+   },
+   "boxes_per_eyecu_class_IF_MAPPED": {
+    "player": 1766,
+    "goalkeeper": 0,
+    "referee": 96,
+    "ball": 141
+   },
+   "boxes_total": 2003,
+   "empty_label_files": 0,
+   "images_with_zero_boxes": 0,
+   "ball": {
+    "instances": 141,
+    "unique_images_with_ball": 141,
+    "projection": "stretch->1920x1080",
+    "stored_px": {
+     "width": {
+      "median": 13.0,
+      "mean": 12.57,
+      "p10": 9.5,
+      "p25": 11.0,
+      "p75": 14.5,
+      "p90": 16.0
+     },
+     "height": {
+      "median": 20.0,
+      "mean": 20.48,
+      "p10": 15.0,
+      "p25": 17.0,
+      "p75": 23.0,
+      "p90": 25.5
+     },
+     "area": {
+      "median": 260.0,
+      "mean": 263.91,
+      "p10": 161.5,
+      "p25": 190.0,
+      "p75": 331.5,
+      "p90": 369.75
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 0,
+      ">5-8": 3,
+      ">8-12": 56,
+      ">12-20": 82,
+      ">20-40": 0,
+      ">40": 0
+     },
+     "le5": 0,
+     "le8": 3,
+     "le12": 59,
+     "w_frac": {
+      "median": 0.02,
+      "mean": 0.02,
+      "p10": 0.01,
+      "p25": 0.02,
+      "p75": 0.02,
+      "p90": 0.03
+     },
+     "h_frac": {
+      "median": 0.03,
+      "mean": 0.03,
+      "p10": 0.02,
+      "p25": 0.03,
+      "p75": 0.04,
+      "p90": 0.04
+     }
+    },
+    "native_equivalent_1920x1080_INFERRED": {
+     "width": {
+      "median": 39.0,
+      "mean": 37.71,
+      "p10": 28.5,
+      "p25": 33.0,
+      "p75": 43.5,
+      "p90": 48.0
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 0,
+      ">5-8": 0,
+      ">8-12": 0,
+      ">12-20": 0,
+      ">20-40": 93,
+      ">40": 48
+     },
+     "le5": 0,
+     "le8": 0,
+     "le12": 0,
+     "caveat": "derived from the DECLARED Roboflow preprocessing, not measured; the original frames are not in the export"
+    }
+   }
+  },
+  "S4": {
+   "source": "S4",
+   "project": "simon6048/soccer-xwvv0 v1",
+   "declared_classes": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "proposed_eyecu_mapping": {
+    "0": "ball",
+    "1": "goalkeeper",
+    "2": "player",
+    "3": "referee"
+   },
+   "declared_image_count": 272,
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [],
+   "measured_content_box_xywh": null,
+   "splits": {
+    "train": {
+     "images": 211,
+     "label_files": 211,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "valid": {
+     "images": 41,
+     "label_files": 41,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "test": {
+     "images": 20,
+     "label_files": 20,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    }
+   },
+   "dimensions": {
+    "640x640": 272
+   },
+   "problems": {},
+   "problem_examples": {},
+   "images_total": 272,
+   "boxes_per_class": {
+    "3": 622,
+    "2": 5431,
+    "0": 230,
+    "1": 185
+   },
+   "boxes_per_eyecu_class_IF_MAPPED": {
+    "player": 5431,
+    "goalkeeper": 185,
+    "referee": 622,
+    "ball": 230
+   },
+   "boxes_total": 6468,
+   "empty_label_files": 0,
+   "images_with_zero_boxes": 0,
+   "ball": {
+    "instances": 230,
+    "unique_images_with_ball": 228,
+    "projection": "stretch->1920x1080",
+    "stored_px": {
+     "width": {
+      "median": 4.0,
+      "mean": 4.68,
+      "p10": 3.0,
+      "p25": 3.0,
+      "p75": 6.0,
+      "p90": 7.0
+     },
+     "height": {
+      "median": 7.0,
+      "mean": 6.33,
+      "p10": 4.0,
+      "p25": 4.25,
+      "p75": 8.0,
+      "p90": 9.0
+     },
+     "area": {
+      "median": 28.0,
+      "mean": 28.58,
+      "p10": 18.0,
+      "p25": 21.0,
+      "p75": 32.0,
+      "p90": 45.0
+     },
+     "width_bins": {
+      "<3": 62,
+      "3-5": 106,
+      ">5-8": 57,
+      ">8-12": 5,
+      ">12-20": 0,
+      ">20-40": 0,
+      ">40": 0
+     },
+     "le5": 168,
+     "le8": 225,
+     "le12": 230,
+     "w_frac": {
+      "median": 0.01,
+      "mean": 0.01,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p75": 0.01,
+      "p90": 0.01
+     },
+     "h_frac": {
+      "median": 0.01,
+      "mean": 0.01,
+      "p10": 0.01,
+      "p25": 0.01,
+      "p75": 0.01,
+      "p90": 0.01
+     }
+    },
+    "native_equivalent_1920x1080_INFERRED": {
+     "width": {
+      "median": 12.0,
+      "mean": 14.03,
+      "p10": 9.0,
+      "p25": 9.0,
+      "p75": 18.0,
+      "p90": 21.0
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 0,
+      ">5-8": 2,
+      ">8-12": 128,
+      ">12-20": 69,
+      ">20-40": 31,
+      ">40": 0
+     },
+     "le5": 0,
+     "le8": 2,
+     "le12": 130,
+     "caveat": "derived from the DECLARED Roboflow preprocessing, not measured; the original frames are not in the export"
+    }
+   }
+  },
+  "S5": {
+   "source": "S5",
+   "project": "mishahal-salim-nuz8t/soccer-xvqxc v1",
+   "declared_classes": [
+    "ball"
+   ],
+   "proposed_eyecu_mapping": {
+    "0": "ball"
+   },
+   "declared_image_count": 511,
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)"
+   ],
+   "augmentation": [],
+   "measured_content_box_xywh": null,
+   "splits": {
+    "train": {
+     "images": 345,
+     "label_files": 345,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "valid": {
+     "images": 94,
+     "label_files": 94,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    },
+    "test": {
+     "images": 48,
+     "label_files": 48,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    }
+   },
+   "dimensions": {
+    "2560x1440": 487
+   },
+   "problems": {},
+   "problem_examples": {},
+   "images_total": 487,
+   "boxes_per_class": {
+    "ball": 438
+   },
+   "boxes_per_eyecu_class_IF_MAPPED": {
+    "player": 0,
+    "goalkeeper": 0,
+    "referee": 0,
+    "ball": 438
+   },
+   "boxes_total": 438,
+   "empty_label_files": 63,
+   "images_with_zero_boxes": 63,
+   "declared_vs_actual": "README declares 511 images, archive contains 487",
+   "ball": {
+    "instances": 438,
+    "unique_images_with_ball": 424,
+    "projection": "none (exported at original size)",
+    "stored_px": {
+     "width": {
+      "median": 51.01,
+      "mean": 70.52,
+      "p10": 30.46,
+      "p25": 36.0,
+      "p75": 89.75,
+      "p90": 134.3
+     },
+     "height": {
+      "median": 50.0,
+      "mean": 66.87,
+      "p10": 30.11,
+      "p25": 36.0,
+      "p75": 84.0,
+      "p90": 126.6
+     },
+     "area": {
+      "median": 2596.0,
+      "mean": 7445.28,
+      "p10": 960.0,
+      "p25": 1288.7,
+      "p75": 7426.75,
+      "p90": 16934.4
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 0,
+      ">5-8": 0,
+      ">8-12": 0,
+      ">12-20": 3,
+      ">20-40": 143,
+      ">40": 292
+     },
+     "le5": 0,
+     "le8": 0,
+     "le12": 0,
+     "w_frac": {
+      "median": 0.02,
+      "mean": 0.03,
+      "p10": 0.01,
+      "p25": 0.01,
+      "p75": 0.04,
+      "p90": 0.05
+     },
+     "h_frac": {
+      "median": 0.03,
+      "mean": 0.05,
+      "p10": 0.02,
+      "p25": 0.03,
+      "p75": 0.06,
+      "p90": 0.09
+     }
+    },
+    "native_equivalent_1920x1080_INFERRED": {
+     "width": {
+      "median": 51.01,
+      "mean": 70.52,
+      "p10": 30.46,
+      "p25": 36.0,
+      "p75": 89.75,
+      "p90": 134.3
+     },
+     "width_bins": {
+      "<3": 0,
+      "3-5": 0,
+      ">5-8": 0,
+      ">8-12": 0,
+      ">12-20": 3,
+      ">20-40": 143,
+      ">40": 292
+     },
+     "le5": 0,
+     "le8": 0,
+     "le12": 0,
+     "caveat": "derived from the DECLARED Roboflow preprocessing, not measured; the original frames are not in the export"
+    }
+   }
+  },
+  "S6": {
+   "source": "S6",
+   "project": "old-storm-hhcgf/soccer-f6mhl v1",
+   "declared_classes": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "proposed_eyecu_mapping": {
+    "0": "ball",
+    "1": "goalkeeper",
+    "2": "player",
+    "3": "referee"
+   },
+   "declared_image_count": 1702,
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 1280x1280 (Fill (with center crop))"
+   ],
+   "augmentation": [],
+   "measured_content_box_xywh": [
+    0,
+    279,
+    1280,
+    721
+   ],
+   "splits": {
+    "train": {
+     "images": 1702,
+     "label_files": 1702,
+     "images_without_label": 0,
+     "labels_without_image": 0
+    }
+   },
+   "dimensions": {
+    "1280x1280": 1702
+   },
+   "problems": {},
+   "problem_examples": {},
+   "letterbox_note": "canvas is padded: real content is 1280x721 px inside the stored canvas; the padding is not image data",
+   "images_total": 1702,
+   "boxes_per_class": {
+    "3": 2196,
+    "2": 23759,
+    "0": 1070,
+    "1": 753
+   },
+   "boxes_per_eyecu_class_IF_MAPPED": {
+    "player": 23759,
+    "goalkeeper": 753,
+    "referee": 2196,
+    "ball": 1070
+   },
+   "boxes_total": 27778,
+   "empty_label_files": 342,
+   "images_with_zero_boxes": 342,
+   "ball": {
+    "instances": 1070,
+    "unique_images_with_ball": 1034,
+    "projection": "uniform x1.498 against measured content height 721px",
+    "stored_px": {
+     "width": {
+      "median": 10.31,
+      "mean": 12.17,
+      "p10": 8.0,
+      "p25": 9.0,
+      "p75": 12.44,
+      "p90": 17.0
+     },
+     "height": {
+      "median": 11.0,
+      "mean": 12.33,
+      "p10": 8.0,
+      "p25": 9.0,
+      "p75": 12.0,
+      "p90": 16.0
+     },
+     "area": {
+      "median": 110.0,
+      "mean": 341.11,
+      "p10": 72.0,
+      "p25": 90.0,
+      "p75": 149.09,
+      "p90": 259.54
+     },
+     "width_bins": {
+      "<3": 1,
+      "3-5": 1,
+      ">5-8": 167,
+      ">8-12": 628,
+      ">12-20": 205,
+      ">20-40": 58,
+      ">40": 10
+     },
+     "le5": 2,
+     "le8": 169,
+     "le12": 797,
+     "w_frac": {
+      "median": 0.01,
+      "mean": 0.01,
+      "p10": 0.01,
+      "p25": 0.01,
+      "p75": 0.01,
+      "p90": 0.01
+     },
+     "h_frac": {
+      "median": 0.01,
+      "mean": 0.01,
+      "p10": 0.01,
+      "p25": 0.01,
+      "p75": 0.01,
+      "p90": 0.01
+     }
+    },
+    "native_equivalent_1920x1080_INFERRED": {
+     "width": {
+      "median": 15.45,
+      "mean": 18.23,
+      "p10": 11.98,
+      "p25": 13.48,
+      "p75": 18.63,
+      "p90": 25.46
+     },
+     "width_bins": {
+      "<3": 1,
+      "3-5": 0,
+      ">5-8": 1,
+      ">8-12": 167,
+      ">12-20": 692,
+      ">20-40": 184,
+      ">40": 25
+     },
+     "le5": 1,
+     "le8": 2,
+     "le12": 169,
+     "caveat": "derived from the DECLARED Roboflow preprocessing, not measured; the original frames are not in the export"
+    }
+   }
+  }
+ },
+ "combined_ball": {
+  "instances": 2609,
+  "unique_images_with_ball": 2526,
+  "stored_px": {
+   "median": 10.0,
+   "mean": 22.46,
+   "p10": 6.0,
+   "p25": 8.0,
+   "p75": 19.75,
+   "p90": 53.1,
+   "width_bins": {
+    "<3": 70,
+    "3-5": 172,
+    ">5-8": 615,
+    ">8-12": 772,
+    ">12-20": 334,
+    ">20-40": 281,
+    ">40": 365
+   },
+   "le5": 242,
+   "le8": 857,
+   "le12": 1629
+  },
+  "native_equivalent_1920x1080_INFERRED": {
+   "median": 21.0,
+   "width_bins": {
+    "<3": 1,
+    "3-5": 0,
+    ">5-8": 3,
+    ">8-12": 304,
+    ">12-20": 932,
+    ">20-40": 825,
+    ">40": 544
+   },
+   "le5": 1,
+   "le8": 4,
+   "le12": 308
+  }
+ }
+}

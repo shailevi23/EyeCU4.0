@@ -1,0 +1,5426 @@
+[
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_2_png_jpg.rf.1ce866a3c6c53083a86066d6ac95620a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 21,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 21,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_2_png_jpg.rf.f3f2ff047a5999f115148768a8682cf4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 21,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 21,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_3_png_jpg.rf.118e6d73a5de82892618092d964202eb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"1": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"goalkeeper": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_3_png_jpg.rf.55bd100b78513eb50cdf3fc2f113aadf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"1": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"goalkeeper": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_4_png_jpg.rf.cb9517418cc1a2e7aaa0bbf03edc19fb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_5_png_jpg.rf.5f51e0a6ee50303a623510b289fc3de3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_5_png_jpg.rf.dd154a308bcf1a6009d358c34a5677e9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_0_7_png_jpg.rf.91dd7c3f51affb16e7832ff2d4e223ea.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_3_10_png_jpg.rf.01fd0396b84382312616e1b38779018e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_3_10_png_jpg.rf.0b8e8ccb07221d80ade148f37241940e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_3_2_png_jpg.rf.2627344737233684ce80c384ad91371c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_3_5_png_jpg.rf.b52509522285aab1c18962501e5eec7e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_3_5_png_jpg.rf.cb7f936924811e07e8b58cb09ddb476c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_2_png_jpg.rf.5569dda1a021eb55ead7f3409c413d88.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_2_png_jpg.rf.76c995e3b2ec5d427ff137ce99723a01.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_4_png_jpg.rf.f4f9e5dc7430dc4725324d6a1601de4e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_5_png_jpg.rf.df7d8b749a6afb3f8ee8edfd10f58abb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"ball": 1,
+"referee": 2,
+"player": 20
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_6_png_jpg.rf.60250d2348d7aaf8ffd2f4ee70b5065b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"0": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"ball": 1,
+"player": 20
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_6_png_jpg.rf.7a7d31a4c8f7c05c72d03648abf6ee25.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"0": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"ball": 1,
+"player": 20
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_7_png_jpg.rf.371aeb6c9798f8072b69c5cee4238bac.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 19,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 19,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "08fd33_6_7_png_jpg.rf.6a9957ecc32604d69c928d490fe8c751.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 19,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 19,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "121364_7_8_png_jpg.rf.76e36b9aac255184b1cade0892c0c4db.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "121364_9_1_png_jpg.rf.cb28a443d8cbbdfdbe77614a3d6a6b6b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "121364_9_6_png_jpg.rf.c47bcfadeda5372fbe98457949f49b4a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_1_10_png_jpg.rf.2231e569ce31d9c1123655332bd0f1e5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_1_8_png_jpg.rf.0fe4186ba428899241d2c1ff0c87cbcc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_1_8_png_jpg.rf.1af7e056afe38aad4ed41620f956514d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_1_9_png_jpg.rf.547f216c002e15c5b2fc868ab29c56f5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_1_9_png_jpg.rf.8d9d0c8410a0506acc2b3b7bbfe29e06.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_9_2_png_jpg.rf.0df5c13b2efa410efbba2ed15cc506e5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_9_3_png_jpg.rf.f43118f0753d1c7e6ff59fd45d55d569.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 3
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 3
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "2e57b9_9_7_png_jpg.rf.39fa31051d1d8031e285b340da6ea967.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_3_3_png_jpg.rf.9e632b2a1db9f0495d8e6b6c9e5389e5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_3_3_png_jpg.rf.b8114264825bab38634dd0f86394892f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_3_5_png_jpg.rf.64aad48a2085c3cc8bb6c3d09c53263c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_3_7_png_jpg.rf.9475b5fd39cbc9296cec1d8a3104f6c3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_3_7_png_jpg.rf.c95d16db89a027b47b20fe7297ba0930.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_7_1_png_jpg.rf.1f3e8ae127e0ca7c9f617e99f1485f7f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_7_3_png_jpg.rf.72350ba45fda1760dd04a8a7790cf75c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "40cd38_7_3_png_jpg.rf.a068aa35341360764c4eef6e282c7c4e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_1_7_png_jpg.rf.796469670b6821e12067c3ecfcc6a467.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_1_7_png_jpg.rf.a3c3edf20e459e76ebbe614ce5e35d3d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_3_1_png_jpg.rf.1ba7adea41508edddd7494b33d347cdf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 2,
+"ball": 1
+},
+"n": 26,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_3_1_png_jpg.rf.7f4dc9068fe6a7ed3d6966f532048ed8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 2,
+"ball": 1
+},
+"n": 26,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_3_3_png_jpg.rf.85a63950b0420f0dbe09fdd861d106a4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_3_4_png_jpg.rf.936311870f549941992f11e3455d340a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 2,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 2,
+"referee": 3,
+"ball": 1
+},
+"n": 26,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_3_5_png_jpg.rf.3acaf00d3f57feb09b71a523d3700da1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 2,
+"2": 19,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 2,
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_3_5_png_jpg.rf.9fcc1688af7990fc185d80ef8a6c0ff8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 2,
+"2": 19,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 2,
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_5_1_png_jpg.rf.95b1781839be8d21b5c2fe6456ea85e8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"player": 20
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_5_2_png_jpg.rf.88a1f9e20513c1e20c9e233fe1579ccd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_5_2_png_jpg.rf.8c815b1d6f560dcaa5208ec383eaa637.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_5_4_png_jpg.rf.55c44f9c803136181a506b601d33caba.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_5_7_png_jpg.rf.18454870de19f31d297e6b2d52978057.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_7_3_png_jpg.rf.a264885047b79f6da2422cdefc506728.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_7_4_png_jpg.rf.ea1e7f34b96f25cf328d8e96d681d573.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_7_4_png_jpg.rf.ede283e54e0670b2b273e95ce77a0412.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_7_5_png_jpg.rf.ab4d6d94467ed8fe1f09b281f81cb642.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "42ba34_9_8_png_jpg.rf.273383b5e3962d2411c23e78f47caadc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 3
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 3
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_1_1_png_jpg.rf.14fb2f438d973ebb23af127c210e1f68.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 20,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 20,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_1_2_png_jpg.rf.06b208bc729bb67b25c2190fcc53e904.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"1": 1,
+"3": 3
+},
+"eyecu": {
+"player": 19,
+"goalkeeper": 1,
+"referee": 3
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_1_2_png_jpg.rf.7c63981796acaf23b3b0ceb52e3c42fa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"1": 1,
+"3": 3
+},
+"eyecu": {
+"player": 19,
+"goalkeeper": 1,
+"referee": 3
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_1_3_png_jpg.rf.23965ed3400b4d6e5b2a28981ed1db4f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_1_3_png_jpg.rf.750041deac1a615c70fa50dad9a19ad8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_1_5_png_jpg.rf.62a55bf4791837ce863dab3589270ad2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"0": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 3,
+"ball": 1,
+"player": 20
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_1_5_png_jpg.rf.8047af84d96852f6bf0638b6d4f35d50.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"0": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 3,
+"ball": 1,
+"player": 20
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_3_2_png_jpg.rf.0e253440108fc454007dea82065055e2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"player": 20
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_3_2_png_jpg.rf.f48a63aa373afe2be989573474dcbf66.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"player": 20
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_5_6_png_jpg.rf.f77da4a1c901f490ad3ed7e55e80002d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_7_2_png_jpg.rf.ed85171d32401731f2e48a152c31deb2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_7_5_png_jpg.rf.0c3b316f3fa2c336d3ecd9d553fcd514.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 2,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_7_5_png_jpg.rf.7e64ab70baca91aaef0d0b3b077adaaa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 2,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "4b770a_7_6_png_jpg.rf.6161f815630d6bc48f6f5f570e7ff030.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"0": 1,
+"3": 2,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 2,
+"goalkeeper": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_1_10_png_jpg.rf.97facbbe2e051221a20d6447289e49a5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_1_3_png_jpg.rf.557aab88162e5253fcbc662fb2b67392.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_1_3_png_jpg.rf.7b55296cb238769951eba13615c4d2c1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_3_10_png_jpg.rf.48d6c3787ad192c3baf4c1d3907369d5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 3,
+"1": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 3,
+"goalkeeper": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_3_3_png_jpg.rf.6639077d9c6badabb2a91b6cd0f6a379.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_3_7_png_jpg.rf.00ddce0fd46758c3b13bfeb639cf6953.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 21
+},
+"eyecu": {
+"referee": 3,
+"player": 21
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_3_7_png_jpg.rf.fcdea559c9a174dd4118209bd96caa41.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 21
+},
+"eyecu": {
+"referee": 3,
+"player": 21
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_5_4_png_jpg.rf.0f22a4653554cf902092de2764b3cfba.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"1": 1,
+"3": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"goalkeeper": 1,
+"referee": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_5_5_png_jpg.rf.665d55a00e918600ee5e1e709cb1b77c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 1,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_5_6_png_jpg.rf.3888f52c4db32da6fa0839e53206242c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"0": 1,
+"3": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"ball": 1,
+"referee": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_5_6_png_jpg.rf.ca2be73b23531ef4bf8ffa2cc0100780.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"0": 1,
+"3": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"ball": 1,
+"referee": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_5_7_png_jpg.rf.e63a690bd9e503e654d00ee0acd107d0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_10_png_jpg.rf.50bbfb91091deb3d48fcf30eb425936e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_10_png_jpg.rf.716d90a860317db9668006a0e0381a07.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_2_png_jpg.rf.8c95d6ab7d59f226affe7bd130624991.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_2_png_jpg.rf.c096893f87ce8085b8c3e7d5a8998cfa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_5_png_jpg.rf.c332f69f9f60af5f1d6af8a1586e6f9b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_5_png_jpg.rf.daf9c71296525eb4433f22b3aa3e71bf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_6_png_jpg.rf.4eced65772ac10c7b95c2547b0ef5211.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_6_png_jpg.rf.fea68af34722b5ed03176c7119f49506.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_7_png_jpg.rf.030416f716fa3ee5782ab01d88fd673c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"0": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"ball": 2
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_7_7_png_jpg.rf.5034a7382556c100bba88ea2a03e4d09.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"0": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"ball": 2
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_9_10_png_jpg.rf.64e71416c20c0186cbfb2e92b9510348.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 3,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_9_9_png_jpg.rf.1138d699941752d671224b2017f9868b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "538438_9_9_png_jpg.rf.98c25d1b12b4393b076fb1e527fd0a24.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_1_8_png_jpg.rf.2ea7fbaf5998a0f8fb5658b6239f0be4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_1_9_png_jpg.rf.1ce38be08c5057a185a0e15b8cdd8b3b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_1_9_png_jpg.rf.9507ef35b89ac47f9830e7521c661074.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_3_8_png_jpg.rf.cb86d9245edb2acc0ade46e982a0d2a6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 1,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_3_8_png_jpg.rf.f2cd2254aae1d414a2827ecd159345aa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 1,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_3_9_png_jpg.rf.19ff29ee585c5095167bae2d76b2f5eb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 1
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_5_8_png_jpg.rf.85dfe2cfce3b36fc3968c462f18ec685.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_5_9_png_jpg.rf.e30becbfc2e23dae1fcbc2ad18e8e5eb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_5_9_png_jpg.rf.e5c3016476eac10214adc151121bdd87.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_7_8_png_jpg.rf.cb123b10ac6ef9fc8f2310ed52811006.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "54745b_9_3_png_jpg.rf.a569bcb2f8760a022134fd446d9c4e1e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 1,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "55c9d1_3_8_png_jpg.rf.d6d0e206be441e72a4263c631e3cee17.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "55c9d1_3_9_png_jpg.rf.58188549a736783c35482382418e9ec0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_1_8_png_jpg.rf.9ea679c9288640dd5ae5be32a73965aa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 21,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 21,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_1_8_png_jpg.rf.f4648cc3c9854dd2d403114a53e9d9f3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 21,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 21,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_3_8_png_jpg.rf.1ec480645cafc9a4f8484727c3a9fd99.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_5_8_png_jpg.rf.a59be6f2391d3d83477216d6a5f53495.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_5_9_png_jpg.rf.430a2c7dd01f8bf67260f954595d09cd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"1": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"goalkeeper": 1,
+"player": 20
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_5_9_png_jpg.rf.e9cee61c6e0b11b8e4ea7d290aa3db26.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"1": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"goalkeeper": 1,
+"player": 20
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_7_9_png_jpg.rf.9bdb7b42db73ab756ca248ede860ffcf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_7_9_png_jpg.rf.c0b88ff211a9c17ff92abbae0503ae1c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_9_10_png_jpg.rf.77b2fc5a5a4e6799a09e7c94c509a095.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"1": 1,
+"3": 3
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 3
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_9_10_png_jpg.rf.a59a57540556c155ec325cc3b64f8738.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"1": 1,
+"3": 3
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 3
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_9_2_png_jpg.rf.d3600782e2fae31518e0fab092f5a289.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_9_3_png_jpg.rf.14d4eb23362b858d4766ab30d34630e6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_9_5_png_jpg.rf.11e7a29b3f18b6480e1c134792d04814.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "573e61_9_7_png_jpg.rf.01dd509998f842ba0773c9695ed9caff.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 19,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 19,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_1_png_jpg.rf.563e1da3f8634596735639f87ce3f1ac.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_1_png_jpg.rf.9a71e8a0ac7007b94d9daf520d81b81f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_2_png_jpg.rf.1641df9a5ac8355140f3dc88b6efe7fb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_3_png_jpg.rf.44aa1988d26a1ff104252a26b975b76c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_3_png_jpg.rf.b7b8df9b18d85f975ee94d68efc281d4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_4_png_jpg.rf.3e37e92c4728e9f9ba4138ae1d91da9c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_4_png_jpg.rf.9ea369186800dfc0db9cebf58ad56a93.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_5_png_jpg.rf.2115d7f649ebceb062d98cc0f69c2276.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 19,
+"1": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 19,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_1_5_png_jpg.rf.4c7f6a0dc31052d377cc3e73bea7aac8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 19,
+"1": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 19,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_3_10_png_jpg.rf.e807e3909938577d18c676184206866f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 1,
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 1,
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_3_1_png_jpg.rf.1c01189352ffcb2e3ddcee00485ec393.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_3_2_png_jpg.rf.1ab7112f5a5840e1e9aaf64cddcec67f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 3,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 3,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_3_2_png_jpg.rf.47936d205f5ae217050ec72b753fc0dc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 3,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 3,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_3_3_png_jpg.rf.2d40239f8c8dda1e1f3449888f03a753.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 1,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 1,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_3_3_png_jpg.rf.6f06c85bcbc4035b713cd5ea7baf1234.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 1,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 1,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_3_4_png_jpg.rf.51f60d020e706de5457ee8b6fbf05f38.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_10_png_jpg.rf.7e37f73174d5070331cb55734919b0d5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_1_png_jpg.rf.07dcbaddb08da75aa80e26da45cd22ec.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_1_png_jpg.rf.6fb3caef20dd517e45328dcd3aa5e56c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_2_png_jpg.rf.cf9dcb4ec107e729c81e70c3af3f795a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_3_png_jpg.rf.6f21989e9fb683269ef4418b6f9ee494.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"0": 1,
+"1": 1,
+"3": 1
+},
+"eyecu": {
+"player": 21,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_4_png_jpg.rf.7555936cbb90b02098f12ccc288665a7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_4_png_jpg.rf.ad2bf7b9a905b21b1b9f07fac9f1d342.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_5_png_jpg.rf.cfd92f868ea072470caa300cf92b36ae.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_6_png_jpg.rf.12ba383b30f51097bcdfc08135a39165.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_5_7_png_jpg.rf.76acab2d59aa2e7794cade69d09342d2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_7_10_png_jpg.rf.3a6160788cba95ad628379702d320158.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_7_3_png_jpg.rf.448c1166191c531917ae7205a5327b50.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"0": 1,
+"3": 3
+},
+"eyecu": {
+"player": 21,
+"ball": 1,
+"referee": 3
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_7_3_png_jpg.rf.6798f98789e3016bfaaa5c919909a6b7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"0": 1,
+"3": 3
+},
+"eyecu": {
+"player": 21,
+"ball": 1,
+"referee": 3
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "744b27_9_10_png_jpg.rf.14f36b058e8275828963afe17a7d76ef.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_1_3_png_jpg.rf.04901b30d35417581cdfdac3636366cd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_1_4_png_jpg.rf.19b2de45b3476c551101a1a41f790d18.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2,
+"1": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_1_4_png_jpg.rf.3c80331da76e21a413721f6b2af4c63e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2,
+"1": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_1_7_png_jpg.rf.9ca1e51b7fe08ad13ffe0275ae8f5bad.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_1_7_png_jpg.rf.b5ef3bd64ef4aa55d5c20e95ab799512.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_2_png_jpg.rf.456db33957932378a71d7fc94bea3190.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"0": 1,
+"2": 19
+},
+"eyecu": {
+"referee": 2,
+"ball": 1,
+"player": 19
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_2_png_jpg.rf.4e3ede8aadf18d086402d6d5f4f8bc41.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"0": 1,
+"2": 19
+},
+"eyecu": {
+"referee": 2,
+"ball": 1,
+"player": 19
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_4_png_jpg.rf.0cfef15630cc0f14ad1635647e214952.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_4_png_jpg.rf.62a80ad145e04af3f83fcfcb6a76886e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_5_png_jpg.rf.0055783a3dab1b17476b0e032cf197ea.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"0": 1,
+"1": 1,
+"3": 2
+},
+"eyecu": {
+"player": 21,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 2
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_5_png_jpg.rf.d26bc846c08fd24c8acae2ab5cd255ce.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"0": 1,
+"1": 1,
+"3": 2
+},
+"eyecu": {
+"player": 21,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 2
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_6_png_jpg.rf.8314cf0130c79f3c3e63bf66acb1d0f2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_6_png_jpg.rf.f503373d129c92ce1f6ab036e9349543.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_3_7_png_jpg.rf.38ce9328f20d1b3c7fba511226f74a95.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_1_png_jpg.rf.1d63afeff527b408c88432fd296b1719.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"player": 20
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_1_png_jpg.rf.3b566d398efcbf42eb1ee650b03fe855.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"player": 20
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_2_png_jpg.rf.827996ad59f0c9f82befcafc60d7b8c7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 2
+},
+"eyecu": {
+"player": 19,
+"referee": 2
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_3_png_jpg.rf.43501051419eda3d7792b77a6c3108a4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_3_png_jpg.rf.6e00b411dcf4d06dc74aa10f29119e99.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_4_png_jpg.rf.298aaac54acb01e198ce1d9b2dba7189.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_4_png_jpg.rf.6ffde398ba58b33fddfc7b71bcf8585d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_5_png_jpg.rf.a031d99c8fec6d4d885920fdb3709b57.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_5_png_jpg.rf.fcf671abf4418008a235449d65e456b5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_6_png_jpg.rf.6fff6acf75a2ae6b4beb2bb4d9655d60.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_5_7_png_jpg.rf.e9c6b95883da8c0e42cab1b556e41bd5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 1,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_1_png_jpg.rf.0e71aef8889b095a430b9467332446d3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_1_png_jpg.rf.de493bb4ef79b3f316abdebb5c4a0ee7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_2_png_jpg.rf.4aa72d1c6ed166c69296be1a39c8defc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_2_png_jpg.rf.f72371dea666e001d3506cbc51ba89fb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_3_png_jpg.rf.0569d6285b9f804049f53aa9c6c260ef.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_3_png_jpg.rf.5991b7e6615ac98fd72b4f6731b4e898.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_6_png_jpg.rf.37de81228e4db53c02cfa5d4db5a15d6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 2,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_6_png_jpg.rf.b81f22504cb5b74dfeed40036de455b0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 2,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_7_png_jpg.rf.265d43783d1b5681b7390aba6776de7c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 1,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 1,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_7_7_png_jpg.rf.f723ce038e4eb1e0a39a686950f35759.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"3": 1,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 1,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "798b45_9_9_png_jpg.rf.cb67999dffdcc163115f1b236816252c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "a9f16c_5_8_png_jpg.rf.05c2cdf54b760347697db8965b3d2256.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "a9f16c_8_1_png_jpg.rf.67c2c4a26bf9fedf51a6c8278ef1221e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"1": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"goalkeeper": 2,
+"player": 20,
+"ball": 1
+},
+"n": 26,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "a9f16c_8_3_png_jpg.rf.1a7d2eb073047ab68bd6aed9f96cc5e9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 20,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 20,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "a9f16c_8_4_png_jpg.rf.9f05715fd5c61a487de008e43184933f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 21,
+"1": 1,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 21,
+"goalkeeper": 1,
+"referee": 2
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "a9f16c_8_5_png_jpg.rf.9d1e28283cd10287b55350ef4fbef6d9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "c01561_1_2_png_jpg.rf.8f906dfc0c200067274e63d1e4f9104a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "c01561_1_2_png_jpg.rf.a9c1cfe5199ca50ebb23b7fe0727d586.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "c01561_1_5_png_jpg.rf.b3fe883e2f498a77601a57722bf6be42.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "c01561_1_5_png_jpg.rf.b8c89d0c2d0411301224ad4d9d6d38bd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "c01561_1_6_png_jpg.rf.f1e5924f1cd506fd90c9d8016bc7cdce.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "c01561_1_7_png_jpg.rf.b033df2cce552c767609cfda37144fed.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_0_1_png_jpg.rf.1009c7c7de262c3e297a2aff4caf7fd8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 18,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 2,
+"ball": 1
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_0_1_png_jpg.rf.8932835dfb63c6cd9b208afd2886046b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 18,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 2,
+"ball": 1
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_0_3_png_jpg.rf.7ee1dbced550069283510e5dc19253af.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_0_4_png_jpg.rf.834a28282e948277c1ec68f56d6812e6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_0_4_png_jpg.rf.c4ce57a9f9946347dab54933e1f3ff70.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_0_5_png_jpg.rf.b7d2fc4d60895c14d55a7e08715c38a8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_9_10_png_jpg.rf.17c989d43773ea76237127e9a0272be3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"0": 1,
+"1": 1,
+"3": 1
+},
+"eyecu": {
+"player": 21,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_9_8_png_jpg.rf.c5423bf61546f962a1e83a92c0efb04b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_9_9_png_jpg.rf.6c3d7279346765a8385b12a0c11e2697.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "train",
+"file": "cd987c_9_9_png_jpg.rf.8fa759f771269112dceccd55f6d394b4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "08fd33_6_1_png_jpg.rf.79049e3f753dc0f5e8134b654ca99047.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "08fd33_9_9_png_jpg.rf.9928f4985cf54fded24233d078fd8798.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"0": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 3,
+"ball": 1,
+"player": 20
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "121364_9_4_png_jpg.rf.be39e085b89225271ba1b4093f717346.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 20,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "121364_9_7_png_jpg.rf.9ea6dd7fc5e8a19ce9b2c113627f149e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "2e57b9_3_9_png_jpg.rf.86cfae3aa8a2fb1187c5073f8b95f788.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 20,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 20,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "40cd38_3_6_png_jpg.rf.0dc15c28ea20e577444fdb8c0dfc4480.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "40cd38_7_2_png_jpg.rf.e99ff543098577ab393a16b3b9a29891.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"1": 1,
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"ball": 1,
+"goalkeeper": 1,
+"referee": 2,
+"player": 20
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_1_1_png_jpg.rf.29046df2fc7990bdda0fad7c25647a49.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20
+},
+"eyecu": {
+"referee": 2,
+"player": 20
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_1_6_png_jpg.rf.0f8904ea2936ac078a890bea9dafb15d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_3_6_png_jpg.rf.b3bfad6f31dc5383325ba7d50ccbf972.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"1": 2,
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"goalkeeper": 2,
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_3_7_png_jpg.rf.b43a2f64939df0f405b48d73eb019949.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 2,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 2,
+"referee": 2,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_5_3_png_jpg.rf.afed4e5680cb3fc4e22bb8c6f7b9ce34.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_5_6_png_jpg.rf.f35761795deb93a2a7ae8abc4d8adb3b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 1,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 1,
+"goalkeeper": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_7_2_png_jpg.rf.d62da58b6b892d46fccd56289ea63c89.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_7_6_png_jpg.rf.20c0acb4727a572050368c4b30c2302b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 20,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 20,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_7_7_png_jpg.rf.4ae9ba887a599e85fec29fed3f6ea2e2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 19,
+"1": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 19,
+"goalkeeper": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "42ba34_9_9_png_jpg.rf.e7e2e222d57f6c98f8498e19516a216a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 2,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 2,
+"referee": 3,
+"ball": 1
+},
+"n": 26,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "4b770a_3_3_png_jpg.rf.4fabb57b5feaf58bf365bc5d7accc1c0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "4b770a_5_4_png_jpg.rf.7e84995e850075e3323790f1d735dbd7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"3": 3,
+"1": 1
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"referee": 3,
+"goalkeeper": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "4b770a_7_4_png_jpg.rf.2a7f27419aaf913e6e4afab8cc351953.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "4b770a_7_7_png_jpg.rf.83eb3e22203dcbb560dc6775ccdeac72.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "4b770a_9_8_png_jpg.rf.e50978547d9a3fc684600ab8ab7b5ccc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 22,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 22,
+"referee": 2,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "538438_1_1_png_jpg.rf.38a4d127c4ee50d9900fb27a46ee049d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "538438_1_2_png_jpg.rf.27a79d3801d12df4608fcc6d139b56b0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "538438_3_1_png_jpg.rf.3ca73162abd21d626a3b51a7d2c21053.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"1": 1,
+"3": 3
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"goalkeeper": 1,
+"referee": 3
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "538438_7_3_png_jpg.rf.59df5041a29820aac175bb8a51e97db0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 2,
+"1": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 2,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "538438_7_4_png_jpg.rf.1d49c67684fa8e5106787235f6316f4d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "54745b_9_1_png_jpg.rf.5383de488201dd332f625a6f43b79b29.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"1": 1,
+"3": 1,
+"0": 1
+},
+"eyecu": {
+"player": 19,
+"goalkeeper": 1,
+"referee": 1,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "54745b_9_7_png_jpg.rf.2916650d287570e1c4ae32335e7f4f47.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"0": 1,
+"1": 1,
+"3": 3
+},
+"eyecu": {
+"player": 20,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 3
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "573e61_3_10_png_jpg.rf.3aef2e9d77c79eaa85d91304cf24e056.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 19,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "573e61_3_9_png_jpg.rf.127f946944816c7684ee076e5bf0a5e5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "573e61_7_8_png_jpg.rf.b93e3a1f5925565d7c04a5e54ae004dd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 21,
+"3": 2,
+"0": 1,
+"1": 1
+},
+"eyecu": {
+"player": 21,
+"referee": 2,
+"ball": 1,
+"goalkeeper": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "573e61_9_1_png_jpg.rf.7b5d90798f8693b4a097617ac6e3d357.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 19,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "744b27_3_5_png_jpg.rf.5f329276d099a9e9209314fe88d9b6d2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 2
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "744b27_7_2_png_jpg.rf.0408bfa0529288fa314dff61381ee85c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 2,
+"ball": 1
+},
+"n": 26,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "798b45_1_5_png_jpg.rf.b782927a0c917742079aa4cfdf350c44.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"0": 1,
+"3": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"ball": 1,
+"referee": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "798b45_3_1_png_jpg.rf.250f8ed78584d1380967b9ef82ec10aa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "a9f16c_2_8_png_jpg.rf.5c70893dc739660c38a7e3cee8e1a033.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"0": 1,
+"3": 3,
+"1": 1
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 3,
+"goalkeeper": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "a9f16c_5_9_png_jpg.rf.5a79529cb63036a56d58c32542afa749.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "a9f16c_8_2_png_jpg.rf.df187b8309de0586de2ba5ce61cd0fbb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "valid",
+"file": "c01561_1_3_png_jpg.rf.a351c350df43c6acf369d445b06a7d49.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "08fd33_0_1_png_jpg.rf.b578d16211c8a269d6c9ad45b268b381.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 20,
+"1": 2,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 20,
+"goalkeeper": 2,
+"ball": 1
+},
+"n": 26,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "08fd33_0_6_png_jpg.rf.7ffad0d6d76a139afee01232c4ada97c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 2,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 20,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "08fd33_6_3_png_jpg.rf.645169300b4a1146c5cf12a3977fb9a8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "121364_9_5_png_jpg.rf.c5a0b4eb671dbb4a951065e09262469e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "2e57b9_7_10_png_jpg.rf.0c130b4daf725773aa13c45a8b03ea4e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "2e57b9_7_8_png_jpg.rf.e3dc1981cb03fabbbb8c2b35862557db.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"0": 1,
+"2": 20
+},
+"eyecu": {
+"referee": 3,
+"ball": 1,
+"player": 20
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "40cd38_3_4_png_jpg.rf.4a255468219bc9ed91c19677ca7070c2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 18,
+"1": 1,
+"0": 1,
+"3": 2
+},
+"eyecu": {
+"player": 18,
+"goalkeeper": 1,
+"ball": 1,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "42ba34_1_2_png_jpg.rf.dcaeacaab39dce662c6ebabcc42a4386.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "4b770a_5_7_png_jpg.rf.b6a67d0ad6f28b7c607f086dbc123422.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 3,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 3,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "4b770a_9_9_png_jpg.rf.0b0e7e8d2a4d3623d8e63954d6c3b8b4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 22,
+"1": 1,
+"3": 2
+},
+"eyecu": {
+"player": 22,
+"goalkeeper": 1,
+"referee": 2
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "538438_3_2_png_jpg.rf.c064b4bab3e7deb84b4c03ac5d8e1c6c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"3": 3,
+"2": 20,
+"1": 1
+},
+"eyecu": {
+"ball": 1,
+"referee": 3,
+"player": 20,
+"goalkeeper": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "538438_5_1_png_jpg.rf.fea6a21bb60845edb323f6e371b511ef.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 19,
+"0": 1,
+"1": 1,
+"3": 1
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"goalkeeper": 1,
+"referee": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "54745b_7_9_png_jpg.rf.888e9524e355a2d018f4c5d2abe829bb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 3,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 3,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "573e61_7_10_png_jpg.rf.d8f0782a8ad3b0b227cb7faf8c6e4552.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2
+},
+"eyecu": {
+"player": 20,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "573e61_9_4_png_jpg.rf.227f302ea44e81e04593d5ab7ef186e3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 22,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 22,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "744b27_3_6_png_jpg.rf.180780478b7571c28f69a32df1a347d6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 2,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 2,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "798b45_1_6_png_jpg.rf.e11458f6b9dbf5dfdae435629146ece6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"0": 1,
+"2": 20,
+"3": 3,
+"1": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 20,
+"referee": 3,
+"goalkeeper": 1
+},
+"n": 25,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "c01561_1_10_png_jpg.rf.24e33ff3c75a2d4d5b4e9fe55b5d90d8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"1": 1,
+"3": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"goalkeeper": 1,
+"referee": 1,
+"ball": 1
+},
+"n": 23,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "c01561_1_4_png_jpg.rf.1e2d72f1dc41a72ae07cf0d16d91d30b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"2": 20,
+"3": 2,
+"1": 1,
+"0": 1
+},
+"eyecu": {
+"player": 20,
+"referee": 2,
+"goalkeeper": 1,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+},
+{
+"sid": "S4",
+"split": "test",
+"file": "cd987c_0_2_png_jpg.rf.c332c7b0aef7002945b3ce8266ac010f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"3": 3,
+"2": 20,
+"0": 1
+},
+"eyecu": {
+"referee": 3,
+"player": 20,
+"ball": 1
+},
+"n": 24,
+"label_file": true
+}
+]

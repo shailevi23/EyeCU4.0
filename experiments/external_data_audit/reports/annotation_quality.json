@@ -1,0 +1,100 @@
+{
+ "method": "Judged from the image and its annotation only. The EyeCU detector was never run on these images and its predictions play no part in any rating here. Evidence is the rendered contact sheets in ../contact_sheets/, 24 evenly spaced instances per class per source plus a full-frame overview sheet.",
+ "scale": ["EXCELLENT", "GOOD", "MIXED", "POOR", "UNKNOWN"],
+ "S1": {
+  "overall_quality": "GOOD",
+  "ball_label_quality": "GOOD",
+  "evidence": {
+   "correct_object": "24/24 sampled ball boxes are on the ball",
+   "box_fit": "tight and centred; 5-8 px wide as stored",
+   "referee_labels": "24/24 sampled are black-kit officials -- clean",
+   "box_convention": "consistent"
+  },
+  "defects": [
+   "84 annotation rows in 42 files are YOLO SEGMENTATION POLYGONS inside a detection export (78 player, 6 ball). Any loader that reads fields 1-4 as cx,cy,w,h silently produces nonsense geometry from these rows.",
+   "Ball boxes are systematically taller than wide (median 7x13 px). This is the 640x640 stretch of a 16:9 frame, not an annotator error -- but it means the stored ball geometry is not physical.",
+   "No goalkeeper class exists; goalkeepers carry the 'Player' label.",
+   "12 pixel-identical image pairs inside the training split, produced by augmentation that happened not to alter the image."
+  ]
+ },
+ "S2": {
+  "overall_quality": "POOR",
+  "ball_label_quality": "MIXED",
+  "evidence": {
+   "correct_object": "sampled ball boxes are on a ball where one is visible",
+   "box_fit": "frequently much larger than the ball; several boxes span a whole limb or a region of turf",
+   "goalkeeper_labels": "correct -- keepers in goalmouths, several mid-dive",
+   "box_convention": "inconsistent"
+  },
+  "defects": [
+   "The declared augmentation applies 90-degree rotations, 0-20% random crops, Gaussian blur up to 2.5 px AND salt-and-pepper noise on 5% of pixels to every generated version. A sideways pitch is not a thing broadcast footage contains, and the speckle visible across the contact sheets is that declared noise -- it is real damage to the pixels, applied deliberately at export.",
+   "Ball boxes are often 2-4x the ball's extent.",
+   "The export contains 396 images where the README declares 439.",
+   "3 images carry a ball label and no human label at all."
+  ]
+ },
+ "S3": {
+  "overall_quality": "GOOD",
+  "ball_label_quality": "MIXED",
+  "evidence": {
+   "correct_object": "24/24 sampled ball boxes contain the ball",
+   "box_fit": "consistently LOOSE -- a ~10 px ball inside a 13x20 px box",
+   "referee_labels": "24/24 sampled are black-kit officials -- clean",
+   "player_boxes": "tight and consistent"
+  },
+  "defects": [
+   "Ball boxes carry systematic padding: every sampled box is larger than the ball it contains. Training on these teaches an inflated ball extent.",
+   "No goalkeeper class exists; goalkeepers carry the 'player' label.",
+   "Only 96 referee instances across 163 images."
+  ]
+ },
+ "S4": {
+  "overall_quality": "GOOD",
+  "ball_label_quality": "GOOD",
+  "evidence": {
+   "correct_object": "23/24 sampled ball boxes are on the ball",
+   "box_fit": "tight; 3-6 px wide as stored -- the smallest balls in the six sources",
+   "goalkeeper_and_referee_labels": "correct and cleanly separated",
+   "note": "quality is unsurprising: these are the same annotations EyeCU already holds"
+  },
+  "defects": [
+   "One sampled ball box (3x6 px) sits in the crowd with no ball visible.",
+   "68 of 272 images are 90-degree-rotated copies of other images in the same export. The README states 'No image augmentation techniques were applied'. The metadata is wrong.",
+   "The source contributes nothing new: all 272 images match EyeCU TRAIN."
+  ]
+ },
+ "S5": {
+  "overall_quality": "MIXED",
+  "ball_label_quality": "GOOD",
+  "evidence": {
+   "correct_object": "21/24 sampled ball boxes are on a clearly visible ball",
+   "box_fit": "tight on large balls (median 51 px wide at 2560x1440)",
+   "resolution": "the only source exported at original size -- no resize applied"
+  },
+  "defects": [
+   "3 of 24 sampled boxes have no visible ball inside them: one on a goalpost/net corner, one on a purple graphic, one faint box on empty turf.",
+   "63 images carry an empty label file.",
+   "Every image contains visible players, officials and goalkeepers, none of which carry any label. This is a property of the dataset, not of individual boxes.",
+   "The export contains 487 images where the README declares 511."
+  ]
+ },
+ "S6": {
+  "overall_quality": "MIXED",
+  "ball_label_quality": "EXCELLENT",
+  "evidence": {
+   "correct_object": "24/24 sampled ball boxes are on the ball, including a 7x8 px ball in a dark night frame",
+   "box_fit": "tight, centred and square -- median 10.3x11.0 px, aspect 1.00, which is what a ball actually is",
+   "goalkeeper_labels": "24/24 correct, including one mid-save",
+   "referee_labels": "24/24 correct -- yellow-shirted La Liga officials",
+   "player_boxes": "tight and consistent across 23,759 instances"
+  },
+  "defects": [
+   "342 of 1702 images (20.1%) carry ZERO boxes while plainly containing players, goalkeepers, officials and in several cases the ball. Rendered as S6_zero_box_images.jpg: close-ups, tunnel walk-outs, the trophy presentation, the referee line-up, bench shots and broadcast graphics. Annotation appears to cover the wide tactical camera only.",
+   "Images are 16:9 content letterboxed into a 1280x1280 canvas (measured content 1280x~722). 44% of every stored image is black padding.",
+   "All 1702 frames come from a SINGLE match (Barcelona v Mallorca, one stadium, two kits, one broadcast style).",
+   "The overall rating is MIXED only because of the 342 unlabelled images. The box work on the 1360 annotated images is the best in this audit."
+  ]
+ },
+ "ranking_ball_label_quality": ["S6", "S1", "S4", "S5", "S3", "S2"],
+ "ranking_overall_quality": ["S1", "S3", "S4", "S6", "S5", "S2"]
+}

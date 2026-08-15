@@ -1,0 +1,129 @@
+{
+ "check": "STAGE-A EVALUATION-QUALITY CHECK",
+ "date": "2026-08-15",
+ "provenance": {
+  "highest_reliable_group": "FRAME-NUMBER NEIGHBOURHOOD (within run family pp/plain)",
+  "original_match_or_video": "UNKNOWN -- no match, video, clip or sequence identifier exists anywhere in the filenames, the COCO metadata, or the source manifests. Roboflow rf-hashes are per-image and carry no grouping.",
+  "available_signals": [
+   "run family from filename (_pp_ vs plain)",
+   "monotonic numeric frame id",
+   "split label"
+  ],
+  "evidence_of_shared_origin": {
+   "id_ranges_fully_interleaved": {
+    "pp": {
+     "train": "0..540",
+     "valid": "1..531",
+     "test": "33..524"
+    },
+    "plain": {
+     "train": "5452..55284",
+     "valid": "5474..55282",
+     "test": "5451..55280"
+    }
+   },
+   "consecutive_id_pairs_crossing_a_split_boundary": {
+    "pp": "237/485 (49%)",
+    "plain": "346/745 (46%)"
+   },
+   "exact_id_plus_one_pairs_crossing": {
+    "pp": "235/480 (49%)",
+    "plain": "294/640 (46%)"
+   },
+   "image_similarity_probe": {
+    "method": "64x36 greyscale NCC, seeded sample",
+    "cross_split_adjacent_n": 40,
+    "median_ncc": 0.53,
+    "gt_0_90": 3,
+    "gt_0_70": 9,
+    "random_unrelated_baseline_n": 40,
+    "baseline_median_ncc": 0.196,
+    "baseline_gt_0_90": 0,
+    "baseline_gt_0_70": 3,
+    "reading": "adjacent cross-split pairs are markedly more similar than unrelated pairs, so a substantial share are same-scene or near-duplicate frames"
+   }
+  },
+  "verdict": "the public split is a RANDOM SHUFFLE OVER ONE POOLED FRAME SET, not a video-disjoint split. Group-level independence is NOT documented and NOT supported by local evidence."
+ },
+ "train_valid_overlap": "PRESENT at frame-neighbourhood level; original-video overlap UNKNOWN (no identifier exists)",
+ "train_test_overlap": "PRESENT at frame-neighbourhood level; original-video overlap UNKNOWN",
+ "valid_supplement": {
+  "nonactive_objects": 14,
+  "positive_images": 11,
+  "video_match_groups": "UNKNOWN (not recoverable)",
+  "runs": {
+   "pp_B": 13,
+   "pp_A": 1
+  },
+  "objects_sharing_train_group": "UNKNOWN at video level",
+  "images_within_3_ids_of_a_stage_a_train_image": 7,
+  "objects_on_those_images": 8,
+  "images_adjacent_to_any_source_train_image": 10,
+  "images_adjacent_to_a_stage_a_train_image_at_id_plus_minus_1": 0,
+  "status": "PROVENANCE UNKNOWN DEVELOPMENT DIAGNOSTIC",
+  "why": "original video identity cannot be established, and 7 of 11 images sit within 3 frame ids of a Stage-A training image. It is neither demonstrably cross-video nor demonstrably within-video. It is NOT an independent holdout and NOT a final test."
+ },
+ "positive_only_matching": {
+  "predictions": "frozen production ONE_TO_ONE_END2END path",
+  "thresholds": [
+   0.1,
+   0.25
+  ],
+  "assignment": "one-to-one; each prediction matches at most one target, each target at most once",
+  "geometry_rule": "IoU >= 0.50",
+  "rule_source": "tools/eval_temporal_val.py:41 MATCH_IOU -- pre-existing, frozen before any A10/A11 result is seen",
+  "report": "HIT / TOTAL as counts, never percentage alone",
+  "paired_transitions": [
+   "MISS->MISS",
+   "MISS->HIT",
+   "HIT->MISS",
+   "HIT->HIT"
+  ],
+  "aggregate_by": [
+   "image",
+   "run family (highest group available)"
+  ],
+  "forbidden": "no precision or AP may be computed from this positive-only supplement"
+ },
+ "interpretation_boundary": {
+  "answers_only": "Did A11 acquire the withheld human-confirmed NONACTIVE target type?",
+  "does_not_prove": [
+   "overall NONACTIVE recall",
+   "ALL_VISIBLE ontology superiority",
+   "cross-match generalization",
+   "active-selector improvement"
+  ],
+  "must_also_inspect": [
+   "annotated-ball candidate coverage @0.10",
+   "high-confidence coverage @0.25",
+   "candidates/frame",
+   "post-dedupe candidates/frame",
+   "multi-candidate-frame rate",
+   "temporal coverage",
+   "player/GK/referee metrics"
+  ],
+  "ball_ap_primary_for_a10_a11": false,
+  "active_selector_accuracy": "NOT ESTABLISHED -- temporal GT has 0 multi-ball frames in 104"
+ },
+ "stage_a_config": {
+  "unchanged": true,
+  "images": 1030,
+  "A10_additions": 22,
+  "A11_additional_nonactive": 74,
+  "A11_total": 96,
+  "epochs": 80,
+  "patience": 0,
+  "optimizer": "AdamW",
+  "lr0": 0.00125,
+  "momentum": 0.9,
+  "warmup_bias_lr": 0.0,
+  "batch": 3,
+  "primary_readout": "fixed final epoch",
+  "secondary": "best.pt"
+ },
+ "replication": {
+  "first_run": "one paired fixed seed",
+  "rule": "a small or decision-sensitive A10/A11 difference must be confirmed with additional fixed seeds before production policy is frozen",
+  "one_seed_tiny_delta_conclusive": false
+ }
+}

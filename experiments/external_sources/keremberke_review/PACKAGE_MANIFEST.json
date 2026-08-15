@@ -1,0 +1,23 @@
+{
+ "package": "Keremberke human review, Option A (reclassify existing boxes)",
+ "created_utc": "2026-08-11T18:09:28Z",
+ "original_source_immutable": true,
+ "original_annotation_sha256": {
+  "train": "dddbd9b628944763b243588b08fc0ad1a444b6693f7176fe4f75f5393e821065",
+  "valid": "a1c88e5529fc777fc3b902fc20ddf96321c4b78fb88e3537d329d9703b8c68ee",
+  "test": "6b4b46ebde5fe96df9db9ce9485e87619faf960a233505e11068e6c59a84a2b5"
+ },
+ "working_copy": "working_copy/<split>_annotations.coco.json",
+ "geometry_may_change": false,
+ "only_class_ids_may_change": true,
+ "ledger_rows": 22878,
+ "human_boxes": 21615,
+ "ball_boxes": 1263,
+ "queued_candidate_boxes": 4153,
+ "queued_images": 1170,
+ "qa_likely_player_sample": 250,
+ "qa_no_candidate_sample": 57,
+ "human_decisions_recorded": 0,
+ "review_status": "PACKAGE_BUILT_AWAITING_HUMAN",
+ "no_proposal_is_ground_truth": true
+}

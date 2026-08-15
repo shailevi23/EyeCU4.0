@@ -1,0 +1,180 @@
+{
+ "export": "Voxel51/SoccerNet-V3 (FiftyOne snapshot)",
+ "samples": 4797,
+ "group_slices": {
+  "action": 1799,
+  "replay_1": 1799,
+  "replay_2": 718,
+  "replay_3": 278,
+  "replay_4": 116,
+  "replay_5": 56,
+  "replay_6": 24,
+  "replay_7": 6,
+  "replay_8": 1
+ },
+ "image_dimensions": {},
+ "samples_without_dimensions": 4797,
+ "source_directories": 48,
+ "label_fields": {
+  "ground_truth": 4797
+ },
+ "classes": {
+  "Player team left": 20127,
+  "Player team right": 20012,
+  "Ball": 3830,
+  "Main referee": 1996,
+  "Goalkeeper team left": 1529,
+  "Goalkeeper team right": 1419,
+  "Side referee": 1406,
+  "Staff members": 654,
+  "Wall of players": 72,
+  "Referee flag": 15,
+  "Yellow card": 11,
+  "Red card": 1
+ },
+ "total_annotations": 51072,
+ "ball_labels_present": [
+  "Ball"
+ ],
+ "ball_present": true,
+ "ball_annotations": 3830,
+ "images_containing_ball": 3826,
+ "proposed_eyecu_mapping": {
+  "Ball": "ball",
+  "Player team left": "player",
+  "Player team right": "player",
+  "Main referee": "referee",
+  "Side referee": "referee",
+  "Goalkeeper team left": "goalkeeper",
+  "Wall of players": "EXCLUDE_group_box_not_one_person",
+  "Staff members": "EXCLUDE_not_an_eyecu_class",
+  "Goalkeeper team right": "goalkeeper",
+  "Yellow card": "EXCLUDE_object_not_a_person",
+  "Referee flag": "EXCLUDE_object_not_a_person",
+  "Red card": "EXCLUDE_object_not_a_person"
+ },
+ "unmapped_classes": [],
+ "excluded_classes": {
+  "Wall of players": "EXCLUDE_group_box_not_one_person",
+  "Staff members": "EXCLUDE_not_an_eyecu_class",
+  "Yellow card": "EXCLUDE_object_not_a_person",
+  "Referee flag": "EXCLUDE_object_not_a_person",
+  "Red card": "EXCLUDE_object_not_a_person"
+ },
+ "annotations_by_eyecu_class": {
+  "player": 40139,
+  "goalkeeper": 2948,
+  "referee": 3402,
+  "ball": 3830
+ },
+ "annotations_excluded": 753,
+ "relative_box_size_by_eyecu_class": {
+  "ball": {
+   "n": 3830,
+   "width_fraction": {
+    "n": 3830,
+    "median": 0.018465,
+    "mean": 0.028751,
+    "p10": 0.008473,
+    "p25": 0.011017,
+    "p75": 0.044453,
+    "p90": 0.061202,
+    "min": 0.003448,
+    "max": 0.202339
+   },
+   "height_fraction": {
+    "n": 3830,
+    "median": 0.0314,
+    "mean": 0.049811,
+    "p10": 0.014759,
+    "p25": 0.019252,
+    "p75": 0.077181,
+    "p90": 0.105458,
+    "min": 0.0065,
+    "max": 0.631009
+   }
+  },
+  "player": {
+   "n": 40139,
+   "width_fraction": {
+    "n": 40139,
+    "median": 0.031961,
+    "mean": 0.055603,
+    "p10": 0.018117,
+    "p25": 0.023445,
+    "p75": 0.049385,
+    "p90": 0.132351,
+    "min": 0.004417,
+    "max": 1.004008
+   },
+   "height_fraction": {
+    "n": 40139,
+    "median": 0.118444,
+    "mean": 0.186486,
+    "p10": 0.072819,
+    "p25": 0.092278,
+    "p75": 0.169556,
+    "p90": 0.4605,
+    "min": 0.016009,
+    "max": 1.015347
+   }
+  },
+  "referee": {
+   "n": 3402,
+   "width_fraction": {
+    "n": 3402,
+    "median": 0.026289,
+    "mean": 0.034416,
+    "p10": 0.016415,
+    "p25": 0.020422,
+    "p75": 0.035073,
+    "p90": 0.051594,
+    "min": 0.005458,
+    "max": 0.522057
+   },
+   "height_fraction": {
+    "n": 3402,
+    "median": 0.104667,
+    "mean": 0.133659,
+    "p10": 0.062064,
+    "p25": 0.081271,
+    "p75": 0.134331,
+    "p90": 0.185235,
+    "min": 0.018403,
+    "max": 1.0
+   }
+  },
+  "goalkeeper": {
+   "n": 2948,
+   "width_fraction": {
+    "n": 2948,
+    "median": 0.041806,
+    "mean": 0.078314,
+    "p10": 0.021829,
+    "p25": 0.028449,
+    "p75": 0.096634,
+    "p90": 0.191336,
+    "min": 0.003609,
+    "max": 0.564328
+   },
+   "height_fraction": {
+    "n": 2948,
+    "median": 0.113553,
+    "mean": 0.180339,
+    "p10": 0.069064,
+    "p25": 0.085899,
+    "p75": 0.208337,
+    "p90": 0.414788,
+    "min": 0.014565,
+    "max": 1.0
+   }
+  }
+ },
+ "jersey_number_field": {
+  "present": 51072,
+  "unset(-1)": 36031,
+  "readable": 15041
+ },
+ "goalkeeper_distinct": true,
+ "referee_distinct": true
+}

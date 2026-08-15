@@ -1,0 +1,10300 @@
+[
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-0_jpg.rf.1869500d94785f2b19e08c2bb51981e8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-0_jpg.rf.2cdb40e4c9790d3d825ad1a7e7027f9a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-0_jpg.rf.51b6cba767e37df8e825598deca9aac6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-0_jpg.rf.51bed8243805aa5ebf5ae5c1142c96a5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-0_jpg.rf.c4cd785601eed6bd615a2f46f8ab4b19.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-0_jpg.rf.ebdfc824a1643c19b9a9be2de222c3d6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-107_jpg.rf.0ddcf8171d0a405aecbc34514dddcf36.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-107_jpg.rf.1b3c01167f70a13ea2fb55b8aa0dd965.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-107_jpg.rf.7affdbe6a69e4584a00db240b3f57f57.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-107_jpg.rf.95e8e2502ed7f560da41f3f043d21286.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-107_jpg.rf.9e8a2b110958c55175e26649c06ff9da.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-107_jpg.rf.a304e5909d22371e17bfd649faf6a66a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-113_jpg.rf.26b5019f121568166612515540fe73a5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 6,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 6,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-113_jpg.rf.61b0009810bcbe065c06dc98ab6b4ad1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 6,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 6,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-113_jpg.rf.8e9a95a2c8bd05641c2ab315fca02e23.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 6,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 6,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-113_jpg.rf.9a7d6712c73978cae41867dbd7b7ae90.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 6,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 6,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-113_jpg.rf.b05170a84822e2190fb805a4790408e8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 6,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 6,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-113_jpg.rf.b3e6c1b42737f9f677dc696f745d180e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 6,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 6,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-126_jpg.rf.741e0afda70b882557f914377861503c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-126_jpg.rf.7c126df73a7c17f21bf4297bbd9ef9d4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-126_jpg.rf.834f17ed9d9e5c0101437602090c291f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-127_jpg.rf.2838a8a94f9f337118578fd0902ad545.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-127_jpg.rf.82c91115ea320a513cd6fa5219a0618d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-127_jpg.rf.c7be1a02440a9925a856198a8fb24b73.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-132_jpg.rf.2fe09534a700dab5c1b32fc6f7d6c897.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-132_jpg.rf.41ae3a050ded03c07cbdd987cacc3b92.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-132_jpg.rf.8ef0f3816f555da166f6731f9599dc47.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-132_jpg.rf.a6d0f3187156483b774307a62e56c40c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-132_jpg.rf.b027096499bb80e5b15e51742b5efec7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-132_jpg.rf.ce0f2c83f16acbd0b652a1d7e5075322.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-134_jpg.rf.3d9059d82be12fcece34b9bf9a4f9b6f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-134_jpg.rf.633531b6c61bebafe3a5866d7730ba02.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-134_jpg.rf.7e716e44a8221c54bcb95c2414aae31a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-134_jpg.rf.abf2477ac58d70bd29f28d15910f49e6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-134_jpg.rf.d6209f2dcbe0e00a400ee49204d12276.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-134_jpg.rf.f47ab9e8494c21cb207b0f8794a11c14.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-142_jpg.rf.46bdf9e56f4a5ba6bdf2dfdde9d403c0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 2,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-142_jpg.rf.f00df7f4b72ed942d0596c4f739f6592.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 2,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-142_jpg.rf.f103cff94be9885aab8caa06eecfc85f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 2,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-145_jpg.rf.03db9566df72444fd4b750f18f63765c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-145_jpg.rf.203179acb0cda0fc90207dd001e181f4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-145_jpg.rf.5353e9a22110ca8f4792d02edb963be9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-145_jpg.rf.85118041c86d64c93cdd606d24d09de8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-145_jpg.rf.9b3a82e1702f6b4e3b5ada923271dc9f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-145_jpg.rf.f691aa260a4fc94a53e3d11afb01f4bd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-146_jpg.rf.15b88e1d0fca2ee9f031d1c42fef09a9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-146_jpg.rf.17fa8ab81991a622f65444cc22c124f9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-146_jpg.rf.85054e929e1c759719bdaa1125bf777d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-146_jpg.rf.8d53827b8bbe73766763e4c033683803.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-146_jpg.rf.a50e497a1c202c16ff6d05842b436b38.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-149_jpg.rf.3c63350eb690892ae28da020f2f2a8f2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-149_jpg.rf.6e4882ced2953decb3e244513c31e66d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-149_jpg.rf.eb84e554929d26eb7b68263edd3156f0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-14_jpg.rf.4bc5836e328794e8999952d5cb913ad0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-14_jpg.rf.5a139e537d687863649be07d3fa47466.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-14_jpg.rf.72dda8a43332a99fe91812e4716d8c38.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-156_jpg.rf.0b27a3af2aa272d09162f66c671b3530.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-156_jpg.rf.136ec839bbcee4e6ad6718b4fa8340e6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-156_jpg.rf.35f7b1653e0a26d257d30be6c9c065de.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-156_jpg.rf.4524c21e857581a0d82591e52dca7738.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-156_jpg.rf.b7c6b22057d244bf535402335dc6bcdc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-156_jpg.rf.f3c5f6d7c02f3177f3bdfb93e6567387.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-16_jpg.rf.40e80baff2b2efc5001f0b18dcfec71c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-16_jpg.rf.5f5376a525f526f1993f321875783672.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-16_jpg.rf.9ec50bcc28f0682003f6f3615736dfcd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-16_jpg.rf.eb10f20aa807f52e2384c64485354b03.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-16_jpg.rf.f0d6f42979147e73ad3fd99fd74b47c1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-171_jpg.rf.227773dcd874b7f5d5d5a6896c07ad6c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 3,
+"Ball": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-171_jpg.rf.4d4bb567df022ad45418f63accb7dad3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 3,
+"Ball": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-171_jpg.rf.606fad0e0c8aa2045db101ab96d2eea5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 3,
+"Ball": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-171_jpg.rf.872c3bbf7bf316665b4430320ca8a70b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 3,
+"Ball": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-171_jpg.rf.8f5b34dea9f9d9538db0264856ae9462.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 3,
+"Ball": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-171_jpg.rf.9192486af58a32e0f91471dc3a4c3a2d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 3,
+"Ball": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-184_jpg.rf.65bfe987b4fd5832e15c26116f00968b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-184_jpg.rf.9a31900dfec12857b12106e4c4f81e78.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-184_jpg.rf.c93272b58c330d7b17a679b8ad8e88cd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-185_jpg.rf.2b17f5eaa067c4cfc24c726e980fa1dc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-185_jpg.rf.531af79272de760e35e2a3516a34fc48.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-185_jpg.rf.6df92e065b6b6d0ea0375aa420c96768.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-185_jpg.rf.7b76262c1ad0e53eb8c3fbef80941e6a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-185_jpg.rf.b906b6c693ef25fa60b523228e068ff0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-185_jpg.rf.cd6475e6f48c685d8c5eb829ae936d5a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-186_jpg.rf.28027d3d0db77980329727818403b1be.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"ball": 2
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-186_jpg.rf.60e40ce8b5e2a900d99ac2fb61975ffa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"ball": 2
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-186_jpg.rf.9a0cfcaf6d16d32a1c12781b3c96da86.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"ball": 2
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-186_jpg.rf.abeabe6b0f885656d8dc484c262562cc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"ball": 2
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-186_jpg.rf.d70550c5865a7c03beaaa21b32281e74.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"ball": 2
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-186_jpg.rf.ed5874bb9f7e3e6d8920c5c5f807b21a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"ball": 2
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-189_jpg.rf.4e9493f6afaf1f1d879f53819a9b47b1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-189_jpg.rf.906d0487625b3932d5339e1a33111ef9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-189_jpg.rf.e36a2ed312aee00fe3cb993c1aea3293.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-192_jpg.rf.16d5f9d8b19ef8fa6529b76e6d3a186d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-192_jpg.rf.352910c1918c499e4206c0a048aba03f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-192_jpg.rf.4308b4a9f10342952084829525b581af.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-192_jpg.rf.477a3a75bc0c260fc23da6b76b539102.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-192_jpg.rf.dd480159e494d6e92ba85996511ab489.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-192_jpg.rf.ebb18250539f79c8cadb475092d55e85.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-195_jpg.rf.1cf6811aaa96310cb604ea31ea41fdee.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-195_jpg.rf.2bb5df8f038d590844e60c258fd4729b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-195_jpg.rf.2ea73e8e0723b1423791d542b2348eb7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-195_jpg.rf.340e91591494ba248bb7c094be5e7516.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-195_jpg.rf.5e8459da3e1e87e7cb6a6c0b3e7e23b1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-195_jpg.rf.bb3861bda2d5a1f1688eee1f3bc41383.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-199_jpg.rf.209d853d2e347b07c9de65adac997f11.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-199_jpg.rf.65f5891a39e79a607ebf106326516f73.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-199_jpg.rf.9c59b01c05aa66adbe755a7f62f66b97.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-199_jpg.rf.ba35bc52aa54b7de27a24c331c63245a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-199_jpg.rf.c834c6b98fb7e4f79c7e7ccb98bed652.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-199_jpg.rf.e8e6d8a3ec43538133193f235c26d9bc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-1_jpg.rf.0e2efa3cecde09a0caf20839b186241b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-1_jpg.rf.24a2f05b017cb7d94c0c05afb6f8f7c5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-1_jpg.rf.42d418c247aa7168209a1ff341a4d303.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-1_jpg.rf.856097c390a767c06e57d8e196b16c82.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-1_jpg.rf.ed481c9f6ed49e34705b962fcdde19d3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-1_jpg.rf.ed544fa6332e10ebbf59a0437837ebdd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-204_jpg.rf.0547c2baabe6cc49f44eb7a699a5ba72.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-204_jpg.rf.0fd94b53b4050e4848510dfdc806cb06.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-204_jpg.rf.724cf5f5726aff601d7a3eed079f5b20.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-204_jpg.rf.c5bdf8df86f295050278fd9bd51bfbe1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-204_jpg.rf.d0f84b7109e05ab65a02f5cbc69d3c00.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-204_jpg.rf.e9f8aa374da01f73a2d268f6c2d8dd78.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-221_jpg.rf.01e8c70d44ec329d70c313e3f045fa9c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 2,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-221_jpg.rf.3ec6b3311de3c366e9799671f691bb69.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 2,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-221_jpg.rf.47ac1bcc092278d3488326156f436695.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 2,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-221_jpg.rf.ac20b466db8030c94f76c308ef2d6577.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 2,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-221_jpg.rf.b1e6b9ed0ba67e6fa2bf9b76aeaad40e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 2,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-221_jpg.rf.e1fe5282f00478440f94cbdc0c2e174e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 2,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-230_jpg.rf.0767e6e3c45d3855b689457d94c85f0f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 2,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-230_jpg.rf.1a56b751b4c1ac59af663e06b054232c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 2,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-230_jpg.rf.345497c434c82d483144de0635de627b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 2,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-230_jpg.rf.55308c9baaae14ac812ccf66cb681a78.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 2,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-230_jpg.rf.8427cb57d13d5ca25c40c566d32d1817.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 2,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-230_jpg.rf.f4d29a813877115107a2d3f3fbb6215e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 2,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-24_jpg.rf.53e004996db9fd23e92a1f0ba487d89a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-24_jpg.rf.63305eaa5e8c511b5b7df6290371f13c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-24_jpg.rf.9c56afef871ffaab6d8f780892b39021.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-24_jpg.rf.c36e022e4cce7379efb9ec32f3ecaa5a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-24_jpg.rf.e643f3c062532aadd1787286c5414751.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-24_jpg.rf.eec8ee43126fea54711466610145f8dd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-251_jpg.rf.2fc50ba74779d58f171b89de7ca3a64d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-251_jpg.rf.3c68f62094541d9116d642a0767a2eb7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-251_jpg.rf.56c4f211e7076fa073d48f3595db798d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-251_jpg.rf.926e1f481770deab20212ef0ce7826f1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-251_jpg.rf.b251ba8ad8e5cc2f977a64c8a2ae96e2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-251_jpg.rf.ccbd86a5c2e3c28c6082551a36736268.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-253_jpg.rf.538c3406bdb2dff8f610677ef65201e2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-253_jpg.rf.985386d72ad7b0567f4e2a5aa66c07a7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-253_jpg.rf.c81910e31bd768f23529976df0137afe.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-260_jpg.rf.542460d47a045af59255c9be5ce76c49.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-260_jpg.rf.5e64b43dd70f258256c00633fbdce34a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-260_jpg.rf.a4704b2ff4cc553c3c0f6c8de75aa6d9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-260_jpg.rf.b68cd2de15df442bab6e5ff22c9373cb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-260_jpg.rf.c60061d75b78db29ccd84eea16847dc1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-260_jpg.rf.e56b2e404b15701b5ec126c99f3b58c3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-262_jpg.rf.32757405fb7cf02ec97f4b91ac1e5076.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-262_jpg.rf.3c11fb2628fdfe5d50fc3d2e44bd9e94.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-262_jpg.rf.401a92db7371e252f8357e834653da22.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-262_jpg.rf.5e29e35ad59ba3a771c9a209ac362c68.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-262_jpg.rf.5e7ee0e0b9d555bd62d44d9dc6def362.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-262_jpg.rf.9e762fd11da9c9bcb942b46e9d654910.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-265_jpg.rf.19955d6d9931a06ac7b329c072d44b9d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-265_jpg.rf.2835ed7af9322c5c49b8cb978d289f2c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-265_jpg.rf.3eda8d7f2ad2c40f1b3f82214f3b90c2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-265_jpg.rf.3fbfe9c18675751535f2be0a2c590986.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-265_jpg.rf.b5d054dd679dce433f094b7d7fe89563.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-265_jpg.rf.f181a29256af86e35de1253921ea795b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-270_jpg.rf.07e196a6f841732927d0cc3c3f27c2d3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 2,
+"ball": 1
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-270_jpg.rf.1e0e47b1c235e0f70d685b10a84857a1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 2,
+"ball": 1
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-270_jpg.rf.3f86ad498efa8e75bc68d80c9fe670e5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 2,
+"ball": 1
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-270_jpg.rf.76bd9faa788f499e6d637305dbdb18ed.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 2,
+"ball": 1
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-270_jpg.rf.e06491ce317f8a8190e611c17038cb2b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 2,
+"ball": 1
+},
+"n": 21,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-271_jpg.rf.5c055b27b78e4d6a9e7a999131d08f2f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-271_jpg.rf.e395946c713225c9cb22e3ceb04032c2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-271_jpg.rf.ec7e78ab99c7fb24979eb32d5b34296a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-277_jpg.rf.0aa2ea895cf2b6df0e422bcb991c3964.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 17,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 17,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-277_jpg.rf.66d7cf185512f7db882cabbaf2919ffc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 17,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 17,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-277_jpg.rf.733c118e255ca57864b7c9ca9698a792.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 17,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 17,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-277_jpg.rf.e5dba8853331d5f5410e215941463e34.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 17,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 17,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-277_jpg.rf.e74b1b665b2eec15fe920f0106c776d7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 17,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 17,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-277_jpg.rf.f9114431a0eb36a921fd81163c8796c5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 17,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 17,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-292_jpg.rf.2244691979905bd9e551ca5d8ad10a30.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-292_jpg.rf.3b4bc39a11b7589f252e8cf655c915f4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-292_jpg.rf.3fdebf02a62b973db98130eb935c9a3c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-292_jpg.rf.46fa769c0013e548e722029579d50f47.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-292_jpg.rf.6b3053afc8f0dbf9e6100c80adce12cd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-292_jpg.rf.d6afb037320b9ab9fc633f8a90857219.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-298_jpg.rf.1d77012a6e01851119477e1bb3e88c31.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 14,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 14,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-298_jpg.rf.4ad32fbb0cbcee93da7d6cdcbf2ed994.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 14,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 14,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-298_jpg.rf.8cb84aa3e7010b4a291f937d390107f2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 14,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 14,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-298_jpg.rf.ac2905374d3b57f38d4a6e223a5ec706.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 14,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 14,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-298_jpg.rf.cf484cf3c06c31fc3e19eacd8bdbf640.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 14,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 14,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-298_jpg.rf.da48cb7c114c4e95de9283bcba0a752a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 14,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 14,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-2_jpg.rf.0675c77e8357f5b110d2c0497482d4bd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-2_jpg.rf.0ce78e7f1aa9ce9a1d4db01548dcad1b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-2_jpg.rf.158376b4146e6b97f071b0f29e6ebf4c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-2_jpg.rf.288dcb150c2897d57c2a8e97c27d775f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-2_jpg.rf.404ad5b5cc25046260a848c499dbf7a2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-2_jpg.rf.c8a70944e39c517a4764a8248fe9292b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-310_jpg.rf.1529ef1c5a59ba0f758df8015baaaa7e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-310_jpg.rf.38ad98eb4f487d8909341ea69a0a2ad1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-310_jpg.rf.5c0c433ff3c71b6c9615d049a0555482.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-310_jpg.rf.7e96845df4978b18771c78e8fcd4a7b0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-310_jpg.rf.7f937942b0720916b667c5714006cc6b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-310_jpg.rf.fed688550a25827b2d2747ffda27cf49.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-311_jpg.rf.2476fb1454717844c9308b0588203613.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-311_jpg.rf.2d24eef7c0c6f952d6f16496e1cdf339.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-311_jpg.rf.6b49d15732515bc55e76e78f626eb5f0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-311_jpg.rf.6d9f23d52677b2a258525c5b77eb8078.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-311_jpg.rf.768c07d3b46278b601b5b44c7b1930b7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-311_jpg.rf.d8f90bcd868604147a08a068009da47c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-316_jpg.rf.2afa2cc617b52d00ac0238655ce687bc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 9,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-316_jpg.rf.62f462a24d0168173878a405855f82bc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 9,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-316_jpg.rf.a208e72af094224f433ebef5d81dd25b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 9,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-316_jpg.rf.afa61fecf73982d3e674fb445043c878.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 9,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-316_jpg.rf.cdc864286d1b5dedffd955650108ce91.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 9,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-316_jpg.rf.edadc84ff3a79658eaf0d38f86ec9d38.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 9,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-31_jpg.rf.406d49ccbfbfb6cf399f38f06b0f9096.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-31_jpg.rf.6ee58a0134f544e8a63daf0ec8c59f99.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-31_jpg.rf.850132750d77c8e5e58d65c5467a79c6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-31_jpg.rf.8c94deeb652cfb15a866e57b48e815ac.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-31_jpg.rf.a83eff37a1818b1d86f6e25fee480366.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-31_jpg.rf.ed7d4ac7f806c2abb58cf260be56ebbe.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-326_jpg.rf.024f0687357ff94484e50a2df81126c2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-326_jpg.rf.066b248513e6a24fe79f0d05217ad76d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-326_jpg.rf.06aa512fc510bf1f9f4d9ec92328547b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-326_jpg.rf.3daec48e2077a1cd34b30c3068731cea.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-326_jpg.rf.eb8718712ae93c4a2436c1207fd3deb3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-326_jpg.rf.ec9e63626a99ae86fe37d6f20b4c8b5a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-32_jpg.rf.5bdbf0aced59a3913b5f6f2dab8f3739.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-32_jpg.rf.71ef2db52bdd75a18d36d32e08784e29.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-32_jpg.rf.c8172683b1f304e7b95c78e20040473a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-334_jpg.rf.364408c9d3fc61c6fa722afa44aaa945.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-334_jpg.rf.78d432116ca060529818f62d5a64e438.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-334_jpg.rf.79fc793ed97ae137eda60bee28eb2cc3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-334_jpg.rf.7bf35aff6e17f6694822516ed9accb38.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-334_jpg.rf.91808444cd2e0c007507f13a096438a7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-334_jpg.rf.f93a11b8d057d8002a7d2f55b5d5cead.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-335_jpg.rf.97890fba17536150ca7308cc84b43225.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-335_jpg.rf.b5a90ec8a2817ddf583c99b7ad25ff89.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-335_jpg.rf.e0e7c1fe751a6541b944f71a44aadc3f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-336_jpg.rf.086ce5337bbaefbd1407ed1b5d7ed6f5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-336_jpg.rf.0acbff50d3d3eb4b897e9ebec4b0ce10.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-336_jpg.rf.45f718252369d2ffc726847b9c2d598f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-336_jpg.rf.996e94d96c690cd479af1577373023ef.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-336_jpg.rf.a0d2c2c636a8376a7626747ef0be5d16.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-336_jpg.rf.c1264d5fd938716969f66e284f4088e0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-349_jpg.rf.7c7925716f8bd6327009040f13293c64.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-349_jpg.rf.ef44895a6c84b13d005a026b73f5ac79.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-353_jpg.rf.3e00e581fd021c73b32874a23736e562.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-353_jpg.rf.61cde9cbf71fd1814b811ccf94473a7f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-353_jpg.rf.85d0eea5d7ae6e276d586a29bb5af5a8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-353_jpg.rf.9b8d530e316f33c781b8952b74be2ed0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-353_jpg.rf.f1d3eadc05703a02da407fd86b2a4732.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-353_jpg.rf.f3d40eec35811f743bb0deb0c40371b0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-356_jpg.rf.179a2cbb041d1b92c2e7bb032e5850d2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-356_jpg.rf.766b3ec4184b5d2dfb92f6098c263967.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-356_jpg.rf.9b8708e7145e5e000ac00332853e31db.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-380_jpg.rf.05163ab44e24c40cdb9e1a8bfc1de2ec.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-380_jpg.rf.21a49d03bb211c7c17791d4f7f5c6f61.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-380_jpg.rf.5840b81298cb070041c23d9174f35c20.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-380_jpg.rf.7f6d4a7d40b14ced9326561038353384.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-380_jpg.rf.864277544df316d7f4450c48ec6ff015.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-380_jpg.rf.c21ec714f3e773d185d370c32bf39d25.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-382_jpg.rf.11caed980ea8cd2aa03661a46028cabd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-382_jpg.rf.12c312a2eed3db8b19a25568be3e9028.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-382_jpg.rf.405fdd1970312c1833fcda40af034080.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-382_jpg.rf.7619e3d31d08c13e66f054906d126278.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-382_jpg.rf.91e4d829d85ec4dc7e4b688d96b44a78.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-382_jpg.rf.a6067a90fcdca36952f415a545fceba9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-401_jpg.rf.3e1d029160bdbad3d7a3b446709b8c07.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-401_jpg.rf.45698b5d6f5abe2500081d4f20bfcf8e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-401_jpg.rf.5a6876f22e78f2ece17cff8b6e45bfa3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-401_jpg.rf.9212245067c79a313eb3662c8d97f926.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-401_jpg.rf.deb590ca10f3cfee4a174b3fbd033664.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-401_jpg.rf.f2e81f88645d071263387cdc5a20f141.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-404_jpg.rf.281594bc61bffe76872fdc758b66497b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-404_jpg.rf.47b7dd4de54f4e2e3b1c16fdfa42e20e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-404_jpg.rf.63052bf5d8d54d4d43f70937b4f0f789.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-404_jpg.rf.82b8b4f123cf25c87d335c37f2296cff.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-404_jpg.rf.9e6c4b3a5a77ae96a34c43fadbe68785.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-404_jpg.rf.a3ab97dcfeae9036f1955ba88540d875.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-405_jpg.rf.10cc7daa5d3075174307ace261a083d7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-405_jpg.rf.1b4d4e3207fc99c2325f13e1c0e56d40.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-405_jpg.rf.89c964dcf835acff179993a243f60de6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-405_jpg.rf.8db1c6d4de8f5c465d7fa74608915f00.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-405_jpg.rf.df7bdf79f48aac225d71b9aabbaf6a5e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-405_jpg.rf.f3e40c2934883229fbd8dc567665814d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-420_jpg.rf.0de9a5fd713e197599768f1769dc4f78.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-420_jpg.rf.14695be15dcd14dd21d9dc77b7919690.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-420_jpg.rf.42a32928e6462ecd0426fb2863f63f9b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-420_jpg.rf.8bb2dae94861afef689669c8d5fe43f2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-420_jpg.rf.b16529f08212618aeefefa900cb762c3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-420_jpg.rf.dd75ce6e32585479e4483b1767db0ff5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-428_jpg.rf.7e9ea203e0673efad2efc45edd6d0c3b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-428_jpg.rf.bd106809f530f3047f44622d28306004.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-428_jpg.rf.e612d566664b0cbd3f0657580cf7a257.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-431_jpg.rf.1d9ce62de33659ec265793724773b964.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-431_jpg.rf.d6116ce286026abd9992870d664e4463.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-431_jpg.rf.f7dac4c9ed088edb4e50c374121d6197.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ball": 1,
+"Player": 1
+},
+"eyecu": {
+"ball": 1,
+"player": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-434_jpg.rf.25a23e507f01db7ddf2b0e2cb291edc2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-434_jpg.rf.3363f1dd3be1c153065a2f554c3a016d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-434_jpg.rf.5168b207f1343062a82e0298c49dd3e8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-434_jpg.rf.6719e3444b4e0cf6a87d3889f6906bf2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-434_jpg.rf.a4d0f5d55a9f1f5a371ff93d2f027c7b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-434_jpg.rf.f32305e9ea85e308713104fc7d90d6fd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-440_jpg.rf.30046604fbf8002941561b87961bc03c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-440_jpg.rf.32185c7654939c1375a1af23966740cf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-440_jpg.rf.db18531bec05aecbb9de876efc9dc84a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-442_jpg.rf.0d3688b86e7fe7ee3707ac893ed54bc9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-442_jpg.rf.6f57680b49aeef6f2231b854bda0b4a9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-442_jpg.rf.8118bac7b0062c3eaf7d5d4e9b67ba73.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-447_jpg.rf.51b4be19c881a33a6c81be02b62523a1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10
+},
+"eyecu": {
+"player": 10
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-447_jpg.rf.840a73bdb314cb8cb9afcdb045228c75.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10
+},
+"eyecu": {
+"player": 10
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-447_jpg.rf.984d58b1ae8c9926a17d2043c4d30e35.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10
+},
+"eyecu": {
+"player": 10
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-461_jpg.rf.12154b807b0ce2592eeb1c5f5f9fd1f8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 1,
+"ball": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-461_jpg.rf.2ddb4f9ce4a68e85354ddc2c85443ab4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 1,
+"ball": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-461_jpg.rf.2ea5508880d54800ad76580767e4cae1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 1,
+"ball": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-461_jpg.rf.71ce6d9e9aaec3d456ff1094e78e1590.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 1,
+"ball": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-461_jpg.rf.d90b662cbe9ec6445c8505dd4ac8844f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 1,
+"ball": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-461_jpg.rf.f8e0757007704b6a59c17cbbeee410bd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 1,
+"ball": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-470_jpg.rf.46d79314e8142b7e83f6b0de1c73b372.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-470_jpg.rf.b89b1da8d7958f530447523d438717c8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-470_jpg.rf.dd5830929ae95934ffba1f0754ec0c1e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-470_jpg.rf.e929d6b8c76dbe6d9560ecce83da8bf5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-470_jpg.rf.f63d4906ec28c29c0c55041465ed4015.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-470_jpg.rf.fa75d4818ffff9f4761c3f152b89ee6a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-476_jpg.rf.1b1a9c60fc1d06d36453961b2817bc01.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-476_jpg.rf.50bd1dd8ecd568ea9c4020e966ff7480.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-476_jpg.rf.5476d3441504f04b9183b7404f319ba1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-476_jpg.rf.5a849f126747a532956696eaff98caa4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-476_jpg.rf.b08707ab4abc623541ebcd53b134d513.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-476_jpg.rf.e19eb9ee9b070cdf91d9a38be3b8a5d8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-479_jpg.rf.189d4f7ee51783c78226ae70f2e62d71.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-479_jpg.rf.21bbc6ac1c119313d947d0d89bd6e4e1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-479_jpg.rf.2e2fb6856a75da726a91027a927feeee.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-479_jpg.rf.7581da79328d537fdcdd6cf51eb137ec.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-479_jpg.rf.788ffa6fdf51a11913ea27e0aabd56da.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-479_jpg.rf.b06996e5a99d3ab1ec5e985e370a03ab.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-491_jpg.rf.18a68e5ea6d521fbd7425afdc0dbaa2c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-491_jpg.rf.5e487cd384a48a56fea70748cc694fb9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-491_jpg.rf.7abcaa07c582ad502920030903799d3c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-491_jpg.rf.92fb09e632b0e7c5c3589eef0dc74930.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-491_jpg.rf.d112a7853bfc9fce73a5f175b8e3fbbf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-491_jpg.rf.f6a1ec70bd2eda070206b75f6253811e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-492_jpg.rf.0ae89cd31b0129965b9c0740d6b85700.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-492_jpg.rf.1a2ac86409306682cf24343ecbf8e4a4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-492_jpg.rf.31e357c97532f06ebbde7273a17985d7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-497_jpg.rf.17d7bee878e5ec1f790188e748f5f936.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-497_jpg.rf.4c84eb7941029bc5e6809fca0968ea26.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-497_jpg.rf.6105b866029bd04bf8b9f4a26316b39b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-497_jpg.rf.93d8c2d6c83c1552983c8fd95af22aff.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-497_jpg.rf.c344a7d553b627cec2cf33c5c477d377.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-508_jpg.rf.077d4fb7da9a0308ea1620754de0f1c7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-508_jpg.rf.219405bfc6cbe47c0f7ad26e4129cc90.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-508_jpg.rf.5c83c5001dbf5e0b27a2ec89fd221305.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-508_jpg.rf.83022d96e08835308fef45bc9771ff4d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-508_jpg.rf.a198e50803cbe2e8a73977f78b052676.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-508_jpg.rf.e77c9a4738936ad1efce41765dccb3a3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-510_jpg.rf.59977ea244c27561a57eafccb2c505cc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-510_jpg.rf.a97feaa1c7cfb946ac259712f0f99cf4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-510_jpg.rf.a9bf95c283f09071431c7a589ab1f898.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-510_jpg.rf.c188a608debc26d7da6c54fa778952ab.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-510_jpg.rf.f86314f7670559327c7b4119af6ffa5e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-510_jpg.rf.fcaf0bed2fe6c59c3ef693d6d19b1d01.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-519_jpg.rf.1d8d0b70866c05d6d17fddf8b5d3a6d4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-519_jpg.rf.3cfe29aa4c2d98c865482e7b454d7e85.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-519_jpg.rf.c0f8968d005da3845566df2592262bfe.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-51_jpg.rf.5c37471b1911f3ce72dff79ab95aa758.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-51_jpg.rf.a462cdb989199539b8fe864689590a85.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-51_jpg.rf.ac73f37c95bfdfc8c2aa8589deaf8456.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-523_jpg.rf.5b722139a520858cf161556fd0ff143b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 5,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1,
+"referee": 1
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-523_jpg.rf.6b68645ddbc445178bc9726a60e15143.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 5,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1,
+"referee": 1
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-523_jpg.rf.fffc27b237e6cbf6958158c54022448c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 5,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1,
+"referee": 1
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-527_jpg.rf.5c30bcfe6900a50d6b2935c4ddae59d3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 4
+},
+"eyecu": {
+"player": 4
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-527_jpg.rf.5ca9c2f24d162afcad1d96148c84737e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 4
+},
+"eyecu": {
+"player": 4
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-527_jpg.rf.5de85d7bb5c85a79cdc41c1e7bb6dc21.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 4
+},
+"eyecu": {
+"player": 4
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-527_jpg.rf.7d9847e97fcbdc2401e552243c02d855.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 4
+},
+"eyecu": {
+"player": 4
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-527_jpg.rf.dde8ff1e6412534c581e5d511e633053.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 4
+},
+"eyecu": {
+"player": 4
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-527_jpg.rf.f41490affa54a9b9525ae3fa79a13c78.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 4
+},
+"eyecu": {
+"player": 4
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-532_jpg.rf.0dbcf39e3d79d3cd159f7e189454e3df.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ball": 1,
+"Ref": 2
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-532_jpg.rf.117e97517b7df8e97681a0fdaad3eba5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ball": 1,
+"Ref": 2
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-532_jpg.rf.6c017c237f552ea4719e7d675e000437.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ball": 1,
+"Ref": 2
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-532_jpg.rf.bcf585ff88f2fb3f02135cfca9e2aed6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ball": 1,
+"Ref": 2
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-532_jpg.rf.bf71a9f789df79a54759fc04ef352386.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ball": 1,
+"Ref": 2
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-532_jpg.rf.d9fae5421f6d0737d0808e945431460f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ball": 1,
+"Ref": 2
+},
+"eyecu": {
+"player": 19,
+"ball": 1,
+"referee": 2
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-54_jpg.rf.0a5f8e3ad88e0d5024cc5b34730f5b9d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-54_jpg.rf.0ae7938c0ca3838335ef82bfa46cbc40.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-54_jpg.rf.0c094ff6802c7afaca4f90a8c116fb05.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-54_jpg.rf.318fc7dd3e746525b6f3b07aceeda305.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-54_jpg.rf.4576ee15bfe2b8a0da2f4c6abed4f375.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-54_jpg.rf.b371c3efb574a7da49523af5143bf1ea.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-551_jpg.rf.3e5a6522a5e301facfbdf931a8e8d83e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-551_jpg.rf.514c17c3946f7a4057a021caaf2f8d33.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-551_jpg.rf.a39ad4f7282d619e94c48f1038bcf4fa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-55_jpg.rf.12df7d6ce7f2202ba9cfbf1270ecc069.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-55_jpg.rf.326f5afc4bc2ed11fa78deddbfaa64ce.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-55_jpg.rf.69a7c05abe3e8b8222f848e2462d1365.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-55_jpg.rf.6eacca56e4ec29b5abce986394cb4022.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-55_jpg.rf.7296e0d7603932802ab64153e5c0f4b3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-55_jpg.rf.855d8b572079f3448220a9317f50dcfc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-568_jpg.rf.0468cccef06d57f0b68ab3ef258b2eb5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 2
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-568_jpg.rf.0ff5f62f1146cd53c53ee1c2ee82e627.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 2
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-568_jpg.rf.8668b495046b70629264c25e8a734fc7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 2
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-568_jpg.rf.b099491664315ca75c1f17d09c26600b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 2
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-568_jpg.rf.b558acf93aea2f7cd6f10ce5f310ffff.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 2
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-568_jpg.rf.efc7576157f90bc9822c35cc04652326.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 2
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-570_jpg.rf.05d74f46e4bc304b4c6a3121028bb9df.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 2
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-570_jpg.rf.2ca069d1002c31d6f081b87ecad09ad3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 2
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-570_jpg.rf.b3baf559c69f78856df85ed5818ca67b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 2
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-570_jpg.rf.d141572f74c8835feb1f1d46d07f98bc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 2
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-570_jpg.rf.df2b00d0d70f4c8b723db478f6cdddfb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 2
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-570_jpg.rf.e8583dc500f2d35cb069ed6044615165.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 2
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-579_jpg.rf.3f23729ddce83c705ca20594d4990a2e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2
+},
+"eyecu": {
+"player": 14,
+"referee": 2
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-579_jpg.rf.58238f345fc1b2a6568c266e64f545e4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2
+},
+"eyecu": {
+"player": 14,
+"referee": 2
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-579_jpg.rf.5d521ad669af25280a7f5253c4bbd2d9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2
+},
+"eyecu": {
+"player": 14,
+"referee": 2
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-579_jpg.rf.91797bb89a0303b438cab3768d3f479c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2
+},
+"eyecu": {
+"player": 14,
+"referee": 2
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-579_jpg.rf.a67e29b83029826ffba8a4a1d522bd94.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2
+},
+"eyecu": {
+"player": 14,
+"referee": 2
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-579_jpg.rf.cbac2e4bcf7301b0bb99e2007042e69e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 2
+},
+"eyecu": {
+"player": 14,
+"referee": 2
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-582_jpg.rf.2ebd26b7723f09d7ab77d96ea35df547.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 16,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 16,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-582_jpg.rf.72a777e5d9949a91b71661329e5c51a8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 16,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 16,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-582_jpg.rf.7a7b4668dd1a384a1e35cebe1d8258af.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 16,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 16,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-582_jpg.rf.a56a325b54a049773831f9a1c8719d3e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 16,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 16,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-582_jpg.rf.a6a53c408db5c942d24bf053ca37fb5c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 16,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 16,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-582_jpg.rf.b4b19ccaf833a5be7905060a57458b9e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 16,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 16,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-591_jpg.rf.0dbfffc4c6ca2081514a9357aafe9b6c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-591_jpg.rf.17fd63dfb0d723128c73810c75f61e42.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-591_jpg.rf.24c4fcbb476c257adfcc379b4fe87217.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-593_jpg.rf.052fb8b0f82f3fa623572f20b6dc093a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-593_jpg.rf.4adc254867b453043415ae674eb9d8fd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-593_jpg.rf.4f7227b4fd7c24e7ebf1f0d2c55042a4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-593_jpg.rf.7cf24ca1bb9fc4b54a890876df334d80.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-593_jpg.rf.a55e5d234720f78d12d996a15192ca2f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-593_jpg.rf.ba46c5afa7086cd7bf32549c58fa64de.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 19,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 2,
+"ball": 1
+},
+"n": 22,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-599_jpg.rf.01757fe1819c4c66e3067740fa39ba76.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1,
+"referee": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-599_jpg.rf.0ed464b26b11aa0609e90a275dc77748.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1,
+"referee": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-599_jpg.rf.36a700956f6b2c53b4bf8a8b7f30095f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1,
+"referee": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-599_jpg.rf.8e09913d7ff76ef5adefbd52c8e6d0c2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1,
+"referee": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-599_jpg.rf.9ecff3fccb4ead637974c3ee1fee8e5a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1,
+"referee": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-599_jpg.rf.e73bdd9a558981d0f3a3de4acc86b738.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1,
+"referee": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-600_jpg.rf.069031869bad040d023e7e16f459993e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-600_jpg.rf.3995568faa22560e9c8faba2fa702e9d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-600_jpg.rf.4d3f60f03d8cbcc7d936d12f0d715fe8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-600_jpg.rf.5b12665398d435c76a0d071029a0b968.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-600_jpg.rf.7828145eadccee84842a4e1735e87945.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-600_jpg.rf.aaa68858afc9c6adc2c2968e9c747853.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-602_jpg.rf.1b6fda56b6ebfa878dc4425848df59d2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-602_jpg.rf.287e09aaac6eadae44e99a18d5885250.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-602_jpg.rf.bd4c76cbcb6b315f14df03e95b1609ab.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-602_jpg.rf.c0b7b28242ca87fe333ccd4ef46c332f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-602_jpg.rf.d284df03f1183dc276e5b044b11a2cac.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-602_jpg.rf.deac2217bb99f5d928c09e0e80b92f9c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-603_jpg.rf.2e8f88cbae4bb798eef201692356efc3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-603_jpg.rf.36843ef463343bbd573a880d500a9102.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-603_jpg.rf.64c3cffa866b4e9107c6b0697912ad7b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-603_jpg.rf.713c69e1dea7ad4949a32d1d01a863fc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-603_jpg.rf.80cd4dbe5ca2816f2095ea67df1b5b95.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-603_jpg.rf.bb43fdef32b2f15b9d5659c369e1177b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"referee": 1,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-607_jpg.rf.0305754b42b0b3265c2da9be4e4b5369.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-607_jpg.rf.0cca43da39dc69e836a96c5bab6d0382.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-607_jpg.rf.3f9e69c4111b2be94c718f37b56bd642.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 10,
+"Ball": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-613_jpg.rf.03632bf4147b1414784d60756c922039.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11
+},
+"eyecu": {
+"player": 11
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-613_jpg.rf.1c8d60208206c61640d300b564d66090.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11
+},
+"eyecu": {
+"player": 11
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-613_jpg.rf.3897dfa9aaf1a87a021c50be57316f75.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11
+},
+"eyecu": {
+"player": 11
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-616_jpg.rf.06d13df6dbc8d6f9988d815421c0961f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-616_jpg.rf.6391e84bf9ff9b3474013f012b97faa3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-616_jpg.rf.71714f1279b875c43d637bb08b20a46d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-616_jpg.rf.affe860f1767f866cc65a79b1fc2a65d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-616_jpg.rf.b439b29630df1643fec9544d8e78c3cc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-616_jpg.rf.db4977b325c6993c474560704420f433.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-626_jpg.rf.050adf9ce606f88043bfd8b4929e9669.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-626_jpg.rf.4cd1b5a2922c67a5dc20ebc3cd6c6fac.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-626_jpg.rf.5381658776f20523a2706f6831624488.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-626_jpg.rf.64d787ccd0b8fca3997d52350b432830.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-626_jpg.rf.a31ca475174dcb8280ee0fbcfaf1b12b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-626_jpg.rf.bafe439564885482c0958caf97fa648b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-629_jpg.rf.215bf27f0e8f818e3105cd5838e00ade.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"ball": 1,
+"referee": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-629_jpg.rf.5cd0bcdf09cb107e0b87d92872de66dc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"ball": 1,
+"referee": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-629_jpg.rf.c7d574b39e142e97d0df5270cac3c689.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"ball": 1,
+"referee": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-629_jpg.rf.dda29998d7cf57699d4c46ed266cafd4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"ball": 1,
+"referee": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-629_jpg.rf.df478b465081d0ef83d8cf4f05e18a6c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"ball": 1,
+"referee": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-629_jpg.rf.ec1eb3bbe9020cb5cc4cdc462dbe0eef.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ball": 1,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"ball": 1,
+"referee": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-635_jpg.rf.099ade42760410669d329482e6e44511.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-635_jpg.rf.1db5e908683a6e2f19f0b6b077cbea69.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-635_jpg.rf.5b79276fcb833da57ee66cf1fafb5378.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-635_jpg.rf.a03016856982878eb29dea3abf1f652f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-635_jpg.rf.cf0cbe3056220f82f64cd437c03d687f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-635_jpg.rf.dd0e79a6fcd8fbacc6731d91206a4671.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-637_jpg.rf.07f7f0f048922399a03de8ef805251ac.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-637_jpg.rf.1a032c9f938f5fc23f4ec5c4e2308c0b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-637_jpg.rf.3f13c4678cdcb5d5ece12f0a02fa6d92.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-637_jpg.rf.ab2e01fd5f264bc3ae7f90a9690afc43.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-637_jpg.rf.b4d2f13c996980eff5e424faab055575.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-637_jpg.rf.eff48240a22e8c75462f74ab00805d33.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-64_jpg.rf.345e98a89f29ac65a26735f2cf426c11.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-64_jpg.rf.3fbb08c52c2e0a209a2ae1a9cff1a270.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-64_jpg.rf.4b1147666eabc513a0a17f22185b0b15.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-64_jpg.rf.5ee77f075336678a15f3363df7059857.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-64_jpg.rf.7b5c1abdb591ffbe35a546505ec75b4c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-64_jpg.rf.f96edef048f2134db7c394b3c63ee1e4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 2,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-66_jpg.rf.12713f97c822b2c1e21f4a162707d355.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-66_jpg.rf.15e52e2a55df6e4d7a506496627efdac.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-66_jpg.rf.527e78107154b420697b3918ece6d57a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-66_jpg.rf.53a16f8932d8535ab5c0f34b8011fb2a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-66_jpg.rf.7da6faa85dff34d29e66c0e16e3539a6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-66_jpg.rf.9ab23799bc99add518dc41913e2348e2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-69_jpg.rf.2f6220cf89a1dbe74d0131b7815e21f0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-69_jpg.rf.52b6ec00126c3b449d10fc98fa74463c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-69_jpg.rf.768312043c11e310721866cfb3678f99.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-69_jpg.rf.86c25cc314fc3887a49506a5f1747b64.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-69_jpg.rf.cf674d8e3ceb73f8977e02c7d8341ca5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-69_jpg.rf.e5e75604f220b0e32efcd6498e783318.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-6_jpg.rf.15c61ffd4b1b256ac7d65b2f943a899b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-6_jpg.rf.3c9bbb04d6db10b48980986c92c64c6c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-6_jpg.rf.528df9073e037760afa02f65e0b46362.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-6_jpg.rf.60e5850f303909935271a68e0ba26e54.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-6_jpg.rf.7d0fed47775051e54a34214ccbee2bda.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-6_jpg.rf.ea922e34071275aca9aa4702a1273c37.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ball": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-78_jpg.rf.7c178cfd328f19d4eccc53d89728f9aa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-78_jpg.rf.9ad7015f61d79d74f5ccee88e2f32b2a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-78_jpg.rf.b538459d143765664640d055d4751f1a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-78_jpg.rf.b74c013b7c96221ab13c0447b2c9e882.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-78_jpg.rf.ff4a86b7b2df1b49ee3cda4f54073be8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-89_jpg.rf.0b23c4350d179875ec35145b95ea5952.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-89_jpg.rf.0c99c59b38a9a9c8ee74294dbf0a3e63.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-89_jpg.rf.41e9217e6e1b8a3115ceae8d53d8ee56.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-89_jpg.rf.9c901cba80d13bf55529f414c668f182.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-89_jpg.rf.b416e134747c24fc23f2e9f2459ecf52.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "train",
+"file": "USA_NED-Qatar2022_mp4-89_jpg.rf.d53369c07b8024456bafdff9b06d2f2d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-100_jpg.rf.da57573efeb0609ee851ec6bfff05bd5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-158_jpg.rf.07831dc28b780c0c11b16d13455a8005.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-187_jpg.rf.f30217514b186a1cac8290f15670238a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-216_jpg.rf.efc5ced7b2aa003396de3d7335018064.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 2,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-243_jpg.rf.07142c632cbe839c4b932e0d77a11a13.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 15,
+"Ball": 1
+},
+"eyecu": {
+"referee": 2,
+"player": 15,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-258_jpg.rf.d5f31c25cbfcdc8ba5b84d586e2c160e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-293_jpg.rf.ff89f9de894bac9af572431e492a9542.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 2,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-297_jpg.rf.e106451309cfbfefa4085aa84534cdbf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 2,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-313_jpg.rf.56b49269077419889dc1f828d6828ca3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-321_jpg.rf.a8e3f37eb23632113403aab151385c80.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 2,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-359_jpg.rf.e5f3cd813a18a93141b62e01b63c42c5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-400_jpg.rf.f3b39466686cc6a2eb19f13865f00d58.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 1,
+"Player": 15,
+"Ball": 1
+},
+"eyecu": {
+"referee": 1,
+"player": 15,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-472_jpg.rf.1eba387dda5a828f6c5278f906ea39e4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-47_jpg.rf.fb4b779b2d555086089fa69d4f715027.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-484_jpg.rf.5a29e2c696b0073851c409f05658d800.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-507_jpg.rf.f743bbb773b62acb0bbbda37c05f357c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1
+},
+"eyecu": {
+"player": 1
+},
+"n": 1,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-512_jpg.rf.741f7cb7caf0817f3ed7e38d2558dbe6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 1,
+"ball": 1
+},
+"n": 2,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-518_jpg.rf.da8d8b8f4327628086703a7ad940a480.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-577_jpg.rf.3d1e87af7fa0ac29c68e49c216dc1313.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 12,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 2,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-592_jpg.rf.5bc481f2df0b2624aa64145e2c865191.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-59_jpg.rf.313d91f55065968868570005c9df25fd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-623_jpg.rf.603b5814867f5a4aa30dad82c039ba4b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-628_jpg.rf.b1f73165379d3b917ce044b9c48682e0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-638_jpg.rf.3346d1d60c5a411347f18d8eb91ab985.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-67_jpg.rf.2e2256598dae8d02dc685fb10f96164d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-72_jpg.rf.54e8819354586d1a40f337b03515b610.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2
+},
+"eyecu": {
+"player": 17,
+"referee": 2
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "valid",
+"file": "USA_NED-Qatar2022_mp4-85_jpg.rf.c820245381520b4ca7db794328faa9ba.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-138_jpg.rf.e89b2eff438d9d9ad407bb8890836b2e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 14,
+"Ball": 1
+},
+"eyecu": {
+"player": 14,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-143_jpg.rf.70aaab1b7833a02743bf5b09e6229fa8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 17,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 2,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-205_jpg.rf.246dd76c333667d630a3f53e4a4416de.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-20_jpg.rf.8644ed64943f63158838b4af777f3206.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-257_jpg.rf.eb85ac62d1ce0a9a8b41f763052263a1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Ref": 2,
+"Player": 16
+},
+"eyecu": {
+"referee": 2,
+"player": 16
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-28_jpg.rf.f8003dd5ffb51a24defe287e42649f7d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-29_jpg.rf.2e167a4afbf9426f796c45dea11e9000.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-319_jpg.rf.40a9fbe9b083494c34e08d70d5d1d1b2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 8,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-366_jpg.rf.6f8a2f8656cc4a8676f7b26deef0208f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-399_jpg.rf.e0f53ff4b8dd3e3dff25ee403ed50af1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 18,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-425_jpg.rf.c04c40dc7b33a3106ab28a2d80cc3e95.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 2
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-490_jpg.rf.5154b652294327d275a6136561b71aef.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 15,
+"Ref": 1,
+"Ball": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-496_jpg.rf.54caacda12023103ea755202b8ac6fad.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 11,
+"Ref": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-530_jpg.rf.4356ab53ebd37451c945529101ba72e7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 4
+},
+"eyecu": {
+"player": 4
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-565_jpg.rf.d142047b1a61acc28a024d8d39a7c412.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 9,
+"Ref": 1,
+"Ball": 2
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 2
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-581_jpg.rf.ac8bc1d8f09e724c930866755d229803.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 13,
+"Ref": 2,
+"Ball": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 2,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-631_jpg.rf.766035d5620e38dd0f172f460fae664b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 16,
+"Ref": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-90_jpg.rf.f0d934fd300813fb4f59b8538d03f1f9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 7,
+"Ball": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S1",
+"split": "test",
+"file": "USA_NED-Qatar2022_mp4-92_jpg.rf.3962b860385f73b929d72cf72128d579.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"Player": 6,
+"Ball": 1
+},
+"eyecu": {
+"player": 6,
+"ball": 1
+},
+"n": 7,
+"label_file": true
+}
+]

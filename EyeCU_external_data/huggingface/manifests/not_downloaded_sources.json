@@ -1,0 +1,33 @@
+{
+ "martinjolif/football-player-detection": {
+  "repo_id": "martinjolif/football-player-detection",
+  "revision": "e8b8cea002692efd74c945fcdad63e729adc5671",
+  "license": "cc-by-4.0",
+  "gated": false,
+  "downloads": 349,
+  "files": 40,
+  "total_bytes": 5775046,
+  "top_level": [
+   ".gitattributes",
+   "README.md",
+   "data"
+  ],
+  "readme_excerpt": "---\nlicense: cc-by-4.0\ntags:\n- football\n- player\n- image\nconfigs:\n- config_name: default\n  data_files:\n  - split: train\n    path: data/train/images/*.jpg\n  - split: validation\n    path: data/valid/images/*.jpg\n  - split: test\n    path: data/test/images/*.jpg\ntask_categories:\n- object-detection\n---\n\n# Football Game Object Detection Dataset\n\n## Dataset Description\n\nThis dataset consists of images captured from a football match in a stadium, taken from a camera positioned near the middle of the pitch. Each image contains annotations classifying objects into **four categories**:\n\n1. **Ball**\n2. **Goalkeeper**\n3. **Player**\n4. **Referee**\n\nFor every object in an image, a **bounding box** is provided, represented in the format:\n\n- `x_center`: X-coordinate of the bounding box center\n- `y_center`: Y-coordinate of the bounding box center\n- `width`: Width of the bounding box\n- `height`: Height of the bounding box\n\nThis dataset is suitable for tasks such as **object detection**, and can be used to detect players in football game images or videos.\n\nDetecting players can be challenging, as they are often close together, can partially occlude each other, and can be confused with referees.\n\n\n## Usage\n\nDownload dataset in your current working directory ``cwd``:\n```\nhf download martinjolif/football-player-detection --repo-type dataset --local-dir cwd\n```\n\nFinetune on this dataset:\n```\nyolo detect train data=data/data.yaml model=yolo11n.pt epochs=1 batch=32 imgsz=640 device=mps\n```\n\nValidate custom-trained model:\n```\nyolo detect val model=path/to/best.pt\n```\n\n## References\n\nThe dataset comes"
+ },
+ "Adit-jain/Soccana_player_ball_detection_v1": {
+  "repo_id": "Adit-jain/Soccana_player_ball_detection_v1",
+  "revision": "9e768912f134a7d68b58ddc9db9bcd3f6fbe39b7",
+  "license": null,
+  "gated": false,
+  "downloads": 330,
+  "files": 13,
+  "total_bytes": 1344513178,
+  "top_level": [
+   ".gitattributes",
+   "README.md",
+   "V1.zip",
+   "samples"
+  ],
+  "readme_excerpt": "---\ntask_categories:\n- object-detection\nlanguage:\n- en\ntags:\n- soccer\n- football\n- player\n- referee\n- detection\n- ball\n- ultralytics\n- yolov11\n- tracking\npretty_name: Soccana_prb_v1\nsize_categories:\n- 10K<n<100K\n---\n\n# \u26bd Soccer Object Detection Dataset (25K Subset from 1M+ Images)\n\n---\n\n## Index\n\n1. [Dataset Overview](#dataset-overview)\n2. [Folder Structure](#folder-structure)\n3. [Dataset Preparation](#dataset-preparation)\n4. [Data Utils](#data-utils)\n5. [Samples](#samples)\n\n## Dataset Overview\n\nThis dataset is a curated subset (25,000 images) from a larger soccer vision dataset containing over **1 million images** (50+ GB). The data was collected and augmented from multiple **open-source sources**, including the **SoccerNet dataset**, video game renders, and publicly available match footage.\n\nIt is optimized for **object detection tasks**, especially focusing on soccer-related entities such as **players**, **referees**, and the **ball**, including various augmentation types like background-only and noisy scenes.\n\n\n- \u2705 25,000 images (~1.5GB)\n- \u2705 Annotations for 3 object classes:\n  - `player`\n  - `referee`\n  - `ball`\n- \u2705 Data format:\n  - **Ultralytics YOLO format** (default)\n  - **COCO JSON format** (included in separate folders)\n- \u2705 Resolution variety:\n  - `160x160`\n  - `320x320`\n  - `640x640`\n  - `1280x1080` (Full HD)\n- The dataset includes frames for various scenarios, such as:\n  - Occlusions\n  - Close up shots\n  - Behind the goalpost scenes\n  - Camera overlay scenes\n  - Low and High angle shots\n  - Low resolution shots\n- ### Classes\n  | Class ID | Label |\n  | -------- | "
+ }
+}

@@ -1,0 +1,1138 @@
+{
+ "128058_1st-015.json": {
+  "file": "128058_1st-015.json",
+  "bytes": 2769113953,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1385020,
+   "\"category_id\": 2": 138502,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 69251,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1523524,
+   "\"bbox_pitch\"": 1523522,
+   "\"track_id\"": 1523525,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1523523,
+   "\"role\"": 1523523,
+   "\"attributes\"": 1523526,
+   "\"is_labeled\": true": 69251,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 69251,
+   "\"file_name\"": 69251,
+   "\"lines\"": 69252,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1385020,
+   "goalkeeper": 138502,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 69251,
+   "camera": 0
+  },
+  "parsed_sample": {
+   "every": 3000,
+   "fields_by_category": {
+    "player": {
+     "id": 461,
+     "image_id": 461,
+     "track_id": 461,
+     "supercategory": 461,
+     "category_id": 461,
+     "attributes": 461,
+     "bbox_image": 461,
+     "bbox_pitch": 461,
+     "bbox_pitch_raw": 461
+    },
+    "pitch": {
+     "id": 23,
+     "image_id": 23,
+     "video_id": 23,
+     "supercategory": 23,
+     "category_id": 23,
+     "lines": 23
+    },
+    "goalkeeper": {
+     "id": 46,
+     "image_id": 46,
+     "track_id": 46,
+     "supercategory": 46,
+     "category_id": 46,
+     "attributes": 46,
+     "bbox_image": 46,
+     "bbox_pitch": 46,
+     "bbox_pitch_raw": 46
+    }
+   },
+   "attribute_keys_by_category": {
+    "player": {
+     "role": 461,
+     "jersey": 461,
+     "team": 461,
+     "player_id": 461
+    },
+    "goalkeeper": {
+     "role": 46,
+     "jersey": 46,
+     "team": 46,
+     "player_id": 46
+    }
+   },
+   "example": {
+    "player": {
+     "id": "300013009",
+     "image_id": "3000131",
+     "track_id": 10,
+     "supercategory": "object",
+     "category_id": 1,
+     "attributes": {
+      "role": "player",
+      "jersey": "33",
+      "team": "right",
+      "player_id": 510747
+     },
+     "bbox_image": {
+      "x": 1661,
+      "y": 415,
+      "x_center": 1685.0,
+      "y_center": 434.5,
+      "w": 47,
+      "h": 40
+     },
+     "bbox_pitch": {
+      "x_bottom_left": -7.3500000000000005,
+      "y_bottom_left": 23.119999999999997,
+      "x_bottom_right": -7.3500000000000005,
+      "y_bottom_right": 23.119999999999997,
+      "x_bottom_middle": -7.3500000000000005,
+      "y_bottom_middle": 23.119999999999997
+     },
+     "bbox_pitch_raw": {
+      "x_bottom_left": -7.3500000000000005,
+      "y_bottom_left": 23.119999999999997,
+      "x_bottom_right": -7.3500000000000005,
+      "y_bottom_right": 23.119999999999997,
+      "x_bottom_middle": -7.3500000000000005,
+      "y_bottom_middle": 23.119999999999997
+     }
+    },
+    "pitch": {
+     "id": "3000914P",
+     "image_id": "3000914",
+     "video_id": "1",
+     "supercategory": "pitch",
+     "category_id": 5,
+     "lines": {
+      "Big rect. left bottom": [
+       {
+        "x": 0.11276041666666667,
+        "y": 0.3171542553191489
+       },
+       {
+        "x": 0.1859375,
+        "y": 0.3025265957446808
+       }
+      ],
+      "Big rect. left main": [
+       {
+        "x": 0.33619791666666665,
+        "y": 0.14960106382978725
+       },
+       {
+        "x": 0.1859375,
+        "y": 0.3025265957446808
+       }
+      ],
+      "Big rect. left top": [
+       {
+        "x": 0.27005208333333336,
+        "y": 0.17287234042553193
+       },
+       {
+        "x": 0.33619791666666665,
+        "y": 0.14960106382978725
+       }
+      ],
+      "Big rect. right bottom": [
+       {
+        "x": 0.8765625,
+        "y": 0.28191489361702127
+       },
+       {
+        "x": 0.94296875,
+        "y": 0.2898936170212766
+       }
+      ],
+      "Big rect. right main": [
+       {
+        "x": 0.72109375,
+        "y": 0.1389627659574468
+       },
+       {
+        "x": 0.8765625,
+        "y": 0.28191489361702127
+       }
+      ],
+      "Big rect. right top": [
+       {
+        "x": 0.72109375,
+        "y": 0.1389627659574468
+       },
+       {
+        "x": 0.7856770833333333,
+        "y": 0.15425531914893617
+       }
+      ],
+      "Circle central": [
+       {
+        "x": 0.5322916666666667,
+        "y": 0.13962765957446807
+       },
+       {
+        "x": 0.5361979166666667,
+        "y": 0.19614361702127658
+       }
+      ],
+      "Circle left": [],
+      "Circle right": [],
+      "Goal left crossbar": [
+       {
+        "x": 0.19036458333333334,
+        "y": 0.24202127659574468
+       },
+       {
+        "x": 0.21848958333333332,
+        "y": 0.2154255319148936
+       }
+      ],
+      "Goal left post left": [
+       {
+        "x": 0.19036458333333334,
+        "y": 0.24202127659574468
+       },
+       {
+        "x": 0.19036458333333334,
+        "y": 0.24202127659574468
+       }
+      ],
+      "Goal left post right": [
+       {
+        "x": 0.21848958333333332,
+        "y": 0.2154255319148936
+       },
+       {
+        "x": 0.21848958333333332,
+        "y": 0.2154255319148936
+       }
+      ],
+      "Goal right crossbar": [
+       {
+        "x": 0.8375,
+        "y": 0.19680851063829788
+       },
+       {
+        "x": 0.8661458333333333,
+        "y": 0.2214095744680851
+       }
+      ],
+      "Goal right post left": [
+       {
+        "x": 0.8375,
+        "y": 0.19680851063829788
+       },
+       {
+        "x": 0.8375,
+        "y": 0.19680851063829788
+       }
+      ],
+      "Goal right post right": [
+       {
+        "x": 0.8661458333333333,
+        "y": 0.2214095744680851
+       },
+       {
+        "x": 0.8661458333333333,
+        "y": 0.2214095744680851
+       }
+      ],
+      "Middle line": [
+       {
+        "x": 0.5299479166666666,
+        "y": 0.10305851063829788
+       },
+       {
+        "x": 0.5322916666666667,
+        "y": 0.13962765957446807
+       },
+       {
+        "x": 0.5338541666666666,
+        "y": 0.1622340425531915
+       },
+       {
+        "x": 0.5361979166666667,
+        "y": 0.19614361702127658
+       },
+       {
+        "x": 0.5546875,
+        "y": 0.4747340425531915
+       }
+      ],
+      "Side line bottom": [
+       {
+        "x": 0.028645833333333332,
+        "y": 0.3976063829787234
+       },
+       {
+        "x": 0.04583333333333333,
+        "y": 0.4029255319148936
+       },
+       {
+        "x": 0.08541666666666667,
+        "y": 0.41356382978723405
+       },
+       {
+        "x": 0.5546875,
+        "y": 0.4747340425531915
+       },
+       {
+        "x": 0.9768229166666667,
+        "y": 0.3829787234042553
+       },
+       {
+        "x": 1.01015625,
+        "y": 0.3703457446808511
+       },
+       {
+        "x": 1.0247395833333333,
+        "y": 0.36569148936170215
+       }
+      ],
+      "Side line left": [
+       {
+        "x": 0.30104166666666665,
+        "y": 0.1449468085106383
+       },
+       {
+        "x": 0.27005208333333336,
+        "y": 0.17287234042553193
+       },
+       {
+        "x": 0.2375,
+        "y": 0.20013297872340424
+       },
+       {
+        "x": 0.21848958333333332,
+        "y": 0.2154255319148936
+       },
+       {
+        "x": 0.19036458333333334,
+        "y": 0.24202127659574468
+       },
+       {
+        "x": 0.16770833333333332,
+        "y": 0.26396276595744683
+       },
+       {
+        "x": 0.11276041666666667,
+        "y": 0.3171542553191489
+       },
+       {
+        "x": 0.028645833333333332,
+        "y": 0.3976063829787234
+       }
+      ],
+      "Side line right": [
+       {
+        "x": 0.7541666666666667,
+        "y": 0.1309840425531915
+       },
+       {
+        "x": 0.7856770833333333,
+        "y": 0.15425531914893617
+       },
+       {
+        "x": 0.8184895833333333,
+        "y": 0.18018617021276595
+       },
+       {
+        "x": 0.8375,
+        "y": 0.19680851063829788
+       },
+       {
+        "x": 0.8661458333333333,
+        "y": 0.2214095744680851
+       },
+       {
+        "x": 0.8890625,
+        "y": 0.24069148936170212
+       },
+       {
+        "x": 0.94296875,
+        "y": 0.2898936170212766
+       },
+       {
+        "x": 1.0247395833333333,
+        "y": 0.36569148936170215
+       }
+      ],
+      "Side line top": [
+       {
+        "x": 0.30104166666666665,
+        "y": 0.1449468085106383
+       },
+       {
+        "x": 0.3171875,
+        "y": 0.13962765957446807
+       },
+       {
+        "x": 0.36171875,
+        "y": 0.12699468085106383
+       },
+       {
+        "x": 0.5299479166666666,
+        "y": 0.10305851063829788
+       },
+       {
+        "x": 0.6947916666666667,
+        "y": 0.1163563829787234
+       },
+       {
+        "x": 0.7369791666666666,
+        "y": 0.12699468085106383
+       },
+       {
+        "x": 0.7541666666666667,
+        "y": 0.1309840425531915
+       }
+      ],
+      "Small rect. left bottom": [
+       {
+        "x": 0.16770833333333332,
+        "y": 0.26396276595744683
+       },
+       {
+        "x": 0.18880208333333334,
+        "y": 0.2579787234042553
+       }
+      ],
+      "Small rect. left main": [
+       {
+        "x": 0.25885416666666666,
+        "y": 0.1908244680851064
+       },
+       {
+        "x": 0.18880208333333334,
+        "y": 0.2579787234042553
+       }
+      ],
+      "Small rect. left top": [
+       {
+        "x": 0.2375,
+        "y": 0.20013297872340424
+       },
+       {
+        "x": 0.25885416666666666,
+        "y": 0.1908244680851064
+       }
+      ],
+      "Small rect. right bottom": [
+       {
+        "x": 0.86796875,
+        "y": 0.2360372340425532
+       },
+       {
+        "x": 0.8890625,
+        "y": 0.24069148936170212
+       }
+      ],
+      "Small rect. right main": [
+       {
+        "x": 0.7986979166666667,
+        "y": 0.17486702127659576
+       },
+       {
+        "x": 0.86796875,
+        "y": 0.2360372340425532
+       }
+      ],
+      "Small rect. right top": [
+       {
+        "x": 0.7986979166666667,
+        "y": 0.17486702127659576
+       },
+       {
+        "x": 0.8184895833333333,
+        "y": 0.18018617021276595
+       }
+      ]
+     }
+    },
+    "goalkeeper": {
+     "id": "300143417",
+     "image_id": "3001435",
+     "track_id": 18,
+     "supercategory": "object",
+     "category_id": 2,
+     "attributes": {
+      "role": "goalkeeper",
+      "jersey": "1",
+      "team": "left",
+      "player_id": 510762
+     },
+     "bbox_image": {
+      "x": 827,
+      "y": 267,
+      "x_center": 859.5,
+      "y_center": 285.5,
+      "w": 65,
+      "h": 37
+     },
+     "bbox_pitch": {
+      "x_bottom_left": -50.4,
+      "y_bottom_left": -2.719999999999999,
+      "x_bottom_right": -50.4,
+      "y_bottom_right": -2.719999999999999,
+      "x_bottom_middle": -50.4,
+      "y_bottom_middle": -2.719999999999999
+     },
+     "bbox_pitch_raw": {
+      "x_bottom_left": -50.4,
+      "y_bottom_left": -2.719999999999999,
+      "x_bottom_right": -50.4,
+      "y_bottom_right": -2.719999999999999,
+      "x_bottom_middle": -50.4,
+      "y_bottom_middle": -2.719999999999999
+     }
+    }
+   }
+  }
+ },
+ "117092_1st-005.json": {
+  "file": "117092_1st-005.json",
+  "bytes": 2695285313,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1347470,
+   "\"category_id\": 2": 134750,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 67375,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1482219,
+   "\"bbox_pitch\"": 1482219,
+   "\"track_id\"": 1482221,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1482219,
+   "\"role\"": 1482221,
+   "\"attributes\"": 1482222,
+   "\"is_labeled\": true": 67375,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 67375,
+   "\"file_name\"": 67375,
+   "\"lines\"": 67376,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1347470,
+   "goalkeeper": 134750,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 67375,
+   "camera": 0
+  }
+ },
+ "117092_2nd-018.json": {
+  "file": "117092_2nd-018.json",
+  "bytes": 2700747690,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1350292,
+   "\"category_id\": 2": 135119,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 67576,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1485411,
+   "\"bbox_pitch\"": 1485412,
+   "\"track_id\"": 1485413,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1485418,
+   "\"role\"": 1485415,
+   "\"attributes\"": 1485411,
+   "\"is_labeled\": true": 67576,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 67576,
+   "\"file_name\"": 67576,
+   "\"lines\"": 67577,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1350292,
+   "goalkeeper": 135119,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 67576,
+   "camera": 0
+  }
+ },
+ "117093_1st-006.json": {
+  "file": "117093_1st-006.json",
+  "bytes": 2707125259,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1352961,
+   "\"category_id\": 2": 135300,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 67650,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1488261,
+   "\"bbox_pitch\"": 1488260,
+   "\"track_id\"": 1488260,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1488262,
+   "\"role\"": 1488260,
+   "\"attributes\"": 1488259,
+   "\"is_labeled\": true": 67650,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 67650,
+   "\"file_name\"": 67650,
+   "\"lines\"": 67651,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1352961,
+   "goalkeeper": 135300,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 67650,
+   "camera": 0
+  }
+ },
+ "117093_2nd-017.json": {
+  "file": "117093_2nd-017.json",
+  "bytes": 2823420701,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1409433,
+   "\"category_id\": 2": 140950,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 70475,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1550381,
+   "\"bbox_pitch\"": 1550382,
+   "\"track_id\"": 1550382,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1550381,
+   "\"role\"": 1550382,
+   "\"attributes\"": 1550382,
+   "\"is_labeled\": true": 70475,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 70475,
+   "\"file_name\"": 70475,
+   "\"lines\"": 70476,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1409433,
+   "goalkeeper": 140950,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 70475,
+   "camera": 0
+  }
+ },
+ "118575_1st-013.json": {
+  "file": "118575_1st-013.json",
+  "bytes": 2880908220,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1442008,
+   "\"category_id\": 2": 144202,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 72101,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1586209,
+   "\"bbox_pitch\"": 1586209,
+   "\"track_id\"": 1586212,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1586211,
+   "\"role\"": 1586211,
+   "\"attributes\"": 1586212,
+   "\"is_labeled\": true": 72101,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 72101,
+   "\"file_name\"": 72101,
+   "\"lines\"": 72102,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1442008,
+   "goalkeeper": 144202,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 72101,
+   "camera": 0
+  }
+ },
+ "118575_2nd-007.json": {
+  "file": "118575_2nd-007.json",
+  "bytes": 2932469330,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1464895,
+   "\"category_id\": 2": 147352,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 73676,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1612247,
+   "\"bbox_pitch\"": 1612246,
+   "\"track_id\"": 1612249,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1612249,
+   "\"role\"": 1612247,
+   "\"attributes\"": 1612246,
+   "\"is_labeled\": true": 73676,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 73676,
+   "\"file_name\"": 73676,
+   "\"lines\"": 73677,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1464895,
+   "goalkeeper": 147352,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 73676,
+   "camera": 0
+  }
+ },
+ "118576_1st-014.json": {
+  "file": "118576_1st-014.json",
+  "bytes": 2911702431,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1459027,
+   "\"category_id\": 2": 146202,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 73101,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1605228,
+   "\"bbox_pitch\"": 1605230,
+   "\"track_id\"": 1605231,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1605230,
+   "\"role\"": 1605230,
+   "\"attributes\"": 1605232,
+   "\"is_labeled\": true": 73101,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 73101,
+   "\"file_name\"": 73101,
+   "\"lines\"": 73102,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1459027,
+   "goalkeeper": 146202,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 73101,
+   "camera": 0
+  }
+ },
+ "118576_2nd-004.json": {
+  "file": "118576_2nd-004.json",
+  "bytes": 2917838627,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1461020,
+   "\"category_id\": 2": 146103,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 73051,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1607122,
+   "\"bbox_pitch\"": 1607122,
+   "\"track_id\"": 1607123,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1607124,
+   "\"role\"": 1607126,
+   "\"attributes\"": 1607123,
+   "\"is_labeled\": true": 73051,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 73051,
+   "\"file_name\"": 73051,
+   "\"lines\"": 73052,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1461020,
+   "goalkeeper": 146103,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 73051,
+   "camera": 0
+  }
+ },
+ "118577_1st-011.json": {
+  "file": "118577_1st-011.json",
+  "bytes": 2898176608,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1448859,
+   "\"category_id\": 2": 145352,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 72677,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1594212,
+   "\"bbox_pitch\"": 1594213,
+   "\"track_id\"": 1594213,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1594215,
+   "\"role\"": 1594214,
+   "\"attributes\"": 1594211,
+   "\"is_labeled\": true": 72676,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 72676,
+   "\"file_name\"": 72676,
+   "\"lines\"": 72677,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1448859,
+   "goalkeeper": 145352,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 72677,
+   "camera": 0
+  }
+ },
+ "118577_2nd-001.json": {
+  "file": "118577_2nd-001.json",
+  "bytes": 2900430490,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1454182,
+   "\"category_id\": 2": 145502,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 72751,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1599684,
+   "\"bbox_pitch\"": 1599684,
+   "\"track_id\"": 1599684,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1599685,
+   "\"role\"": 1599685,
+   "\"attributes\"": 1599683,
+   "\"is_labeled\": true": 72751,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 72751,
+   "\"file_name\"": 72751,
+   "\"lines\"": 72752,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1454182,
+   "goalkeeper": 145502,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 72751,
+   "camera": 0
+  }
+ },
+ "118578_1st-020.json": {
+  "file": "118578_1st-020.json",
+  "bytes": 2827104764,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1412521,
+   "\"category_id\": 2": 141252,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 70626,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1553774,
+   "\"bbox_pitch\"": 1553773,
+   "\"track_id\"": 1553772,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1553772,
+   "\"role\"": 1553775,
+   "\"attributes\"": 1553776,
+   "\"is_labeled\": true": 70626,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 70626,
+   "\"file_name\"": 70626,
+   "\"lines\"": 70627,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1412521,
+   "goalkeeper": 141252,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 70626,
+   "camera": 0
+  }
+ },
+ "118578_2nd-019.json": {
+  "file": "118578_2nd-019.json",
+  "bytes": 2852006808,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1424482,
+   "\"category_id\": 2": 142401,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 71225,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1566885,
+   "\"bbox_pitch\"": 1566883,
+   "\"track_id\"": 1566885,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1566885,
+   "\"role\"": 1566886,
+   "\"attributes\"": 1566884,
+   "\"is_labeled\": true": 71225,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 71225,
+   "\"file_name\"": 71225,
+   "\"lines\"": 71226,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1424482,
+   "goalkeeper": 142401,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 71225,
+   "camera": 0
+  }
+ },
+ "128057_1st-016.json": {
+  "file": "128057_1st-016.json",
+  "bytes": 2712325392,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1353000,
+   "\"category_id\": 2": 135300,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 67650,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1488302,
+   "\"bbox_pitch\"": 1488304,
+   "\"track_id\"": 1488301,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1488302,
+   "\"role\"": 1488300,
+   "\"attributes\"": 1488301,
+   "\"is_labeled\": true": 67650,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 67650,
+   "\"file_name\"": 67650,
+   "\"lines\"": 67651,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1353000,
+   "goalkeeper": 135300,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 67650,
+   "camera": 0
+  }
+ },
+ "128057_2nd-012.json": {
+  "file": "128057_2nd-012.json",
+  "bytes": 2820551374,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1407502,
+   "\"category_id\": 2": 140750,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 70375,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1548252,
+   "\"bbox_pitch\"": 1548251,
+   "\"track_id\"": 1548252,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1548251,
+   "\"role\"": 1548252,
+   "\"attributes\"": 1548250,
+   "\"is_labeled\": true": 70375,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 70375,
+   "\"file_name\"": 70375,
+   "\"lines\"": 70376,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1407502,
+   "goalkeeper": 140750,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 70375,
+   "camera": 0
+  }
+ },
+ "128058_2nd-010.json": {
+  "file": "128058_2nd-010.json",
+  "bytes": 2719994744,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1360831,
+   "\"category_id\": 2": 136050,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 68025,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1496883,
+   "\"bbox_pitch\"": 1496882,
+   "\"track_id\"": 1496882,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1496883,
+   "\"role\"": 1496883,
+   "\"attributes\"": 1496884,
+   "\"is_labeled\": true": 68025,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 68025,
+   "\"file_name\"": 68025,
+   "\"lines\"": 68026,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1360831,
+   "goalkeeper": 136050,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 68025,
+   "camera": 0
+  }
+ },
+ "132831_1st-003.json": {
+  "file": "132831_1st-003.json",
+  "bytes": 2716086362,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1356000,
+   "\"category_id\": 2": 135601,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 67800,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1491600,
+   "\"bbox_pitch\"": 1491601,
+   "\"track_id\"": 1491603,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1491601,
+   "\"role\"": 1491601,
+   "\"attributes\"": 1491601,
+   "\"is_labeled\": true": 67800,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 67800,
+   "\"file_name\"": 67800,
+   "\"lines\"": 67801,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1356000,
+   "goalkeeper": 135601,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 67800,
+   "camera": 0
+  }
+ },
+ "132831_2nd-008.json": {
+  "file": "132831_2nd-008.json",
+  "bytes": 2736165755,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1367693,
+   "\"category_id\": 2": 136786,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 68401,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1504480,
+   "\"bbox_pitch\"": 1504480,
+   "\"track_id\"": 1504483,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1504480,
+   "\"role\"": 1504481,
+   "\"attributes\"": 1504482,
+   "\"is_labeled\": true": 68401,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 68401,
+   "\"file_name\"": 68401,
+   "\"lines\"": 68402,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1367693,
+   "goalkeeper": 136786,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 68401,
+   "camera": 0
+  }
+ },
+ "132877_1st-009.json": {
+  "file": "132877_1st-009.json",
+  "bytes": 2714193615,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1354262,
+   "\"category_id\": 2": 135427,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 67713,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1489686,
+   "\"bbox_pitch\"": 1489686,
+   "\"track_id\"": 1489688,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1489688,
+   "\"role\"": 1489690,
+   "\"attributes\"": 1489689,
+   "\"is_labeled\": true": 67713,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 67713,
+   "\"file_name\"": 67713,
+   "\"lines\"": 67714,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1354262,
+   "goalkeeper": 135427,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 67713,
+   "camera": 0
+  }
+ },
+ "132877_2nd-002.json": {
+  "file": "132877_2nd-002.json",
+  "bytes": 2783981811,
+  "exact_token_counts": {
+   "\"category_id\": 1": 1387478,
+   "\"category_id\": 2": 138752,
+   "\"category_id\": 3": 0,
+   "\"category_id\": 4": 0,
+   "\"category_id\": 5": 69376,
+   "\"category_id\": 6": 0,
+   "\"bbox_image\"": 1526229,
+   "\"bbox_pitch\"": 1526227,
+   "\"track_id\"": 1526228,
+   "\"jersey_number\"": 0,
+   "\"team\"": 1526228,
+   "\"role\"": 1526228,
+   "\"attributes\"": 1526229,
+   "\"is_labeled\": true": 69376,
+   "\"is_labeled\": false": 0,
+   "\"has_labeled_person\": true": 69376,
+   "\"file_name\"": 69376,
+   "\"lines\"": 69377,
+   "\"camera\"": 2
+  },
+  "annotations_per_category": {
+   "player": 1387478,
+   "goalkeeper": 138752,
+   "referee": 0,
+   "ball": 0,
+   "pitch": 69376,
+   "camera": 0
+  }
+ }
+}

@@ -1,0 +1,118 @@
+{
+ "purpose": "Proposed source-class -> EyeCU-class mapping. NOTHING IS REMAPPED. This file records a proposal and the evidence behind it.",
+ "eyecu_classes": ["player", "goalkeeper", "referee", "ball"],
+ "method": "Every mapping was confirmed by looking at rendered crops of that class (experiments/external_data_audit/contact_sheets/<SID>_class<N>_*.jpg). Instance frequency and box aspect ratio were used to form the hypothesis; the crops decided it. Frequency alone cannot separate goalkeeper from referee -- both are rare humans -- so no numeric class was assigned without visual confirmation.",
+ "S1": {
+  "project": "modulov/soccer-3ezqd v1",
+  "mapping": {"0": "ball", "1": "player", "2": "referee"},
+  "rows": [
+   {"source_class": "Ball", "proposed": "ball", "confidence": "HIGH",
+    "evidence": "S1_class0_Ball.jpg -- footballs on grass, correct object",
+    "human_review_required": false},
+   {"source_class": "Player", "proposed": "player", "confidence": "HIGH",
+    "evidence": "S1_class1_Player.jpg -- outfield players in both kits",
+    "human_review_required": true,
+    "review_reason": "TAXONOMY GAP, not a naming problem. S1 has no goalkeeper class, so goalkeepers are inside 'Player'. Importing this as EyeCU 'player' actively teaches the detector that goalkeepers are players, contradicting EyeCU's own labelling rules and the 431 goalkeeper instances already in TRAIN."},
+   {"source_class": "Ref", "proposed": "referee", "confidence": "HIGH",
+    "evidence": "S1_class2_Ref.jpg -- black-kit match officials, 24/24 correct",
+    "human_review_required": false}
+  ]
+ },
+ "S2": {
+  "project": "va-sah7v/football-eitpt v1",
+  "mapping": {"0": "referee", "1": "ball", "2": "goalkeeper", "3": "player"},
+  "note": "French class names. This is the only source whose four classes align 1:1 with EyeCU's four with no taxonomy gap.",
+  "rows": [
+   {"source_class": "Arbitre", "proposed": "referee", "confidence": "HIGH",
+    "evidence": "French 'arbitre' = referee; S2_class0_Arbitre.jpg shows officials",
+    "human_review_required": false},
+   {"source_class": "Ballon", "proposed": "ball", "confidence": "HIGH",
+    "evidence": "French 'ballon' = ball; S2_class1_Ballon.jpg shows footballs, though many boxes are visibly oversized",
+    "human_review_required": true,
+    "review_reason": "Correct object, poor geometry -- see annotation quality report"},
+   {"source_class": "Gardien", "proposed": "goalkeeper", "confidence": "HIGH",
+    "evidence": "French 'gardien (de but)' = goalkeeper; S2_class2_Gardien.jpg shows keepers in goalmouths in distinct kits, several diving",
+    "human_review_required": false},
+   {"source_class": "Joueur", "proposed": "player", "confidence": "HIGH",
+    "evidence": "French 'joueur' = player; S2_class3_Joueur.jpg shows outfield players",
+    "human_review_required": false}
+  ]
+ },
+ "S3": {
+  "project": "roboflow-100/soccer-players-5fuqs v1",
+  "mapping": {"0": "ball", "1": "player", "2": "referee"},
+  "rows": [
+   {"source_class": "football", "proposed": "ball", "confidence": "HIGH",
+    "evidence": "S3_class0_football.jpg -- 'football' here means the ball, not the sport",
+    "human_review_required": false},
+   {"source_class": "player", "proposed": "player", "confidence": "HIGH",
+    "evidence": "S3_class1_player.jpg",
+    "human_review_required": true,
+    "review_reason": "Same taxonomy gap as S1: no goalkeeper class, so goalkeepers are folded into 'player'."},
+   {"source_class": "referee", "proposed": "referee", "confidence": "HIGH",
+    "evidence": "S3_class2_referee.jpg -- black-kit officials, 24/24 correct",
+    "human_review_required": false}
+  ]
+ },
+ "S4": {
+  "project": "simon6048/soccer-xwvv0 v1",
+  "mapping": {"0": "ball", "1": "goalkeeper", "2": "player", "3": "referee"},
+  "note": "Numeric class names carry no semantics. The order is the alphabetical ball/goalkeeper/player/referee convention Roboflow produces, confirmed visually class by class.",
+  "rows": [
+   {"source_class": "0", "proposed": "ball", "confidence": "HIGH",
+    "evidence": "S4_class0_0.jpg -- footballs. Smallest class (median 4x7 px), <=2 per image, 230 instances.",
+    "human_review_required": false},
+   {"source_class": "1", "proposed": "goalkeeper", "confidence": "HIGH",
+    "evidence": "S4_class1_1.jpg -- keepers in distinct bright kits standing in goalmouths. 0.68/image, 185 instances, human aspect 3.4:1.",
+    "human_review_required": false},
+   {"source_class": "2", "proposed": "player", "confidence": "HIGH",
+    "evidence": "S4_class2_2.jpg -- outfield players. 19.97/image, 5431 instances -- the only class that can be the field population.",
+    "human_review_required": false},
+   {"source_class": "3", "proposed": "referee", "confidence": "HIGH",
+    "evidence": "S4_class3_3.jpg -- black-kit officials, several on the touchline. 2.29/image, consistent with a 3-official crew.",
+    "human_review_required": false}
+  ]
+ },
+ "S5": {
+  "project": "mishahal-salim-nuz8t/soccer-xvqxc v1",
+  "mapping": {"0": "ball"},
+  "rows": [
+   {"source_class": "ball", "proposed": "ball", "confidence": "HIGH",
+    "evidence": "single-class export; S5_ball.jpg confirms the object",
+    "human_review_required": true,
+    "review_reason": "The class maps cleanly, but the DATASET does not: every image contains unlabelled players. See the partial-annotation verdict."}
+  ]
+ },
+ "S6": {
+  "project": "old-storm-hhcgf/soccer-f6mhl v1",
+  "mapping": {"0": "ball", "1": "goalkeeper", "2": "player", "3": "referee"},
+  "note": "Same numeric convention as S4, confirmed independently on this source's own crops.",
+  "rows": [
+   {"source_class": "0", "proposed": "ball", "confidence": "HIGH",
+    "evidence": "S6_class0_0.jpg -- footballs, median 10.3x11.0 px, aspect 1.00 (square, as a ball is). 0.63/image.",
+    "human_review_required": false},
+   {"source_class": "1", "proposed": "goalkeeper", "confidence": "HIGH",
+    "evidence": "S6_class1_1.jpg -- keepers in the goalmouth in distinct kits, one mid-save. 0.44/image.",
+    "human_review_required": false},
+   {"source_class": "2", "proposed": "player", "confidence": "HIGH",
+    "evidence": "S6_class2_2.jpg -- Barcelona and opposition outfield players. 13.96/image.",
+    "human_review_required": false},
+   {"source_class": "3", "proposed": "referee", "confidence": "HIGH",
+    "evidence": "S6_class3_3.jpg -- yellow-shirted La Liga officials, 24/24 correct. 1.29/image.",
+    "human_review_required": false}
+  ]
+ },
+ "cross_source_findings": {
+  "numeric_only_class_names": ["S4", "S6"],
+  "non_english_class_names": ["S2 (French)"],
+  "capitalization_variants_of_the_same_concept": [
+   "ball: 'Ball' (S1), 'Ballon' (S2), 'football' (S3), 'ball' (S5), '0' (S4, S6)",
+   "player: 'Player' (S1), 'Joueur' (S2), 'player' (S3), '2' (S4, S6)",
+   "referee: 'Ref' (S1), 'Arbitre' (S2), 'referee' (S3), '3' (S4, S6)"
+  ],
+  "team_specific_player_classes": "none found in any source",
+  "unknown_or_irrelevant_classes": "none -- every declared class maps to one of EyeCU's four",
+  "missing_goalkeeper_class": ["S1", "S3", "S5"],
+  "consequence": "S1 and S3 cannot supply the goalkeeper class and would inject goalkeeper-as-player conflicts. S5 supplies only ball."
+ }
+}

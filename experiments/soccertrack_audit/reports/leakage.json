@@ -1,0 +1,11 @@
+{
+ "method": "even frame sampling from both downloaded halves, letterbox-stripped 64x64 signature, 8 dihedral orientations, hamming <= 10 then NCC >= 0.95",
+ "video_frames_sampled": 500,
+ "eyecu_images_compared": 1208,
+ "test_handling": "TEST images hashed only; no TEST label opened, no evaluation performed",
+ "EXTERNAL_vs_TRAIN": 0,
+ "EXTERNAL_vs_VAL": 0,
+ "EXTERNAL_vs_TEST": 0,
+ "same_source_assessment": "SoccerTrack is a fixed panoramic rig over a Japanese university artificial-turf pitch; EyeCU sources are broadcast and amateur match video from other continents. No shared source is possible on provenance grounds, and none was found on pixels.",
+ "hits": []
+}

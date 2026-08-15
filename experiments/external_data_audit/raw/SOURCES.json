@@ -1,0 +1,217 @@
+{
+ "audit": "EyeCU external data audit",
+ "zip_dir": "C:\\Users\\shail\\OneDrive\\שולחן העבודה\\AI Course\\EyeCU4.0\\check_datasets",
+ "note": "ZIPs are left in place and treated as immutable evidence; hashes below are re-verified at the end of the audit",
+ "sources": {
+  "S1": {
+   "original_filename": "SOccer.v1i.yolo26.zip",
+   "sha256": "6cfdbf2f31cbba589852b6e341f85dfb7318915096ad96a7fd52d239e502c50d",
+   "archive_bytes": 23516008,
+   "workspace": "modulov",
+   "project": "soccer-3ezqd",
+   "version": 1,
+   "roboflow_url": "https://universe.roboflow.com/modulov/soccer-3ezqd/dataset/1",
+   "license": "CC BY 4.0",
+   "export_format": "YOLO26 (Ultralytics YOLO txt + data.yaml)",
+   "declared_classes": [
+    "Ball",
+    "Player",
+    "Ref"
+   ],
+   "declared_nc": 3,
+   "declared_image_count": 574,
+   "export_date": "August 11, 2026 at 7:08 AM GMT",
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [
+    "50% probability of horizontal flip",
+    "Random exposure adjustment of between -6 and +6 percent"
+   ],
+   "augmentation_multiplier": 3,
+   "zip_entries": 1153,
+   "zip_image_files": 574,
+   "zip_label_files": 574,
+   "splits_present": [
+    "test",
+    "train",
+    "valid"
+   ],
+   "extracted_to": "experiments/external_data_audit/extracted/S1"
+  },
+  "S2": {
+   "original_filename": "football.v1i.yolo26.zip",
+   "sha256": "d99cb76a6d3d056c25dc611025bb0dc49af8db956265f457803927e20079d4cf",
+   "archive_bytes": 37643123,
+   "workspace": "va-sah7v",
+   "project": "football-eitpt",
+   "version": 1,
+   "roboflow_url": "https://universe.roboflow.com/va-sah7v/football-eitpt/dataset/1",
+   "license": "CC BY 4.0",
+   "export_format": "YOLO26 (Ultralytics YOLO txt + data.yaml)",
+   "declared_classes": [
+    "Arbitre",
+    "Ballon",
+    "Gardien",
+    "Joueur"
+   ],
+   "declared_nc": 4,
+   "declared_image_count": 439,
+   "export_date": "August 11, 2026 at 7:10 AM GMT",
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [
+    "Equal probability of one of the following 90-degree rotations: none, clockwise, counter-clockwise",
+    "Randomly crop between 0 and 20 percent of the image",
+    "Random Gaussian blur of between 0 and 2.5 pixels",
+    "Salt and pepper noise was applied to 5 percent of pixels"
+   ],
+   "augmentation_multiplier": 3,
+   "zip_entries": 797,
+   "zip_image_files": 396,
+   "zip_label_files": 396,
+   "splits_present": [
+    "test",
+    "train",
+    "valid"
+   ],
+   "extracted_to": "experiments/external_data_audit/extracted/S2"
+  },
+  "S3": {
+   "original_filename": "soccer players.v1-release-640.yolo26.zip",
+   "sha256": "091af379c7a5a91d6771f989cc57f96bb2f48e84f380d9e33fe71207159d0e06",
+   "archive_bytes": 5900954,
+   "workspace": "roboflow-100",
+   "project": "soccer-players-5fuqs",
+   "version": 1,
+   "roboflow_url": "https://universe.roboflow.com/roboflow-100/soccer-players-5fuqs/dataset/1",
+   "license": "CC BY 4.0",
+   "export_format": "YOLO26 (Ultralytics YOLO txt + data.yaml)",
+   "declared_classes": [
+    "football",
+    "player",
+    "referee"
+   ],
+   "declared_nc": 3,
+   "declared_image_count": 163,
+   "export_date": "April 29, 2026 at 9:10 AM GMT",
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [],
+   "augmentation_multiplier": 1,
+   "zip_entries": 331,
+   "zip_image_files": 163,
+   "zip_label_files": 163,
+   "splits_present": [
+    "test",
+    "train",
+    "valid"
+   ],
+   "extracted_to": "experiments/external_data_audit/extracted/S3"
+  },
+  "S4": {
+   "original_filename": "soccer.v1i.yolo26 (1).zip",
+   "sha256": "6df855c3f1decdc2cf0b44c8bd1c02c9a7ad9ce3a0d255bb73332b37ea6d2534",
+   "archive_bytes": 17276408,
+   "workspace": "simon6048",
+   "project": "soccer-xwvv0",
+   "version": 1,
+   "roboflow_url": "https://universe.roboflow.com/simon6048/soccer-xwvv0/dataset/1",
+   "license": "CC BY 4.0",
+   "export_format": "YOLO26 (Ultralytics YOLO txt + data.yaml)",
+   "declared_classes": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "declared_nc": 4,
+   "declared_image_count": 272,
+   "export_date": "August 11, 2026 at 7:08 AM GMT",
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 640x640 (Stretch)"
+   ],
+   "augmentation": [],
+   "augmentation_multiplier": 1,
+   "zip_entries": 549,
+   "zip_image_files": 272,
+   "zip_label_files": 272,
+   "splits_present": [
+    "test",
+    "train",
+    "valid"
+   ],
+   "extracted_to": "experiments/external_data_audit/extracted/S4"
+  },
+  "S5": {
+   "original_filename": "soccer.v1i.yolo26 (2).zip",
+   "sha256": "e420dfcdec32409d7ec5a313a76ed2a864cb992242defcc3acd8ec1ede128ccd",
+   "archive_bytes": 94691842,
+   "workspace": "mishahal-salim-nuz8t",
+   "project": "soccer-xvqxc",
+   "version": 1,
+   "roboflow_url": "https://universe.roboflow.com/mishahal-salim-nuz8t/soccer-xvqxc/dataset/1",
+   "license": "Public Domain",
+   "export_format": "YOLO26 (Ultralytics YOLO txt + data.yaml)",
+   "declared_classes": [
+    "ball"
+   ],
+   "declared_nc": 1,
+   "declared_image_count": 511,
+   "export_date": "August 11, 2026 at 7:09 AM GMT",
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)"
+   ],
+   "augmentation": [],
+   "augmentation_multiplier": 1,
+   "zip_entries": 979,
+   "zip_image_files": 487,
+   "zip_label_files": 487,
+   "splits_present": [
+    "test",
+    "train",
+    "valid"
+   ],
+   "extracted_to": "experiments/external_data_audit/extracted/S5"
+  },
+  "S6": {
+   "original_filename": "soccer.v1i.yolo26 (3).zip",
+   "sha256": "ae34e65843c531ec6b82be1a42524a047e573ecfe9b7d82fd148593dac8c8a29",
+   "archive_bytes": 151295839,
+   "workspace": "old-storm-hhcgf",
+   "project": "soccer-f6mhl",
+   "version": 1,
+   "roboflow_url": "https://universe.roboflow.com/old-storm-hhcgf/soccer-f6mhl/dataset/1",
+   "license": "CC BY 4.0",
+   "export_format": "YOLO26 (Ultralytics YOLO txt + data.yaml)",
+   "declared_classes": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "declared_nc": 4,
+   "declared_image_count": 1702,
+   "export_date": "August 11, 2026 at 7:09 AM GMT",
+   "preprocessing": [
+    "Auto-orientation of pixel data (with EXIF-orientation stripping)",
+    "Resize to 1280x1280 (Fill (with center crop))"
+   ],
+   "augmentation": [],
+   "augmentation_multiplier": 1,
+   "zip_entries": 3407,
+   "zip_image_files": 1702,
+   "zip_label_files": 1702,
+   "splits_present": [
+    "train"
+   ],
+   "extracted_to": "experiments/external_data_audit/extracted/S6"
+  }
+ }
+}

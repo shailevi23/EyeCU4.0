@@ -1,0 +1,150 @@
+{
+ "source_log": {
+  "decisions_sha256": "8bc9eaa2d01af433e7ac7b4bd2ca93fad88fee3aac56140b0acd465570f2b3bd",
+  "decisions_lines": 26436,
+  "note": "regenerate this report if it does not match the current decisions.json; a stale report must never be read as state"
+ },
+ "gate": [
+  {
+   "condition": "A original candidate review complete",
+   "result": "PASS",
+   "detail": "4153/4153"
+  },
+  {
+   "condition": "B qa_player complete",
+   "result": "PASS",
+   "detail": "250/250"
+  },
+  {
+   "condition": "C qa_nocand complete",
+   "result": "PASS",
+   "detail": "57/57 images"
+  },
+  {
+   "condition": "D all original U categorized",
+   "result": "PASS",
+   "detail": "48/48"
+  },
+  {
+   "condition": "E all resolvable U resolved",
+   "result": "PASS",
+   "detail": "48/48 categorized; 0 real targets left unresolved and not excluded"
+  },
+  {
+   "condition": "F MISSED_ROLE_REVIEW complete",
+   "result": "PASS",
+   "detail": "6684/6684"
+  },
+  {
+   "condition": "G no systematic unresolved GK/ref misses",
+   "result": "PASS",
+   "detail": "qa_player missed-role 6.40% (its 16 officials carry decisions); 25 no-candidate images held an official, all decided; retrospective queue 6684/6684 reviewed, 0 left uncertain"
+  },
+  {
+   "condition": "H non-target humans handled consistently",
+   "result": "PASS",
+   "detail": "19 categorized"
+  },
+  {
+   "condition": "I false-positive annotations handled",
+   "result": "PASS",
+   "detail": "3 categorized"
+  },
+  {
+   "condition": "J ball-as-human errors handled",
+   "result": "PASS",
+   "detail": "5 categorized"
+  },
+  {
+   "condition": "K bad geometry quantified with a documented policy",
+   "result": "PASS",
+   "detail": "7 categorized"
+  },
+  {
+   "condition": "L unresolved real targets resolved or their images excluded",
+   "result": "PASS",
+   "detail": "0 outstanding"
+  },
+  {
+   "condition": "M ball GT preservation verified",
+   "result": "PASS",
+   "detail": "{'instances': 1263, 'le5': 90, 'le8': 474, 'le12': 969}"
+  },
+  {
+   "condition": "N run-level domain decision recorded",
+   "result": "PASS",
+   "detail": "recommendations present"
+  },
+  {
+   "condition": "N2 every flagged MISSING_TARGET_BOX boxed or its image excluded",
+   "result": "PASS",
+   "detail": "51 flagged, 0 still pending"
+  },
+  {
+   "condition": "O original dataset immutable",
+   "result": "PASS",
+   "detail": "verified by test_original_export_is_immutable_and_hashed"
+  },
+  {
+   "condition": "P no TEST performance accessed",
+   "result": "PASS",
+   "detail": "no evaluation run in this task"
+  }
+ ],
+ "passed": true,
+ "blocking": [],
+ "qa_player": {
+  "sampled": 250,
+  "missed_officials": 16,
+  "missed_role_rate": 0.064
+ },
+ "qa_nocand_images_with_missed_official": 25,
+ "u_boxes": 48,
+ "u_categorized": 48,
+ "missed_role_queue": {
+  "boxes": 6684,
+  "reviewed": 6684
+ },
+ "missing_target_boxes": {
+  "flagged": 51,
+  "pending": 0,
+  "resolved": 46,
+  "boxed": 46,
+  "excluded": 0,
+  "unrecognised_resolution_values": {},
+  "retracted": 5,
+  "images": 41,
+  "by_role": {
+   "referee": 27,
+   "player": 20,
+   "goalkeeper": 3,
+   "uncertain": 1
+  },
+  "note": "a real target with no annotation box; resolved by drawing one and classifying it, or by excluding the image. No box is created automatically."
+ },
+ "manual_context_corrections": {
+  "count": 46,
+  "by_class": {
+   "player": 2,
+   "goalkeeper": 15,
+   "referee": 20,
+   "uncertain": 0
+  },
+  "by_kind": {
+   "NO_OP_CONFIRMATION": 11,
+   "NEW_MISSED_ROLE_CORRECTION": 26,
+   "DISPOSITION_SET": 9
+  },
+  "true_missed_role_discoveries": 26,
+  "note": "optional corrections on existing context boxes; they add coverage and never add required workload. Only NEW_MISSED_ROLE_CORRECTION counts as an official the retrospective sweep missed -- re-confirming a box that already carried the same role is a NO_OP_CONFIRMATION and must not inflate that number."
+ },
+ "ball_counts": {
+  "instances": 1263,
+  "le5": 90,
+  "le8": 474,
+  "le12": 969
+ },
+ "ball_preserved": true,
+ "apply_permitted": true,
+ "unresolved_case_policies": []
+}

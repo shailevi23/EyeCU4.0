@@ -1,0 +1,226 @@
+{
+ "audit": "Keremberke post-human-review cleanup, coverage audit and Experiment D gate",
+ "date": "2026-08-12",
+ "scope": "AUDIT AND QUEUE BUILD ONLY. No training, no merge, no Experiment D, no --apply, original export immutable, no model prediction promoted to GT, TEST not accessed.",
+
+ "headline": [
+  "The first-pass review IS genuinely complete -- 4,153/4,153 candidates, 250/250 qa_player, 57/57 qa_nocand -- and it is NOT sufficient. The QA it required is what proved the coverage was incomplete.",
+  "6.40% of sampled LIKELY_PLAYER boxes were officials that were never queued. Extrapolated to the 17,462 unreviewed boxes that is ~1,118 missed officials (95% CI 588-1,647), against 2,365 officials the reviewer did confirm. Roughly a third of the officials in this dataset were never put in front of a human.",
+  "25 of the 57 no-candidate images (44%) contained a missed official.",
+  "The high/wide tactical runs are BOTH the problem and the value: 39.4% of images, 16.2% missed-role rate, 47.9% of all U decisions -- and 83.8% of every ball at <=8 px and 98.9% of those at <=5 px.",
+  "SECOND-PASS GATE: FAIL on four conditions. --apply refuses."
+ ],
+
+ "actual_review_completion": {
+  "verified_from": "decisions.json, not from the task statement",
+  "log_lines": 5095,
+  "unique_decisions": 4725,
+  "boxes_the_reviewer_revised": 115,
+  "note": "log lines are not decisions; the reviewer corrected 115 boxes and last write wins",
+  "candidates": {"answered": 4153, "population": 4153, "complete": true},
+  "qa_player": {"answered": 250, "population": 250, "complete": true},
+  "qa_nocand": {"answered_images": 57, "population_images": 57, "complete": true}
+ },
+
+ "original_human_decisions": {
+  "P_player": 1740, "G_goalkeeper": 832, "R_referee": 1533, "U_unresolved": 48,
+  "proposal_vs_human": {
+   "proposed_referee_n1189": {"player": 281, "goalkeeper": 7, "referee": 899,
+                              "uncertain": 2, "precision": 0.756},
+   "proposed_goalkeeper_n590": {"player": 24, "goalkeeper": 532, "referee": 34,
+                                "uncertain": 0, "precision": 0.902},
+   "ambiguous_n2374": {"player": 1435, "goalkeeper": 293, "referee": 600,
+                       "uncertain": 46}},
+  "reading": "the ambiguous bucket was worth queueing -- it yielded 893 officials the two signals disagreed about, more than a third of all officials found"
+ },
+
+ "qa_player_results": {
+  "sampled": 250,
+  "TRUE_PLAYER": 233, "MISSED_GOALKEEPER": 8, "MISSED_REFEREE": 8, "UNCERTAIN": 1,
+  "missed_role_rate": 0.064,
+  "reported_separately_not_combined": true,
+  "extrapolation": {"population": 17462, "point_estimate": 1118,
+                    "ci95": [588, 1647],
+                    "caveat": "16 positives in 250 is a small basis; the interval is wide and is stated rather than hidden"}
+ },
+
+ "qa_nocand_results": {
+  "images": 57,
+  "images_with_missed_goalkeeper": 8,
+  "images_with_missed_referee": 17,
+  "images_with_any_missed_official": 25,
+  "rate": 0.44,
+  "limitation_confirmed": "this mode only covered images with ZERO original candidates. It cannot detect the failure where one candidate exists in an image while a second goalkeeper or referee remains an unqueued context box, so it cannot close the coverage gap alone."
+ },
+
+ "u_resolution": {
+  "status": "QUEUE BUILT, 0 of 48 categorized",
+  "u_boxes": 48, "u_images": 42,
+  "by_run": {"plain_A": 8, "plain_B": 17, "pp_A": 6, "pp_B": 17},
+  "categories_offered": ["AMBIGUOUS_TARGET", "OCCLUDED_UNCLEAR", "NON_TARGET_HUMAN",
+                         "BALL_WRONG_HUMAN_BOX", "FALSE_POSITIVE",
+                         "PARTIAL_BODY_BAD_BOX", "P", "G", "R"],
+  "valid_occlusion_rule_encoded": "a box around the visible extent of a genuinely hidden person is VALID and may stay P/G/R; only a fragment box where much more of the body is visible is PARTIAL_BODY_BAD_BOX",
+  "counts_per_category": "NOT_ESTABLISHED -- no U has been categorized yet",
+  "resolved_P": 0, "resolved_G": 0, "resolved_R": 0, "still_unresolved": 48
+ },
+
+ "retrospective_missed_role_queue": {
+  "boxes": 6984, "images": 1184,
+  "population_scored": 17462,
+  "proposed_role_mix": {"referee": 4498, "goalkeeper": 2486},
+  "by_run": {"pp_B": 3288, "plain_B": 2705, "plain_A": 697, "pp_A": 294},
+  "generation_logic": [
+   "torso colour distance to HUMAN-CONFIRMED goalkeeper and referee kits of the SAME broadcast run, scored RELATIVE to the distance to confirmed PLAYER kits of that run",
+   "frame-edge and touchline position, where assistant referees patrol",
+   "goal-third position, for goalkeepers",
+   "weak or absent frozen-detector match, as a proxy for a box the detector barely saw"],
+  "the_detector_contributes_nothing_here": "this pool is defined as the boxes the frozen detector called player, so its class opinion is constant across every candidate. That is precisely why its recall failed, and it is why the human-confirmed kits are doing the work.",
+  "no_role_assigned_automatically": true,
+  "no_identity_propagated": true,
+  "validation": {
+   "held_out_set": "the 250 qa_player boxes, labelled by a human independently of every signal above",
+   "officials_in_it": 16,
+   "recall_at_top_5pct": 0.562, "recall_at_top_10pct": 0.562,
+   "recall_at_top_20pct": 0.688, "recall_at_top_30pct": 0.938,
+   "recall_at_top_40pct": 1.0,
+   "chosen_cutoff": "top 40% of the scored pool",
+   "honest_caveat": "100% here is 16/16. With 16 positives the interval is roughly 79-100%, so the queue's recall is indicative, not established. The cutoff was set generous for that reason."
+  },
+  "honest_assessment": "This is NOT a small bounded queue. 6,984 boxes across 1,184 images is a second review pass of comparable size to the first. The ranking helps -- the top 5% already holds 56% of the known missed officials -- but a 6.4% base rate spread across 17,462 boxes cannot be cheaply concentrated. Estimated 5-8 hours."
+ },
+
+ "missed_role_human_results": {
+  "status": "NOT STARTED",
+  "missed_goalkeeper": 0, "missed_referee": 0, "false_alarm": 0, "unresolved": 0,
+  "reviewed": "0/6984"
+ },
+
+ "bad_geometry_scope": {
+  "status": "NOT_ESTABLISHED",
+  "why": "PARTIAL_BODY_BAD_BOX only exists as a second-pass category and no U box has been categorized yet. Quantifying it before the human assigns it would mean inventing the count.",
+  "count": null, "images": null,
+  "recommended_treatment": "quantify first from the 48 categorized U boxes, then choose bounded repair, removal or image exclusion. No redrawing campaign is proposed."
+ },
+
+ "non_target_human_scope": {
+  "status": "NOT_ESTABLISHED",
+  "why": "same as bad geometry -- the category exists, the human has not applied it yet",
+  "count": null,
+  "policy_already_fixed": [
+   "a non-target human (coach, bench, ball person, medical, staff) must NEVER become player",
+   "it may remain unlabelled background because it is outside the EyeCU target ontology",
+   "a real player, goalkeeper or referee must NEVER be removed and left as unlabelled background -- EyeCU has no validated ignore-region mechanism, so a removed target becomes a false negative in training"
+  ]
+ },
+
+ "ball_as_human_and_false_positive": {
+  "status": "NOT_ESTABLISHED -- both are second-pass categories, none applied yet",
+  "BALL_WRONG_HUMAN_BOX": {"count": null,
+                           "action": "invalidate the human box; check whether the real ball already has valid ball GT; NEVER fabricate a ball box from a detector prediction"},
+  "FALSE_POSITIVE": {"count": null,
+                     "action": "remove the annotation in the working copy with an audit-log row"},
+  "kept_separate_from_role_ambiguity": true
+ },
+
+ "run_level_analysis": {
+  "camera_type_rule": "HIGH_WIDE_TACTICAL when a frame carries >=16 annotated humans AND the median human is under 7.5% of frame height -- measured, not eyeballed",
+  "plain_A": {"images": 187, "pct": 15.2, "humans": 2495, "balls": 173,
+              "le5": 0, "le8": 12, "le12": 104, "U_rate": 0.014,
+              "missed_role_rate": 0.022, "retro_queue": 697,
+              "median_human_px": 71, "humans_per_image": 13.3,
+              "domain": "STANDARD_BROADCAST", "recommendation": "KEEP"},
+  "plain_B": {"images": 555, "pct": 45.1, "humans": 7771, "balls": 464,
+              "le5": 1, "le8": 65, "le12": 274, "U_rate": 0.010,
+              "missed_role_rate": 0.035, "retro_queue": 2705,
+              "median_human_px": 65, "humans_per_image": 14.0,
+              "domain": "STANDARD_BROADCAST", "recommendation": "KEEP"},
+  "pp_A": {"images": 49, "pct": 4.0, "humans": 1137, "balls": 62,
+           "le5": 11, "le8": 40, "le12": 62, "U_rate": 0.028,
+           "missed_role_rate": 0.128, "retro_queue": 294,
+           "median_human_px": 39, "humans_per_image": 23.2,
+           "domain": "HIGH_WIDE_TACTICAL", "recommendation": "SUBSAMPLE"},
+  "pp_B": {"images": 436, "pct": 35.4, "humans": 10212, "balls": 558,
+           "le5": 78, "le8": 357, "le12": 529, "U_rate": 0.010,
+           "missed_role_rate": 0.162, "retro_queue": 3288,
+           "median_human_px": 38, "humans_per_image": 23.4,
+           "domain": "HIGH_WIDE_TACTICAL", "recommendation": "KEEP (CONDITIONAL)"},
+  "other": {"images": 4, "balls": 6, "recommendation": "EXCLUDE",
+            "why": "no human annotations; too small to reason about"},
+  "totals_reconcile": {"balls": 1263, "le5": 90, "le8": 474, "le12": 969}
+ },
+
+ "rare_wide_angle": {
+  "runs": ["pp_A", "pp_B"],
+  "images": 485, "pct_of_dataset": 39.4,
+  "balls": 620, "share_of_all_balls_pct": 49.1,
+  "le5": 89, "share_of_le5_pct": 98.9,
+  "le8": 397, "share_of_le8_pct": 83.8,
+  "le12": 591,
+  "problem_contribution": {"share_of_all_U_pct": 47.9,
+                           "missed_role_rate": "12.8% and 16.2% vs 2.2% and 3.5% in the standard runs",
+                           "retrospective_queue_boxes": 3582},
+  "answer_to_the_explicit_question": "BOTH. It contributes disproportionately to U decisions, role ambiguity and missed officials, AND it supplies the large majority of the genuinely small balls. These are not competing readings; both are true.",
+  "recommended_policy": "KEEP_ALL, conditional on the retrospective role review being completed for these runs",
+  "why_not_exclude": "excluding pp removes 84% of the balls at <=8 px and 99% of those at <=5 px. Tiny broadcast balls were the entire reason keremberke ranked above every other audited source; without them the dataset offers nothing EyeCU does not already have. The cost is paid by finishing the role review, not by dropping the run.",
+  "why_not_keep_blindly": "a 16.2% missed-role rate in the run that supplies most of the images would inject hundreds of officials labelled player into TRAIN, damaging the two classes EyeCU is weakest on."
+ },
+
+ "final_repair_actions": "NONE APPLIED. --apply refused by the second-pass gate.",
+ "final_class_counts": {
+  "status": "NOT FINAL -- the repair has not been applied",
+  "current_working_copy": {"player": 21615, "goalkeeper": 0, "referee": 0, "ball": 1263},
+  "if_first_pass_alone_were_applied": {"player": 19250, "goalkeeper": 832,
+                                       "referee": 1533, "ball": 1263,
+                                       "warning": "this would still contain an estimated ~1,118 officials mislabelled player"}
+ },
+ "reclassifications_pending": {
+  "player_to_goalkeeper": 832, "player_to_referee": 1533,
+  "U_to_player": 0, "U_to_goalkeeper": 0, "U_to_referee": 0,
+  "removed_false_positives": 0, "removed_non_target": 0,
+  "ball_as_human_corrections": 0, "bad_geometry_annotations": 0,
+  "geometry_repairs": 0, "excluded_images": 0,
+  "unresolved_cases": 48,
+  "human_decisions_made": 4725
+ },
+
+ "ball_counts_preserved": {
+  "pre_repair": {"total": 1263, "le5": 90, "le8": 474, "le12": 969},
+  "current": {"total": 1263, "le5": 90, "le8": 474, "le12": 969},
+  "difference": "none -- no ball annotation has been touched",
+  "convention": "stored pixels at 1280x720, unchanged from the completed audit"
+ },
+
+ "dataset_integrity": "PASS -- original export sha256-unchanged, no geometry altered, no annotation added or deleted, all work confined to the working copy",
+
+ "second_pass_gate": {
+  "result": "FAIL",
+  "blocking": ["D all original U categorized",
+               "E all resolvable U resolved",
+               "F MISSED_ROLE_REVIEW complete",
+               "G no systematic unresolved GK/ref misses"],
+  "passing": ["A", "B", "C", "H", "I", "J", "K", "L", "M", "N", "O", "P"],
+  "apply_permitted": false
+ },
+
+ "verdicts": {
+  "KEREMBERKE_DATASET_REPAIR": "FAIL",
+  "ROLE_ONTOLOGY": "NOT_READY",
+  "ANNOTATION_QUALITY": "NEEDS_MORE_REPAIR",
+  "MISSED_ROLE_COVERAGE": "FAIL",
+  "HIGH_WIDE_RUN": "KEEP (conditional on the retrospective review)",
+  "READY_TO_DESIGN_EXPERIMENT_D": "NO"
+ },
+
+ "exact_next_action": "Run the second pass: `python tools/kb_review_server.py`, mode u_resolution (48 boxes, ~15 minutes), then mode missed_role (6,984 boxes across 1,184 images, ordered highest-score first, ~5-8 hours). The queue is ordered so the reviewer can stop early and still have taken the most probable misses: the top 5% already contains 56% of the known missed officials. Then re-run tools/kb_second_pass_gate.py. Only when it passes may --apply run.",
+
+ "constraints_respected": {
+  "training_performed": false, "merged_into_eyecu_train": false,
+  "experiment_d_started": false, "original_dataset_modified": false,
+  "apply_run": false, "model_prediction_promoted_to_gt": false,
+  "unresolved_classes_guessed": false, "annotations_silently_deleted": false,
+  "geometry_silently_repaired": false,
+  "full_1170_image_review_repeated": false,
+  "test_performance_accessed": false
+ }
+}

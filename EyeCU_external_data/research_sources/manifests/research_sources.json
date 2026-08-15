@@ -1,0 +1,62 @@
+{
+ "sportslabkit": {
+  "github_full_name": "AtomScott/SportsLabKit",
+  "description": "A python package for turning sports video into csv files",
+  "license_spdx": "GPL-3.0",
+  "license_name": "GNU General Public License v3.0",
+  "license_url": "https://api.github.com/licenses/gpl-3.0",
+  "stars": 319,
+  "archived": false,
+  "default_branch": "develop",
+  "pushed_at": "2023-12-19T04:38:38Z",
+  "html_url": "https://github.com/AtomScott/SportsLabKit",
+  "topics": [
+   "computer-vision",
+   "data-science",
+   "football",
+   "multi-object-tracking",
+   "multiobject-tracking",
+   "python",
+   "soccer",
+   "sports",
+   "sports-analytics",
+   "tracking"
+  ],
+  "saved_files": [
+   "README.md",
+   "LICENSE"
+  ]
+ },
+ "teamtrack": {
+  "github_full_name": "AtomScott/TeamTrack",
+  "description": "TeamTrack: An Algorithm and Benchmark Dataset for Multi-Sport Multi-Object Tracking in Full-pitch Videos",
+  "license_spdx": "MIT",
+  "license_name": "MIT License",
+  "license_url": "https://api.github.com/licenses/mit",
+  "stars": 76,
+  "archived": false,
+  "default_branch": "main",
+  "pushed_at": "2024-04-22T07:22:29Z",
+  "html_url": "https://github.com/AtomScott/TeamTrack",
+  "topics": [
+   "basketball",
+   "computer-vision",
+   "football",
+   "handball",
+   "mot",
+   "multiobject-tracking",
+   "multple-object-tracking",
+   "optical-tracking",
+   "soccer",
+   "sports-analytics",
+   "tracking",
+   "vision"
+  ],
+  "saved_files": [
+   "README.md",
+   "LICENSE"
+  ],
+  "huggingface_dataset_status": 401,
+  "huggingface_access": "BLOCKED_ACCESS"
+ }
+}

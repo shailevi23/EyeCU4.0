@@ -51,9 +51,21 @@ def main():
     parser.add_argument("--conf", type=float, default=0.25,
                         help="Detection confidence threshold (default: 0.25)")
     parser.add_argument("--max-ball-gap", type=int, default=15,
-                        help="Frames the last known ball box may be held while the "
-                             "ball is undetected, before it is reported unknown "
+                        help="Frames the tracker may hold the last known ball box "
+                             "while the ball is undetected. BallTemporalSelector "
+                             "supersedes this in the pipeline, which resolves the "
+                             "ball with bounded, provenance-tagged recovery "
                              "(default: 15)")
+    parser.add_argument("--tracker", choices=("cbiou", "legacy"), default="cbiou",
+                        help="Association backend. 'cbiou' is the default and the "
+                             "qualified production tracker; 'legacy' is "
+                             "supervision ByteTrack, kept for rollback and "
+                             "regression comparison (default: cbiou)")
+    parser.add_argument("--no-ball-candidates", action="store_true",
+                        help="Disable the 0.10 ball rescue pool. The temporal "
+                             "selector then has no low-confidence candidates to "
+                             "adjudicate and can only interpolate between "
+                             "accepted observations.")
     parser.add_argument("--show-speed", action="store_true", 
                         help="Show player speed in visualization")
     parser.add_argument("--show-distance", action="store_true", 
@@ -86,6 +98,8 @@ def main():
         'imgsz': args.imgsz,
         'confidence': args.conf,
         'max_ball_gap': args.max_ball_gap,
+        'tracker_backend': args.tracker,
+        'ball_candidate_pool': not args.no_ball_candidates,
     }
     
     print("\n🏆 EyeCU Football Analysis Pipeline 🏆")
@@ -126,6 +140,8 @@ def main():
         imgsz=CONFIG['imgsz'],
         confidence=CONFIG['confidence'],
         max_ball_gap=CONFIG['max_ball_gap'],
+        tracker_backend=CONFIG['tracker_backend'],
+        ball_candidate_pool=CONFIG['ball_candidate_pool'],
     )
     
     # Process video

@@ -1,0 +1,90 @@
+{
+ "repo_id": "keremberke/football-object-detection",
+ "repo_type": "dataset",
+ "revision": "788fb2722316ee7cad1ace2f6c94e563556a1d3e",
+ "downloaded_utc": "2026-08-11T16:42:24Z",
+ "license_from_card": null,
+ "gated": false,
+ "tags": [
+  "task_categories:object-detection",
+  "size_categories:1K<n<10K",
+  "modality:image",
+  "modality:text",
+  "library:datasets",
+  "library:mlcroissant",
+  "region:us",
+  "roboflow"
+ ],
+ "local_path": "huggingface/keremberke_football_object_detection/raw",
+ "file_count": 8,
+ "total_bytes": 107342975,
+ "all_sizes_match_api": true,
+ "any_html_error_pages": false,
+ "files": [
+  {
+   "path": ".gitattributes",
+   "bytes": 2265,
+   "sha256": "79deb409a995d414d9b2e89b5e16a5f46fcaa7596c63242dd0bd72311a422458",
+   "expected_bytes": 2265,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "README.dataset.txt",
+   "bytes": 180,
+   "sha256": "11d682abecebb5fd954202ffbf1658470cfc6a7a1318995e4905890cf6b8209f",
+   "expected_bytes": 180,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "README.md",
+   "bytes": 1539,
+   "sha256": "62a91dd94ef46df3b32749f37b8d3ccace3caccbcc8b7db0e9a119026249cf37",
+   "expected_bytes": 1539,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "README.roboflow.txt",
+   "bytes": 748,
+   "sha256": "93ad4a8ffc54083e2bd5d0d34b6e4e5ce3242442ec875201cc6262d3d679033b",
+   "expected_bytes": 748,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "data/test.zip",
+   "bytes": 11227719,
+   "sha256": "a4040882cd9341cca00c8a7832d7da87a7c731c746466cffbbc8ffd095044e71",
+   "expected_bytes": 11227719,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "data/train.zip",
+   "bytes": 75104154,
+   "sha256": "6edc725dfb5288b3947fc72d744f1f0717dc5a3ee3906a9c5062f798df3f87ef",
+   "expected_bytes": 75104154,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "data/valid.zip",
+   "bytes": 21001802,
+   "sha256": "dde7550130d7cda81217655e414d6ac84631472df88a0552985315f53b6764ce",
+   "expected_bytes": 21001802,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "football-object-detection.py",
+   "bytes": 4568,
+   "sha256": "44f0c391638e6a1916d75a92fe5d7c5daacf3296342032805e645d383bc33b05",
+   "expected_bytes": 4568,
+   "size_matches_api": true,
+   "looks_like_html": false
+  }
+ ],
+ "credentials_used": "none -- public dataset, no token read or stored"
+}

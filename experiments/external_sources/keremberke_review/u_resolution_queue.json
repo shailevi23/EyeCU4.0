@@ -1,0 +1,891 @@
+{
+ "purpose": "resolve every original U into one documented category",
+ "categories": {
+  "A AMBIGUOUS_TARGET": "a real EyeCU target, role not reliably distinguishable",
+  "O OCCLUDED_UNCLEAR": "substantially occluded, role undeterminable",
+  "N NON_TARGET_HUMAN": "real human outside the four-class ontology (coach, bench, ball person, medical, staff)",
+  "B BALL_WRONG_HUMAN_BOX": "the human box is actually on the ball",
+  "F FALSE_POSITIVE": "no relevant human in the box",
+  "X PARTIAL_BODY_BAD_BOX": "real person but the geometry covers a fragment while much more of the body is visible"
+ },
+ "also_allowed": [
+  "P",
+  "G",
+  "R"
+ ],
+ "valid_occlusion_note": "a box around the visible extent of a genuinely hidden person is VALID and may stay P/G/R if the role is clear; only a fragment box where much more is visible is PARTIAL_BODY_BAD_BOX",
+ "count": 48,
+ "answers_recorded": 0,
+ "by_run": {
+  "plain_A": 8,
+  "plain_B": 17,
+  "pp_A": 6,
+  "pp_B": 17
+ },
+ "rows": [
+  {
+   "BOX_ID": "train:9041",
+   "IMAGE": "train/5509_jpg.rf.69049fa427301a5e932704edaf59edd0.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    413.0,
+    252.0,
+    32.73,
+    75.81
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:1819",
+   "IMAGE": "train/5679_jpg.rf.8fef2f91cc4f299b6c0494c58995afa0.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    898.0,
+    216.0,
+    25.29,
+    62.5
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:1820",
+   "IMAGE": "train/5679_jpg.rf.8fef2f91cc4f299b6c0494c58995afa0.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    903.0,
+    210.0,
+    15.29,
+    57.14
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "valid:2005",
+   "IMAGE": "valid/5521_jpg.rf.88b08db6185684554d48d7e7347488ba.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    792.0,
+    358.0,
+    18.65,
+    45.87
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:2374",
+   "IMAGE": "train/5605_jpg.rf.9673cf2bbc33c7837a70fb784c21ec65.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    831.0,
+    311.0,
+    15.82,
+    43.18
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:2375",
+   "IMAGE": "train/5605_jpg.rf.9673cf2bbc33c7837a70fb784c21ec65.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    789.0,
+    330.0,
+    28.56,
+    23.18
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:11716",
+   "IMAGE": "train/5616_jpg.rf.b98f518a9c9907fe26948e74623bdb27.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    690.0,
+    325.0,
+    21.54,
+    53.68
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:11717",
+   "IMAGE": "train/5616_jpg.rf.b98f518a9c9907fe26948e74623bdb27.jpg",
+   "run": "plain_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    948.0,
+    323.0,
+    21.99,
+    65.26
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:12773",
+   "IMAGE": "train/55274_jpg.rf.cb6a57d4e6a0960bba48785258879372.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": "referee",
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1218.0,
+    469.0,
+    28.57,
+    93.0
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:14069",
+   "IMAGE": "train/54621_jpg.rf.df7a35dedd36b9def601db299806ac57.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1097.0,
+    545.0,
+    62.71,
+    108.99
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "test:707",
+   "IMAGE": "test/54539_jpg.rf.3270ed0b81dc2b9f9953d20c443031bb.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    153.0,
+    552.0,
+    42.78,
+    77.68
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:2566",
+   "IMAGE": "train/55003_jpg.rf.980083f8be76133424dfef5e2d232b41.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1119.0,
+    657.0,
+    31.95,
+    63.0
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:8481",
+   "IMAGE": "train/54536_jpg.rf.5f763d437f04e06d734589a8e75b012e.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    521.0,
+    24.0,
+    9.94,
+    19.75
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:11027",
+   "IMAGE": "train/55225_jpg.rf.1f7f1a4168c466948f35c8adc2ee29d2.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    639.0,
+    604.0,
+    25.88,
+    84.06
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:11038",
+   "IMAGE": "train/55225_jpg.rf.1f7f1a4168c466948f35c8adc2ee29d2.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    396.0,
+    585.0,
+    33.7,
+    74.06
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:15737",
+   "IMAGE": "train/55281_jpg.rf.f99795dc9a188a9b8ea9d34830869131.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1129.0,
+    248.0,
+    8.25,
+    7.5
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:5089",
+   "IMAGE": "train/54726_jpg.rf.2e86a1ba342ad2505971affe79e82d48.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    514.0,
+    300.0,
+    12.46,
+    27.92
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:15076",
+   "IMAGE": "train/54787_jpg.rf.ec620685239db2de8aaae08f508d7495.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    392.0,
+    143.0,
+    136.06,
+    307.5
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:1552",
+   "IMAGE": "train/54789_jpg.rf.8744a2eb8ad994b97a7c30f7739dc19d.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    503.0,
+    115.0,
+    98.54,
+    316.25
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:12862",
+   "IMAGE": "train/54790_jpg.rf.ce5e813e31d77272a10394af4048072d.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    583.0,
+    118.0,
+    129.75,
+    330.0
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:1837",
+   "IMAGE": "train/55017_jpg.rf.8a79e3610751d0278719bf82b35db639.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    629.0,
+    636.0,
+    35.69,
+    84.23
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:1858",
+   "IMAGE": "train/55017_jpg.rf.8a79e3610751d0278719bf82b35db639.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    643.0,
+    382.0,
+    4.89,
+    6.07
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:1008",
+   "IMAGE": "train/55018_jpg.rf.81982d7ce9e19ed664e6aad785e9253a.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    629.0,
+    633.0,
+    29.0,
+    87.0
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:7331",
+   "IMAGE": "train/55213_jpg.rf.4f8d71c850d912f16cb73ea45e267368.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1155.0,
+    260.0,
+    8.94,
+    25.71
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "valid:2721",
+   "IMAGE": "valid/54735_jpg.rf.b5e69cadbba05bff0a457f92530a36a4.jpg",
+   "run": "plain_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    529.0,
+    456.0,
+    17.2,
+    13.64
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:8656",
+   "IMAGE": "train/26_pp_jpg.rf.63f1717c83e0fb5e535bd2ec5364f5b7.jpg",
+   "run": "pp_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    451.0,
+    570.0,
+    15.57,
+    40.58
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:7716",
+   "IMAGE": "train/43_pp_jpg.rf.54cbbac2c22bf8d9c2041c7aa296fc60.jpg",
+   "run": "pp_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": "referee",
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1113.0,
+    216.0,
+    12.05,
+    25.82
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:14904",
+   "IMAGE": "train/42_pp_jpg.rf.f25a66f462d024fa2216852eead76b66.jpg",
+   "run": "pp_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    371.0,
+    226.0,
+    10.15,
+    15.61
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:1420",
+   "IMAGE": "train/0_pp_jpg.rf.854c44ffa085155cbb9533c54333e447.jpg",
+   "run": "pp_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    584.0,
+    477.0,
+    8.37,
+    15.93
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:3868",
+   "IMAGE": "train/20_pp_jpg.rf.a922859c9eb89f6214bf6221820f9ec6.jpg",
+   "run": "pp_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    784.0,
+    295.0,
+    13.49,
+    29.51
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:3869",
+   "IMAGE": "train/20_pp_jpg.rf.a922859c9eb89f6214bf6221820f9ec6.jpg",
+   "run": "pp_A",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    789.0,
+    296.0,
+    12.77,
+    26.85
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "test:448",
+   "IMAGE": "test/310_pp_jpg.rf.31ee08d672827e697b50cb70a97eb47b.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    755.0,
+    286.0,
+    19.56,
+    15.06
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "test:1802",
+   "IMAGE": "test/440_pp_jpg.rf.bfc9021ac67e3f48b97cc6d7cca13ad0.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    793.0,
+    694.0,
+    15.42,
+    23.59
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "test:221",
+   "IMAGE": "test/451_pp_jpg.rf.180e61c8792d4e56be27a0ce22cc8625.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    826.0,
+    381.0,
+    16.21,
+    21.47
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:4500",
+   "IMAGE": "train/127_pp_jpg.rf.b2fe2b667fa5a708864b2cd9f079a4fe.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    288.0,
+    339.0,
+    16.14,
+    15.89
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:9499",
+   "IMAGE": "train/138_pp_jpg.rf.045e72e63cbad09c9b4a03538c19e722.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    592.0,
+    162.0,
+    14.55,
+    40.62
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:9614",
+   "IMAGE": "train/174_pp_jpg.rf.0591d680b81be6bfffa47b5bb35ce389.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    561.0,
+    52.0,
+    8.6,
+    7.21
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:11514",
+   "IMAGE": "train/188_pp_jpg.rf.258c54509d219b0aea29d110b45f8aa5.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1147.0,
+    55.0,
+    5.18,
+    4.46
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:10428",
+   "IMAGE": "train/257_pp_jpg.rf.13bc493b318dc02f77345a332a322a27.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1016.0,
+    248.0,
+    21.3,
+    18.38
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:12475",
+   "IMAGE": "train/262_pp_jpg.rf.c8aeef65c45f79d2a6603dfe7e012659.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    752.0,
+    251.0,
+    19.08,
+    25.51
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:12631",
+   "IMAGE": "train/265_pp_jpg.rf.c74b66aa44cd093654d23b71e3af3c88.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    566.0,
+    426.0,
+    14.72,
+    31.42
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:793",
+   "IMAGE": "train/407_pp_jpg.rf.7c3f46b6714b2ede2371b9cd36892736.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    785.0,
+    380.0,
+    17.43,
+    26.23
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:10172",
+   "IMAGE": "train/431_pp_jpg.rf.0979608d46a0ac740ef8698b4b5964a1.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    344.0,
+    172.0,
+    12.67,
+    35.99
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:14414",
+   "IMAGE": "train/437_pp_jpg.rf.e8bfba1695465d4de4076d40c995e76b.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    1230.0,
+    676.0,
+    10.07,
+    11.6
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:13444",
+   "IMAGE": "train/439_pp_jpg.rf.d96bb68e26ffa32f2294180b4354db67.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    743.0,
+    693.0,
+    19.16,
+    24.7
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:3011",
+   "IMAGE": "train/539_pp_jpg.rf.9fdf334e9d7d1dfa1fbef3411d4436eb.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    918.0,
+    700.0,
+    26.88,
+    20.47
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:7252",
+   "IMAGE": "train/152_pp_jpg.rf.4ee43423826de34d2123a89020bdc3c2.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    455.0,
+    130.0,
+    10.42,
+    22.04
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  },
+  {
+   "BOX_ID": "train:9397",
+   "IMAGE": "train/288_pp_jpg.rf.00b5eaf4f2df425abeea2b65770346fa.jpg",
+   "run": "pp_B",
+   "ORIGINAL_CLASS": "player",
+   "ORIGINAL_PROPOSAL": null,
+   "FIRST_HUMAN_DECISION": "U",
+   "bbox_xywh": [
+    511.0,
+    391.0,
+    9.83,
+    26.59
+   ],
+   "U_RESOLUTION_CATEGORY": null,
+   "FINAL_ACTION": null,
+   "FINAL_CLASS": null,
+   "REVIEW_NOTE": null
+  }
+ ]
+}

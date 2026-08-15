@@ -1,0 +1,315 @@
+{
+ "correction": "the first workload pass assumed consecutive filename indices were consecutive video frames and propagated identity by IoU across them. Measured consecutive-id correlation is ~0.52 median (55/60 plain pairs below 0.8), so the images are sparsely sampled and IoU propagation is invalid. Identity is not propagated here.",
+ "total_human_boxes": 21615,
+ "triage": {
+  "LIKELY_PLAYER": 17462,
+  "AMBIGUOUS": 2374,
+  "POSSIBLE_REFEREE": 1189,
+  "POSSIBLE_GOALKEEPER": 590
+ },
+ "candidate_boxes_needing_judgement": 4153,
+ "role_groups_by_kit_within_run": {
+  "plain_B": {
+   "candidate_boxes": 1657,
+   "distinct_kit_buckets": 46,
+   "buckets_with_at_least_10_boxes": 28,
+   "boxes_in_those_buckets": 1553,
+   "largest_buckets": [
+    [
+     [
+      11,
+      1,
+      1
+     ],
+     411
+    ],
+    [
+     [
+      2,
+      1,
+      1
+     ],
+     251
+    ],
+    [
+     [
+      2,
+      1,
+      0
+     ],
+     210
+    ],
+    [
+     [
+      7,
+      1,
+      0
+     ],
+     96
+    ],
+    [
+     [
+      7,
+      1,
+      1
+     ],
+     65
+    ],
+    [
+     [
+      8,
+      0,
+      1
+     ],
+     44
+    ]
+   ]
+  },
+  "pp_B": {
+   "candidate_boxes": 1703,
+   "distinct_kit_buckets": 32,
+   "buckets_with_at_least_10_boxes": 16,
+   "boxes_in_those_buckets": 1637,
+   "largest_buckets": [
+    [
+     [
+      5,
+      1,
+      1
+     ],
+     393
+    ],
+    [
+     [
+      1,
+      1,
+      1
+     ],
+     227
+    ],
+    [
+     [
+      4,
+      1,
+      1
+     ],
+     202
+    ],
+    [
+     [
+      4,
+      0,
+      1
+     ],
+     131
+    ],
+    [
+     [
+      6,
+      1,
+      0
+     ],
+     130
+    ],
+    [
+     [
+      5,
+      1,
+      0
+     ],
+     123
+    ]
+   ]
+  },
+  "plain_A": {
+   "candidate_boxes": 575,
+   "distinct_kit_buckets": 22,
+   "buckets_with_at_least_10_boxes": 8,
+   "boxes_in_those_buckets": 539,
+   "largest_buckets": [
+    [
+     [
+      2,
+      1,
+      1
+     ],
+     292
+    ],
+    [
+     [
+      0,
+      1,
+      1
+     ],
+     89
+    ],
+    [
+     [
+      1,
+      1,
+      1
+     ],
+     48
+    ],
+    [
+     [
+      3,
+      1,
+      1
+     ],
+     44
+    ],
+    [
+     [
+      2,
+      1,
+      0
+     ],
+     29
+    ],
+    [
+     [
+      4,
+      1,
+      1
+     ],
+     15
+    ]
+   ]
+  },
+  "pp_A": {
+   "candidate_boxes": 218,
+   "distinct_kit_buckets": 23,
+   "buckets_with_at_least_10_boxes": 7,
+   "boxes_in_those_buckets": 159,
+   "largest_buckets": [
+    [
+     [
+      5,
+      1,
+      1
+     ],
+     48
+    ],
+    [
+     [
+      1,
+      1,
+      1
+     ],
+     21
+    ],
+    [
+     [
+      4,
+      0,
+      1
+     ],
+     20
+    ],
+    [
+     [
+      4,
+      1,
+      1
+     ],
+     20
+    ],
+    [
+     [
+      3,
+      1,
+      1
+     ],
+     18
+    ],
+    [
+     [
+      6,
+      1,
+      0
+     ],
+     16
+    ]
+   ]
+  }
+ },
+ "approximate_distinct_role_groups": 59,
+ "workload_model": {
+  "per_box_upper_bound": 4153,
+  "per_image_upper_bound": 1170,
+  "role_group_lower_bound": 59,
+  "reading": "the true cost sits between the role-group count and the per-image count: a reviewer settles a kit/role rule once per run, then confirms it image by image where a candidate appears"
+ },
+ "clean_subset_levels": {
+  "STRICT_both_signals_agree_on_every_box": {
+   "images": 17,
+   "share_of_1232": 1.4,
+   "ball_instances": 14,
+   "human_boxes_retained": 225,
+   "stored_px": {
+    "median": 9.93,
+    "le5": 0,
+    "le8": 2,
+    "le12": 8
+   },
+   "px_1920_equiv": {
+    "median": 14.89,
+    "le5": 0,
+    "le8": 1,
+    "le12": 2
+   },
+   "broadcast_runs": {
+    "plain_B": 214,
+    "plain_A": 11
+   }
+  },
+  "MODERATE_no_candidate_and_no_ambiguous_box": {
+   "images": 57,
+   "share_of_1232": 4.6,
+   "ball_instances": 38,
+   "human_boxes_retained": 322,
+   "stored_px": {
+    "median": 52.36,
+    "le5": 0,
+    "le8": 2,
+    "le12": 8
+   },
+   "px_1920_equiv": {
+    "median": 78.55,
+    "le5": 0,
+    "le8": 1,
+    "le12": 2
+   },
+   "broadcast_runs": {
+    "plain_A": 43,
+    "plain_B": 278,
+    "pp_B": 1
+   }
+  },
+  "PERMISSIVE_no_gk_or_referee_candidate": {
+   "images": 267,
+   "share_of_1232": 21.8,
+   "ball_instances": 217,
+   "human_boxes_retained": 3152,
+   "stored_px": {
+    "median": 11.55,
+    "le5": 18,
+    "le8": 51,
+    "le12": 115
+   },
+   "px_1920_equiv": {
+    "median": 17.32,
+    "le5": 1,
+    "le8": 22,
+    "le12": 51
+   },
+   "broadcast_runs": {
+    "plain_A": 177,
+    "plain_B": 2497,
+    "pp_B": 375,
+    "pp_A": 103
+   }
+  }
+ }
+}

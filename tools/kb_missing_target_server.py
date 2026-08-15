@@ -1,0 +1,720 @@
+#!/usr/bin/env python
+"""
+Draw the boxes for targets a human saw and the dataset never annotated.
+
+SCOPE. This is not another review of the dataset. The queue is exactly the live
+MISSING_TARGET_BOX flags -- 48 targets across 39 images at the time of writing --
+and nothing else is shown or asked. Every other pass is finished; re-opening them
+here would invite a settled question to be answered differently.
+
+WHY IT NEEDS ITS OWN TOOL. Every other review action edits an annotation that
+already exists, so it has a BOX_ID to attach to. These do not exist at all. There
+is nothing to click, nothing to reclassify, and no geometry until a person draws
+it. That asymmetry is the whole reason this file exists.
+
+WHAT IS AUTHORITY. The human-drawn rectangle. No model runs here and no proposal
+is offered, because a proposed box a tired reviewer accepts is a model prediction
+that became ground truth without anyone deciding it should. If assistance is ever
+added it must arrive as a suggestion the human redraws or explicitly confirms,
+and it must stay distinguishable in the log forever.
+
+GEOMETRY is stored in ORIGINAL IMAGE COORDINATES. The canvas is scaled to fit the
+window and can be zoomed, so viewport pixels are meaningless the moment the
+window is resized; every rectangle is converted on the way in and validated
+against the image dimensions recorded in the ledger.
+
+THE LOG is append-only, as everywhere else. A redraw is a new
+missing_target_resolution event that supersedes the previous one under the usual
+precedence rule -- latest recorded_utc wins. Nothing is edited in place, so the
+first attempt and the correction both remain visible.
+
+    python tools/kb_missing_target_server.py
+
+Nothing is applied. The corrected dataset is still written only by
+kb_apply_review.py --apply, and only when both gates pass.
+"""
+
+import argparse
+import json
+import mimetypes
+import sys
+import threading
+import time
+import webbrowser
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import unquote, urlparse
+
+REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / 'tools'))
+import kb_decisions                                              # noqa: E402
+import kb_images                                                 # noqa: E402
+
+PKG = REPO / 'experiments' / 'external_sources' / 'keremberke_review'
+# One resolver, shared with kb_review_server2. This file had its own copy of the
+# image root and it read `extract` where the working server reads `extracted`,
+# so every image 404'd while the rest of the UI loaded normally.
+IMGROOT = kb_images.IMGROOT
+LOCK = threading.Lock()
+
+FLAG_MODE = 'missing_target_box'
+RETRACT_MODE = 'missing_target_retraction'
+RESOLVE_MODE = 'missing_target_resolution'
+# A resolution is a role with a box, or an explicit decision to drop the image.
+BOXED = {'player': 'boxed_player', 'goalkeeper': 'boxed_goalkeeper',
+         'referee': 'boxed_referee'}
+EXCLUDE = 'EXCLUDE_IMAGE'
+ROLES = ('player', 'goalkeeper', 'referee')
+
+PAGE = r"""<!doctype html><html><head><meta charset="utf-8">
+<title>missing target boxes</title>
+<style>
+ :root{--gk:#ffc400;--ref:#ff7a1a;--pl:#3ddc57}
+ body{margin:0;background:#0e0e0e;color:#e6e6e6;font:13px system-ui,sans-serif}
+ #top{display:flex;gap:14px;align-items:center;padding:7px 12px;background:#000;
+      position:sticky;top:0;z-index:9;flex-wrap:wrap;border-bottom:1px solid #222}
+ .pill{padding:1px 7px;border-radius:9px;background:#1c1c1c;border:1px solid #333}
+ .gk{color:var(--gk)}.ref{color:var(--ref)}.pl{color:var(--pl)}
+ #bar{height:4px;background:#222;width:180px;border-radius:2px;overflow:hidden}
+ #bar>i{display:block;height:100%;background:#3ddc57;width:0}
+ #wrap{position:relative;margin:10px 290px 10px 10px;width:fit-content;
+       overflow:auto;max-height:82vh;max-width:calc(100vw - 320px)}
+ #stage{position:relative;transform-origin:0 0}
+ img{display:block}
+ .ex{position:absolute;border:1px solid #4a4a4a;box-sizing:border-box;
+     pointer-events:none}
+ .ex.ball{border-color:#2f6fb0}
+ .new{position:absolute;border:2px dashed #3ddc57;box-sizing:border-box;
+      pointer-events:none;background:#3ddc5722}
+ .saved{position:absolute;border:2px solid #3ddc57;box-sizing:border-box;
+        pointer-events:none}
+ .other{position:absolute;border:2px solid #666;box-sizing:border-box;
+        pointer-events:none;opacity:.55}
+ .tag{position:absolute;font:11px/1.3 monospace;background:#000d;padding:1px 4px;
+      transform:translateY(-100%);white-space:nowrap;pointer-events:none}
+ #hit{position:absolute;inset:0;cursor:crosshair}
+ #panel{position:fixed;right:10px;top:52px;width:266px;background:#141414;
+        border:1px solid #2a2a2a;border-radius:6px;padding:9px;z-index:8;
+        max-height:84vh;overflow:auto}
+ button{background:#1e1e1e;color:#ddd;border:1px solid #3a3a3a;border-radius:4px;
+        padding:3px 8px;cursor:pointer;font:12px system-ui}
+ button:hover{background:#2a2a2a}
+ button:disabled{opacity:.35;cursor:not-allowed}
+ button.big{width:100%;margin-top:6px;padding:6px}
+ .k{background:#222;border:1px solid #3a3a3a;border-radius:3px;padding:0 5px;
+    font:11px monospace}
+ .warn{background:#3a1414;border:1px solid #7a3a3a;border-radius:4px;padding:6px;
+       margin:6px 0;font-size:11px}
+ .ok{background:#132a13;border:1px solid #2f5a2f;border-radius:4px;padding:6px;
+     margin:6px 0;font-size:11px}
+ #hint{color:#8a8a8a;font-size:11px}
+</style></head><body>
+<div id="top">
+ <b>missing targets</b>
+ <span id="pos" class="pill"></span>
+ <span id="img" class="pill" style="font:11px monospace"></span>
+ <div id="bar"><i></i></div>
+ <span id="prog" class="pill"></span>
+ <span class="pill">boxed <b id="cB" class="pl">0</b> ·
+   excluded <b id="cX">0</b> · pending <b id="cP" style="color:#ff7a7a">0</b></span>
+ <span id="hint">drag to draw · <span class="k">P</span> <span class="k">G</span>
+  <span class="k">R</span> save with a class · <span class="k">Z</span> undo draw ·
+  <span class="k">D</span> retract this flag · <span class="k">X</span> exclude WHOLE image · <span class="k">N</span>/<span class="k">B</span>
+  next/prev target · <span class="k">+</span>/<span class="k">-</span> zoom</span>
+</div>
+<div id="imgerr" style="display:none;margin:10px 290px 10px 10px;background:#3a1414;
+     border:1px solid #7a3a3a;border-radius:6px;padding:12px;max-width:640px"></div>
+<div id="wrap"><div id="stage"><img id="im"><div id="ov"></div><div id="hit"></div></div></div>
+<div id="panel">
+ <div id="who"></div>
+ <div id="state"></div>
+ <button class="big" id="bP">PLAYER <span class="k">P</span></button>
+ <button class="big" id="bG">GOALKEEPER <span class="k">G</span></button>
+ <button class="big" id="bR">REFEREE <span class="k">R</span></button>
+ <button class="big" id="bZ">UNDO DRAW <span class="k">Z</span></button>
+ <button class="big" id="bD" style="border-color:#5a3a7a">RETRACT THIS FLAG ONLY
+  <span class="k">D</span></button>
+ <div style="color:#8a8a8a;font-size:11px;margin:-2px 0 8px">this one flag was a
+  duplicate or a mistake. Nothing else on the image is affected.</div>
+ <button class="big" id="bX" style="border-color:#7a3a3a">EXCLUDE THE WHOLE IMAGE
+  <span class="k">X</span></button>
+ <div style="color:#8a8a8a;font-size:11px;margin:-2px 0 8px">drops the entire
+  image and resolves <b>every</b> target on it. Not the same as retracting a flag.</div>
+ <div id="unexcl" style="display:none"></div>
+ <div id="siblings" style="font-size:11px;margin-top:8px"></div>
+ <button class="big" id="bN">NEXT TARGET <span class="k">N</span></button>
+ <button class="big" id="bB">PREVIOUS <span class="k">B</span></button>
+ <div id="hist" style="font-size:11px;color:#888;margin-top:8px"></div>
+</div>
+<script>
+let S=null,i=0,draft=null,drag=null,zoom=1;
+const COL={player:'#3ddc57',goalkeeper:'#ffc400',referee:'#ff7a1a'};
+async function boot(){
+ S=await (await fetch('/api/state')).json();
+ i=S.targets.findIndex(t=>!t.resolution); if(i<0)i=0;
+ render();
+}
+function cur(){return S.targets[i];}
+function sameImage(){return S.targets.filter(t=>t.IMAGE===cur().IMAGE);}
+function render(){
+ const t=cur(); if(!t)return;
+ document.getElementById('pos').textContent=`target ${i+1}/${S.targets.length}`;
+ document.getElementById('img').textContent=t.IMAGE;
+ draft=null;
+ const im=document.getElementById('im');
+ const err=document.getElementById('imgerr');
+ err.style.display='none'; im.style.display='block';
+ im.onload=()=>{err.style.display='none';applyZoom();draw();};
+ // A broken-image icon says nothing. Ask the server why and show it, so a
+ // wrong image root announces itself instead of looking like a bad file.
+ im.onerror=async()=>{
+  im.style.display='none';
+  let why='the server did not return an image';
+  try{const r=await fetch('/img/'+t.IMAGE);
+      const j=await r.json(); why=j.error||why;}catch(e){}
+  err.style.display='block';
+  err.innerHTML='<b>IMAGE COULD NOT BE LOADED</b><br>'
+   +'<span style="font:11px monospace">'+t.IMAGE+'</span><br>'+why
+   +'<br><br>Do not resolve this target. Stop and fix the image path first &mdash; '
+   +'a box drawn on a picture you cannot see is not a human decision.';
+ };
+ im.src='/img/'+t.IMAGE;
+ stats();
+}
+function applyZoom(){
+ const st=document.getElementById('stage');
+ st.style.transform='scale('+zoom+')';
+ const im=document.getElementById('im');
+ st.style.width=im.naturalWidth+'px'; st.style.height=im.naturalHeight+'px';
+}
+// image px -> displayed px is exactly the zoom factor, because the stage is
+// rendered at natural size and scaled as a whole. Nothing here depends on the
+// window size, so a resize cannot move a saved box.
+function toImage(ev){
+ const im=document.getElementById('im');
+ const r=im.getBoundingClientRect();
+ return [(ev.clientX-r.left)/zoom,(ev.clientY-r.top)/zoom];
+}
+function draw(){
+ const t=cur(),ov=document.getElementById('ov');
+ ov.innerHTML='';
+ const add=(cls,b,col,label)=>{
+  const e=document.createElement('div'); e.className=cls;
+  e.style.cssText=`left:${b[0]}px;top:${b[1]}px;width:${b[2]}px;height:${b[3]}px;`
+    +(col?`border-color:${col};`:'');
+  ov.appendChild(e);
+  if(label){const g=document.createElement('div');g.className='tag';
+   g.style.cssText=`left:${b[0]}px;top:${b[1]}px;color:${col||'#999'}`;
+   g.textContent=label; ov.appendChild(g);}
+ };
+ // context: every annotation already in this image, never editable here
+ t.existing.forEach(b=>add('ex'+(b.cls==='ball'?' ball':''),b.bbox,null,null));
+ // boxes already drawn for OTHER flags in the same image stay visible but inert
+ sameImage().forEach(o=>{
+  if(o.key===t.key||!o.resolution||!o.resolution.bbox_xywh)return;
+  add('other',o.resolution.bbox_xywh,COL[o.resolution.role],
+      'other target: '+o.resolution.role);
+ });
+ if(t.resolution&&t.resolution.bbox_xywh)
+   add('saved',t.resolution.bbox_xywh,COL[t.resolution.role],
+       'SAVED '+t.resolution.role);
+ if(draft) add('new',draft,null,'drawn '+draft.map(v=>Math.round(v)).join(','));
+ panel();
+}
+function panel(){
+ const t=cur();
+ document.getElementById('who').innerHTML=
+  `<div style="font-size:11px;color:#8a8a8a">flag</div>
+   <div style="font:11px monospace;color:#bbb;word-break:break-all">${t.key}</div>
+   <div style="margin-top:4px">originally flagged as
+    <b class="${t.flag_role==='goalkeeper'?'gk':t.flag_role==='referee'?'ref':'pl'}">
+    ${t.flag_role}</b></div>`;
+ const st=document.getElementById('state');
+ const ux=document.getElementById('unexcl');
+ ux.style.display='none'; ux.innerHTML='';
+ if(t.resolution&&t.resolution.action==='EXCLUDE_IMAGE'){
+   st.innerHTML='<div class="warn">IMAGE EXCLUDED &mdash; every target here is '
+     +'resolved by that exclusion. If that was not what you meant, withdraw it: '
+     +'each flag reverts to whatever it held before, including any box already '
+     +'drawn.</div>';
+   ux.style.display='block';
+   ux.innerHTML='<button class="big" style="border-color:#5a7a3a">'
+     +'WITHDRAW THIS IMAGE EXCLUSION</button>';
+   ux.firstElementChild.onclick=unexclude;
+ }
+ else if(t.resolution)
+   st.innerHTML=`<div class="ok">SAVED <b>${t.resolution.role}</b> at
+     [${t.resolution.bbox_xywh.map(v=>Math.round(v)).join(', ')}].
+     Drawing again records a correction; the first box stays in history.</div>`;
+ else if(draft)
+   st.innerHTML='<div class="ok">box drawn &mdash; now choose the class</div>';
+ else if(t.flag_role==='uncertain')
+   st.innerHTML='<div class="warn">The role was NOT readable when this was '
+     +'flagged. Draw the box and choose P/G/R explicitly, or exclude the image. '
+     +'It cannot be saved as "uncertain".</div>';
+ else st.innerHTML='<div class="warn">no box yet &mdash; drag on the image</div>';
+ for(const [id,role] of [['bP','player'],['bG','goalkeeper'],['bR','referee']])
+   document.getElementById(id).disabled=!draft;
+ document.getElementById('bZ').disabled=!draft;
+ const sibs=sameImage();
+ document.getElementById('siblings').innerHTML=sibs.length<2?'':
+  `<div style="color:#8a8a8a">${sibs.length} targets flagged in this image &mdash;
+    each is resolved separately:</div>`
+  +sibs.map((o,n)=>`<div style="padding:2px 0;${o.key===cur().key
+    ?'background:#1d1d1d':''}">${n+1}. ${o.flag_role}
+    <b style="color:${o.resolution?'#8fe08f':'#ff7a7a'}">${o.resolution
+      ?(o.resolution.action==='EXCLUDE_IMAGE'?'excluded':'boxed'):'pending'}</b>
+    </div>`).join('');
+ document.getElementById('hist').innerHTML=!t.history.length?'':
+  '<b>history</b>'+t.history.map(h=>`<div>${(h.recorded_utc||'').slice(11,19)}
+   ${h.mode.replace('missing_target_','')} ${h.value||''}</div>`).join('');
+}
+function stats(){
+ const b=S.targets.filter(t=>t.resolution&&t.resolution.bbox_xywh).length;
+ const x=S.targets.filter(t=>t.resolution&&t.resolution.action==='EXCLUDE_IMAGE').length;
+ const p=S.targets.length-b-x;
+ document.getElementById('cB').textContent=b;
+ document.getElementById('cX').textContent=x;
+ document.getElementById('cP').textContent=p;
+ document.getElementById('prog').textContent=`${b+x}/${S.targets.length} resolved`;
+ document.getElementById('bar').firstElementChild.style.width=
+   (100*(b+x)/S.targets.length)+'%';
+}
+const hit=document.getElementById('hit');
+hit.onmousedown=e=>{drag=toImage(e);draft=null;draw();};
+hit.onmousemove=e=>{
+ if(!drag)return;
+ const p=toImage(e);
+ draft=[Math.min(drag[0],p[0]),Math.min(drag[1],p[1]),
+        Math.abs(p[0]-drag[0]),Math.abs(p[1]-drag[1])];
+ draw();
+};
+hit.onmouseup=e=>{
+ if(!drag)return;
+ const p=toImage(e);
+ draft=[Math.min(drag[0],p[0]),Math.min(drag[1],p[1]),
+        Math.abs(p[0]-drag[0]),Math.abs(p[1]-drag[1])];
+ drag=null;
+ if(draft[2]<2||draft[3]<2){draft=null;}   // a stray click is not a box
+ draw();
+};
+async function save(role){
+ const t=cur();
+ if(!draft)return;
+ const r=await fetch('/api/resolve',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({missing_target_id:t.key,IMAGE:t.IMAGE,
+   HUMAN_FINAL_CLASS:role,bbox_xywh:draft,flagged_role:t.flag_role})});
+ const j=await r.json();
+ if(!r.ok){alert(j.error||'refused');return;}
+ t.resolution={role:role,bbox_xywh:j.bbox_xywh,action:'BOX_DRAWN'};
+ t.history.push({mode:'missing_target_resolution',value:role,
+                 recorded_utc:j.recorded_utc});
+ draft=null; draw(); stats();
+}
+const REASONS=['duplicate flag','target was already annotated','mistaken flag'];
+async function retractFlag(){
+ const t=cur();
+ const pick=prompt('Retract THIS FLAG ONLY -- '+t.key.split('#')[1]+'\n\n'
+   +'This says the flag itself was a mistake. It does NOT exclude the image and\n'
+   +'does NOT affect any other target here.\n\n'
+   +'1 = duplicate flag\n2 = target was already annotated\n3 = mistaken flag\n'
+   +'or type your own reason');
+ if(pick===null)return;
+ const why=({'1':REASONS[0],'2':REASONS[1],'3':REASONS[2]})[pick.trim()]||pick.trim();
+ if(!why)return;
+ const r=await fetch('/api/retract_flag',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({missing_target_id:t.key,reason:why})});
+ const j=await r.json();
+ if(!r.ok){alert(j.error||'refused');return;}
+ S.targets.splice(i,1);
+ if(i>=S.targets.length)i=Math.max(0,S.targets.length-1);
+ if(!S.targets.length){alert('no targets left');return;}
+ render();
+}
+async function unexclude(){
+ const t=cur();
+ const why=prompt('Why is this image exclusion being withdrawn?');
+ if(!why||!why.trim())return;
+ const r=await fetch('/api/unexclude',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({IMAGE:t.IMAGE,reason:why.trim()})});
+ const j=await r.json();
+ if(!r.ok){alert(j.error||'refused');return;}
+ S=await (await fetch('/api/state')).json();
+ render();
+}
+async function exclude(){
+ const t=cur();
+ const sibs=sameImage();
+ const boxed=sibs.filter(o=>o.resolution&&o.resolution.bbox_xywh);
+ let msg='This will EXCLUDE THE ENTIRE IMAGE and resolve ALL '+sibs.length
+   +' target(s) on it.\n\nIt is NOT the same as retracting one flag.\n'
+   +'To drop a single duplicate flag, press D instead.\n\n'+t.IMAGE;
+ if(boxed.length){
+  msg='WARNING -- '+boxed.length+' target(s) on this image ALREADY HAVE a '
+    +'human-drawn box.\nExcluding the image OVERRIDES them:\n\n'
+    +boxed.map(o=>'  '+o.resolution.role+' '
+       +o.resolution.bbox_xywh.map(v=>Math.round(v)).join(',')).join('\n')
+    +'\n\n'+msg;
+ }
+ if(!confirm(msg))return;
+ if(boxed.length&&prompt('Type EXCLUDE to override '+boxed.length
+    +' drawn box(es).')!=='EXCLUDE')return;
+ const why=prompt('Why is this image being excluded?');
+ if(!why||!why.trim())return;
+ const r=await fetch('/api/resolve',{method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({missing_target_id:t.key,IMAGE:t.IMAGE,
+   HUMAN_FINAL_CLASS:'EXCLUDE_IMAGE',reason:why.trim(),
+   acknowledge_overrides_boxes:boxed.length>0})});
+ const j=await r.json();
+ if(!r.ok){alert(j.error||'refused');return;}
+ (j.applied_to||[]).forEach(k=>{
+  const o=S.targets.find(z=>z.key===k);
+  if(o){o.resolution={role:null,bbox_xywh:null,action:'EXCLUDE_IMAGE'};
+        o.history.push({mode:'missing_target_resolution',value:'EXCLUDE_IMAGE',
+                        recorded_utc:j.recorded_utc});}
+ });
+ draw(); stats();
+}
+function go(n){i=Math.min(Math.max(0,n),S.targets.length-1);render();}
+document.getElementById('bP').onclick=()=>save('player');
+document.getElementById('bG').onclick=()=>save('goalkeeper');
+document.getElementById('bR').onclick=()=>save('referee');
+document.getElementById('bZ').onclick=()=>{draft=null;draw();};
+document.getElementById('bD').onclick=retractFlag;
+document.getElementById('bX').onclick=exclude;
+document.getElementById('bN').onclick=()=>go(i+1);
+document.getElementById('bB').onclick=()=>go(i-1);
+document.onkeydown=e=>{
+ const k=e.key.toLowerCase();
+ if(k==='p')save('player'); else if(k==='g')save('goalkeeper');
+ else if(k==='r')save('referee');
+ else if(k==='z'){draft=null;draw();}
+ else if(k==='d'){e.preventDefault();retractFlag();}
+ else if(k==='x'){e.preventDefault();exclude();}
+ else if(k==='n'){e.preventDefault();go(i+1);}
+ else if(k==='b'){go(i-1);}
+ else if(e.key==='+'||e.key==='='){zoom=Math.min(zoom*1.25,8);applyZoom();}
+ else if(e.key==='-'){zoom=Math.max(zoom/1.25,0.25);applyZoom();}
+ else if(k==='0'){zoom=1;applyZoom();}
+};
+boot();
+</script></body></html>"""
+
+
+def append(records):
+    """Append-only. Nothing in this file ever rewrites a line."""
+    with LOCK:
+        with open(PKG / 'decisions.json', 'a', encoding='utf-8') as fh:
+            for r in records:
+                fh.write(json.dumps(r) + '\n')
+            fh.flush()
+
+
+def collect():
+    """Live flags, their history and their current resolution. Folded from the log.
+
+    Nothing is read from missing_target_queue.json. That file is a report; it was
+    once stale by 51 flags, and a tool that trusted it would have shown an empty
+    queue and reported the work finished.
+    """
+    rows = kb_decisions.read_log(PKG / 'decisions.json')
+    flags, retr, hist = {}, set(), {}
+    res = {}
+    for r in rows:
+        b = r['BOX_ID']
+        if r['mode'] in (FLAG_MODE, RETRACT_MODE, RESOLVE_MODE):
+            hist.setdefault(b, []).append(
+                {'mode': r['mode'], 'value': r.get('HUMAN_FINAL_CLASS'),
+                 'recorded_utc': r.get('recorded_utc')})
+        if r['mode'] == FLAG_MODE:
+            flags[b] = r
+        elif r['mode'] == RETRACT_MODE:
+            retr.add(b)
+        elif r['mode'] == RESOLVE_MODE:
+            res[b] = r                       # later line supersedes; append-only
+    live = {b: f for b, f in flags.items() if b not in retr}
+    return live, res, hist
+
+
+def build_state():
+    led = json.loads((PKG / 'ledger.json').read_text(encoding='utf-8'))
+    by_img = {}
+    for r in led:
+        by_img.setdefault(r['IMAGE'], []).append(r)
+    # kb_decisions.missing_targets is the one fold. It knows that a retracted
+    # image exclusion is not in force, so boxes it buried come back by themselves.
+    mt = kb_decisions.missing_targets(PKG / 'decisions.json')
+    targets = []
+    for key, v in sorted(mt.items(),
+                         key=lambda kv: (kv[1]['IMAGE'] or '',
+                                         kv[1]['flagged_utc'] or '')):
+        if v['state'] == 'RETRACTED':
+            continue                          # withdrawn: not work, not shown
+        img = v['IMAGE']
+        rows = by_img.get(img, [])
+        resolution = None
+        if v['state'] == 'EXCLUDED':
+            resolution = {'role': None, 'bbox_xywh': None,
+                          'action': 'EXCLUDE_IMAGE'}
+        elif v['state'] == 'BOXED':
+            resolution = {'role': v['role'], 'bbox_xywh': v['bbox_xywh'],
+                          'action': 'BOX_DRAWN'}
+        targets.append({
+            'key': key, 'IMAGE': img, 'run': v['run'],
+            'flag_role': v['flag_role'], 'flagged_utc': v['flagged_utc'],
+            'img_w': rows[0]['img_w'] if rows else None,
+            'img_h': rows[0]['img_h'] if rows else None,
+            'existing': [{'bbox': z['bbox_xywh'], 'cls': z['eyecu_original_class']}
+                         for z in rows],
+            'resolution': resolution,
+            'history': v['history'],
+        })
+    return {'targets': targets,
+            'images': len({t['IMAGE'] for t in targets}),
+            'retracted': sum(1 for v in mt.values() if v['state'] == 'RETRACTED'),
+            'source_log': kb_decisions.log_version(PKG / 'decisions.json')}
+
+
+def validate_bbox(b, w, h):
+    """Reject anything that is not a usable rectangle inside the image.
+
+    Clamping silently would turn a mis-drag into a plausible-looking annotation,
+    so an out-of-bounds box is refused and the human redraws. Only the sub-pixel
+    overshoot from the edge of a scaled canvas is clamped, because that is a
+    rendering artefact rather than a mistake.
+    """
+    if not (isinstance(b, list) and len(b) == 4):
+        return None, 'bbox must be [x, y, w, h]'
+    try:
+        x, y, bw, bh = (float(v) for v in b)
+    except (TypeError, ValueError):
+        return None, 'bbox values must be numbers'
+    if bw <= 0 or bh <= 0:
+        return None, 'width and height must be positive'
+    if not w or not h:
+        return None, 'image dimensions unknown for this target'
+    EPS = 1.0
+    if x < -EPS or y < -EPS or x + bw > w + EPS or y + bh > h + EPS:
+        return None, (f'box [{x:.0f},{y:.0f},{bw:.0f},{bh:.0f}] falls outside '
+                      f'the {w}x{h} image')
+    x = min(max(x, 0.0), float(w))
+    y = min(max(y, 0.0), float(h))
+    bw = min(bw, float(w) - x)
+    bh = min(bh, float(h) - y)
+    if bw < 1 or bh < 1:
+        return None, 'box is smaller than a pixel'
+    return [round(x, 2), round(y, 2), round(bw, 2), round(bh, 2)], None
+
+
+class H(BaseHTTPRequestHandler):
+    protocol_version = 'HTTP/1.1'
+
+    def log_message(self, *a):
+        pass
+
+    def _send(self, code, body, ctype='application/json'):
+        self.send_response(code)
+        self.send_header('Content-Type', ctype)
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        v = memoryview(body)
+        for i in range(0, len(v), 1 << 16):
+            self.wfile.write(v[i:i + (1 << 16)])
+        self.wfile.flush()
+
+    def do_GET(self):
+        p = unquote(urlparse(self.path).path)
+        if p == '/':
+            return self._send(200, PAGE.encode('utf-8'),
+                              'text/html; charset=utf-8')
+        if p == '/api/state':
+            return self._send(200, json.dumps(build_state()).encode('utf-8'))
+        if p.startswith('/img/'):
+            want = p[len('/img/'):]
+            try:
+                body, ctype = kb_images.read(want)
+            except kb_images.ImageError as e:
+                # say which image and why, in the response and on the console.
+                # A bare 404 is indistinguishable from a typo'd URL, which is
+                # exactly how a wrong image root went unnoticed.
+                print(f'IMAGE 404  {want}  --  {e}', flush=True)
+                return self._send(404, json.dumps(
+                    {'error': str(e), 'IMAGE': want}).encode())
+            return self._send(200, body, ctype)
+        return self._send(404, b'not found', 'text/plain')
+
+    def do_POST(self):
+        route = urlparse(self.path).path
+        if route not in ('/api/resolve', '/api/retract_flag', '/api/unexclude'):
+            return self._send(404, b'', 'text/plain')
+        n = int(self.headers.get('Content-Length', 0))
+        d = json.loads(self.rfile.read(n) or b'{}')
+        key = str(d.get('missing_target_id', ''))
+        mt = kb_decisions.missing_targets(PKG / 'decisions.json')
+        now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+
+        # ---- retract ONE flag -------------------------------------------
+        # "this flag was a mistake" is a different statement from "this image
+        # should be dropped", and conflating them is what buried two good boxes.
+        if route == '/api/retract_flag':
+            if key not in mt:
+                return self._send(400, b'{"error":"unknown flag"}')
+            if not str(d.get('reason', '')).strip():
+                return self._send(400, b'{"error":"a retraction needs a reason"}')
+            append([{'mode': kb_decisions.RETRACT_MODE, 'BOX_ID': key,
+                     'missing_target_id': key, 'IMAGE': mt[key]['IMAGE'],
+                     'HUMAN_FINAL_CLASS': None, 'retracts': key,
+                     'scope': 'THIS FLAG ONLY',
+                     'reason': d['reason'].strip(),
+                     'recorded_utc': now, 'author': 'human reviewer'}])
+            return self._send(200, json.dumps(
+                {'ok': True, 'recorded_utc': now}).encode())
+
+        # ---- withdraw an image exclusion --------------------------------
+        if route == '/api/unexclude':
+            img = d.get('IMAGE') or (mt.get(key) or {}).get('IMAGE')
+            hit = [b for b, v in mt.items()
+                   if v['IMAGE'] == img and v['excluded']]
+            if not hit:
+                return self._send(400, b'{"error":"this image is not currently '
+                                       b'excluded"}')
+            if not str(d.get('reason', '')).strip():
+                return self._send(400, b'{"error":"a retraction needs a reason"}')
+            recs = []
+            for b in hit:
+                ev = [h for h in mt[b]['history']
+                      if h['mode'] == kb_decisions.RESOLVE_MODE
+                      and h['value'] == EXCLUDE]
+                recs.append({'mode': kb_decisions.UNEXCLUDE_MODE, 'BOX_ID': b,
+                             'missing_target_id': b, 'IMAGE': img,
+                             'HUMAN_FINAL_CLASS': None,
+                             'retracts_exclusion_recorded_utc':
+                                 ev[-1]['recorded_utc'] if ev else None,
+                             'retracts_exclusion_line': ev[-1]['line'] if ev else None,
+                             'reason': d['reason'].strip(),
+                             'note': ('the exclusion event stays in the log; this '
+                                      'withdraws it, so each flag reverts to '
+                                      'whatever it held before'),
+                             'recorded_utc': now, 'author': 'human reviewer'})
+            append(recs)
+            after = kb_decisions.missing_targets(PKG / 'decisions.json')
+            return self._send(200, json.dumps(
+                {'ok': True, 'recorded_utc': now, 'restored': len(hit),
+                 'states': {b: after[b]['state'] for b in hit}}).encode())
+
+        live = {b: v for b, v in mt.items() if v['state'] != 'RETRACTED'}
+        res = {b: v for b, v in mt.items() if v['state'] in ('BOXED', 'EXCLUDED')}
+        if key not in live:
+            return self._send(400, b'{"error":"unknown or retracted flag; a '
+                                   b'resolution must name one live flag"}')
+        val = d.get('HUMAN_FINAL_CLASS')
+        img = live[key]['IMAGE']
+
+        if val == EXCLUDE:
+            if not str(d.get('reason', '')).strip():
+                return self._send(400, b'{"error":"an exclusion needs a reason"}')
+            # Excluding an image overrides boxes already drawn in it. The reviewer
+            # who hit X meaning "drop this duplicate flag" buried two good ones,
+            # so the page must have said so and the server must insist it did.
+            would_bury = [b for b, v in live.items()
+                          if v['IMAGE'] == img and v['state'] == 'BOXED']
+            if would_bury and not d.get('acknowledge_overrides_boxes'):
+                return self._send(409, json.dumps(
+                    {'error': ('this image already has human-drawn boxes; '
+                               'excluding it overrides them'),
+                     'boxed_flags': sorted(would_bury),
+                     'hint': ('to retract ONE mistaken flag use retract_flag; '
+                              'resend with acknowledge_overrides_boxes to '
+                              'exclude anyway')}).encode())
+            # Documented exclusion rule: excluding an image resolves EVERY live
+            # flag in THAT image and nothing else. Written as one event per flag
+            # so each obligation is discharged explicitly and the fold stays
+            # per-flag -- an image-wide event would make "is this flag resolved"
+            # depend on parsing a different entity.
+            keys = [k for k, v in live.items() if v['IMAGE'] == img]
+            append([{'mode': RESOLVE_MODE, 'BOX_ID': k,
+                     'missing_target_id': k, 'IMAGE': img,
+                     'HUMAN_FINAL_CLASS': EXCLUDE,
+                     'action': 'EXCLUDE_IMAGE_FROM_CANDIDATE_SET',
+                     'reason': d['reason'].strip(),
+                     'resolves_flags_in_image': keys,
+                     'overrode_boxed_flags': sorted(would_bury),
+                     'recorded_utc': now, 'author': 'human reviewer'}
+                    for k in keys])
+            return self._send(200, json.dumps(
+                {'ok': True, 'applied_to': keys, 'recorded_utc': now}).encode())
+
+        if val not in ROLES:
+            return self._send(400, b'{"error":"a drawn target must be classified '
+                                   b'player, goalkeeper or referee -- not '
+                                   b'uncertain"}')
+        led = json.loads((PKG / 'ledger.json').read_text(encoding='utf-8'))
+        dims = next(((r['img_w'], r['img_h']) for r in led if r['IMAGE'] == img),
+                    (None, None))
+        bbox, err = validate_bbox(d.get('bbox_xywh'), *dims)
+        if err:
+            return self._send(400, json.dumps({'error': err}).encode())
+        rec = {
+            'mode': RESOLVE_MODE, 'BOX_ID': key, 'missing_target_id': key,
+            'IMAGE': img, 'run': live[key].get('run'),
+            'HUMAN_FINAL_CLASS': BOXED[val], 'role': val,
+            'bbox_xywh': bbox,
+            'coordinate_space': 'original image pixels',
+            'img_w': dims[0], 'img_h': dims[1],
+            'flagged_role': live[key]['flag_role'],
+            'geometry_author': 'human drawn',
+            'no_model_proposal_used': True,
+            'supersedes': (res[key]['history'][-1]['recorded_utc']
+                           if key in res and res[key]['history'] else None),
+            'recorded_utc': now, 'author': 'human reviewer',
+        }
+        append([rec])
+        return self._send(200, json.dumps(
+            {'ok': True, 'bbox_xywh': bbox, 'recorded_utc': now}).encode())
+
+
+def main():
+    sys.stdout.reconfigure(encoding='utf-8')
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('--port', type=int, default=8741)
+    ap.add_argument('--no-browser', action='store_true')
+    args = ap.parse_args()
+    st = build_state()
+    done = sum(1 for t in st['targets'] if t['resolution'])
+    if not st['targets']:
+        print('no live missing-target flags; nothing to do')
+        return
+    # Preflight. Opening a browser and then 404-ing on the first image wastes the
+    # reviewer's setup and tells them nothing -- the panel loads, the queue looks
+    # right, and only the picture is missing. Checking every pending target up
+    # front turns that into one message before anything opens.
+    pending = [t['IMAGE'] for t in st['targets'] if not t['resolution']]
+    ok, problems = kb_images.preflight(pending)
+    if not ok:
+        print(f'REFUSING TO START: {len(problems)} of '
+              f'{len(set(pending))} pending target images cannot be resolved.')
+        for im, why in problems[:10]:
+            print(f'  {im}\n    {why}')
+        if len(problems) > 10:
+            print(f'  ... and {len(problems) - 10} more')
+        print(f'\nimage root: {kb_images.IMGROOT}')
+        print('No decision has been touched.')
+        sys.exit(1)
+    print(f'preflight: {len(set(pending))} pending target images all resolve')
+    print(f"{len(st['targets'])} live targets across {st['images']} images")
+    print(f'already resolved: {done}  pending: {len(st["targets"]) - done}')
+    print('\nHUMAN-DRAWN GEOMETRY ONLY. No model runs here and no box is proposed.')
+    url = f'http://127.0.0.1:{args.port}/'
+    print(f'\ndraw at {url}   Ctrl-C to stop')
+    if not args.no_browser:
+        threading.Timer(1.0, lambda: webbrowser.open(url)).start()
+    ThreadingHTTPServer(('127.0.0.1', args.port), H).serve_forever()
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,387 @@
+#!/usr/bin/env python
+"""
+The single, explicit precedence rule for decisions.json. One implementation.
+
+Before this existed the two consumers disagreed. The applier keyed by BOX_ID
+alone, so whichever line happened to sit last in the file won -- chronological by
+accident, not by rule, and silently wrong if lines were ever reordered or two
+servers appended concurrently. The gate keyed by (mode, BOX_ID), treating modes
+as independent namespaces, so it had no cross-mode precedence at all. For a box
+answered 'referee' in qa_nocand and later 'player' in missed_role, those two
+consumers would not have agreed on the answer.
+
+THE RULE, and there is only one:
+
+    the human's LATEST decision for a box wins.
+
+    1. later recorded_utc wins
+    2. same timestamp -> later line in the append-only file wins
+    3. mode is NOT a rank. Time is the only authority, because a later look is
+       by definition the more informed one. A second-pass resolution therefore
+       always beats an earlier proposal or decision, and can never be silently
+       overridden by one.
+
+Roles and dispositions are kept apart. player/goalkeeper/referee are ROLES and
+set the final class. 'uncertain' is an explicit non-resolution and clears it. The
+U categories (NON_TARGET_HUMAN, FALSE_POSITIVE, ...) are DISPOSITIONS -- what to
+do with the annotation -- and never masquerade as a class.
+
+Nothing here mutates decisions.json. It is append-only and is never rewritten.
+"""
+
+import hashlib
+import json
+from pathlib import Path
+
+ROLES = ('player', 'goalkeeper', 'referee')
+UNRESOLVED = 'uncertain'
+U_CATEGORIES = ('AMBIGUOUS_TARGET', 'OCCLUDED_UNCLEAR', 'NON_TARGET_HUMAN',
+                'BALL_WRONG_HUMAN_BOX', 'FALSE_POSITIVE', 'PARTIAL_BODY_BAD_BOX',
+                # a real target whose role could not be read even on a third look;
+                # the honest answer is to drop its image rather than guess a class
+                'EXCLUDE_IMAGE')
+# Documented action per disposition. Policy, applied deterministically.
+DISPOSITION_ACTION = {
+    'NON_TARGET_HUMAN': 'REMOVE_ANNOTATION_KEEP_IMAGE',
+    'FALSE_POSITIVE': 'REMOVE_ANNOTATION',
+    'BALL_WRONG_HUMAN_BOX': 'REMOVE_HUMAN_BOX_AND_CHECK_EXISTING_BALL_GT',
+    'PARTIAL_BODY_BAD_BOX': 'QUANTIFY_THEN_REPAIR_OR_EXCLUDE',
+    'AMBIGUOUS_TARGET': 'RESOLVE_OR_EXCLUDE_IMAGE',
+    'OCCLUDED_UNCLEAR': 'RESOLVE_OR_EXCLUDE_IMAGE',
+    'EXCLUDE_IMAGE': 'EXCLUDE_IMAGE_FROM_CANDIDATE_SET',
+}
+
+
+def log_version(path: Path):
+    """Fingerprint of the decision log a derived report was built from.
+
+    missing_target_queue.json once read `0 flags` while 51 were on record,
+    because it had not been regenerated since the flags were made. Nothing said
+    so: it looked like a current report showing no outstanding work, and a
+    reader would reasonably have concluded there was none.
+
+    Every derived report embeds this. A consumer that finds a mismatch knows the
+    report describes an older log and must regenerate rather than trust it.
+    """
+    p = Path(path)
+    raw = p.read_bytes() if p.exists() else b''
+    return {'decisions_sha256': hashlib.sha256(raw).hexdigest(),
+            'decisions_lines': len([l for l in raw.decode('utf-8').splitlines()
+                                    if l.strip()]),
+            'note': ('regenerate this report if it does not match the current '
+                     'decisions.json; a stale report must never be read as state')}
+
+
+def is_stale(report: dict, path: Path):
+    """True when a derived report was built from a different log. Fail closed."""
+    v = (report or {}).get('source_log')
+    if not v:
+        return True                       # no fingerprint at all -- cannot trust it
+    return v.get('decisions_sha256') != log_version(path)['decisions_sha256']
+
+
+def read_log(path: Path):
+    """Every decision line, in file order, with its index. Never rewritten."""
+    rows = []
+    if not Path(path).exists():
+        return rows
+    for i, line in enumerate(Path(path).read_text(encoding='utf-8').splitlines()):
+        if line.strip():
+            d = json.loads(line)
+            d.setdefault('mode', 'candidates')
+            d['_line'] = i
+            rows.append(d)
+    return rows
+
+
+def _key(d):
+    # missing timestamps sort first, so an untimestamped row can never
+    # outrank a timestamped one purely by luck of file position
+    return (d.get('recorded_utc') or '', d['_line'])
+
+
+def resolve(path: Path):
+    """Final state per BOX_ID under the documented rule.
+
+    Returns {BOX_ID: {final_class, disposition, decided_in_mode, recorded_utc,
+                      history, superseded}}.
+    """
+    rows = read_log(path)
+    per = {}
+    for d in rows:
+        per.setdefault(d['BOX_ID'], []).append(d)
+    out = {}
+    for box, hist in per.items():
+        hist = sorted(hist, key=_key)
+        winner = hist[-1]
+        # .get, not [] -- later passes append events that are observations
+        # rather than classifications (a flag on an existing annotation, say),
+        # and one such row without this field would raise KeyError and take
+        # down every consumer of the whole log, not just its own mode.
+        v = winner.get('HUMAN_FINAL_CLASS')
+        final_class = v if v in ROLES else None
+        disposition = v if v in U_CATEGORIES else (
+            'UNRESOLVED' if v == UNRESOLVED else None)
+        out[box] = {
+            'final_class': final_class,
+            'disposition': disposition,
+            'action': DISPOSITION_ACTION.get(v),
+            'decided_in_mode': winner['mode'],
+            'recorded_utc': winner.get('recorded_utc'),
+            'decisions_recorded': len(hist),
+            'superseded': [{'mode': h['mode'],
+                            'value': h.get('HUMAN_FINAL_CLASS'),
+                            'recorded_utc': h.get('recorded_utc')}
+                           for h in hist[:-1]],
+            'history': [{'mode': h['mode'], 'value': h.get('HUMAN_FINAL_CLASS'),
+                         'recorded_utc': h.get('recorded_utc'),
+                         'line': h['_line']} for h in hist],
+        }
+    return out
+
+
+def by_mode(path: Path):
+    """Latest answer per (mode, BOX_ID). For population/completion counting only.
+
+    The gate legitimately needs this -- "is the missed_role queue finished" is a
+    per-mode question -- but it must never be used to decide a box's class.
+    """
+    rows = read_log(path)
+    per = {}
+    for d in rows:
+        per.setdefault((d['mode'], d['BOX_ID']), []).append(d)
+    return {k: sorted(v, key=_key)[-1].get('HUMAN_FINAL_CLASS')
+            for k, v in per.items()}
+
+
+GEOMETRY_MODE = 'geometry_repair'
+BALL_MODE = 'ball_case_resolution'
+# The three answers to a BALL_WRONG_HUMAN_BOX case. Removing the box was the
+# obvious first policy and it is wrong on its own: all five of these images hold
+# no ball GT at all, so removing the mis-drawn human box would leave a visible
+# ball as background -- teaching the detector that a ball there is nothing.
+BALL_ACTIONS = ('RECLASSIFY_TO_BALL', 'DRAW_BALL_BOX', 'REMOVE_ONLY')
+
+
+def geometry_repairs(path: Path):
+    """Effective replacement geometry per BOX_ID. Latest human repair wins.
+
+    A repair never edits the source or the earlier event. The original bbox is
+    carried on every repair record, so the annotation's first geometry stays
+    recoverable from the log forever.
+    """
+    out = {}
+    for d in sorted(read_log(path), key=_key):
+        if d['mode'] == GEOMETRY_MODE:
+            out[d['BOX_ID']] = d
+    return out
+
+
+def ball_cases(path: Path):
+    """Effective decision per BALL_WRONG_HUMAN_BOX case. Latest wins."""
+    out = {}
+    for d in sorted(read_log(path), key=_key):
+        if d['mode'] == BALL_MODE:
+            out[d['BOX_ID']] = d
+    return out
+
+
+FLAG_MODE = 'missing_target_box'
+RETRACT_MODE = 'missing_target_retraction'
+RESOLVE_MODE = 'missing_target_resolution'
+UNEXCLUDE_MODE = 'missing_target_exclusion_retraction'
+EXCLUDE_IMAGE = 'EXCLUDE_IMAGE'
+BOXED = ('boxed_player', 'boxed_goalkeeper', 'boxed_referee')
+
+
+def missing_targets(path: Path):
+    """Effective state of every missing-target flag. One fold, used everywhere.
+
+    Image exclusion is recorded as one resolution per flag, so it lands on top of
+    any box already drawn for those flags -- which is correct while the exclusion
+    stands, and catastrophic when it was pressed by mistake. A reviewer excluded
+    an image meaning to retract two duplicate flags and buried two good boxes
+    under it.
+
+    Nothing is deleted to recover from that. A retraction event names the
+    exclusion it withdraws, and this fold then IGNORES the withdrawn exclusion,
+    so whatever each flag held before it becomes effective again by itself. The
+    exclusion, the boxes and the retraction all stay in the log.
+
+    Returns {flag_id: {IMAGE, flag_role, state, role, bbox_xywh, excluded,
+                       retracted, history}} where state is one of
+    PENDING / BOXED / EXCLUDED / RETRACTED.
+    """
+    rows = read_log(path)
+    flags, hist = {}, {}
+    retracted, unexcluded = set(), set()
+    per = {}
+    for d in rows:
+        m, b = d['mode'], d['BOX_ID']
+        if m not in (FLAG_MODE, RETRACT_MODE, RESOLVE_MODE, UNEXCLUDE_MODE):
+            continue
+        hist.setdefault(b, []).append(d)
+        if m == FLAG_MODE:
+            flags[b] = d
+        elif m == RETRACT_MODE:
+            retracted.add(b)
+        elif m == UNEXCLUDE_MODE:
+            unexcluded.add(b)
+        elif m == RESOLVE_MODE:
+            per.setdefault(b, []).append(d)
+
+    out = {}
+    for b, f in flags.items():
+        evs = sorted(per.get(b, []), key=_key)
+        # a withdrawn exclusion is not a resolution at all
+        live_evs = [e for e in evs
+                    if not (e['HUMAN_FINAL_CLASS'] == EXCLUDE_IMAGE
+                            and b in unexcluded)]
+        win = live_evs[-1] if live_evs else None
+        if b in retracted:
+            state = 'RETRACTED'
+        elif win is None:
+            state = 'PENDING'
+        elif win['HUMAN_FINAL_CLASS'] == EXCLUDE_IMAGE:
+            state = 'EXCLUDED'
+        elif win['HUMAN_FINAL_CLASS'] in BOXED:
+            state = 'BOXED'
+        else:
+            state = 'PENDING'                 # unrecognised value discharges nothing
+        out[b] = {
+            'IMAGE': f.get('IMAGE'), 'run': f.get('run'),
+            'flag_role': f['HUMAN_FINAL_CLASS'],
+            'flagged_utc': f.get('recorded_utc'),
+            'state': state,
+            'role': win.get('role') if state == 'BOXED' else None,
+            'bbox_xywh': win.get('bbox_xywh') if state == 'BOXED' else None,
+            'excluded': state == 'EXCLUDED',
+            'retracted': b in retracted,
+            'exclusion_withdrawn': b in unexcluded,
+            'history': [{'mode': h['mode'], 'value': h.get('HUMAN_FINAL_CLASS'),
+                         'bbox_xywh': h.get('bbox_xywh'), 'role': h.get('role'),
+                         'reason': h.get('reason'),
+                         'recorded_utc': h.get('recorded_utc'),
+                         'line': h['_line']} for h in hist.get(b, [])],
+        }
+    return out
+
+
+def excluded_images(path: Path):
+    """Images excluded and not un-excluded. Effective state, not history."""
+    return {v['IMAGE'] for v in missing_targets(path).values() if v['excluded']}
+
+
+MANUAL_MODE = 'missed_role_manual'
+NEW_CORRECTION = 'NEW_MISSED_ROLE_CORRECTION'
+OVERRIDE = 'HUMAN_OVERRIDE'
+NO_OP = 'NO_OP_CONFIRMATION'
+FLAGGED = 'FLAGGED_UNCERTAIN'
+DISPOSITIONED = 'DISPOSITION_SET'
+
+
+def prior_non_manual(path: Path, box: str):
+    """The box's state before any manual click: (raw value, mode) or (None, None).
+
+    Manual clicks are excluded deliberately. "Did this click find a missed
+    official" is a question about what the earlier passes had recorded, so an
+    earlier manual click on the same box must not be what a later one is judged
+    against -- otherwise a correction followed by a re-confirmation would read as
+    two separate findings.
+    """
+    hist = sorted((d for d in read_log(path)
+                   if d['BOX_ID'] == box and d['mode'] != MANUAL_MODE), key=_key)
+    if not hist:
+        return None, None
+    return hist[-1].get('HUMAN_FINAL_CLASS'), hist[-1]['mode']
+
+
+def classify_click(prior_value, value):
+    """One click, classified against what the box held before it. One rule.
+
+    The server classifies a click as it arrives and the auditor re-classifies the
+    whole log afterwards. Those two answers have to agree, so they call this.
+    """
+    if value in U_CATEGORIES:
+        # e.g. NON_TARGET_HUMAN on a context box: a real decision that
+        # settles the box, but not a role and not a missed-role discovery
+        return DISPOSITIONED
+    if value == UNRESOLVED:
+        return FLAGGED
+    if prior_value is not None and value == prior_value:
+        return NO_OP
+    if prior_value in (None, 'player') and value in ('goalkeeper', 'referee'):
+        return NEW_CORRECTION
+    if prior_value in (None, 'player') and value == 'player':
+        return NO_OP
+    if prior_value in ROLES:
+        return OVERRIDE
+    return NO_OP
+
+
+def classify_manual(path: Path):
+    """What each manual context-box click actually did.
+
+    Clicking a box that already carries the same human role is not a discovery.
+    Counting it as one would inflate the headline number this whole pass exists
+    to produce -- "how many officials did the retrospective sweep miss" -- with
+    re-confirmations of officials that were already found.
+
+    Each missed_role_manual decision is compared against the box's state as it
+    stood BEFORE that click, taken from any other mode:
+
+        NEW_MISSED_ROLE_CORRECTION  it was unresolved or plain player, and is now
+                                    goalkeeper or referee -- a real find
+        HUMAN_OVERRIDE              it already had a role and the human changed it
+                                    to a different one -- intentional, kept
+        NO_OP_CONFIRMATION          the answer matches what was already there
+        FLAGGED_UNCERTAIN           marked uncertain; neither a find nor a no-op
+        DISPOSITION_SET             a disposition such as NON_TARGET_HUMAN --
+                                    settles the box, but is not a role and is
+                                    not a missed-role discovery
+    """
+    rows = read_log(path)
+    per = {}
+    for d in rows:
+        per.setdefault(d['BOX_ID'], []).append(d)
+    out = {}
+    for d in rows:
+        if d['mode'] != MANUAL_MODE:
+            continue
+        hist = sorted(per[d['BOX_ID']], key=_key)
+        prior = [h for h in hist
+                 if _key(h) < _key(d) and h['mode'] != MANUAL_MODE]
+        pv = prior[-1].get('HUMAN_FINAL_CLASS') if prior else None
+        pm = prior[-1]['mode'] if prior else None
+        v = d.get('HUMAN_FINAL_CLASS')
+        kind = classify_click(pv, v)
+        # a later manual click supersedes an earlier one on the same box
+        out[d['BOX_ID']] = {'kind': kind, 'manual_class': v,
+                            'prior_class': pv, 'prior_mode': pm,
+                            'recorded_utc': d.get('recorded_utc')}
+    return out
+
+
+def conflicts(path: Path):
+    """Boxes whose latest answer differs from an earlier one. Not an error."""
+    out = []
+    for box, r in resolve(path).items():
+        vals = {h['value'] for h in r['history']}
+        if len(vals) > 1:
+            out.append({'BOX_ID': box, 'final': r['history'][-1]['value'],
+                        'won_in_mode': r['decided_in_mode'],
+                        'history': r['history']})
+    return out
+
+
+if __name__ == '__main__':
+    import sys
+    p = Path(sys.argv[1] if len(sys.argv) > 1 else
+             'experiments/external_sources/keremberke_review/decisions.json')
+    r = resolve(p)
+    c = conflicts(p)
+    print(f'{len(read_log(p))} log lines -> {len(r)} boxes')
+    print(f'roles assigned: {sum(1 for v in r.values() if v["final_class"])}')
+    print(f'unresolved    : {sum(1 for v in r.values() if v["disposition"] == "UNRESOLVED")}')
+    print(f'dispositions  : {sum(1 for v in r.values() if v["disposition"] and v["disposition"] != "UNRESOLVED")}')
+    print(f'boxes with a changed answer: {len(c)}')

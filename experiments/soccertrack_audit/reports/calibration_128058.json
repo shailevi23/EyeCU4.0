@@ -1,0 +1,22 @@
+{
+ "match": "128058",
+ "frame": 30000,
+ "keypoints": 65,
+ "homography_route_error_px": {
+  "median": 8.602325267042627,
+  "p90": 24.08318915758459
+ },
+ "camera_model_route_error_px": {
+  "median": 8.846065448227243,
+  "p90": 13.444242064142005
+ },
+ "routes_agree_px": {
+  "median": 9.805542322552679,
+  "p90": 17.54499755870278
+ },
+ "legend": {
+  "white circle": "shipped keypoint (clicked)",
+  "red cross": "homography -> mapx",
+  "green cross": "fisheye projectPoints(K, D, rvec, tvec)"
+ }
+}

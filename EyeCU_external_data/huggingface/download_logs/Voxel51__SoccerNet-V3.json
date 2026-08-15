@@ -1,0 +1,70 @@
+{
+ "repo_id": "Voxel51/SoccerNet-V3",
+ "repo_type": "dataset",
+ "revision": "c628eb9acb48b2969e64c8e79744ffe1133c315d",
+ "downloaded_utc": "2026-08-11T16:43:31Z",
+ "license_from_card": "mit",
+ "gated": false,
+ "tags": [
+  "task_categories:object-detection",
+  "language:en",
+  "license:mit",
+  "size_categories:1K<n<10K",
+  "format:imagefolder",
+  "modality:image",
+  "library:datasets",
+  "library:mlcroissant",
+  "library:fiftyone",
+  "arxiv:2309.06006",
+  "arxiv:2011.13367",
+  "arxiv:2204.06918",
+  "region:us",
+  "fiftyone",
+  "group",
+  "object-detection",
+  "sports",
+  "tracking",
+  "action-spotting",
+  "game-state-recognition"
+ ],
+ "local_path": "huggingface/soccernet_v3/metadata_only",
+ "file_count": 4,
+ "total_bytes": 24520924,
+ "all_sizes_match_api": true,
+ "any_html_error_pages": false,
+ "files": [
+  {
+   "path": ".gitattributes",
+   "bytes": 2356,
+   "sha256": "5780202e2c5dd9af080fa03cf8a7a43e899fb96484ce01c459deea712cc687b0",
+   "expected_bytes": 2356,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "README.md",
+   "bytes": 5549,
+   "sha256": "26a0db12b4c895613176ed600a2591a825e49d8ace7d6653067567844ab06b96",
+   "expected_bytes": 5549,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "metadata.json",
+   "bytes": 8685,
+   "sha256": "f5eeb5fd259374fa3c91014c5c76f55520cf7ef07ec3479be24e7e54d3eb8df3",
+   "expected_bytes": 8685,
+   "size_matches_api": true,
+   "looks_like_html": false
+  },
+  {
+   "path": "samples.json",
+   "bytes": 24504334,
+   "sha256": "8c800984c1f35908f30091722721d7970e14610fbdeb7d81073ac796d7023f79",
+   "expected_bytes": 24504334,
+   "size_matches_api": true,
+   "looks_like_html": false
+  }
+ ],
+ "credentials_used": "none -- public dataset, no token read or stored"
+}

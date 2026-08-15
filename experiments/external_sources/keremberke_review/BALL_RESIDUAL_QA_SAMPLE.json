@@ -1,0 +1,104 @@
+{
+ "queue": "ball_residual_qa",
+ "purpose": "measure what the candidate generator missed, by human full-frame review of images it had little or nothing to say about",
+ "design": "census of the zero-candidate stratum, plus a seeded random sample of the weak-candidate stratum",
+ "seed": 20260814,
+ "requested_n": 40,
+ "strata": {
+  "ZERO_CANDIDATE": {
+   "N": 2,
+   "n": 2,
+   "meaning": "the generator proposed nothing at all here"
+  },
+  "WEAK_CANDIDATES_ONLY": {
+   "N": 18,
+   "n": 18,
+   "meaning": "every proposal in this image scored below 0.15"
+  }
+ },
+ "why_not_pure_zero_candidate": "only 2 of 101 images have zero candidates at conf 0.03. Raising the floor to enlarge that pool would discard recall from the correction queue to manufacture something to measure, so the frame was widened to the weakest-evidence images instead. Report the two strata separately.",
+ "n": 20,
+ "images": [
+  {
+   "IMAGE": "test/136_pp_jpg.rf.7b6282f47d24b1858306175e8f495051.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/144_pp_jpg.rf.434a29ec2554144b48e29f6aa6dae530.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/221_pp_jpg.rf.9a2aec1e297e8d9491840fd9a5396361.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/314_pp_jpg.rf.9f764d896a0e2eaac23c47f71a7a834d.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/376_pp_jpg.rf.319e215342344c364fe4a657983ea2b7.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/447_pp_jpg.rf.f9e855139307b10330637043c5f7673b.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/448_pp_jpg.rf.078b6e21f735d8fbcbeeafffb64d91ca.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/451_pp_jpg.rf.180e61c8792d4e56be27a0ce22cc8625.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/452_pp_jpg.rf.15701a0b4b77d00f6eb98e1ba4d8a7ec.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "test/465_pp_jpg.rf.f110d7052d31c17a9e8c269bba662c44.jpg",
+   "stratum": "ZERO_CANDIDATE"
+  },
+  {
+   "IMAGE": "test/480_pp_jpg.rf.d20dd7dca8bfba39458f27f41fe3f326.jpg",
+   "stratum": "ZERO_CANDIDATE"
+  },
+  {
+   "IMAGE": "valid/219_pp_jpg.rf.72248fde0223cef255cd65f3698e1fbf.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/267_pp_jpg.rf.c33ac8b596c032caf00e912bf015f951.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/327_pp_jpg.rf.1cf62c527e8281a24b9ed019edbfe2fa.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/394_pp_jpg.rf.16fe9974e64a22aadddbbbfb400ab647.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/445_pp_jpg.rf.43d4d6ca5938f7a88c09e98f21ed9408.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/449_pp_jpg.rf.1a25a5caffb6317f78287bf426d8adfd.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/456_pp_jpg.rf.b3ad83bc2b4084031286fb11b255d8de.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/484_pp_jpg.rf.bd3ade905e5036eaa03fce8d102df380.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  },
+  {
+   "IMAGE": "valid/52_pp_jpg.rf.318bfe1a07a3329b4db50ba01028db32.jpg",
+   "stratum": "WEAK_CANDIDATES_ONLY"
+  }
+ ],
+ "note": "review as a full-frame sweep, exactly as Round 0 did. A positive here is a football the MODEL missed."
+}

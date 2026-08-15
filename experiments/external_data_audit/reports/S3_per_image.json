@@ -1,0 +1,2921 @@
+[
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00002_jpeg_jpg.rf.f24b8f35a9a6b9ab091c9b94be838578.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00005_jpeg_jpg.rf.938964dd5e893b43d7bf42a362a3aefe.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00006_jpeg_jpg.rf.57931feb8afffae8db95c64a9279e8ab.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00008_jpeg_jpg.rf.0a1d994bc316aa81f374bf0f29410fb5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7
+},
+"eyecu": {
+"player": 7
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00009_jpeg_jpg.rf.769d6c9b6050ced9d06fb2238413c2ff.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6
+},
+"eyecu": {
+"player": 6
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00010_jpeg_jpg.rf.429daa5382940cc0ee5c5d4490fde3e8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00011_jpeg_jpg.rf.fda14f65fcbec9b7aa954978c5a89fad.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6,
+"football": 1
+},
+"eyecu": {
+"player": 6,
+"ball": 1
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00012_jpeg_jpg.rf.c1640d15edf442970b0fb7926692034d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6,
+"football": 1
+},
+"eyecu": {
+"player": 6,
+"ball": 1
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00019_jpeg_jpg.rf.84d28ad6585c7bbff697a29b2c4710d1.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00021_jpeg_jpg.rf.443b02b71a2d6ff467050633dbee17ca.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00026_jpeg_jpg.rf.76c431fb5418b9502b3ecdadf8729915.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 5,
+"football": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00027_jpeg_jpg.rf.9ba7f541a5d932f458348dfab8c475a4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 5
+},
+"eyecu": {
+"player": 5
+},
+"n": 5,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00030_jpeg_jpg.rf.a7a34edb5909ebf56bbd8d1b4158c81e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6
+},
+"eyecu": {
+"player": 6
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00031_jpeg_jpg.rf.5a06fc001504751fc73b8e03f879ddb2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6,
+"football": 1
+},
+"eyecu": {
+"player": 6,
+"ball": 1
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00033_jpeg_jpg.rf.d38a8a7cb5e15a9cd57099d35a4186f9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00034_jpeg_jpg.rf.dbf425ce2af17fd26017a700d8cdf56a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00035_jpeg_jpg.rf.355623de3096e1616c5ebd66f41cebee.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00036_jpeg_jpg.rf.ba24f429fbcfa23b6c7d1615be35c843.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00037_jpeg_jpg.rf.5b3921909cda8aef108a5d5c3e2c4525.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00038_jpeg_jpg.rf.97c93f0c425a21019cdd07384824e35a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00039_jpeg_jpg.rf.0e3b447d04db9d99ca857edf7706a35d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00040_jpeg_jpg.rf.f370c95f47874028d82066d160483d6a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00042_jpeg_jpg.rf.a107fa12c9ac60470bf95fe219ee0b14.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00043_jpeg_jpg.rf.3c24070ea6cda20561e1793ae8443638.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00044_jpeg_jpg.rf.e8315fac901ffd3222921965e9d9f5f9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"referee": 1
+},
+"eyecu": {
+"player": 8,
+"referee": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00045_jpeg_jpg.rf.3a2498307a9916b311ee084601269f2d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00047_jpeg_jpg.rf.1122aac81e63c4218e499e93b5ca793c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"referee": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00048_jpeg_jpg.rf.6891444872fb86923368a41534eb3cd9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"referee": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00049_jpeg_jpg.rf.a4e1026e853ab81937714c9d84682c79.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00050_jpeg_jpg.rf.94a53c20abd663b8ac44d7061d066815.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00051_jpeg_jpg.rf.13579a93b0e7def11a3f9ee69fb4c27f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00052_jpeg_jpg.rf.9c5b356258932f1048c65a7999ff88bd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00054_jpeg_jpg.rf.c1347ad74eda011b7648f15228bffaa5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00124_jpeg_jpg.rf.17c7c9e20f0f291adfcf64dce845c23f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 18,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 18,
+"referee": 1,
+"ball": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00125_jpeg_jpg.rf.5c286e4b7a7163b976796a2b0f2a29ff.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00176_jpeg_jpg.rf.6c93aa1b1c4a0d5fd81ef73dee6c3f1f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00181_jpeg_jpg.rf.bd698dba307e0654d5e0cb46f57f8b48.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 16,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00183_jpeg_jpg.rf.28783dc99d365f7cb137beca155d7098.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00184_jpeg_jpg.rf.db80f5bc676080101525e11fcaa5c1f3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00185_jpeg_jpg.rf.96a6930cb7902b2369a21ef3c7eb10dc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00187_jpeg_jpg.rf.7855b79fa1a1447e5d2561c51829e2fe.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00190_jpeg_jpg.rf.2c6241fb59ffd60febca4e0fe772cc9f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 16,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00191_jpeg_jpg.rf.083622eaa4915d67a3631b9e213b7cd8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00192_jpeg_jpg.rf.fb19d67b55b2c78f32e24108e648169d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00197_jpeg_jpg.rf.71d3dbc65e4a7b5c7e243b2e88728cee.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00198_jpeg_jpg.rf.d5671a7c68e23c4e2cd04ec5a53e9e22.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00199_jpeg_jpg.rf.f50b7dba89500334298b1f82d6b523bb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00200_jpeg_jpg.rf.5cd1e1c2d4e5d76cb98927d31e406d77.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00210_jpeg_jpg.rf.ee8e1f4cfa8b269039da94a3a0853a05.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00212_jpeg_jpg.rf.21c46288a028bf74c64b9a72e96a3e1f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00272_jpeg_jpg.rf.5ada04a7f2e0b2c658d436493633272d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00273_jpeg_jpg.rf.c2a245acd71337eeef82ac1f0fc6dd2d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00274_jpeg_jpg.rf.27746ee88a1c5d98092d5d1a8fb1630f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00275_jpeg_jpg.rf.cef7c82bd709e9bf43e949022c11484b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00276_jpeg_jpg.rf.784f2d288326856080ae32acca06f6c6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6
+},
+"eyecu": {
+"player": 6
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00278_jpeg_jpg.rf.8bf8cc4124f669a15cf2062373d29124.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00279_jpeg_jpg.rf.73c2d84257490b7577139a0c66d97d7e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7
+},
+"eyecu": {
+"player": 7
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00281_jpeg_jpg.rf.b674d8cef29f01fc0be55abd986e5b5a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00283_jpeg_jpg.rf.ce22610f7d7444304430aed5ab7c9a0a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00308_jpeg_jpg.rf.74e59a1c6ad68772edb444fe3ee055ef.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00326_jpeg_jpg.rf.ac5e7c05b4debad4558e156eb7fae73e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00351_jpeg_jpg.rf.b3dbd302ee92bad88e60845dd96b339a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00354_jpeg_jpg.rf.817d7fb392362a8f6613a9b93d1157b2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00355_jpeg_jpg.rf.baebadddd7bbc437a720db9d0776abde.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00356_jpeg_jpg.rf.92ccbbbf92a15fbfc270971c173301f2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00361_jpeg_jpg.rf.10e0c2c8c5884a27d3c188f7005ac817.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00362_jpeg_jpg.rf.a670cb0cd7c95bf15836c8bd45f5add4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00363_jpeg_jpg.rf.72db3fc8f6b63c5ae65d48730e71f572.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00364_jpeg_jpg.rf.ae6a7f4e523ac68f8adbc98618133fc5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00703_jpeg_jpg.rf.6a22aec61da8b18be8d86fa0e30474b6.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 2,
+"football": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00704_jpeg_jpg.rf.35cc32ca1865c6ced592cfbfd1e1e5fa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 2,
+"football": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00705_jpeg_jpg.rf.2a8d7823705b9a558dd9202ad1f69b7a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 2,
+"football": 1
+},
+"eyecu": {
+"player": 2,
+"ball": 1
+},
+"n": 3,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00708_jpeg_jpg.rf.f93bb2f08875da7888273bb42b846928.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 3,
+"football": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00709_jpeg_jpg.rf.eb8c6cacaae4da3d530515997770227f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 3,
+"football": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00716_jpeg_jpg.rf.58b8f1486a592a5a198441cd897acabb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00718_jpeg_jpg.rf.40efafcf58c8666f7f86cbfa02ae041a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00719_jpeg_jpg.rf.c3780641285a925902d87e8d3dc25f56.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "1-fps-2_00722_jpeg_jpg.rf.772c05d72fd13fb05e70cc11a94a76db.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00050_jpeg_jpg.rf.b3701291bcd8424169be296f35daa8c9.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00051_jpeg_jpg.rf.80668ac6028fdabdbf01ed77d2967095.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00052_jpeg_jpg.rf.0f1485405156539b37d8e4233bcec00a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00055_jpeg_jpg.rf.2e64be266682b2a62a8d3b5b6d7453c4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00056_jpeg_jpg.rf.9c922231ed5e8987101bcf1028bee018.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00058_jpeg_jpg.rf.269df9afcb3831b4a1fe65d6e5d417bb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00059_jpeg_jpg.rf.4c986b72234516832332646f8c00c6fd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00060_jpeg_jpg.rf.3a1c59961257ea67d993b097f3dc6563.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00061_jpeg_jpg.rf.14bc377ff75d4b3ebe8083f73aa58560.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 1,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00064_jpeg_jpg.rf.4f75e0e9e7c4186369a65ab10025e44c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00065_jpeg_jpg.rf.fc812095e7f9ca1bbb47ceae4268fcbc.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 16,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00004_jpeg_jpg.rf.70a2f424e0461d246d03ae343c8573b5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00006_jpeg_jpg.rf.7ac71176c3175184040bd63674ad8838.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00008_jpeg_jpg.rf.5a4f30502578813f49b038beb339fa5a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 1,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00012_jpeg_jpg.rf.c1cd058dd6c37334ad488ceb0cf39a71.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00013_jpeg_jpg.rf.f73093ad6dfc4376ec5a157fc820ccf2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00014_jpeg_jpg.rf.f9063a091ea70a3cfc90a6ac897f58dd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00015_jpeg_jpg.rf.500ed81114232633fa8bea26fed0ec31.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00016_jpeg_jpg.rf.ea9f6b4e71099692d2d76e7d33ebce7e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00017_jpeg_jpg.rf.ed2390b33696517c66e186085eb65707.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00018_jpeg_jpg.rf.b94ea54120b20a87d690c0b4cf948148.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00029_jpeg_jpg.rf.bea1879cc6ba57f61aea75098fef1d1e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00030_jpeg_jpg.rf.389dff54bbd93106d8f58fe4f54bce66.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00002_jpeg_jpg.rf.04f7a19f62849360002a926f4bb7b3fb.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00005_jpeg_jpg.rf.8670b23b6196e007947d72102a5c28c7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00006_jpeg_jpg.rf.334b6a6d7e8b4a8ae8bbb2cc093e7524.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00007_jpeg_jpg.rf.59c6a3d4e38660d40f01a9c5ec9842c7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00008_jpeg_jpg.rf.4611fd9196ebc6b8e4e42a4f5c975b26.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00011_jpeg_jpg.rf.c544ff484305ea3f3dd142e7dbd4123c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00013_jpeg_jpg.rf.a55012878a0a3b02f86f2fddd9a9c3bd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00014_jpeg_jpg.rf.0a01251181d02756d04048d26fc1ea21.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00015_jpeg_jpg.rf.dccc69ca13c804bb76edfd0af15c65c5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00022_jpeg_jpg.rf.d2fe1de11ad7109c4f6b41baeea4dd5f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12
+},
+"eyecu": {
+"player": 12
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00043_jpeg_jpg.rf.a82d0d0a8d1a2321ea5b381e0228f197.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 16,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00044_jpeg_jpg.rf.612e6c5e2606c41b141e54a91dbd5bd3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "train",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00045_jpeg_jpg.rf.6fa6a1d7a362f466cbfcd8fe1856d492.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 16,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00007_jpeg_jpg.rf.9bfcc5ce836ecda13762429c67e27165.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00013_jpeg_jpg.rf.8cee98f596ad6abb76351ea5c672b4e8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 5,
+"football": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00015_jpeg_jpg.rf.09fae9ca269ab04e26b82cc3a5dd43ad.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 5,
+"football": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00020_jpeg_jpg.rf.ea8c92d2758ed61d1deb3e9feca9e84e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 1,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00023_jpeg_jpg.rf.f8d397c9fa18a7aff67dd893ba517566.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 7,
+"football": 1
+},
+"eyecu": {
+"player": 7,
+"ball": 1
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00024_jpeg_jpg.rf.c7b8c9d655474712fbfdd29443f0591e.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6,
+"football": 1
+},
+"eyecu": {
+"player": 6,
+"ball": 1
+},
+"n": 7,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00046_jpeg_jpg.rf.93a5ea36534d2974a952e2eab211e3de.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"referee": 1,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00053_jpeg_jpg.rf.52036f286db800af219d9ac67b5f349b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00175_jpeg_jpg.rf.64658b8c254525be80ae2c8fce5bc62a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00177_jpeg_jpg.rf.ce765a85892e0eacab5fc0055034815c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00182_jpeg_jpg.rf.4554cfe2dd1ba0adff78ead09647045d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00186_jpeg_jpg.rf.cda5394088acd243a7c868562761a8b0.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00211_jpeg_jpg.rf.10eafbe057107c772baed2c42dd77664.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8
+},
+"eyecu": {
+"player": 8
+},
+"n": 8,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00235_jpeg_jpg.rf.f0f1b5b994d5edea8e9dec1347dbcbd2.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00270_jpeg_jpg.rf.9b187c9a4fbf724758a08e27d899a36c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00271_jpeg_jpg.rf.bbdd224e7217499b8ddd55042d445b4b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00277_jpeg_jpg.rf.129cb000b2250e9d0a0eebe314d8d769.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6
+},
+"eyecu": {
+"player": 6
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00284_jpeg_jpg.rf.ba8bed327a17c7ee74ae7ec4f23d7335.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00307_jpeg_jpg.rf.aa2f1f38e18230cc639841e500183c1b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 16,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00350_jpeg_jpg.rf.fd3af03f0d4b9c988e8e6ee3e46602a7.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00353_jpeg_jpg.rf.5e440e16d34f7d9f2a07e02dae7f0345.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00366_jpeg_jpg.rf.4827849f56923aed36965ab26bf72faf.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "1-fps-2_00706_jpeg_jpg.rf.dc50ea1375c7565d032fb23b0d2e2e1a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 3,
+"football": 1
+},
+"eyecu": {
+"player": 3,
+"ball": 1
+},
+"n": 4,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "2-fps-2_04600_jpeg_jpg.rf.4f8d492e5b951e865e9a442c0e29ea14.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"referee": 1
+},
+"eyecu": {
+"player": 9,
+"referee": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00049_jpeg_jpg.rf.a54dd3224a92c4961b9fcc944239d567.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00054_jpeg_jpg.rf.825836cc725a59506f311720ab0da746.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10,
+"football": 1
+},
+"eyecu": {
+"player": 10,
+"ball": 1
+},
+"n": 11,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00057_jpeg_jpg.rf.a2b60cd527dc7282cd616b799df9f7a8.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00002_jpeg_jpg.rf.bdfabb1cb11da11812092c74f8dee6bd.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 17,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 17,
+"referee": 1,
+"ball": 1
+},
+"n": 19,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00003_jpeg_jpg.rf.1c6626ceb8d971616a991ca5e1413b9a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00005_jpeg_jpg.rf.77622e4d116506a3744fd38bb0032f41.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"ball": 1
+},
+"n": 12,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00007_jpeg_jpg.rf.38461a4dc03a730dc24f96f19c396031.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Liverpool-14-Manchester-City-Premier-League-J23-fps-2_00028_jpeg_jpg.rf.aa8eba955d016eee94a0e7a073e2ca35.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "valid",
+"file": "yt1s-com---Resume-Tottenham-20-West-Bromwich-Premier-League-J23_720p-fps-2_00010_jpeg_jpg.rf.b27018a64ad24a74235644b70dc98fe3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00001_jpeg_jpg.rf.7e6fb44050aa614a7003e79297cab088.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 19,
+"referee": 1
+},
+"eyecu": {
+"player": 19,
+"referee": 1
+},
+"n": 20,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00014_jpeg_jpg.rf.b2807ee897ff22ba353b845d34e8222b.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 5,
+"football": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00022_jpeg_jpg.rf.19d5065bff5f9f4867f9f5296da767af.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00025_jpeg_jpg.rf.666ff9d0ffccf61080ce844fd16fed3a.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 5,
+"football": 1
+},
+"eyecu": {
+"player": 5,
+"ball": 1
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00032_jpeg_jpg.rf.9233ac761e87c930e1945a58b956f926.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 6
+},
+"eyecu": {
+"player": 6
+},
+"n": 6,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00041_jpeg_jpg.rf.bc6e447cc135c746907cdf3b01777cfa.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00055_jpeg_jpg.rf.ed77c99915df3b78e787221e139b9dc4.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 12,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 12,
+"referee": 1,
+"ball": 1
+},
+"n": 14,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00208_jpeg_jpg.rf.73436820394c003bbc8778d64ea31b16.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 11,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 11,
+"referee": 1,
+"ball": 1
+},
+"n": 13,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00213_jpeg_jpg.rf.d9365dd5958264d605d259799effcd73.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 8,
+"football": 1
+},
+"eyecu": {
+"player": 8,
+"ball": 1
+},
+"n": 9,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00267_jpeg_jpg.rf.f934f0f67a4e7cc485c15a29e52cfc3c.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00269_jpeg_jpg.rf.999a2fec190595edbc08fdbc081c066d.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 14,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 14,
+"referee": 1,
+"ball": 1
+},
+"n": 16,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00282_jpeg_jpg.rf.5cf1a74ef731f6d6d8035cc8c17e24f3.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 9,
+"football": 1
+},
+"eyecu": {
+"player": 9,
+"ball": 1
+},
+"n": 10,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00339_jpeg_jpg.rf.7c4bf8379f777dc167fe9f781d0c7236.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 16,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 16,
+"referee": 1,
+"ball": 1
+},
+"n": 18,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00340_jpeg_jpg.rf.01333bf3f4b49b1f63c1c373b3c4745f.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 15,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 15,
+"referee": 1,
+"ball": 1
+},
+"n": 17,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "1-fps-2_00365_jpeg_jpg.rf.ce252a20c7049bed91fae7607a5b30a5.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 13,
+"referee": 1,
+"football": 1
+},
+"eyecu": {
+"player": 13,
+"referee": 1,
+"ball": 1
+},
+"n": 15,
+"label_file": true
+},
+{
+"sid": "S3",
+"split": "test",
+"file": "yt1s-com---Resume-Liverpool-01-Burnley-Premier-League-J18-fps-2_00053_jpeg_jpg.rf.2dd4f7686f34637d5bb48c1800d50c42.jpg",
+"w": 640,
+"h": 640,
+"counts": {
+"player": 10
+},
+"eyecu": {
+"player": 10
+},
+"n": 10,
+"label_file": true
+}
+]

@@ -299,6 +299,45 @@ Two failure regimes dominate, and they are different problems:
 Of 17 misses across those two windows, **12 had no usable proposal even at
 confidence 0.01** — detector blindness, not thresholding.
 
+### Ball temporal recovery (current production path) — 2026-08-15
+
+The benchmark above evaluated `BallTemporalSelector` offline. It is now the
+production path. This section describes the **implementation**; it reports no
+new measurement, and the numbers above are unchanged.
+
+Until this change `full_pipeline.py` still called `interpolate_ball_positions()`
+after tracking. Patch 0 had removed the origin-ball fabrication from the
+tracker, but that later call reinstated a variant of it: missing frames became
+`[0,0,0,0]`, which is a real bbox rather than NaN, so `interpolate()` saw no gap
+and drew a line *toward the origin* and back; `bfill()`/`ffill()` then
+guaranteed a ball on every frame, inventing one before the first detection and
+holding one after the last. Provenance from the tracker's bounded hold was
+discarded in the process.
+
+The flow is now:
+
+```
+detector (ball_candidate_pool=True, floor 0.10)
+  → tracker: observations accepted at >=0.25; every candidate recorded,
+             none promoted
+  → BallTemporalSelector (v1 settings, unchanged)
+  → tracks['ball'][frame] = {} | {id: {bbox, state, confidence?}}
+  → possession / visualisation / JSON
+```
+
+Every reported ball carries `state`, one of `observed`, `recovered_low_conf`,
+`interpolated_short_gap`. A frame with insufficient evidence is `{}` — an
+honest gap, not a fabricated position. `interpolated_short_gap` entries carry no
+`confidence`, because an estimate has no detector confidence to report.
+
+`interpolate_ball_positions()` was deleted rather than deprecated: it had one
+caller, and leaving a second ball path in place invites reuse.
+
+**Not measured here.** Whether this changes ball recall, possession accuracy or
+any tracking metric on real footage is unknown — no evaluation was run for this
+change, and none is claimed. The selector's own benchmark figures above predate
+it and are unaffected.
+
 ### Cross-resolution 2×2 — 2026-08-09
 
 A and B weights each evaluated at 960 and 1280 on the continuous benchmark,

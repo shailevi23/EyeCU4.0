@@ -1,0 +1,137 @@
+{
+ "per_source": {
+  "S1": {
+   "images": 574,
+   "status": {
+    "HUMAN_REVIEW": 142,
+    "EXCLUDE_AUGMENTATION_COPY": 414,
+    "EXCLUDE_EXACT_DUPLICATE": 12,
+    "EXCLUDE_IRRELEVANT": 6
+   },
+   "shot_types": {
+    "broadcast_wide_tactical": 481,
+    "broadcast_close_medium": 24,
+    "close_up": 69
+   },
+   "annotation_completeness": {
+    "verdict": "FULL_MULTICLASS_LIKELY",
+    "evidence": "every image carries labels; 574/574 contain human boxes and 478/574 contain a ball",
+    "images": 574,
+    "zero_box_images": 0,
+    "images_without_human_labels": 0,
+    "goalkeeper_class_absent": true
+   }
+  },
+  "S2": {
+   "images": 396,
+   "status": {
+    "HUMAN_REVIEW": 174,
+    "EXCLUDE_AUGMENTATION_COPY": 213,
+    "EXCLUDE_IRRELEVANT": 8,
+    "EXCLUDE_NEAR_DUPLICATE": 1
+   },
+   "shot_types": {
+    "broadcast_close_medium": 115,
+    "close_up": 144,
+    "no_human_labels": 3,
+    "broadcast_wide_tactical": 134
+   },
+   "annotation_completeness": {
+    "verdict": "FULL_MULTICLASS_LIKELY",
+    "evidence": "every image carries labels; 393/396 contain human boxes and 221/396 contain a ball",
+    "images": 396,
+    "zero_box_images": 0,
+    "images_without_human_labels": 3,
+    "goalkeeper_class_absent": false
+   }
+  },
+  "S3": {
+   "images": 163,
+   "status": {
+    "HUMAN_REVIEW": 160,
+    "EXCLUDE_IRRELEVANT": 3
+   },
+   "shot_types": {
+    "broadcast_wide_tactical": 116,
+    "broadcast_close_medium": 44,
+    "close_up": 3
+   },
+   "annotation_completeness": {
+    "verdict": "FULL_MULTICLASS_LIKELY",
+    "evidence": "every image carries labels; 163/163 contain human boxes and 141/163 contain a ball",
+    "images": 163,
+    "zero_box_images": 0,
+    "images_without_human_labels": 0,
+    "goalkeeper_class_absent": true
+   }
+  },
+  "S4": {
+   "images": 272,
+   "status": {
+    "EXCLUDE_NEAR_DUPLICATE": 272
+   },
+   "shot_types": {
+    "broadcast_wide_tactical": 272
+   },
+   "annotation_completeness": {
+    "verdict": "FULL_MULTICLASS_LIKELY",
+    "evidence": "every image carries labels; 272/272 contain human boxes and 228/272 contain a ball",
+    "images": 272,
+    "zero_box_images": 0,
+    "images_without_human_labels": 0,
+    "goalkeeper_class_absent": false
+   }
+  },
+  "S5": {
+   "images": 487,
+   "status": {
+    "EXCLUDE_PARTIAL_ANNOTATION_RISK": 486,
+    "EXCLUDE_NEAR_DUPLICATE": 1
+   },
+   "shot_types": {
+    "no_human_labels": 487
+   },
+   "annotation_completeness": {
+    "verdict": "BALL_ONLY",
+    "evidence": "the export declares a single ball class; every image contains visible players that carry no label at all",
+    "images": 487,
+    "zero_box_images": 63,
+    "images_without_human_labels": 487,
+    "goalkeeper_class_absent": true
+   }
+  },
+  "S6": {
+   "images": 1702,
+   "status": {
+    "KEEP_CANDIDATE": 1251,
+    "EXCLUDE_PARTIAL_ANNOTATION_RISK": 321,
+    "EXCLUDE_NEAR_DUPLICATE": 36,
+    "HUMAN_REVIEW": 93,
+    "EXCLUDE_IRRELEVANT": 1
+   },
+   "shot_types": {
+    "broadcast_wide_tactical": 1339,
+    "no_human_labels": 342,
+    "close_up": 7,
+    "broadcast_close_medium": 14
+   },
+   "annotation_completeness": {
+    "verdict": "PARTIAL_ANNOTATION_LIKELY",
+    "evidence": "342/1702 images (20.1%) carry zero boxes while visibly containing players, officials and in places the ball -- see S6_zero_box_images.jpg. Annotation appears to cover the wide tactical camera only.",
+    "images": 1702,
+    "zero_box_images": 342,
+    "images_without_human_labels": 342,
+    "goalkeeper_class_absent": false
+   }
+  }
+ },
+ "totals": {
+  "HUMAN_REVIEW": 569,
+  "EXCLUDE_AUGMENTATION_COPY": 627,
+  "EXCLUDE_EXACT_DUPLICATE": 12,
+  "EXCLUDE_IRRELEVANT": 18,
+  "EXCLUDE_NEAR_DUPLICATE": 310,
+  "EXCLUDE_PARTIAL_ANNOTATION_RISK": 807,
+  "KEEP_CANDIDATE": 1251
+ }
+}

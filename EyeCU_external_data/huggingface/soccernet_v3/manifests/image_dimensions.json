@@ -1,0 +1,146 @@
+{
+ "method": "HTTP range request for the first 32 bytes of each PNG; dimensions read from the IHDR chunk. No image payload was downloaded.",
+ "revision": "c628eb9acb48b2969e64c8e79744ffe1133c315d",
+ "directories": 48,
+ "headers_probed": 144,
+ "failures": [],
+ "dimensions_observed": {
+  "1280x720": 101,
+  "1920x1080": 43
+ },
+ "directories_with_mixed_resolution": {
+  "data_14": {
+   "1280x720": 2,
+   "1920x1080": 1
+  },
+  "data_15": {
+   "1280x720": 2,
+   "1920x1080": 1
+  },
+  "data_16": {
+   "1920x1080": 2,
+   "1280x720": 1
+  },
+  "data_23": {
+   "1280x720": 2,
+   "1920x1080": 1
+  },
+  "data_27": {
+   "1920x1080": 2,
+   "1280x720": 1
+  },
+  "data_31": {
+   "1280x720": 1,
+   "1920x1080": 2
+  },
+  "data_35": {
+   "1920x1080": 2,
+   "1280x720": 1
+  },
+  "data_43": {
+   "1280x720": 1,
+   "1920x1080": 2
+  }
+ },
+ "dominant_resolution": [
+  1280,
+  720
+ ],
+ "ball_box_pixels_at_dominant_resolution": {
+  "n": 3830,
+  "width": {
+   "median": 27.38,
+   "mean": 42.06,
+   "p10": 11.69,
+   "p25": 16.35,
+   "p75": 62.42,
+   "p90": 88.5,
+   "min": 4.93,
+   "max": 388.49
+  },
+  "height_median": 26.82,
+  "width_bins": {
+   "<3": 0,
+   "3-5": 1,
+   ">5-8": 50,
+   ">8-12": 364,
+   ">12-20": 1001,
+   ">20-40": 879,
+   ">40": 1535
+  },
+  "le5": 1,
+  "le8": 51,
+  "le12": 415,
+  "caveat": "each ball measured at ITS OWN source directory resolution, not at one dominant resolution",
+  "ball_boxes_in_directories_of_unknown_resolution": 0
+ },
+ "directory_resolutions": {
+  "data_0": "1280x720",
+  "data_1": "1280x720",
+  "data_10": "1280x720",
+  "data_11": "1280x720",
+  "data_12": "1280x720",
+  "data_13": "1280x720",
+  "data_14": "1280x720",
+  "data_15": "1280x720",
+  "data_16": "1920x1080",
+  "data_17": "1280x720",
+  "data_18": "1280x720",
+  "data_19": "1280x720",
+  "data_2": "1280x720",
+  "data_20": "1280x720",
+  "data_21": "1280x720",
+  "data_22": "1280x720",
+  "data_23": "1280x720",
+  "data_24": "1920x1080",
+  "data_25": "1920x1080",
+  "data_26": "1920x1080",
+  "data_27": "1920x1080",
+  "data_28": "1280x720",
+  "data_29": "1280x720",
+  "data_3": "1280x720",
+  "data_30": "1280x720",
+  "data_31": "1920x1080",
+  "data_32": "1920x1080",
+  "data_33": "1920x1080",
+  "data_34": "1920x1080",
+  "data_35": "1920x1080",
+  "data_36": "1280x720",
+  "data_37": "1280x720",
+  "data_38": "1280x720",
+  "data_39": "1280x720",
+  "data_4": "1280x720",
+  "data_40": "1280x720",
+  "data_41": "1280x720",
+  "data_42": "1280x720",
+  "data_43": "1920x1080",
+  "data_44": "1920x1080",
+  "data_45": "1920x1080",
+  "data_46": "1920x1080",
+  "data_47": "1920x1080",
+  "data_5": "1280x720",
+  "data_6": "1280x720",
+  "data_7": "1280x720",
+  "data_8": "1280x720",
+  "data_9": "1280x720"
+ },
+ "ball_box_pixels_1920x1080_equivalent": {
+  "why": "EyeCU frames are 16:9 broadcast; expressing every ball at 1920x1080 makes this directly comparable with EyeCU own median of ~18 px native",
+  "n": 3830,
+  "median": 35.45,
+  "p10": 16.27,
+  "p90": 117.51,
+  "width_bins": {
+   "<3": 0,
+   "3-5": 0,
+   ">5-8": 4,
+   ">8-12": 69,
+   ">12-20": 762,
+   ">20-40": 1224,
+   ">40": 1771
+  },
+  "le5": 0,
+  "le8": 4,
+  "le12": 73
+ }
+}
