@@ -1,12 +1,26 @@
 {
  "freeze_timestamp_utc": "2026-08-19T07:05:12Z",
  "milestone": "M3 -- system / production freeze before sealed TEST",
+ "revision": 2,
+ "revision_note": "M3 freeze-hygiene repair: (1) made the frozen source reconstructable via a dedicated freeze commit instead of an uncommitted working tree, (2) ran and recorded the thread-setting equivalence check. No production algorithm/config/model bytes changed; source_identity below documents an EOL-normalisation-only hash discrepancy introduced by the commit itself.",
+ "superseded_manifest_sha256": "4d46d2a1ecf23e38cb64e27dbed9768a3d2fcfef72c08a1ddb1cd3a3606076b0",
 
  "source_identity": {
-  "git_head_commit": "4c1a1bb8c050ed67f9763c87524107daa16f3234",
-  "working_tree_has_uncommitted_changes": true,
-  "note": "git HEAD alone understates what will actually run against TEST -- this working tree carries uncommitted M1-M3 work (possession, calibration, and this freeze's own config/determinism fixes). The deterministic_source_tree_sha256 below is the authoritative identity: sha256 over (relative path, file bytes) for every .py file under trackers/, tools/, rf_trackers/, plus full_pipeline.py and run_pipeline.py, sorted by path.",
-  "deterministic_source_tree_sha256": "38dfd20c6b5c814ab2a8d19da464c477ebedb64936c78a2dacbf9aa403edf8df",
+  "git_head_commit": "466454fa8336b98d3a31f4877778bff8f569a08a",
+  "git_head_commit_superseded_pre_freeze_commit": "4c1a1bb8c050ed67f9763c87524107daa16f3234",
+  "working_tree_has_uncommitted_changes": false,
+  "reconstructable_source": true,
+  "reconstruction_method": "dedicated freeze commit 466454fa8336b98d3a31f4877778bff8f569a08a on branch main, containing the exact M1-M3 prediction-producing source (trackers/, tools/, rf_trackers/, full_pipeline.py, run_pipeline.py) and its relevant M1-M3 experiment records. Verified reconstructable by two independent methods: `git archive 466454f | tar -x` and a fresh `git clone` + `git checkout 466454f`, both hashed identically.",
+  "note": "deterministic_source_tree_sha256 below is sha256 over (relative path, file bytes) for every .py file under trackers/, tools/, rf_trackers/, plus full_pipeline.py and run_pipeline.py, sorted by path -- computed from a genuine clean checkout of the freeze commit, which is the value that actually matters for TEST reproducibility.",
+  "deterministic_source_tree_sha256": "1572cb50f0596a4368a2d4833d1e0a916a69930e2820361a8309949cf31bf8fa",
+  "deterministic_source_tree_sha256_pre_commit_working_tree_superseded": "38dfd20c6b5c814ab2a8d19da464c477ebedb64936c78a2dacbf9aa403edf8df",
+  "pre_commit_vs_post_commit_hash_discrepancy": {
+   "cause": "core.autocrlf=true normalised LF line endings to CRLF on commit, for the 23 .py files newly created in this session with bare LF endings (pre-existing files, whose endings were already CRLF, were unaffected -- e.g. full_pipeline.py is byte-identical pre- and post-commit)",
+   "verified_eol_only_zero_logic_change": true,
+   "verification_method": "every file whose raw bytes differed was re-compared after normalising b'\\r\\n' -> b'\\n' on both sides; all 23 became byte-identical, confirming no code/logic content changed",
+   "affected_file_count": 23,
+   "prediction_affecting": false
+  },
   "source_tree_file_count": 158
  },
 
@@ -84,7 +98,15 @@
   "tracking_algorithm_or_thresholds_changed": false,
   "production_entry_points_affected": false,
   "detail": "CBIOU_REPRODUCIBILITY.md",
-  "required_deterministic_settings_for_TEST": ["torch.set_num_threads(1)", "cv2.setNumThreads(1)"]
+  "required_deterministic_settings_for_TEST": ["torch.set_num_threads(1)", "cv2.setNumThreads(1)"],
+  "thread_setting_equivalence_check": {
+   "purpose": "these settings were added defensively, not because measured nondeterminism required them -- checked directly rather than left as an untested assumption",
+   "development_sample": "bayern_munich_3-1_chelsea_228 (non-TEST), 40 frames",
+   "compared": ["human_records (878 vs 878)", "ball_candidate_records (38 vs 38)", "selector_records (40 vs 40)"],
+   "default_vs_single_thread_record_identical": true,
+   "decision": "kept the single-thread requirement (per instruction: record-identical -> keep and record the result)",
+   "detail": "thread_equivalence_result.json"
+  }
  },
 
  "cache_identity": {
