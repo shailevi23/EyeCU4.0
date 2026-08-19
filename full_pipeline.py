@@ -21,7 +21,10 @@ from trackers.speed_distance import SpeedDistanceEstimator
 from trackers.player_ball_assigner import PlayerBallAssigner
 from trackers.video_utils import read_video, save_video, get_video_info
 from trackers.cache_utils import compute_cache_key, cache_path_for
-from trackers.detector import HUMAN_ACCEPT_CONF, HUMAN_CANDIDATE_CONF
+from trackers.detector import (BALL_ACCEPT_CONF, BALL_CANDIDATE_CONF,
+                               HUMAN_ACCEPT_CONF, HUMAN_CANDIDATE_CONF,
+                               SN3D_BALL_IMGSZ, resolve_sn3d_ball_path,
+                               verify_sn3d_ball_checkpoint)
 
 
 class FootballAnalysisPipeline:
@@ -30,8 +33,11 @@ class FootballAnalysisPipeline:
     Integrates detection, tracking, re-identification, and database management
     """
     
-    def __init__(self, 
-                 yolo_model: str = 'yolov8x.pt',
+    def __init__(self,
+                 # Closed, measured production human-detector checkpoint (see
+                 # data/tracking_val_v1/manifest.json). Override only for an
+                 # intentional experiment, not for an ordinary run.
+                 yolo_model: str = 'best_A_960.pt',
                  output_dir: str = 'pipeline_output',
                  match_id: int = 1,
                  use_roboflow: bool = False,  # opt-in only; local YOLO is the default path
@@ -44,7 +50,9 @@ class FootballAnalysisPipeline:
                  max_ball_gap: int = 15,
                  human_candidate_pool: bool = False,
                  ball_candidate_pool: bool = True,
-                 tracker_backend: str = 'cbiou'):
+                 tracker_backend: str = 'cbiou',
+                 ball_detector_backend: str = 'sn3d',
+                 ball_model_path: Optional[str] = None):
         """
         Initialize complete pipeline
         Args:
@@ -70,6 +78,22 @@ class FootballAnalysisPipeline:
         # Changes what the tracker sees, so it must be part of the cache key.
         self.human_candidate_pool = human_candidate_pool
         self.ball_candidate_pool = ball_candidate_pool
+        # THIS is where EyeCU chooses its production ball detector. The library
+        # defaults in trackers/detector.py stay on 'eyecu' so the old behaviour
+        # remains reachable; the deployed pipeline opts in to SN3D_BASE here.
+        self.ball_detector_backend = ball_detector_backend
+        self.ball_model_path = (
+            resolve_sn3d_ball_path(ball_model_path)
+            if ball_detector_backend == 'sn3d' else None)
+        # Ball-branch identity for the cache key. A cache built with the EyeCU
+        # ball must never be reused by an SN3D run, and vice versa.
+        self.ball_identity = ({'backend': 'eyecu'} if ball_detector_backend != 'sn3d'
+                              else {'backend': 'sn3d',
+                                    'sha256': verify_sn3d_ball_checkpoint(self.ball_model_path),
+                                    'imgsz': SN3D_BALL_IMGSZ,
+                                    'accept_conf': BALL_ACCEPT_CONF,
+                                    'candidate_conf': (BALL_CANDIDATE_CONF
+                                                       if ball_candidate_pool else None)})
         # Set per run in _process_video_advanced().
         self.source_fps = None
         self.effective_fps = None
@@ -98,6 +122,8 @@ class FootballAnalysisPipeline:
             human_candidate_pool=human_candidate_pool,
             ball_candidate_pool=ball_candidate_pool,
             tracker_backend=tracker_backend,
+            ball_detector_backend=ball_detector_backend,
+            ball_model_path=self.ball_model_path,
         )
 
         self.team_assigner = TeamAssigner(num_teams=2)
@@ -179,7 +205,14 @@ class FootballAnalysisPipeline:
                                                         if self.human_candidate_pool
                                                         else None),
                                'human_accept_conf': max(self.confidence,
-                                                        HUMAN_ACCEPT_CONF)},
+                                                        HUMAN_ACCEPT_CONF),
+                               # The ball now comes from a SECOND model that
+                               # model_fingerprint() above does not see -- that
+                               # hashes the human weights only. Without this the
+                               # switch from the EyeCU ball to SN3D would reuse
+                               # an EyeCU-ball cache and silently report the old
+                               # detector's balls.
+                               'ball': self.ball_identity},
             # Read from the tracker rather than hard-coded. This is a CACHE KEY:
             # it said 'bytetrack' while the constructor defaulted to CBIoU, so a
             # cache built by one association backend could be silently reused by
@@ -479,7 +512,7 @@ if __name__ == "__main__":
     # Configuration
     CONFIG = {
         'video_path': 'input-videos/08fd33_4.mp4',
-        'yolo_model': 'yolov8x.pt',  # Using the largest YOLOv8 model for better detection
+        'yolo_model': 'best_A_960.pt',  # closed, measured production human-detector checkpoint
         'output_dir': 'match_analysis_output',
         'match_id': 1,
         'skip_frames': 2,         # Process every 2nd frame for speed

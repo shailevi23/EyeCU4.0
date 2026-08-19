@@ -140,3 +140,57 @@ class TestHumanCandidatePoolKeying:
         assert 'human_accept_conf' in src
         sig = inspect.signature(FootballAnalysisPipeline.__init__)
         assert sig.parameters['human_candidate_pool'].default is False
+
+
+class TestBallIdentityCacheKeying:
+    """M3: the ball branch's identity (backend/checkpoint/imgsz/conf) must be
+    part of the cache key, or a cache built with one ball detector could be
+    silently reused by a run with a different one -- exactly the
+    eyecu-vs-SN3D scenario the frozen contract in full_pipeline.py's
+    ball_identity dict exists to prevent. Does not instantiate
+    FootballAnalysisPipeline (it eagerly loads a YOLO model in __init__),
+    only checks the wiring is still present and exercises the real
+    ball_identity shape through compute_cache_key directly.
+    """
+
+    def _key(self, video, ball):
+        return key(video, detector_settings={**BASE['detector_settings'], 'ball': ball})
+
+    def test_eyecu_and_sn3d_backends_produce_different_keys(self, video):
+        eyecu = self._key(video, {'backend': 'eyecu'})
+        sn3d = self._key(video, {'backend': 'sn3d', 'sha256': 'a' * 64,
+                                 'imgsz': 1280, 'accept_conf': 0.25, 'candidate_conf': 0.10})
+        assert eyecu != sn3d
+
+    def test_sn3d_checkpoint_sha_change_moves_the_key(self, video):
+        base = {'backend': 'sn3d', 'sha256': 'a' * 64, 'imgsz': 1280,
+                'accept_conf': 0.25, 'candidate_conf': 0.10}
+        changed = {**base, 'sha256': 'b' * 64}
+        assert self._key(video, base) != self._key(video, changed)
+
+    def test_sn3d_imgsz_change_moves_the_key(self, video):
+        base = {'backend': 'sn3d', 'sha256': 'a' * 64, 'imgsz': 1280,
+                'accept_conf': 0.25, 'candidate_conf': 0.10}
+        changed = {**base, 'imgsz': 640}
+        assert self._key(video, base) != self._key(video, changed)
+
+    def test_sn3d_candidate_pool_off_moves_the_key(self, video):
+        """candidate_conf is None when ball_candidate_pool is off (see
+        full_pipeline.py ball_identity construction) -- must still change
+        the key relative to the pool being on."""
+        with_pool = {'backend': 'sn3d', 'sha256': 'a' * 64, 'imgsz': 1280,
+                    'accept_conf': 0.25, 'candidate_conf': 0.10}
+        without_pool = {**with_pool, 'candidate_conf': None}
+        assert self._key(video, with_pool) != self._key(video, without_pool)
+
+    def test_pipeline_still_builds_ball_identity_with_the_frozen_fields(self):
+        """Guards against ball_identity existing but drifting in shape, or the
+        cache key construction forgetting to pass it."""
+        import inspect
+        from full_pipeline import FootballAnalysisPipeline
+        init_src = inspect.getsource(FootballAnalysisPipeline.__init__)
+        assert "self.ball_identity" in init_src
+        for field in ('backend', 'sha256', 'imgsz', 'accept_conf', 'candidate_conf'):
+            assert field in init_src
+        process_src = inspect.getsource(FootballAnalysisPipeline._process_video_advanced)
+        assert "'ball': self.ball_identity" in process_src

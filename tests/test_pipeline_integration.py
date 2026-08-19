@@ -93,9 +93,26 @@ def test_four_classes_survive_a_real_run(completed_run):
 
 
 def test_runs_without_network(completed_run):
-    """use_roboflow=False must mean a purely local detector."""
+    """
+    use_roboflow=False must mean a purely local detector.
+
+    Checked by walking the detector for any hosted backend rather than asserting
+    one concrete class name: since D2/D3 the production path is a
+    TwoBranchDetector (EyeCU humans + SN3D ball), and both of its branches are
+    LocalDetector. The guarantee is 'nothing here talks to the network', which is
+    what this asserts.
+    """
+    from trackers.detector import LocalDetector, RoboflowDetector, TwoBranchDetector
+
     _, pipeline, _ = completed_run
-    assert type(pipeline.adv_tracker.detector).__name__ == 'LocalDetector'
+    detector = pipeline.adv_tracker.detector
+
+    branches = ([detector.human_detector, detector.ball_detector]
+                if isinstance(detector, TwoBranchDetector) else [detector])
+    for branch in branches:
+        assert isinstance(branch, LocalDetector), (
+            f'{type(branch).__name__} is not a local detector')
+        assert not isinstance(branch, RoboflowDetector)
 
 
 def test_different_skip_frames_do_not_share_a_cache(tmp_path, sample_video):

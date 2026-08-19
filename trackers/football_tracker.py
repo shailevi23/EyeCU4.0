@@ -60,6 +60,8 @@ class FootballTracker:
                 ball_candidate_pool=False,
                 detector=None,
                 tracker_backend='cbiou',
+                ball_detector_backend='eyecu',
+                ball_model_path=None,
                 frame_rate=30.0):
         """
         Initialize the football tracker
@@ -94,6 +96,18 @@ class FootballTracker:
                 Tests that assert legacy-specific association behaviour pin
                 tracker_backend='legacy' explicitly rather than relying on the
                 default, so the default can move without rewriting them.
+            ball_detector_backend: which model supplies the BALL class.
+                'eyecu' -- the single EyeCU detector supplies all four classes,
+                           the behaviour in force before D2 and still the
+                           DEFAULT.
+                'sn3d'  -- humans stay on the EyeCU detector, unchanged, and the
+                           ball comes from the official SoccerNet-v3D
+                           yolo-sn-ball.pt at its trained 1280, selected by the
+                           S1B/S1C/S1D gates. Requires ball_model_path.
+                Either way the ball never enters human association.
+            ball_model_path: path to yolo-sn-ball.pt. Required by, and only used
+                by, ball_detector_backend='sn3d'. Its SHA256 is verified against
+                the pinned SN3D_BALL_SHA256 before it runs.
             frame_rate: the frame rate of the stream the TRACKER sees. When the
                 pipeline skips frames this is the effective rate, not the source
                 rate -- a tracker told 30 fps while receiving 10 mis-scales
@@ -115,6 +129,8 @@ class FootballTracker:
         if persist_cache:
             os.makedirs(self.cache_dir, exist_ok=True)
 
+        self.ball_detector_backend = ball_detector_backend
+        self.ball_model_path = ball_model_path
         self.detector = detector if detector is not None else create_detector(
             model_path=model_path,
             use_roboflow=use_roboflow,
@@ -123,6 +139,8 @@ class FootballTracker:
             imgsz=imgsz,
             ball_candidate_pool=ball_candidate_pool,
             human_candidate_pool=human_candidate_pool,
+            ball_detector_backend=ball_detector_backend,
+            ball_model_path=ball_model_path,
         )
 
         # Association backend. CBIoU is vendored under rf_trackers rather than

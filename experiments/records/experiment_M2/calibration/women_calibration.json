@@ -1,0 +1,107 @@
+{
+ "sequence": "women_1_239",
+ "frame_range_1based": [
+  141,
+  170
+ ],
+ "coordinate_convention": "pitch coordinates in metres, local frame centred on the centre circle; axis_a / axis_b are an arbitrary orthogonal local basis (NOT globally along/across the pitch -- see reference_line_mode in the correspondences file), origin = image of the pitch centre spot as reconstructed from the circle conic",
+ "player_ground_point_convention": "bottom-centre (ground contact point) of the player bbox",
+ "fit_points_image": {
+  "axis_a(+9.15)": [
+   521.9385894594325,
+   112.7329149959092
+  ],
+  "axis_a(-9.15)": [
+   518.669320696818,
+   190.51204960370023
+  ],
+  "axis_b(+9.15)": [
+   387.65981156722677,
+   133.83783765304557
+  ],
+  "axis_b(-9.15)": [
+   652.9480985890235,
+   169.4071269465639
+  ]
+ },
+ "fit_points_pitch_m": {
+  "axis_a(+9.15)": [
+   9.15,
+   0.0
+  ],
+  "axis_a(-9.15)": [
+   -9.15,
+   0.0
+  ],
+  "axis_b(+9.15)": [
+   0.0,
+   9.15
+  ],
+  "axis_b(-9.15)": [
+   0.0,
+   -9.15
+  ]
+ },
+ "homography_image_to_pitch": [
+  [
+   0.03136927799469556,
+   -0.23396322923373725,
+   19.152525696054987
+  ],
+  [
+   -0.0685950266543803,
+   -0.002883251808197534,
+   36.12742947421653
+  ],
+  [
+   3.347987199829707e-10,
+   3.867371469021564e-09,
+   1.0
+  ]
+ ],
+ "homography_pitch_to_image": [
+  [
+   0.17865796159843622,
+   -14.496611533515422,
+   520.3035595918734
+  ],
+  [
+   -4.250220508263179,
+   -1.9436729512660134,
+   151.6223649662156
+  ],
+  [
+   1.6377367073849427e-08,
+   1.2370352302346456e-08,
+   0.9999992394230259
+  ]
+ ],
+ "validation": {
+  "held_out_landmark": {
+   "point": "(0,0) pitch centre",
+   "image_px": [
+    520.3039550781252,
+    151.62248229980472
+   ],
+   "reprojected_pitch_m": [
+    -4.786568280488499e-07,
+    1.0998717120555958e-08
+   ],
+   "error_m": 0.0
+  },
+  "known_geometry_reconstruction": {
+   "description": "every detected circle-boundary pixel not used in fitting, reprojected to pitch space; error is deviation of its distance-from-centre from the true radius 9.15 m",
+   "n_points": 260,
+   "radius_error_m_mean": 0.1229,
+   "radius_error_m_median": 0.124,
+   "radius_error_m_p95": 0.2429,
+   "radius_error_m_max": 0.2927
+  },
+  "numerical_stability": {
+   "condition_number": 22174.97130867152,
+   "determinant": -0.016139171748015567,
+   "degenerate": false
+  }
+ },
+ "calibration_artifact_sha256": "3378196d01a4c7192362605c47d711c145606fbae4ee89df6ab83c3607d85878"
+}

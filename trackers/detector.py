@@ -18,6 +18,7 @@ Detection format (one dict per object):
 
 import os
 import time
+from pathlib import Path
 from abc import ABC, abstractmethod
 from typing import Dict, List, Optional
 
@@ -282,6 +283,123 @@ class LocalDetector(BaseDetector):
         return detections
 
 
+# --- SN3D ball branch -----------------------------------------------------
+# Official SoccerNet-v3D release v1.0.0 asset `yolo-sn-ball.pt` (SN3D_BASE),
+# selected in S1B/S1C/S1D. The pinned hash is the identity guarantee: S1D showed
+# the sibling `yolo-sn-ball-opt.pt` is a byte-different, architecturally
+# identical checkpoint that is materially WORSE here, so a silent substitution
+# would be undetectable without this check.
+SN3D_BALL_SHA256 = 'e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b'
+SN3D_BALL_IMGSZ = 1280      # SN3D training imgsz, proven from checkpoint metadata
+BALL_BACKENDS = ('eyecu', 'sn3d')
+
+# Where the SN3D weight lives. The file itself is a 51 MB third-party artifact
+# and is deliberately NOT tracked in git; models/third_party/soccernet_v3d/
+# carries its provenance README instead.
+SN3D_BALL_ENV_VAR = 'EYECU_SN3D_MODEL_PATH'
+SN3D_BALL_DEFAULT_PATH = (Path(__file__).resolve().parents[1]
+                          / 'models' / 'third_party' / 'soccernet_v3d'
+                          / 'yolo-sn-ball.pt')
+
+
+def resolve_sn3d_ball_path(explicit: Optional[str] = None) -> str:
+    """
+    Locate the SN3D ball checkpoint deterministically.
+
+    Order: explicit argument, then $EYECU_SN3D_MODEL_PATH, then the repo-relative
+    persistent default. There is no search and no fallback to a different
+    checkpoint -- if the resolved file is absent or its hash is wrong the caller
+    gets an actionable error rather than a quietly different ball detector.
+    """
+    for candidate in (explicit, os.environ.get(SN3D_BALL_ENV_VAR),
+                      str(SN3D_BALL_DEFAULT_PATH)):
+        if not candidate:
+            continue
+        path = Path(candidate)
+        if path.exists():
+            return str(path)
+        if candidate is explicit or candidate == os.environ.get(SN3D_BALL_ENV_VAR):
+            raise FileNotFoundError(
+                'SN3D ball checkpoint not found at the explicitly requested '
+                'path: {}'.format(candidate))
+    raise FileNotFoundError(
+        'SN3D ball checkpoint not found. Expected it at {}. It is a third-party '
+        'weight and is not tracked in git: download yolo-sn-ball.pt from the '
+        'official SoccerNet-v3D release v1.0.0 '
+        '(https://github.com/mguti97/SoccerNet-v3D) and place it there, or set '
+        '{} to its location. See models/third_party/soccernet_v3d/README.md. '
+        'Expected SHA256 {}.'.format(SN3D_BALL_DEFAULT_PATH, SN3D_BALL_ENV_VAR,
+                                     SN3D_BALL_SHA256))
+
+
+def verify_sn3d_ball_checkpoint(model_path: str, expect_sha: str = SN3D_BALL_SHA256) -> str:
+    """
+    Prove the ball checkpoint is the one S1B/S1C/S1D measured, before it runs.
+
+    Checks the file hash, then the loaded label space. Raises rather than
+    warning: a wrong ball checkpoint produces plausible detections and would be
+    caught only by a full re-gate.
+    """
+    import hashlib
+
+    path = Path(model_path)
+    if not path.exists():
+        raise FileNotFoundError(f'SN3D ball checkpoint not found: {model_path}')
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    if digest != expect_sha:
+        raise ValueError(
+            'SN3D ball checkpoint hash mismatch for {}: expected {}, got {}. '
+            'Refusing to run: this is not the SN3D_BASE checkpoint the '
+            'detector gates measured. yolo-sn-ball-opt.pt is NOT a valid '
+            'substitute.'.format(model_path, expect_sha, digest))
+    return digest
+
+
+class TwoBranchDetector(BaseDetector):
+    """
+    Human classes from one detector, the ball from another.
+
+    The two branches are independent models run on the same frame, and neither
+    is aware of the other. The human branch is constructed exactly as the
+    single-detector path constructs it, so its output is unchanged by
+    definition; only its ball boxes are dropped. The ball branch contributes
+    ball boxes and nothing else.
+
+    Every emitted record uses the same canonical schema as LocalDetector --
+    {'bbox': [x1, y1, x2, y2], 'class': <one of CLASSES>, 'confidence': float},
+    plus 'state' when a candidate pool is enabled -- so nothing downstream can
+    tell which branch a detection came from. That is the point: the adapter
+    conforms to the existing contract instead of downstream conforming to it.
+
+    Ball duplicate suppression is NOT reimplemented here. The ball branch is a
+    LocalDetector, so it already ran suppress_ball_duplicates at
+    BALL_DEDUPE_IOU under its own pool setting, with unchanged semantics.
+    """
+
+    def __init__(self, human_detector: BaseDetector, ball_detector: BaseDetector):
+        super().__init__(getattr(human_detector, 'confidence', 0.25))
+        self.human_detector = human_detector
+        self.ball_detector = ball_detector
+        print(f'TwoBranchDetector: humans {type(human_detector).__name__}'
+              f'({getattr(human_detector, "model_path", "?")}), '
+              f'ball {type(ball_detector).__name__}'
+              f'({getattr(ball_detector, "model_path", "?")} '
+              f'@ {getattr(ball_detector, "imgsz", "?")}px)')
+
+    def _predict(self, image: np.ndarray) -> List[Dict]:
+        humans = [d for d in self.human_detector._predict(image)
+                  if d.get('class') in HUMAN_CLASSES]
+        balls = [d for d in self.ball_detector._predict(image)
+                 if d.get('class') == 'ball']
+        return humans + balls
+
+    def stats(self) -> Dict:
+        s = super().stats()
+        s['human_backend'] = getattr(self.human_detector, 'model_path', None)
+        s['ball_backend'] = getattr(self.ball_detector, 'model_path', None)
+        return s
+
+
 class RoboflowDetector(BaseDetector):
     """
     Hosted Roboflow model. Optional labelling/benchmark aid only -- it must not
@@ -373,7 +491,10 @@ def create_detector(model_path: str = 'yolov8s.pt',
                     imgsz: int = 960,
                     model_id: Optional[str] = None,
                     ball_candidate_pool: bool = False,
-                    human_candidate_pool: bool = False) -> BaseDetector:
+                    human_candidate_pool: bool = False,
+                    ball_detector_backend: str = 'eyecu',
+                    ball_model_path: Optional[str] = None,
+                    ball_imgsz: int = SN3D_BALL_IMGSZ) -> BaseDetector:
     """
     Build the detector for a run.
 
@@ -381,10 +502,34 @@ def create_detector(model_path: str = 'yolov8s.pt',
     a LocalDetector as the fallback, so a failed request degrades instead of
     killing the run.
     """
+    if ball_detector_backend not in BALL_BACKENDS:
+        raise ValueError(f'unknown ball_detector_backend {ball_detector_backend!r}; '
+                         f'expected one of {BALL_BACKENDS}')
+
     local = LocalDetector(model_path=model_path, confidence=confidence,
                           iou=iou, imgsz=imgsz,
                           ball_candidate_pool=ball_candidate_pool,
                           human_candidate_pool=human_candidate_pool)
+
+    if ball_detector_backend == 'sn3d':
+        # Humans stay on the EyeCU detector, constructed above exactly as the
+        # single-detector path constructs it. The ball moves to SN3D_BASE.
+        resolved = resolve_sn3d_ball_path(ball_model_path)
+        verify_sn3d_ball_checkpoint(resolved)
+        ball_model_path = resolved
+        ball = LocalDetector(model_path=ball_model_path, confidence=confidence,
+                             iou=iou, imgsz=ball_imgsz,
+                             ball_candidate_pool=ball_candidate_pool,
+                             human_candidate_pool=False)
+        names = sorted(set(ball._class_map.values()))
+        if names != ['ball']:
+            raise ValueError(f'SN3D ball checkpoint must expose exactly the ball '
+                             f'class; got {names}')
+        if use_roboflow:
+            raise ValueError('use_roboflow is not supported with '
+                             "ball_detector_backend='sn3d'")
+        return TwoBranchDetector(local, ball)
+
     if not use_roboflow:
         return local
 
