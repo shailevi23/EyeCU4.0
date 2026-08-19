@@ -1,27 +1,30 @@
 {
  "freeze_timestamp_utc": "2026-08-19T07:05:12Z",
  "milestone": "M3 -- system / production freeze before sealed TEST",
- "revision": 2,
- "revision_note": "M3 freeze-hygiene repair: (1) made the frozen source reconstructable via a dedicated freeze commit instead of an uncommitted working tree, (2) ran and recorded the thread-setting equivalence check. No production algorithm/config/model bytes changed; source_identity below documents an EOL-normalisation-only hash discrepancy introduced by the commit itself.",
- "superseded_manifest_sha256": "4d46d2a1ecf23e38cb64e27dbed9768a3d2fcfef72c08a1ddb1cd3a3606076b0",
+ "revision": 3,
+ "revision_note": "M3 freeze-hygiene repair, two commits: (466454f) made the frozen source reconstructable via a dedicated freeze commit instead of an uncommitted working tree; (e0775e6) recorded the thread-setting equivalence check, which itself added one new diagnostic script (tools/m3_thread_equivalence.py) to the hashed source tree, moving the reconstructable hash one more time. Revision 2's manifest was superseded before it was ever the last word, purely by this second, planned commit -- not by any further source edit. No production algorithm/config/model bytes changed at any point; source_identity below documents an EOL-normalisation-only hash discrepancy introduced by the first commit.",
+ "superseded_manifest_sha256": "32983c46e57dfa4c603b48c8ce7dbc488f3de91f3b7c7a1f3346091041eb5961",
+ "superseded_manifest_sha256_original_M3": "4d46d2a1ecf23e38cb64e27dbed9768a3d2fcfef72c08a1ddb1cd3a3606076b0",
 
  "source_identity": {
-  "git_head_commit": "466454fa8336b98d3a31f4877778bff8f569a08a",
+  "git_head_commit": "e0775e6adf3d4e757783452a95f8e34ea6f3fa4f",
+  "git_head_commit_superseded_reconstructable_but_incomplete": "466454fa8336b98d3a31f4877778bff8f569a08a",
   "git_head_commit_superseded_pre_freeze_commit": "4c1a1bb8c050ed67f9763c87524107daa16f3234",
   "working_tree_has_uncommitted_changes": false,
   "reconstructable_source": true,
-  "reconstruction_method": "dedicated freeze commit 466454fa8336b98d3a31f4877778bff8f569a08a on branch main, containing the exact M1-M3 prediction-producing source (trackers/, tools/, rf_trackers/, full_pipeline.py, run_pipeline.py) and its relevant M1-M3 experiment records. Verified reconstructable by two independent methods: `git archive 466454f | tar -x` and a fresh `git clone` + `git checkout 466454f`, both hashed identically.",
-  "note": "deterministic_source_tree_sha256 below is sha256 over (relative path, file bytes) for every .py file under trackers/, tools/, rf_trackers/, plus full_pipeline.py and run_pipeline.py, sorted by path -- computed from a genuine clean checkout of the freeze commit, which is the value that actually matters for TEST reproducibility.",
-  "deterministic_source_tree_sha256": "1572cb50f0596a4368a2d4833d1e0a916a69930e2820361a8309949cf31bf8fa",
+  "reconstruction_method": "two freeze commits on branch main: 466454f (exact M1-M3 prediction-producing source -- trackers/, tools/, rf_trackers/, full_pipeline.py, run_pipeline.py -- and its relevant M1-M3 experiment records) then e0775e6 (this repair's own thread-equivalence script and result, and the manifest updates recording both). Verified reconstructable at e0775e6 by a fresh `git clone` + `git checkout e0775e6`, hashed directly.",
+  "note": "deterministic_source_tree_sha256 below is sha256 over (relative path, file bytes) for every .py file under trackers/, tools/, rf_trackers/, plus full_pipeline.py and run_pipeline.py, sorted by path -- computed from a genuine clean checkout of e0775e6, the final commit of this repair.",
+  "deterministic_source_tree_sha256": "11802d0e5afa769bb263435dff0329ed39092fa1de1b5efe1b4cbe078895f98c",
+  "deterministic_source_tree_sha256_at_466454f_superseded": "1572cb50f0596a4368a2d4833d1e0a916a69930e2820361a8309949cf31bf8fa",
   "deterministic_source_tree_sha256_pre_commit_working_tree_superseded": "38dfd20c6b5c814ab2a8d19da464c477ebedb64936c78a2dacbf9aa403edf8df",
+  "source_tree_file_count": 159,
   "pre_commit_vs_post_commit_hash_discrepancy": {
    "cause": "core.autocrlf=true normalised LF line endings to CRLF on commit, for the 23 .py files newly created in this session with bare LF endings (pre-existing files, whose endings were already CRLF, were unaffected -- e.g. full_pipeline.py is byte-identical pre- and post-commit)",
    "verified_eol_only_zero_logic_change": true,
    "verification_method": "every file whose raw bytes differed was re-compared after normalising b'\\r\\n' -> b'\\n' on both sides; all 23 became byte-identical, confirming no code/logic content changed",
    "affected_file_count": 23,
    "prediction_affecting": false
-  },
-  "source_tree_file_count": 158
+  }
  },
 
  "production_entry_point": {
