@@ -1,0 +1,332 @@
+{
+ "EXPERIMENT": "S1C static generalization + human-overlap validation",
+ "DIAGNOSTIC_ONLY": true,
+ "device": "cpu",
+ "scoring": "POSITIVE-ARM ONLY. Unmatched predictions are NOT false positives; no precision, mAP or FP/image is reported.",
+ "sn3d_sha256": "e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b",
+ "subgroup_artifact_sha256": "e68d540233c3309bee506bb8f3a93ceaaa4233832e39c287a37149dadf47abbf",
+ "benchmark_facts": {
+  "images": 208,
+  "ball_gt": 111,
+  "positive_images": 111,
+  "multi_ball_images": 0,
+  "youth_images": 66,
+  "youth_ball_gt": 28,
+  "non_youth_images": 142,
+  "non_youth_ball_gt": 83,
+  "human_gt_player_boxes": 2490,
+  "human_gt_goalkeeper_boxes": 115,
+  "class_ids_source": "data/dataset_baseline/football.yaml",
+  "class_ids": {
+   "player": 0,
+   "goalkeeper": 1,
+   "referee": 2,
+   "ball": 3
+  },
+  "gt_provenance": "hand-corrected annotation, docs/results/RESULTS.md \"659 frames corrected by hand ... (451 train, 208 val)\"",
+  "exhaustive_under_ALL_VISIBLE": false
+ },
+ "subgroup_counts": {
+  "overall": 111,
+  "youth": 28,
+  "non_youth": 83,
+  "player_gk_overlap": 37,
+  "non_overlap": 74,
+  "centre_inside_human": 34
+ },
+ "runtime_ms_per_image": {
+  "SN3D@1280": 987.8,
+  "B@1280": 349.5,
+  "B@1920": 689.7
+ },
+ "groups": {
+  "overall": {
+   "gt": 111,
+   "SN3D@1280_4px": {
+    "matched": 69,
+    "missed": 42,
+    "recall": 0.6216
+   },
+   "SN3D@1280_iou50": {
+    "matched": 60,
+    "missed": 51,
+    "recall": 0.5405
+   },
+   "B@1280_4px": {
+    "matched": 58,
+    "missed": 53,
+    "recall": 0.5225
+   },
+   "B@1280_iou50": {
+    "matched": 57,
+    "missed": 54,
+    "recall": 0.5135
+   },
+   "B@1920_4px": {
+    "matched": 51,
+    "missed": 60,
+    "recall": 0.4595
+   },
+   "B@1920_iou50": {
+    "matched": 51,
+    "missed": 60,
+    "recall": 0.4595
+   }
+  },
+  "youth": {
+   "gt": 28,
+   "SN3D@1280_4px": {
+    "matched": 22,
+    "missed": 6,
+    "recall": 0.7857
+   },
+   "SN3D@1280_iou50": {
+    "matched": 20,
+    "missed": 8,
+    "recall": 0.7143
+   },
+   "B@1280_4px": {
+    "matched": 10,
+    "missed": 18,
+    "recall": 0.3571
+   },
+   "B@1280_iou50": {
+    "matched": 10,
+    "missed": 18,
+    "recall": 0.3571
+   },
+   "B@1920_4px": {
+    "matched": 11,
+    "missed": 17,
+    "recall": 0.3929
+   },
+   "B@1920_iou50": {
+    "matched": 11,
+    "missed": 17,
+    "recall": 0.3929
+   }
+  },
+  "non_youth": {
+   "gt": 83,
+   "SN3D@1280_4px": {
+    "matched": 47,
+    "missed": 36,
+    "recall": 0.5663
+   },
+   "SN3D@1280_iou50": {
+    "matched": 40,
+    "missed": 43,
+    "recall": 0.4819
+   },
+   "B@1280_4px": {
+    "matched": 48,
+    "missed": 35,
+    "recall": 0.5783
+   },
+   "B@1280_iou50": {
+    "matched": 47,
+    "missed": 36,
+    "recall": 0.5663
+   },
+   "B@1920_4px": {
+    "matched": 40,
+    "missed": 43,
+    "recall": 0.4819
+   },
+   "B@1920_iou50": {
+    "matched": 40,
+    "missed": 43,
+    "recall": 0.4819
+   }
+  },
+  "player_gk_overlap": {
+   "gt": 37,
+   "SN3D@1280_4px": {
+    "matched": 15,
+    "missed": 22,
+    "recall": 0.4054
+   },
+   "SN3D@1280_iou50": {
+    "matched": 8,
+    "missed": 29,
+    "recall": 0.2162
+   },
+   "B@1280_4px": {
+    "matched": 10,
+    "missed": 27,
+    "recall": 0.2703
+   },
+   "B@1280_iou50": {
+    "matched": 10,
+    "missed": 27,
+    "recall": 0.2703
+   },
+   "B@1920_4px": {
+    "matched": 7,
+    "missed": 30,
+    "recall": 0.1892
+   },
+   "B@1920_iou50": {
+    "matched": 7,
+    "missed": 30,
+    "recall": 0.1892
+   }
+  },
+  "non_overlap": {
+   "gt": 74,
+   "SN3D@1280_4px": {
+    "matched": 54,
+    "missed": 20,
+    "recall": 0.7297
+   },
+   "SN3D@1280_iou50": {
+    "matched": 52,
+    "missed": 22,
+    "recall": 0.7027
+   },
+   "B@1280_4px": {
+    "matched": 48,
+    "missed": 26,
+    "recall": 0.6486
+   },
+   "B@1280_iou50": {
+    "matched": 47,
+    "missed": 27,
+    "recall": 0.6351
+   },
+   "B@1920_4px": {
+    "matched": 44,
+    "missed": 30,
+    "recall": 0.5946
+   },
+   "B@1920_iou50": {
+    "matched": 44,
+    "missed": 30,
+    "recall": 0.5946
+   }
+  },
+  "centre_inside_human": {
+   "gt": 34,
+   "SN3D@1280_4px": {
+    "matched": 14,
+    "missed": 20,
+    "recall": 0.4118
+   },
+   "SN3D@1280_iou50": {
+    "matched": 7,
+    "missed": 27,
+    "recall": 0.2059
+   },
+   "B@1280_4px": {
+    "matched": 8,
+    "missed": 26,
+    "recall": 0.2353
+   },
+   "B@1280_iou50": {
+    "matched": 8,
+    "missed": 26,
+    "recall": 0.2353
+   },
+   "B@1920_4px": {
+    "matched": 5,
+    "missed": 29,
+    "recall": 0.1471
+   },
+   "B@1920_iou50": {
+    "matched": 5,
+    "missed": 29,
+    "recall": 0.1471
+   }
+  }
+ },
+ "paired": {
+  "SN3D@1280_vs_B@1280": {
+   "overall": {
+    "n": 111,
+    "both": 44,
+    "sn3d_only": 25,
+    "b_only": 14,
+    "neither": 28
+   },
+   "youth": {
+    "n": 28,
+    "both": 9,
+    "sn3d_only": 13,
+    "b_only": 1,
+    "neither": 5
+   },
+   "non_youth": {
+    "n": 83,
+    "both": 35,
+    "sn3d_only": 12,
+    "b_only": 13,
+    "neither": 23
+   },
+   "player_gk_overlap": {
+    "n": 37,
+    "both": 5,
+    "sn3d_only": 10,
+    "b_only": 5,
+    "neither": 17
+   },
+   "non_overlap": {
+    "n": 74,
+    "both": 39,
+    "sn3d_only": 15,
+    "b_only": 9,
+    "neither": 11
+   },
+   "centre_inside_human": {
+    "n": 34,
+    "both": 4,
+    "sn3d_only": 10,
+    "b_only": 4,
+    "neither": 16
+   }
+  },
+  "SN3D@1280_vs_B@1920": {
+   "overall": {
+    "n": 111,
+    "both": 42,
+    "sn3d_only": 27,
+    "b_only": 9,
+    "neither": 33
+   },
+   "youth": {
+    "n": 28,
+    "both": 10,
+    "sn3d_only": 12,
+    "b_only": 1,
+    "neither": 5
+   },
+   "non_youth": {
+    "n": 83,
+    "both": 32,
+    "sn3d_only": 15,
+    "b_only": 8,
+    "neither": 28
+   },
+   "player_gk_overlap": {
+    "n": 37,
+    "both": 4,
+    "sn3d_only": 11,
+    "b_only": 3,
+    "neither": 19
+   },
+   "non_overlap": {
+    "n": 74,
+    "both": 38,
+    "sn3d_only": 16,
+    "b_only": 6,
+    "neither": 14
+   },
+   "centre_inside_human": {
+    "n": 34,
+    "both": 3,
+    "sn3d_only": 11,
+    "b_only": 2,
+    "neither": 18
+   }
+  }
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "EXPERIMENT": "S1B official SoccerNet-v3D yolo-sn-ball.pt",
+ "DIAGNOSTIC_ONLY": true,
+ "device": "cpu",
+ "checkpoint": {
+  "file": "yolo-sn-ball.pt",
+  "abspath": "C:\\Users\\shail\\AppData\\Local\\Temp\\claude\\c--Users-shail-OneDrive--------------AI-Course-EyeCU4-0\\c301fba9-cc38-44ce-b07e-dd188b8164d1\\scratchpad\\yolo-sn-ball.pt",
+  "sha256": "e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b",
+  "bytes": 51276498
+ },
+ "inference": {
+  "imgsz": 1280,
+  "conf_accept": 0.25,
+  "conf_floor": 0.1,
+  "predict_iou_arg": 0.5,
+  "dedupe_iou": 0.7,
+  "selection": "single best accepted ball by confidence",
+  "ms_per_frame_cpu": 883.5
+ },
+ "population": {
+  "targets": 104,
+  "gt_ball_frames": 77,
+  "empty_frames": 27,
+  "hard": 24,
+  "overlap": 20,
+  "events": 15
+ },
+ "primary_4px": {
+  "tp": 59,
+  "fp1": 1,
+  "fp2": 2,
+  "fn": 17,
+  "tn": 25,
+  "gt_frames": 77,
+  "recall": 0.7662,
+  "precision": 0.9516,
+  "empty_frames": 27,
+  "empty_fired_frames": 2,
+  "empty_fired_rate": 0.0741,
+  "hard_recovered": 12,
+  "hard_of": 24,
+  "overlap_recovered": 11,
+  "overlap_of": 20,
+  "events_touched": 9,
+  "events_of": 15,
+  "events_with_2plus": 2,
+  "hard_recovered_files": [
+   "austin_fc_vs__club_tijuana_tv001341.jpg",
+   "austin_fc_vs__club_tijuana_tv001377.jpg",
+   "austin_fc_vs__club_tijuana_tv001395.jpg",
+   "bayern_munich_3-1_chelsea_tv001070.jpg",
+   "bayern_munich_3-1_chelsea_tv001080.jpg",
+   "bayern_munich_3-1_chelsea_tv001085.jpg",
+   "youth_premier_league_tv000662.jpg",
+   "youth_premier_league_tv001088.jpg",
+   "youth_premier_league_tv001113.jpg",
+   "youth_premier_league_tv001123.jpg",
+   "youth_premier_league_tv001128.jpg",
+   "youth_premier_league_tv001138.jpg"
+  ]
+ },
+ "strict_1p333px": {
+  "tp": 56,
+  "fp1": 4,
+  "fp2": 2,
+  "fn": 17,
+  "tn": 25,
+  "gt_frames": 77,
+  "recall": 0.7273,
+  "precision": 0.9032,
+  "empty_frames": 27,
+  "empty_fired_frames": 2,
+  "empty_fired_rate": 0.0741,
+  "hard_recovered": 9,
+  "hard_of": 24,
+  "overlap_recovered": 8,
+  "overlap_of": 20,
+  "events_touched": 7,
+  "events_of": 15,
+  "events_with_2plus": 1,
+  "hard_recovered_files": [
+   "austin_fc_vs__club_tijuana_tv001341.jpg",
+   "austin_fc_vs__club_tijuana_tv001377.jpg",
+   "austin_fc_vs__club_tijuana_tv001395.jpg",
+   "bayern_munich_3-1_chelsea_tv001070.jpg",
+   "bayern_munich_3-1_chelsea_tv001080.jpg",
+   "bayern_munich_3-1_chelsea_tv001085.jpg",
+   "youth_premier_league_tv000662.jpg",
+   "youth_premier_league_tv001088.jpg",
+   "youth_premier_league_tv001128.jpg"
+  ]
+ },
+ "multi_detection_diagnostic": {
+  "single_best_tp": 59,
+  "any_detection_tp": 59,
+  "any_detection_recall": 0.7662,
+  "extra_accepted_predictions_on_positive_frames": 0,
+  "any_detection_hard": 12,
+  "any_detection_overlap": 11,
+  "any_detection_events": 9
+ },
+ "historical_iou_audit": {
+  "criterion": "conf >= 0.25, IoU >= 0.5",
+  "matched": 57,
+  "of": 77,
+  "recall": 0.7403,
+  "historical_reference": "57/77 = 0.7403"
+ }
+}

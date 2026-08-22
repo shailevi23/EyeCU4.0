@@ -240,3 +240,31 @@ experiments/external_sources/keremberke_review/repaired_export.previous/
 
 # Third-party detector weights: obtain separately, see the directory README.
 models/third_party/**/*.pt
+
+# ---------------------------------------------------------------------------
+# General hygiene: caches, OS junk, IDE-local state, secrets, logs. Nothing
+# here should ever hold scientific evidence -- if a file under these patterns
+# is load-bearing, it belongs in an explicit allow-list above instead.
+# ---------------------------------------------------------------------------
+*.pyc
+*.pyo
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+.idea/
+.vscode/*.local.json
+
+.env.*
+*.key
+.claude/settings.local.json
+
+*.log
+*.tmp
+*.temp

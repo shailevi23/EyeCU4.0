@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Team Assignment V2 — Track Labeling</title>
+<style>
+  body { font-family: sans-serif; background: #1b1b1b; color: #eee; margin: 0; padding: 20px; }
+  h1 { font-size: 18px; margin-bottom: 4px; }
+  #instructions { color: #bbb; font-size: 13px; max-width: 640px; margin-bottom: 16px; line-height: 1.5; }
+  #progress { color: #9c9; margin-bottom: 16px; }
+  #track-info { color: #ccc; margin-bottom: 10px; font-size: 14px; }
+  #crops { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  #crops img { height: 160px; border: 2px solid #444; border-radius: 4px; background: #000; }
+  .buttons { display: flex; gap: 12px; margin-bottom: 24px; }
+  button { font-size: 16px; padding: 12px 20px; border-radius: 6px; border: none; cursor: pointer; }
+  /* TEAM_A / TEAM_B intentionally share the SAME neutral style -- text is the
+     only difference, so button color can never leak a "meaning" for A or B. */
+  .team-neutral { background: #444; color: #eee; border: 1px solid #666; }
+  .mixed { background: #c99a2e; color: black; }
+  .ambiguous { background: #666; color: white; }
+  #nav { margin-top: 10px; }
+  #nav button { background: #333; color: #eee; font-size: 13px; padding: 6px 12px; }
+  #status { margin-top: 12px; color: #9c9; min-height: 20px; }
+  #match-select { margin-bottom: 14px; }
+  #match-select select { font-size: 14px; padding: 4px; }
+  table.roster { border-collapse: collapse; margin-top: 20px; font-size: 12px; }
+  table.roster td, table.roster th { border: 1px solid #444; padding: 3px 8px; }
+  table.roster th { background: #2a2a2a; }
+  .lbl-A { color: #cfcfcf; } .lbl-B { color: #cfcfcf; } .lbl-M { color: #e0c15a; } .lbl-X { color: #999; }
+</style>
+</head>
+<body>
+<h1>Team Assignment V2 — Track Labeling</h1>
+<div id="instructions">
+  Within each match, TEAM_A and TEAM_B are arbitrary. Pick a mapping from the
+  first clearly identifiable team appearances and keep that mapping
+  consistent within that match. Use MIXED_TRACK only when the crops show more
+  than one team identity for the same track. Use AMBIGUOUS when the visual
+  evidence is insufficient.
+</div>
+<div id="progress"></div>
+<div id="match-select">
+  Match: <select id="matchSelect" onchange="onMatchChange()"></select>
+</div>
+<div id="track-info"></div>
+<div id="crops"></div>
+<div class="buttons">
+  <button class="team-neutral" onclick="label('TEAM_A')">TEAM_A</button>
+  <button class="team-neutral" onclick="label('TEAM_B')">TEAM_B</button>
+  <button class="mixed" onclick="label('MIXED_TRACK')">MIXED_TRACK</button>
+  <button class="ambiguous" onclick="label('AMBIGUOUS')">AMBIGUOUS</button>
+</div>
+<div id="nav">
+  <button onclick="go(-1)">&larr; prev</button>
+  <button onclick="go(1)">next &rarr;</button>
+</div>
+<div id="status"></div>
+<table class="roster" id="roster"></table>
+
+<script>
+// The UI is intentionally blind: no real match name, track_id, appearance
+// count, or frame number is ever rendered to the page -- only anonymous
+// "Match N" / "Track N of TOTAL" indices. The real match_id/track_id are
+// still held in memory (from selection_manifest.json) and sent to /save
+// internally, exactly as the frozen labels.json schema requires; they are
+// just never displayed.
+let manifest = null;
+let labels = {};   // key "match_id:track_id" -> label (real ids, internal only)
+let matchOrder = [];   // matchOrder[i] = real match object, index i is "Match i+1"
+let matchIdx = 0;
+let trackIdx = 0;
+
+async function loadAll() {
+  manifest = await (await fetch('selection_manifest.json')).json();
+  labels = await (await fetch('/labels')).json();
+  matchOrder = manifest.matches;  // order as given in the frozen manifest -- not by name
+  const sel = document.getElementById('matchSelect');
+  matchOrder.forEach((m, i) => {
+    const opt = document.createElement('option');
+    opt.value = i; opt.textContent = `Match ${i + 1}`;
+    sel.appendChild(opt);
+  });
+  matchIdx = 0;
+  sel.value = 0;
+  render();
+}
+
+function onMatchChange() {
+  matchIdx = parseInt(document.getElementById('matchSelect').value, 10);
+  trackIdx = 0;
+  render();
+}
+
+function currentMatch() { return matchOrder[matchIdx]; }
+function currentTrack() { return currentMatch().tracks[trackIdx]; }
+function currentKey() {
+  const m = currentMatch(), t = currentTrack();
+  return m.match_id + ':' + t.track_id;  // real ids, used only for save/lookup
+}
+
+function render() {
+  const m = currentMatch();
+  const key = currentKey();
+  const labeledInMatch = m.tracks.filter(t => labels[m.match_id + ':' + t.track_id]).length;
+  document.getElementById('progress').textContent =
+    `Match ${matchIdx + 1}/${matchOrder.length} — Track ${trackIdx + 1}/${m.tracks.length} ` +
+    `— labeled so far: ${labeledInMatch}/${m.tracks.length}`;
+  document.getElementById('track-info').textContent =
+    labels[key] ? `[current label: ${labels[key]}]` : '';
+  const cropsDiv = document.getElementById('crops');
+  cropsDiv.innerHTML = '';
+  currentTrack().crops.forEach(c => {
+    const img = document.createElement('img');
+    img.src = c.rel_path;
+    cropsDiv.appendChild(img);
+  });
+  document.getElementById('status').textContent = '';
+  renderRoster();
+}
+
+function renderRoster() {
+  const m = currentMatch();
+  let html = '<tr><th>#</th><th>label</th></tr>';
+  m.tracks.forEach((t, i) => {
+    const key = m.match_id + ':' + t.track_id;
+    const lbl = labels[key] || '-';
+    const cls = lbl === 'TEAM_A' ? 'lbl-A' : lbl === 'TEAM_B' ? 'lbl-B' :
+                lbl === 'MIXED_TRACK' ? 'lbl-M' : lbl === 'AMBIGUOUS' ? 'lbl-X' : '';
+    html += `<tr><td>${i + 1}</td><td class="${cls}">${lbl}</td></tr>`;
+  });
+  document.getElementById('roster').innerHTML = html;
+}
+
+async function label(value) {
+  const m = currentMatch(), t = currentTrack();
+  const key = currentKey();
+  labels[key] = value;
+  const resp = await fetch('/save', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({match_id: m.match_id, track_id: t.track_id, label: value})
+  });
+  document.getElementById('status').textContent = resp.ok ? `saved: ${value}` : 'SAVE FAILED';
+  renderRoster();
+  if (trackIdx < m.tracks.length - 1) {
+    trackIdx += 1;
+    render();
+  }
+}
+
+function go(delta) {
+  const m = currentMatch();
+  trackIdx = Math.max(0, Math.min(m.tracks.length - 1, trackIdx + delta));
+  render();
+}
+
+loadAll();
+</script>
+</body>
+</html>

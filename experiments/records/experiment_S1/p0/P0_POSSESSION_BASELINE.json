@@ -1,0 +1,593 @@
+{
+ "benchmark": "POSSESSION_VAL_V1 (annotated subset)",
+ "frozen_list_sha256": "9738780c1cad3311c9b137fad23ff7d1076fcf719591d342222045d6f47c5025",
+ "parameters_modified": "NONE",
+ "chain": "SN3D_BASE -> BallTemporalSelector v1 -> CBIoU humans -> PlayerBallAssigner(70)",
+ "mapping": "model player box -> GT id by IoU >= 0.5",
+ "n_labelled": 60,
+ "distribution": {
+  "PLAYER": 5,
+  "UNLABELLED": 50,
+  "AMBIGUOUS": 2,
+  "NO_CONTROL": 3
+ },
+ "player_frames": {
+  "n": 5,
+  "correct": 1,
+  "wrong_player": 4,
+  "unassigned": 0,
+  "exact_player_accuracy": 0.2,
+  "assignment_coverage": 1.0
+ },
+ "no_control_frames": {
+  "n": 3,
+  "correctly_unknown": 1,
+  "false_assignments": 2
+ },
+ "no_ball_frames": {
+  "n": 0,
+  "correctly_unknown": 0,
+  "false_assignments": 0
+ },
+ "false_assignment_rate_on_negatives": 0.6667,
+ "ball_state_breakdown": {
+  "interpolated_short_gap": {
+   "n": 7,
+   "assigned": 5
+  },
+  "observed": {
+   "n": 43,
+   "assigned": 33
+  },
+  "recovered_low_conf": {
+   "n": 6,
+   "assigned": 5
+  },
+  "unknown": {
+   "n": 4,
+   "assigned": 0
+  }
+ },
+ "rows": [
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:75",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:76",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:77",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:78",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:79",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:80",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:81",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:82",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:83",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:84",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:195",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:196",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:197",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:198",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:199",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:200",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:201",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:202",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 23,
+   "assigned_gt_id": 18
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:203",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:204",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "women_1_239_w0:75",
+   "label": "AMBIGUOUS",
+   "gt_player": null,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:76",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:77",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:78",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:79",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "assigned_gt_id": 10
+  },
+  {
+   "frame_id": "women_1_239_w0:80",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:81",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:82",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "assigned_gt_id": 10
+  },
+  {
+   "frame_id": "women_1_239_w0:83",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "assigned_gt_id": 10
+  },
+  {
+   "frame_id": "women_1_239_w0:84",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "assigned_gt_id": 10
+  },
+  {
+   "frame_id": "women_1_239_w1:195",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:196",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:197",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:198",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:199",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:200",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:201",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:202",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:203",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w1:204",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:75",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:76",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:77",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:78",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:79",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:80",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:81",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:82",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:83",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:84",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:195",
+   "label": "AMBIGUOUS",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 65,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:196",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 65,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:197",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 65,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:198",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 59,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:199",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 59,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:200",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 59,
+   "assigned_gt_id": 1
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:201",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:202",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 64,
+   "assigned_gt_id": 7
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:203",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:204",
+   "label": "UNLABELLED",
+   "gt_player": null,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "assigned_gt_id": null
+  }
+ ]
+}

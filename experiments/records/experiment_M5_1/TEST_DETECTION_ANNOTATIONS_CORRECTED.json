@@ -1,0 +1,9734 @@
+[
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 38,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000038.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     330,
+     132,
+     339,
+     146
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     150,
+     158,
+     161,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     542,
+     194,
+     555,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     492,
+     161,
+     503,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     458,
+     159,
+     468,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     502,
+     189,
+     511,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     409,
+     211,
+     422,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     333,
+     162,
+     344,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     316,
+     160,
+     324,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     315,
+     193,
+     325,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     183,
+     303,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     283,
+     152,
+     293,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     167,
+     263,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     246,
+     157,
+     259,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     158,
+     186,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     49,
+     170,
+     62,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     212,
+     215,
+     229,
+     242
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     213,
+     168,
+     221,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     200,
+     190,
+     213,
+     210
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     208,
+     180,
+     218,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     145,
+     199,
+     160,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     136,
+     176,
+     148,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     78,
+     170,
+     95,
+     192
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 113,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000113.jpg",
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     550,
+     210,
+     568,
+     238
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     501,
+     204,
+     516,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     487,
+     168,
+     500,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     418,
+     161,
+     431,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     331,
+     172,
+     344,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     332,
+     202,
+     350,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     364,
+     240,
+     385,
+     268
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     298,
+     203,
+     310,
+     228
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     292,
+     168,
+     304,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     246,
+     155,
+     257,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     247,
+     226,
+     261,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     27,
+     180,
+     37,
+     203
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     287,
+     134,
+     295,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     218,
+     170,
+     231,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     196,
+     178,
+     208,
+     198
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     198,
+     186,
+     214,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     162,
+     162,
+     176,
+     182
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     117,
+     161,
+     131,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     148,
+     168,
+     160,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     134,
+     170,
+     145,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     105,
+     192,
+     115,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     97,
+     196,
+     108,
+     220
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 188,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000188.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     344,
+     237,
+     352,
+     245
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     77,
+     169,
+     87,
+     191
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     259,
+     143,
+     266,
+     154
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     250,
+     196,
+     264,
+     220
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     593,
+     285,
+     609,
+     327
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     560,
+     226,
+     577,
+     254
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     504,
+     222,
+     520,
+     249
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     449,
+     172,
+     461,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     370,
+     165,
+     381,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     272,
+     176,
+     282,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     309,
+     184,
+     321,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     539,
+     267,
+     562,
+     303
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     436,
+     262,
+     454,
+     294
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     370,
+     235,
+     391,
+     267
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     337,
+     268,
+     355,
+     301
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     337,
+     243,
+     358,
+     271
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     163,
+     224,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     197,
+     193,
+     211,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     163,
+     174,
+     173,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     153,
+     173,
+     165,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     136,
+     181,
+     148,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     124,
+     190,
+     136,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     48,
+     197,
+     62,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     80,
+     211,
+     95,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     221,
+     144,
+     248
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 263,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000263.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     369,
+     215,
+     377,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     378,
+     191,
+     391,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     168,
+     393,
+     186
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     281,
+     144,
+     289,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     446,
+     169,
+     456,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     495,
+     208,
+     509,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     496,
+     233,
+     512,
+     265
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     515,
+     281,
+     528,
+     319
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     458,
+     210,
+     469,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     206,
+     363,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     340,
+     206,
+     352,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     189,
+     337,
+     207
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     369,
+     249,
+     383,
+     281
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     362,
+     245,
+     376,
+     276
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     281,
+     202,
+     295,
+     228
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     167,
+     250,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     241,
+     194,
+     252,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     215,
+     178,
+     227,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     193,
+     176,
+     208,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     184,
+     185,
+     193,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     201,
+     199,
+     212,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     145,
+     197,
+     157,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     146,
+     219,
+     160,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     238,
+     109,
+     271
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     66,
+     167,
+     76,
+     187
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 338,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000338.jpg",
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     578,
+     190,
+     592,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     567,
+     218,
+     585,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     558,
+     195,
+     569,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     527,
+     184,
+     542,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     523,
+     167,
+     535,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     474,
+     187,
+     483,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     452,
+     169,
+     462,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     447,
+     243,
+     467,
+     273
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     230,
+     431,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     398,
+     189,
+     411,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     366,
+     192,
+     380,
+     215
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     334,
+     145,
+     342,
+     157
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     334,
+     177,
+     344,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     165,
+     332,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     320,
+     193,
+     332,
+     215
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     298,
+     198,
+     314,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     174,
+     305,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     278,
+     181,
+     294,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     274,
+     197,
+     289,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     258,
+     188,
+     273,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     215,
+     226,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     158,
+     236,
+     175,
+     265
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     120,
+     165,
+     133,
+     184
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 413,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000413.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     317,
+     147,
+     325,
+     159
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     93,
+     165,
+     104,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     531,
+     197,
+     548,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     520,
+     168,
+     532,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     491,
+     162,
+     499,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     504,
+     178,
+     515,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     497,
+     175,
+     510,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     503,
+     224,
+     516,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     470,
+     219,
+     482,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     437,
+     163,
+     449,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     417,
+     171,
+     426,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     384,
+     182,
+     395,
+     202
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     369,
+     179,
+     375,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     357,
+     167,
+     369,
+     184
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     373,
+     190,
+     385,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     355,
+     186,
+     366,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     326,
+     166,
+     338,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     184,
+     336,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     290,
+     168,
+     302,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     281,
+     173,
+     293,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     277,
+     181,
+     290,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     279,
+     194,
+     290,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     260,
+     204,
+     273,
+     227
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     174,
+     240,
+     188,
+     272
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 488,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000488.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     563,
+     284,
+     578,
+     323
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     174,
+     208,
+     183,
+     216
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     247,
+     143,
+     256,
+     157
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     468,
+     192,
+     478,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     175,
+     470,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     444,
+     158,
+     454,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     426,
+     174,
+     436,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     164,
+     422,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     160,
+     384,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     382,
+     169,
+     393,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     366,
+     175,
+     378,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     334,
+     171,
+     348,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     219,
+     409,
+     250
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     227,
+     419,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     347,
+     185,
+     360,
+     210
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     322,
+     186,
+     333,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     317,
+     182,
+     328,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     188,
+     277,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     197,
+     256,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     227,
+     168,
+     241,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     208,
+     160,
+     219,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     174,
+     187,
+     189,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     116,
+     218,
+     138,
+     243
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     63,
+     251,
+     87,
+     282
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 563,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000563.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     624,
+     296,
+     640,
+     338
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     550,
+     207,
+     565,
+     235
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     547,
+     184,
+     559,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     537,
+     186,
+     549,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     533,
+     167,
+     542,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     490,
+     167,
+     503,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     462,
+     171,
+     471,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     174,
+     475,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     432,
+     199,
+     446,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     391,
+     192,
+     402,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     390,
+     174,
+     403,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     328,
+     169,
+     339,
+     189
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     327,
+     142,
+     336,
+     155
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     340,
+     196,
+     354,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     304,
+     220,
+     322,
+     250
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     229,
+     238,
+     252,
+     270
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     62,
+     247,
+     69,
+     255
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     53,
+     229,
+     67,
+     258
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     77,
+     225,
+     89,
+     248
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     106,
+     159,
+     117,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     209,
+     175,
+     223,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     280,
+     181,
+     293,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     254,
+     182,
+     266,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     243,
+     160,
+     256,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     275,
+     158,
+     286,
+     175
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 638,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000638.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     210,
+     200,
+     217,
+     206
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     147,
+     155,
+     158,
+     174
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     321,
+     139,
+     330,
+     153
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     531,
+     168,
+     541,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     518,
+     168,
+     531,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     526,
+     187,
+     538,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     539,
+     187,
+     550,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     542,
+     204,
+     555,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     414,
+     174,
+     425,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     170,
+     410,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     410,
+     201,
+     422,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     337,
+     195,
+     353,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     169,
+     297,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     256,
+     166,
+     267,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     247,
+     153,
+     257,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     221,
+     156,
+     232,
+     172
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     258,
+     191,
+     270,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     166,
+     225,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     203,
+     166,
+     213,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     201,
+     173,
+     210,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     203,
+     186,
+     214,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     188,
+     190,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     143,
+     184,
+     155,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     192,
+     111,
+     217
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 713,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000713.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     393,
+     211,
+     402,
+     220
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     350,
+     141,
+     358,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     552,
+     173,
+     561,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     519,
+     171,
+     531,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     575,
+     198,
+     590,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     573,
+     225,
+     589,
+     256
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     517,
+     199,
+     530,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     179,
+     398,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     175,
+     362,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     399,
+     219,
+     416,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     365,
+     220,
+     385,
+     246
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     251,
+     154,
+     263,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     252,
+     160,
+     264,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     235,
+     163,
+     248,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     170,
+     255,
+     191
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     280,
+     186,
+     293,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     219,
+     169,
+     231,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     204,
+     179,
+     214,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     195,
+     189,
+     207,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     183,
+     194,
+     196,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     182,
+     180,
+     195,
+     204
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     156,
+     159,
+     168,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     145,
+     169,
+     159,
+     193
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 789,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000789.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     135,
+     252,
+     143,
+     260
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     581,
+     208,
+     594,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     527,
+     174,
+     540,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     495,
+     173,
+     506,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     494,
+     239,
+     507,
+     271
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     443,
+     210,
+     458,
+     234
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     348,
+     141,
+     355,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     354,
+     199,
+     368,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     318,
+     187,
+     330,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     272,
+     158,
+     282,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     271,
+     165,
+     283,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     165,
+     253,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     245,
+     179,
+     257,
+     201
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     270,
+     194,
+     281,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     216,
+     179,
+     227,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     174,
+     185,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     167,
+     179,
+     181,
+     202
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     126,
+     157,
+     137,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     135,
+     192,
+     150,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     98,
+     222,
+     115,
+     246
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     110,
+     227,
+     133,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     185,
+     232,
+     206,
+     262
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     226,
+     230,
+     242,
+     258
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 864,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000864.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     314,
+     241,
+     321,
+     248
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     350,
+     142,
+     357,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     610,
+     215,
+     625,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     172,
+     524,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     176,
+     476,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     395,
+     242,
+     409,
+     277
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     377,
+     240,
+     395,
+     276
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     212,
+     323,
+     237
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     220,
+     334,
+     248
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     261,
+     261,
+     278,
+     300
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     217,
+     238,
+     238,
+     272
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     289,
+     163,
+     299,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     273,
+     160,
+     283,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     253,
+     170,
+     263,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     241,
+     167,
+     255,
+     188
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     132,
+     163,
+     142,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     210,
+     177,
+     223,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     207,
+     181,
+     218,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     225,
+     188,
+     237,
+     211
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     225,
+     204,
+     238,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     190,
+     190,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     155,
+     200,
+     170,
+     227
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     158,
+     230,
+     172,
+     262
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     223,
+     147,
+     255
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 939,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000939.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     574,
+     311,
+     591,
+     350
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     556,
+     203,
+     567,
+     234
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     430,
+     166,
+     442,
+     183
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     422,
+     207,
+     429,
+     214
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     306,
+     143,
+     315,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     363,
+     177,
+     376,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     380,
+     202,
+     393,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     219,
+     399,
+     239
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     232,
+     397,
+     265
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     349,
+     198,
+     361,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     280,
+     257,
+     296,
+     298
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     250,
+     225,
+     265,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     249,
+     162,
+     260,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     166,
+     253,
+     186
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     75,
+     164,
+     86,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     223,
+     172,
+     233,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     222,
+     185,
+     233,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     211,
+     170,
+     221,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     183,
+     175,
+     193,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     179,
+     185,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     212,
+     207,
+     229,
+     237
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     201,
+     203,
+     214,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     166,
+     222,
+     184,
+     252
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     130,
+     198,
+     143,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     93,
+     203,
+     105,
+     230
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1014,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001014.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     619,
+     318,
+     640,
+     360
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     600,
+     188,
+     613,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     495,
+     216,
+     513,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     467,
+     200,
+     479,
+     226
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     464,
+     174,
+     470,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     468,
+     157,
+     479,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     429,
+     161,
+     441,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     442,
+     178,
+     454,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     372,
+     176,
+     386,
+     198
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     298,
+     142,
+     307,
+     157
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     339,
+     196,
+     356,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     328,
+     246,
+     346,
+     283
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     316,
+     199,
+     329,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     249,
+     159,
+     257,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     251,
+     171,
+     262,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     232,
+     174,
+     242,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     172,
+     225,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     203,
+     167,
+     213,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     193,
+     167,
+     204,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     173,
+     190,
+     198
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     77,
+     161,
+     86,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     155,
+     194,
+     167,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     216,
+     111,
+     245
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     230,
+     195,
+     243,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     223,
+     259,
+     253
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1089,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001089.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     516,
+     175,
+     522,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     595,
+     175,
+     611,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     160,
+     526,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     460,
+     163,
+     471,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     520,
+     189,
+     536,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     535,
+     201,
+     551,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     405,
+     164,
+     416,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     393,
+     166,
+     403,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     394,
+     188,
+     410,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     186,
+     372,
+     211
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     279,
+     142,
+     287,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     378,
+     237,
+     400,
+     269
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     310,
+     222,
+     328,
+     254
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     257,
+     174,
+     266,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     179,
+     268,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     161,
+     243,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     160,
+     222,
+     177
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     229,
+     189,
+     246,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     200,
+     172,
+     213,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     188,
+     180,
+     204,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     174,
+     177,
+     186,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     162,
+     203,
+     177,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     55,
+     232,
+     70,
+     262
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     49,
+     164,
+     63,
+     185
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1164,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001164.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     577,
+     192,
+     584,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     527,
+     171,
+     539,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     534,
+     177,
+     546,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     508,
+     194,
+     528,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     453,
+     158,
+     462,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     431,
+     162,
+     440,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     428,
+     174,
+     436,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     420,
+     180,
+     432,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     395,
+     165,
+     409,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     167,
+     387,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     215,
+     398,
+     242
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     396,
+     233,
+     414,
+     265
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     304,
+     187,
+     320,
+     209
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     272,
+     146,
+     281,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     267,
+     163,
+     279,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     187,
+     294,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     198,
+     159,
+     209,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     227,
+     177,
+     237,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     225,
+     187,
+     239,
+     210
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     236,
+     194,
+     250,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     186,
+     183,
+     201,
+     207
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     198,
+     217,
+     212,
+     246
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     114,
+     242,
+     129,
+     273
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     43,
+     172,
+     55,
+     193
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1239,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001239.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     574,
+     185,
+     586,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     501,
+     179,
+     514,
+     199
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     475,
+     206,
+     482,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     466,
+     191,
+     478,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     423,
+     167,
+     435,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     367,
+     215,
+     380,
+     238
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     171,
+     384,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     369,
+     179,
+     379,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     326,
+     156,
+     335,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     161,
+     320,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     172,
+     297,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     280,
+     174,
+     289,
+     190
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     218,
+     151,
+     227,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     218,
+     169,
+     227,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     138,
+     162,
+     148,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     240,
+     341,
+     270
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     276,
+     198,
+     287,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     265,
+     202,
+     275,
+     227
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     237,
+     204,
+     248,
+     231
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     212,
+     196,
+     224,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     183,
+     216,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     191,
+     187,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     150,
+     236,
+     165,
+     265
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     194,
+     228,
+     209,
+     255
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1314,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001314.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     608,
+     188,
+     622,
+     212
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     596,
+     272,
+     613,
+     311
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     466,
+     248,
+     489,
+     283
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     433,
+     181,
+     444,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     399,
+     167,
+     410,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     175,
+     392,
+     197
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     392,
+     222,
+     400,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     393,
+     205,
+     417,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     372,
+     196,
+     387,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     333,
+     231,
+     350,
+     259
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     158,
+     311,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     163,
+     281,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     273,
+     215,
+     290,
+     238
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     261,
+     224,
+     277,
+     250
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     214,
+     215,
+     233,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     236,
+     179,
+     247,
+     196
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     184,
+     152,
+     193,
+     162
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     185,
+     159,
+     198,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     178,
+     202,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     149,
+     181,
+     167,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     167,
+     189,
+     182,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     160,
+     201,
+     172,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     161,
+     208,
+     180,
+     231
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     143,
+     208,
+     157,
+     235
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     119,
+     219,
+     138,
+     245
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1389,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001389.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     531,
+     282,
+     553,
+     319
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     520,
+     254,
+     542,
+     288
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     435,
+     186,
+     447,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     175,
+     426,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     388,
+     181,
+     400,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     326,
+     159,
+     335,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     370,
+     212,
+     383,
+     241
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     314,
+     212,
+     326,
+     237
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     295,
+     223,
+     310,
+     252
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     164,
+     295,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     186,
+     277,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     244,
+     214,
+     259,
+     231
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     246,
+     203,
+     260,
+     225
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     224,
+     206,
+     232,
+     213
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     212,
+     151,
+     222,
+     164
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     197,
+     157,
+     207,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     176,
+     201,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     179,
+     184,
+     192,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     165,
+     193,
+     180,
+     216
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     185,
+     207,
+     197,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     186,
+     226,
+     201,
+     254
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     180,
+     249,
+     200,
+     282
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     142,
+     210,
+     156,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     122,
+     214,
+     139,
+     238
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1464,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001464.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     584,
+     292,
+     600,
+     332
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     499,
+     192,
+     509,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     491,
+     186,
+     501,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     426,
+     185,
+     439,
+     207
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     462,
+     243,
+     484,
+     276
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     434,
+     208,
+     451,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     401,
+     161,
+     412,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     360,
+     167,
+     372,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     358,
+     207,
+     374,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     224,
+     374,
+     252
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     301,
+     197,
+     315,
+     219
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     265,
+     148,
+     272,
+     162
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     271,
+     157,
+     280,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     168,
+     242,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     252,
+     183,
+     266,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     276,
+     205,
+     289,
+     231
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     255,
+     199,
+     266,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     236,
+     193,
+     251,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     195,
+     184,
+     206,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     202,
+     186,
+     213,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     161,
+     196,
+     175,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     215,
+     191,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     190,
+     238,
+     209,
+     269
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     7,
+     174,
+     22,
+     195
+    ]
+   }
+  ],
+  "notes": "blind re-annotation, M5.1 -- local browser tool, no old GT/predictions/scores shown to the annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 38,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000038.jpg",
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     22,
+     180,
+     46,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     234,
+     111,
+     253,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     154,
+     277,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     264,
+     129,
+     286,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     141,
+     322,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     332,
+     145,
+     349,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     429,
+     67,
+     442,
+     99
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     429,
+     104,
+     447,
+     137
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     118,
+     480,
+     151
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     595,
+     209,
+     615,
+     256
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     11,
+     113,
+     31,
+     153
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     430,
+     40,
+     445,
+     70
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     182,
+     172,
+     192,
+     180
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 113,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000113.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     103,
+     89,
+     121,
+     125
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     532,
+     22,
+     543,
+     48
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     145,
+     191,
+     153,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     135,
+     161,
+     151,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     182,
+     175,
+     204,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     302,
+     128,
+     318,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     99,
+     325,
+     133
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     371,
+     136,
+     391,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     407,
+     151,
+     425,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     517,
+     94,
+     532,
+     128
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     533,
+     114,
+     550,
+     148
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     525,
+     54,
+     538,
+     84
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 188,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000188.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     287,
+     134,
+     295,
+     143
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     74,
+     111,
+     88,
+     145
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     428,
+     53,
+     442,
+     78
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     547,
+     160,
+     566,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     461,
+     79,
+     478,
+     107
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     430,
+     128,
+     444,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     416,
+     116,
+     431,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     141,
+     370,
+     175
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     159,
+     288,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     132,
+     160,
+     153,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     72,
+     161,
+     93,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     256,
+     124,
+     273,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     260,
+     115,
+     280,
+     141
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 263,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000263.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     309,
+     117,
+     316,
+     125
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     165,
+     73,
+     182,
+     103
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     404,
+     165,
+     428,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     582,
+     153,
+     607,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     602,
+     98,
+     620,
+     126
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     123,
+     478,
+     159
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     461,
+     131,
+     481,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     142,
+     492,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     488,
+     198,
+     511,
+     241
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     485,
+     235,
+     502,
+     278
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     96,
+     307,
+     125
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     113,
+     300,
+     139
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     125,
+     230,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     140,
+     162,
+     170,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     115,
+     112,
+     132,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     104,
+     136,
+     121,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     56,
+     121,
+     74,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     181,
+     25,
+     220
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 338,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000338.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     273,
+     150,
+     281,
+     159
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     85,
+     77,
+     101,
+     107
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     465,
+     159,
+     481,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     20,
+     102,
+     40,
+     130
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     79,
+     141,
+     93,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     165,
+     163,
+     189,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     107,
+     171,
+     141
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     137,
+     272,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     266,
+     94,
+     282,
+     122
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     276,
+     100,
+     296,
+     132
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     627,
+     321,
+     640,
+     360
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     412,
+     228,
+     433,
+     274
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     496,
+     178,
+     517,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     562,
+     137,
+     580,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     626,
+     139,
+     640,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     402,
+     95,
+     418,
+     124
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     447,
+     96,
+     465,
+     128
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     448,
+     114,
+     461,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     438,
+     115,
+     455,
+     150
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 413,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000413.jpg",
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     611,
+     286,
+     640,
+     344
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     592,
+     150,
+     617,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     524,
+     126,
+     548,
+     163
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     75,
+     398,
+     102
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     70,
+     342,
+     98
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     194,
+     75,
+     208,
+     105
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     165,
+     97,
+     183,
+     130
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     97,
+     8,
+     127
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     43,
+     140,
+     66,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     193,
+     208,
+     221,
+     255
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     172,
+     403,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     215,
+     85,
+     230,
+     117
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     194,
+     103,
+     217,
+     130
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     272,
+     94,
+     294,
+     129
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     334,
+     100,
+     354,
+     132
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     120,
+     258,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     357,
+     124,
+     377,
+     161
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     442,
+     136,
+     460,
+     179
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     23,
+     51,
+     43,
+     83
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 488,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000488.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     257,
+     224,
+     267,
+     233
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     27,
+     28,
+     49,
+     55
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     371,
+     106,
+     391,
+     138
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     29,
+     85,
+     47,
+     116
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     43,
+     160,
+     70,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     103,
+     137,
+     123,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     120,
+     58,
+     136,
+     82
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     67,
+     141,
+     92
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     84,
+     168,
+     112
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     205,
+     81,
+     225,
+     109
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     108,
+     225,
+     138
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     248,
+     71,
+     267,
+     102
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     298,
+     44,
+     311,
+     69
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     349,
+     55,
+     366,
+     82
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     292,
+     87,
+     312,
+     114
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     327,
+     99,
+     350,
+     132
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     449,
+     95,
+     466,
+     124
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     158,
+     404,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     471,
+     125,
+     498,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     601,
+     313,
+     639,
+     360
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     237,
+     196,
+     257,
+     234
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 563,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000563.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     512,
+     100,
+     528,
+     127
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     577,
+     280,
+     605,
+     325
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     152,
+     141,
+     174,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     71,
+     74,
+     86,
+     97
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     164,
+     88,
+     178,
+     113
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     97,
+     110,
+     123,
+     141
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     74,
+     107,
+     91,
+     137
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     54,
+     151,
+     80,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     183,
+     28,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     166,
+     135,
+     181,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     192,
+     126,
+     211,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     228,
+     115,
+     249,
+     137
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     289,
+     138,
+     307,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     244,
+     179,
+     266,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     273,
+     181,
+     291,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     419,
+     197,
+     442,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     237,
+     492,
+     276
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 638,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000638.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     342,
+     209,
+     351,
+     219
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     486,
+     97,
+     500,
+     133
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     120,
+     153,
+     141,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     41,
+     71,
+     57,
+     101
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     114,
+     114,
+     134,
+     144
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     121,
+     195,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     90,
+     205,
+     121
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     395,
+     208,
+     420,
+     249
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     340,
+     181,
+     366,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     425,
+     133,
+     445,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     453,
+     153,
+     479,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     150,
+     330,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     261,
+     156,
+     279,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     252,
+     143,
+     268,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     165,
+     204,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     104,
+     179,
+     125,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     97,
+     210,
+     117,
+     258
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     231,
+     22,
+     277
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 713,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000713.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     341,
+     169,
+     349,
+     178
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     251,
+     156,
+     270,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     146,
+     154,
+     158,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     267,
+     84,
+     281,
+     112
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     365,
+     95,
+     377,
+     128
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     367,
+     233,
+     392,
+     282
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     283,
+     216,
+     306,
+     264
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     302,
+     156,
+     328,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     163,
+     324,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     143,
+     346,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     350,
+     144,
+     365,
+     175
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     170,
+     392,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     575,
+     181,
+     592,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     584,
+     198,
+     605,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     506,
+     156,
+     524,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     528,
+     135,
+     549,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     430,
+     142,
+     445,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     421,
+     173,
+     446,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     420,
+     196,
+     441,
+     236
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 788,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000788.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     113,
+     189,
+     122,
+     197
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     240,
+     143,
+     255,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     120,
+     161,
+     140,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     163,
+     167,
+     189,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     188,
+     212,
+     213,
+     255
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     183,
+     259,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     284,
+     216,
+     310,
+     263
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     80,
+     277,
+     110
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     318,
+     91,
+     335,
+     119
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     307,
+     166,
+     318,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     175,
+     330,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     134,
+     344,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     341,
+     142,
+     354,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     346,
+     168,
+     367,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     411,
+     199,
+     428,
+     239
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     441,
+     135,
+     462,
+     168
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     444,
+     149,
+     461,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     470,
+     156,
+     493,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     502,
+     194,
+     519,
+     231
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 863,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000863.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     222,
+     181,
+     230,
+     190
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     93,
+     63,
+     107,
+     88
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     411,
+     131,
+     424,
+     160
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     412,
+     143,
+     427,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     390,
+     118,
+     402,
+     148
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     84,
+     478,
+     112
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     424,
+     74,
+     437,
+     98
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     105,
+     164,
+     136
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     227,
+     125,
+     243,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     167,
+     170,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     209,
+     157,
+     232,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     210,
+     255,
+     251
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     177,
+     322,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     348,
+     166,
+     362,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     203,
+     369,
+     247
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     384,
+     182,
+     400,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     444,
+     143,
+     466,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     481,
+     172,
+     495,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     530,
+     143,
+     550,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     558,
+     137,
+     577,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     582,
+     158,
+     602,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     614,
+     206,
+     631,
+     248
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 938,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000938.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     228,
+     163,
+     235,
+     171
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     52,
+     68,
+     61,
+     94
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     398,
+     127,
+     413,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     168,
+     104,
+     183,
+     134
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     116,
+     158,
+     131,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     157,
+     209,
+     175,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     237,
+     172,
+     253,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     299,
+     188,
+     315,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     264,
+     130,
+     282,
+     160
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     76,
+     370,
+     99
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     84,
+     431,
+     110
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     350,
+     116,
+     361,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     352,
+     126,
+     366,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     137,
+     387,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     367,
+     185,
+     383,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     387,
+     160,
+     402,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     157,
+     432,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     452,
+     146,
+     469,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     480,
+     137,
+     499,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     492,
+     153,
+     513,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     595,
+     208,
+     616,
+     249
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1013,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001013.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     210,
+     144,
+     218,
+     151
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     325,
+     157,
+     340,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     183,
+     119,
+     203,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     250,
+     142,
+     266,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     179,
+     147,
+     194,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     179,
+     197,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     95,
+     235,
+     112,
+     281
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     35,
+     179,
+     50,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     198,
+     286,
+     244
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     363,
+     211,
+     378,
+     251
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     330,
+     135,
+     343,
+     164
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     324,
+     124,
+     335,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     330,
+     100,
+     346,
+     122
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     366,
+     104,
+     387,
+     127
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     137,
+     367,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     371,
+     177,
+     392,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     402,
+     178,
+     424,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     420,
+     163,
+     439,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     159,
+     477,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     493,
+     172,
+     516,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     574,
+     228,
+     596,
+     271
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1088,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001088.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     218,
+     130,
+     225,
+     137
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     289,
+     157,
+     306,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     582,
+     234,
+     607,
+     277
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     179,
+     531,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     464,
+     164,
+     482,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     221,
+     402,
+     263
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     168,
+     432,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     405,
+     185,
+     424,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     389,
+     179,
+     409,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     350,
+     131,
+     369,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     328,
+     129,
+     342,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     114,
+     298,
+     143
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     226,
+     106,
+     239,
+     133
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     217,
+     108,
+     230,
+     129
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     156,
+     122,
+     173,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     79,
+     147,
+     96,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     198,
+     142,
+     214,
+     175
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     138,
+     175,
+     157,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     65,
+     242,
+     89,
+     292
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     196,
+     257,
+     240
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1163,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001163.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     269,
+     144,
+     276,
+     151
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     175,
+     150,
+     190,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     237,
+     118,
+     257,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     253,
+     116,
+     268,
+     143
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     155,
+     112,
+     169,
+     141
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     142,
+     98,
+     155,
+     131
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     26,
+     118,
+     41,
+     153
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     70,
+     135,
+     86,
+     168
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     87,
+     141,
+     106,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     92,
+     161,
+     108,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     184,
+     148,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     225,
+     262,
+     268
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     122,
+     347,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     392,
+     150,
+     411,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     486,
+     174,
+     504,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     524,
+     230,
+     539,
+     276
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     532,
+     268,
+     562,
+     320
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     325,
+     156,
+     342,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     297,
+     172,
+     314,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     164,
+     308,
+     203
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1238,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001238.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     590,
+     135,
+     606,
+     175
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     41,
+     155,
+     57,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     140,
+     9,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     156,
+     18,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     47,
+     132,
+     70,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     74,
+     113,
+     94,
+     144
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     98,
+     91,
+     114,
+     123
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     172,
+     125,
+     190,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     230,
+     113,
+     251,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     407,
+     159,
+     421,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     226,
+     417,
+     269
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     238,
+     355,
+     284
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     31,
+     224,
+     54,
+     267
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     149,
+     150,
+     164,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     163,
+     206,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     117,
+     303,
+     151
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     292,
+     140,
+     306,
+     178
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1313,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001313.jpg",
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     14,
+     1,
+     285,
+     360
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1388,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001388.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     324,
+     149,
+     333,
+     157
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     619,
+     139,
+     631,
+     180
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     22,
+     174,
+     39,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     63,
+     141,
+     76,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     141,
+     114,
+     154,
+     147
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     171,
+     98,
+     187,
+     127
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     310,
+     122,
+     326,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     291,
+     130,
+     306,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     134,
+     283,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     526,
+     186,
+     545,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     341,
+     379,
+     360
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     244,
+     289,
+     293
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     191,
+     125,
+     211,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     192,
+     185,
+     211,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     175,
+     194,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     176,
+     114,
+     219
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1463,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001463.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     357,
+     173,
+     365,
+     181
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     445,
+     101,
+     459,
+     135
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     260,
+     341,
+     288,
+     360
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     216,
+     218,
+     243,
+     264
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     372,
+     141,
+     388,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     235,
+     102,
+     247,
+     134
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     77,
+     190,
+     110
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     133,
+     116,
+     149,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     103,
+     160,
+     122,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     26,
+     149,
+     51,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     3,
+     85,
+     18,
+     116
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 40,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000040.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1485,
+     207,
+     1524,
+     271
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     736,
+     1015,
+     787,
+     1075
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     511,
+     181,
+     530,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     566,
+     196,
+     591,
+     251
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1032,
+     218,
+     1067,
+     283
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1121,
+     280,
+     1161,
+     385
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1264,
+     307,
+     1303,
+     413
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1340,
+     618,
+     1491,
+     861
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1005,
+     579,
+     1108,
+     775
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     313,
+     212,
+     346,
+     281
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     280,
+     558,
+     376
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     319,
+     411,
+     421,
+     549
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     13,
+     406,
+     119,
+     564
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     75,
+     244,
+     119,
+     318
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 118,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000118.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1045,
+     604,
+     1081,
+     640
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     369,
+     174,
+     434,
+     317
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1447,
+     62,
+     1484,
+     151
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1219,
+     22,
+     1249,
+     86
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     965,
+     83,
+     1001,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     561,
+     0,
+     590,
+     58
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     461,
+     17,
+     486,
+     81
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     357,
+     69,
+     393,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     545,
+     109,
+     591,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     70,
+     177,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     21,
+     156,
+     79,
+     291
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     438,
+     368,
+     552,
+     550
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     434,
+     496,
+     570,
+     724
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     187,
+     532,
+     339,
+     807
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1477,
+     735,
+     1627,
+     1067
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1115,
+     331,
+     1192,
+     527
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1126,
+     445,
+     1242,
+     646
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 196,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000196.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1341,
+     746,
+     1377,
+     788
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     609,
+     382,
+     656,
+     516
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     613,
+     172,
+     650,
+     262
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     195,
+     453,
+     289
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     79,
+     276,
+     148,
+     414
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     356,
+     275,
+     417,
+     396
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1019,
+     886,
+     1159,
+     1080
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     784,
+     587,
+     956,
+     817
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     750,
+     469,
+     850,
+     673
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     817,
+     318,
+     905,
+     471
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1633,
+     217,
+     1691,
+     316
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1414,
+     337,
+     1469,
+     491
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1672,
+     633,
+     1787,
+     927
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     615,
+     450,
+     717,
+     691
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     562,
+     446,
+     642,
+     667
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 274,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000274.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1210,
+     678,
+     1243,
+     711
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     56,
+     210,
+     93,
+     312
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     268,
+     311,
+     394
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     324,
+     358,
+     411,
+     516
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     565,
+     732,
+     778,
+     1031
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1124,
+     893,
+     1291,
+     1080
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1236,
+     482,
+     1343,
+     701
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1168,
+     274,
+     1239,
+     421
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1136,
+     397,
+     1215,
+     581
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     676,
+     503,
+     776,
+     701
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     781,
+     437,
+     839,
+     636
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 352,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000352.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     919,
+     533,
+     954,
+     558
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     645,
+     214,
+     675,
+     280
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     557,
+     393,
+     608,
+     540
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     581,
+     243,
+     618,
+     318
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     474,
+     265,
+     513,
+     339
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     253,
+     339,
+     318,
+     451
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     479,
+     74,
+     655
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     321,
+     484,
+     404,
+     657
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     519,
+     565,
+     643,
+     747
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     782,
+     473,
+     876,
+     626
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     855,
+     395,
+     914,
+     528
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     999,
+     465,
+     1095,
+     583
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1254,
+     279,
+     1297,
+     358
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1491,
+     847,
+     1610,
+     1080
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1311,
+     336,
+     1367,
+     442
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1291,
+     388,
+     1358,
+     515
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 430,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000430.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     278,
+     248,
+     328,
+     365
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     193,
+     546,
+     298,
+     777
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     82,
+     320,
+     171,
+     452
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     88,
+     477,
+     172,
+     646
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     423,
+     462,
+     522,
+     658
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     733,
+     571,
+     837,
+     800
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1209,
+     406,
+     1280,
+     540
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1231,
+     441,
+     1335,
+     602
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1291,
+     456,
+     1367,
+     632
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 508,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000508.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     692,
+     661,
+     721,
+     690
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     488,
+     762,
+     604,
+     1075
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1694,
+     505,
+     1793,
+     721
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1499,
+     597,
+     1600,
+     870
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     727,
+     465,
+     832,
+     643
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     795,
+     511,
+     883,
+     674
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     675,
+     513,
+     771,
+     673
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 586,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000586.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     545,
+     720,
+     583,
+     763
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     181,
+     369,
+     281,
+     587
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     330,
+     331,
+     400,
+     520
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     384,
+     294,
+     487,
+     483
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     700,
+     269,
+     758,
+     428
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     382,
+     590,
+     590
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     427,
+     424,
+     564,
+     629
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1744,
+     436,
+     1823,
+     662
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1135,
+     309,
+     1236,
+     511
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     862,
+     431,
+     979,
+     641
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     781,
+     498,
+     908,
+     710
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 664,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000664.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     882,
+     200,
+     930,
+     320
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     556,
+     705,
+     593,
+     743
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1124,
+     657,
+     1279,
+     972
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1024,
+     332,
+     1086,
+     484
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     600,
+     306,
+     649,
+     468
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     464,
+     288,
+     526,
+     439
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     200,
+     257,
+     255,
+     397
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     105,
+     280,
+     187,
+     432
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     333,
+     381,
+     410,
+     549
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     270,
+     544,
+     410,
+     787
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 742,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000742.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     815,
+     509,
+     834,
+     534
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     0,
+     475,
+     56,
+     689
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1357,
+     404,
+     1446,
+     539
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1427,
+     541,
+     1517,
+     754
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1160,
+     459,
+     1232,
+     643
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1082,
+     428,
+     1160,
+     618
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     969,
+     430,
+     1071,
+     613
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     831,
+     516,
+     892,
+     602
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     832,
+     443,
+     939,
+     594
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     473,
+     501,
+     545,
+     620
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     473,
+     578,
+     574,
+     788
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 820,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000820.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1868,
+     280,
+     1920,
+     692
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1753,
+     417,
+     1903,
+     860
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1644,
+     648,
+     1794,
+     1080
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1321,
+     360,
+     1456,
+     796
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1152,
+     347,
+     1309,
+     774
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1037,
+     533,
+     1283,
+     874
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     111,
+     296,
+     238,
+     575
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     87,
+     489,
+     253,
+     905
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 898,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000898.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     833,
+     450,
+     868,
+     484
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     740,
+     489,
+     894,
+     851
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1420,
+     294,
+     1594,
+     538
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     213,
+     711,
+     376,
+     1076
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1074,
+     544,
+     1220,
+     899
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1361,
+     691,
+     1517,
+     1079
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     836,
+     256,
+     940,
+     477
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 976,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000976.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1217,
+     305,
+     1257,
+     346
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     199,
+     485,
+     292,
+     729
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     365,
+     455,
+     488,
+     675
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     521,
+     473,
+     594,
+     717
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     819,
+     479,
+     897,
+     715
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     917,
+     513,
+     1010,
+     718
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     915,
+     546,
+     1083,
+     686
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1061,
+     486,
+     1188,
+     718
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1033,
+     440,
+     1106,
+     587
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1307,
+     959,
+     1481,
+     1080
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1054,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001054.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     861,
+     341,
+     895,
+     373
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     448,
+     436,
+     569,
+     591
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     535,
+     413,
+     617,
+     590
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     771,
+     442,
+     839,
+     625
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     814,
+     492,
+     915,
+     692
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     423,
+     57,
+     616
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     47,
+     465,
+     152,
+     639
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     461,
+     367,
+     643
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     748,
+     640,
+     852,
+     918
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1257,
+     555,
+     1406,
+     770
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1705,
+     577,
+     1799,
+     789
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1132,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001132.jpg",
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     417,
+     277,
+     516,
+     451
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     325,
+     524,
+     579
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     368,
+     480,
+     622
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     656,
+     311,
+     739,
+     567
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1237,
+     637,
+     1396,
+     1028
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     823,
+     351,
+     956,
+     600
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     840,
+     381,
+     928,
+     637
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1210,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001210.jpg",
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     37,
+     494,
+     110,
+     726
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1336,
+     452,
+     1480,
+     614
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1350,
+     467,
+     1440,
+     670
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1673,
+     492,
+     1761,
+     705
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     159,
+     447,
+     276,
+     607
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     456,
+     640,
+     601,
+     941
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     633,
+     551,
+     758,
+     765
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     856,
+     468,
+     907,
+     669
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     746,
+     458,
+     860,
+     634
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1096,
+     425,
+     1199,
+     646
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1139,
+     404,
+     1200,
+     628
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1194,
+     440,
+     1257,
+     579
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1205,
+     504,
+     1304,
+     709
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1178,
+     564,
+     1308,
+     783
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1288,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001288.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1295,
+     587,
+     1331,
+     622
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1325,
+     415,
+     1432,
+     626
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1072,
+     617,
+     1193,
+     948
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     821,
+     375,
+     924,
+     623
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     521,
+     166,
+     784
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     95,
+     389,
+     200,
+     624
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     342,
+     371,
+     449,
+     614
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     149,
+     378,
+     240,
+     569
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1366,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001366.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     431,
+     642,
+     469,
+     676
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     344,
+     445,
+     450,
+     677
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     835,
+     255,
+     885,
+     382
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1381,
+     280,
+     1438,
+     443
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1728,
+     402,
+     1830,
+     624
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     837,
+     538,
+     931,
+     827
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1444,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001444.jpg",
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     595,
+     558,
+     624,
+     588
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     574,
+     384,
+     655,
+     586
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     970,
+     211,
+     1012,
+     324
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1205,
+     263,
+     1266,
+     403
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     686,
+     630,
+     839,
+     968
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     969,
+     457,
+     1068,
+     715
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1120,
+     424,
+     1192,
+     600
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1522,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001522.jpg",
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     1708,
+     312,
+     1778,
+     432
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1765,
+     334,
+     1828,
+     457
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     1717,
+     327,
+     1764,
+     460
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1098,
+     227,
+     1132,
+     310
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1074,
+     281,
+     1130,
+     382
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     320,
+     288,
+     333,
+     302
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     676,
+     755,
+     711,
+     792
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     186,
+     356,
+     263,
+     509
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     576,
+     570,
+     668,
+     808
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1477,
+     586,
+     1630,
+     820
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1263,
+     445,
+     1338,
+     646
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1195,
+     457,
+     1262,
+     630
+    ]
+   }
+  ],
+  "notes": "annotated locally via experiment_M4/local_annotator"
+ }
+]

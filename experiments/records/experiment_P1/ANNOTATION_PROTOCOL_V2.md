@@ -112,7 +112,7 @@ MUST NOT see, or use:
 
 ### Blinding exposure — disclosed
 
-The P1 operator read `EyeCU_S1_results/p0/P0_POSSESSION_BASELINE.json` during
+The P1 operator read `experiments/records/experiment_S1/p0/P0_POSSESSION_BASELINE.json` during
 orientation, **before** these 50 labels were assigned. That file lists, for all
 60 frames including the then-unlabelled 50, the fields `assigned_model_track`
 and `assigned_gt_id` under the **old, defective** mapping contract, and

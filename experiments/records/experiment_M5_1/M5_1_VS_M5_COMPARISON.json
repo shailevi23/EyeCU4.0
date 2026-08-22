@@ -1,0 +1,214 @@
+{
+ "overall": {
+  "player": {
+   "orig_AP50": 0.3125,
+   "corrected_AP50": 0.922,
+   "delta_AP50": 0.6095,
+   "orig_AP50_95": 0.1633,
+   "corrected_AP50_95": 0.3861,
+   "delta_AP50_95": 0.2228,
+   "orig_P": 0.4793,
+   "corrected_P": 0.8813,
+   "orig_R": 0.5627,
+   "corrected_R": 0.944
+  },
+  "goalkeeper": {
+   "orig_AP50": 0.1636,
+   "corrected_AP50": 0.5218,
+   "delta_AP50": 0.3582,
+   "orig_AP50_95": 0.078,
+   "corrected_AP50_95": 0.2056,
+   "delta_AP50_95": 0.1276,
+   "orig_P": 0.2222,
+   "corrected_P": 0.7407,
+   "orig_R": 0.1935,
+   "corrected_R": 0.5714
+  },
+  "referee": {
+   "orig_AP50": 0.2724,
+   "corrected_AP50": 0.6906,
+   "delta_AP50": 0.4182,
+   "orig_AP50_95": 0.1291,
+   "corrected_AP50_95": 0.3145,
+   "delta_AP50_95": 0.1854,
+   "orig_P": 0.3671,
+   "corrected_P": 0.7975,
+   "orig_R": 0.4603,
+   "corrected_R": 0.7241
+  },
+  "ball": {
+   "orig_AP50": 0.2979,
+   "corrected_AP50": 0.3357,
+   "delta_AP50": 0.0378,
+   "orig_AP50_95": 0.1699,
+   "corrected_AP50_95": 0.1726,
+   "delta_AP50_95": 0.0027,
+   "orig_P": 0.5676,
+   "corrected_P": 0.6216,
+   "orig_R": 0.4375,
+   "corrected_R": 0.4694
+  }
+ },
+ "mAP50": {
+  "orig": 0.2616,
+  "corrected": 0.6175,
+  "delta": 0.3559
+ },
+ "mAP50_95": {
+  "orig": 0.1351,
+  "corrected": 0.2697,
+  "delta": 0.1346
+ },
+ "per_sequence": {
+  "como_2-0_sassuolo": {
+   "player": {
+    "orig_AP50": 0.0027,
+    "corrected_AP50": 0.9405,
+    "delta_AP50": 0.9378,
+    "orig_AP50_95": 0.0004,
+    "corrected_AP50_95": 0.3144,
+    "delta_AP50_95": 0.314,
+    "orig_P": 0.0265,
+    "corrected_P": 0.9157,
+    "orig_R": 0.0342,
+    "corrected_R": 0.9572
+   },
+   "goalkeeper": {
+    "orig_AP50": 0.0,
+    "corrected_AP50": 0.7723,
+    "delta_AP50": 0.7723,
+    "orig_AP50_95": 0.0,
+    "corrected_AP50_95": 0.2797,
+    "delta_AP50_95": 0.2797,
+    "orig_P": 0.0,
+    "corrected_P": 0.9333,
+    "orig_R": 0.0,
+    "corrected_R": 0.7778
+   },
+   "referee": {
+    "orig_AP50": 0.0165,
+    "corrected_AP50": 0.691,
+    "delta_AP50": 0.6745,
+    "orig_AP50_95": 0.0066,
+    "corrected_AP50_95": 0.3014,
+    "delta_AP50_95": 0.2948,
+    "orig_P": 0.0244,
+    "corrected_P": 0.8537,
+    "orig_R": 0.04,
+    "corrected_R": 0.7143
+   },
+   "ball": {
+    "orig_AP50": 0.0,
+    "corrected_AP50": 0.0644,
+    "delta_AP50": 0.0644,
+    "orig_AP50_95": 0.0,
+    "corrected_AP50_95": 0.0082,
+    "delta_AP50_95": 0.0082,
+    "orig_P": 0.0,
+    "corrected_P": 0.4,
+    "orig_R": 0.0,
+    "corrected_R": 0.125
+   }
+  },
+  "manchester_city_v_liverpool": {
+   "player": {
+    "orig_AP50": 0.9723,
+    "corrected_AP50": 0.9723,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.4867,
+    "corrected_AP50_95": 0.4867,
+    "delta_AP50_95": 0.0,
+    "orig_P": 0.959,
+    "corrected_P": 0.959,
+    "orig_R": 0.9825,
+    "corrected_R": 0.9825
+   },
+   "goalkeeper": {
+    "orig_AP50": 0.6238,
+    "corrected_AP50": 0.6238,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.2948,
+    "corrected_AP50_95": 0.2948,
+    "delta_AP50_95": 0.0,
+    "orig_P": 0.4545,
+    "corrected_P": 0.4545,
+    "orig_R": 0.625,
+    "corrected_R": 0.625
+   },
+   "referee": {
+    "orig_AP50": 0.7814,
+    "corrected_AP50": 0.7814,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.3617,
+    "corrected_AP50_95": 0.3617,
+    "delta_AP50_95": 0.0,
+    "orig_P": 0.8148,
+    "corrected_P": 0.8148,
+    "orig_R": 0.8148,
+    "corrected_R": 0.8148
+   },
+   "ball": {
+    "orig_AP50": 0.1056,
+    "corrected_AP50": 0.1056,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.0172,
+    "corrected_AP50_95": 0.0172,
+    "delta_AP50_95": 0.0,
+    "orig_P": 0.3125,
+    "corrected_P": 0.3125,
+    "orig_R": 0.3125,
+    "corrected_R": 0.3125
+   }
+  },
+  "youth_2": {
+   "player": {
+    "orig_AP50": 0.7925,
+    "corrected_AP50": 0.7925,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.5084,
+    "corrected_AP50_95": 0.5084,
+    "delta_AP50_95": 0.0,
+    "orig_P": 0.7048,
+    "corrected_P": 0.7048,
+    "orig_R": 0.8506,
+    "corrected_R": 0.8506
+   },
+   "goalkeeper": {
+    "orig_AP50": 0.1188,
+    "corrected_AP50": 0.1188,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.095,
+    "corrected_AP50_95": 0.095,
+    "delta_AP50_95": 0.0,
+    "orig_P": 1.0,
+    "corrected_P": 1.0,
+    "orig_R": 0.1111,
+    "corrected_R": 0.1111
+   },
+   "referee": {
+    "orig_AP50": 0.4421,
+    "corrected_AP50": 0.4421,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.3008,
+    "corrected_AP50_95": 0.3008,
+    "delta_AP50_95": 0.0,
+    "orig_P": 0.5455,
+    "corrected_P": 0.5455,
+    "orig_R": 0.5455,
+    "corrected_R": 0.5455
+   },
+   "ball": {
+    "orig_AP50": 0.9406,
+    "corrected_AP50": 0.9406,
+    "delta_AP50": 0.0,
+    "orig_AP50_95": 0.655,
+    "corrected_AP50_95": 0.655,
+    "delta_AP50_95": 0.0,
+    "orig_P": 1.0,
+    "corrected_P": 1.0,
+    "orig_R": 0.9412,
+    "corrected_R": 0.9412
+   }
+  }
+ }
+}

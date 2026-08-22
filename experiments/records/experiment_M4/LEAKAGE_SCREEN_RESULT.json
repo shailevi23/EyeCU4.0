@@ -1,0 +1,618 @@
+{
+ "method": {
+  "layer1_exact_sha256": true,
+  "layer2_perceptual_candidate": "dhash, 8 dihedral orientations, Hamming <= 10 (reused unmodified from tools/extdata_leakage.py)",
+  "layer3_verification": "NCC >= 0.95 (reused unmodified threshold)",
+  "reference_pool_size": 2231,
+  "reference_pool_sources": [
+   "data/dataset_baseline/images/train",
+   "data/dataset_baseline/images/val",
+   "data/tracking_val_gt/sequences/*/img1"
+  ]
+ },
+ "n_candidates": 60,
+ "n_leaks_found": 0,
+ "leaking_frames": [],
+ "results": [
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 37,
+   "frame_number_1based": 38,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000038.jpg",
+   "sha256": "2eac9a531e00a451f3abef525629ee842e488a171a5982cd41046da4243a5090",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 112,
+   "frame_number_1based": 113,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000113.jpg",
+   "sha256": "9ac7cc5a34eadefaff01b3c898cd0fbd5f0e834935dc1b1f71b3f2f4a462175b",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 187,
+   "frame_number_1based": 188,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000188.jpg",
+   "sha256": "d89a26486cf952190bfba615f418ccfe8e22109d6c3a3172a13420efc9daa30b",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 262,
+   "frame_number_1based": 263,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000263.jpg",
+   "sha256": "215d7898e079f09ec8adea81e455b19b9340c8616e8a135f8e8c4c3478cf4ba7",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 337,
+   "frame_number_1based": 338,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000338.jpg",
+   "sha256": "148778dfdc3ec399b9ecc46812553cc3b9ae2efe50c660a6606b7da9cd77c47d",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 412,
+   "frame_number_1based": 413,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000413.jpg",
+   "sha256": "8bd9107788e036eec87298c3c492f745963e16bd6f5541543103331aabfd53af",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 487,
+   "frame_number_1based": 488,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000488.jpg",
+   "sha256": "392c4a7ed3da3f7817bd5784633f3106993ce07d01931dccc76eccc65e98a880",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 562,
+   "frame_number_1based": 563,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000563.jpg",
+   "sha256": "06b8a0d509cf08b1731337f520a21e9a9a6708d55ddc2cbe90b25dee6bbcc486",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 637,
+   "frame_number_1based": 638,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000638.jpg",
+   "sha256": "c3cedd74f7eb4c168ba54fe0b7ff12e4a710841d612e324696256e6006630b8e",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 712,
+   "frame_number_1based": 713,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000713.jpg",
+   "sha256": "8f226168a5d610c2c33266d677c5cbdced139506d64df746071f0cf8fc9e5429",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 788,
+   "frame_number_1based": 789,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000789.jpg",
+   "sha256": "f3b33f13a7c13acc4a8339f88755321a0cff63f360e3fa8836535b1c317f7ad5",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 863,
+   "frame_number_1based": 864,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000864.jpg",
+   "sha256": "216728bb73c46f0d9fa9ac0fe4cba9113b7e7fd886deb13181a5d8077ba914c1",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 938,
+   "frame_number_1based": 939,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000939.jpg",
+   "sha256": "eb99b6ce19a59c30ef2ff12e11ec2281ac4548019baa76606907a2eecabc1c1f",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 1013,
+   "frame_number_1based": 1014,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001014.jpg",
+   "sha256": "141db618a041a6cf29ee00353a5d4324b44a3bf654e17da22c7b9abc9fa62343",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 1088,
+   "frame_number_1based": 1089,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001089.jpg",
+   "sha256": "2cb94912b8bc572f8fbd02cc5bc348f5bc1df84a20f0e9ca32d22ec4bb0e69f4",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 1163,
+   "frame_number_1based": 1164,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001164.jpg",
+   "sha256": "48185d0f226e67b67157a9db3d655db3b130442a83e3e569b5a104e422576918",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 1238,
+   "frame_number_1based": 1239,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001239.jpg",
+   "sha256": "b3e33aa066a8136a288e1e2dcc2f1668006d90417f34ab237a80d2f1950be6ab",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 1313,
+   "frame_number_1based": 1314,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001314.jpg",
+   "sha256": "81cc6bcfa229a5b55e64e3bf7d4581178d59f3da23e64e31c75691c1ee4892e4",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 1388,
+   "frame_number_1based": 1389,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001389.jpg",
+   "sha256": "5170ec5f4dbc86707cf8b3a958151fa651c4a807f7b877e8bd3f8ba4778ad219",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "como_2-0_sassuolo",
+   "frame_index_0based": 1463,
+   "frame_number_1based": 1464,
+   "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001464.jpg",
+   "sha256": "18345203f138abe93164ddada458cbff64aa5ef191cd00d22a7b42dee21036c8",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 37,
+   "frame_number_1based": 38,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000038.jpg",
+   "sha256": "a8b5ee095047cfe3aec7c4993ebb18d8c13fa82b162db4594484d1fea1261031",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 112,
+   "frame_number_1based": 113,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000113.jpg",
+   "sha256": "985275a7af0a106ae4694928940e7cfdd189d2e8fc5279843b4b3d40583cbccd",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 187,
+   "frame_number_1based": 188,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000188.jpg",
+   "sha256": "38ee606a26987c573d3ce738e830bdfa2c573856a22f857f6d8f745d6a2a394a",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 262,
+   "frame_number_1based": 263,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000263.jpg",
+   "sha256": "03953cf2175a87388d96c517780fa3b0f14b9ca3ee79185aef2bd51bed63e704",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 337,
+   "frame_number_1based": 338,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000338.jpg",
+   "sha256": "e6e881db1a8fc373c4a36759ac1324f6b56225216918b24c26fdde8b87b25eea",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 412,
+   "frame_number_1based": 413,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000413.jpg",
+   "sha256": "d960d5fb2cf027a64c958c980bbff4989fcb3035926fbb9fd2229032f884c273",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 487,
+   "frame_number_1based": 488,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000488.jpg",
+   "sha256": "801d1356de18b7705f9a5e86f627069865afcc96a6c907549e685d978c4d8926",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 562,
+   "frame_number_1based": 563,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000563.jpg",
+   "sha256": "98165945b4aef65347385ff0697806241c5d7b6728a2cf03076285c2c135e9d1",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 637,
+   "frame_number_1based": 638,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000638.jpg",
+   "sha256": "bfbf607519480b2231235e49bdcfd7f5e8d8a6876126affcdd30c1a25473ff48",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 712,
+   "frame_number_1based": 713,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000713.jpg",
+   "sha256": "488e7c8be50208f65251c3161ad5e0838e12c1f056cbb81b16b0cd2426f9ded5",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 787,
+   "frame_number_1based": 788,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000788.jpg",
+   "sha256": "debf7848e953217955019cb14c12469ca576ffb64a320a5b7b27a6903d6006d1",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 862,
+   "frame_number_1based": 863,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000863.jpg",
+   "sha256": "ac9a1265a528530a8f0dfa1bbbdb4f736296a00fbdafe7d8abf6fe4892518ea6",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 937,
+   "frame_number_1based": 938,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000938.jpg",
+   "sha256": "538c9257cc38ef7a870fb3ed509d8f7b3d9aaccebe93533b90fbd045bdd14eb0",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 1012,
+   "frame_number_1based": 1013,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001013.jpg",
+   "sha256": "594594e973b79eafe7dd25e4def3529cc0977844c9820fdec463f344d7267214",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 1087,
+   "frame_number_1based": 1088,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001088.jpg",
+   "sha256": "bd1e8772993f460c4aa4a00ce42daab61ff2cee199b9865a07683adc3cfd2114",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 1162,
+   "frame_number_1based": 1163,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001163.jpg",
+   "sha256": "d6850322331a5322605d0c1069d22387089c1d36e78e904362bf768865c30c16",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 1237,
+   "frame_number_1based": 1238,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001238.jpg",
+   "sha256": "e0a1b1f32e77dbca20dc3dca731f1755f310eedf0340860899dad2d479644f12",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 1312,
+   "frame_number_1based": 1313,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001313.jpg",
+   "sha256": "066b5f37802fc1603d1d11da9a61a43c99fa2d1baa841921db92119fa17ea813",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 1387,
+   "frame_number_1based": 1388,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001388.jpg",
+   "sha256": "7e0d6ee8f41be06ae8ebcfa7cfb11bd2ee1e93e7bd7feb14230cb905794c9328",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "manchester_city_v_liverpool",
+   "frame_index_0based": 1462,
+   "frame_number_1based": 1463,
+   "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001463.jpg",
+   "sha256": "ca464a11d2f29c354e3d9984ec260a5a6199cd373fc95707f59e95795829ba48",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 39,
+   "frame_number_1based": 40,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000040.jpg",
+   "sha256": "045e5fba5dac4b56e610a1d9948b6590b88d33ba1e0302f0b27d490f9a7ca1a2",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 117,
+   "frame_number_1based": 118,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000118.jpg",
+   "sha256": "f16c4421178bc0890eeeb095fcd0697fbaf8690d62e1571ba4bf1e421318392c",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 195,
+   "frame_number_1based": 196,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000196.jpg",
+   "sha256": "23b8502b03746293fe5b5928c668fba8ab61df6d3112ef9eefcf38853e9a68fa",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 273,
+   "frame_number_1based": 274,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000274.jpg",
+   "sha256": "53a33b0c6bb3fd2c02a81bed94d00d915450f0d4fbf003e632bffbd55d08aa7b",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 351,
+   "frame_number_1based": 352,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000352.jpg",
+   "sha256": "ccb9bca76e234bbbedbb5d6adbfab1f7be4652bc5a2f87a04b6541dd423bbb93",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 429,
+   "frame_number_1based": 430,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000430.jpg",
+   "sha256": "cb2f776a8fdfca1973cdb6cc11886f53891c803a85af0bf912d1cfecd7912425",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 507,
+   "frame_number_1based": 508,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000508.jpg",
+   "sha256": "2851a8b492d78b5f7c77f01dc07686b085c8e9866e329a2832febdcba68d7028",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 585,
+   "frame_number_1based": 586,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000586.jpg",
+   "sha256": "ed4d18b5fb79c825b9f8eb8168b94c75bd9235ff52eea2323affb0cad8f62009",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 663,
+   "frame_number_1based": 664,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000664.jpg",
+   "sha256": "b2ad2897d51d336ae3000373a20971141ea484aa9ac42f9dc4295a370969180f",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 741,
+   "frame_number_1based": 742,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000742.jpg",
+   "sha256": "631c3d61b8e3c3e7482131233903fcd1361cd0b16ebeb3817817a09f8e0d1e89",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 819,
+   "frame_number_1based": 820,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000820.jpg",
+   "sha256": "fdcea3308e4f3d5916ea5db37bbcd2e8f8e9300a24033fa49d8648526d46066f",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 897,
+   "frame_number_1based": 898,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000898.jpg",
+   "sha256": "4a4e3278efefcdbc1e876df3f5547bda61b7c1a95d3fc69d1fd887641c7501df",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 975,
+   "frame_number_1based": 976,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000976.jpg",
+   "sha256": "704c58cbb25aeeb8db486804f27a11b8fd9f83bbfffd09ce3e3379430d98701b",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 1053,
+   "frame_number_1based": 1054,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001054.jpg",
+   "sha256": "54236f68177fd69cc3b805e9268d85475079e2424eed7cb93f66cf62fa4a6548",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 1131,
+   "frame_number_1based": 1132,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001132.jpg",
+   "sha256": "81243cab0a0ab0163dda22c36a6245cee1c4c9e0481701d0e146e43e4acc4cd7",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 1209,
+   "frame_number_1based": 1210,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001210.jpg",
+   "sha256": "91aca007cb7dbe864fdd1e98e65ea2384afd5256ef7415d706c1e43d5da0ddae",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 1287,
+   "frame_number_1based": 1288,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001288.jpg",
+   "sha256": "b0cb32afa38fa4ce0e8d9fb1e62c75eaa094e32b7827a8f8ec534d608102ee9a",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 1365,
+   "frame_number_1based": 1366,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001366.jpg",
+   "sha256": "ff26d96d0daf13b667fe2164c851b392947dbd896d742fdc7febc2c09ff632c2",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 1443,
+   "frame_number_1based": 1444,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001444.jpg",
+   "sha256": "1d9d698e7e429815aedc46b4c202c928ea4d3e79f17e9cf5a437024e7d690389",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  },
+  {
+   "sequence": "youth_2",
+   "frame_index_0based": 1521,
+   "frame_number_1based": 1522,
+   "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001522.jpg",
+   "sha256": "ce5ce7e6170ff187c1be94a067ead2467d5006aa3b076d3e3eae9dc58f83a724",
+   "exact_duplicate_of": [],
+   "perceptual_hits": [],
+   "is_leak": false
+  }
+ ]
+}

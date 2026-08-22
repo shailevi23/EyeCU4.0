@@ -1,0 +1,151 @@
+{
+ "CHECK": "D2 SN3D ball-branch contract regression",
+ "checks": {
+  "human_regression": {
+   "counts": {
+    "player": {
+     "eyecu": 3806,
+     "sn3d": 3806
+    },
+    "goalkeeper": {
+     "eyecu": 85,
+     "sn3d": 85
+    },
+    "referee": {
+     "eyecu": 486,
+     "sn3d": 486
+    }
+   },
+   "frames_with_any_difference": 0,
+   "differing_frames": [],
+   "identical": true
+  },
+  "cbiou_separation": {
+   "filter": "football_tracker.py:373-378  if class_name not in HUMAN_CLASSES: continue",
+   "ball_boxes_passing_filter": 0,
+   "ball_enters_cbiou": false
+  },
+  "ball_contract": {
+   "accepted_ball_detections": 142,
+   "schema": "{'bbox':[x1,y1,x2,y2], 'class':'ball', 'confidence':float} (+ 'state' with pool on)",
+   "canonical_class_id": 3,
+   "classes": [
+    "player",
+    "goalkeeper",
+    "referee",
+    "ball"
+   ],
+   "invalid_records": 0,
+   "examples": [],
+   "frames_with_0_balls": 174,
+   "frames_with_1_ball": 134,
+   "frames_with_more_than_1_ball": 4,
+   "valid": true
+  },
+  "sn3d_regression": {
+   "expected_source": "EyeCU_S1_results\\s1d\\S1D_RESULTS.json",
+   "expected": {
+    "temporal": {
+     "recall_tp": 59,
+     "hard": 12,
+     "overlap": 11,
+     "events": 9,
+     "empty_fired": 2,
+     "iou50": 57,
+     "hard_files": [
+      "austin_fc_vs__club_tijuana_tv001341.jpg",
+      "austin_fc_vs__club_tijuana_tv001377.jpg",
+      "austin_fc_vs__club_tijuana_tv001395.jpg",
+      "bayern_munich_3-1_chelsea_tv001070.jpg",
+      "bayern_munich_3-1_chelsea_tv001080.jpg",
+      "bayern_munich_3-1_chelsea_tv001085.jpg",
+      "youth_premier_league_tv000662.jpg",
+      "youth_premier_league_tv001088.jpg",
+      "youth_premier_league_tv001113.jpg",
+      "youth_premier_league_tv001123.jpg",
+      "youth_premier_league_tv001128.jpg",
+      "youth_premier_league_tv001138.jpg"
+     ]
+    },
+    "static": {
+     "overall": {
+      "centre_4px": 69,
+      "iou50": 60
+     },
+     "youth": {
+      "centre_4px": 22,
+      "iou50": 20
+     },
+     "non_youth": {
+      "centre_4px": 47,
+      "iou50": 40
+     },
+     "overlap": {
+      "centre_4px": 15,
+      "iou50": 8
+     },
+     "non_overlap": {
+      "centre_4px": 54,
+      "iou50": 52
+     }
+    }
+   },
+   "got": {
+    "temporal": {
+     "recall_tp": 59,
+     "hard": 12,
+     "overlap": 11,
+     "events": 9,
+     "empty_fired": 2,
+     "iou50": 57,
+     "hard_files": [
+      "austin_fc_vs__club_tijuana_tv001341.jpg",
+      "austin_fc_vs__club_tijuana_tv001377.jpg",
+      "austin_fc_vs__club_tijuana_tv001395.jpg",
+      "bayern_munich_3-1_chelsea_tv001070.jpg",
+      "bayern_munich_3-1_chelsea_tv001080.jpg",
+      "bayern_munich_3-1_chelsea_tv001085.jpg",
+      "youth_premier_league_tv000662.jpg",
+      "youth_premier_league_tv001088.jpg",
+      "youth_premier_league_tv001113.jpg",
+      "youth_premier_league_tv001123.jpg",
+      "youth_premier_league_tv001128.jpg",
+      "youth_premier_league_tv001138.jpg"
+     ]
+    },
+    "static": {
+     "overall": {
+      "centre_4px": 69,
+      "iou50": 60
+     },
+     "youth": {
+      "centre_4px": 22,
+      "iou50": 20
+     },
+     "non_youth": {
+      "centre_4px": 47,
+      "iou50": 40
+     },
+     "overlap": {
+      "centre_4px": 15,
+      "iou50": 8
+     },
+     "non_overlap": {
+      "centre_4px": 54,
+      "iou50": 52
+     }
+    }
+   },
+   "matches": true
+  }
+ },
+ "adapter_type": "TwoBranchDetector",
+ "is_two_branch": true,
+ "runtime_ms_per_frame": {
+  "eyecu_temporal": 150.3,
+  "sn3d_temporal": 1831.4,
+  "eyecu_static": 378.1,
+  "sn3d_static": 1985.5
+ },
+ "PASS": true
+}

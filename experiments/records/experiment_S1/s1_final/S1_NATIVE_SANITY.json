@@ -1,0 +1,530 @@
+{
+ "CONTROL_ONLY": true,
+ "note": "Tiny native-domain sanity control. Not a benchmark, no statistical claim, carries no promotion criterion.",
+ "sample": {
+  "source": "official ISSIA-CNR Soccer, WASB-SBDT setup_soccer.sh; GT from official soccer_annos.zip",
+  "video": "ID-5.avi",
+  "video_role": "ID-5 is an official soccer TEST video (configs/dataset/soccer.yaml)",
+  "native_resolution": "1920x1080",
+  "video_frames": 3002,
+  "target_frame_ids": [
+   421,
+   422,
+   423,
+   424,
+   425,
+   426,
+   427,
+   428,
+   429,
+   430
+  ],
+  "n_targets": 10,
+  "gt_rule": "outside=0, used_in_game=1, occluded=0 (official load_xml)",
+  "frame_index_base": "0-based sequential decode (extract_frame_soccer cnt=0)",
+  "large_download_required": "NO -- 86 KB annotations + one 43 MB zip member pulled by HTTP range; the 292 MB Sequences.zip was never downloaded"
+ },
+ "official_rule": {
+  "score_threshold": 0.5,
+  "dist_threshold_px": 4.0,
+  "coordinate_system": "original 1920x1080 frame",
+  "selection": "tracker=intra_frame_peak"
+ },
+ "models": {
+  "DeepBall": {
+   "sanity": "PASS",
+   "params": 66226,
+   "position": "pos0",
+   "gt_positives": 10,
+   "predictions_emitted": 2,
+   "tp_within_4px": 1,
+   "recall": 0.1,
+   "dist_median_px": 5.33,
+   "dist_min_px": 2.88,
+   "dist_max_px": 7.78,
+   "frames_skipped_no_context": 0,
+   "per_frame": [
+    {
+     "frame": 421,
+     "predicted": false
+    },
+    {
+     "frame": 422,
+     "predicted": false
+    },
+    {
+     "frame": 423,
+     "predicted": false
+    },
+    {
+     "frame": 424,
+     "predicted": false
+    },
+    {
+     "frame": 425,
+     "predicted": false
+    },
+    {
+     "frame": 426,
+     "predicted": false
+    },
+    {
+     "frame": 427,
+     "predicted": false
+    },
+    {
+     "frame": 428,
+     "predicted": false
+    },
+    {
+     "frame": 429,
+     "predicted": true,
+     "pred_xy": [
+      1284.0,
+      90.0
+     ],
+     "gt_xy": [
+      1286.4,
+      88.4
+     ],
+     "dist_px": 2.88,
+     "tp": true
+    },
+    {
+     "frame": 430,
+     "predicted": true,
+     "pred_xy": [
+      1254.0,
+      96.0
+     ],
+     "gt_xy": [
+      1261.0,
+      99.4
+     ],
+     "dist_px": 7.78,
+     "tp": false
+    }
+   ]
+  },
+  "DeepBall-Large": {
+   "sanity": "PASS",
+   "params": 1026754,
+   "position": "pos0",
+   "gt_positives": 10,
+   "predictions_emitted": 2,
+   "tp_within_4px": 2,
+   "recall": 0.2,
+   "dist_median_px": 2.84,
+   "dist_min_px": 2.79,
+   "dist_max_px": 2.88,
+   "frames_skipped_no_context": 0,
+   "per_frame": [
+    {
+     "frame": 421,
+     "predicted": false
+    },
+    {
+     "frame": 422,
+     "predicted": false
+    },
+    {
+     "frame": 423,
+     "predicted": false
+    },
+    {
+     "frame": 424,
+     "predicted": false
+    },
+    {
+     "frame": 425,
+     "predicted": false
+    },
+    {
+     "frame": 426,
+     "predicted": false
+    },
+    {
+     "frame": 427,
+     "predicted": false
+    },
+    {
+     "frame": 428,
+     "predicted": false
+    },
+    {
+     "frame": 429,
+     "predicted": true,
+     "pred_xy": [
+      1284.0,
+      90.0
+     ],
+     "gt_xy": [
+      1286.4,
+      88.4
+     ],
+     "dist_px": 2.88,
+     "tp": true
+    },
+    {
+     "frame": 430,
+     "predicted": true,
+     "pred_xy": [
+      1260.0,
+      102.0
+     ],
+     "gt_xy": [
+      1261.0,
+      99.4
+     ],
+     "dist_px": 2.79,
+     "tp": true
+    }
+   ]
+  },
+  "BallSeg": {
+   "sanity": "PASS",
+   "params": 12698297,
+   "position": "pos0",
+   "gt_positives": 10,
+   "predictions_emitted": 4,
+   "tp_within_4px": 2,
+   "recall": 0.2,
+   "dist_median_px": 15.58,
+   "dist_min_px": 2.9,
+   "dist_max_px": 31.18,
+   "frames_skipped_no_context": 0,
+   "per_frame": [
+    {
+     "frame": 421,
+     "predicted": false
+    },
+    {
+     "frame": 422,
+     "predicted": false
+    },
+    {
+     "frame": 423,
+     "predicted": true,
+     "pred_xy": [
+      1412.6,
+      33.03
+     ],
+     "gt_xy": [
+      1442.5,
+      24.2
+     ],
+     "dist_px": 31.18,
+     "tp": false
+    },
+    {
+     "frame": 424,
+     "predicted": true,
+     "pred_xy": [
+      1412.81,
+      32.81
+     ],
+     "gt_xy": [
+      1415.1,
+      34.6
+     ],
+     "dist_px": 2.9,
+     "tp": true
+    },
+    {
+     "frame": 425,
+     "predicted": false
+    },
+    {
+     "frame": 426,
+     "predicted": false
+    },
+    {
+     "frame": 427,
+     "predicted": false
+    },
+    {
+     "frame": 428,
+     "predicted": true,
+     "pred_xy": [
+      1285.31,
+      85.31
+     ],
+     "gt_xy": [
+      1311.8,
+      76.6
+     ],
+     "dist_px": 27.88,
+     "tp": false
+    },
+    {
+     "frame": 429,
+     "predicted": true,
+     "pred_xy": [
+      1285.31,
+      85.31
+     ],
+     "gt_xy": [
+      1286.4,
+      88.4
+     ],
+     "dist_px": 3.27,
+     "tp": true
+    },
+    {
+     "frame": 430,
+     "predicted": false
+    }
+   ]
+  },
+  "TrackNetV2": {
+   "sanity": "PASS",
+   "params": 11334147,
+   "position": "pos1",
+   "gt_positives": 10,
+   "predictions_emitted": 8,
+   "tp_within_4px": 7,
+   "recall": 0.7,
+   "dist_median_px": 3.03,
+   "dist_min_px": 1.6,
+   "dist_max_px": 9.81,
+   "frames_skipped_no_context": 0,
+   "per_frame": [
+    {
+     "frame": 421,
+     "predicted": true,
+     "pred_xy": [
+      1492.92,
+      5.83
+     ],
+     "gt_xy": [
+      1495.1,
+      8.0
+     ],
+     "dist_px": 3.08,
+     "tp": true
+    },
+    {
+     "frame": 422,
+     "predicted": true,
+     "pred_xy": [
+      1464.81,
+      16.44
+     ],
+     "gt_xy": [
+      1468.6,
+      15.9
+     ],
+     "dist_px": 3.83,
+     "tp": true
+    },
+    {
+     "frame": 423,
+     "predicted": true,
+     "pred_xy": [
+      1439.56,
+      24.71
+     ],
+     "gt_xy": [
+      1442.5,
+      24.2
+     ],
+     "dist_px": 2.98,
+     "tp": true
+    },
+    {
+     "frame": 424,
+     "predicted": true,
+     "pred_xy": [
+      1413.75,
+      33.75
+     ],
+     "gt_xy": [
+      1415.1,
+      34.6
+     ],
+     "dist_px": 1.6,
+     "tp": true
+    },
+    {
+     "frame": 425,
+     "predicted": true,
+     "pred_xy": [
+      1380.0,
+      45.0
+     ],
+     "gt_xy": [
+      1389.8,
+      44.5
+     ],
+     "dist_px": 9.81,
+     "tp": false
+    },
+    {
+     "frame": 426,
+     "predicted": false
+    },
+    {
+     "frame": 427,
+     "predicted": false
+    },
+    {
+     "frame": 428,
+     "predicted": true,
+     "pred_xy": [
+      1310.25,
+      73.5
+     ],
+     "gt_xy": [
+      1311.8,
+      76.6
+     ],
+     "dist_px": 3.47,
+     "tp": true
+    },
+    {
+     "frame": 429,
+     "predicted": true,
+     "pred_xy": [
+      1285.54,
+      85.71
+     ],
+     "gt_xy": [
+      1286.4,
+      88.4
+     ],
+     "dist_px": 2.82,
+     "tp": true
+    },
+    {
+     "frame": 430,
+     "predicted": true,
+     "pred_xy": [
+      1260.0,
+      97.5
+     ],
+     "gt_xy": [
+      1261.0,
+      99.4
+     ],
+     "dist_px": 2.15,
+     "tp": true
+    }
+   ]
+  },
+  "ResTrackNetV2": {
+   "sanity": "PASS",
+   "params": 1210451,
+   "position": "pos1",
+   "gt_positives": 10,
+   "predictions_emitted": 6,
+   "tp_within_4px": 6,
+   "recall": 0.6,
+   "dist_median_px": 3.22,
+   "dist_min_px": 2.2,
+   "dist_max_px": 3.97,
+   "frames_skipped_no_context": 0,
+   "per_frame": [
+    {
+     "frame": 421,
+     "predicted": true,
+     "pred_xy": [
+      1492.5,
+      5.0
+     ],
+     "gt_xy": [
+      1495.1,
+      8.0
+     ],
+     "dist_px": 3.97,
+     "tp": true
+    },
+    {
+     "frame": 422,
+     "predicted": false
+    },
+    {
+     "frame": 423,
+     "predicted": false
+    },
+    {
+     "frame": 424,
+     "predicted": true,
+     "pred_xy": [
+      1413.91,
+      31.47
+     ],
+     "gt_xy": [
+      1415.1,
+      34.6
+     ],
+     "dist_px": 3.35,
+     "tp": true
+    },
+    {
+     "frame": 425,
+     "predicted": false
+    },
+    {
+     "frame": 426,
+     "predicted": true,
+     "pred_xy": [
+      1361.25,
+      52.5
+     ],
+     "gt_xy": [
+      1363.3,
+      54.0
+     ],
+     "dist_px": 2.54,
+     "tp": true
+    },
+    {
+     "frame": 427,
+     "predicted": false
+    },
+    {
+     "frame": 428,
+     "predicted": true,
+     "pred_xy": [
+      1310.72,
+      73.62
+     ],
+     "gt_xy": [
+      1311.8,
+      76.6
+     ],
+     "dist_px": 3.17,
+     "tp": true
+    },
+    {
+     "frame": 429,
+     "predicted": true,
+     "pred_xy": [
+      1285.31,
+      85.31
+     ],
+     "gt_xy": [
+      1286.4,
+      88.4
+     ],
+     "dist_px": 3.27,
+     "tp": true
+    },
+    {
+     "frame": 430,
+     "predicted": true,
+     "pred_xy": [
+      1259.62,
+      97.69
+     ],
+     "gt_xy": [
+      1261.0,
+      99.4
+     ],
+     "dist_px": 2.2,
+     "tp": true
+    }
+   ]
+  }
+ }
+}

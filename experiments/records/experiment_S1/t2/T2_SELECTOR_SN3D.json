@@ -1,0 +1,99 @@
+{
+ "EXPERIMENT": "T2 BallTemporalSelector re-baseline under SN3D",
+ "DIAGNOSTIC_ONLY": true,
+ "parameters_modified": "NONE",
+ "ball_branch": {
+  "backend": "sn3d",
+  "path": "C:\\Users\\shail\\OneDrive\\\u05e9\u05d5\u05dc\u05d7\u05df \u05d4\u05e2\u05d1\u05d5\u05d3\u05d4\\AI Course\\EyeCU4.0\\models\\third_party\\soccernet_v3d\\yolo-sn-ball.pt",
+  "sha256": "e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b",
+  "imgsz": 1280,
+  "accept_conf": 0.25,
+  "detector_type": "TwoBranchDetector"
+ },
+ "population": {
+  "frames": 104,
+  "gt_ball": 77,
+  "empty": 27,
+  "hard": 24,
+  "overlap": 20,
+  "events": 15
+ },
+ "camera_cuts_detected": 5,
+ "states": {
+  "unknown": 38,
+  "observed": 62,
+  "recovered_low_conf": 2,
+  "interpolated_short_gap": 2
+ },
+ "centre_4px": {
+  "raw": {
+   "total": 59,
+   "observed": 59,
+   "recovered": 0,
+   "interpolated": 0,
+   "hard": 12,
+   "overlap": 11,
+   "events": 9,
+   "empty_fired": 2
+  },
+  "selector": {
+   "total": 62,
+   "observed": 59,
+   "recovered": 2,
+   "interpolated": 1,
+   "hard": 15,
+   "overlap": 14,
+   "events": 10,
+   "empty_fired": 3
+  },
+  "preservation": {
+   "raw_hits": 59,
+   "preserved": 59,
+   "lost_by_selector": [],
+   "new_recoveries": [
+    "bayern_munich_3-1_chelsea_tv001075.jpg",
+    "bayern_munich_3-1_chelsea_tv001090.jpg",
+    "women_1_tv001149.jpg"
+   ],
+   "hard_raw": 12,
+   "hard_preserved": 12,
+   "overlap_raw": 11,
+   "overlap_preserved": 11
+  }
+ },
+ "iou50": {
+  "raw": {
+   "total": 57,
+   "observed": 57,
+   "recovered": 0,
+   "interpolated": 0,
+   "hard": 11,
+   "overlap": 11,
+   "events": 8,
+   "empty_fired": 2
+  },
+  "selector": {
+   "total": 59,
+   "observed": 57,
+   "recovered": 2,
+   "interpolated": 0,
+   "hard": 13,
+   "overlap": 13,
+   "events": 9,
+   "empty_fired": 3
+  },
+  "preservation": {
+   "raw_hits": 57,
+   "preserved": 57,
+   "lost_by_selector": [],
+   "new_recoveries": [
+    "bayern_munich_3-1_chelsea_tv001075.jpg",
+    "women_1_tv001149.jpg"
+   ],
+   "hard_raw": 11,
+   "hard_preserved": 11,
+   "overlap_raw": 11,
+   "overlap_preserved": 11
+  }
+ }
+}

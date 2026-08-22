@@ -1,0 +1,359 @@
+{
+  "mixed_track_count_total": 10,
+  "mixed_track_count_by_match": {
+    "bayern_munich_3-1_chelsea": 4,
+    "chelsea_v_leeds_united": 6
+  },
+  "per_track_analysis": {
+    "bayern_munich_3-1_chelsea:13": {
+      "n_appearances": 370,
+      "n_usable": 370,
+      "center_distance_bgr": 66.00763357591363,
+      "separation_ratio": 5.908535530232642,
+      "minority_fraction": 0.1972972972972973,
+      "minority_runs": [
+        [
+          174,
+          174
+        ],
+        [
+          179,
+          179
+        ],
+        [
+          303,
+          374
+        ]
+      ],
+      "longest_minority_run_len": 72,
+      "contiguous_switch_like": true,
+      "classification": "ABRUPT_SUSTAINED_TRANSITION"
+    },
+    "bayern_munich_3-1_chelsea:4": {
+      "n_appearances": 369,
+      "n_usable": 369,
+      "center_distance_bgr": 47.5464750766146,
+      "separation_ratio": 5.596218583060463,
+      "minority_fraction": 0.48509485094850946,
+      "minority_runs": [
+        [
+          88,
+          90
+        ],
+        [
+          95,
+          99
+        ],
+        [
+          106,
+          109
+        ],
+        [
+          115,
+          125
+        ],
+        [
+          132,
+          133
+        ],
+        [
+          141,
+          142
+        ],
+        [
+          190,
+          190
+        ],
+        [
+          195,
+          220
+        ],
+        [
+          225,
+          235
+        ],
+        [
+          239,
+          239
+        ],
+        [
+          243,
+          243
+        ],
+        [
+          247,
+          374
+        ]
+      ],
+      "longest_minority_run_len": 128,
+      "contiguous_switch_like": true,
+      "classification": "ABRUPT_SUSTAINED_TRANSITION"
+    },
+    "bayern_munich_3-1_chelsea:18": {
+      "n_appearances": 356,
+      "n_usable": 356,
+      "center_distance_bgr": 38.61599307947495,
+      "separation_ratio": 4.424193677066691,
+      "minority_fraction": 0.4353932584269663,
+      "minority_runs": [
+        [
+          1,
+          7
+        ],
+        [
+          70,
+          70
+        ],
+        [
+          111,
+          115
+        ],
+        [
+          119,
+          119
+        ],
+        [
+          138,
+          139
+        ],
+        [
+          170,
+          170
+        ],
+        [
+          210,
+          210
+        ],
+        [
+          216,
+          355
+        ]
+      ],
+      "longest_minority_run_len": 140,
+      "contiguous_switch_like": true,
+      "classification": "ABRUPT_SUSTAINED_TRANSITION"
+    },
+    "bayern_munich_3-1_chelsea:6": {
+      "n_appearances": 347,
+      "n_usable": 347,
+      "center_distance_bgr": 45.650266465563284,
+      "separation_ratio": 5.720815964337895,
+      "minority_fraction": 0.3659942363112392,
+      "minority_runs": [
+        [
+          0,
+          19
+        ],
+        [
+          23,
+          78
+        ],
+        [
+          105,
+          107
+        ],
+        [
+          170,
+          172
+        ],
+        [
+          179,
+          179
+        ],
+        [
+          218,
+          218
+        ],
+        [
+          226,
+          246
+        ],
+        [
+          250,
+          273
+        ],
+        [
+          329,
+          330
+        ],
+        [
+          353,
+          357
+        ],
+        [
+          365,
+          368
+        ]
+      ],
+      "longest_minority_run_len": 56,
+      "contiguous_switch_like": false,
+      "classification": "INTERMITTENT_CONTAMINATION"
+    },
+    "chelsea_v_leeds_united:33": {
+      "n_appearances": 237,
+      "n_usable": 237,
+      "center_distance_bgr": 204.81197305701667,
+      "separation_ratio": 13.888398617825517,
+      "minority_fraction": 0.08438818565400844,
+      "minority_runs": [
+        [
+          280,
+          299
+        ]
+      ],
+      "longest_minority_run_len": 20,
+      "contiguous_switch_like": true,
+      "classification": "UNIMODAL_NO_CLEAR_SPLIT"
+    },
+    "chelsea_v_leeds_united:30": {
+      "n_appearances": 223,
+      "n_usable": 223,
+      "center_distance_bgr": 174.7283777883708,
+      "separation_ratio": 13.12418196625323,
+      "minority_fraction": 0.3004484304932735,
+      "minority_runs": [
+        [
+          223,
+          225
+        ],
+        [
+          229,
+          241
+        ],
+        [
+          248,
+          298
+        ]
+      ],
+      "longest_minority_run_len": 51,
+      "contiguous_switch_like": true,
+      "classification": "ABRUPT_SUSTAINED_TRANSITION"
+    },
+    "chelsea_v_leeds_united:40": {
+      "n_appearances": 171,
+      "n_usable": 171,
+      "center_distance_bgr": 158.61816473184558,
+      "separation_ratio": 9.289095769478093,
+      "minority_fraction": 0.2046783625730994,
+      "minority_runs": [
+        [
+          67,
+          99
+        ],
+        [
+          194,
+          194
+        ],
+        [
+          207,
+          207
+        ]
+      ],
+      "longest_minority_run_len": 33,
+      "contiguous_switch_like": true,
+      "classification": "ABRUPT_SUSTAINED_TRANSITION"
+    },
+    "chelsea_v_leeds_united:50": {
+      "n_appearances": 167,
+      "n_usable": 167,
+      "center_distance_bgr": 96.91551012404408,
+      "separation_ratio": 6.22942412390764,
+      "minority_fraction": 0.31736526946107785,
+      "minority_runs": [
+        [
+          142,
+          143
+        ],
+        [
+          149,
+          150
+        ],
+        [
+          182,
+          182
+        ],
+        [
+          186,
+          190
+        ],
+        [
+          200,
+          221
+        ],
+        [
+          225,
+          230
+        ],
+        [
+          235,
+          240
+        ],
+        [
+          249,
+          257
+        ],
+        [
+          261,
+          261
+        ],
+        [
+          284,
+          285
+        ],
+        [
+          295,
+          299
+        ]
+      ],
+      "longest_minority_run_len": 22,
+      "contiguous_switch_like": false,
+      "classification": "INTERMITTENT_CONTAMINATION"
+    },
+    "chelsea_v_leeds_united:38": {
+      "n_appearances": 156,
+      "n_usable": 156,
+      "center_distance_bgr": 144.76432848207585,
+      "separation_ratio": 10.196016489512376,
+      "minority_fraction": 0.46794871794871795,
+      "minority_runs": [
+        [
+          62,
+          62
+        ],
+        [
+          146,
+          215
+        ],
+        [
+          219,
+          220
+        ]
+      ],
+      "longest_minority_run_len": 70,
+      "contiguous_switch_like": true,
+      "classification": "ABRUPT_SUSTAINED_TRANSITION"
+    },
+    "chelsea_v_leeds_united:48": {
+      "n_appearances": 58,
+      "n_usable": 58,
+      "center_distance_bgr": 186.4507062733412,
+      "separation_ratio": 11.283181634869885,
+      "minority_fraction": 0.20689655172413793,
+      "minority_runs": [
+        [
+          142,
+          146
+        ],
+        [
+          152,
+          158
+        ]
+      ],
+      "longest_minority_run_len": 7,
+      "contiguous_switch_like": false,
+      "classification": "INTERMITTENT_CONTAMINATION"
+    }
+  },
+  "track4_human_label": "MIXED_TRACK",
+  "track4_conclusion": "TRACK_ID_CONTAMINATION VISUALLY CONFIRMED on this development example (blind human label = MIXED_TRACK, matching the computational hypothesis)."
+}

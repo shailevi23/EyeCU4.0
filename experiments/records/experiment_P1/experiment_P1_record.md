@@ -55,7 +55,7 @@ read, per governance.
 ## Governance / auditability
 
 - The original P0 result is preserved unmodified at
-  `EyeCU_S1_results/p0/P0_POSSESSION_BASELINE.json` and is not altered by this
+  `experiments/records/experiment_S1/p0/P0_POSSESSION_BASELINE.json` and is not altered by this
   record.
 - `tools/eval_possession_val_p1.py` recomputes the OLD (P0) mapper on the same
   scored rows in the same run as the NEW mapper, so the two are always

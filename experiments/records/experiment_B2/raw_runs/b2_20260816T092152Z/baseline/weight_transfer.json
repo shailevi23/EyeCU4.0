@@ -1,0 +1,181 @@
+{
+ "model_yaml": "/content/b2_models/yolo26s.yaml",
+ "nc": 4,
+ "donor": "/content/yolo26s.pt",
+ "donor_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+ "detect_layer_index": 23,
+ "total": {
+  "tensors": "696/708",
+  "tensors_pct": 98.3051,
+  "parameters": "9985962/9989058",
+  "parameters_pct": 99.969
+ },
+ "by_module": {
+  "backbone (0-10)": {
+   "tensors": "240/240",
+   "tensors_pct": 100.0,
+   "parameters": "5458760/5458760",
+   "parameters_pct": 100.0
+  },
+  "neck + new paths": {
+   "tensors": "228/228",
+   "tensors_pct": 100.0,
+   "parameters": "3586342/3586342",
+   "parameters_pct": 100.0
+  },
+  "Detect head": {
+   "tensors": "228/240",
+   "tensors_pct": 95.0,
+   "parameters": "940860/943956",
+   "parameters_pct": 99.672
+  }
+ },
+ "keys_absent_from_donor": 0,
+ "shape_mismatches": 12,
+ "shape_mismatch_detail": [
+  {
+   "key": "model.23.cv3.0.2.weight",
+   "donor": [
+    80,
+    128,
+    1,
+    1
+   ],
+   "receiver": [
+    4,
+    128,
+    1,
+    1
+   ]
+  },
+  {
+   "key": "model.23.cv3.0.2.bias",
+   "donor": [
+    80
+   ],
+   "receiver": [
+    4
+   ]
+  },
+  {
+   "key": "model.23.cv3.1.2.weight",
+   "donor": [
+    80,
+    128,
+    1,
+    1
+   ],
+   "receiver": [
+    4,
+    128,
+    1,
+    1
+   ]
+  },
+  {
+   "key": "model.23.cv3.1.2.bias",
+   "donor": [
+    80
+   ],
+   "receiver": [
+    4
+   ]
+  },
+  {
+   "key": "model.23.cv3.2.2.weight",
+   "donor": [
+    80,
+    128,
+    1,
+    1
+   ],
+   "receiver": [
+    4,
+    128,
+    1,
+    1
+   ]
+  },
+  {
+   "key": "model.23.cv3.2.2.bias",
+   "donor": [
+    80
+   ],
+   "receiver": [
+    4
+   ]
+  },
+  {
+   "key": "model.23.one2one_cv3.0.2.weight",
+   "donor": [
+    80,
+    128,
+    1,
+    1
+   ],
+   "receiver": [
+    4,
+    128,
+    1,
+    1
+   ]
+  },
+  {
+   "key": "model.23.one2one_cv3.0.2.bias",
+   "donor": [
+    80
+   ],
+   "receiver": [
+    4
+   ]
+  },
+  {
+   "key": "model.23.one2one_cv3.1.2.weight",
+   "donor": [
+    80,
+    128,
+    1,
+    1
+   ],
+   "receiver": [
+    4,
+    128,
+    1,
+    1
+   ]
+  },
+  {
+   "key": "model.23.one2one_cv3.1.2.bias",
+   "donor": [
+    80
+   ],
+   "receiver": [
+    4
+   ]
+  },
+  {
+   "key": "model.23.one2one_cv3.2.2.weight",
+   "donor": [
+    80,
+    128,
+    1,
+    1
+   ],
+   "receiver": [
+    4,
+    128,
+    1,
+    1
+   ]
+  },
+  {
+   "key": "model.23.one2one_cv3.2.2.bias",
+   "donor": [
+    80
+   ],
+   "receiver": [
+    4
+   ]
+  }
+ ]
+}

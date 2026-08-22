@@ -1,0 +1,51 @@
+{
+  "frozen_before_any_score": true,
+  "candidate_A": {
+    "name": "current_baseline",
+    "implementation": "trackers.team_assigner.TeamAssigner.assign_teams_to_tracks",
+    "num_teams": 2,
+    "modifications": "none"
+  },
+  "candidate_B": {
+    "name": "robust_color_tracklet",
+    "roi_fractions": {"y_start": 0.15, "y_end": 0.50, "x_start": 0.25, "x_end": 0.75},
+    "quality_rejection": {
+      "min_pixels": 150,
+      "green_hue_range_opencv_0_179": [35, 85],
+      "green_min_saturation": 60,
+      "green_min_value": 60,
+      "min_non_green_fraction": 0.40
+    },
+    "descriptor": ["L_median", "a_median", "b_median", "S_median", "sin2H_median", "cos2H_median"],
+    "descriptor_dim": 6,
+    "max_observations_per_track": 9,
+    "track_aggregation": "componentwise_median",
+    "scaler": "StandardScaler_fit_within_match",
+    "clustering": {"algorithm": "KMeans", "n_clusters": 2, "n_init": 20, "random_state": 0, "fit_scope": "within_match"},
+    "abstention": "none_always_predicts",
+    "pitch_position_used": false
+  },
+  "candidate_C": {
+    "name": "siglip_appearance_embedding",
+    "model_id": "google/siglip-base-patch16-224",
+    "fine_tuned": false,
+    "text_prompting": false,
+    "isolation": "throwaway_venv_siglip_env_system_site_packages",
+    "crop_source": "label_ui/crops/<match_id>/<track_id>/crop_*.jpg (bbox + 10% padding, same crops used for human labeling)",
+    "max_observations_per_track": 9,
+    "crop_preprocessing": "model_default_AutoProcessor",
+    "embedding_normalization": "L2_per_crop_then_componentwise_median_then_L2_track_descriptor",
+    "dimensionality_reduction": "none (no PCA, no UMAP)",
+    "clustering": {"algorithm": "KMeans", "n_clusters": 2, "n_init": 20, "random_state": 0, "fit_scope": "within_match"},
+    "abstention": "none_always_predicts",
+    "detector_inference_used": false,
+    "feature_extraction_inference_used": true
+  },
+  "scoring": {
+    "contract_file": "EVALUATION_CONTRACT.md",
+    "labels_file": "label_ui/labels.json",
+    "labels_sha256": "24b6d4963d32a44df48fdadd599c2936835e73fd77093c81de10ee98dd5a7bf8",
+    "permutation_correction": "one_global_AB_to_12_mapping_per_match_chosen_for_higher_accuracy",
+    "abstention_scoring": "counts_as_incorrect_in_primary_metrics"
+  }
+}

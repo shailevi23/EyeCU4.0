@@ -1,0 +1,192 @@
+{
+ "manifest": "STAGE-A EXECUTION INPUT CONTRACT",
+ "purpose": "the preflight contract the Colab notebook checks before it builds or trains anything. Counts and hashes here were derived locally at the commit named below; a mismatch in Colab means the inputs are not the audited ones and the run must stop.",
+ "created_utc": "2026-08-15",
+ "audited_at_commit": "77af420b053fa9ab6189257198ca8a896f499901",
+ "governing_design": "experiments/external_sources/keremberke_review/STAGE_A_DESIGN_V2.json",
+ "binding_ontology": "ALL_VISIBLE_PHYSICAL_FOOTBALLS",
+ "sealed_test_note": "EyeCU sealed TEST is deliberately absent from this manifest. Nothing here names it, and no path below can reach it.",
+ "expected_counts": {
+  "eyecu_train_images": 823,
+  "external_source_train_images": 207,
+  "total_train_images": 1030,
+  "val_images": 208,
+  "active_additions": 22,
+  "nonactive_additions": 74,
+  "reviewed_additions_total": 96,
+  "images_receiving_an_addition": 61
+ },
+ "expected_arm_labels": {
+  "A00": {
+   "train_images": 1030,
+   "total_labels": 19487,
+   "ball_labels": 871
+  },
+  "A10": {
+   "train_images": 1030,
+   "total_labels": 19509,
+   "ball_labels": 893
+  },
+  "A11": {
+   "train_images": 1030,
+   "total_labels": 19583,
+   "ball_labels": 967
+  }
+ },
+ "arm_definitions": {
+  "A00": "EyeCU TRAIN labels + source-TRAIN observed labels after semantic class remap. The source ball state is MIXED -- this is NOT ACTIVE_ONLY and NOT ALL_VISIBLE-clean.",
+  "A10": "A00 + 22 effective ACTIVE_MATCH_BALL reviewed additions",
+  "A11": "A10 + 74 effective NON_ACTIVE_EXTRA_BALL reviewed additions",
+  "shared": "identical 1,030 training image ids in all three arms; labels are the only difference",
+  "deletions": "none. EXISTING_NON_ACTIVE_BALL_GT is provenance, never a deletion instruction."
+ },
+ "class_schema_eyecu": {
+  "0": "player",
+  "1": "goalkeeper",
+  "2": "referee",
+  "3": "ball"
+ },
+ "class_schema_source": {
+  "0": "football",
+  "1": "player",
+  "2": "goalkeeper",
+  "3": "referee"
+ },
+ "class_remap_by_name": {
+  "football": "ball",
+  "player": "player",
+  "goalkeeper": "goalkeeper",
+  "referee": "referee"
+ },
+ "class_remap_effective_ids": {
+  "0": 3,
+  "1": 0,
+  "2": 1,
+  "3": 2
+ },
+ "remap_rule": "resolve by category NAME and assert the four names before conversion. The two schemas reuse the same integers for different classes, so an id-based merge silently relabels every box.",
+ "inputs_from_git": {
+  "experiments/external_sources/keremberke_review/decisions.json": {
+   "sha256": "760b0295a017e286bdb2054a1436c4ed5bfbd745aa760fa4c3cef213fd88c32c",
+   "role": "human ball-role ledger; the latest row per missing_object_id is effective"
+  },
+  "experiments/external_sources/keremberke_review/BALL_QA_ROUND0_SAMPLE.json": {
+   "sha256": "490e1618c5b8a948974dda20b4aa23457de4743c0afff63dc1f7eca4ae2471a5",
+   "role": "the seeded Round-0 draw; its train slice is the 207"
+  },
+  "experiments/external_sources/keremberke_review/STAGE_A_DESIGN_V2.json": {
+   "sha256": "3e1bf4d1394521342ca163fcf0b50d8e9dc93cf12be9a89332aba59f93ccb3d2",
+   "role": "governing design; the builder asserts against it"
+  },
+  "experiments/external_sources/keremberke_review/BALL_ONTOLOGY_POLICY.json": {
+   "sha256": "005431568abf59215cfddbc0714e72f990216016d48104d3e7aef06ca60140b5",
+   "role": "BINDING ball ontology"
+  }
+ },
+ "inputs_from_drive": {
+  "note": "none of these are in git. Images and weights are gitignored; the repaired export is untracked. They must be staged under DRIVE_INPUT_ROOT at the relative paths given here.",
+  "data/dataset_baseline/images/train": {
+   "files": 823,
+   "tree_sha256": "3efed10af2538d6b5850327518088a711d4a560240273cb4338b60f71e4d680e"
+  },
+  "data/dataset_baseline/labels/train": {
+   "files": 823,
+   "tree_sha256": "c1dac5ff01167f70f03905a4dd5e4fbade7221ee1b7c72a1e84ea35c11844401"
+  },
+  "data/dataset_baseline/images/val": {
+   "files": 208,
+   "tree_sha256": "0d24b1b8f4c07d50e897d099f8db72439aefb67ea333b284b6e45947a5b7be56"
+  },
+  "data/dataset_baseline/labels/val": {
+   "files": 208,
+   "tree_sha256": "4bcb04b3b7566647d0a82f4ec5292628d03e919307fc3e253c0022bfa1636b09"
+  },
+  "experiments/external_sources/keremberke_review/repaired_export/train_annotations.coco.json": {
+   "sha256": "9caf8eddf0e54c40e3387ba2b127cb5aef3efc6a375c9536cdef71a6b3cf3c5c",
+   "note": "matches BALL_QA_ROUND0_SAMPLE.population.sha256_per_split.train"
+  },
+  "EyeCU_external_data/huggingface/keremberke_football_object_detection/extracted/train": {
+   "files_present_locally": 859,
+   "files_required": 207,
+   "note": "only the 207 Round-0 train images are read. Staging the whole train/ directory is fine; staging valid/ or test/ is not required and they are never read."
+  }
+ },
+ "tree_sha256_rule": "sha256 over sorted(basename + sha256(content)) for every file in the directory. Implemented as sha256_tree in tools/build_stage_a_dataset.py.",
+ "holdouts": {
+  "source_valid_images": 60,
+  "source_test_images": 33,
+  "status": "PRESERVED -- excluded from Stage-A training and from Stage-A validation",
+  "excluded_additions": {
+   "valid_active": 2,
+   "valid_nonactive": 14,
+   "test_active": 1,
+   "test_nonactive": 15
+  },
+  "eyecu_sealed_test": "SEALED -- not read, not staged, not evaluated"
+ },
+ "validation": {
+  "set": "existing EyeCU val split, 208 images, unaltered, shared by all three arms",
+  "limitation": "the current validation does NOT directly measure the A10->A11 multi-ball increment. It has 0 multi-ball frames, so a correctly detected extra football scores as a false positive. Ball AP/precision must not be the primary A10->A11 decision metric. This limitation is carried forward, not solved here."
+ },
+ "training": {
+  "architecture": "YOLO26s",
+  "initialization": "official COCO-pretrained yolo26s.pt, the same file for all three arms",
+  "arm_independence": "yolo26s.pt -> A00, yolo26s.pt -> A10, yolo26s.pt -> A11. Never chained.",
+  "epochs": 80,
+  "patience": 0,
+  "optimizer": "AdamW",
+  "lr0": 0.00125,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "warmup_bias_lr": 0.0,
+  "batch": 3,
+  "imgsz": 960,
+  "seed": 0,
+  "deterministic": true,
+  "nbs": 64,
+  "accumulate": 21,
+  "effective_weight_decay": 0.0004921875,
+  "effective_weight_decay_formula": "weight_decay * batch * accumulate / nbs = 0.0005 * 3 * 21 / 64",
+  "iterations": 1360,
+  "iterations_formula": "ceil(1030 / max(batch, nbs)) * epochs = ceil(1030/64) * 80",
+  "inherited_from_the_frozen_stack": {
+   "lrf": 0.01,
+   "warmup_epochs": 3.0,
+   "warmup_momentum": 0.8,
+   "amp": true,
+   "mosaic": 1.0,
+   "close_mosaic": 10,
+   "hsv_h": 0.015,
+   "hsv_s": 0.7,
+   "hsv_v": 0.4,
+   "fliplr": 0.5,
+   "scale": 0.5,
+   "translate": 0.1,
+   "erasing": 0.4,
+   "source": "experiments/external_sources/keremberke_review/PRE_EXPERIMENT_D_FACT_AUDIT.json stack{}"
+  },
+  "forbidden": [
+   "optimizer=auto",
+   "batch=-1 or any automatic batch sizing",
+   "early stopping",
+   "hyperparameter tuning or sweeps",
+   "a different imgsz",
+   "initializing any arm from best_A_960.pt, best_C_960.pt or eyecu_football_v1.pt"
+  ],
+  "oom_policy": "if batch=3 OOMs, stop that arm and report. Do not reduce batch to make it fit."
+ },
+ "readout": {
+  "primary": "FINAL EPOCH",
+  "secondary": "best.pt, diagnostic only",
+  "rule": "best.pt selects on fitness=mAP50-95 over a VAL whose ball semantics penalise exactly the A11 intervention, so it must not replace the final-epoch result."
+ },
+ "environment": {
+  "ultralytics": "8.4.116",
+  "ultralytics_pin_is_hard": true,
+  "why": "the accumulate=21, lr_fit=0.00125 and effective-weight-decay arithmetic in the design were verified against 8.4.116 trainer.py. A different minor version can change them.",
+  "numpy": "2.2.6",
+  "supervision": "0.26.1",
+  "torch": "use the CUDA build Colab ships; record the version, do not replace it with a pinned CPU wheel"
+ },
+ "audit_provenance_note": "Hashes were computed on the working tree at local commit 7249660f6bb765e74b2694945f1f3c266b9ed609, which is one commit ahead of 77af420b053fa9ab6189257198ca8a896f499901 and was never pushed. That commit touches only trackers/, docs and tests -- all four Stage-A git inputs are byte-identical between the two, verified by git rev-parse on each blob. The hashes below are the contract either way."
+}

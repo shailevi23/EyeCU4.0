@@ -1,0 +1,212 @@
+{
+ "gt_source": "TEST_DETECTION_ANNOTATIONS_CORRECTED.json (M5.1: 20 blind-reannotated como_2-0_sassuolo + 40 unchanged manchester/youth_2)",
+ "predictions_source": "experiments/records/experiment_M5/RAW_PREDICTIONS.json (reused verbatim, not regenerated)",
+ "iou_match_threshold": 0.5,
+ "ap_iou_thresholds": [
+  0.5,
+  0.55,
+  0.6,
+  0.65,
+  0.7,
+  0.75,
+  0.8,
+  0.85,
+  0.9,
+  0.95
+ ],
+ "overall": {
+  "player": {
+   "gt_count": 857,
+   "pred_count": 918,
+   "TP": 809,
+   "FP": 109,
+   "FN": 48,
+   "precision": 0.8813,
+   "recall": 0.944,
+   "AP50": 0.922,
+   "AP50_95": 0.3861
+  },
+  "goalkeeper": {
+   "gt_count": 35,
+   "pred_count": 27,
+   "TP": 20,
+   "FP": 7,
+   "FN": 15,
+   "precision": 0.7407,
+   "recall": 0.5714,
+   "AP50": 0.5218,
+   "AP50_95": 0.2056
+  },
+  "referee": {
+   "gt_count": 87,
+   "pred_count": 79,
+   "TP": 63,
+   "FP": 16,
+   "FN": 24,
+   "precision": 0.7975,
+   "recall": 0.7241,
+   "AP50": 0.6906,
+   "AP50_95": 0.3145
+  },
+  "ball": {
+   "gt_count": 49,
+   "pred_count": 37,
+   "TP": 23,
+   "FP": 14,
+   "FN": 26,
+   "precision": 0.6216,
+   "recall": 0.4694,
+   "AP50": 0.3357,
+   "AP50_95": 0.1726
+  }
+ },
+ "mAP50": 0.6175,
+ "mAP50_95": 0.2697,
+ "per_sequence": {
+  "como_2-0_sassuolo": {
+   "player": {
+    "gt_count": 397,
+    "pred_count": 415,
+    "TP": 380,
+    "FP": 35,
+    "FN": 17,
+    "precision": 0.9157,
+    "recall": 0.9572,
+    "AP50": 0.9405,
+    "AP50_95": 0.3144
+   },
+   "goalkeeper": {
+    "gt_count": 18,
+    "pred_count": 15,
+    "TP": 14,
+    "FP": 1,
+    "FN": 4,
+    "precision": 0.9333,
+    "recall": 0.7778,
+    "AP50": 0.7723,
+    "AP50_95": 0.2797
+   },
+   "referee": {
+    "gt_count": 49,
+    "pred_count": 41,
+    "TP": 35,
+    "FP": 6,
+    "FN": 14,
+    "precision": 0.8537,
+    "recall": 0.7143,
+    "AP50": 0.691,
+    "AP50_95": 0.3014
+   },
+   "ball": {
+    "gt_count": 16,
+    "pred_count": 5,
+    "TP": 2,
+    "FP": 3,
+    "FN": 14,
+    "precision": 0.4,
+    "recall": 0.125,
+    "AP50": 0.0644,
+    "AP50_95": 0.0082
+   }
+  },
+  "manchester_city_v_liverpool": {
+   "player": {
+    "gt_count": 286,
+    "pred_count": 293,
+    "TP": 281,
+    "FP": 12,
+    "FN": 5,
+    "precision": 0.959,
+    "recall": 0.9825,
+    "AP50": 0.9723,
+    "AP50_95": 0.4867
+   },
+   "goalkeeper": {
+    "gt_count": 8,
+    "pred_count": 11,
+    "TP": 5,
+    "FP": 6,
+    "FN": 3,
+    "precision": 0.4545,
+    "recall": 0.625,
+    "AP50": 0.6238,
+    "AP50_95": 0.2948
+   },
+   "referee": {
+    "gt_count": 27,
+    "pred_count": 27,
+    "TP": 22,
+    "FP": 5,
+    "FN": 5,
+    "precision": 0.8148,
+    "recall": 0.8148,
+    "AP50": 0.7814,
+    "AP50_95": 0.3617
+   },
+   "ball": {
+    "gt_count": 16,
+    "pred_count": 16,
+    "TP": 5,
+    "FP": 11,
+    "FN": 11,
+    "precision": 0.3125,
+    "recall": 0.3125,
+    "AP50": 0.1056,
+    "AP50_95": 0.0172
+   }
+  },
+  "youth_2": {
+   "player": {
+    "gt_count": 174,
+    "pred_count": 210,
+    "TP": 148,
+    "FP": 62,
+    "FN": 26,
+    "precision": 0.7048,
+    "recall": 0.8506,
+    "AP50": 0.7925,
+    "AP50_95": 0.5084
+   },
+   "goalkeeper": {
+    "gt_count": 9,
+    "pred_count": 1,
+    "TP": 1,
+    "FP": 0,
+    "FN": 8,
+    "precision": 1.0,
+    "recall": 0.1111,
+    "AP50": 0.1188,
+    "AP50_95": 0.095
+   },
+   "referee": {
+    "gt_count": 11,
+    "pred_count": 11,
+    "TP": 6,
+    "FP": 5,
+    "FN": 5,
+    "precision": 0.5455,
+    "recall": 0.5455,
+    "AP50": 0.4421,
+    "AP50_95": 0.3008
+   },
+   "ball": {
+    "gt_count": 17,
+    "pred_count": 16,
+    "TP": 16,
+    "FP": 0,
+    "FN": 1,
+    "precision": 1.0,
+    "recall": 0.9412,
+    "AP50": 0.9406,
+    "AP50_95": 0.655
+   }
+  }
+ },
+ "multi_ball_descriptive": {
+  "n_multi_ball_frames": 3,
+  "gt_balls_on_multi_ball_frames": 6,
+  "matched_balls": 3,
+  "missed_balls": 3,
+  "false_positive_balls": 0
+ }
+}
