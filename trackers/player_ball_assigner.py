@@ -69,9 +69,30 @@ class PlayerBallAssigner:
             if distance < self.max_distance and distance < minimum_distance:
                 minimum_distance = distance
                 assigned_player = player_id
-        
+
         return assigned_player
-    
+
+    def _nearest_human(self, humans: Dict, ball_bbox: List[float]) -> int:
+        """
+        Same geometry/threshold as assign_ball_to_player, but over an
+        arbitrary dict of human tracks (players AND goalkeepers combined).
+        assign_ball_to_player itself is left untouched -- tools/eval_possession_val*.py
+        call it directly, players-only, and must keep that exact behavior.
+        """
+        ball_position = get_center_of_bbox(ball_bbox)
+        minimum_distance = float('inf')
+        assigned_id = -1
+        for human_id, human in humans.items():
+            bbox = human['bbox']
+            left_foot = (bbox[0], bbox[3])
+            right_foot = (bbox[2], bbox[3])
+            distance = min(measure_distance(left_foot, ball_position),
+                          measure_distance(right_foot, ball_position))
+            if distance < self.max_distance and distance < minimum_distance:
+                minimum_distance = distance
+                assigned_id = human_id
+        return assigned_id
+
     def compute_team_ball_control(self, tracks: Dict) -> np.ndarray:
         """
         Calculate ball possession percentage for each team
@@ -104,20 +125,39 @@ class PlayerBallAssigner:
             # Get ball position
             ball_id = list(tracks['ball'][frame_idx].keys())[0]
             ball_bbox = tracks['ball'][frame_idx][ball_id]['bbox']
-            
-            # Find player with ball possession
-            assigned_player = self.assign_ball_to_player(
-                tracks['players'][frame_idx], ball_bbox)
-            
-            # Mark possession in tracking data
-            for player_id in tracks['players'][frame_idx]:
-                tracks['players'][frame_idx][player_id]['has_ball'] = (player_id == assigned_player)
-            
-            # Determine team with possession
+
+            players_here = tracks['players'][frame_idx]
+            # Goalkeepers are deliberately excluded from jersey TeamAssigner
+            # (their kit differs from their own team's), but that must not
+            # also exclude them from WHO can possess the ball -- a keeper
+            # holding the ball is a real, common event. .get(...) keeps this
+            # safe for any caller/tracks dict that has no 'goalkeepers' key
+            # at all (several existing possession tests build tracks that way).
+            gk_list = tracks.get('goalkeepers')
+            goalkeepers_here = gk_list[frame_idx] if gk_list and frame_idx < len(gk_list) else {}
+            humans_here = {**players_here, **goalkeepers_here}
+            assigned_human = self._nearest_human(humans_here, ball_bbox)
+
+            # Mark possession in tracking data -- on whichever dict the
+            # possessor actually lives in. A player and a goalkeeper never
+            # share a track_id (both come off the same human association
+            # pass, just bucketed by class), so this lookup is unambiguous.
+            for player_id in players_here:
+                players_here[player_id]['has_ball'] = (player_id == assigned_human)
+            for gk_id in goalkeepers_here:
+                goalkeepers_here[gk_id]['has_ball'] = (gk_id == assigned_human)
+
+            # Team-control credit is a SEPARATE question from who possesses
+            # the ball. Only a field player carries a 'team' (jersey
+            # cluster) label; a goalkeeper possessor must not fabricate one
+            # from kit color, so team control stays UNKNOWN (0) for a
+            # goalkeeper-possession frame, exactly as it does when no one is
+            # in range at all.
             team_id = 0  # No team by default
-            if assigned_player != -1 and 'team' in tracks['players'][frame_idx][assigned_player]:
-                team_id = tracks['players'][frame_idx][assigned_player]['team']
-            
+            if assigned_human != -1 and assigned_human in players_here \
+                    and 'team' in players_here[assigned_human]:
+                team_id = players_here[assigned_human]['team']
+
             team_ball_control.append(team_id)
         
         return np.array(team_ball_control)

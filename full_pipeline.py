@@ -16,6 +16,7 @@ import time
 # Import new advanced tracking modules
 from trackers.football_tracker import FootballTracker
 from trackers.team_assigner import TeamAssigner
+from trackers.team_assigner_v2 import TeamAssignerV2
 from trackers.camera_movement import CameraMovementEstimator
 from trackers.speed_distance import SpeedDistanceEstimator
 from trackers.player_ball_assigner import PlayerBallAssigner
@@ -52,7 +53,9 @@ class FootballAnalysisPipeline:
                  ball_candidate_pool: bool = True,
                  tracker_backend: str = 'cbiou',
                  ball_detector_backend: str = 'sn3d',
-                 ball_model_path: Optional[str] = None):
+                 ball_model_path: Optional[str] = None,
+                 overlay_mode: str = 'viewer',
+                 team_assignment_backend: str = 'legacy_color'):
         """
         Initialize complete pipeline
         Args:
@@ -102,6 +105,11 @@ class FootballAnalysisPipeline:
         self.use_cache = use_cache
         self.show_speed = show_speed
         self.show_distance = show_distance
+        # Presentation only -- never changes what the pipeline detects/tracks/
+        # selects/assigns, only how the already-computed result is drawn.
+        if overlay_mode not in ('viewer', 'debug'):
+            raise ValueError(f"unknown overlay_mode {overlay_mode!r}")
+        self.overlay_mode = overlay_mode
         
         print("Initializing Football Analysis Pipeline...")
 
@@ -126,7 +134,17 @@ class FootballAnalysisPipeline:
             ball_model_path=self.ball_model_path,
         )
 
-        self.team_assigner = TeamAssigner(num_teams=2)
+        # 'legacy_color' is the production default and the benchmark winner
+        # (100% on the frozen post-freeze team-assignment development
+        # benchmark, both matches); 'v2' (robust color tracklet) is kept
+        # available for rollback/experimentation only -- it collapsed to 0%
+        # on one of the two benchmark matches. See
+        # experiments/post_freeze/team_assignment_v2/FINAL_RESULTS.md.
+        if team_assignment_backend not in ('legacy_color', 'v2'):
+            raise ValueError(f"unknown team_assignment_backend {team_assignment_backend!r}")
+        self.team_assignment_backend = team_assignment_backend
+        self.team_assigner = (TeamAssigner(num_teams=2) if team_assignment_backend == 'legacy_color'
+                              else TeamAssignerV2(num_teams=2))
         self.ball_assigner = PlayerBallAssigner(max_distance=70)
 
         # Pipeline state
@@ -302,11 +320,11 @@ class FootballAnalysisPipeline:
         
         # Draw annotations with improved visualization
         output_frames = self.adv_tracker.draw_annotations(
-            frames, tracks, team_ball_control)
-        
-        # Add camera movement indicators
+            frames, tracks, team_ball_control, overlay_mode=self.overlay_mode)
+
+        # Add camera movement indicators (DEBUG-mode diagnostic only; no-op in viewer)
         output_frames = camera_estimator.draw_camera_movement(
-            output_frames, camera_movement)
+            output_frames, camera_movement, overlay_mode=self.overlay_mode)
         
         # Add speed and distance (only if enabled)
         output_frames = speed_estimator.draw_speed_and_distance(
@@ -397,7 +415,7 @@ class FootballAnalysisPipeline:
         return stats
     
     def save_output_video(self, output_path: str = 'output_video.mp4',
-                         fps: int = 30, save_frames: bool = True):
+                         fps: float = 30, save_frames: bool = True):
         """Save annotated frames as video"""
         if not self.annotated_frames:
             print("No frames to save")
@@ -410,12 +428,17 @@ class FootballAnalysisPipeline:
             output_file = self.output_dir / output_path
             h, w = self.annotated_frames[0].shape[:2]
             
-            # Use the improved video_utils.save_video function for better quality
+            # 'XVID' is an AVI fourcc; requested against an .mp4 container it is
+            # rejected by the FFMPEG backend and OpenCV silently falls back to
+            # 'mp4v' (MPEG-4 Part 2) -- a visibly softer/blockier codec than
+            # the source's own H.264 despite a higher nominal bitrate. 'avc1'
+            # (H.264) was verified to actually encode in this environment and
+            # is valid for .mp4, so it is now the real default here.
             result = save_video(
                 frames=self.annotated_frames,
                 output_path=str(output_file),
                 fps=fps,
-                codec='XVID'  # Use XVID codec for better quality
+                codec='avc1'
             )
             
             # Save key frames as images
@@ -545,8 +568,8 @@ if __name__ == "__main__":
         display_results=CONFIG['display']
     )
     
-    # Save output video
-    pipeline.save_output_video('tracked_output.mp4', fps=15)
+    # Save output video at the real effective FPS, not a fixed guess
+    pipeline.save_output_video('tracked_output.mp4', fps=pipeline.effective_fps)
     
     # Generate final report
     report = pipeline.generate_final_report()

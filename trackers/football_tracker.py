@@ -20,6 +20,7 @@ import pickle
 from trackers.detector import (CLASS_IDS, HUMAN_CLASSES,
                                HUMAN_ACCEPT_CONF, create_detector)
 from trackers.bbox_utils import get_center_of_bbox, get_bbox_width, get_foot_position
+from trackers import overlay as ui
 
 # tracks[] key for each detector class. Goalkeepers are kept separate from
 # players so team assignment can exclude them (their kit deliberately differs
@@ -533,24 +534,29 @@ class FootballTracker:
         self.ball_candidates = ball_candidates
         return tracks
     
-    def draw_ellipse(self, frame, bbox, color, track_id=None):
+    def draw_ellipse(self, frame, bbox, color, track_id=None, style=None):
         """
-        Draw ellipse under player/referee feet
-        
+        Draw ellipse under player/referee feet (DEBUG-mode marker style).
+
         Args:
             frame: Frame to draw on
             bbox: Bounding box [x1, y1, x2, y2]
             color: Color tuple (B, G, R)
             track_id: Optional tracking ID to display
-            
+            style: Optional ui.get_ui_scale(...) dict; a frame-height-720
+                default is used if omitted (keeps old callers working).
+
         Returns:
             Annotated frame
         """
+        if style is None:
+            style = ui.get_ui_scale(frame.shape[1], frame.shape[0])
+        scale = style['scale']
+
         y2 = int(bbox[3])
         x_center, _ = get_center_of_bbox(bbox)
         width = get_bbox_width(bbox)
 
-        # Draw a more prominent ellipse
         cv2.ellipse(
             frame,
             center=(x_center, y2),
@@ -559,57 +565,37 @@ class FootballTracker:
             startAngle=-45,
             endAngle=235,
             color=color,
-            thickness=3,  # Increased thickness
+            thickness=max(1, round(3 * scale)),
             lineType=cv2.LINE_4
         )
 
         if track_id is not None:
-            rectangle_width = 40
-            rectangle_height = 20
+            rectangle_width = max(24, round(40 * scale))
+            rectangle_height = max(12, round(20 * scale))
             x1_rect = x_center - rectangle_width//2
             x2_rect = x_center + rectangle_width//2
-            y1_rect = (y2- rectangle_height//2) + 15
-            y2_rect = (y2 + rectangle_height//2) + 15
+            y1_rect = (y2 - rectangle_height//2) + round(15 * scale)
+            y2_rect = (y2 + rectangle_height//2) + round(15 * scale)
 
-            # Draw a bigger ID box
             cv2.rectangle(frame,
                         (int(x1_rect), int(y1_rect)),
                         (int(x2_rect), int(y2_rect)),
                         color,
                         cv2.FILLED)
-                        
-            # Add a black outline to make it more visible
             cv2.rectangle(frame,
                         (int(x1_rect), int(y1_rect)),
                         (int(x2_rect), int(y2_rect)),
                         (0, 0, 0),
                         1)
-            
-            x1_text = x1_rect + 12
-            if track_id > 99:
-                x1_text -= 10
-                
-            # Draw a white background for the player ID text for better visibility
-            cv2.putText(
-                frame,
-                f"{track_id}",
-                (int(x1_text), int(y1_rect+15)),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.7,  # Slightly larger font
-                (255, 255, 255),  # White outline
-                3     # Thicker outline
-            )
-            
-            # Draw the player ID in a contrasting color on top
-            cv2.putText(
-                frame,
-                f"{track_id}",
-                (int(x1_text), int(y1_rect+15)),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.7,  # Slightly larger font
-                (0, 0, 0),  # Black text
-                1     # Regular thickness
-            )
+
+            font_scale = round(0.7 * scale, 3)
+            (tw, th), _ = cv2.getTextSize(f"{track_id}", cv2.FONT_HERSHEY_SIMPLEX,
+                                          font_scale, max(1, round(2 * scale)))
+            text_x = int(x_center - tw / 2)
+            text_y = int(y1_rect + rectangle_height/2 + th/2)
+            ui.draw_text_with_outline(frame, f"{track_id}", (text_x, text_y),
+                                       font_scale, (0, 0, 0), max(1, round(1 * scale)),
+                                       outline_color=(255, 255, 255))
 
         return frame
     
@@ -643,133 +629,224 @@ class FootballTracker:
 
         return frame
     
-    def draw_team_ball_control(self, frame, frame_num, team_ball_control):
+    def draw_team_ball_control(self, frame, frame_num, team_ball_control, style=None):
         """
-        Draw team ball control statistics
-        
+        Draw team ball control statistics (DEBUG mode).
+
         Args:
             frame: Frame to draw on
             frame_num: Current frame number
             team_ball_control: Array of team IDs controlling ball
-            
+            style: Optional ui.get_ui_scale(...) dict.
+
         Returns:
             Annotated frame
         """
-        # Draw a semi-transparent rectangle
+        if style is None:
+            style = ui.get_ui_scale(frame.shape[1], frame.shape[0])
+        fw, fh = frame.shape[1], frame.shape[0]
+        panel_w = max(180, round(260 * style['scale']))
+        panel_h = max(70, round(85 * style['scale']))
+        margin = style['margin']
+        x1 = fw - panel_w - margin
+        y1 = fh - panel_h - margin
+        x2 = fw - margin
+        y2 = fh - margin
+
         overlay = frame.copy()
-        cv2.rectangle(overlay, (1350, 850), (1900, 970), (255, 255, 255), -1)
+        cv2.rectangle(overlay, (x1, y1), (x2, y2), (255, 255, 255), -1)
         alpha = 0.4
         cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
-        team_ball_control_till_frame = team_ball_control[:frame_num+1]
-        # Get the number of times each team had ball control
-        team_1_frames = team_ball_control_till_frame[team_ball_control_till_frame==1].shape[0]
-        team_2_frames = team_ball_control_till_frame[team_ball_control_till_frame==2].shape[0]
-        # KNOWN-possession frames only. 0 means "we do not know who had the
-        # ball" -- no reliable ball position, or one no player was near -- and
-        # such frames are excluded from the denominator rather than counted
-        # against either team. With UNKNOWN no longer inheriting the previous
-        # team's id, this exclusion is what keeps a long blind interval from
-        # silently inflating whoever touched the ball last.
-        total_frames = team_1_frames + team_2_frames
+        team_1_pct, team_2_pct, _ = self._team_possession_pct(team_ball_control, frame_num)
 
-
-        if total_frames > 0:
-            team_1_pct = team_1_frames / total_frames
-            team_2_pct = team_2_frames / total_frames
-        else:
-            team_1_pct = team_2_pct = 0.0
-
+        font_scale = round(1.0 * style['scale'], 3)
+        thick = max(1, round(3 * style['scale']))
+        line_h = max(16, round(28 * style['scale']))
+        tx = x1 + max(8, round(12 * style['scale']))
+        ty1 = y1 + round(line_h * 1.1)
+        ty2 = ty1 + line_h
         cv2.putText(frame, f"Team 1 Ball Control: {team_1_pct*100:.2f}%",
-                  (1400, 900), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+                  (tx, ty1), cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0, 0, 0), thick)
         cv2.putText(frame, f"Team 2 Ball Control: {team_2_pct*100:.2f}%",
-                  (1400, 950), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
+                  (tx, ty2), cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0, 0, 0), thick)
 
         return frame
     
-    def draw_annotations(self, video_frames, tracks, team_ball_control=None):
+    @staticmethod
+    def _team_possession_pct(team_ball_control, frame_num):
         """
-        Draw all annotations on video frames
-        
+        Known-possession-frames-only percentage split, shared by the DEBUG
+        panel and the VIEWER HUD. 0 (unknown) is excluded from the
+        denominator -- see the comment this replaced in
+        draw_team_ball_control for why that matters.
+        """
+        till_frame = team_ball_control[:frame_num + 1]
+        team_1_frames = till_frame[till_frame == 1].shape[0]
+        team_2_frames = till_frame[till_frame == 2].shape[0]
+        total = team_1_frames + team_2_frames
+        if total > 0:
+            return team_1_frames / total, team_2_frames / total, total
+        return 0.0, 0.0, 0
+
+    def draw_annotations(self, video_frames, tracks, team_ball_control=None,
+                          overlay_mode='viewer'):
+        """
+        Draw all annotations on video frames.
+
+        This is presentation only: overlay_mode picks how the same tracks[]
+        are drawn ('viewer' = clean tactical-camera style for demo/final
+        video, 'debug' = the original engineering overlay, made responsive).
+        It never changes what was detected, tracked, selected or assigned.
+
         Args:
             video_frames: List of video frames
             tracks: Dictionary of tracked objects
             team_ball_control: Array of team IDs controlling ball
-            
+            overlay_mode: 'viewer' (default) or 'debug'
+
         Returns:
             List of annotated frames
         """
+        if overlay_mode not in ('viewer', 'debug'):
+            raise ValueError(f"unknown overlay_mode {overlay_mode!r}")
+        if overlay_mode == 'viewer':
+            return self._draw_viewer_annotations(video_frames, tracks, team_ball_control)
+        return self._draw_debug_annotations(video_frames, tracks, team_ball_control)
+
+    def _draw_debug_annotations(self, video_frames, tracks, team_ball_control=None):
+        """Original engineering overlay: full box + ellipse + ID + counts + panel."""
         output_frames = []
-        
+
         for frame_num, frame in enumerate(video_frames):
             frame = frame.copy()
-            
-            # Add detection counts at the top
+            style = ui.get_ui_scale(frame.shape[1], frame.shape[0])
+            scale = style['scale']
+
             player_count = len(tracks["players"][frame_num])
             keeper_count = len(tracks["goalkeepers"][frame_num])
             referee_count = len(tracks["referees"][frame_num])
             ball_count = len(tracks["ball"][frame_num])
 
-            # Draw info bar
-            cv2.rectangle(frame, (0, 0), (400, 105), (0, 0, 0), -1)
-            cv2.putText(frame, f"Players: {player_count}", (10, 25), cv2.FONT_HERSHEY_SIMPLEX,
-                        0.8, (0, 255, 0), 2)
-            cv2.putText(frame, f"Goalkeepers: {keeper_count}", (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
-                        0.8, self.colors['goalkeeper'], 2)
-            cv2.putText(frame, f"Referees: {referee_count}", (10, 75), cv2.FONT_HERSHEY_SIMPLEX,
-                        0.8, (255, 255, 0), 2)
-            cv2.putText(frame, f"Ball: {ball_count}", (10, 100), cv2.FONT_HERSHEY_SIMPLEX,
-                        0.8, (0, 0, 255), 2)
+            bar_w = max(180, round(300 * scale))
+            bar_h = max(60, round(90 * scale))
+            font_scale = round(0.7 * scale, 3)
+            thick = max(1, round(2 * scale))
+            line_h = max(14, round(24 * scale))
+            cv2.rectangle(frame, (0, 0), (bar_w, bar_h), (0, 0, 0), -1)
+            cv2.putText(frame, f"Players: {player_count}", (10, line_h), cv2.FONT_HERSHEY_SIMPLEX,
+                        font_scale, (0, 255, 0), thick)
+            cv2.putText(frame, f"Goalkeepers: {keeper_count}", (10, line_h * 2), cv2.FONT_HERSHEY_SIMPLEX,
+                        font_scale, self.colors['goalkeeper'], thick)
+            cv2.putText(frame, f"Referees: {referee_count}", (10, line_h * 3), cv2.FONT_HERSHEY_SIMPLEX,
+                        font_scale, (255, 255, 0), thick)
+            cv2.putText(frame, f"Ball: {ball_count}", (10, line_h * 4), cv2.FONT_HERSHEY_SIMPLEX,
+                        font_scale, (0, 0, 255), thick)
 
-            # Draw players
+            box_thick = max(1, round(2 * scale))
+
             player_dict = tracks["players"][frame_num]
             for track_id, player in player_dict.items():
-                # Get team color if available
                 color = player.get("team_color", self.colors['player'])
-                # Draw a more prominent bounding box
                 bbox = player["bbox"]
-                cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), color, 2)
-                frame = self.draw_ellipse(frame, player["bbox"], color, track_id)
-                
-                # Highlight player with ball
+                cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), color, box_thick)
+                frame = self.draw_ellipse(frame, player["bbox"], color, track_id, style=style)
                 if player.get('has_ball', False):
                     frame = self.draw_triangle(frame, player["bbox"], (0, 0, 255))
-            
-            # Draw goalkeepers -- kept visually distinct from outfield players
-            # because their kit deliberately differs from their own team's.
+
             for track_id, keeper in tracks["goalkeepers"][frame_num].items():
                 bbox = keeper["bbox"]
                 cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])),
-                              self.colors['goalkeeper'], 2)
-                frame = self.draw_ellipse(frame, bbox, self.colors['goalkeeper'], track_id)
+                              self.colors['goalkeeper'], box_thick)
+                frame = self.draw_ellipse(frame, bbox, self.colors['goalkeeper'], track_id, style=style)
                 if keeper.get('has_ball', False):
                     frame = self.draw_triangle(frame, bbox, (0, 0, 255))
 
-            # Draw referees
             referee_dict = tracks["referees"][frame_num]
             for track_id, referee in referee_dict.items():
                 bbox = referee["bbox"]
-                cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), 
-                              self.colors['referee'], 2)
-                frame = self.draw_ellipse(frame, referee["bbox"], self.colors['referee'], track_id)
-            
-            # Draw ball
+                cv2.rectangle(frame, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])),
+                              self.colors['referee'], box_thick)
+                frame = self.draw_ellipse(frame, referee["bbox"], self.colors['referee'], track_id, style=style)
+
             ball_dict = tracks["ball"][frame_num]
             for track_id, ball in ball_dict.items():
                 bbox = ball["bbox"]
-                # Draw a circle for ball for better visibility
                 center = get_center_of_bbox(bbox)
                 radius = max(5, int((bbox[2] - bbox[0]) / 2))
                 cv2.circle(frame, (center[0], center[1]), radius, self.colors['ball'], -1)
                 frame = self.draw_triangle(frame, ball["bbox"], self.colors['ball'])
-            
-            # Draw team ball control stats if available
+
             if team_ball_control is not None:
-                frame = self.draw_team_ball_control(frame, frame_num, team_ball_control)
-            
+                frame = self.draw_team_ball_control(frame, frame_num, team_ball_control, style=style)
+
             output_frames.append(frame)
-        
+
         return output_frames
-    
+
+    def _draw_viewer_annotations(self, video_frames, tracks, team_ball_control=None):
+        """
+        Clean, tactical-camera-friendly overlay for demo/final rendering.
+        Small feet markers + compact ID pills (role-differentiated by style,
+        not color alone), a possessor halo when the pipeline has already
+        assigned one, a light-ring ball marker keyed to selector state, and a
+        compact top-left HUD. No detection/tracking/selection/possession
+        value is computed here -- only how it is drawn.
+        """
+        output_frames = []
+
+        for frame_num, frame in enumerate(video_frames):
+            frame = frame.copy()
+            style = ui.get_ui_scale(frame.shape[1], frame.shape[0])
+            occupied = []
+
+            entries = []
+            for track_id, gk in tracks["goalkeepers"][frame_num].items():
+                entries.append((ui.ROLE_PRIORITY['goalkeeper'], track_id, gk, 'goalkeeper'))
+            for track_id, pl in tracks["players"][frame_num].items():
+                role_priority = ui.ROLE_PRIORITY['possessor'] if pl.get('has_ball', False) \
+                    else ui.ROLE_PRIORITY['player']
+                entries.append((role_priority, track_id, pl, 'player'))
+            for track_id, ref in tracks["referees"][frame_num].items():
+                entries.append((ui.ROLE_PRIORITY['referee'], track_id, ref, 'referee'))
+            entries.sort(key=lambda e: e[0])
+
+            for _, track_id, obj, role in entries:
+                bbox = obj["bbox"]
+                foot = get_foot_position(bbox)
+                if role == 'referee':
+                    fill_color = (140, 140, 140)  # neutral steel-grey, not a team color
+                elif role == 'goalkeeper':
+                    fill_color = self.colors['goalkeeper']
+                else:
+                    fill_color = obj.get("team_color", self.colors['player'])
+                is_possessor = obj.get('has_ball', False)
+                ui.draw_player_marker(frame, foot, role, fill_color, style,
+                                       track_id=track_id, is_possessor=is_possessor,
+                                       occupied=occupied)
+
+            ball_dict = tracks["ball"][frame_num]
+            for _, ball in ball_dict.items():
+                center = get_center_of_bbox(ball["bbox"])
+                state = ball.get('state', 'observed')
+                ui.draw_ball_marker(frame, center, state, style)
+
+            # VIEWER HUD is deliberately minimal: no team-possession percentages
+            # (possession remains CLOSED-LIMITATION -- not a display-worthy
+            # accuracy claim) and no processed-frame index (an engineering
+            # detail, not viewer-facing information). Just who has the ball,
+            # if anyone -- and that lookup includes ANY eligible human (not
+            # only role == 'player'), so a goalkeeper possession is shown too.
+            hud_lines = []
+            possessor_id = next((tid for _, tid, obj, role in entries
+                                 if role in ('player', 'goalkeeper') and obj.get('has_ball', False)), None)
+            if possessor_id is not None:
+                hud_lines.append(f"Possessor #{possessor_id}")
+            ui.draw_viewer_hud(frame, style, hud_lines[:5])
+
+            output_frames.append(frame)
+
+        return output_frames
+
     # Utility functions
     # Helper functions are now imported from bbox_utils.py
