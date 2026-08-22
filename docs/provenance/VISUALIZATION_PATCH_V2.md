@@ -2,8 +2,8 @@
 
 **This patch occurred AFTER the final scientific evaluation.** It is a
 rendering/presentation-layer change only, applied on top of the already-closed
-project (see [FINAL_PROJECT_STATUS.md](FINAL_PROJECT_STATUS.md),
-[FINAL_PROJECT_REPORT.md](FINAL_PROJECT_REPORT.md)).
+project (see [FINAL_PROJECT_STATUS.md](../final/FINAL_PROJECT_STATUS.md),
+[FINAL_PROJECT_REPORT.md](../final/FINAL_PROJECT_REPORT.md)).
 
 ## What changed
 
@@ -63,7 +63,7 @@ Rendering/overlay plumbing only:
 **M5.1 metrics continue to refer to the original evaluated source** in
 `experiments/records/experiment_M5_1/` (mAP50 = 0.6175, mAP50-95 = 0.2697,
 per-class breakdown as reported there and in
-[FINAL_PROJECT_REPORT.md](FINAL_PROJECT_REPORT.md) §8). This patch does
+[FINAL_PROJECT_REPORT.md](../final/FINAL_PROJECT_REPORT.md) §8). This patch does
 **not** retroactively change, invalidate, or supersede any M5/M5.1 result —
 it changes only how an already-produced output video is drawn for a human
 viewer.
@@ -71,7 +71,7 @@ viewer.
 **Viewer V2 (`--overlay-mode viewer`, the default) is the final demo /
 presentation renderer** going forward; `debug` remains available for
 engineering inspection. The final native-resolution render is
-`demo_outputs/final_e2e_demo/tracked_output_viewer_v2_final_h264.mp4`
+`demo_outputs/archive/tracked_output_viewer_v2_final_h264.mp4`
 (640x360, 12.5 fps, 375 frames, real H.264/avc1) — drawn on the original
 decoded source frames plus the existing cached tracks/ball_candidates, not
 on the earlier mp4v-encoded video, so no prior compression damage is baked

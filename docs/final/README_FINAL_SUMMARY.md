@@ -52,7 +52,7 @@ guard to detect and split such tracks was designed and evaluated but did
 not pass its own frozen adoption gate, so it was **not adopted**; CBIoU's
 raw output is unchanged. Goalkeepers can now be recorded as the ball
 possessor (previously impossible), without ever being given a fabricated
-team. See [POST_FREEZE_SYSTEM_PATCH.md](POST_FREEZE_SYSTEM_PATCH.md) for
+team. See [POST_FREEZE_SYSTEM_PATCH.md](../provenance/POST_FREEZE_SYSTEM_PATCH.md) for
 the full patch and links to the underlying benchmarks.
 
 ## Final demo
@@ -69,7 +69,7 @@ source-resolution-limited (source is itself 640×360).
 - [FINAL_PRESENTATION_OUTLINE.md](FINAL_PRESENTATION_OUTLINE.md) — slide-by-slide outline
 - [PIPELINE_DIAGRAM.md](PIPELINE_DIAGRAM.md) — architecture diagram
 - [FINAL_PROJECT_STATUS.md](FINAL_PROJECT_STATUS.md) — one-line status/verdict record
-- [POST_FREEZE_SYSTEM_PATCH.md](POST_FREEZE_SYSTEM_PATCH.md) — post-freeze NON-TEST development patch (FPS, goalkeeper possession, team-assignment benchmark, tracklet guard)
+- [POST_FREEZE_SYSTEM_PATCH.md](../provenance/POST_FREEZE_SYSTEM_PATCH.md) — post-freeze NON-TEST development patch (FPS, goalkeeper possession, team-assignment benchmark, tracklet guard)
 - `experiments/records/experiment_M5_1/` — authoritative final evaluation artifacts
 - `experiments/records/experiment_M5/` — historical first evaluation (superseded for reporting)
 - `experiments/post_freeze/team_assignment_v2/` — team-assignment development benchmark

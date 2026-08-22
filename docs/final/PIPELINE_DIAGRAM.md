@@ -73,4 +73,4 @@ recorded as the ball possessor under the same geometry as a field player
 automatic guard to detect and split contaminated CBIoU tracklets was
 evaluated but did **not** pass its adoption gate, so it was **not
 integrated** — `CBIoU HUMAN tracking` in this diagram is exactly the raw,
-unmodified production tracker. See `POST_FREEZE_SYSTEM_PATCH.md`.
+unmodified production tracker. See `../provenance/POST_FREEZE_SYSTEM_PATCH.md`.

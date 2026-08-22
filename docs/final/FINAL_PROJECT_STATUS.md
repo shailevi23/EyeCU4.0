@@ -31,4 +31,4 @@ REPORTING RULE:
 - Events: UNSUPPORTED / DEFERRED.
 
 NO M6. Post-freeze NON-TEST development work is documented in
-POST_FREEZE_SYSTEM_PATCH.md and does not reopen M4/M5/M5.1.
+../provenance/POST_FREEZE_SYSTEM_PATCH.md and does not reopen M4/M5/M5.1.

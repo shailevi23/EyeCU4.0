@@ -120,7 +120,7 @@ already tolerate a missing `team`/`team_color` key unchanged.
 
 ## Final cached demo
 
-`demo_outputs/final_e2e_demo/tracked_output_team_v2_final.mp4` — rendered
+`demo_outputs/archive/tracked_output_team_v2_final.mp4` — rendered
 from the ORIGINAL Bayern source frames + the existing tracks cache (zero
 YOLO/SN3D inference; cache-hit confirmed), 640×360, 375 frames, 12.5 fps,
 real H.264 (`avc1`), using the winning `legacy_color` backend and the

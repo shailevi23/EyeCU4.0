@@ -191,7 +191,7 @@ numbers above are the authoritative detection results for this project.
 After project closure (§11), further **POST-FREEZE, NON-TEST** development
 work measured and hardened components that were previously unvalidated.
 None of this reopens or reruns M4/M5/M5.1; TEST was never accessed. Full
-detail: [POST_FREEZE_SYSTEM_PATCH.md](POST_FREEZE_SYSTEM_PATCH.md),
+detail: [POST_FREEZE_SYSTEM_PATCH.md](../provenance/POST_FREEZE_SYSTEM_PATCH.md),
 [experiments/post_freeze/team_assignment_v2/](experiments/post_freeze/team_assignment_v2/),
 [experiments/post_freeze/tracklet_guard_v1/](experiments/post_freeze/tracklet_guard_v1/).
 
@@ -253,7 +253,7 @@ Munich 3-1 Chelsea (NON-TEST), rendered from the existing tracks cache
 (zero YOLO/SN3D inference for this render; cache-hit confirmed): 640×360,
 375 frames, 12.5 fps, 30.0s, H.264 (`avc1`). The source video itself is
 640×360, so remaining visual softness is source-resolution-limited, not an
-export defect (see `VISUALIZATION_PATCH_V2.md` for the codec/FPS export
+export defect (see `../provenance/VISUALIZATION_PATCH_V2.md` for the codec/FPS export
 fixes that were already applied). The on-screen IDs are **tracking IDs**,
 not jersey numbers.
 
@@ -262,4 +262,4 @@ not jersey numbers.
 See also: [README_FINAL_SUMMARY.md](README_FINAL_SUMMARY.md),
 [FINAL_PRESENTATION_OUTLINE.md](FINAL_PRESENTATION_OUTLINE.md),
 [PIPELINE_DIAGRAM.md](PIPELINE_DIAGRAM.md), [FINAL_PROJECT_STATUS.md](FINAL_PROJECT_STATUS.md),
-[POST_FREEZE_SYSTEM_PATCH.md](POST_FREEZE_SYSTEM_PATCH.md).
+[POST_FREEZE_SYSTEM_PATCH.md](../provenance/POST_FREEZE_SYSTEM_PATCH.md).

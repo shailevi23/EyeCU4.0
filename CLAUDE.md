@@ -25,9 +25,11 @@ rollback backend], camera_movement, player_ball_assigner, overlay, ...).
 - `experiments/post_freeze/` — post-freeze evaluations (team assignment v2,
   tracklet guard) run after the system froze; non-adoption decisions live here
 - `demo_outputs/final_e2e_demo/tracked_output_final_system.mp4` — the
-  official final demo; other renders in that directory are cited duplicates
+  official final demo; superseded/cited-duplicate renders live in
+  `demo_outputs/archive/`
 - `docs/results/RESULTS.md` — measured results including negative ones
-- `docs/archive/` — superseded planning/audit documents kept for history
+- `docs/final/` — final submission docs; `docs/provenance/` — post-freeze
+  and audit engineering docs; `docs/archive/` — superseded/historical docs
 
 ## Authoritative model paths (runtime contracts, not committed — obtain per
 directory READMEs)
@@ -54,7 +56,9 @@ pytest tests/test_goalkeeper_possession.py tests/test_output_fps_contract.py -v
 
 ## Final submission docs
 
-`README.md` (start here) → `FINAL_PROJECT_REPORT.md` (full) /
-`README_FINAL_SUMMARY.md` (one-pager) / `FINAL_PROJECT_STATUS.md` (terse) /
-`FINAL_PRESENTATION_OUTLINE.md` / `PIPELINE_DIAGRAM.md`. Post-freeze work:
-`POST_FREEZE_SYSTEM_PATCH.md`, `VISUALIZATION_PATCH_V2.md`.
+`README.md` (start here) → `docs/final/FINAL_PROJECT_REPORT.md` (full) /
+`docs/final/README_FINAL_SUMMARY.md` (one-pager) /
+`docs/final/FINAL_PROJECT_STATUS.md` (terse) /
+`docs/final/FINAL_PRESENTATION_OUTLINE.md` / `docs/final/PIPELINE_DIAGRAM.md`.
+Post-freeze/audit engineering docs: `docs/provenance/`. Superseded/historical
+docs: `docs/archive/`.
