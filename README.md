@@ -11,15 +11,31 @@ live in [docs/results/RESULTS.md](docs/results/RESULTS.md).
 
 ## What it does today
 
+Two independent branches that merge only at possession assignment — the
+ball never enters human association:
+
 ```
-video → detector (YOLO26s @960) → CBIoU association → team assignment
-      → ball temporal selection (provenance-tagged) → ball possession
-      → annotated video + JSON reports
+video ─┬─▶ HUMAN:  best_A_960.pt (YOLO26s@960; player/goalkeeper/referee)
+       │             → CBIoU human tracking → team assignment
+       └─▶ BALL:    SN3D_BASE, yolo-sn-ball.pt (YOLO11l@1280, ball only)
+                     → BallTemporalSelector (provenance-tagged)
+
+  both branches → PlayerBallAssigner / possession
+                → annotated video + JSON reports
 ```
 
 **Four semantic classes, preserved end to end:** `player`, `goalkeeper`,
 `referee`, `ball`. Goalkeeper is never collapsed into player — its kit
 deliberately differs from its own team's, and team assignment excludes it.
+A goalkeeper may still be recorded as the ball *possessor*; it is never
+given a fabricated team.
+
+**Final scientific result, architecture detail, and status:** see
+[docs/final/FINAL_PROJECT_REPORT.md](docs/final/FINAL_PROJECT_REPORT.md) /
+[docs/final/README_FINAL_SUMMARY.md](docs/final/README_FINAL_SUMMARY.md) — held-out verdict
+**B** (defensible, with a material held-out generalization limitation);
+post-freeze NON-TEST development notes in
+[docs/provenance/POST_FREEZE_SYSTEM_PATCH.md](docs/provenance/POST_FREEZE_SYSTEM_PATCH.md).
 
 **Current detector candidate: `best_A_960.pt`** — YOLO26s trained at 960 px on
 823 match-disjoint frames. On the frozen 208-image validation set: mAP50
@@ -73,6 +89,9 @@ Common options:
 | `--use-cache` | off | reuse cached detections/tracks |
 | `--use-roboflow` | off | opt in to the hosted detector (labelling/benchmark only) |
 | `--show-speed` / `--show-distance` | off | overlay uncalibrated speed/distance |
+| `--overlay-mode` | `viewer` | clean tactical-camera render; `debug` keeps the engineering overlay |
+| `--team-assignment-backend` | `legacy_color` | production default and benchmark winner (46/46 on the post-freeze dev benchmark); `v2` kept for rollback only |
+| `--fps` | pipeline's `effective_fps` | output video FPS; defaults to `source_fps / skip_frames`, not a fixed guess |
 
 Output lands in `--output-dir` (default `match_analysis_output/`): annotated
 video, `visualizations/`, `reports/player_statistics.json`,
@@ -89,10 +108,14 @@ run_pipeline.py            CLI entry point
 full_pipeline.py           orchestrator
 trackers/                  detector, tracking, team assignment, ball temporal logic
 tools/                     dataset construction, labelling, evaluation, diagnostics
-tests/                     111 fast tests + 9 slow
+tests/                     ~1220 fast tests + ~10 slow
 data/                      frames, labels, manifests, frozen splits (gitignored)
 experiments/records/       per-experiment specs and training logs
-docs/                      documentation (below)
+experiments/post_freeze/   post-freeze benchmark evidence (team assignment v2, tracklet guard)
+demo_outputs/final_e2e_demo/  official final demo render
+docs/final/                final submission docs (report, summary, status, slides, diagram)
+docs/provenance/           post-freeze/audit engineering documentation
+docs/archive/              superseded/historical documents
 experimental/              preserved, unintegrated code
 ```
 
@@ -102,6 +125,14 @@ experimental/              preserved, unintegrated code
 
 | document | answers |
 |---|---|
+| [docs/final/FINAL_PROJECT_REPORT.md](docs/final/FINAL_PROJECT_REPORT.md) | the full final report — architecture, held-out result, limitations |
+| [docs/final/README_FINAL_SUMMARY.md](docs/final/README_FINAL_SUMMARY.md) | one-page final summary and where to look |
+| [docs/final/FINAL_PROJECT_STATUS.md](docs/final/FINAL_PROJECT_STATUS.md) | terse final status/verdict record |
+| [docs/final/FINAL_PRESENTATION_OUTLINE.md](docs/final/FINAL_PRESENTATION_OUTLINE.md) | slide-by-slide presentation outline |
+| [docs/final/PIPELINE_DIAGRAM.md](docs/final/PIPELINE_DIAGRAM.md) | architecture diagram with per-component validation status |
+| [docs/provenance/POST_FREEZE_SYSTEM_PATCH.md](docs/provenance/POST_FREEZE_SYSTEM_PATCH.md) | post-freeze NON-TEST development (FPS, goalkeeper possession, team-assignment benchmark, tracklet guard) |
+| [docs/provenance/VISUALIZATION_PATCH_V2.md](docs/provenance/VISUALIZATION_PATCH_V2.md) | viewer/overlay rendering patch and codec fix |
+| [docs/provenance/FINAL_REPOSITORY_CLEANUP.md](docs/provenance/FINAL_REPOSITORY_CLEANUP.md) | repository cleanup/organization record |
 | [docs/results/RESULTS.md](docs/results/RESULTS.md) | what was measured — detector results, failure modes, bugs found |
 | [docs/coursework/COURSEWORK_PLAN.md](docs/coursework/COURSEWORK_PLAN.md) | what remains to finish the project |
 | [docs/guides/LABELING.md](docs/guides/LABELING.md) | how to extract frames, draft labels and annotate |

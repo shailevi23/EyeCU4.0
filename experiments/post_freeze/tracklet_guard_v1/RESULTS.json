@@ -1,0 +1,188 @@
+{
+  "status": "POST_FREEZE_DEVELOPMENT_BENCHMARK",
+  "not_held_out_test_validation": true,
+  "benchmark_scope_note": "This benchmark measures whether an automatic guard detects the SAME KIND of contamination already found via human labeling on 57 selected long-lived tracks from two NON-TEST matches. It does not measure a global tracking error rate, per-frame tracking accuracy, or same-team ID switches.",
+  "candidates": {
+    "candidate_A": {
+      "candidate": "candidate_A",
+      "tp": 0,
+      "fp": 0,
+      "fn": 10,
+      "tn": 46,
+      "recall": 0.0,
+      "specificity": 1.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "balanced_accuracy": 0.5,
+      "fp_rate": 0.0,
+      "per_match": {
+        "bayern_munich_3-1_chelsea": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "tn": 22,
+          "detected_track_ids_real": [],
+          "recall": 0.0,
+          "specificity": 1.0,
+          "precision": 0.0,
+          "f1": 0.0,
+          "balanced_accuracy": 0.5,
+          "fp_rate": 0.0
+        },
+        "chelsea_v_leeds_united": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 6,
+          "tn": 24,
+          "detected_track_ids_real": [],
+          "recall": 0.0,
+          "specificity": 1.0,
+          "precision": 0.0,
+          "f1": 0.0,
+          "balanced_accuracy": 0.5,
+          "fp_rate": 0.0
+        }
+      },
+      "runtimes": {
+        "bayern_munich_3-1_chelsea": 0.0,
+        "chelsea_v_leeds_united": 0.0
+      },
+      "status": "RUN"
+    },
+    "candidate_B": {
+      "candidate": "candidate_B",
+      "tp": 2,
+      "fp": 7,
+      "fn": 8,
+      "tn": 39,
+      "recall": 0.2,
+      "specificity": 0.8478260869565217,
+      "precision": 0.2222222222222222,
+      "f1": 0.2105263157894737,
+      "balanced_accuracy": 0.5239130434782608,
+      "fp_rate": 0.15217391304347827,
+      "per_match": {
+        "bayern_munich_3-1_chelsea": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "tn": 22,
+          "detected_track_ids_real": [],
+          "recall": 0.0,
+          "specificity": 1.0,
+          "precision": 0.0,
+          "f1": 0.0,
+          "balanced_accuracy": 0.5,
+          "fp_rate": 0.0
+        },
+        "chelsea_v_leeds_united": {
+          "tp": 2,
+          "fp": 7,
+          "fn": 4,
+          "tn": 17,
+          "detected_track_ids_real": [
+            31,
+            47,
+            40,
+            63,
+            69,
+            36,
+            48,
+            42,
+            23
+          ],
+          "recall": 0.3333333333333333,
+          "specificity": 0.7083333333333334,
+          "precision": 0.2222222222222222,
+          "f1": 0.26666666666666666,
+          "balanced_accuracy": 0.5208333333333334,
+          "fp_rate": 0.2916666666666667
+        }
+      },
+      "runtimes": {
+        "bayern_munich_3-1_chelsea": 15.550987958908081,
+        "chelsea_v_leeds_united": 19.7108051776886
+      },
+      "status": "RUN"
+    },
+    "candidate_C": {
+      "candidate": "candidate_C",
+      "tp": 0,
+      "fp": 0,
+      "fn": 10,
+      "tn": 46,
+      "recall": 0.0,
+      "specificity": 1.0,
+      "precision": 0.0,
+      "f1": 0.0,
+      "balanced_accuracy": 0.5,
+      "fp_rate": 0.0,
+      "per_match": {
+        "bayern_munich_3-1_chelsea": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "tn": 22,
+          "detected_track_ids_real": [],
+          "recall": 0.0,
+          "specificity": 1.0,
+          "precision": 0.0,
+          "f1": 0.0,
+          "balanced_accuracy": 0.5,
+          "fp_rate": 0.0
+        },
+        "chelsea_v_leeds_united": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 6,
+          "tn": 24,
+          "detected_track_ids_real": [],
+          "recall": 0.0,
+          "specificity": 1.0,
+          "precision": 0.0,
+          "f1": 0.0,
+          "balanced_accuracy": 0.5,
+          "fp_rate": 0.0
+        }
+      },
+      "runtimes": {
+        "bayern_munich_3-1_chelsea": 60.73254060745239,
+        "chelsea_v_leeds_united": 84.61367058753967
+      },
+      "status": "RUN"
+    }
+  },
+  "adoption_gate_check": {
+    "candidate_A": {
+      "passes": false,
+      "reasons_failed": [
+        "recall 0/10 < 6/10"
+      ]
+    },
+    "candidate_B": {
+      "passes": false,
+      "reasons_failed": [
+        "recall 2/10 < 6/10",
+        "clean FP 7/46 > 1/46",
+        "zero detections on Bayern match (gate requires >=1 in BOTH matches)"
+      ]
+    },
+    "candidate_C": {
+      "passes": false,
+      "reasons_failed": [
+        "recall 0/10 < 6/10 (SigLIP embeddings never crossed the frozen 3.0 separation-ratio threshold on this data)"
+      ]
+    }
+  },
+  "track4_diagnostic": {
+    "human_label": "MIXED_TRACK",
+    "candidate_B_auto_detected": false,
+    "candidate_C_auto_detected": false,
+    "reason_not_detected": "Candidate B had ZERO usable chest-ROI observations for ALL 27 Bayern tracks including #4 (same tiny-bbox data limitation found in the team-assignment benchmark); Candidate C processed #4 but its embedding trajectory separation ratio never crossed the frozen 3.0 threshold."
+  },
+  "decision": {
+    "gate_passed_by_any_candidate": false,
+    "guard_adopted": false,
+    "reason": "No candidate meets the frozen adoption gate (mixed recall >=6/10, clean FP <=1/46, >=1 detection in BOTH matches). Candidate A (no guard) trivially has 0 recall. Candidate B reaches only 2/10 recall with 7/46 false positives, and detects nothing at all on Bayern (zero usable chest-ROI observations there, the same tiny-bbox limitation already measured in the team-assignment benchmark). Candidate C (SigLIP) never crosses the frozen 3.0 separation-ratio threshold on either match, so it also has 0 recall. Per the frozen gate: DO NOT ADOPT. The raw CBIoU pipeline is retained unchanged; cross-team identity contamination (evidenced by 10/57 MIXED_TRACK labels) is documented as a measured development limitation, not patched over by an unreliable automatic guard."
+  }
+}

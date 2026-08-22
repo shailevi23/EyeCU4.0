@@ -9,6 +9,8 @@ import os
 from typing import List, Dict, Optional
 import pickle
 
+from trackers import overlay as ui
+
 class CameraMovementEstimator:
     """
     Estimates camera movement between frames using optical flow
@@ -177,40 +179,51 @@ class CameraMovementEstimator:
         
         return camera_movement
     
-    def draw_camera_movement(self, frames: List[np.ndarray], 
-                            camera_movement_per_frame: List) -> List[np.ndarray]:
+    def draw_camera_movement(self, frames: List[np.ndarray],
+                            camera_movement_per_frame: List,
+                            overlay_mode: str = 'viewer') -> List[np.ndarray]:
         """
-        Visualize camera movement on frames
-        
+        Visualize camera movement on frames. This is an engineering
+        diagnostic (raw optical-flow dx/dy) -- DEBUG mode only; VIEWER mode
+        returns frames unchanged, per the viewer-overlay decluttering spec.
+
         Args:
             frames: List of video frames
             camera_movement_per_frame: List of [dx, dy] camera movements
-            
+            overlay_mode: 'viewer' (default; no-op) or 'debug'
+
         Returns:
             List of annotated frames
         """
+        if overlay_mode not in ('viewer', 'debug'):
+            raise ValueError(f"unknown overlay_mode {overlay_mode!r}")
+        if overlay_mode == 'viewer':
+            return frames
+
         output_frames = []
-        
+
         for frame_num, frame in enumerate(frames):
-            # Create a copy of the frame
             frame = frame.copy()
-            
-            # Create semi-transparent overlay for text background
+            style = ui.get_ui_scale(frame.shape[1], frame.shape[0])
+            scale = style['scale']
+
+            panel_w = max(200, round(340 * scale))
+            panel_h = max(50, round(70 * scale))
             overlay = frame.copy()
-            cv2.rectangle(overlay, (0, 0), (500, 100), (255, 255, 255), -1)
+            cv2.rectangle(overlay, (0, 0), (panel_w, panel_h), (255, 255, 255), -1)
             alpha = 0.6
-            cv2.addWeighted(overlay, alpha, frame, 1-alpha, 0, frame)
-            
-            # Get camera movement for this frame
+            cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
+
             if frame_num < len(camera_movement_per_frame):
                 x_movement, y_movement = camera_movement_per_frame[frame_num]
-                
-                # Display camera movement
-                cv2.putText(frame, f"Camera Movement X: {x_movement:.2f}", (10, 30), 
-                          cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
-                cv2.putText(frame, f"Camera Movement Y: {y_movement:.2f}", (10, 60),
-                          cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
-            
+                font_scale = round(0.7 * scale, 3)
+                thick = max(1, round(2 * scale))
+                line_h = max(16, round(26 * scale))
+                cv2.putText(frame, f"Camera Movement X: {x_movement:.2f}", (10, line_h),
+                          cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0, 0, 0), thick)
+                cv2.putText(frame, f"Camera Movement Y: {y_movement:.2f}", (10, line_h * 2),
+                          cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0, 0, 0), thick)
+
             output_frames.append(frame)
-        
+
         return output_frames

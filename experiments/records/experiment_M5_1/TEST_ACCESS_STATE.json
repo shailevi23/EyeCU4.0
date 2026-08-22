@@ -1,0 +1,29 @@
+{
+ "milestone": "M5.1 -- corrected-GT evaluation (Como blind re-annotation)",
+ "supersedes_for_reporting_purposes_only": "experiments/records/experiment_M5/TEST_ACCESS_STATE.json (sha256 58303f18fccc5e728d572bbc1b4b3ef85b549714cdc924aa2acbfc796493e65f) -- preserved unedited; M5 remains the historical first evaluation.",
+ "frozen_utc": "2026-08-19T00:00:00Z",
+
+ "access_state": {
+  "machine_leakage_accessed": true,
+  "human_annotation_accessed": true,
+  "labels_frozen": true,
+  "production_predictions_run": true,
+  "evaluation_results_viewed": true
+ },
+ "production_predictions_run_note": "true because this field represents CUMULATIVE TEST history, not runs during this milestone specifically -- frozen production predictions were already generated in M5 (see experiments/records/experiment_M5/RAW_PREDICTIONS.json) and reused verbatim, byte-for-byte, in M5.1. M5.1 itself performed ZERO NEW inference; see model_inference_runs_this_milestone below, which remains 0.",
+
+ "gt_modified_during_m5_1": "the ORIGINAL M4 TEST_DETECTION_ANNOTATIONS.json was NOT modified (re-verified byte-identical, sha256 4702b60fbdb173773e6bc7246d45587c1446093559c96792d3ae864e4d6896cb). A NEW, separate corrected-GT artifact was created instead: TEST_DETECTION_ANNOTATIONS_CORRECTED.json.",
+
+ "test_image_reads_by_assistant_this_milestone": 0,
+ "model_inference_runs_this_milestone": 0,
+
+ "m5_1_artifacts": {
+  "M5_1_COMO_QC_RESULT.json": "0516c08099a116cccd4bade1440ec44892017d2654c1aac79f43261abb4a7c9b",
+  "TEST_DETECTION_ANNOTATIONS_CORRECTED.json": "f9f1fa9d9b090df0056335cf232ff6f8de2e974ceab3ef002f1d099bb0c49cde",
+  "M5_1_DETECTION_METRICS.json": "9989f7883288ca6d28808c136021d6f4b80ab92488ff50493def493cd42635b3",
+  "M5_1_VS_M5_COMPARISON.json": "abec36b5a8e19d3c973dec56abe5f44e9127ee5bceab4f3d22f81e565d8d1252",
+  "COMO_BLIND_CLAMP_LOG.json": "33115f41602fbb81164ee56fa97eb2eddfbdc036dfed178cadf738e4a3abf9c3"
+ },
+
+ "immutability": "TEST_DETECTION_ANNOTATIONS_CORRECTED.json is frozen as of this file. Any further correction requires a new, explicitly superseding milestone -- never a silent overwrite."
+}

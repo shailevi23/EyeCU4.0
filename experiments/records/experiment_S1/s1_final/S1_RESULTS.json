@@ -1,0 +1,2185 @@
+{
+ "EXPERIMENT": "S1 non-YOLO soccer ball specialist gate",
+ "DIAGNOSTIC_ONLY": true,
+ "device": "cpu",
+ "official_rule": {
+  "source": "WASB-SBDT src/utils/evaluator.py + configs/runner/eval.yaml",
+  "score_threshold": 0.5,
+  "dist_threshold_px_literal": 4.0,
+  "dist_threshold_px_width_normalised": 1.3333,
+  "wasb_soccer_native_width": 1920,
+  "eyecu_frame_width": 640,
+  "coordinate_system": "ORIGINAL frozen benchmark frame, 640x360",
+  "selection": "tracker=intra_frame_peak (max score, single ball)",
+  "yolo_threshold": 0.25,
+  "yolo_centre": "predicted bbox centre"
+ },
+ "benchmark": {
+  "targets": 104,
+  "gt_ball_frames": 77,
+  "gt_ball_objects": 77,
+  "empty_frames": 27
+ },
+ "hard_set": {
+  "n": 24,
+  "n_overlap": 20,
+  "n_events": 15,
+  "distinct_files": 24
+ },
+ "alignment": {
+  "rule": "frozen benchmark JPEG must be closest by mean-absolute pixel difference to source_frame_index, and to no neighbour +/-2",
+  "targets_checked": 104,
+  "targets_aligned": 104,
+  "misaligned": [],
+  "mad_at_0_max": 1.6808,
+  "mad_at_0_mean": 1.1903,
+  "mad_next_best_min": 1.1637,
+  "per_target": [
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000760.jpg",
+    "source_frame_index": 760,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.6796,
+    "mad_next_best": 21.2315,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000766.jpg",
+    "source_frame_index": 766,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.6808,
+    "mad_next_best": 15.945,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000772.jpg",
+    "source_frame_index": 772,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.4853,
+    "mad_next_best": 20.8208,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000778.jpg",
+    "source_frame_index": 778,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.4006,
+    "mad_next_best": 16.4341,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000784.jpg",
+    "source_frame_index": 784,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.4011,
+    "mad_next_best": 13.5347,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000790.jpg",
+    "source_frame_index": 790,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3475,
+    "mad_next_best": 9.3472,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000796.jpg",
+    "source_frame_index": 796,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3936,
+    "mad_next_best": 8.6522,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000802.jpg",
+    "source_frame_index": 802,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.37,
+    "mad_next_best": 6.1634,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000808.jpg",
+    "source_frame_index": 808,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3692,
+    "mad_next_best": 8.7986,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000814.jpg",
+    "source_frame_index": 814,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3269,
+    "mad_next_best": 6.3134,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000820.jpg",
+    "source_frame_index": 820,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3542,
+    "mad_next_best": 7.8552,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000826.jpg",
+    "source_frame_index": 826,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3903,
+    "mad_next_best": 9.462,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv000832.jpg",
+    "source_frame_index": 832,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3389,
+    "mad_next_best": 7.4341,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001329.jpg",
+    "source_frame_index": 1329,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3592,
+    "mad_next_best": 10.0193,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001335.jpg",
+    "source_frame_index": 1335,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.4241,
+    "mad_next_best": 10.0596,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001341.jpg",
+    "source_frame_index": 1341,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.4082,
+    "mad_next_best": 10.0724,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001347.jpg",
+    "source_frame_index": 1347,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3961,
+    "mad_next_best": 14.5757,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001353.jpg",
+    "source_frame_index": 1353,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.4553,
+    "mad_next_best": 9.503,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001359.jpg",
+    "source_frame_index": 1359,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.5297,
+    "mad_next_best": 8.2801,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001365.jpg",
+    "source_frame_index": 1365,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.6178,
+    "mad_next_best": 5.8371,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001371.jpg",
+    "source_frame_index": 1371,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.5709,
+    "mad_next_best": 2.8269,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001377.jpg",
+    "source_frame_index": 1377,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.5817,
+    "mad_next_best": 4.6964,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001383.jpg",
+    "source_frame_index": 1383,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.6006,
+    "mad_next_best": 3.4136,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001389.jpg",
+    "source_frame_index": 1389,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.5843,
+    "mad_next_best": 6.0285,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001395.jpg",
+    "source_frame_index": 1395,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.5591,
+    "mad_next_best": 8.3247,
+    "aligned": true
+   },
+   {
+    "file": "austin_fc_vs__club_tijuana_tv001401.jpg",
+    "source_frame_index": 1401,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.5521,
+    "mad_next_best": 8.5306,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000609.jpg",
+    "source_frame_index": 609,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9691,
+    "mad_next_best": 2.2016,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000614.jpg",
+    "source_frame_index": 614,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9976,
+    "mad_next_best": 2.0517,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000619.jpg",
+    "source_frame_index": 619,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.933,
+    "mad_next_best": 1.6225,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000624.jpg",
+    "source_frame_index": 624,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9594,
+    "mad_next_best": 1.9535,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000629.jpg",
+    "source_frame_index": 629,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.939,
+    "mad_next_best": 3.2124,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000634.jpg",
+    "source_frame_index": 634,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9104,
+    "mad_next_best": 2.0661,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000639.jpg",
+    "source_frame_index": 639,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.926,
+    "mad_next_best": 1.2685,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000644.jpg",
+    "source_frame_index": 644,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9293,
+    "mad_next_best": 1.7033,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000649.jpg",
+    "source_frame_index": 649,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9468,
+    "mad_next_best": 1.4813,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000654.jpg",
+    "source_frame_index": 654,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9254,
+    "mad_next_best": 1.6741,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000659.jpg",
+    "source_frame_index": 659,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9397,
+    "mad_next_best": 1.6347,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000664.jpg",
+    "source_frame_index": 664,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9369,
+    "mad_next_best": 1.3233,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv000669.jpg",
+    "source_frame_index": 669,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9259,
+    "mad_next_best": 1.1637,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001065.jpg",
+    "source_frame_index": 1065,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0505,
+    "mad_next_best": 6.9364,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001070.jpg",
+    "source_frame_index": 1070,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0365,
+    "mad_next_best": 7.0907,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001075.jpg",
+    "source_frame_index": 1075,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.033,
+    "mad_next_best": 6.974,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001080.jpg",
+    "source_frame_index": 1080,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0612,
+    "mad_next_best": 7.0819,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001085.jpg",
+    "source_frame_index": 1085,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0496,
+    "mad_next_best": 7.2308,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001090.jpg",
+    "source_frame_index": 1090,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0481,
+    "mad_next_best": 7.352,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001095.jpg",
+    "source_frame_index": 1095,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0648,
+    "mad_next_best": 7.3724,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001100.jpg",
+    "source_frame_index": 1100,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0863,
+    "mad_next_best": 6.5232,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001105.jpg",
+    "source_frame_index": 1105,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0926,
+    "mad_next_best": 6.11,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001110.jpg",
+    "source_frame_index": 1110,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1086,
+    "mad_next_best": 5.0611,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001115.jpg",
+    "source_frame_index": 1115,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1003,
+    "mad_next_best": 5.4841,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001120.jpg",
+    "source_frame_index": 1120,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1235,
+    "mad_next_best": 5.0915,
+    "aligned": true
+   },
+   {
+    "file": "bayern_munich_3-1_chelsea_tv001125.jpg",
+    "source_frame_index": 1125,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.129,
+    "mad_next_best": 5.0798,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000639.jpg",
+    "source_frame_index": 639,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1454,
+    "mad_next_best": 7.5759,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000644.jpg",
+    "source_frame_index": 644,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1329,
+    "mad_next_best": 6.9579,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000649.jpg",
+    "source_frame_index": 649,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1421,
+    "mad_next_best": 6.7194,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000654.jpg",
+    "source_frame_index": 654,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1355,
+    "mad_next_best": 6.9445,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000659.jpg",
+    "source_frame_index": 659,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1476,
+    "mad_next_best": 6.8842,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000664.jpg",
+    "source_frame_index": 664,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1547,
+    "mad_next_best": 6.3165,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000669.jpg",
+    "source_frame_index": 669,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1554,
+    "mad_next_best": 7.4062,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000674.jpg",
+    "source_frame_index": 674,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1455,
+    "mad_next_best": 7.5468,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000679.jpg",
+    "source_frame_index": 679,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1623,
+    "mad_next_best": 7.94,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000684.jpg",
+    "source_frame_index": 684,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1229,
+    "mad_next_best": 8.4516,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000689.jpg",
+    "source_frame_index": 689,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0877,
+    "mad_next_best": 8.2546,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000694.jpg",
+    "source_frame_index": 694,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0926,
+    "mad_next_best": 8.2664,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv000699.jpg",
+    "source_frame_index": 699,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1264,
+    "mad_next_best": 8.2561,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001119.jpg",
+    "source_frame_index": 1119,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.179,
+    "mad_next_best": 7.3579,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001124.jpg",
+    "source_frame_index": 1124,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1419,
+    "mad_next_best": 6.2646,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001129.jpg",
+    "source_frame_index": 1129,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1683,
+    "mad_next_best": 6.4758,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001134.jpg",
+    "source_frame_index": 1134,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0647,
+    "mad_next_best": 8.5458,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001139.jpg",
+    "source_frame_index": 1139,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0871,
+    "mad_next_best": 9.0076,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001144.jpg",
+    "source_frame_index": 1144,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0401,
+    "mad_next_best": 8.0563,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001149.jpg",
+    "source_frame_index": 1149,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0985,
+    "mad_next_best": 7.7618,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001154.jpg",
+    "source_frame_index": 1154,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0533,
+    "mad_next_best": 8.2275,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001159.jpg",
+    "source_frame_index": 1159,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0808,
+    "mad_next_best": 8.7582,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001164.jpg",
+    "source_frame_index": 1164,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0478,
+    "mad_next_best": 9.1029,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001169.jpg",
+    "source_frame_index": 1169,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0459,
+    "mad_next_best": 9.343,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001174.jpg",
+    "source_frame_index": 1174,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0347,
+    "mad_next_best": 7.7623,
+    "aligned": true
+   },
+   {
+    "file": "women_1_tv001179.jpg",
+    "source_frame_index": 1179,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0858,
+    "mad_next_best": 7.3438,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000622.jpg",
+    "source_frame_index": 622,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.1985,
+    "mad_next_best": 3.2251,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000627.jpg",
+    "source_frame_index": 627,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.409,
+    "mad_next_best": 4.6065,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000632.jpg",
+    "source_frame_index": 632,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3126,
+    "mad_next_best": 4.6367,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000637.jpg",
+    "source_frame_index": 637,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3645,
+    "mad_next_best": 3.707,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000642.jpg",
+    "source_frame_index": 642,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3636,
+    "mad_next_best": 2.4008,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000647.jpg",
+    "source_frame_index": 647,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3483,
+    "mad_next_best": 2.2468,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000652.jpg",
+    "source_frame_index": 652,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3773,
+    "mad_next_best": 2.9644,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000657.jpg",
+    "source_frame_index": 657,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3201,
+    "mad_next_best": 3.4951,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000662.jpg",
+    "source_frame_index": 662,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3413,
+    "mad_next_best": 4.0902,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000667.jpg",
+    "source_frame_index": 667,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.3056,
+    "mad_next_best": 3.4969,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000672.jpg",
+    "source_frame_index": 672,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.2951,
+    "mad_next_best": 3.2086,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000677.jpg",
+    "source_frame_index": 677,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.2938,
+    "mad_next_best": 3.8865,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv000682.jpg",
+    "source_frame_index": 682,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.2777,
+    "mad_next_best": 3.7879,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001088.jpg",
+    "source_frame_index": 1088,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.8855,
+    "mad_next_best": 6.9146,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001093.jpg",
+    "source_frame_index": 1093,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9608,
+    "mad_next_best": 7.9669,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001098.jpg",
+    "source_frame_index": 1098,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0315,
+    "mad_next_best": 7.9565,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001103.jpg",
+    "source_frame_index": 1103,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0236,
+    "mad_next_best": 7.4153,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001108.jpg",
+    "source_frame_index": 1108,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0622,
+    "mad_next_best": 6.8091,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001113.jpg",
+    "source_frame_index": 1113,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0436,
+    "mad_next_best": 6.8792,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001118.jpg",
+    "source_frame_index": 1118,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0463,
+    "mad_next_best": 6.1062,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001123.jpg",
+    "source_frame_index": 1123,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0305,
+    "mad_next_best": 6.501,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001128.jpg",
+    "source_frame_index": 1128,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0441,
+    "mad_next_best": 7.4716,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001133.jpg",
+    "source_frame_index": 1133,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 0.9885,
+    "mad_next_best": 6.5092,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001138.jpg",
+    "source_frame_index": 1138,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0318,
+    "mad_next_best": 6.01,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001143.jpg",
+    "source_frame_index": 1143,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0795,
+    "mad_next_best": 6.0248,
+    "aligned": true
+   },
+   {
+    "file": "youth_premier_league_tv001148.jpg",
+    "source_frame_index": 1148,
+    "shape": [
+     360,
+     640
+    ],
+    "argmin_offset": 0,
+    "mad_at_0": 1.0751,
+    "mad_next_best": 6.8041,
+    "aligned": true
+   }
+  ]
+ },
+ "candidates": {
+  "DeepBall": {
+   "family": "deepball",
+   "frames_in": 1,
+   "frames_out": 1,
+   "input_hw": [
+    720,
+    1280
+   ],
+   "output_kind": "softmax peak (point)",
+   "official_score_threshold": 0.5,
+   "license": "MIT (WASB-SBDT LICENSE.md)",
+   "single_or_multi": "SINGLE-BALL ONLY",
+   "ckpt_file": "deepball_soccer_best.pth.tar",
+   "evaluable": "YES",
+   "params": 66226,
+   "ckpt_bytes": 284992,
+   "ckpt_sha256": "6e37b66c25f28d51bf621fe9c6990d24422a20d437c26371d3efb7ee76cfb11d",
+   "ms_per_target_cpu": 67.6,
+   "positions": {
+    "pos0": {
+     "official_4px": {
+      "tp": 0,
+      "fp1": 29,
+      "fp2": 5,
+      "fn": 48,
+      "tn": 22,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 5,
+      "empty_fired_rate": 0.1852,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 0,
+      "fp1": 29,
+      "fp2": 5,
+      "fn": 48,
+      "tn": 22,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 5,
+      "empty_fired_rate": 0.1852,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    }
+   },
+   "primary_position": "pos0",
+   "primary": {
+    "official_4px": {
+     "tp": 0,
+     "fp1": 29,
+     "fp2": 5,
+     "fn": 48,
+     "tn": 22,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": 0.0,
+     "empty_frames": 27,
+     "empty_fired_frames": 5,
+     "empty_fired_rate": 0.1852,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    },
+    "normalised_1p33px": {
+     "tp": 0,
+     "fp1": 29,
+     "fp2": 5,
+     "fn": 48,
+     "tn": 22,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": 0.0,
+     "empty_frames": 27,
+     "empty_fired_frames": 5,
+     "empty_fired_rate": 0.1852,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    }
+   }
+  },
+  "DeepBall-Large": {
+   "family": "deepball",
+   "frames_in": 1,
+   "frames_out": 1,
+   "input_hw": [
+    720,
+    1280
+   ],
+   "output_kind": "softmax peak (point)",
+   "official_score_threshold": 0.5,
+   "license": "MIT (WASB-SBDT LICENSE.md)",
+   "single_or_multi": "SINGLE-BALL ONLY",
+   "ckpt_file": "deepball-large_soccer_best.pth.tar",
+   "evaluable": "YES",
+   "params": 1026754,
+   "ckpt_bytes": 4131456,
+   "ckpt_sha256": "94a22f3a80670062459e509fc6651ab0581c5f7aef4b66812c6426884691c6fc",
+   "ms_per_target_cpu": 266.0,
+   "positions": {
+    "pos0": {
+     "official_4px": {
+      "tp": 0,
+      "fp1": 23,
+      "fp2": 4,
+      "fn": 54,
+      "tn": 23,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 4,
+      "empty_fired_rate": 0.1481,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 0,
+      "fp1": 23,
+      "fp2": 4,
+      "fn": 54,
+      "tn": 23,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 4,
+      "empty_fired_rate": 0.1481,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    }
+   },
+   "primary_position": "pos0",
+   "primary": {
+    "official_4px": {
+     "tp": 0,
+     "fp1": 23,
+     "fp2": 4,
+     "fn": 54,
+     "tn": 23,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": 0.0,
+     "empty_frames": 27,
+     "empty_fired_frames": 4,
+     "empty_fired_rate": 0.1481,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    },
+    "normalised_1p33px": {
+     "tp": 0,
+     "fp1": 23,
+     "fp2": 4,
+     "fn": 54,
+     "tn": 23,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": 0.0,
+     "empty_frames": 27,
+     "empty_fired_frames": 4,
+     "empty_fired_rate": 0.1481,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    }
+   }
+  },
+  "BallSeg": {
+   "family": "ballseg",
+   "frames_in": 2,
+   "frames_out": 1,
+   "input_hw": [
+    576,
+    1024
+   ],
+   "output_kind": "segmentation blob",
+   "official_score_threshold": 0.5,
+   "license": "MIT (WASB-SBDT LICENSE.md)",
+   "single_or_multi": "SINGLE-BALL ONLY",
+   "ckpt_file": "ballseg_soccer_best.pth.tar",
+   "evaluable": "YES",
+   "params": 12698297,
+   "ckpt_bytes": 50903559,
+   "ckpt_sha256": "27f938d82b177c3598f31f8b9ba0b2a7616f4497b1071adc2745404fc45c5d27",
+   "ms_per_target_cpu": 1137.7,
+   "positions": {
+    "pos0": {
+     "official_4px": {
+      "tp": 0,
+      "fp1": 0,
+      "fp2": 0,
+      "fn": 77,
+      "tn": 27,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": null,
+      "empty_frames": 27,
+      "empty_fired_frames": 0,
+      "empty_fired_rate": 0.0,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 0,
+      "fp1": 0,
+      "fp2": 0,
+      "fn": 77,
+      "tn": 27,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": null,
+      "empty_frames": 27,
+      "empty_fired_frames": 0,
+      "empty_fired_rate": 0.0,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    }
+   },
+   "primary_position": "pos0",
+   "primary": {
+    "official_4px": {
+     "tp": 0,
+     "fp1": 0,
+     "fp2": 0,
+     "fn": 77,
+     "tn": 27,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": null,
+     "empty_frames": 27,
+     "empty_fired_frames": 0,
+     "empty_fired_rate": 0.0,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    },
+    "normalised_1p33px": {
+     "tp": 0,
+     "fp1": 0,
+     "fp2": 0,
+     "fn": 77,
+     "tn": 27,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": null,
+     "empty_frames": 27,
+     "empty_fired_frames": 0,
+     "empty_fired_rate": 0.0,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    }
+   }
+  },
+  "TrackNetV2": {
+   "family": "tracknetv2",
+   "frames_in": 3,
+   "frames_out": 3,
+   "input_hw": [
+    288,
+    512
+   ],
+   "output_kind": "heatmap blob",
+   "official_score_threshold": 0.5,
+   "license": "MIT (WASB-SBDT LICENSE.md)",
+   "single_or_multi": "SINGLE-BALL ONLY",
+   "ckpt_file": "tracknetv2_soccer_best.pth.tar",
+   "evaluable": "YES",
+   "params": 11334147,
+   "ckpt_bytes": 45409423,
+   "ckpt_sha256": "68d69ddc10bc065763cef09e9cfa3c8f545b4b9506a7edfb8d0ea79daa49f599",
+   "ms_per_target_cpu": 851.1,
+   "positions": {
+    "pos0": {
+     "official_4px": {
+      "tp": 0,
+      "fp1": 18,
+      "fp2": 9,
+      "fn": 59,
+      "tn": 18,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 9,
+      "empty_fired_rate": 0.3333,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 0,
+      "fp1": 18,
+      "fp2": 9,
+      "fn": 59,
+      "tn": 18,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 9,
+      "empty_fired_rate": 0.3333,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    },
+    "pos1": {
+     "official_4px": {
+      "tp": 0,
+      "fp1": 17,
+      "fp2": 8,
+      "fn": 60,
+      "tn": 19,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 8,
+      "empty_fired_rate": 0.2963,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 0,
+      "fp1": 17,
+      "fp2": 8,
+      "fn": 60,
+      "tn": 19,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 8,
+      "empty_fired_rate": 0.2963,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    },
+    "pos2": {
+     "official_4px": {
+      "tp": 0,
+      "fp1": 17,
+      "fp2": 7,
+      "fn": 60,
+      "tn": 20,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 7,
+      "empty_fired_rate": 0.2593,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 0,
+      "fp1": 17,
+      "fp2": 7,
+      "fn": 60,
+      "tn": 20,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 7,
+      "empty_fired_rate": 0.2593,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    }
+   },
+   "primary_position": "pos1",
+   "primary": {
+    "official_4px": {
+     "tp": 0,
+     "fp1": 17,
+     "fp2": 8,
+     "fn": 60,
+     "tn": 19,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": 0.0,
+     "empty_frames": 27,
+     "empty_fired_frames": 8,
+     "empty_fired_rate": 0.2963,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    },
+    "normalised_1p33px": {
+     "tp": 0,
+     "fp1": 17,
+     "fp2": 8,
+     "fn": 60,
+     "tn": 19,
+     "gt_frames": 77,
+     "recall": 0.0,
+     "precision": 0.0,
+     "empty_frames": 27,
+     "empty_fired_frames": 8,
+     "empty_fired_rate": 0.2963,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    }
+   }
+  },
+  "ResTrackNetV2": {
+   "family": "restracknetv2",
+   "frames_in": 3,
+   "frames_out": 3,
+   "input_hw": [
+    288,
+    512
+   ],
+   "output_kind": "heatmap blob",
+   "official_score_threshold": 0.5,
+   "license": "MIT (WASB-SBDT LICENSE.md)",
+   "single_or_multi": "SINGLE-BALL ONLY",
+   "ckpt_file": "restracknetv2_soccer_best.pth.tar",
+   "evaluable": "YES",
+   "params": 1210451,
+   "ckpt_bytes": 5090619,
+   "ckpt_sha256": "32a69fa8700bc6ccac599928fa95f8aaa372abfa5ba57ec19d8c6b292602f6a1",
+   "ms_per_target_cpu": 362.2,
+   "positions": {
+    "pos0": {
+     "official_4px": {
+      "tp": 3,
+      "fp1": 11,
+      "fp2": 7,
+      "fn": 63,
+      "tn": 20,
+      "gt_frames": 77,
+      "recall": 0.039,
+      "precision": 0.1429,
+      "empty_frames": 27,
+      "empty_fired_frames": 7,
+      "empty_fired_rate": 0.2593,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 1,
+      "fp1": 13,
+      "fp2": 7,
+      "fn": 63,
+      "tn": 20,
+      "gt_frames": 77,
+      "recall": 0.013,
+      "precision": 0.0476,
+      "empty_frames": 27,
+      "empty_fired_frames": 7,
+      "empty_fired_rate": 0.2593,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    },
+    "pos1": {
+     "official_4px": {
+      "tp": 3,
+      "fp1": 23,
+      "fp2": 8,
+      "fn": 51,
+      "tn": 19,
+      "gt_frames": 77,
+      "recall": 0.039,
+      "precision": 0.0882,
+      "empty_frames": 27,
+      "empty_fired_frames": 8,
+      "empty_fired_rate": 0.2963,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 1,
+      "fp1": 25,
+      "fp2": 8,
+      "fn": 51,
+      "tn": 19,
+      "gt_frames": 77,
+      "recall": 0.013,
+      "precision": 0.0294,
+      "empty_frames": 27,
+      "empty_fired_frames": 8,
+      "empty_fired_rate": 0.2963,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    },
+    "pos2": {
+     "official_4px": {
+      "tp": 3,
+      "fp1": 21,
+      "fp2": 6,
+      "fn": 53,
+      "tn": 21,
+      "gt_frames": 77,
+      "recall": 0.039,
+      "precision": 0.1,
+      "empty_frames": 27,
+      "empty_fired_frames": 6,
+      "empty_fired_rate": 0.2222,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     },
+     "normalised_1p33px": {
+      "tp": 0,
+      "fp1": 24,
+      "fp2": 6,
+      "fn": 53,
+      "tn": 21,
+      "gt_frames": 77,
+      "recall": 0.0,
+      "precision": 0.0,
+      "empty_frames": 27,
+      "empty_fired_frames": 6,
+      "empty_fired_rate": 0.2222,
+      "hard_recovered": 0,
+      "hard_of": 24,
+      "overlap_recovered": 0,
+      "overlap_of": 20,
+      "events_touched": 0,
+      "events_of": 15,
+      "events_with_2plus": 0,
+      "hard_recovered_files": []
+     }
+    }
+   },
+   "primary_position": "pos1",
+   "primary": {
+    "official_4px": {
+     "tp": 3,
+     "fp1": 23,
+     "fp2": 8,
+     "fn": 51,
+     "tn": 19,
+     "gt_frames": 77,
+     "recall": 0.039,
+     "precision": 0.0882,
+     "empty_frames": 27,
+     "empty_fired_frames": 8,
+     "empty_fired_rate": 0.2963,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    },
+    "normalised_1p33px": {
+     "tp": 1,
+     "fp1": 25,
+     "fp2": 8,
+     "fn": 51,
+     "tn": 19,
+     "gt_frames": 77,
+     "recall": 0.013,
+     "precision": 0.0294,
+     "empty_frames": 27,
+     "empty_fired_frames": 8,
+     "empty_fired_rate": 0.2963,
+     "hard_recovered": 0,
+     "hard_of": 24,
+     "overlap_recovered": 0,
+     "overlap_of": 20,
+     "events_touched": 0,
+     "events_of": 15,
+     "events_with_2plus": 0,
+     "hard_recovered_files": []
+    }
+   }
+  }
+ },
+ "baselines": {
+  "A@960": {
+   "family": "YOLO26s (EyeCU)",
+   "frames_per_inference": 1,
+   "single_or_multi": "MULTI-BALL CAPABLE (scored single here)",
+   "ms_per_target_cpu": 562.6,
+   "official_4px": {
+    "tp": 46,
+    "fp1": 0,
+    "fp2": 1,
+    "fn": 31,
+    "tn": 26,
+    "gt_frames": 77,
+    "recall": 0.5974,
+    "precision": 0.9787,
+    "empty_frames": 27,
+    "empty_fired_frames": 1,
+    "empty_fired_rate": 0.037,
+    "hard_recovered": 2,
+    "hard_of": 24,
+    "overlap_recovered": 0,
+    "overlap_of": 20,
+    "events_touched": 2,
+    "events_of": 15,
+    "events_with_2plus": 0,
+    "hard_recovered_files": [
+     "youth_premier_league_tv000627.jpg",
+     "youth_premier_league_tv000662.jpg"
+    ]
+   },
+   "normalised_1p33px": {
+    "tp": 44,
+    "fp1": 2,
+    "fp2": 1,
+    "fn": 31,
+    "tn": 26,
+    "gt_frames": 77,
+    "recall": 0.5714,
+    "precision": 0.9362,
+    "empty_frames": 27,
+    "empty_fired_frames": 1,
+    "empty_fired_rate": 0.037,
+    "hard_recovered": 1,
+    "hard_of": 24,
+    "overlap_recovered": 0,
+    "overlap_of": 20,
+    "events_touched": 1,
+    "events_of": 15,
+    "events_with_2plus": 0,
+    "hard_recovered_files": [
+     "youth_premier_league_tv000662.jpg"
+    ]
+   }
+  },
+  "B@1280": {
+   "family": "YOLO26s (EyeCU)",
+   "frames_per_inference": 1,
+   "single_or_multi": "MULTI-BALL CAPABLE (scored single here)",
+   "ms_per_target_cpu": 250.3,
+   "official_4px": {
+    "tp": 54,
+    "fp1": 2,
+    "fp2": 1,
+    "fn": 21,
+    "tn": 26,
+    "gt_frames": 77,
+    "recall": 0.7013,
+    "precision": 0.9474,
+    "empty_frames": 27,
+    "empty_fired_frames": 1,
+    "empty_fired_rate": 0.037,
+    "hard_recovered": 4,
+    "hard_of": 24,
+    "overlap_recovered": 1,
+    "overlap_of": 20,
+    "events_touched": 4,
+    "events_of": 15,
+    "events_with_2plus": 0,
+    "hard_recovered_files": [
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "women_1_tv001169.jpg",
+     "youth_premier_league_tv000627.jpg",
+     "youth_premier_league_tv000662.jpg"
+    ]
+   },
+   "normalised_1p33px": {
+    "tp": 50,
+    "fp1": 6,
+    "fp2": 1,
+    "fn": 21,
+    "tn": 26,
+    "gt_frames": 77,
+    "recall": 0.6494,
+    "precision": 0.8772,
+    "empty_frames": 27,
+    "empty_fired_frames": 1,
+    "empty_fired_rate": 0.037,
+    "hard_recovered": 3,
+    "hard_of": 24,
+    "overlap_recovered": 1,
+    "overlap_of": 20,
+    "events_touched": 3,
+    "events_of": 15,
+    "events_with_2plus": 0,
+    "hard_recovered_files": [
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "women_1_tv001169.jpg",
+     "youth_premier_league_tv000662.jpg"
+    ]
+   }
+  },
+  "B@1920": {
+   "family": "YOLO26s (EyeCU)",
+   "frames_per_inference": 1,
+   "single_or_multi": "MULTI-BALL CAPABLE (scored single here)",
+   "ms_per_target_cpu": 551.0,
+   "official_4px": {
+    "tp": 53,
+    "fp1": 2,
+    "fp2": 0,
+    "fn": 22,
+    "tn": 27,
+    "gt_frames": 77,
+    "recall": 0.6883,
+    "precision": 0.9636,
+    "empty_frames": 27,
+    "empty_fired_frames": 0,
+    "empty_fired_rate": 0.0,
+    "hard_recovered": 4,
+    "hard_of": 24,
+    "overlap_recovered": 2,
+    "overlap_of": 20,
+    "events_touched": 4,
+    "events_of": 15,
+    "events_with_2plus": 0,
+    "hard_recovered_files": [
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "women_1_tv001169.jpg",
+     "youth_premier_league_tv000662.jpg",
+     "youth_premier_league_tv001113.jpg"
+    ]
+   },
+   "normalised_1p33px": {
+    "tp": 51,
+    "fp1": 4,
+    "fp2": 0,
+    "fn": 22,
+    "tn": 27,
+    "gt_frames": 77,
+    "recall": 0.6623,
+    "precision": 0.9273,
+    "empty_frames": 27,
+    "empty_fired_frames": 0,
+    "empty_fired_rate": 0.0,
+    "hard_recovered": 3,
+    "hard_of": 24,
+    "overlap_recovered": 1,
+    "overlap_of": 20,
+    "events_touched": 3,
+    "events_of": 15,
+    "events_with_2plus": 0,
+    "hard_recovered_files": [
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "women_1_tv001169.jpg",
+     "youth_premier_league_tv000662.jpg"
+    ]
+   }
+  }
+ }
+}

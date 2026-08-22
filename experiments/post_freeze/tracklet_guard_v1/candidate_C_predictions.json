@@ -1,0 +1,476 @@
+{
+  "predictions": {
+    "bayern_munich_3-1_chelsea": {
+      "2": false,
+      "3": false,
+      "8": false,
+      "11": false,
+      "16": false,
+      "17": false,
+      "1": false,
+      "19": false,
+      "5": false,
+      "10": false,
+      "13": false,
+      "4": false,
+      "9": false,
+      "18": false,
+      "6": false,
+      "15": false,
+      "27": false,
+      "7": false,
+      "28": false,
+      "29": false,
+      "31": false,
+      "22": false,
+      "12": false,
+      "14": false,
+      "26": false,
+      "20": false,
+      "32": false
+    },
+    "chelsea_v_leeds_united": {
+      "33": false,
+      "27": false,
+      "39": false,
+      "30": false,
+      "31": false,
+      "32": false,
+      "47": false,
+      "40": false,
+      "50": false,
+      "38": false,
+      "53": false,
+      "60": false,
+      "26": false,
+      "29": false,
+      "63": false,
+      "64": false,
+      "54": false,
+      "41": false,
+      "66": false,
+      "67": false,
+      "52": false,
+      "69": false,
+      "36": false,
+      "48": false,
+      "70": false,
+      "71": false,
+      "42": false,
+      "23": false,
+      "17": false,
+      "55": false
+    }
+  },
+  "runtimes": {
+    "bayern_munich_3-1_chelsea": 60.73254060745239,
+    "chelsea_v_leeds_united": 84.61367058753967
+  },
+  "diagnostics": {
+    "bayern_munich_3-1_chelsea": {
+      "2": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.064029738136138,
+        "n_usable_observations": 15
+      },
+      "3": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8632283544517183,
+        "n_usable_observations": 15
+      },
+      "8": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0631365027915725,
+        "n_usable_observations": 15
+      },
+      "11": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.822694847736293,
+        "n_usable_observations": 15
+      },
+      "16": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8094008188763414,
+        "n_usable_observations": 15
+      },
+      "17": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.815908858850208,
+        "n_usable_observations": 15
+      },
+      "1": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9828843466126608,
+        "n_usable_observations": 15
+      },
+      "19": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9904838403449076,
+        "n_usable_observations": 15
+      },
+      "5": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.1725709674716345,
+        "n_usable_observations": 15
+      },
+      "10": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9041772302892359,
+        "n_usable_observations": 15
+      },
+      "13": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.5399131353159132,
+        "n_usable_observations": 15
+      },
+      "4": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.6684783879496685,
+        "n_usable_observations": 15
+      },
+      "9": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.949939897815243,
+        "n_usable_observations": 15
+      },
+      "18": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.469159395456457,
+        "n_usable_observations": 15
+      },
+      "6": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.5901683735747358,
+        "n_usable_observations": 15
+      },
+      "15": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8355650748195748,
+        "n_usable_observations": 15
+      },
+      "27": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0939366036113836,
+        "n_usable_observations": 15
+      },
+      "7": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0366108116594455,
+        "n_usable_observations": 15
+      },
+      "28": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.1452731129283367,
+        "n_usable_observations": 15
+      },
+      "29": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9125301865211058,
+        "n_usable_observations": 15
+      },
+      "31": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0178924625925758,
+        "n_usable_observations": 15
+      },
+      "22": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8168531164600281,
+        "n_usable_observations": 15
+      },
+      "12": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.3963416541797935,
+        "n_usable_observations": 15
+      },
+      "14": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9850249293057785,
+        "n_usable_observations": 15
+      },
+      "26": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0145369656936754,
+        "n_usable_observations": 15
+      },
+      "20": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9711888398464571,
+        "n_usable_observations": 15
+      },
+      "32": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.3059216774428533,
+        "n_usable_observations": 15
+      }
+    },
+    "chelsea_v_leeds_united": {
+      "33": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0317714058558216,
+        "n_usable_observations": 15
+      },
+      "27": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9314919469411095,
+        "n_usable_observations": 15
+      },
+      "39": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8557056686550172,
+        "n_usable_observations": 15
+      },
+      "30": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.1370412577910964,
+        "n_usable_observations": 15
+      },
+      "31": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.4051665188096447,
+        "n_usable_observations": 15
+      },
+      "32": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.1627870928225907,
+        "n_usable_observations": 15
+      },
+      "47": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8878215244822772,
+        "n_usable_observations": 15
+      },
+      "40": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.4020008374444615,
+        "n_usable_observations": 15
+      },
+      "50": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0075580328364242,
+        "n_usable_observations": 15
+      },
+      "38": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0957121431327437,
+        "n_usable_observations": 15
+      },
+      "53": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9118996765850295,
+        "n_usable_observations": 15
+      },
+      "60": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8911912255114153,
+        "n_usable_observations": 15
+      },
+      "26": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8727767725066872,
+        "n_usable_observations": 15
+      },
+      "29": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0604761779634024,
+        "n_usable_observations": 15
+      },
+      "63": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.1409299657988436,
+        "n_usable_observations": 15
+      },
+      "64": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.054997723891304,
+        "n_usable_observations": 15
+      },
+      "54": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.9939461601676058,
+        "n_usable_observations": 15
+      },
+      "41": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.2959593067326205,
+        "n_usable_observations": 15
+      },
+      "66": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.041526653790363,
+        "n_usable_observations": 15
+      },
+      "67": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.3378449010935425,
+        "n_usable_observations": 15
+      },
+      "52": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 0.8318801027581157,
+        "n_usable_observations": 15
+      },
+      "69": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.3227827139716173,
+        "n_usable_observations": 15
+      },
+      "36": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.068308794590345,
+        "n_usable_observations": 15
+      },
+      "48": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.2184572562168006,
+        "n_usable_observations": 15
+      },
+      "70": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.3056982628554168,
+        "n_usable_observations": 15
+      },
+      "71": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.0495760896835604,
+        "n_usable_observations": 15
+      },
+      "42": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.233569841441899,
+        "n_usable_observations": 15
+      },
+      "23": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.1640513484407942,
+        "n_usable_observations": 15
+      },
+      "17": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.487059966446675,
+        "n_usable_observations": 15
+      },
+      "55": {
+        "contaminated": false,
+        "split_pos": null,
+        "split_at_processed_frame": null,
+        "separation_ratio": 1.2776946950534682,
+        "n_usable_observations": 15
+      }
+    }
+  },
+  "model_load_time_s": 0.24231719970703125,
+  "model_id": "google/siglip-base-patch16-224"
+}

@@ -1,0 +1,807 @@
+{
+ "run_id": "b2_20260816T092152Z",
+ "git_head": "c5ce3e23ac382937c0cd36fb39775fa7c4cb699e",
+ "experiment": "B2 -- width-matched P2 detection level",
+ "spec": "experiments/records/experiment_B2/experiment_B2_spec.md",
+ "arms": {
+  "baseline": "stock yolo26s.yaml",
+  "B2": "models/yolo26s-p2-widthmatched.yaml"
+ },
+ "architecture": {
+  "baseline": {
+   "strides": [
+    8,
+    16,
+    32
+   ],
+   "ch": [
+    128,
+    256,
+    512
+   ],
+   "box": 32,
+   "cls": 128,
+   "params": 9950960,
+   "gflops": 51.9,
+   "cells": 10710
+  },
+  "B2": {
+   "strides": [
+    4,
+    8,
+    16,
+    32
+   ],
+   "ch": [
+    128,
+    128,
+    256,
+    512
+   ],
+   "box": 32,
+   "cls": 128,
+   "params": 10389376,
+   "gflops": 88.2,
+   "cells": 43350
+  }
+ },
+ "weight_transfer": {
+  "baseline": {
+   "model_yaml": "/content/b2_models/yolo26s.yaml",
+   "nc": 4,
+   "donor": "/content/yolo26s.pt",
+   "donor_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+   "detect_layer_index": 23,
+   "total": {
+    "tensors": "696/708",
+    "tensors_pct": 98.3051,
+    "parameters": "9985962/9989058",
+    "parameters_pct": 99.969
+   },
+   "by_module": {
+    "backbone (0-10)": {
+     "tensors": "240/240",
+     "tensors_pct": 100.0,
+     "parameters": "5458760/5458760",
+     "parameters_pct": 100.0
+    },
+    "neck + new paths": {
+     "tensors": "228/228",
+     "tensors_pct": 100.0,
+     "parameters": "3586342/3586342",
+     "parameters_pct": 100.0
+    },
+    "Detect head": {
+     "tensors": "228/240",
+     "tensors_pct": 95.0,
+     "parameters": "940860/943956",
+     "parameters_pct": 99.672
+    }
+   },
+   "keys_absent_from_donor": 0,
+   "shape_mismatches": 12,
+   "shape_mismatch_detail": [
+    {
+     "key": "model.23.cv3.0.2.weight",
+     "donor": [
+      80,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      4,
+      128,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.23.cv3.0.2.bias",
+     "donor": [
+      80
+     ],
+     "receiver": [
+      4
+     ]
+    },
+    {
+     "key": "model.23.cv3.1.2.weight",
+     "donor": [
+      80,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      4,
+      128,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.23.cv3.1.2.bias",
+     "donor": [
+      80
+     ],
+     "receiver": [
+      4
+     ]
+    },
+    {
+     "key": "model.23.cv3.2.2.weight",
+     "donor": [
+      80,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      4,
+      128,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.23.cv3.2.2.bias",
+     "donor": [
+      80
+     ],
+     "receiver": [
+      4
+     ]
+    },
+    {
+     "key": "model.23.one2one_cv3.0.2.weight",
+     "donor": [
+      80,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      4,
+      128,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.23.one2one_cv3.0.2.bias",
+     "donor": [
+      80
+     ],
+     "receiver": [
+      4
+     ]
+    },
+    {
+     "key": "model.23.one2one_cv3.1.2.weight",
+     "donor": [
+      80,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      4,
+      128,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.23.one2one_cv3.1.2.bias",
+     "donor": [
+      80
+     ],
+     "receiver": [
+      4
+     ]
+    },
+    {
+     "key": "model.23.one2one_cv3.2.2.weight",
+     "donor": [
+      80,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      4,
+      128,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.23.one2one_cv3.2.2.bias",
+     "donor": [
+      80
+     ],
+     "receiver": [
+      4
+     ]
+    }
+   ]
+  },
+  "B2": {
+   "model_yaml": "/content/EyeCU4.0/models/yolo26s-p2-widthmatched.yaml",
+   "nc": 4,
+   "donor": "/content/yolo26s.pt",
+   "donor_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+   "detect_layer_index": 29,
+   "total": {
+    "tensors": "360/902",
+    "tensors_pct": 39.9113,
+    "parameters": "6075238/10431985",
+    "parameters_pct": 58.2366
+   },
+   "by_module": {
+    "backbone (0-10)": {
+     "tensors": "240/240",
+     "tensors_pct": 100.0,
+     "parameters": "5458760/5458760",
+     "parameters_pct": 100.0
+    },
+    "neck + new paths": {
+     "tensors": "120/342",
+     "tensors_pct": 35.0877,
+     "parameters": "616478/3861049",
+     "parameters_pct": 15.9666
+    },
+    "Detect head": {
+     "tensors": "0/320",
+     "tensors_pct": 0.0,
+     "parameters": "0/1112176",
+     "parameters_pct": 0.0
+    }
+   },
+   "keys_absent_from_donor": 482,
+   "shape_mismatches": 60,
+   "shape_mismatch_detail": [
+    {
+     "key": "model.19.cv1.conv.weight",
+     "donor": [
+      256,
+      384,
+      1,
+      1
+     ],
+     "receiver": [
+      128,
+      256,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.19.cv1.bn.weight",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.cv1.bn.bias",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.cv1.bn.running_mean",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.cv1.bn.running_var",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.cv2.conv.weight",
+     "donor": [
+      256,
+      384,
+      1,
+      1
+     ],
+     "receiver": [
+      128,
+      192,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.19.cv2.bn.weight",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.cv2.bn.bias",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.cv2.bn.running_mean",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.cv2.bn.running_var",
+     "donor": [
+      256
+     ],
+     "receiver": [
+      128
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv1.conv.weight",
+     "donor": [
+      64,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      32,
+      64,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv1.bn.weight",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv1.bn.bias",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv1.bn.running_mean",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv1.bn.running_var",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv2.conv.weight",
+     "donor": [
+      64,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      32,
+      64,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv2.bn.weight",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv2.bn.bias",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv2.bn.running_mean",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv2.bn.running_var",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv3.conv.weight",
+     "donor": [
+      128,
+      128,
+      1,
+      1
+     ],
+     "receiver": [
+      64,
+      64,
+      1,
+      1
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv3.bn.weight",
+     "donor": [
+      128
+     ],
+     "receiver": [
+      64
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv3.bn.bias",
+     "donor": [
+      128
+     ],
+     "receiver": [
+      64
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv3.bn.running_mean",
+     "donor": [
+      128
+     ],
+     "receiver": [
+      64
+     ]
+    },
+    {
+     "key": "model.19.m.0.cv3.bn.running_var",
+     "donor": [
+      128
+     ],
+     "receiver": [
+      64
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv1.conv.weight",
+     "donor": [
+      64,
+      64,
+      3,
+      3
+     ],
+     "receiver": [
+      32,
+      32,
+      3,
+      3
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv1.bn.weight",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv1.bn.bias",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv1.bn.running_mean",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv1.bn.running_var",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv2.conv.weight",
+     "donor": [
+      64,
+      64,
+      3,
+      3
+     ],
+     "receiver": [
+      32,
+      32,
+      3,
+      3
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv2.bn.weight",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv2.bn.bias",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv2.bn.running_mean",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.0.cv2.bn.running_var",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.1.cv1.conv.weight",
+     "donor": [
+      64,
+      64,
+      3,
+      3
+     ],
+     "receiver": [
+      32,
+      32,
+      3,
+      3
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.1.cv1.bn.weight",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.1.cv1.bn.bias",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.1.cv1.bn.running_mean",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    },
+    {
+     "key": "model.19.m.0.m.1.cv1.bn.running_var",
+     "donor": [
+      64
+     ],
+     "receiver": [
+      32
+     ]
+    }
+   ]
+  }
+ },
+ "initialization": "yolo26s.pt (official COCO), same file both arms, never chained",
+ "donor_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+ "memory_probe": {
+  "baseline": {
+   "batch3_fits": true,
+   "peak_gib": 1.98
+  },
+  "B2": {
+   "batch3_fits": true,
+   "peak_gib": 4.2
+  }
+ },
+ "frozen_batch": 3,
+ "accumulate": 21,
+ "effective_weight_decay": 0.0004921875,
+ "gpu": "Tesla T4",
+ "vram_gib": 14.56,
+ "environment": {
+  "python": "3.12.13",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "ultralytics": "8.4.116",
+  "numpy": "2.2.6",
+  "supervision": "0.26.1"
+ },
+ "dataset": {
+  "train": 823,
+  "val": 208,
+  "source": "original EyeCU baseline"
+ },
+ "frozen_hyperparameters": {
+  "epochs": 80,
+  "patience": 0,
+  "imgsz": 960,
+  "batch": 3,
+  "optimizer": "AdamW",
+  "lr0": 0.00125,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "warmup_bias_lr": 0.0,
+  "lrf": 0.01,
+  "warmup_epochs": 3.0,
+  "warmup_momentum": 0.8,
+  "seed": 0,
+  "deterministic": true,
+  "amp": true,
+  "mosaic": 1.0,
+  "close_mosaic": 10,
+  "hsv_h": 0.015,
+  "hsv_s": 0.7,
+  "hsv_v": 0.4,
+  "fliplr": 0.5,
+  "scale": 0.5,
+  "translate": 0.1,
+  "erasing": 0.4,
+  "val": true,
+  "plots": true,
+  "save": true
+ },
+ "val_208_final_epoch": {
+  "baseline": {
+   "all": {
+    "mAP50": 0.6777,
+    "mAP50-95": 0.4308
+   },
+   "player": {
+    "P": 0.9033,
+    "R": 0.9338,
+    "mAP50": 0.9429,
+    "mAP50-95": 0.6722
+   },
+   "goalkeeper": {
+    "P": 0.835,
+    "R": 0.3652,
+    "mAP50": 0.5731,
+    "mAP50-95": 0.376
+   },
+   "referee": {
+    "P": 0.6575,
+    "R": 0.716,
+    "mAP50": 0.6522,
+    "mAP50-95": 0.426
+   },
+   "ball": {
+    "P": 0.7079,
+    "R": 0.4685,
+    "mAP50": 0.5428,
+    "mAP50-95": 0.249
+   }
+  },
+  "B2": {
+   "all": {
+    "mAP50": 0.7134,
+    "mAP50-95": 0.4437
+   },
+   "player": {
+    "P": 0.9066,
+    "R": 0.9245,
+    "mAP50": 0.945,
+    "mAP50-95": 0.6536
+   },
+   "goalkeeper": {
+    "P": 0.8514,
+    "R": 0.4981,
+    "mAP50": 0.6779,
+    "mAP50-95": 0.4428
+   },
+   "referee": {
+    "P": 0.6814,
+    "R": 0.6654,
+    "mAP50": 0.6961,
+    "mAP50-95": 0.4423
+   },
+   "ball": {
+    "P": 0.832,
+    "R": 0.4414,
+    "mAP50": 0.5346,
+    "mAP50-95": 0.2362
+   }
+  }
+ },
+ "primary_readout": "FINAL EPOCH",
+ "pending_local": [
+  "temporal ball recall",
+  "selector coverage",
+  "ms/frame",
+  "women_1 w1",
+  "youth w1",
+  "zero-proposal diagnostic"
+ ],
+ "eyecu_sealed_test": "NOT ACCESSED"
+}

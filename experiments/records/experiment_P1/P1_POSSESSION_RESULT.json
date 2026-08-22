@@ -1,0 +1,2475 @@
+{
+ "benchmark": "POSSESSION_VAL_V1 (full 60-frame frozen population)",
+ "frozen_list_sha256": "9738780c1cad3311c9b137fad23ff7d1076fcf719591d342222045d6f47c5025",
+ "annotation_sha256": "df7d142c72963703d1848adc0d00906125e60b5279495830e71aff9e850e36d1",
+ "parameters_modified": "NONE",
+ "chain": "SN3D_BASE -> BallTemporalSelector v1 -> CBIoU humans -> PlayerBallAssigner(70)",
+ "mapping_new": "sequence-level fragment-tolerant correspondence (experiments/records/experiment_P1/IDENTITY_CORRESPONDENCE_CONTRACT.md)",
+ "mapping_old": "P0 single-frame IoU >= 0.5",
+ "n_labelled": 60,
+ "distribution": {
+  "PLAYER": 35,
+  "AMBIGUOUS": 5,
+  "NO_CONTROL": 20
+ },
+ "player_frames": {
+  "n": 35,
+  "mappable": 28,
+  "correct": 13,
+  "wrong_player": 15,
+  "unassigned": 6,
+  "unmappable": 1,
+  "exact_player_accuracy_among_mappable": 0.4643,
+  "overall_player_coverage": 0.8,
+  "unmappable_rate": 0.0286
+ },
+ "no_control_frames": {
+  "n": 20,
+  "correctly_unknown": 10,
+  "false_assignments": 10
+ },
+ "no_ball_frames": {
+  "n": 0,
+  "correctly_unknown": 0,
+  "false_assignments": 0
+ },
+ "false_assignment_rate_on_negatives": 0.5,
+ "ambiguous_n": 5,
+ "per_window": {
+  "bayern_munich_3-1_chelsea_228_w0": {
+   "n_frames": 10,
+   "PLAYER": {
+    "n": 10,
+    "mappable": 8,
+    "correct": 0,
+    "wrong": 8,
+    "unassigned": 2,
+    "unmappable": 0
+   },
+   "NO_CONTROL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "NO_BALL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "AMBIGUOUS_n": 0
+  },
+  "bayern_munich_3-1_chelsea_228_w1": {
+   "n_frames": 10,
+   "PLAYER": {
+    "n": 10,
+    "mappable": 10,
+    "correct": 9,
+    "wrong": 1,
+    "unassigned": 0,
+    "unmappable": 0
+   },
+   "NO_CONTROL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "NO_BALL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "AMBIGUOUS_n": 0
+  },
+  "women_1_239_w0": {
+   "n_frames": 10,
+   "PLAYER": {
+    "n": 9,
+    "mappable": 8,
+    "correct": 4,
+    "wrong": 4,
+    "unassigned": 1,
+    "unmappable": 0
+   },
+   "NO_CONTROL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "NO_BALL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "AMBIGUOUS_n": 1
+  },
+  "women_1_239_w1": {
+   "n_frames": 10,
+   "PLAYER": {
+    "n": 0,
+    "mappable": 0,
+    "correct": 0,
+    "wrong": 0,
+    "unassigned": 0,
+    "unmappable": 0
+   },
+   "NO_CONTROL": {
+    "n": 10,
+    "false_assignment": 0
+   },
+   "NO_BALL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "AMBIGUOUS_n": 0
+  },
+  "youth_premier_league_1133_w0": {
+   "n_frames": 10,
+   "PLAYER": {
+    "n": 0,
+    "mappable": 0,
+    "correct": 0,
+    "wrong": 0,
+    "unassigned": 0,
+    "unmappable": 0
+   },
+   "NO_CONTROL": {
+    "n": 10,
+    "false_assignment": 10
+   },
+   "NO_BALL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "AMBIGUOUS_n": 0
+  },
+  "youth_premier_league_1133_w1": {
+   "n_frames": 10,
+   "PLAYER": {
+    "n": 6,
+    "mappable": 2,
+    "correct": 0,
+    "wrong": 2,
+    "unassigned": 3,
+    "unmappable": 1
+   },
+   "NO_CONTROL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "NO_BALL": {
+    "n": 0,
+    "false_assignment": 0
+   },
+   "AMBIGUOUS_n": 4
+  }
+ },
+ "selector_state_breakdown": {
+  "interpolated_short_gap": {
+   "n": 7,
+   "PLAYER_evaluated": 6,
+   "correct": 1,
+   "wrong": 3,
+   "unassigned": 2,
+   "unmappable": 0,
+   "false_assignments_on_negatives": 0
+  },
+  "observed": {
+   "n": 43,
+   "PLAYER_evaluated": 20,
+   "correct": 12,
+   "wrong": 7,
+   "unassigned": 0,
+   "unmappable": 1,
+   "false_assignments_on_negatives": 10
+  },
+  "recovered_low_conf": {
+   "n": 6,
+   "PLAYER_evaluated": 6,
+   "correct": 0,
+   "wrong": 5,
+   "unassigned": 1,
+   "unmappable": 0,
+   "false_assignments_on_negatives": 0
+  },
+  "unknown": {
+   "n": 4,
+   "PLAYER_evaluated": 3,
+   "correct": 0,
+   "wrong": 0,
+   "unassigned": 3,
+   "unmappable": 0,
+   "false_assignments_on_negatives": 0
+  }
+ },
+ "error_categories": {
+  "WRONG_PLAYER": 15,
+  "UNASSIGNED_PLAYER": 6,
+  "UNMAPPABLE": 1,
+  "SHOULD_BE_UNKNOWN": 10
+ },
+ "p0_contract_delta": {
+  "n_changed": 3,
+  "rows": [
+   {
+    "frame_id": "bayern_munich_3-1_chelsea_228_w1:199",
+    "old": "wrong_player",
+    "new": "correct",
+    "old_gt_id": null,
+    "new_gt_id": 7,
+    "assigned_model_track": 6
+   },
+   {
+    "frame_id": "bayern_munich_3-1_chelsea_228_w1:200",
+    "old": "wrong_player",
+    "new": "correct",
+    "old_gt_id": null,
+    "new_gt_id": 7,
+    "assigned_model_track": 6
+   },
+   {
+    "frame_id": "youth_premier_league_1133_w1:202",
+    "old": "wrong_player",
+    "new": "unmappable",
+    "old_gt_id": 7,
+    "new_gt_id": "UNMAPPABLE",
+    "assigned_model_track": 64
+   }
+  ]
+ },
+ "identity_correspondence": {
+  "bayern_munich_3-1_chelsea_228": {
+   "1": {
+    "track_id": 1,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "4": 204
+    },
+    "top_gt_id": 4,
+    "top_votes": 204,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 4,
+    "reason": "mapped"
+   },
+   "2": {
+    "track_id": 2,
+    "n_frames": 202,
+    "n_evaluable": 202,
+    "support": 202,
+    "votes": {
+     "20": 202
+    },
+    "top_gt_id": 20,
+    "top_votes": 202,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 20,
+    "reason": "mapped"
+   },
+   "3": {
+    "track_id": 3,
+    "n_frames": 203,
+    "n_evaluable": 203,
+    "support": 203,
+    "votes": {
+     "14": 203
+    },
+    "top_gt_id": 14,
+    "top_votes": 203,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 14,
+    "reason": "mapped"
+   },
+   "4": {
+    "track_id": 4,
+    "n_frames": 202,
+    "n_evaluable": 202,
+    "support": 202,
+    "votes": {
+     "5": 19,
+     "6": 183
+    },
+    "top_gt_id": 6,
+    "top_votes": 183,
+    "runner_votes": 19,
+    "purity": 0.9059,
+    "gt_id": 6,
+    "reason": "mapped"
+   },
+   "5": {
+    "track_id": 5,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "12": 2,
+     "13": 202
+    },
+    "top_gt_id": 13,
+    "top_votes": 202,
+    "runner_votes": 2,
+    "purity": 0.9902,
+    "gt_id": 13,
+    "reason": "mapped"
+   },
+   "6": {
+    "track_id": 6,
+    "n_frames": 203,
+    "n_evaluable": 203,
+    "support": 203,
+    "votes": {
+     "7": 203
+    },
+    "top_gt_id": 7,
+    "top_votes": 203,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 7,
+    "reason": "mapped"
+   },
+   "7": {
+    "track_id": 7,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "3": 204
+    },
+    "top_gt_id": 3,
+    "top_votes": 204,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 3,
+    "reason": "mapped"
+   },
+   "8": {
+    "track_id": 8,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "16": 204
+    },
+    "top_gt_id": 16,
+    "top_votes": 204,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 16,
+    "reason": "mapped"
+   },
+   "9": {
+    "track_id": 9,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "22": 204
+    },
+    "top_gt_id": 22,
+    "top_votes": 204,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 22,
+    "reason": "mapped"
+   },
+   "10": {
+    "track_id": 10,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "23": 10,
+     "24": 194
+    },
+    "top_gt_id": 24,
+    "top_votes": 194,
+    "runner_votes": 10,
+    "purity": 0.951,
+    "gt_id": 24,
+    "reason": "mapped"
+   },
+   "11": {
+    "track_id": 11,
+    "n_frames": 199,
+    "n_evaluable": 199,
+    "support": 199,
+    "votes": {
+     "17": 199
+    },
+    "top_gt_id": 17,
+    "top_votes": 199,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 17,
+    "reason": "mapped"
+   },
+   "12": {
+    "track_id": 12,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "15": 203,
+     "17": 1
+    },
+    "top_gt_id": 15,
+    "top_votes": 203,
+    "runner_votes": 1,
+    "purity": 0.9951,
+    "gt_id": 15,
+    "reason": "mapped"
+   },
+   "13": {
+    "track_id": 13,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "11": 204
+    },
+    "top_gt_id": 11,
+    "top_votes": 204,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 11,
+    "reason": "mapped"
+   },
+   "14": {
+    "track_id": 14,
+    "n_frames": 204,
+    "n_evaluable": 204,
+    "support": 204,
+    "votes": {
+     "8": 204
+    },
+    "top_gt_id": 8,
+    "top_votes": 204,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 8,
+    "reason": "mapped"
+   },
+   "15": {
+    "track_id": 15,
+    "n_frames": 203,
+    "n_evaluable": 203,
+    "support": 203,
+    "votes": {
+     "19": 203
+    },
+    "top_gt_id": 19,
+    "top_votes": 203,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 19,
+    "reason": "mapped"
+   },
+   "16": {
+    "track_id": 16,
+    "n_frames": 189,
+    "n_evaluable": 189,
+    "support": 189,
+    "votes": {
+     "5": 189
+    },
+    "top_gt_id": 5,
+    "top_votes": 189,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 5,
+    "reason": "mapped"
+   },
+   "18": {
+    "track_id": 18,
+    "n_frames": 186,
+    "n_evaluable": 186,
+    "support": 186,
+    "votes": {
+     "12": 186
+    },
+    "top_gt_id": 12,
+    "top_votes": 186,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 12,
+    "reason": "mapped"
+   },
+   "20": {
+    "track_id": 20,
+    "n_frames": 203,
+    "n_evaluable": 203,
+    "support": 203,
+    "votes": {
+     "10": 203
+    },
+    "top_gt_id": 10,
+    "top_votes": 203,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 10,
+    "reason": "mapped"
+   },
+   "22": {
+    "track_id": 22,
+    "n_frames": 183,
+    "n_evaluable": 183,
+    "support": 183,
+    "votes": {
+     "23": 183
+    },
+    "top_gt_id": 23,
+    "top_votes": 183,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 23,
+    "reason": "mapped"
+   },
+   "19": {
+    "track_id": 19,
+    "n_frames": 18,
+    "n_evaluable": 18,
+    "support": 18,
+    "votes": {
+     "21": 18
+    },
+    "top_gt_id": 21,
+    "top_votes": 18,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 21,
+    "reason": "mapped"
+   },
+   "21": {
+    "track_id": 21,
+    "n_frames": 109,
+    "n_evaluable": 109,
+    "support": 109,
+    "votes": {
+     "1": 109
+    },
+    "top_gt_id": 1,
+    "top_votes": 109,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 1,
+    "reason": "mapped"
+   },
+   "23": {
+    "track_id": 23,
+    "n_frames": 182,
+    "n_evaluable": 182,
+    "support": 182,
+    "votes": {
+     "18": 182
+    },
+    "top_gt_id": 18,
+    "top_votes": 182,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 18,
+    "reason": "mapped"
+   }
+  },
+  "women_1_239": {
+   "25": {
+    "track_id": 25,
+    "n_frames": 9,
+    "n_evaluable": 9,
+    "support": 9,
+    "votes": {
+     "5": 9
+    },
+    "top_gt_id": 5,
+    "top_votes": 9,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 5,
+    "reason": "mapped"
+   },
+   "26": {
+    "track_id": 26,
+    "n_frames": 22,
+    "n_evaluable": 22,
+    "support": 22,
+    "votes": {
+     "3": 22
+    },
+    "top_gt_id": 3,
+    "top_votes": 22,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 3,
+    "reason": "mapped"
+   },
+   "27": {
+    "track_id": 27,
+    "n_frames": 106,
+    "n_evaluable": 106,
+    "support": 98,
+    "votes": {
+     "6": 96,
+     "14": 2
+    },
+    "top_gt_id": 6,
+    "top_votes": 96,
+    "runner_votes": 2,
+    "purity": 0.9796,
+    "gt_id": 6,
+    "reason": "mapped"
+   },
+   "29": {
+    "track_id": 29,
+    "n_frames": 184,
+    "n_evaluable": 184,
+    "support": 184,
+    "votes": {
+     "2": 184
+    },
+    "top_gt_id": 2,
+    "top_votes": 184,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 2,
+    "reason": "mapped"
+   },
+   "30": {
+    "track_id": 30,
+    "n_frames": 31,
+    "n_evaluable": 31,
+    "support": 31,
+    "votes": {
+     "12": 31
+    },
+    "top_gt_id": 12,
+    "top_votes": 31,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 12,
+    "reason": "mapped"
+   },
+   "31": {
+    "track_id": 31,
+    "n_frames": 199,
+    "n_evaluable": 199,
+    "support": 199,
+    "votes": {
+     "6": 101,
+     "14": 98
+    },
+    "top_gt_id": 6,
+    "top_votes": 101,
+    "runner_votes": 98,
+    "purity": 0.5075,
+    "gt_id": "UNMAPPABLE",
+    "reason": "not_dominant"
+   },
+   "32": {
+    "track_id": 32,
+    "n_frames": 2,
+    "n_evaluable": 2,
+    "support": 2,
+    "votes": {
+     "16": 2
+    },
+    "top_gt_id": 16,
+    "top_votes": 2,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 16,
+    "reason": "mapped"
+   },
+   "34": {
+    "track_id": 34,
+    "n_frames": 115,
+    "n_evaluable": 115,
+    "support": 112,
+    "votes": {
+     "2": 1,
+     "7": 111
+    },
+    "top_gt_id": 7,
+    "top_votes": 111,
+    "runner_votes": 1,
+    "purity": 0.9911,
+    "gt_id": 7,
+    "reason": "mapped"
+   },
+   "35": {
+    "track_id": 35,
+    "n_frames": 129,
+    "n_evaluable": 129,
+    "support": 129,
+    "votes": {
+     "8": 129
+    },
+    "top_gt_id": 8,
+    "top_votes": 129,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 8,
+    "reason": "mapped"
+   },
+   "37": {
+    "track_id": 37,
+    "n_frames": 25,
+    "n_evaluable": 25,
+    "support": 23,
+    "votes": {
+     "4": 3,
+     "12": 20
+    },
+    "top_gt_id": 12,
+    "top_votes": 20,
+    "runner_votes": 3,
+    "purity": 0.8696,
+    "gt_id": 12,
+    "reason": "mapped"
+   },
+   "38": {
+    "track_id": 38,
+    "n_frames": 137,
+    "n_evaluable": 137,
+    "support": 137,
+    "votes": {
+     "3": 137
+    },
+    "top_gt_id": 3,
+    "top_votes": 137,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 3,
+    "reason": "mapped"
+   },
+   "36": {
+    "track_id": 36,
+    "n_frames": 40,
+    "n_evaluable": 40,
+    "support": 40,
+    "votes": {
+     "10": 40
+    },
+    "top_gt_id": 10,
+    "top_votes": 40,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 10,
+    "reason": "mapped"
+   },
+   "40": {
+    "track_id": 40,
+    "n_frames": 116,
+    "n_evaluable": 116,
+    "support": 116,
+    "votes": {
+     "11": 116
+    },
+    "top_gt_id": 11,
+    "top_votes": 116,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 11,
+    "reason": "mapped"
+   },
+   "42": {
+    "track_id": 42,
+    "n_frames": 72,
+    "n_evaluable": 72,
+    "support": 72,
+    "votes": {
+     "12": 72
+    },
+    "top_gt_id": 12,
+    "top_votes": 72,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 12,
+    "reason": "mapped"
+   },
+   "43": {
+    "track_id": 43,
+    "n_frames": 59,
+    "n_evaluable": 59,
+    "support": 55,
+    "votes": {
+     "13": 55
+    },
+    "top_gt_id": 13,
+    "top_votes": 55,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 13,
+    "reason": "mapped"
+   },
+   "44": {
+    "track_id": 44,
+    "n_frames": 6,
+    "n_evaluable": 6,
+    "support": 6,
+    "votes": {
+     "17": 6
+    },
+    "top_gt_id": 17,
+    "top_votes": 6,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 17,
+    "reason": "mapped"
+   }
+  },
+  "youth_premier_league_1133": {
+   "47": {
+    "track_id": 47,
+    "n_frames": 41,
+    "n_evaluable": 41,
+    "support": 40,
+    "votes": {
+     "14": 40
+    },
+    "top_gt_id": 14,
+    "top_votes": 40,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 14,
+    "reason": "mapped"
+   },
+   "48": {
+    "track_id": 48,
+    "n_frames": 24,
+    "n_evaluable": 24,
+    "support": 24,
+    "votes": {
+     "16": 24
+    },
+    "top_gt_id": 16,
+    "top_votes": 24,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 16,
+    "reason": "mapped"
+   },
+   "49": {
+    "track_id": 49,
+    "n_frames": 150,
+    "n_evaluable": 150,
+    "support": 150,
+    "votes": {
+     "1": 71,
+     "2": 74,
+     "12": 5
+    },
+    "top_gt_id": 2,
+    "top_votes": 74,
+    "runner_votes": 71,
+    "purity": 0.4933,
+    "gt_id": "UNMAPPABLE",
+    "reason": "not_dominant"
+   },
+   "50": {
+    "track_id": 50,
+    "n_frames": 82,
+    "n_evaluable": 82,
+    "support": 82,
+    "votes": {
+     "1": 5,
+     "2": 53,
+     "3": 5,
+     "12": 19
+    },
+    "top_gt_id": 2,
+    "top_votes": 53,
+    "runner_votes": 19,
+    "purity": 0.6463,
+    "gt_id": 2,
+    "reason": "mapped"
+   },
+   "51": {
+    "track_id": 51,
+    "n_frames": 152,
+    "n_evaluable": 152,
+    "support": 152,
+    "votes": {
+     "2": 1,
+     "3": 102,
+     "12": 49
+    },
+    "top_gt_id": 3,
+    "top_votes": 102,
+    "runner_votes": 49,
+    "purity": 0.6711,
+    "gt_id": 3,
+    "reason": "mapped"
+   },
+   "52": {
+    "track_id": 52,
+    "n_frames": 17,
+    "n_evaluable": 17,
+    "support": 17,
+    "votes": {
+     "2": 6,
+     "3": 1,
+     "12": 10
+    },
+    "top_gt_id": 12,
+    "top_votes": 10,
+    "runner_votes": 6,
+    "purity": 0.5882,
+    "gt_id": "UNMAPPABLE",
+    "reason": "not_dominant"
+   },
+   "53": {
+    "track_id": 53,
+    "n_frames": 91,
+    "n_evaluable": 91,
+    "support": 88,
+    "votes": {
+     "13": 88
+    },
+    "top_gt_id": 13,
+    "top_votes": 88,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 13,
+    "reason": "mapped"
+   },
+   "54": {
+    "track_id": 54,
+    "n_frames": 123,
+    "n_evaluable": 123,
+    "support": 119,
+    "votes": {
+     "4": 1,
+     "10": 118
+    },
+    "top_gt_id": 10,
+    "top_votes": 118,
+    "runner_votes": 1,
+    "purity": 0.9916,
+    "gt_id": 10,
+    "reason": "mapped"
+   },
+   "55": {
+    "track_id": 55,
+    "n_frames": 59,
+    "n_evaluable": 59,
+    "support": 0,
+    "votes": {},
+    "top_gt_id": null,
+    "top_votes": 0,
+    "runner_votes": 0,
+    "purity": null,
+    "gt_id": "UNMAPPABLE",
+    "reason": "no_support"
+   },
+   "56": {
+    "track_id": 56,
+    "n_frames": 3,
+    "n_evaluable": 3,
+    "support": 0,
+    "votes": {},
+    "top_gt_id": null,
+    "top_votes": 0,
+    "runner_votes": 0,
+    "purity": null,
+    "gt_id": "UNMAPPABLE",
+    "reason": "no_support"
+   },
+   "57": {
+    "track_id": 57,
+    "n_frames": 108,
+    "n_evaluable": 108,
+    "support": 107,
+    "votes": {
+     "8": 107
+    },
+    "top_gt_id": 8,
+    "top_votes": 107,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 8,
+    "reason": "mapped"
+   },
+   "58": {
+    "track_id": 58,
+    "n_frames": 128,
+    "n_evaluable": 128,
+    "support": 128,
+    "votes": {
+     "4": 128
+    },
+    "top_gt_id": 4,
+    "top_votes": 128,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 4,
+    "reason": "mapped"
+   },
+   "59": {
+    "track_id": 59,
+    "n_frames": 89,
+    "n_evaluable": 89,
+    "support": 89,
+    "votes": {
+     "1": 74,
+     "12": 15
+    },
+    "top_gt_id": 1,
+    "top_votes": 74,
+    "runner_votes": 15,
+    "purity": 0.8315,
+    "gt_id": 1,
+    "reason": "mapped"
+   },
+   "60": {
+    "track_id": 60,
+    "n_frames": 31,
+    "n_evaluable": 31,
+    "support": 0,
+    "votes": {},
+    "top_gt_id": null,
+    "top_votes": 0,
+    "runner_votes": 0,
+    "purity": null,
+    "gt_id": "UNMAPPABLE",
+    "reason": "no_support"
+   },
+   "61": {
+    "track_id": 61,
+    "n_frames": 64,
+    "n_evaluable": 64,
+    "support": 64,
+    "votes": {
+     "3": 64
+    },
+    "top_gt_id": 3,
+    "top_votes": 64,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": "UNMAPPABLE",
+    "reason": "conflict_lost"
+   },
+   "63": {
+    "track_id": 63,
+    "n_frames": 58,
+    "n_evaluable": 58,
+    "support": 56,
+    "votes": {
+     "6": 56
+    },
+    "top_gt_id": 6,
+    "top_votes": 56,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 6,
+    "reason": "mapped"
+   },
+   "64": {
+    "track_id": 64,
+    "n_frames": 41,
+    "n_evaluable": 41,
+    "support": 10,
+    "votes": {
+     "7": 10
+    },
+    "top_gt_id": 7,
+    "top_votes": 10,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": "UNMAPPABLE",
+    "reason": "low_support_rate"
+   },
+   "65": {
+    "track_id": 65,
+    "n_frames": 33,
+    "n_evaluable": 33,
+    "support": 27,
+    "votes": {
+     "7": 27
+    },
+    "top_gt_id": 7,
+    "top_votes": 27,
+    "runner_votes": 0,
+    "purity": 1.0,
+    "gt_id": 7,
+    "reason": "mapped"
+   }
+  }
+ },
+ "rows": [
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:75",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    21.7,
+    137.4
+   ],
+   "gt_player_foot": [
+    208.2,
+    110.7
+   ],
+   "ball_to_gt_player_dist": 188.4,
+   "picked_player_foot": [
+    37.3,
+    129.7
+   ],
+   "ball_to_picked_player_dist": 17.4
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:76",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    20.7,
+    137.4
+   ],
+   "gt_player_foot": [
+    208.2,
+    110.8
+   ],
+   "ball_to_gt_player_dist": 189.3,
+   "picked_player_foot": [
+    36.7,
+    129.4
+   ],
+   "ball_to_picked_player_dist": 17.8
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:77",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    19.7,
+    137.3
+   ],
+   "gt_player_foot": [
+    208.2,
+    111.0
+   ],
+   "ball_to_gt_player_dist": 190.3,
+   "picked_player_foot": [
+    36.1,
+    129.7
+   ],
+   "ball_to_picked_player_dist": 18.0
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:78",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    19.0,
+    137.4
+   ],
+   "gt_player_foot": [
+    208.2,
+    111.2
+   ],
+   "ball_to_gt_player_dist": 191.0,
+   "picked_player_foot": [
+    35.3,
+    129.6
+   ],
+   "ball_to_picked_player_dist": 18.1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:79",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    2.9,
+    110.4
+   ],
+   "gt_player_foot": [
+    208.2,
+    111.4
+   ],
+   "ball_to_gt_player_dist": 205.3,
+   "picked_player_foot": [
+    34.7,
+    130.2
+   ],
+   "ball_to_picked_player_dist": 37.4
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:80",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    2.2,
+    110.5
+   ],
+   "gt_player_foot": [
+    208.2,
+    111.5
+   ],
+   "ball_to_gt_player_dist": 206.0,
+   "picked_player_foot": [
+    34.4,
+    130.2
+   ],
+   "ball_to_picked_player_dist": 37.8
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:81",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    1.7,
+    110.4
+   ],
+   "gt_player_foot": [
+    208.2,
+    111.7
+   ],
+   "ball_to_gt_player_dist": 206.5,
+   "picked_player_foot": [
+    34.1,
+    130.3
+   ],
+   "ball_to_picked_player_dist": 38.0
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:82",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 21,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    13.2,
+    114.3
+   ],
+   "gt_player_foot": [
+    208.2,
+    111.9
+   ],
+   "ball_to_gt_player_dist": 195.0,
+   "picked_player_foot": [
+    33.3,
+    130.1
+   ],
+   "ball_to_picked_player_dist": 25.5
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:83",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    24.6,
+    118.2
+   ],
+   "gt_player_foot": [
+    208.2,
+    112.0
+   ],
+   "ball_to_gt_player_dist": 183.7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w0:84",
+   "window_id": "bayern_munich_3-1_chelsea_228_w0",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 8,
+   "ball_state": "recovered_low_conf",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    36.1,
+    122.1
+   ],
+   "gt_player_foot": [
+    208.2,
+    112.2
+   ],
+   "ball_to_gt_player_dist": 172.4
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:195",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": 7,
+   "ball_centre": [
+    186.8,
+    181.5
+   ],
+   "gt_player_foot": [
+    182.2,
+    180.5
+   ],
+   "ball_to_gt_player_dist": 4.7,
+   "picked_player_foot": [
+    179.1,
+    182.8
+   ],
+   "ball_to_picked_player_dist": 7.8
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:196",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": 7,
+   "ball_centre": [
+    188.0,
+    181.6
+   ],
+   "gt_player_foot": [
+    183.2,
+    180.5
+   ],
+   "ball_to_gt_player_dist": 4.9,
+   "picked_player_foot": [
+    180.6,
+    182.7
+   ],
+   "ball_to_picked_player_dist": 7.5
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:197",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": 7,
+   "ball_centre": [
+    189.0,
+    181.7
+   ],
+   "gt_player_foot": [
+    184.2,
+    180.5
+   ],
+   "ball_to_gt_player_dist": 4.9,
+   "picked_player_foot": [
+    182.0,
+    182.9
+   ],
+   "ball_to_picked_player_dist": 7.1
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:198",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": 7,
+   "ball_centre": [
+    190.0,
+    181.6
+   ],
+   "gt_player_foot": [
+    185.2,
+    180.5
+   ],
+   "ball_to_gt_player_dist": 4.9,
+   "picked_player_foot": [
+    183.6,
+    182.5
+   ],
+   "ball_to_picked_player_dist": 6.5
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:199",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    190.8,
+    181.8
+   ],
+   "gt_player_foot": [
+    186.2,
+    180.5
+   ],
+   "ball_to_gt_player_dist": 4.8,
+   "picked_player_foot": [
+    192.3,
+    183.6
+   ],
+   "ball_to_picked_player_dist": 2.3
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:200",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    192.5,
+    182.2
+   ],
+   "gt_player_foot": [
+    187.2,
+    180.5
+   ],
+   "ball_to_gt_player_dist": 5.5,
+   "picked_player_foot": [
+    194.3,
+    183.6
+   ],
+   "ball_to_picked_player_dist": 2.2
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:201",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": 7,
+   "ball_centre": [
+    193.4,
+    182.6
+   ],
+   "gt_player_foot": [
+    188.2,
+    180.5
+   ],
+   "ball_to_gt_player_dist": 5.5,
+   "picked_player_foot": [
+    190.9,
+    181.5
+   ],
+   "ball_to_picked_player_dist": 2.7
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:202",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 23,
+   "new_gt_id": 18,
+   "new_reason": "mapped",
+   "old_gt_id": 18,
+   "ball_centre": [
+    193.8,
+    182.6
+   ],
+   "gt_player_foot": [
+    188.9,
+    180.8
+   ],
+   "ball_to_gt_player_dist": 5.2,
+   "picked_player_foot": [
+    206.1,
+    132.8
+   ],
+   "ball_to_picked_player_dist": 51.2
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:203",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": 7,
+   "ball_centre": [
+    194.3,
+    182.6
+   ],
+   "gt_player_foot": [
+    189.5,
+    181.2
+   ],
+   "ball_to_gt_player_dist": 5.0,
+   "picked_player_foot": [
+    188.7,
+    180.9
+   ],
+   "ball_to_picked_player_dist": 5.9
+  },
+  {
+   "frame_id": "bayern_munich_3-1_chelsea_228_w1:204",
+   "window_id": "bayern_munich_3-1_chelsea_228_w1",
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "label": "PLAYER",
+   "gt_player": 7,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 6,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": 7,
+   "ball_centre": [
+    194.8,
+    182.6
+   ],
+   "gt_player_foot": [
+    190.2,
+    181.5
+   ],
+   "ball_to_gt_player_dist": 4.7,
+   "picked_player_foot": [
+    188.9,
+    180.4
+   ],
+   "ball_to_picked_player_dist": 6.3
+  },
+  {
+   "frame_id": "women_1_239_w0:75",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "AMBIGUOUS",
+   "gt_player": null,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:76",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null
+  },
+  {
+   "frame_id": "women_1_239_w0:77",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "new_gt_id": 8,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    150.1,
+    157.7
+   ],
+   "gt_player_foot": [
+    156.3,
+    160.4
+   ],
+   "ball_to_gt_player_dist": 6.8,
+   "picked_player_foot": [
+    152.7,
+    187.3
+   ],
+   "ball_to_picked_player_dist": 29.6
+  },
+  {
+   "frame_id": "women_1_239_w0:78",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "new_gt_id": 8,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    152.5,
+    157.9
+   ],
+   "gt_player_foot": [
+    158.8,
+    159.4
+   ],
+   "ball_to_gt_player_dist": 6.5,
+   "picked_player_foot": [
+    156.5,
+    186.6
+   ],
+   "ball_to_picked_player_dist": 29.1
+  },
+  {
+   "frame_id": "women_1_239_w0:79",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "new_gt_id": 10,
+   "new_reason": "mapped",
+   "old_gt_id": 10,
+   "ball_centre": [
+    154.9,
+    158.0
+   ],
+   "gt_player_foot": [
+    161.2,
+    158.4
+   ],
+   "ball_to_gt_player_dist": 6.3,
+   "picked_player_foot": [
+    156.5,
+    153.7
+   ],
+   "ball_to_picked_player_dist": 4.6
+  },
+  {
+   "frame_id": "women_1_239_w0:80",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "new_gt_id": 8,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    158.3,
+    157.9
+   ],
+   "gt_player_foot": [
+    163.7,
+    157.5
+   ],
+   "ball_to_gt_player_dist": 5.4,
+   "picked_player_foot": [
+    163.8,
+    183.9
+   ],
+   "ball_to_picked_player_dist": 26.6
+  },
+  {
+   "frame_id": "women_1_239_w0:81",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 35,
+   "new_gt_id": 8,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    161.4,
+    157.1
+   ],
+   "gt_player_foot": [
+    166.1,
+    156.5
+   ],
+   "ball_to_gt_player_dist": 4.8,
+   "picked_player_foot": [
+    167.2,
+    182.5
+   ],
+   "ball_to_picked_player_dist": 26.1
+  },
+  {
+   "frame_id": "women_1_239_w0:82",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "new_gt_id": 10,
+   "new_reason": "mapped",
+   "old_gt_id": 10,
+   "ball_centre": [
+    164.3,
+    157.2
+   ],
+   "gt_player_foot": [
+    169.0,
+    155.7
+   ],
+   "ball_to_gt_player_dist": 5.0,
+   "picked_player_foot": [
+    166.8,
+    150.0
+   ],
+   "ball_to_picked_player_dist": 7.6
+  },
+  {
+   "frame_id": "women_1_239_w0:83",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "new_gt_id": 10,
+   "new_reason": "mapped",
+   "old_gt_id": 10,
+   "ball_centre": [
+    167.2,
+    157.2
+   ],
+   "gt_player_foot": [
+    172.0,
+    154.8
+   ],
+   "ball_to_gt_player_dist": 5.3,
+   "picked_player_foot": [
+    170.2,
+    149.6
+   ],
+   "ball_to_picked_player_dist": 8.2
+  },
+  {
+   "frame_id": "women_1_239_w0:84",
+   "window_id": "women_1_239_w0",
+   "sequence": "women_1_239",
+   "label": "PLAYER",
+   "gt_player": 10,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 36,
+   "new_gt_id": 10,
+   "new_reason": "mapped",
+   "old_gt_id": 10,
+   "ball_centre": [
+    170.5,
+    156.6
+   ],
+   "gt_player_foot": [
+    175.0,
+    153.9
+   ],
+   "ball_to_gt_player_dist": 5.2,
+   "picked_player_foot": [
+    173.7,
+    149.0
+   ],
+   "ball_to_picked_player_dist": 8.2
+  },
+  {
+   "frame_id": "women_1_239_w1:195",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    182.8,
+    170.5
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:196",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    182.1,
+    170.4
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:197",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    181.6,
+    170.6
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:198",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    180.8,
+    171.4
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:199",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    180.4,
+    172.6
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:200",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    179.6,
+    173.9
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:201",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    179.1,
+    176.6
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:202",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    178.3,
+    179.6
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:203",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    177.7,
+    180.9
+   ]
+  },
+  {
+   "frame_id": "women_1_239_w1:204",
+   "window_id": "women_1_239_w1",
+   "sequence": "women_1_239",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    176.4,
+    181.3
+   ]
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:75",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    154.2,
+    145.0
+   ],
+   "picked_player_foot": [
+    158.4,
+    153.6
+   ],
+   "ball_to_picked_player_dist": 9.6
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:76",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    160.9,
+    144.0
+   ],
+   "picked_player_foot": [
+    165.6,
+    154.9
+   ],
+   "ball_to_picked_player_dist": 11.8
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:77",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    166.1,
+    144.8
+   ],
+   "picked_player_foot": [
+    170.5,
+    154.4
+   ],
+   "ball_to_picked_player_dist": 10.5
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:78",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    171.1,
+    145.2
+   ],
+   "picked_player_foot": [
+    175.1,
+    154.1
+   ],
+   "ball_to_picked_player_dist": 9.7
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:79",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    175.6,
+    145.6
+   ],
+   "picked_player_foot": [
+    179.9,
+    155.4
+   ],
+   "ball_to_picked_player_dist": 10.7
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:80",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    179.0,
+    145.1
+   ],
+   "picked_player_foot": [
+    183.3,
+    154.1
+   ],
+   "ball_to_picked_player_dist": 9.9
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:81",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    181.7,
+    145.1
+   ],
+   "picked_player_foot": [
+    186.9,
+    154.3
+   ],
+   "ball_to_picked_player_dist": 10.6
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:82",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    163.8,
+    101.0
+   ],
+   "picked_player_foot": [
+    148.6,
+    154.2
+   ],
+   "ball_to_picked_player_dist": 55.4
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:83",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    186.9,
+    143.9
+   ],
+   "picked_player_foot": [
+    191.7,
+    152.0
+   ],
+   "ball_to_picked_player_dist": 9.4
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w0:84",
+   "window_id": "youth_premier_league_1133_w0",
+   "sequence": "youth_premier_league_1133",
+   "label": "NO_CONTROL",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 55,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "no_support",
+   "old_gt_id": null,
+   "ball_centre": [
+    190.1,
+    142.8
+   ],
+   "picked_player_foot": [
+    194.4,
+    152.7
+   ],
+   "ball_to_picked_player_dist": 10.8
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:195",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "AMBIGUOUS",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 65,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    205.9,
+    132.4
+   ],
+   "picked_player_foot": [
+    175.4,
+    137.7
+   ],
+   "ball_to_picked_player_dist": 31.0
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:196",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "PLAYER",
+   "gt_player": 1,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 65,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    206.7,
+    128.0
+   ],
+   "gt_player_foot": [
+    338.7,
+    142.8
+   ],
+   "ball_to_gt_player_dist": 132.8,
+   "picked_player_foot": [
+    181.0,
+    141.2
+   ],
+   "ball_to_picked_player_dist": 28.8
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:197",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "AMBIGUOUS",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 65,
+   "new_gt_id": 7,
+   "new_reason": "mapped",
+   "old_gt_id": null,
+   "ball_centre": [
+    207.5,
+    124.3
+   ],
+   "picked_player_foot": [
+    187.6,
+    140.5
+   ],
+   "ball_to_picked_player_dist": 25.7
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:198",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "AMBIGUOUS",
+   "gt_player": null,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 59,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    346.2,
+    139.5
+   ],
+   "picked_player_foot": [
+    335.6,
+    139.9
+   ],
+   "ball_to_picked_player_dist": 10.6
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:199",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "AMBIGUOUS",
+   "gt_player": null,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 59,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    312.4,
+    134.0
+   ],
+   "picked_player_foot": [
+    333.6,
+    141.6
+   ],
+   "ball_to_picked_player_dist": 22.5
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:200",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "PLAYER",
+   "gt_player": 3,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": 59,
+   "new_gt_id": 1,
+   "new_reason": "mapped",
+   "old_gt_id": 1,
+   "ball_centre": [
+    278.7,
+    128.4
+   ],
+   "gt_player_foot": [
+    333.9,
+    169.1
+   ],
+   "ball_to_gt_player_dist": 68.6,
+   "picked_player_foot": [
+    332.7,
+    141.3
+   ],
+   "ball_to_picked_player_dist": 55.5
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:201",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "PLAYER",
+   "gt_player": 3,
+   "ball_state": "interpolated_short_gap",
+   "ball_present": true,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null,
+   "ball_centre": [
+    244.9,
+    122.9
+   ],
+   "gt_player_foot": [
+    328.3,
+    168.8
+   ],
+   "ball_to_gt_player_dist": 95.1
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:202",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "PLAYER",
+   "gt_player": 3,
+   "ball_state": "observed",
+   "ball_present": true,
+   "assigned_model_track": 64,
+   "new_gt_id": "UNMAPPABLE",
+   "new_reason": "low_support_rate",
+   "old_gt_id": 7,
+   "ball_centre": [
+    211.2,
+    117.4
+   ],
+   "gt_player_foot": [
+    322.6,
+    168.4
+   ],
+   "ball_to_gt_player_dist": 122.6,
+   "picked_player_foot": [
+    172.5,
+    168.1
+   ],
+   "ball_to_picked_player_dist": 63.7
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:203",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "PLAYER",
+   "gt_player": 3,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null
+  },
+  {
+   "frame_id": "youth_premier_league_1133_w1:204",
+   "window_id": "youth_premier_league_1133_w1",
+   "sequence": "youth_premier_league_1133",
+   "label": "PLAYER",
+   "gt_player": 3,
+   "ball_state": "unknown",
+   "ball_present": false,
+   "assigned_model_track": -1,
+   "new_gt_id": null,
+   "new_reason": null,
+   "old_gt_id": null
+  }
+ ]
+}

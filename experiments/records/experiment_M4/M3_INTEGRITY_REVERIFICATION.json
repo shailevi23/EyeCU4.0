@@ -1,0 +1,45 @@
+{
+ "purpose": "M4 Section 12 -- re-verify M3 freeze identity at the end of M4, before annotation is called closed",
+ "timestamp_utc": "2026-08-19T00:00:00Z",
+
+ "manifest_file_hash": {
+  "method": "sha256 of experiments/records/experiment_M3/SYSTEM_FREEZE_MANIFEST.json, compared against its own .sha256 sidecar",
+  "computed": "da9dfa011c93b2a98863bc3cb743e4f861a316d1ac38e7142e5800fc7aa83f3a",
+  "sidecar": "da9dfa011c93b2a98863bc3cb743e4f861a316d1ac38e7142e5800fc7aa83f3a",
+  "result": "MATCH"
+ },
+
+ "source_tree_identity": {
+  "method": "content-addressable git tree-object comparison (git rev-parse <commit>:<path>) between e0775e6 -- the commit the manifest's authoritative deterministic_source_tree_sha256 (11802d0e...) was computed from -- and current HEAD, for every path in the hashed prediction source tree. This is a stronger, unambiguous proof than re-deriving the bespoke sha256-over-sorted-file-list algorithm from scratch, since git tree hashes are content-addressed: two matching tree hashes guarantee byte-identical contents for every file underneath, full stop.",
+  "reference_commit": "e0775e6adf3d4e757783452a95f8e34ea6f3fa4f",
+  "current_head": "829f586cc201b6f385ad128f4b3028821dcc44d3",
+  "note_on_head_difference": "HEAD moved from e0775e6 to 829f586 during the M3 freeze-hygiene repair itself; git diff --stat confirms only SYSTEM_FREEZE_MANIFEST.json/.sha256 changed between the two commits -- zero difference in any hashed source-tree path.",
+  "per_path_tree_hashes": {
+   "trackers":         {"e0775e6": "b261e78a86010e56f1fc21d0de043600157fc870", "HEAD": "b261e78a86010e56f1fc21d0de043600157fc870", "match": true},
+   "tools":            {"e0775e6": "2594011937ddb554ab709289c948c2a70e105464", "HEAD": "2594011937ddb554ab709289c948c2a70e105464", "match": true},
+   "rf_trackers":      {"e0775e6": "5b11fd78163f6a86fb4ec596ebe4af66f1188058", "HEAD": "5b11fd78163f6a86fb4ec596ebe4af66f1188058", "match": true},
+   "full_pipeline.py": {"e0775e6": "697eb98dfc9361c954604de7e0dd18a2a6461b4e", "HEAD": "697eb98dfc9361c954604de7e0dd18a2a6461b4e", "match": true},
+   "run_pipeline.py":  {"e0775e6": "511bfa192212690a05f1e75f1235364f22e7ad81", "HEAD": "511bfa192212690a05f1e75f1235364f22e7ad81", "match": true}
+  },
+  "all_paths_match": true,
+  "working_tree_clean": "git status --porcelain on trackers/ tools/ rf_trackers/ full_pipeline.py run_pipeline.py returned empty -- no uncommitted changes",
+  "reproduction_caveat": "a fresh `git clone` + checkout of 829f586 followed by an independent re-implementation of the manifest's own 'sha256 over sorted (path, bytes) pairs' description produced a DIFFERENT hash (274d245c7b91ab511d6875d7b327c9fc0ddc2b98a0ca3a4de9a613f35b6f4830) than the recorded deterministic_source_tree_sha256 (11802d0e5afa769bb263435dff0329ed39092fa1de1b5efe1b4cbe078895f98c), despite an identical file count (159) and identical core.autocrlf=true setting in both the clone and this repo. This is attributed to not having the exact original hashing script (the manifest's prose description underspecifies path formatting / concatenation order), not to a content change -- the git tree-hash comparison above proves content identity independently of any bespoke hash implementation. Recorded here rather than silently reconciled or hidden."
+ },
+
+ "weight_identity": {
+  "human_detector": {
+   "file": "best_A_960.pt",
+   "computed_sha256": "5eaf2e81d7f6b28fd0c665e769a5fb66ec71dc6be7f0d51576300a8370768e4a",
+   "manifest_sha256":  "5eaf2e81d7f6b28fd0c665e769a5fb66ec71dc6be7f0d51576300a8370768e4a",
+   "result": "MATCH"
+  },
+  "ball_detector": {
+   "file": "models/third_party/soccernet_v3d/yolo-sn-ball.pt",
+   "computed_sha256": "e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b",
+   "manifest_sha256":  "e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b",
+   "result": "MATCH"
+  }
+ },
+
+ "overall_result": "PASS -- manifest hash, source-tree identity (git-native proof), and both weight hashes all confirmed unchanged since the M3 freeze. No production algorithm/config/model file was touched during M4."
+}

@@ -1,0 +1,28 @@
+{
+ "frames_processed": 40,
+ "frames_processed_gt_0": true,
+ "human_tracks_exist": true,
+ "n_player_detections_total": 797,
+ "ball_branch_active": true,
+ "n_ball_present_frames": 20,
+ "n_ball_total_frames": 40,
+ "selector_states_seen": [
+  "interpolated_short_gap",
+  "observed",
+  "recovered_low_conf"
+ ],
+ "selector_states_all_legal": true,
+ "ball_excluded_from_human_tracks": true,
+ "possession_frames_scored": 40,
+ "possession_path_executes": true,
+ "possession_error": null,
+ "processing_stats_written": true,
+ "final_report_written": true,
+ "speed_distance_calibrated_field": false,
+ "speed_distance_marked_uncalibrated": true,
+ "uncalibrated_fields_correctly_labelled": true,
+ "cache_key_present": true,
+ "source_fps_present": true,
+ "effective_fps_present": true,
+ "ALL_PASS": true
+}

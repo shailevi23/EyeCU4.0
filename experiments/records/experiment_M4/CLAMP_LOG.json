@@ -1,0 +1,359 @@
+[
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame": 188,
+  "class": "player",
+  "before": [
+   623,
+   263,
+   643,
+   295
+  ],
+  "after": [
+   623,
+   263,
+   640,
+   295
+  ]
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame": 188,
+  "class": "referee",
+  "before": [
+   630,
+   300,
+   645,
+   330
+  ],
+  "after": [
+   630,
+   300,
+   640,
+   330
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 338,
+  "class": "player",
+  "before": [
+   627,
+   321,
+   642,
+   362
+  ],
+  "after": [
+   627,
+   321,
+   640,
+   360
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 338,
+  "class": "player",
+  "before": [
+   626,
+   139,
+   641,
+   177
+  ],
+  "after": [
+   626,
+   139,
+   640,
+   177
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 413,
+  "class": "player",
+  "before": [
+   -3,
+   97,
+   8,
+   127
+  ],
+  "after": [
+   0,
+   97,
+   8,
+   127
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 488,
+  "class": "player",
+  "before": [
+   601,
+   313,
+   639,
+   361
+  ],
+  "after": [
+   601,
+   313,
+   639,
+   360
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 563,
+  "class": "player",
+  "before": [
+   -1,
+   183,
+   28,
+   220
+  ],
+  "after": [
+   0,
+   183,
+   28,
+   220
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 1238,
+  "class": "player",
+  "before": [
+   -2,
+   140,
+   9,
+   167
+  ],
+  "after": [
+   0,
+   140,
+   9,
+   167
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 1238,
+  "class": "player",
+  "before": [
+   -1,
+   156,
+   18,
+   196
+  ],
+  "after": [
+   0,
+   156,
+   18,
+   196
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 1313,
+  "class": "player",
+  "before": [
+   14,
+   1,
+   285,
+   385
+  ],
+  "after": [
+   14,
+   1,
+   285,
+   360
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 1388,
+  "class": "player",
+  "before": [
+   359,
+   341,
+   379,
+   361
+  ],
+  "after": [
+   359,
+   341,
+   379,
+   360
+  ]
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame": 1463,
+  "class": "player",
+  "before": [
+   260,
+   341,
+   288,
+   362
+  ],
+  "after": [
+   260,
+   341,
+   288,
+   360
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 118,
+  "class": "player",
+  "before": [
+   561,
+   -2,
+   590,
+   58
+  ],
+  "after": [
+   561,
+   0,
+   590,
+   58
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 196,
+  "class": "player",
+  "before": [
+   1019,
+   886,
+   1159,
+   1084
+  ],
+  "after": [
+   1019,
+   886,
+   1159,
+   1080
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 352,
+  "class": "player",
+  "before": [
+   1491,
+   847,
+   1610,
+   1082
+  ],
+  "after": [
+   1491,
+   847,
+   1610,
+   1080
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 742,
+  "class": "referee",
+  "before": [
+   -2,
+   475,
+   56,
+   689
+  ],
+  "after": [
+   0,
+   475,
+   56,
+   689
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 820,
+  "class": "goalkeeper",
+  "before": [
+   1868,
+   280,
+   1922,
+   692
+  ],
+  "after": [
+   1868,
+   280,
+   1920,
+   692
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 820,
+  "class": "player",
+  "before": [
+   1644,
+   648,
+   1794,
+   1082
+  ],
+  "after": [
+   1644,
+   648,
+   1794,
+   1080
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 976,
+  "class": "player",
+  "before": [
+   1307,
+   959,
+   1481,
+   1082
+  ],
+  "after": [
+   1307,
+   959,
+   1481,
+   1080
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 1054,
+  "class": "player",
+  "before": [
+   -1,
+   423,
+   57,
+   616
+  ],
+  "after": [
+   0,
+   423,
+   57,
+   616
+  ]
+ },
+ {
+  "sequence": "youth_2",
+  "frame": 1288,
+  "class": "player",
+  "before": [
+   -1,
+   521,
+   166,
+   784
+  ],
+  "after": [
+   0,
+   521,
+   166,
+   784
+  ]
+ }
+]

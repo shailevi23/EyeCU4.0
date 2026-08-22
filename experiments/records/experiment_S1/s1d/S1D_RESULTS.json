@@ -1,0 +1,910 @@
+{
+ "EXPERIMENT": "S1D contract-aware SN3D OPT gate",
+ "DIAGNOSTIC_ONLY": true,
+ "device": "cpu",
+ "checkpoints": {
+  "BASE": {
+   "sha256": "e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b"
+  },
+  "OPT": {
+   "sha256": "a3082fb435a8501ae17cfe4ac78e66ca7041205e115feda344d34d1693064f36"
+  }
+ },
+ "inference": {
+  "imgsz": 1280,
+  "conf": 0.25,
+  "floor": 0.1,
+  "dedupe_iou": 0.7,
+  "ms": {
+   "BASE": {
+    "temporal_ms": 827.5,
+    "static_ms": 827.6
+   },
+   "OPT": {
+    "temporal_ms": 880.3,
+    "static_ms": 945.9
+   }
+  }
+ },
+ "gt_geometry": {
+  "overall": {
+   "width": {
+    "n": 111,
+    "median": 6.0,
+    "p25": 4.59,
+    "p75": 7.0
+   },
+   "height": {
+    "n": 111,
+    "median": 6.0,
+    "p25": 5.0,
+    "p75": 7.77
+   },
+   "max_dim": {
+    "n": 111,
+    "median": 6.0,
+    "p25": 5.0,
+    "p75": 8.0
+   },
+   "aspect": {
+    "n": 111,
+    "median": 1.0,
+    "p25": 0.8,
+    "p75": 1.1429
+   },
+   "fraction_approx_square_0.9_1.1": 0.2613
+  },
+  "youth": {
+   "width": {
+    "n": 28,
+    "median": 8.0,
+    "p25": 6.8575,
+    "p75": 8.0375
+   },
+   "height": {
+    "n": 28,
+    "median": 8.0,
+    "p25": 7.0,
+    "p75": 9.0
+   },
+   "max_dim": {
+    "n": 28,
+    "median": 8.0,
+    "p25": 8.0,
+    "p75": 9.0125
+   },
+   "aspect": {
+    "n": 28,
+    "median": 0.919,
+    "p25": 0.8571,
+    "p75": 1.0313
+   },
+   "fraction_approx_square_0.9_1.1": 0.25
+  },
+  "non_youth": {
+   "width": {
+    "n": 83,
+    "median": 5.0,
+    "p25": 4.0,
+    "p75": 6.0
+   },
+   "height": {
+    "n": 83,
+    "median": 5.0,
+    "p25": 4.0,
+    "p75": 6.215
+   },
+   "max_dim": {
+    "n": 83,
+    "median": 6.0,
+    "p25": 5.0,
+    "p75": 7.0
+   },
+   "aspect": {
+    "n": 83,
+    "median": 1.0,
+    "p25": 0.8,
+    "p75": 1.1667
+   },
+   "fraction_approx_square_0.9_1.1": 0.2651
+  },
+  "overlap": {
+   "width": {
+    "n": 37,
+    "median": 5.0,
+    "p25": 4.0,
+    "p75": 6.0
+   },
+   "height": {
+    "n": 37,
+    "median": 5.0,
+    "p25": 4.0,
+    "p75": 6.28
+   },
+   "max_dim": {
+    "n": 37,
+    "median": 5.98,
+    "p25": 4.0,
+    "p75": 7.0
+   },
+   "aspect": {
+    "n": 37,
+    "median": 0.8874,
+    "p25": 0.7389,
+    "p75": 1.2
+   },
+   "fraction_approx_square_0.9_1.1": 0.1622
+  }
+ },
+ "temporal": {
+  "BASE": {
+   "centre_4px": {
+    "tp": 59,
+    "fp1": 1,
+    "fp2": 2,
+    "fn": 17,
+    "tn": 25,
+    "gt_frames": 77,
+    "recall": 0.7662,
+    "precision": 0.9516,
+    "empty_frames": 27,
+    "empty_fired_frames": 2,
+    "empty_fired_rate": 0.0741,
+    "hard_recovered": 12,
+    "hard_of": 24,
+    "overlap_recovered": 11,
+    "overlap_of": 20,
+    "events_touched": 9,
+    "events_of": 15,
+    "events_with_2plus": 2,
+    "hard_recovered_files": [
+     "austin_fc_vs__club_tijuana_tv001341.jpg",
+     "austin_fc_vs__club_tijuana_tv001377.jpg",
+     "austin_fc_vs__club_tijuana_tv001395.jpg",
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "bayern_munich_3-1_chelsea_tv001080.jpg",
+     "bayern_munich_3-1_chelsea_tv001085.jpg",
+     "youth_premier_league_tv000662.jpg",
+     "youth_premier_league_tv001088.jpg",
+     "youth_premier_league_tv001113.jpg",
+     "youth_premier_league_tv001123.jpg",
+     "youth_premier_league_tv001128.jpg",
+     "youth_premier_league_tv001138.jpg"
+    ]
+   },
+   "centre_1p333px": {
+    "tp": 56,
+    "fp1": 4,
+    "fp2": 2,
+    "fn": 17,
+    "tn": 25,
+    "gt_frames": 77,
+    "recall": 0.7273,
+    "precision": 0.9032,
+    "empty_frames": 27,
+    "empty_fired_frames": 2,
+    "empty_fired_rate": 0.0741,
+    "hard_recovered": 9,
+    "hard_of": 24,
+    "overlap_recovered": 8,
+    "overlap_of": 20,
+    "events_touched": 7,
+    "events_of": 15,
+    "events_with_2plus": 1,
+    "hard_recovered_files": [
+     "austin_fc_vs__club_tijuana_tv001341.jpg",
+     "austin_fc_vs__club_tijuana_tv001377.jpg",
+     "austin_fc_vs__club_tijuana_tv001395.jpg",
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "bayern_munich_3-1_chelsea_tv001080.jpg",
+     "bayern_munich_3-1_chelsea_tv001085.jpg",
+     "youth_premier_league_tv000662.jpg",
+     "youth_premier_league_tv001088.jpg",
+     "youth_premier_league_tv001128.jpg"
+    ]
+   },
+   "iou50_matched": 57
+  },
+  "OPT": {
+   "centre_4px": {
+    "tp": 44,
+    "fp1": 1,
+    "fp2": 4,
+    "fn": 32,
+    "tn": 23,
+    "gt_frames": 77,
+    "recall": 0.5714,
+    "precision": 0.898,
+    "empty_frames": 27,
+    "empty_fired_frames": 4,
+    "empty_fired_rate": 0.1481,
+    "hard_recovered": 10,
+    "hard_of": 24,
+    "overlap_recovered": 9,
+    "overlap_of": 20,
+    "events_touched": 7,
+    "events_of": 15,
+    "events_with_2plus": 2,
+    "hard_recovered_files": [
+     "austin_fc_vs__club_tijuana_tv001377.jpg",
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "bayern_munich_3-1_chelsea_tv001080.jpg",
+     "bayern_munich_3-1_chelsea_tv001085.jpg",
+     "youth_premier_league_tv000662.jpg",
+     "youth_premier_league_tv001088.jpg",
+     "youth_premier_league_tv001113.jpg",
+     "youth_premier_league_tv001123.jpg",
+     "youth_premier_league_tv001128.jpg",
+     "youth_premier_league_tv001138.jpg"
+    ]
+   },
+   "centre_1p333px": {
+    "tp": 39,
+    "fp1": 6,
+    "fp2": 4,
+    "fn": 32,
+    "tn": 23,
+    "gt_frames": 77,
+    "recall": 0.5065,
+    "precision": 0.7959,
+    "empty_frames": 27,
+    "empty_fired_frames": 4,
+    "empty_fired_rate": 0.1481,
+    "hard_recovered": 6,
+    "hard_of": 24,
+    "overlap_recovered": 5,
+    "overlap_of": 20,
+    "events_touched": 4,
+    "events_of": 15,
+    "events_with_2plus": 1,
+    "hard_recovered_files": [
+     "austin_fc_vs__club_tijuana_tv001377.jpg",
+     "bayern_munich_3-1_chelsea_tv001070.jpg",
+     "bayern_munich_3-1_chelsea_tv001080.jpg",
+     "bayern_munich_3-1_chelsea_tv001085.jpg",
+     "youth_premier_league_tv000662.jpg",
+     "youth_premier_league_tv001138.jpg"
+    ]
+   },
+   "iou50_matched": 27
+  }
+ },
+ "static": {
+  "BASE": {
+   "overall": {
+    "gt": 111,
+    "centre_4px": 69,
+    "centre_1p333px": 65,
+    "iou50": 60,
+    "recall_4px": 0.6216,
+    "recall_iou50": 0.5405,
+    "box_conversion": 0.8696
+   },
+   "youth": {
+    "gt": 28,
+    "centre_4px": 22,
+    "centre_1p333px": 20,
+    "iou50": 20,
+    "recall_4px": 0.7857,
+    "recall_iou50": 0.7143,
+    "box_conversion": 0.9091
+   },
+   "non_youth": {
+    "gt": 83,
+    "centre_4px": 47,
+    "centre_1p333px": 45,
+    "iou50": 40,
+    "recall_4px": 0.5663,
+    "recall_iou50": 0.4819,
+    "box_conversion": 0.8511
+   },
+   "overlap": {
+    "gt": 37,
+    "centre_4px": 15,
+    "centre_1p333px": 14,
+    "iou50": 8,
+    "recall_4px": 0.4054,
+    "recall_iou50": 0.2162,
+    "box_conversion": 0.5333
+   },
+   "non_overlap": {
+    "gt": 74,
+    "centre_4px": 54,
+    "centre_1p333px": 51,
+    "iou50": 52,
+    "recall_4px": 0.7297,
+    "recall_iou50": 0.7027,
+    "box_conversion": 0.963
+   }
+  },
+  "OPT": {
+   "overall": {
+    "gt": 111,
+    "centre_4px": 57,
+    "centre_1p333px": 53,
+    "iou50": 50,
+    "recall_4px": 0.5135,
+    "recall_iou50": 0.4505,
+    "box_conversion": 0.8772
+   },
+   "youth": {
+    "gt": 28,
+    "centre_4px": 21,
+    "centre_1p333px": 19,
+    "iou50": 20,
+    "recall_4px": 0.75,
+    "recall_iou50": 0.7143,
+    "box_conversion": 0.9524
+   },
+   "non_youth": {
+    "gt": 83,
+    "centre_4px": 36,
+    "centre_1p333px": 34,
+    "iou50": 30,
+    "recall_4px": 0.4337,
+    "recall_iou50": 0.3614,
+    "box_conversion": 0.8333
+   },
+   "overlap": {
+    "gt": 37,
+    "centre_4px": 11,
+    "centre_1p333px": 10,
+    "iou50": 10,
+    "recall_4px": 0.2973,
+    "recall_iou50": 0.2703,
+    "box_conversion": 0.9091
+   },
+   "non_overlap": {
+    "gt": 74,
+    "centre_4px": 46,
+    "centre_1p333px": 43,
+    "iou50": 40,
+    "recall_4px": 0.6216,
+    "recall_iou50": 0.5405,
+    "box_conversion": 0.8696
+   }
+  }
+ },
+ "paired": {
+  "static_overall_centre_4px": {
+   "n": 111,
+   "both": 54,
+   "base_only": 15,
+   "opt_only": 3,
+   "neither": 39
+  },
+  "static_overall_iou50": {
+   "n": 111,
+   "both": 41,
+   "base_only": 19,
+   "opt_only": 9,
+   "neither": 42
+  },
+  "static_youth_centre_4px": {
+   "n": 28,
+   "both": 20,
+   "base_only": 2,
+   "opt_only": 1,
+   "neither": 5
+  },
+  "static_youth_iou50": {
+   "n": 28,
+   "both": 18,
+   "base_only": 2,
+   "opt_only": 2,
+   "neither": 6
+  },
+  "static_non_youth_centre_4px": {
+   "n": 83,
+   "both": 34,
+   "base_only": 13,
+   "opt_only": 2,
+   "neither": 34
+  },
+  "static_non_youth_iou50": {
+   "n": 83,
+   "both": 23,
+   "base_only": 17,
+   "opt_only": 7,
+   "neither": 36
+  },
+  "static_overlap_centre_4px": {
+   "n": 37,
+   "both": 10,
+   "base_only": 5,
+   "opt_only": 1,
+   "neither": 21
+  },
+  "static_overlap_iou50": {
+   "n": 37,
+   "both": 5,
+   "base_only": 3,
+   "opt_only": 5,
+   "neither": 24
+  },
+  "static_non_overlap_centre_4px": {
+   "n": 74,
+   "both": 44,
+   "base_only": 10,
+   "opt_only": 2,
+   "neither": 18
+  },
+  "static_non_overlap_iou50": {
+   "n": 74,
+   "both": 36,
+   "base_only": 16,
+   "opt_only": 4,
+   "neither": 18
+  },
+  "temporal_hard_centre_4px": {
+   "n": 24,
+   "both": 10,
+   "base_only": 2,
+   "opt_only": 0,
+   "neither": 12
+  },
+  "temporal_overlap_centre_4px": {
+   "n": 20,
+   "both": 9,
+   "base_only": 2,
+   "opt_only": 0,
+   "neither": 9
+  }
+ },
+ "geometry_decomp": {
+  "BASE": {
+   "overall": {
+    "n": 69,
+    "centre_err": {
+     "n": 69,
+     "median": 0.4214,
+     "p25": 0.2231,
+     "p75": 0.6948
+    },
+    "iou": {
+     "n": 69,
+     "median": 0.7606,
+     "p25": 0.6324,
+     "p75": 0.8287
+    },
+    "w_ratio": {
+     "n": 69,
+     "median": 1.0488,
+     "p25": 0.9589,
+     "p75": 1.2364
+    },
+    "h_ratio": {
+     "n": 69,
+     "median": 0.9836,
+     "p25": 0.9168,
+     "p75": 1.1454
+    },
+    "area_ratio": {
+     "n": 69,
+     "median": 1.058,
+     "p25": 0.9151,
+     "p75": 1.2848
+    },
+    "pred_aspect": {
+     "n": 69,
+     "median": 0.9981,
+     "p25": 0.9552,
+     "p75": 1.045
+    },
+    "gt_aspect": {
+     "n": 69,
+     "median": 1.0,
+     "p25": 0.8333,
+     "p75": 1.1429
+    }
+   },
+   "youth": {
+    "n": 22,
+    "centre_err": {
+     "n": 22,
+     "median": 0.4507,
+     "p25": 0.3007,
+     "p75": 0.7651
+    },
+    "iou": {
+     "n": 22,
+     "median": 0.7743,
+     "p25": 0.6644,
+     "p75": 0.8374
+    },
+    "w_ratio": {
+     "n": 22,
+     "median": 1.0625,
+     "p25": 0.9792,
+     "p75": 1.2585
+    },
+    "h_ratio": {
+     "n": 22,
+     "median": 0.9839,
+     "p25": 0.9714,
+     "p75": 1.0911
+    },
+    "area_ratio": {
+     "n": 22,
+     "median": 1.058,
+     "p25": 0.947,
+     "p75": 1.25
+    },
+    "pred_aspect": {
+     "n": 22,
+     "median": 0.9977,
+     "p25": 0.9431,
+     "p75": 1.0429
+    },
+    "gt_aspect": {
+     "n": 22,
+     "median": 0.919,
+     "p25": 0.8616,
+     "p75": 1.1384
+    }
+   },
+   "non_youth": {
+    "n": 47,
+    "centre_err": {
+     "n": 47,
+     "median": 0.4127,
+     "p25": 0.2171,
+     "p75": 0.6861
+    },
+    "iou": {
+     "n": 47,
+     "median": 0.7565,
+     "p25": 0.6247,
+     "p75": 0.821
+    },
+    "w_ratio": {
+     "n": 47,
+     "median": 1.0488,
+     "p25": 0.9573,
+     "p75": 1.2306
+    },
+    "h_ratio": {
+     "n": 47,
+     "median": 0.9836,
+     "p25": 0.9021,
+     "p75": 1.2161
+    },
+    "area_ratio": {
+     "n": 47,
+     "median": 1.058,
+     "p25": 0.9058,
+     "p75": 1.332
+    },
+    "pred_aspect": {
+     "n": 47,
+     "median": 1.0028,
+     "p25": 0.9689,
+     "p75": 1.0449
+    },
+    "gt_aspect": {
+     "n": 47,
+     "median": 1.0,
+     "p25": 0.8333,
+     "p75": 1.0714
+    }
+   },
+   "overlap": {
+    "n": 15,
+    "centre_err": {
+     "n": 15,
+     "median": 0.764,
+     "p25": 0.4071,
+     "p75": 0.897
+    },
+    "iou": {
+     "n": 15,
+     "median": 0.543,
+     "p25": 0.4463,
+     "p75": 0.72
+    },
+    "w_ratio": {
+     "n": 15,
+     "median": 1.2656,
+     "p25": 1.0542,
+     "p75": 1.3567
+    },
+    "h_ratio": {
+     "n": 15,
+     "median": 1.1702,
+     "p25": 0.9997,
+     "p75": 1.4777
+    },
+    "area_ratio": {
+     "n": 15,
+     "median": 1.2835,
+     "p25": 1.1254,
+     "p75": 2.202
+    },
+    "pred_aspect": {
+     "n": 15,
+     "median": 0.9487,
+     "p25": 0.9361,
+     "p75": 0.9986
+    },
+    "gt_aspect": {
+     "n": 15,
+     "median": 1.0,
+     "p25": 0.7474,
+     "p75": 1.1548
+    }
+   },
+   "non_overlap": {
+    "n": 54,
+    "centre_err": {
+     "n": 54,
+     "median": 0.3633,
+     "p25": 0.1793,
+     "p75": 0.6277
+    },
+    "iou": {
+     "n": 54,
+     "median": 0.7832,
+     "p25": 0.6956,
+     "p75": 0.8325
+    },
+    "w_ratio": {
+     "n": 54,
+     "median": 1.0391,
+     "p25": 0.9565,
+     "p75": 1.1666
+    },
+    "h_ratio": {
+     "n": 54,
+     "median": 0.9719,
+     "p25": 0.9049,
+     "p75": 1.0776
+    },
+    "area_ratio": {
+     "n": 54,
+     "median": 0.972,
+     "p25": 0.8969,
+     "p75": 1.2257
+    },
+    "pred_aspect": {
+     "n": 54,
+     "median": 1.005,
+     "p25": 0.9824,
+     "p75": 1.0504
+    },
+    "gt_aspect": {
+     "n": 54,
+     "median": 1.0,
+     "p25": 0.8571,
+     "p75": 1.0938
+    }
+   }
+  },
+  "OPT": {
+   "overall": {
+    "n": 57,
+    "centre_err": {
+     "n": 57,
+     "median": 0.3918,
+     "p25": 0.2894,
+     "p75": 0.6988
+    },
+    "iou": {
+     "n": 57,
+     "median": 0.6871,
+     "p25": 0.5467,
+     "p75": 0.7669
+    },
+    "w_ratio": {
+     "n": 57,
+     "median": 0.8899,
+     "p25": 0.7864,
+     "p75": 0.9869
+    },
+    "h_ratio": {
+     "n": 57,
+     "median": 0.8617,
+     "p25": 0.7819,
+     "p75": 0.9472
+    },
+    "area_ratio": {
+     "n": 57,
+     "median": 0.7685,
+     "p25": 0.6235,
+     "p75": 0.8754
+    },
+    "pred_aspect": {
+     "n": 57,
+     "median": 0.9866,
+     "p25": 0.9709,
+     "p75": 1.0148
+    },
+    "gt_aspect": {
+     "n": 57,
+     "median": 1.0,
+     "p25": 0.8571,
+     "p75": 1.1429
+    }
+   },
+   "youth": {
+    "n": 21,
+    "centre_err": {
+     "n": 21,
+     "median": 0.4485,
+     "p25": 0.299,
+     "p75": 0.7072
+    },
+    "iou": {
+     "n": 21,
+     "median": 0.758,
+     "p25": 0.6935,
+     "p75": 0.784
+    },
+    "w_ratio": {
+     "n": 21,
+     "median": 0.9521,
+     "p25": 0.8312,
+     "p75": 0.9869
+    },
+    "h_ratio": {
+     "n": 21,
+     "median": 0.8857,
+     "p25": 0.8306,
+     "p75": 0.9474
+    },
+    "area_ratio": {
+     "n": 21,
+     "median": 0.8081,
+     "p25": 0.7685,
+     "p75": 0.9137
+    },
+    "pred_aspect": {
+     "n": 21,
+     "median": 1.0099,
+     "p25": 0.9855,
+     "p75": 1.0249
+    },
+    "gt_aspect": {
+     "n": 21,
+     "median": 0.9699,
+     "p25": 0.875,
+     "p75": 1.1429
+    }
+   },
+   "non_youth": {
+    "n": 36,
+    "centre_err": {
+     "n": 36,
+     "median": 0.3836,
+     "p25": 0.2759,
+     "p75": 0.6648
+    },
+    "iou": {
+     "n": 36,
+     "median": 0.6142,
+     "p25": 0.5147,
+     "p75": 0.7103
+    },
+    "w_ratio": {
+     "n": 36,
+     "median": 0.874,
+     "p25": 0.7555,
+     "p75": 0.9642
+    },
+    "h_ratio": {
+     "n": 36,
+     "median": 0.8373,
+     "p25": 0.7346,
+     "p75": 0.9193
+    },
+    "area_ratio": {
+     "n": 36,
+     "median": 0.7039,
+     "p25": 0.5544,
+     "p75": 0.8162
+    },
+    "pred_aspect": {
+     "n": 36,
+     "median": 0.9823,
+     "p25": 0.9629,
+     "p75": 0.9998
+    },
+    "gt_aspect": {
+     "n": 36,
+     "median": 1.0,
+     "p25": 0.8333,
+     "p75": 1.0357
+    }
+   },
+   "overlap": {
+    "n": 11,
+    "centre_err": {
+     "n": 11,
+     "median": 0.7461,
+     "p25": 0.3419,
+     "p75": 1.0363
+    },
+    "iou": {
+     "n": 11,
+     "median": 0.5438,
+     "p25": 0.5244,
+     "p75": 0.6177
+    },
+    "w_ratio": {
+     "n": 11,
+     "median": 1.0649,
+     "p25": 0.8382,
+     "p75": 1.2193
+    },
+    "h_ratio": {
+     "n": 11,
+     "median": 0.929,
+     "p25": 0.8624,
+     "p75": 1.1247
+    },
+    "area_ratio": {
+     "n": 11,
+     "median": 0.8632,
+     "p25": 0.7399,
+     "p75": 1.421
+    },
+    "pred_aspect": {
+     "n": 11,
+     "median": 0.9824,
+     "p25": 0.97,
+     "p75": 1.0067
+    },
+    "gt_aspect": {
+     "n": 11,
+     "median": 1.0,
+     "p25": 0.8187,
+     "p75": 1.1548
+    }
+   },
+   "non_overlap": {
+    "n": 46,
+    "centre_err": {
+     "n": 46,
+     "median": 0.3744,
+     "p25": 0.2814,
+     "p75": 0.6483
+    },
+    "iou": {
+     "n": 46,
+     "median": 0.7031,
+     "p25": 0.5957,
+     "p75": 0.7683
+    },
+    "w_ratio": {
+     "n": 46,
+     "median": 0.874,
+     "p25": 0.7845,
+     "p75": 0.9677
+    },
+    "h_ratio": {
+     "n": 46,
+     "median": 0.8404,
+     "p25": 0.7669,
+     "p75": 0.9242
+    },
+    "area_ratio": {
+     "n": 46,
+     "median": 0.764,
+     "p25": 0.614,
+     "p75": 0.8462
+    },
+    "pred_aspect": {
+     "n": 46,
+     "median": 0.9866,
+     "p25": 0.9722,
+     "p75": 1.0146
+    },
+    "gt_aspect": {
+     "n": 46,
+     "median": 1.0,
+     "p25": 0.8586,
+     "p75": 1.0938
+    }
+   }
+  }
+ }
+}

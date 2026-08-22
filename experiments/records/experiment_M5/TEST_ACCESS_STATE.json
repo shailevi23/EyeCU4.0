@@ -1,0 +1,30 @@
+{
+ "milestone": "M5 -- one-shot sealed TEST detection evaluation",
+ "supersedes": "experiments/records/experiment_M4/TEST_ACCESS_STATE.json (sha256 558c291ad6bf266cb9225c4848d1874984d11aa421cd36cfaec1b2f16f2e7552) -- that file is preserved unedited as the historical M4-close snapshot; this file is the current authoritative state after M5.",
+ "frozen_utc": "2026-08-19T00:00:00Z",
+
+ "access_state": {
+  "machine_leakage_accessed": true,
+  "human_annotation_accessed": true,
+  "labels_frozen": true,
+  "production_predictions_run": true,
+  "evaluation_results_viewed": true
+ },
+
+ "gt_modified_during_m5": false,
+
+ "m5_artifacts": {
+  "PRECHECK_RESULT.json": "39e82a5bd70e8c2eeb20ea2f83d0b3630a63dd1bd44751cc98aad425d7215317",
+  "RAW_PREDICTIONS.json": "c3df0edb56060e1f2937ee7c31633576019aeeec67ae6cf6090ce4ddd6d28845",
+  "E2E_ACCEPTANCE.json": "00c71d35f27d05ce2af24b700fcd10e7d300cdf2ca9b2d468cb7de464f757a54",
+  "DETECTION_METRICS.json": "3813113a2477bb328a3f4933abaf9f98847c4e62eaf04c596830892bd9b0aaee",
+  "GT_QUALITY_FINDING.json": "8074a4aac02b092eddb48e47a3307996e78a7b9cee684a03d1dac648647e37f6"
+ },
+
+ "prediction_passes_per_sequence": 1,
+ "test_image_reads_by_assistant": 0,
+
+ "critical_note": "a material GT-quality defect specific to the como_2-0_sassuolo third of TEST was discovered during metric review (see GT_QUALITY_FINDING.json) via pure numeric comparison of already-saved JSON, with zero TEST image views. GT was NOT modified in response. This invalidates the pooled/aggregate detection metric as a generalization measurement; see M5_FINAL_REPORT.md for the full disposition.",
+
+ "immutability": "No further prediction pass or metric recomputation is permitted against this TEST population without a new, explicitly superseding milestone. TEST_DETECTION_ANNOTATIONS.json remains unmodified and byte-identical to its M4-frozen hash."
+}

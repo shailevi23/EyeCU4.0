@@ -1,0 +1,156 @@
+{
+ "freeze_timestamp_utc": "2026-08-19T07:05:12Z",
+ "milestone": "M3 -- system / production freeze before sealed TEST",
+ "revision": 3,
+ "revision_note": "M3 freeze-hygiene repair, two commits: (466454f) made the frozen source reconstructable via a dedicated freeze commit instead of an uncommitted working tree; (e0775e6) recorded the thread-setting equivalence check, which itself added one new diagnostic script (tools/m3_thread_equivalence.py) to the hashed source tree, moving the reconstructable hash one more time. Revision 2's manifest was superseded before it was ever the last word, purely by this second, planned commit -- not by any further source edit. No production algorithm/config/model bytes changed at any point; source_identity below documents an EOL-normalisation-only hash discrepancy introduced by the first commit.",
+ "superseded_manifest_sha256": "32983c46e57dfa4c603b48c8ce7dbc488f3de91f3b7c7a1f3346091041eb5961",
+ "superseded_manifest_sha256_original_M3": "4d46d2a1ecf23e38cb64e27dbed9768a3d2fcfef72c08a1ddb1cd3a3606076b0",
+
+ "source_identity": {
+  "git_head_commit": "e0775e6adf3d4e757783452a95f8e34ea6f3fa4f",
+  "git_head_commit_superseded_reconstructable_but_incomplete": "466454fa8336b98d3a31f4877778bff8f569a08a",
+  "git_head_commit_superseded_pre_freeze_commit": "4c1a1bb8c050ed67f9763c87524107daa16f3234",
+  "working_tree_has_uncommitted_changes": false,
+  "reconstructable_source": true,
+  "reconstruction_method": "two freeze commits on branch main: 466454f (exact M1-M3 prediction-producing source -- trackers/, tools/, rf_trackers/, full_pipeline.py, run_pipeline.py -- and its relevant M1-M3 experiment records) then e0775e6 (this repair's own thread-equivalence script and result, and the manifest updates recording both). Verified reconstructable at e0775e6 by a fresh `git clone` + `git checkout e0775e6`, hashed directly.",
+  "note": "deterministic_source_tree_sha256 below is sha256 over (relative path, file bytes) for every .py file under trackers/, tools/, rf_trackers/, plus full_pipeline.py and run_pipeline.py, sorted by path -- computed from a genuine clean checkout of e0775e6, the final commit of this repair.",
+  "deterministic_source_tree_sha256": "11802d0e5afa769bb263435dff0329ed39092fa1de1b5efe1b4cbe078895f98c",
+  "deterministic_source_tree_sha256_at_466454f_superseded": "1572cb50f0596a4368a2d4833d1e0a916a69930e2820361a8309949cf31bf8fa",
+  "deterministic_source_tree_sha256_pre_commit_working_tree_superseded": "38dfd20c6b5c814ab2a8d19da464c477ebedb64936c78a2dacbf9aa403edf8df",
+  "source_tree_file_count": 159,
+  "pre_commit_vs_post_commit_hash_discrepancy": {
+   "cause": "core.autocrlf=true normalised LF line endings to CRLF on commit, for the 23 .py files newly created in this session with bare LF endings (pre-existing files, whose endings were already CRLF, were unaffected -- e.g. full_pipeline.py is byte-identical pre- and post-commit)",
+   "verified_eol_only_zero_logic_change": true,
+   "verification_method": "every file whose raw bytes differed was re-compared after normalising b'\\r\\n' -> b'\\n' on both sides; all 23 became byte-identical, confirming no code/logic content changed",
+   "affected_file_count": 23,
+   "prediction_affecting": false
+  }
+ },
+
+ "production_entry_point": {
+  "cli": "run_pipeline.py",
+  "class": "full_pipeline.FootballAnalysisPipeline",
+  "public_methods": ["process_video", "generate_final_report", "save_output_video"],
+  "one_video_per_process": true,
+  "command_template": "python run_pipeline.py --video \"<path>\" --output-dir \"<output-dir>\" --skip-frames 2"
+ },
+
+ "human_detector": {
+  "checkpoint": "best_A_960.pt",
+  "tracked_in_git": true,
+  "sha256": "5eaf2e81d7f6b28fd0c665e769a5fb66ec71dc6be7f0d51576300a8370768e4a",
+  "inference_imgsz": 960,
+  "accept_confidence": 0.25,
+  "classes": ["player", "goalkeeper", "referee"],
+  "matches_frozen_manifest": "data/tracking_val_v1/manifest.json:detector",
+  "is_now_the_production_default": true,
+  "m3_fix_applied": "constructor/CLI/__main__ defaults previously pointed at generic 'yolov8x.pt'; corrected to this checkpoint -- see PRODUCTION_CONFIG_VERIFICATION.md"
+ },
+
+ "human_tracker": {
+  "backend": "cbiou",
+  "implementation": "rf_trackers/core/cbiou/tracker.py (vendored Roboflow CBIoUTracker)",
+  "is_default": true,
+  "thresholds_tuned_in_this_milestone": false,
+  "ball_excluded_from_association": true,
+  "ball_exclusion_verified_by": "tests/test_cbiou_integration.py::TestEyeCuSemantics::test_ball_never_enters_human_association"
+ },
+
+ "ball_detector": {
+  "backend": "sn3d",
+  "checkpoint": "yolo-sn-ball.pt",
+  "tracked_in_git": false,
+  "sha256": "e8c1a900300893c34bf36c964c5854ed93603470e04a4a8eba73f70e4eea148b",
+  "architecture": "YOLO11l, 25311251 params, nc=1 {0: 'ball'}",
+  "inference_imgsz": 1280,
+  "accept_confidence": 0.25,
+  "candidate_pool_confidence": 0.10,
+  "provisioning_contract": "explicit arg > EYECU_SN3D_MODEL_PATH env var > models/third_party/soccernet_v3d/yolo-sn-ball.pt (repo-relative default)",
+  "missing_checkpoint_behaviour": "FileNotFoundError, actionable (official release URL, expected path, expected SHA256)",
+  "wrong_hash_behaviour": "ValueError, actionable (expected vs actual SHA256)"
+ },
+
+ "ball_temporal_selector": {
+  "version": "v1",
+  "constants": {
+   "ACCEPT_CONF": 0.25,
+   "CANDIDATE_CONF": 0.10,
+   "MAX_RESCUE_GAP_SECONDS": 0.6,
+   "GATE_BASE_PX": 60.0,
+   "GATE_GROWTH_PX": 40.0,
+   "MIN_HISTORY_FOR_VELOCITY": 2,
+   "MAX_INTERP_GAP_SECONDS": 0.4,
+   "CUT_MEAN_ABSDIFF": 30.0
+  },
+  "states": ["observed", "recovered_low_conf", "interpolated_short_gap", "unknown"],
+  "unchanged_since_T1_closure": true
+ },
+
+ "ball_ontology": ["ball"],
+ "human_class_ontology": ["player", "goalkeeper", "referee"],
+
+ "cbiou_reproducibility": {
+  "blocker_status": "RESOLVED",
+  "isolated_component_determinism": {
+   "detector_204_204_frames_identical": true,
+   "cbiou_given_fixed_input_204_204_frames_identical": true,
+   "device": "cpu"
+  },
+  "root_cause": "eval/diagnostic scripts (tools/eval_possession_val.py, tools/eval_possession_val_p1.py, tools/p1_1_attribution_diagnostics.py) constructed one FootballTracker/CBIoUTracker before looping over multiple unrelated development sequences, letting mutable identity state (lost_track_buffer=30 frames) leak across sequences",
+  "fix": "fresh FootballTracker constructed per sequence, inside the loop, in all three scripts",
+  "tracking_algorithm_or_thresholds_changed": false,
+  "production_entry_points_affected": false,
+  "detail": "CBIOU_REPRODUCIBILITY.md",
+  "required_deterministic_settings_for_TEST": ["torch.set_num_threads(1)", "cv2.setNumThreads(1)"],
+  "thread_setting_equivalence_check": {
+   "purpose": "these settings were added defensively, not because measured nondeterminism required them -- checked directly rather than left as an untested assumption",
+   "development_sample": "bayern_munich_3-1_chelsea_228 (non-TEST), 40 frames",
+   "compared": ["human_records (878 vs 878)", "ball_candidate_records (38 vs 38)", "selector_records (40 vs 40)"],
+   "default_vs_single_thread_record_identical": true,
+   "decision": "kept the single-thread requirement (per instruction: record-identical -> keep and record the result)",
+   "detail": "thread_equivalence_result.json"
+  }
+ },
+
+ "cache_identity": {
+  "key_covers": ["video fingerprint", "human model fingerprint", "detector settings (incl. ball branch identity: backend/sha256/imgsz/accept_conf/candidate_conf)", "tracker settings (incl. association backend, ball_candidate_pool, selector version)", "skip_frames", "max_frames"],
+  "verified_by": "tests/test_cache_safety.py (22 tests, incl. 5 new M3 ball-identity-specific tests)"
+ },
+
+ "component_status": {
+  "human_detector": "CLOSED",
+  "cbiou_human_tracking": "CLOSED (development evaluation); reproducibility blocker RESOLVED in M3",
+  "sn3d_ball_detector": "CLOSED",
+  "ball_temporal_selector": "CLOSED, v1",
+  "possession": "CLOSED-LIMITATION (P1/P1.1; 46.43% exact-player correctness among mappable frames, attributed failure mechanisms on record; not remediated further)",
+  "team_assignment": "IMPLEMENTED BUT UNVALIDATED (no benchmark exists; none created in M3)",
+  "calibration_metric_world_coordinates": "EXPERIMENTAL / NOT VALIDATED (M2.1 verdict B; authoritative status in experiments/records/experiment_M2/calibration/M2_1_CALIBRATION_STATUS.json)",
+  "metric_speed": "UNSUPPORTED",
+  "metric_distance": "UNSUPPORTED",
+  "events": "UNSUPPORTED / DEFERRED (not built)"
+ },
+
+ "runtime": {
+  "python": "3.10.0",
+  "torch": "2.8.0+cpu",
+  "ultralytics": "8.4.116",
+  "opencv": "4.10.0",
+  "supervision": "0.26.1",
+  "numpy": "2.2.6",
+  "device": "cpu"
+ },
+
+ "output_contract": "SUPPORTED_OUTPUT_CONTRACT.md",
+
+ "development_e2e_acceptance": {
+  "footage": "input-videos/Bayern Munich 3-1 Chelsea.mp4 (non-TEST)",
+  "frames_processed": 40,
+  "result_file": "e2e_acceptance_result.json",
+  "all_pass": true
+ },
+
+ "test_gate_prep_documented_not_executed": true,
+ "test_accessed": false,
+
+ "post_freeze_rule": "No production algorithm/config/model change is permitted before TEST once this manifest's hash is recorded below. Any future change that would affect predictions invalidates this freeze and must happen before TEST annotation/evaluation, with a new freeze manifest produced afterward."
+}

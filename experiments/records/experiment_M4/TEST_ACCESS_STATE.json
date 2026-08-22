@@ -1,0 +1,51 @@
+{
+ "milestone": "M4 -- sealed TEST GT",
+ "frozen_utc": "2026-08-19T00:00:00Z",
+
+ "access_state": {
+  "machine_leakage_accessed": true,
+  "human_annotation_accessed": true,
+  "labels_frozen": true,
+  "production_predictions_run": false,
+  "evaluation_results_viewed": false
+ },
+
+ "population": {
+  "n_frames": 60,
+  "sequences": {
+   "como_2-0_sassuolo": 20,
+   "manchester_city_v_liverpool": 20,
+   "youth_2": 20
+  },
+  "annotated_by": {
+   "como_2-0_sassuolo": "in-session, assistant, visual grid-crop reads (Sections 6-7, adaptive rigorous pass)",
+   "manchester_city_v_liverpool": "local browser tool (experiments/records/experiment_M4/local_annotator), human-drawn, no model assistance",
+   "youth_2": "local browser tool (experiments/records/experiment_M4/local_annotator), human-drawn, no model assistance"
+  }
+ },
+
+ "artifacts": {
+  "INITIAL_TEST_FRAME_LIST.json": "8a4abe76b4a4d4b22fe9eda4647675f6ed290defde6f75a7b9fd200e7b50e34d",
+  "LEAKAGE_SCREEN_RESULT.json": "ee53a2e68f8435f01357ae577ef6d4e92aa062580055d58ad6020a94d1106de8",
+  "FINAL_TEST_FRAME_LIST.json": "2ea02e1839726a6b4ad2fc2dbd979b58fa65f038e828d556eb0b290e8a47a62f",
+  "TEST_ANNOTATION_PROTOCOL.md": "2dfaed2eb0057f9c4a0e5ae94baf66a80e5334853ef4970f2ba23ed9a94ebd6d",
+  "TEST_DETECTION_ANNOTATIONS.json": "4702b60fbdb173773e6bc7246d45587c1446093559c96792d3ae864e4d6896cb",
+  "QC_RESULT.json": "4c1c4987dd79f68fd9ed9f854b6801234e7844b5b9d4d8f51278e7088542fcef",
+  "GT_DESCRIPTIVE_STATS.json": "c19dc50dc32f0c4eea7606e0c94f4376a61e4bcfa789dbae0b0d82b35439b9ec",
+  "CLAMP_LOG.json": "86b60633b32a216b5a2bef72235986fa76f4544677c44e42be024f7153f3b9e0"
+ },
+
+ "clamp_note": "21 boxes (of 924 total) were mechanically clamped to each frame's known, fixed dimensions after Section 8 QC flagged them as out-of-bounds by 1-25px -- mouse-drag overshoot at the frame edge in the local annotator. This is a pure geometric correction (coordinates pulled back to [0,w]x[0,h]) using dimensions known in advance, not a visual re-annotation or judgement call. Full before/after log in CLAMP_LOG.json. TEST_DETECTION_ANNOTATIONS.json's hash above is computed AFTER this correction, i.e. it is the authoritative, QC-clean artifact.",
+
+ "qc_summary": {
+  "qc_pass": true,
+  "n_errors": 0,
+  "n_warnings": 0,
+  "total_objects": 924,
+  "per_class_counts": {"player": 782, "goalkeeper": 31, "referee": 63, "ball": 48}
+ },
+
+ "immutability": "TEST_DETECTION_ANNOTATIONS.json is frozen as of this file. Any further correction requires a new, explicitly superseding artifact with its own recorded hash -- never a silent overwrite of the hash above.",
+
+ "next_step": "M5 -- one-shot sealed TEST detection-metrics evaluation. NOT executed as part of M4. Contract prepared but not run: see M5_EVALUATION_CONTRACT.md."
+}

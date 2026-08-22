@@ -1,0 +1,1906 @@
+{
+  "min_lifetime": 15,
+  "max_tracks_per_match": 30,
+  "selection_rule": "player tracks only (goalkeepers/referees excluded); keep appearance_count >= min_lifetime; sort by appearance_count DESC then track_id ASC; take top max_tracks_per_match. Selection uses ONLY bbox presence counts -- no color/prediction/team info.",
+  "matches": [
+    {
+      "match_id": "bayern_munich_3-1_chelsea",
+      "video": "input-videos\\Bayern Munich 3-1 Chelsea.mp4",
+      "cache": "demo_outputs\\final_e2e_demo\\cache\\tracks_b3bacf1707645184.pkl",
+      "skip_frames": 2,
+      "n_tracks_selected": 27,
+      "tracks": [
+        {
+          "track_id": 2,
+          "appearance_count": 375,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/2/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/2/crop_1.jpg",
+              "processed_idx": 94,
+              "raw_idx": 188
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/2/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/2/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/2/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 3,
+          "appearance_count": 375,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/3/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/3/crop_1.jpg",
+              "processed_idx": 94,
+              "raw_idx": 188
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/3/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/3/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/3/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 8,
+          "appearance_count": 375,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/8/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/8/crop_1.jpg",
+              "processed_idx": 94,
+              "raw_idx": 188
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/8/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/8/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/8/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 11,
+          "appearance_count": 375,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/11/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/11/crop_1.jpg",
+              "processed_idx": 94,
+              "raw_idx": 188
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/11/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/11/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/11/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 16,
+          "appearance_count": 375,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/16/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/16/crop_1.jpg",
+              "processed_idx": 94,
+              "raw_idx": 188
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/16/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/16/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/16/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 17,
+          "appearance_count": 375,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/17/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/17/crop_1.jpg",
+              "processed_idx": 94,
+              "raw_idx": 188
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/17/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/17/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/17/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 1,
+          "appearance_count": 374,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/1/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/1/crop_1.jpg",
+              "processed_idx": 93,
+              "raw_idx": 186
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/1/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/1/crop_3.jpg",
+              "processed_idx": 281,
+              "raw_idx": 562
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/1/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 19,
+          "appearance_count": 374,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/19/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/19/crop_1.jpg",
+              "processed_idx": 94,
+              "raw_idx": 188
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/19/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/19/crop_3.jpg",
+              "processed_idx": 281,
+              "raw_idx": 562
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/19/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 5,
+          "appearance_count": 373,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/5/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/5/crop_1.jpg",
+              "processed_idx": 93,
+              "raw_idx": 186
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/5/crop_2.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/5/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/5/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 10,
+          "appearance_count": 373,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/10/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/10/crop_1.jpg",
+              "processed_idx": 93,
+              "raw_idx": 186
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/10/crop_2.jpg",
+              "processed_idx": 188,
+              "raw_idx": 376
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/10/crop_3.jpg",
+              "processed_idx": 281,
+              "raw_idx": 562
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/10/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 13,
+          "appearance_count": 370,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/13/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/13/crop_1.jpg",
+              "processed_idx": 92,
+              "raw_idx": 184
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/13/crop_2.jpg",
+              "processed_idx": 184,
+              "raw_idx": 368
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/13/crop_3.jpg",
+              "processed_idx": 282,
+              "raw_idx": 564
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/13/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 4,
+          "appearance_count": 369,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/4/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/4/crop_1.jpg",
+              "processed_idx": 92,
+              "raw_idx": 184
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/4/crop_2.jpg",
+              "processed_idx": 184,
+              "raw_idx": 368
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/4/crop_3.jpg",
+              "processed_idx": 282,
+              "raw_idx": 564
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/4/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 9,
+          "appearance_count": 366,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/9/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/9/crop_1.jpg",
+              "processed_idx": 91,
+              "raw_idx": 182
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/9/crop_2.jpg",
+              "processed_idx": 182,
+              "raw_idx": 364
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/9/crop_3.jpg",
+              "processed_idx": 274,
+              "raw_idx": 548
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/9/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 18,
+          "appearance_count": 356,
+          "first_processed_idx": 0,
+          "last_processed_idx": 355,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/18/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/18/crop_1.jpg",
+              "processed_idx": 89,
+              "raw_idx": 178
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/18/crop_2.jpg",
+              "processed_idx": 178,
+              "raw_idx": 356
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/18/crop_3.jpg",
+              "processed_idx": 266,
+              "raw_idx": 532
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/18/crop_4.jpg",
+              "processed_idx": 355,
+              "raw_idx": 710
+            }
+          ]
+        },
+        {
+          "track_id": 6,
+          "appearance_count": 347,
+          "first_processed_idx": 0,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/6/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/6/crop_1.jpg",
+              "processed_idx": 114,
+              "raw_idx": 228
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/6/crop_2.jpg",
+              "processed_idx": 201,
+              "raw_idx": 402
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/6/crop_3.jpg",
+              "processed_idx": 288,
+              "raw_idx": 576
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/6/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 15,
+          "appearance_count": 294,
+          "first_processed_idx": 0,
+          "last_processed_idx": 294,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/15/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/15/crop_1.jpg",
+              "processed_idx": 73,
+              "raw_idx": 146
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/15/crop_2.jpg",
+              "processed_idx": 146,
+              "raw_idx": 292
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/15/crop_3.jpg",
+              "processed_idx": 221,
+              "raw_idx": 442
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/15/crop_4.jpg",
+              "processed_idx": 294,
+              "raw_idx": 588
+            }
+          ]
+        },
+        {
+          "track_id": 27,
+          "appearance_count": 250,
+          "first_processed_idx": 124,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/27/crop_0.jpg",
+              "processed_idx": 124,
+              "raw_idx": 248
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/27/crop_1.jpg",
+              "processed_idx": 187,
+              "raw_idx": 374
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/27/crop_2.jpg",
+              "processed_idx": 249,
+              "raw_idx": 498
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/27/crop_3.jpg",
+              "processed_idx": 312,
+              "raw_idx": 624
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/27/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 7,
+          "appearance_count": 236,
+          "first_processed_idx": 0,
+          "last_processed_idx": 237,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/7/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/7/crop_1.jpg",
+              "processed_idx": 59,
+              "raw_idx": 118
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/7/crop_2.jpg",
+              "processed_idx": 118,
+              "raw_idx": 236
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/7/crop_3.jpg",
+              "processed_idx": 176,
+              "raw_idx": 352
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/7/crop_4.jpg",
+              "processed_idx": 237,
+              "raw_idx": 474
+            }
+          ]
+        },
+        {
+          "track_id": 28,
+          "appearance_count": 231,
+          "first_processed_idx": 144,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/28/crop_0.jpg",
+              "processed_idx": 144,
+              "raw_idx": 288
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/28/crop_1.jpg",
+              "processed_idx": 202,
+              "raw_idx": 404
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/28/crop_2.jpg",
+              "processed_idx": 259,
+              "raw_idx": 518
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/28/crop_3.jpg",
+              "processed_idx": 316,
+              "raw_idx": 632
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/28/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 29,
+          "appearance_count": 137,
+          "first_processed_idx": 230,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/29/crop_0.jpg",
+              "processed_idx": 230,
+              "raw_idx": 460
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/29/crop_1.jpg",
+              "processed_idx": 264,
+              "raw_idx": 528
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/29/crop_2.jpg",
+              "processed_idx": 306,
+              "raw_idx": 612
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/29/crop_3.jpg",
+              "processed_idx": 340,
+              "raw_idx": 680
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/29/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 31,
+          "appearance_count": 117,
+          "first_processed_idx": 258,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/31/crop_0.jpg",
+              "processed_idx": 258,
+              "raw_idx": 516
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/31/crop_1.jpg",
+              "processed_idx": 287,
+              "raw_idx": 574
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/31/crop_2.jpg",
+              "processed_idx": 316,
+              "raw_idx": 632
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/31/crop_3.jpg",
+              "processed_idx": 345,
+              "raw_idx": 690
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/31/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        },
+        {
+          "track_id": 22,
+          "appearance_count": 112,
+          "first_processed_idx": 2,
+          "last_processed_idx": 131,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/22/crop_0.jpg",
+              "processed_idx": 2,
+              "raw_idx": 4
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/22/crop_1.jpg",
+              "processed_idx": 30,
+              "raw_idx": 60
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/22/crop_2.jpg",
+              "processed_idx": 58,
+              "raw_idx": 116
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/22/crop_3.jpg",
+              "processed_idx": 103,
+              "raw_idx": 206
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/22/crop_4.jpg",
+              "processed_idx": 131,
+              "raw_idx": 262
+            }
+          ]
+        },
+        {
+          "track_id": 12,
+          "appearance_count": 111,
+          "first_processed_idx": 0,
+          "last_processed_idx": 110,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/12/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/12/crop_1.jpg",
+              "processed_idx": 28,
+              "raw_idx": 56
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/12/crop_2.jpg",
+              "processed_idx": 55,
+              "raw_idx": 110
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/12/crop_3.jpg",
+              "processed_idx": 82,
+              "raw_idx": 164
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/12/crop_4.jpg",
+              "processed_idx": 110,
+              "raw_idx": 220
+            }
+          ]
+        },
+        {
+          "track_id": 14,
+          "appearance_count": 111,
+          "first_processed_idx": 0,
+          "last_processed_idx": 110,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/14/crop_0.jpg",
+              "processed_idx": 0,
+              "raw_idx": 0
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/14/crop_1.jpg",
+              "processed_idx": 28,
+              "raw_idx": 56
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/14/crop_2.jpg",
+              "processed_idx": 55,
+              "raw_idx": 110
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/14/crop_3.jpg",
+              "processed_idx": 82,
+              "raw_idx": 164
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/14/crop_4.jpg",
+              "processed_idx": 110,
+              "raw_idx": 220
+            }
+          ]
+        },
+        {
+          "track_id": 26,
+          "appearance_count": 91,
+          "first_processed_idx": 122,
+          "last_processed_idx": 212,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/26/crop_0.jpg",
+              "processed_idx": 122,
+              "raw_idx": 244
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/26/crop_1.jpg",
+              "processed_idx": 144,
+              "raw_idx": 288
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/26/crop_2.jpg",
+              "processed_idx": 167,
+              "raw_idx": 334
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/26/crop_3.jpg",
+              "processed_idx": 190,
+              "raw_idx": 380
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/26/crop_4.jpg",
+              "processed_idx": 212,
+              "raw_idx": 424
+            }
+          ]
+        },
+        {
+          "track_id": 20,
+          "appearance_count": 75,
+          "first_processed_idx": 108,
+          "last_processed_idx": 218,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/20/crop_0.jpg",
+              "processed_idx": 108,
+              "raw_idx": 216
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/20/crop_1.jpg",
+              "processed_idx": 157,
+              "raw_idx": 314
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/20/crop_2.jpg",
+              "processed_idx": 176,
+              "raw_idx": 352
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/20/crop_3.jpg",
+              "processed_idx": 195,
+              "raw_idx": 390
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/20/crop_4.jpg",
+              "processed_idx": 218,
+              "raw_idx": 436
+            }
+          ]
+        },
+        {
+          "track_id": 32,
+          "appearance_count": 67,
+          "first_processed_idx": 306,
+          "last_processed_idx": 374,
+          "crops": [
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/32/crop_0.jpg",
+              "processed_idx": 306,
+              "raw_idx": 612
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/32/crop_1.jpg",
+              "processed_idx": 324,
+              "raw_idx": 648
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/32/crop_2.jpg",
+              "processed_idx": 341,
+              "raw_idx": 682
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/32/crop_3.jpg",
+              "processed_idx": 358,
+              "raw_idx": 716
+            },
+            {
+              "rel_path": "crops/bayern_munich_3-1_chelsea/32/crop_4.jpg",
+              "processed_idx": 374,
+              "raw_idx": 748
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match_id": "chelsea_v_leeds_united",
+      "video": "input-videos\\Chelsea v Leeds United.mp4",
+      "cache": "experiments\\post_freeze\\team_assignment_v2\\match2_cache\\cache\\tracks_7562185f8dd2d6c6.pkl",
+      "skip_frames": 2,
+      "n_tracks_selected": 30,
+      "tracks": [
+        {
+          "track_id": 33,
+          "appearance_count": 237,
+          "first_processed_idx": 61,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/33/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/33/crop_1.jpg",
+              "processed_idx": 121,
+              "raw_idx": 242
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/33/crop_2.jpg",
+              "processed_idx": 180,
+              "raw_idx": 360
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/33/crop_3.jpg",
+              "processed_idx": 239,
+              "raw_idx": 478
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/33/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 27,
+          "appearance_count": 235,
+          "first_processed_idx": 61,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/27/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/27/crop_1.jpg",
+              "processed_idx": 119,
+              "raw_idx": 238
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/27/crop_2.jpg",
+              "processed_idx": 178,
+              "raw_idx": 356
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/27/crop_3.jpg",
+              "processed_idx": 241,
+              "raw_idx": 482
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/27/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 39,
+          "appearance_count": 232,
+          "first_processed_idx": 63,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/39/crop_0.jpg",
+              "processed_idx": 63,
+              "raw_idx": 126
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/39/crop_1.jpg",
+              "processed_idx": 121,
+              "raw_idx": 242
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/39/crop_2.jpg",
+              "processed_idx": 184,
+              "raw_idx": 368
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/39/crop_3.jpg",
+              "processed_idx": 241,
+              "raw_idx": 482
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/39/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 30,
+          "appearance_count": 223,
+          "first_processed_idx": 61,
+          "last_processed_idx": 298,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/30/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/30/crop_1.jpg",
+              "processed_idx": 120,
+              "raw_idx": 240
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/30/crop_2.jpg",
+              "processed_idx": 175,
+              "raw_idx": 350
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/30/crop_3.jpg",
+              "processed_idx": 236,
+              "raw_idx": 472
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/30/crop_4.jpg",
+              "processed_idx": 298,
+              "raw_idx": 596
+            }
+          ]
+        },
+        {
+          "track_id": 31,
+          "appearance_count": 216,
+          "first_processed_idx": 61,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/31/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/31/crop_1.jpg",
+              "processed_idx": 117,
+              "raw_idx": 234
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/31/crop_2.jpg",
+              "processed_idx": 171,
+              "raw_idx": 342
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/31/crop_3.jpg",
+              "processed_idx": 243,
+              "raw_idx": 486
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/31/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 32,
+          "appearance_count": 214,
+          "first_processed_idx": 61,
+          "last_processed_idx": 276,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/32/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/32/crop_1.jpg",
+              "processed_idx": 114,
+              "raw_idx": 228
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/32/crop_2.jpg",
+              "processed_idx": 169,
+              "raw_idx": 338
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/32/crop_3.jpg",
+              "processed_idx": 223,
+              "raw_idx": 446
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/32/crop_4.jpg",
+              "processed_idx": 276,
+              "raw_idx": 552
+            }
+          ]
+        },
+        {
+          "track_id": 47,
+          "appearance_count": 194,
+          "first_processed_idx": 100,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/47/crop_0.jpg",
+              "processed_idx": 100,
+              "raw_idx": 200
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/47/crop_1.jpg",
+              "processed_idx": 151,
+              "raw_idx": 302
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/47/crop_2.jpg",
+              "processed_idx": 200,
+              "raw_idx": 400
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/47/crop_3.jpg",
+              "processed_idx": 249,
+              "raw_idx": 498
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/47/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 40,
+          "appearance_count": 171,
+          "first_processed_idx": 67,
+          "last_processed_idx": 237,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/40/crop_0.jpg",
+              "processed_idx": 67,
+              "raw_idx": 134
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/40/crop_1.jpg",
+              "processed_idx": 109,
+              "raw_idx": 218
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/40/crop_2.jpg",
+              "processed_idx": 152,
+              "raw_idx": 304
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/40/crop_3.jpg",
+              "processed_idx": 195,
+              "raw_idx": 390
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/40/crop_4.jpg",
+              "processed_idx": 237,
+              "raw_idx": 474
+            }
+          ]
+        },
+        {
+          "track_id": 50,
+          "appearance_count": 167,
+          "first_processed_idx": 122,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/50/crop_0.jpg",
+              "processed_idx": 122,
+              "raw_idx": 244
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/50/crop_1.jpg",
+              "processed_idx": 164,
+              "raw_idx": 328
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/50/crop_2.jpg",
+              "processed_idx": 205,
+              "raw_idx": 410
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/50/crop_3.jpg",
+              "processed_idx": 246,
+              "raw_idx": 492
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/50/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 38,
+          "appearance_count": 156,
+          "first_processed_idx": 62,
+          "last_processed_idx": 220,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/38/crop_0.jpg",
+              "processed_idx": 62,
+              "raw_idx": 124
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/38/crop_1.jpg",
+              "processed_idx": 101,
+              "raw_idx": 202
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/38/crop_2.jpg",
+              "processed_idx": 140,
+              "raw_idx": 280
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/38/crop_3.jpg",
+              "processed_idx": 179,
+              "raw_idx": 358
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/38/crop_4.jpg",
+              "processed_idx": 220,
+              "raw_idx": 440
+            }
+          ]
+        },
+        {
+          "track_id": 53,
+          "appearance_count": 150,
+          "first_processed_idx": 147,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/53/crop_0.jpg",
+              "processed_idx": 147,
+              "raw_idx": 294
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/53/crop_1.jpg",
+              "processed_idx": 184,
+              "raw_idx": 368
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/53/crop_2.jpg",
+              "processed_idx": 221,
+              "raw_idx": 442
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/53/crop_3.jpg",
+              "processed_idx": 259,
+              "raw_idx": 518
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/53/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 60,
+          "appearance_count": 89,
+          "first_processed_idx": 211,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/60/crop_0.jpg",
+              "processed_idx": 211,
+              "raw_idx": 422
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/60/crop_1.jpg",
+              "processed_idx": 233,
+              "raw_idx": 466
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/60/crop_2.jpg",
+              "processed_idx": 255,
+              "raw_idx": 510
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/60/crop_3.jpg",
+              "processed_idx": 277,
+              "raw_idx": 554
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/60/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 26,
+          "appearance_count": 84,
+          "first_processed_idx": 61,
+          "last_processed_idx": 144,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/26/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/26/crop_1.jpg",
+              "processed_idx": 82,
+              "raw_idx": 164
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/26/crop_2.jpg",
+              "processed_idx": 103,
+              "raw_idx": 206
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/26/crop_3.jpg",
+              "processed_idx": 123,
+              "raw_idx": 246
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/26/crop_4.jpg",
+              "processed_idx": 144,
+              "raw_idx": 288
+            }
+          ]
+        },
+        {
+          "track_id": 29,
+          "appearance_count": 83,
+          "first_processed_idx": 61,
+          "last_processed_idx": 144,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/29/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/29/crop_1.jpg",
+              "processed_idx": 82,
+              "raw_idx": 164
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/29/crop_2.jpg",
+              "processed_idx": 103,
+              "raw_idx": 206
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/29/crop_3.jpg",
+              "processed_idx": 124,
+              "raw_idx": 248
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/29/crop_4.jpg",
+              "processed_idx": 144,
+              "raw_idx": 288
+            }
+          ]
+        },
+        {
+          "track_id": 63,
+          "appearance_count": 81,
+          "first_processed_idx": 219,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/63/crop_0.jpg",
+              "processed_idx": 219,
+              "raw_idx": 438
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/63/crop_1.jpg",
+              "processed_idx": 239,
+              "raw_idx": 478
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/63/crop_2.jpg",
+              "processed_idx": 259,
+              "raw_idx": 518
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/63/crop_3.jpg",
+              "processed_idx": 279,
+              "raw_idx": 558
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/63/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 64,
+          "appearance_count": 81,
+          "first_processed_idx": 219,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/64/crop_0.jpg",
+              "processed_idx": 219,
+              "raw_idx": 438
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/64/crop_1.jpg",
+              "processed_idx": 239,
+              "raw_idx": 478
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/64/crop_2.jpg",
+              "processed_idx": 259,
+              "raw_idx": 518
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/64/crop_3.jpg",
+              "processed_idx": 279,
+              "raw_idx": 558
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/64/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 54,
+          "appearance_count": 78,
+          "first_processed_idx": 156,
+          "last_processed_idx": 234,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/54/crop_0.jpg",
+              "processed_idx": 156,
+              "raw_idx": 312
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/54/crop_1.jpg",
+              "processed_idx": 175,
+              "raw_idx": 350
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/54/crop_2.jpg",
+              "processed_idx": 194,
+              "raw_idx": 388
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/54/crop_3.jpg",
+              "processed_idx": 215,
+              "raw_idx": 430
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/54/crop_4.jpg",
+              "processed_idx": 234,
+              "raw_idx": 468
+            }
+          ]
+        },
+        {
+          "track_id": 41,
+          "appearance_count": 73,
+          "first_processed_idx": 79,
+          "last_processed_idx": 152,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/41/crop_0.jpg",
+              "processed_idx": 79,
+              "raw_idx": 158
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/41/crop_1.jpg",
+              "processed_idx": 97,
+              "raw_idx": 194
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/41/crop_2.jpg",
+              "processed_idx": 115,
+              "raw_idx": 230
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/41/crop_3.jpg",
+              "processed_idx": 134,
+              "raw_idx": 268
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/41/crop_4.jpg",
+              "processed_idx": 152,
+              "raw_idx": 304
+            }
+          ]
+        },
+        {
+          "track_id": 66,
+          "appearance_count": 71,
+          "first_processed_idx": 228,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/66/crop_0.jpg",
+              "processed_idx": 228,
+              "raw_idx": 456
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/66/crop_1.jpg",
+              "processed_idx": 246,
+              "raw_idx": 492
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/66/crop_2.jpg",
+              "processed_idx": 263,
+              "raw_idx": 526
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/66/crop_3.jpg",
+              "processed_idx": 280,
+              "raw_idx": 560
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/66/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 67,
+          "appearance_count": 71,
+          "first_processed_idx": 229,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/67/crop_0.jpg",
+              "processed_idx": 229,
+              "raw_idx": 458
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/67/crop_1.jpg",
+              "processed_idx": 247,
+              "raw_idx": 494
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/67/crop_2.jpg",
+              "processed_idx": 264,
+              "raw_idx": 528
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/67/crop_3.jpg",
+              "processed_idx": 281,
+              "raw_idx": 562
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/67/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 52,
+          "appearance_count": 67,
+          "first_processed_idx": 147,
+          "last_processed_idx": 213,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/52/crop_0.jpg",
+              "processed_idx": 147,
+              "raw_idx": 294
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/52/crop_1.jpg",
+              "processed_idx": 163,
+              "raw_idx": 326
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/52/crop_2.jpg",
+              "processed_idx": 180,
+              "raw_idx": 360
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/52/crop_3.jpg",
+              "processed_idx": 197,
+              "raw_idx": 394
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/52/crop_4.jpg",
+              "processed_idx": 213,
+              "raw_idx": 426
+            }
+          ]
+        },
+        {
+          "track_id": 69,
+          "appearance_count": 60,
+          "first_processed_idx": 240,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/69/crop_0.jpg",
+              "processed_idx": 240,
+              "raw_idx": 480
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/69/crop_1.jpg",
+              "processed_idx": 255,
+              "raw_idx": 510
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/69/crop_2.jpg",
+              "processed_idx": 270,
+              "raw_idx": 540
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/69/crop_3.jpg",
+              "processed_idx": 284,
+              "raw_idx": 568
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/69/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 36,
+          "appearance_count": 58,
+          "first_processed_idx": 61,
+          "last_processed_idx": 122,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/36/crop_0.jpg",
+              "processed_idx": 61,
+              "raw_idx": 122
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/36/crop_1.jpg",
+              "processed_idx": 75,
+              "raw_idx": 150
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/36/crop_2.jpg",
+              "processed_idx": 89,
+              "raw_idx": 178
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/36/crop_3.jpg",
+              "processed_idx": 104,
+              "raw_idx": 208
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/36/crop_4.jpg",
+              "processed_idx": 122,
+              "raw_idx": 244
+            }
+          ]
+        },
+        {
+          "track_id": 48,
+          "appearance_count": 58,
+          "first_processed_idx": 101,
+          "last_processed_idx": 158,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/48/crop_0.jpg",
+              "processed_idx": 101,
+              "raw_idx": 202
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/48/crop_1.jpg",
+              "processed_idx": 115,
+              "raw_idx": 230
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/48/crop_2.jpg",
+              "processed_idx": 129,
+              "raw_idx": 258
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/48/crop_3.jpg",
+              "processed_idx": 144,
+              "raw_idx": 288
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/48/crop_4.jpg",
+              "processed_idx": 158,
+              "raw_idx": 316
+            }
+          ]
+        },
+        {
+          "track_id": 70,
+          "appearance_count": 55,
+          "first_processed_idx": 245,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/70/crop_0.jpg",
+              "processed_idx": 245,
+              "raw_idx": 490
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/70/crop_1.jpg",
+              "processed_idx": 259,
+              "raw_idx": 518
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/70/crop_2.jpg",
+              "processed_idx": 272,
+              "raw_idx": 544
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/70/crop_3.jpg",
+              "processed_idx": 285,
+              "raw_idx": 570
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/70/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 71,
+          "appearance_count": 51,
+          "first_processed_idx": 247,
+          "last_processed_idx": 299,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/71/crop_0.jpg",
+              "processed_idx": 247,
+              "raw_idx": 494
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/71/crop_1.jpg",
+              "processed_idx": 261,
+              "raw_idx": 522
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/71/crop_2.jpg",
+              "processed_idx": 274,
+              "raw_idx": 548
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/71/crop_3.jpg",
+              "processed_idx": 287,
+              "raw_idx": 574
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/71/crop_4.jpg",
+              "processed_idx": 299,
+              "raw_idx": 598
+            }
+          ]
+        },
+        {
+          "track_id": 42,
+          "appearance_count": 47,
+          "first_processed_idx": 84,
+          "last_processed_idx": 130,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/42/crop_0.jpg",
+              "processed_idx": 84,
+              "raw_idx": 168
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/42/crop_1.jpg",
+              "processed_idx": 96,
+              "raw_idx": 192
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/42/crop_2.jpg",
+              "processed_idx": 107,
+              "raw_idx": 214
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/42/crop_3.jpg",
+              "processed_idx": 118,
+              "raw_idx": 236
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/42/crop_4.jpg",
+              "processed_idx": 130,
+              "raw_idx": 260
+            }
+          ]
+        },
+        {
+          "track_id": 23,
+          "appearance_count": 45,
+          "first_processed_idx": 33,
+          "last_processed_idx": 99,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/23/crop_0.jpg",
+              "processed_idx": 33,
+              "raw_idx": 66
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/23/crop_1.jpg",
+              "processed_idx": 66,
+              "raw_idx": 132
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/23/crop_2.jpg",
+              "processed_idx": 77,
+              "raw_idx": 154
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/23/crop_3.jpg",
+              "processed_idx": 88,
+              "raw_idx": 176
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/23/crop_4.jpg",
+              "processed_idx": 99,
+              "raw_idx": 198
+            }
+          ]
+        },
+        {
+          "track_id": 17,
+          "appearance_count": 36,
+          "first_processed_idx": 24,
+          "last_processed_idx": 59,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/17/crop_0.jpg",
+              "processed_idx": 24,
+              "raw_idx": 48
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/17/crop_1.jpg",
+              "processed_idx": 33,
+              "raw_idx": 66
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/17/crop_2.jpg",
+              "processed_idx": 42,
+              "raw_idx": 84
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/17/crop_3.jpg",
+              "processed_idx": 50,
+              "raw_idx": 100
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/17/crop_4.jpg",
+              "processed_idx": 59,
+              "raw_idx": 118
+            }
+          ]
+        },
+        {
+          "track_id": 55,
+          "appearance_count": 35,
+          "first_processed_idx": 181,
+          "last_processed_idx": 215,
+          "crops": [
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/55/crop_0.jpg",
+              "processed_idx": 181,
+              "raw_idx": 362
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/55/crop_1.jpg",
+              "processed_idx": 189,
+              "raw_idx": 378
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/55/crop_2.jpg",
+              "processed_idx": 198,
+              "raw_idx": 396
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/55/crop_3.jpg",
+              "processed_idx": 207,
+              "raw_idx": 414
+            },
+            {
+              "rel_path": "crops/chelsea_v_leeds_united/55/crop_4.jpg",
+              "processed_idx": 215,
+              "raw_idx": 430
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

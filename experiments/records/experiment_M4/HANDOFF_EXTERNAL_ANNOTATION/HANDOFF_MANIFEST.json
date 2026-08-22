@@ -1,0 +1,282 @@
+[
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 38,
+  "frame_index_0based": 37,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000038.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000038.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 113,
+  "frame_index_0based": 112,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000113.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000113.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 188,
+  "frame_index_0based": 187,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000188.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000188.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 263,
+  "frame_index_0based": 262,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000263.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000263.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 338,
+  "frame_index_0based": 337,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000338.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000338.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 413,
+  "frame_index_0based": 412,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000413.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000413.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 488,
+  "frame_index_0based": 487,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000488.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000488.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 563,
+  "frame_index_0based": 562,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000563.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000563.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 638,
+  "frame_index_0based": 637,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000638.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000638.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 713,
+  "frame_index_0based": 712,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000713.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000713.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 788,
+  "frame_index_0based": 787,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000788.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000788.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 863,
+  "frame_index_0based": 862,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000863.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000863.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 938,
+  "frame_index_0based": 937,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_000938.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000938.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1013,
+  "frame_index_0based": 1012,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_001013.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001013.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1088,
+  "frame_index_0based": 1087,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_001088.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001088.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1163,
+  "frame_index_0based": 1162,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_001163.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001163.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1238,
+  "frame_index_0based": 1237,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_001238.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001238.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1313,
+  "frame_index_0based": 1312,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_001313.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001313.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1388,
+  "frame_index_0based": 1387,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_001388.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001388.jpg"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1463,
+  "frame_index_0based": 1462,
+  "handoff_file": "images/manchester_city_v_liverpool/manchester_city_v_liverpool_001463.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001463.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 40,
+  "frame_index_0based": 39,
+  "handoff_file": "images/youth_2/youth_2_000040.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000040.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 118,
+  "frame_index_0based": 117,
+  "handoff_file": "images/youth_2/youth_2_000118.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000118.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 196,
+  "frame_index_0based": 195,
+  "handoff_file": "images/youth_2/youth_2_000196.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000196.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 274,
+  "frame_index_0based": 273,
+  "handoff_file": "images/youth_2/youth_2_000274.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000274.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 352,
+  "frame_index_0based": 351,
+  "handoff_file": "images/youth_2/youth_2_000352.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000352.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 430,
+  "frame_index_0based": 429,
+  "handoff_file": "images/youth_2/youth_2_000430.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000430.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 508,
+  "frame_index_0based": 507,
+  "handoff_file": "images/youth_2/youth_2_000508.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000508.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 586,
+  "frame_index_0based": 585,
+  "handoff_file": "images/youth_2/youth_2_000586.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000586.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 664,
+  "frame_index_0based": 663,
+  "handoff_file": "images/youth_2/youth_2_000664.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000664.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 742,
+  "frame_index_0based": 741,
+  "handoff_file": "images/youth_2/youth_2_000742.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000742.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 820,
+  "frame_index_0based": 819,
+  "handoff_file": "images/youth_2/youth_2_000820.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000820.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 898,
+  "frame_index_0based": 897,
+  "handoff_file": "images/youth_2/youth_2_000898.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000898.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 976,
+  "frame_index_0based": 975,
+  "handoff_file": "images/youth_2/youth_2_000976.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000976.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1054,
+  "frame_index_0based": 1053,
+  "handoff_file": "images/youth_2/youth_2_001054.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001054.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1132,
+  "frame_index_0based": 1131,
+  "handoff_file": "images/youth_2/youth_2_001132.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001132.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1210,
+  "frame_index_0based": 1209,
+  "handoff_file": "images/youth_2/youth_2_001210.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001210.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1288,
+  "frame_index_0based": 1287,
+  "handoff_file": "images/youth_2/youth_2_001288.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001288.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1366,
+  "frame_index_0based": 1365,
+  "handoff_file": "images/youth_2/youth_2_001366.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001366.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1444,
+  "frame_index_0based": 1443,
+  "handoff_file": "images/youth_2/youth_2_001444.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001444.jpg"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1522,
+  "frame_index_0based": 1521,
+  "handoff_file": "images/youth_2/youth_2_001522.jpg",
+  "source_file_in_repo": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001522.jpg"
+ }
+]

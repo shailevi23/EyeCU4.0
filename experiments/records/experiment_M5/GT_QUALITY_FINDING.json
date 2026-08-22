@@ -1,0 +1,39 @@
+{
+ "finding": "como_2-0_sassuolo TEST GT boxes are systematically loose (larger-than-tight) relative to the frozen detector's own tight box convention, in a way manchester_city_v_liverpool and youth_2 are not -- this materially invalidates the pooled/aggregate M5 detection metric, though it does not appear to affect the other two sequences.",
+
+ "discovery_method": "purely numeric comparison of already-saved JSON (GT box coordinates in TEST_DETECTION_ANNOTATIONS.json vs raw prediction box coordinates in RAW_PREDICTIONS.json). Zero TEST images were opened or viewed to produce this finding -- compliant with the M5 'ZERO manual/vision TEST image reads' rule.",
+
+ "evidence_1_area_comparison_frame_38": {
+  "como_2-0_sassuolo_player_GT_box_areas_px2": [1416, 375, 272, 378, 870, 540, 374, 210, 231, 338, 336, 602],
+  "como_2-0_sassuolo_player_GT_mean_area": 578.5,
+  "como_2-0_sassuolo_player_PRED_mean_area": 192.4,
+  "como_ratio_GT_to_PRED": 3.01,
+  "manchester_city_v_liverpool_player_GT_box_areas_px2": [960, 665, 726, 836, 722, 578, 416, 594, 495],
+  "manchester_player_GT_mean_area": 665.8,
+  "manchester_player_PRED_mean_area": 546.0,
+  "manchester_ratio_GT_to_PRED": 1.22,
+  "interpretation": "manchester's GT and prediction box sizes are the same order of magnitude (ratio ~1.2, consistent with normal detector under/over-box variance). como's GT boxes are ~3x the area of what the frozen detector actually draws around the same objects -- not a scale/offset coordinate bug (no evidence of a linear transform fixing this; individual box positions are approximately co-located, just far larger), but boxes drawn with too much margin."
+ },
+
+ "evidence_2_iou_arithmetic_frame_38": [
+  {"class": "referee", "gt_bbox": [210, 183, 237, 216], "pred_bbox": [210.63, 182.13, 219.21, 202.47],
+   "note": "top-left corners align within 1px; GT box is ~5x the predicted box's area", "iou": 0.186},
+  {"class": "player", "gt_bbox": [491, 163, 502, 184], "pred_bbox": [493.96, 162.27, 501.51, 178.44],
+   "note": "closely co-located, GT box ~1.9x predicted area", "iou": 0.493, "note2": "just below the 0.50 match threshold"},
+  {"class": "goalkeeper", "gt_bbox": [84, 162, 101, 216], "pred_bbox_nearest_by_position_wrong_class": [79.64, 172.3, 93.29, 190.14],
+   "predicted_as_class": "player", "iou_vs_gt_goalkeeper": 0.166,
+   "note": "nearest spatially-overlapping prediction is co-located but ~3.8x smaller in area than the GT box, AND was predicted as a different class -- two separate issues compounding on this one box, illustrative not primary evidence"}
+ ],
+
+ "root_cause": "the como_2-0_sassuolo GT was produced in-session by the assistant reading a coarse (40px-spaced, later 10-20px-spaced) printed grid overlay and estimating box corners by eye -- a method explicitly self-documented throughout experiments/records/experiment_M4/ANNOTATIONS_DRAFT.json's per-frame notes as carrying '+/-8-10px' positional uncertainty. In hindsight that uncertainty was not just positional noise (which IoU>=0.5 tolerates reasonably well) but a systematic bias toward drawing boxes larger/looser than the tight visible-object-extent convention the rest of this project (TRAIN/VAL, and the frozen detector trained on it) uses -- e.g. a note on frame 713 explicitly describes extrapolating a box edge 'using typical player height' rather than the directly observed edge. manchester_city_v_liverpool and youth_2 were annotated by mouse-drag in the purpose-built local browser tool (experiments/records/experiment_M4/local_annotator/), which does not have this failure mode -- a human drawing a rectangle with a mouse directly on a zoomed image naturally produces a tight box.",
+
+ "what_was_NOT_done_in_response": [
+  "GT was NOT modified, corrected, or re-annotated after seeing this result",
+  "No frame or class was excluded from the reported metrics",
+  "No metric was recomputed or re-weighted to compensate",
+  "No TEST image was opened or viewed to investigate this",
+  "No rerun of prediction or evaluation occurred"
+ ],
+
+ "disposition": "reported as-is in M5_DETECTION_METRICS.json / the final M5 report, with this finding attached as a transparency note. The pooled/aggregate mAP50 and mAP50-95 figures are treated as INVALID for drawing any conclusion about the frozen detector's generalization, because one-third of the population they are computed over has a known GT-precision defect that dominates the pooled number. The manchester_city_v_liverpool and youth_2 per-sequence figures show no equivalent defect (GT/prediction box-area ratio close to 1) and are reported as the more informative partial evidence."
+}

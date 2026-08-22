@@ -15,10 +15,22 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 from full_pipeline import FootballAnalysisPipeline
 
-def main():
-    # Parse command-line arguments
+
+def resolve_output_fps(explicit_fps, effective_fps):
+    """
+    --fps contract: an explicit value always wins; otherwise fall back to the
+    pipeline's own effective_fps (source_fps / skip_frames) rather than a
+    fixed guess. Factored out so it has one real implementation instead of
+    being reimplemented inside its own test.
+    """
+    return explicit_fps if explicit_fps is not None else effective_fps
+
+
+def build_arg_parser():
+    """Factored out so tests can check CLI contracts (e.g. --fps defaulting
+    to None) without invoking main()."""
     parser = argparse.ArgumentParser(description="Football Analysis Pipeline")
-    
+
     # Required arguments
     parser.add_argument("--input", required=True, help="Path to input video")
     parser.add_argument("--output", default="tracked_output.mp4", help="Output video filename")
@@ -43,9 +55,11 @@ def main():
                         help="Roboflow API key (defaults to the ROBOFLOW_API_KEY "
                              "environment variable; without it Roboflow is disabled "
                              "and the local YOLO model is used)")
-    parser.add_argument("--yolo-model", default="yolov8x.pt",
-                        help="YOLO model path (yolov8n.pt, yolov8s.pt, yolov8m.pt, "
-                             "yolov8l.pt, yolov8x.pt, or a fine-tuned football model)")
+    parser.add_argument("--yolo-model", default="best_A_960.pt",
+                        help="YOLO model path. Defaults to best_A_960.pt, the closed, "
+                             "measured production human-detector checkpoint (see "
+                             "data/tracking_val_v1/manifest.json) -- override only for "
+                             "an intentional experiment, not for ordinary runs.")
     parser.add_argument("--imgsz", type=int, default=960,
                         help="Detector inference image size (default: 960)")
     parser.add_argument("--conf", type=float, default=0.25,
@@ -70,11 +84,33 @@ def main():
                         help="Show player speed in visualization")
     parser.add_argument("--show-distance", action="store_true", 
                         help="Show distance traveled in visualization")
-    parser.add_argument("--fps", type=int, default=15, 
-                        help="Output video FPS")
+    parser.add_argument("--fps", type=float, default=None,
+                        help="Output video FPS. Default: the pipeline's own "
+                             "effective_fps (source_fps / skip_frames), so 375 "
+                             "frames play back at their real ~30s duration instead "
+                             "of a fixed guess. Pass a value to override explicitly.")
+    parser.add_argument("--overlay-mode", choices=("viewer", "debug"), default="viewer",
+                        help="Rendering style for the output video only -- does not "
+                             "affect detection/tracking/selection/possession. "
+                             "'viewer' (default) is the clean tactical-camera style "
+                             "for final/demo video; 'debug' keeps the engineering "
+                             "overlay (counts, camera movement, raw panels).")
+    parser.add_argument("--team-assignment-backend", choices=("legacy_color", "v2"),
+                        default="legacy_color",
+                        help="'legacy_color' (default) is the production team "
+                             "assigner and the benchmark winner (100%% on the "
+                             "frozen post-freeze development benchmark, both "
+                             "matches). 'v2' (robust color tracklet) is kept for "
+                             "rollback/experimentation only -- it collapsed to 0%% "
+                             "on one of the two benchmark matches; see "
+                             "experiments/post_freeze/team_assignment_v2/FINAL_RESULTS.md.")
+    return parser
 
+
+def main():
+    parser = build_arg_parser()
     args = parser.parse_args()
-    
+
     # Check if input video exists
     if not os.path.exists(args.input):
         print(f"Error: Input video not found: {args.input}")
@@ -100,6 +136,8 @@ def main():
         'max_ball_gap': args.max_ball_gap,
         'tracker_backend': args.tracker,
         'ball_candidate_pool': not args.no_ball_candidates,
+        'overlay_mode': args.overlay_mode,
+        'team_assignment_backend': args.team_assignment_backend,
     }
     
     print("\n🏆 EyeCU Football Analysis Pipeline 🏆")
@@ -142,6 +180,8 @@ def main():
         max_ball_gap=CONFIG['max_ball_gap'],
         tracker_backend=CONFIG['tracker_backend'],
         ball_candidate_pool=CONFIG['ball_candidate_pool'],
+        overlay_mode=CONFIG['overlay_mode'],
+        team_assignment_backend=CONFIG['team_assignment_backend'],
     )
     
     # Process video
@@ -152,8 +192,11 @@ def main():
         display_results=CONFIG['display']
     )
     
-    # Save output video
-    pipeline.save_output_video(args.output, fps=args.fps)
+    # Save output video. No explicit --fps -> use the pipeline's own
+    # effective_fps (source_fps / skip_frames) rather than guessing a fixed
+    # number, so playback timing matches the frames actually processed.
+    output_fps = resolve_output_fps(args.fps, pipeline.effective_fps)
+    pipeline.save_output_video(args.output, fps=output_fps)
     
     # Generate final report
     report = pipeline.generate_final_report()

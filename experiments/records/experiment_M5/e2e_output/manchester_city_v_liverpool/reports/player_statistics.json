@@ -1,0 +1,79 @@
+{
+  "1": {
+    "track_id": 1,
+    "team": 1,
+    "max_speed_kmh_UNCALIBRATED": 15.000000000000002,
+    "total_distance_m_UNCALIBRATED": 3.7649583764101866,
+    "appearances": 20
+  },
+  "2": {
+    "track_id": 2,
+    "team": 1,
+    "max_speed_kmh_UNCALIBRATED": 5.031152949374527,
+    "total_distance_m_UNCALIBRATED": 1.886514611744788,
+    "appearances": 20
+  },
+  "3": {
+    "track_id": 3,
+    "team": 1,
+    "max_speed_kmh_UNCALIBRATED": 11.858541225631422,
+    "total_distance_m_UNCALIBRATED": 3.087365507090732,
+    "appearances": 20
+  },
+  "4": {
+    "track_id": 4,
+    "team": 1,
+    "max_speed_kmh_UNCALIBRATED": 8.643322928712081,
+    "total_distance_m_UNCALIBRATED": 2.0700647701605983,
+    "appearances": 20
+  },
+  "5": {
+    "track_id": 5,
+    "team": 2,
+    "max_speed_kmh_UNCALIBRATED": 9.421758394800834,
+    "total_distance_m_UNCALIBRATED": 2.3367159753099487,
+    "appearances": 20
+  },
+  "6": {
+    "track_id": 6,
+    "team": 2,
+    "max_speed_kmh_UNCALIBRATED": 11.59623457204967,
+    "total_distance_m_UNCALIBRATED": 3.2052589021163085,
+    "appearances": 20
+  },
+  "7": {
+    "track_id": 7,
+    "team": 2,
+    "max_speed_kmh_UNCALIBRATED": 7.139787286747414,
+    "total_distance_m_UNCALIBRATED": 1.7787025005787966,
+    "appearances": 20
+  },
+  "8": {
+    "track_id": 8,
+    "team": 2,
+    "max_speed_kmh_UNCALIBRATED": 8.010003511235185,
+    "total_distance_m_UNCALIBRATED": 1.820194122592989,
+    "appearances": 20
+  },
+  "9": {
+    "track_id": 9,
+    "team": 1,
+    "max_speed_kmh_UNCALIBRATED": 11.643131022195018,
+    "total_distance_m_UNCALIBRATED": 4.013662842894256,
+    "appearances": 20
+  },
+  "10": {
+    "track_id": 10,
+    "team": 1,
+    "max_speed_kmh_UNCALIBRATED": 1.6770509831248424,
+    "total_distance_m_UNCALIBRATED": 0.18633899812498247,
+    "appearances": 13
+  },
+  "12": {
+    "track_id": 12,
+    "team": 2,
+    "max_speed_kmh_UNCALIBRATED": 6.0029289725932955,
+    "total_distance_m_UNCALIBRATED": 1.3106399631474672,
+    "appearances": 15
+  }
+}

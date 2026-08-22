@@ -1,0 +1,37 @@
+{
+ "checks": [
+  {
+   "name": "manifest hash matches sidecar",
+   "pass": true
+  },
+  {
+   "name": "FINAL_TEST_FRAME_LIST.json hash matches sidecar",
+   "pass": true
+  },
+  {
+   "name": "TEST_DETECTION_ANNOTATIONS.json hash matches sidecar",
+   "pass": true
+  },
+  {
+   "name": "M5_EVALUATION_CONTRACT.md hash matches sidecar",
+   "pass": true
+  },
+  {
+   "name": "labels_frozen == true",
+   "pass": true
+  },
+  {
+   "name": "production_predictions_run == false (pre-M5)",
+   "pass": true
+  },
+  {
+   "name": "best_A_960.pt sha256 matches manifest",
+   "pass": true
+  },
+  {
+   "name": "yolo-sn-ball.pt sha256 matches manifest",
+   "pass": true
+  }
+ ],
+ "all_pass": true
+}

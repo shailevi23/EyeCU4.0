@@ -1,0 +1,2365 @@
+{
+ "FROZEN_BEFORE_INFERENCE": true,
+ "definition": "STATIC_PLAYER_GK_OVERLAP = ball GT bbox has positive intersection area with >=1 GT player or goalkeeper bbox. GT boxes only. No IoU threshold, no pixel radius, no model predictions, no referee boxes, no visual judgement.",
+ "secondary_definition": "BALL_CENTER_INSIDE_HUMAN = centre of ball GT bbox lies inside any GT player/GK bbox",
+ "benchmark_facts": {
+  "images": 208,
+  "ball_gt": 111,
+  "positive_images": 111,
+  "multi_ball_images": 0,
+  "youth_images": 66,
+  "youth_ball_gt": 28,
+  "non_youth_images": 142,
+  "non_youth_ball_gt": 83,
+  "human_gt_player_boxes": 2490,
+  "human_gt_goalkeeper_boxes": 115,
+  "class_ids_source": "data/dataset_baseline/football.yaml",
+  "class_ids": {
+   "player": 0,
+   "goalkeeper": 1,
+   "referee": 2,
+   "ball": 3
+  },
+  "gt_provenance": "hand-corrected annotation, docs/results/RESULTS.md \"659 frames corrected by hand ... (451 train, 208 val)\"",
+  "exhaustive_under_ALL_VISIBLE": false
+ },
+ "total_ball_gt": 111,
+ "overlap_either": 37,
+ "overlap_player": 35,
+ "overlap_goalkeeper": 2,
+ "non_overlap": 74,
+ "centre_inside_human": 34,
+ "members": [
+  {
+   "id": "austin_fc_vs__club_tijuana_000060#0",
+   "stem": "austin_fc_vs__club_tijuana_000060",
+   "gt_index": 0,
+   "bbox": [
+    467.0,
+    232.0,
+    474.0,
+    239.0
+   ],
+   "centre": [
+    470.5,
+    235.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000120#0",
+   "stem": "austin_fc_vs__club_tijuana_000120",
+   "gt_index": 0,
+   "bbox": [
+    385.0,
+    155.0,
+    392.0,
+    163.0
+   ],
+   "centre": [
+    388.5,
+    159.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000180#0",
+   "stem": "austin_fc_vs__club_tijuana_000180",
+   "gt_index": 0,
+   "bbox": [
+    209.0,
+    157.0,
+    214.0,
+    162.0
+   ],
+   "centre": [
+    211.5,
+    159.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000240#0",
+   "stem": "austin_fc_vs__club_tijuana_000240",
+   "gt_index": 0,
+   "bbox": [
+    71.0,
+    163.0,
+    76.0,
+    167.0
+   ],
+   "centre": [
+    73.5,
+    165.0
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000245#0",
+   "stem": "austin_fc_vs__club_tijuana_000245",
+   "gt_index": 0,
+   "bbox": [
+    83.0,
+    164.0,
+    88.0,
+    170.0
+   ],
+   "centre": [
+    85.5,
+    167.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000255#0",
+   "stem": "austin_fc_vs__club_tijuana_000255",
+   "gt_index": 0,
+   "bbox": [
+    144.0,
+    163.0,
+    150.0,
+    168.0
+   ],
+   "centre": [
+    147.0,
+    165.5
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000265#0",
+   "stem": "austin_fc_vs__club_tijuana_000265",
+   "gt_index": 0,
+   "bbox": [
+    188.0,
+    159.0,
+    193.0,
+    165.0
+   ],
+   "centre": [
+    190.5,
+    162.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000295#0",
+   "stem": "austin_fc_vs__club_tijuana_000295",
+   "gt_index": 0,
+   "bbox": [
+    396.0,
+    141.0,
+    401.0,
+    144.0
+   ],
+   "centre": [
+    398.5,
+    142.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": true,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000360#0",
+   "stem": "austin_fc_vs__club_tijuana_000360",
+   "gt_index": 0,
+   "bbox": [
+    361.0,
+    148.0,
+    366.0,
+    152.0
+   ],
+   "centre": [
+    363.5,
+    150.0
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000394#0",
+   "stem": "austin_fc_vs__club_tijuana_000394",
+   "gt_index": 0,
+   "bbox": [
+    264.0,
+    200.0,
+    271.0,
+    212.0
+   ],
+   "centre": [
+    267.5,
+    206.0
+   ],
+   "max_wh_px": 12.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000400#0",
+   "stem": "austin_fc_vs__club_tijuana_000400",
+   "gt_index": 0,
+   "bbox": [
+    256.0,
+    201.0,
+    261.0,
+    207.0
+   ],
+   "centre": [
+    258.5,
+    204.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000405#0",
+   "stem": "austin_fc_vs__club_tijuana_000405",
+   "gt_index": 0,
+   "bbox": [
+    253.0,
+    201.0,
+    261.0,
+    207.0
+   ],
+   "centre": [
+    257.0,
+    204.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000420#0",
+   "stem": "austin_fc_vs__club_tijuana_000420",
+   "gt_index": 0,
+   "bbox": [
+    256.0,
+    202.0,
+    262.0,
+    206.0
+   ],
+   "centre": [
+    259.0,
+    204.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000510#0",
+   "stem": "austin_fc_vs__club_tijuana_000510",
+   "gt_index": 0,
+   "bbox": [
+    427.0,
+    141.0,
+    433.0,
+    146.0
+   ],
+   "centre": [
+    430.0,
+    143.5
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000530#0",
+   "stem": "austin_fc_vs__club_tijuana_000530",
+   "gt_index": 0,
+   "bbox": [
+    407.0,
+    147.0,
+    413.0,
+    153.0
+   ],
+   "centre": [
+    410.0,
+    150.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000600#0",
+   "stem": "austin_fc_vs__club_tijuana_000600",
+   "gt_index": 0,
+   "bbox": [
+    86.0,
+    153.0,
+    90.0,
+    158.0
+   ],
+   "centre": [
+    88.0,
+    155.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000660#0",
+   "stem": "austin_fc_vs__club_tijuana_000660",
+   "gt_index": 0,
+   "bbox": [
+    140.0,
+    176.0,
+    147.0,
+    182.0
+   ],
+   "centre": [
+    143.5,
+    179.0
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_000960#0",
+   "stem": "austin_fc_vs__club_tijuana_000960",
+   "gt_index": 0,
+   "bbox": [
+    360.0,
+    213.0,
+    368.0,
+    220.0
+   ],
+   "centre": [
+    364.0,
+    216.5
+   ],
+   "max_wh_px": 8.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001020#0",
+   "stem": "austin_fc_vs__club_tijuana_001020",
+   "gt_index": 0,
+   "bbox": [
+    284.0,
+    210.0,
+    288.0,
+    215.0
+   ],
+   "centre": [
+    286.0,
+    212.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001080#0",
+   "stem": "austin_fc_vs__club_tijuana_001080",
+   "gt_index": 0,
+   "bbox": [
+    342.0,
+    176.0,
+    345.0,
+    180.0
+   ],
+   "centre": [
+    343.5,
+    178.0
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001140#0",
+   "stem": "austin_fc_vs__club_tijuana_001140",
+   "gt_index": 0,
+   "bbox": [
+    377.0,
+    215.0,
+    384.0,
+    222.0
+   ],
+   "centre": [
+    380.5,
+    218.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001200#0",
+   "stem": "austin_fc_vs__club_tijuana_001200",
+   "gt_index": 0,
+   "bbox": [
+    320.0,
+    217.0,
+    327.0,
+    225.0
+   ],
+   "centre": [
+    323.5,
+    221.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001260#0",
+   "stem": "austin_fc_vs__club_tijuana_001260",
+   "gt_index": 0,
+   "bbox": [
+    338.0,
+    224.0,
+    346.0,
+    231.0
+   ],
+   "centre": [
+    342.0,
+    227.5
+   ],
+   "max_wh_px": 8.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001320#0",
+   "stem": "austin_fc_vs__club_tijuana_001320",
+   "gt_index": 0,
+   "bbox": [
+    474.0,
+    126.0,
+    480.0,
+    132.0
+   ],
+   "centre": [
+    477.0,
+    129.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001380#0",
+   "stem": "austin_fc_vs__club_tijuana_001380",
+   "gt_index": 0,
+   "bbox": [
+    344.0,
+    168.0,
+    352.0,
+    174.0
+   ],
+   "centre": [
+    348.0,
+    171.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001580#0",
+   "stem": "austin_fc_vs__club_tijuana_001580",
+   "gt_index": 0,
+   "bbox": [
+    118.0,
+    54.0,
+    136.0,
+    68.0
+   ],
+   "centre": [
+    127.0,
+    61.0
+   ],
+   "max_wh_px": 18.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001600#0",
+   "stem": "austin_fc_vs__club_tijuana_001600",
+   "gt_index": 0,
+   "bbox": [
+    429.0,
+    190.0,
+    436.0,
+    195.0
+   ],
+   "centre": [
+    432.5,
+    192.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "austin_fc_vs__club_tijuana_001620#0",
+   "stem": "austin_fc_vs__club_tijuana_001620",
+   "gt_index": 0,
+   "bbox": [
+    435.0,
+    198.0,
+    441.0,
+    205.0
+   ],
+   "centre": [
+    438.0,
+    201.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000000#0",
+   "stem": "bayern_munich_3-1_chelsea_000000",
+   "gt_index": 0,
+   "bbox": [
+    235.0,
+    107.0,
+    240.0,
+    112.0
+   ],
+   "centre": [
+    237.5,
+    109.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000050#0",
+   "stem": "bayern_munich_3-1_chelsea_000050",
+   "gt_index": 0,
+   "bbox": [
+    294.57,
+    93.29,
+    297.04,
+    97.05
+   ],
+   "centre": [
+    295.8,
+    95.17
+   ],
+   "max_wh_px": 3.76,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000150#0",
+   "stem": "bayern_munich_3-1_chelsea_000150",
+   "gt_index": 0,
+   "bbox": [
+    181.0,
+    107.0,
+    184.0,
+    110.0
+   ],
+   "centre": [
+    182.5,
+    108.5
+   ],
+   "max_wh_px": 3.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000200#0",
+   "stem": "bayern_munich_3-1_chelsea_000200",
+   "gt_index": 0,
+   "bbox": [
+    249.11,
+    76.93,
+    251.4,
+    80.09
+   ],
+   "centre": [
+    250.25,
+    78.51
+   ],
+   "max_wh_px": 3.16,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000350#0",
+   "stem": "bayern_munich_3-1_chelsea_000350",
+   "gt_index": 0,
+   "bbox": [
+    219.0,
+    104.0,
+    222.0,
+    108.0
+   ],
+   "centre": [
+    220.5,
+    106.0
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000450#0",
+   "stem": "bayern_munich_3-1_chelsea_000450",
+   "gt_index": 0,
+   "bbox": [
+    210.0,
+    184.0,
+    215.0,
+    189.0
+   ],
+   "centre": [
+    212.5,
+    186.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000468#0",
+   "stem": "bayern_munich_3-1_chelsea_000468",
+   "gt_index": 0,
+   "bbox": [
+    231.0,
+    190.0,
+    235.0,
+    195.0
+   ],
+   "centre": [
+    233.0,
+    192.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000475#0",
+   "stem": "bayern_munich_3-1_chelsea_000475",
+   "gt_index": 0,
+   "bbox": [
+    230.0,
+    193.0,
+    235.0,
+    198.0
+   ],
+   "centre": [
+    232.5,
+    195.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000480#0",
+   "stem": "bayern_munich_3-1_chelsea_000480",
+   "gt_index": 0,
+   "bbox": [
+    229.0,
+    195.0,
+    233.0,
+    198.0
+   ],
+   "centre": [
+    231.0,
+    196.5
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000495#0",
+   "stem": "bayern_munich_3-1_chelsea_000495",
+   "gt_index": 0,
+   "bbox": [
+    250.0,
+    211.0,
+    254.0,
+    216.0
+   ],
+   "centre": [
+    252.0,
+    213.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000500#0",
+   "stem": "bayern_munich_3-1_chelsea_000500",
+   "gt_index": 0,
+   "bbox": [
+    260.0,
+    216.0,
+    265.0,
+    221.0
+   ],
+   "centre": [
+    262.5,
+    218.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000650#0",
+   "stem": "bayern_munich_3-1_chelsea_000650",
+   "gt_index": 0,
+   "bbox": [
+    266.0,
+    255.0,
+    272.0,
+    260.0
+   ],
+   "centre": [
+    269.0,
+    257.5
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000800#0",
+   "stem": "bayern_munich_3-1_chelsea_000800",
+   "gt_index": 0,
+   "bbox": [
+    334.0,
+    258.0,
+    337.0,
+    261.0
+   ],
+   "centre": [
+    335.5,
+    259.5
+   ],
+   "max_wh_px": 3.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_000900#0",
+   "stem": "bayern_munich_3-1_chelsea_000900",
+   "gt_index": 0,
+   "bbox": [
+    558.0,
+    121.0,
+    563.0,
+    127.0
+   ],
+   "centre": [
+    560.5,
+    124.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001000#0",
+   "stem": "bayern_munich_3-1_chelsea_001000",
+   "gt_index": 0,
+   "bbox": [
+    357.0,
+    272.0,
+    361.0,
+    275.0
+   ],
+   "centre": [
+    359.0,
+    273.5
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001020#0",
+   "stem": "bayern_munich_3-1_chelsea_001020",
+   "gt_index": 0,
+   "bbox": [
+    265.0,
+    262.0,
+    271.0,
+    268.0
+   ],
+   "centre": [
+    268.0,
+    265.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001040#0",
+   "stem": "bayern_munich_3-1_chelsea_001040",
+   "gt_index": 0,
+   "bbox": [
+    149.0,
+    265.0,
+    154.0,
+    271.0
+   ],
+   "centre": [
+    151.5,
+    268.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001055#0",
+   "stem": "bayern_munich_3-1_chelsea_001055",
+   "gt_index": 0,
+   "bbox": [
+    104.22,
+    270.96,
+    107.68,
+    276.22
+   ],
+   "centre": [
+    105.95,
+    273.59
+   ],
+   "max_wh_px": 5.26,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001070#0",
+   "stem": "bayern_munich_3-1_chelsea_001070",
+   "gt_index": 0,
+   "bbox": [
+    101.0,
+    260.0,
+    105.0,
+    264.0
+   ],
+   "centre": [
+    103.0,
+    262.0
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001075#0",
+   "stem": "bayern_munich_3-1_chelsea_001075",
+   "gt_index": 0,
+   "bbox": [
+    105.0,
+    256.0,
+    108.0,
+    259.0
+   ],
+   "centre": [
+    106.5,
+    257.5
+   ],
+   "max_wh_px": 3.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001080#0",
+   "stem": "bayern_munich_3-1_chelsea_001080",
+   "gt_index": 0,
+   "bbox": [
+    110.0,
+    251.0,
+    115.0,
+    256.0
+   ],
+   "centre": [
+    112.5,
+    253.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001095#0",
+   "stem": "bayern_munich_3-1_chelsea_001095",
+   "gt_index": 0,
+   "bbox": [
+    146.0,
+    215.0,
+    149.0,
+    218.0
+   ],
+   "centre": [
+    147.5,
+    216.5
+   ],
+   "max_wh_px": 3.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001100#0",
+   "stem": "bayern_munich_3-1_chelsea_001100",
+   "gt_index": 0,
+   "bbox": [
+    160.0,
+    199.0,
+    164.0,
+    204.0
+   ],
+   "centre": [
+    162.0,
+    201.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001110#0",
+   "stem": "bayern_munich_3-1_chelsea_001110",
+   "gt_index": 0,
+   "bbox": [
+    179.0,
+    177.0,
+    183.0,
+    182.0
+   ],
+   "centre": [
+    181.0,
+    179.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001120#0",
+   "stem": "bayern_munich_3-1_chelsea_001120",
+   "gt_index": 0,
+   "bbox": [
+    193.0,
+    163.0,
+    197.0,
+    166.0
+   ],
+   "centre": [
+    195.0,
+    164.5
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001125#0",
+   "stem": "bayern_munich_3-1_chelsea_001125",
+   "gt_index": 0,
+   "bbox": [
+    201.0,
+    159.0,
+    205.0,
+    162.0
+   ],
+   "centre": [
+    203.0,
+    160.5
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001130#0",
+   "stem": "bayern_munich_3-1_chelsea_001130",
+   "gt_index": 0,
+   "bbox": [
+    209.0,
+    156.0,
+    214.0,
+    160.0
+   ],
+   "centre": [
+    211.5,
+    158.0
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001200#0",
+   "stem": "bayern_munich_3-1_chelsea_001200",
+   "gt_index": 0,
+   "bbox": [
+    281.0,
+    133.0,
+    286.0,
+    138.0
+   ],
+   "centre": [
+    283.5,
+    135.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "bayern_munich_3-1_chelsea_001500#0",
+   "stem": "bayern_munich_3-1_chelsea_001500",
+   "gt_index": 0,
+   "bbox": [
+    273.0,
+    90.0,
+    276.0,
+    94.0
+   ],
+   "centre": [
+    274.5,
+    92.0
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000150#0",
+   "stem": "women_1_000150",
+   "gt_index": 0,
+   "bbox": [
+    295.56,
+    139.52,
+    299.83,
+    146.19
+   ],
+   "centre": [
+    297.7,
+    142.86
+   ],
+   "max_wh_px": 6.67,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000200#0",
+   "stem": "women_1_000200",
+   "gt_index": 0,
+   "bbox": [
+    224.0,
+    143.0,
+    231.0,
+    150.0
+   ],
+   "centre": [
+    227.5,
+    146.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000290#0",
+   "stem": "women_1_000290",
+   "gt_index": 0,
+   "bbox": [
+    11.0,
+    158.0,
+    16.0,
+    165.0
+   ],
+   "centre": [
+    13.5,
+    161.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000295#0",
+   "stem": "women_1_000295",
+   "gt_index": 0,
+   "bbox": [
+    30.0,
+    159.0,
+    36.0,
+    163.0
+   ],
+   "centre": [
+    33.0,
+    161.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000300#0",
+   "stem": "women_1_000300",
+   "gt_index": 0,
+   "bbox": [
+    81.0,
+    159.0,
+    87.0,
+    164.0
+   ],
+   "centre": [
+    84.0,
+    161.5
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000305#0",
+   "stem": "women_1_000305",
+   "gt_index": 0,
+   "bbox": [
+    115.0,
+    158.0,
+    120.0,
+    161.0
+   ],
+   "centre": [
+    117.5,
+    159.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000315#0",
+   "stem": "women_1_000315",
+   "gt_index": 0,
+   "bbox": [
+    148.0,
+    155.0,
+    152.0,
+    159.0
+   ],
+   "centre": [
+    150.0,
+    157.0
+   ],
+   "max_wh_px": 4.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000320#0",
+   "stem": "women_1_000320",
+   "gt_index": 0,
+   "bbox": [
+    160.0,
+    154.0,
+    167.0,
+    160.0
+   ],
+   "centre": [
+    163.5,
+    157.0
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000350#0",
+   "stem": "women_1_000350",
+   "gt_index": 0,
+   "bbox": [
+    228.37,
+    143.06,
+    232.97,
+    149.34
+   ],
+   "centre": [
+    230.67,
+    146.2
+   ],
+   "max_wh_px": 6.27,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000400#0",
+   "stem": "women_1_000400",
+   "gt_index": 0,
+   "bbox": [
+    207.0,
+    135.0,
+    214.0,
+    141.0
+   ],
+   "centre": [
+    210.5,
+    138.0
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000450#0",
+   "stem": "women_1_000450",
+   "gt_index": 0,
+   "bbox": [
+    165.0,
+    188.0,
+    172.0,
+    195.0
+   ],
+   "centre": [
+    168.5,
+    191.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000500#0",
+   "stem": "women_1_000500",
+   "gt_index": 0,
+   "bbox": [
+    148.59,
+    308.23,
+    164.51,
+    326.68
+   ],
+   "centre": [
+    156.55,
+    317.45
+   ],
+   "max_wh_px": 18.45,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000550#0",
+   "stem": "women_1_000550",
+   "gt_index": 0,
+   "bbox": [
+    199.0,
+    145.0,
+    206.0,
+    152.0
+   ],
+   "centre": [
+    202.5,
+    148.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000600#0",
+   "stem": "women_1_000600",
+   "gt_index": 0,
+   "bbox": [
+    218.0,
+    126.0,
+    224.0,
+    132.0
+   ],
+   "centre": [
+    221.0,
+    129.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000650#0",
+   "stem": "women_1_000650",
+   "gt_index": 0,
+   "bbox": [
+    225.99,
+    132.01,
+    229.99,
+    137.99
+   ],
+   "centre": [
+    227.99,
+    135.0
+   ],
+   "max_wh_px": 5.98,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000700#0",
+   "stem": "women_1_000700",
+   "gt_index": 0,
+   "bbox": [
+    157.9,
+    132.62,
+    162.48,
+    138.77
+   ],
+   "centre": [
+    160.19,
+    135.7
+   ],
+   "max_wh_px": 6.15,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_000750#0",
+   "stem": "women_1_000750",
+   "gt_index": 0,
+   "bbox": [
+    180.0,
+    135.0,
+    185.0,
+    141.0
+   ],
+   "centre": [
+    182.5,
+    138.0
+   ],
+   "max_wh_px": 6.0,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000850#0",
+   "stem": "women_1_000850",
+   "gt_index": 0,
+   "bbox": [
+    289.37,
+    139.43,
+    293.22,
+    144.07
+   ],
+   "centre": [
+    291.3,
+    141.75
+   ],
+   "max_wh_px": 4.64,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000875#0",
+   "stem": "women_1_000875",
+   "gt_index": 0,
+   "bbox": [
+    391.89,
+    136.11,
+    395.18,
+    141.94
+   ],
+   "centre": [
+    393.53,
+    139.02
+   ],
+   "max_wh_px": 5.83,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_000885#0",
+   "stem": "women_1_000885",
+   "gt_index": 0,
+   "bbox": [
+    336.44,
+    135.98,
+    339.16,
+    139.78
+   ],
+   "centre": [
+    337.8,
+    137.88
+   ],
+   "max_wh_px": 3.81,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_001000#0",
+   "stem": "women_1_001000",
+   "gt_index": 0,
+   "bbox": [
+    190.63,
+    121.5,
+    195.68,
+    129.36
+   ],
+   "centre": [
+    193.16,
+    125.43
+   ],
+   "max_wh_px": 7.86,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "women_1_001050#0",
+   "stem": "women_1_001050",
+   "gt_index": 0,
+   "bbox": [
+    148.79,
+    107.84,
+    154.35,
+    117.24
+   ],
+   "centre": [
+    151.57,
+    112.54
+   ],
+   "max_wh_px": 9.4,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_001100#0",
+   "stem": "women_1_001100",
+   "gt_index": 0,
+   "bbox": [
+    307.88,
+    113.16,
+    312.48,
+    118.5
+   ],
+   "centre": [
+    310.18,
+    115.83
+   ],
+   "max_wh_px": 5.33,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_001300#0",
+   "stem": "women_1_001300",
+   "gt_index": 0,
+   "bbox": [
+    401.82,
+    109.82,
+    407.38,
+    117.5
+   ],
+   "centre": [
+    404.6,
+    113.66
+   ],
+   "max_wh_px": 7.67,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_001450#0",
+   "stem": "women_1_001450",
+   "gt_index": 0,
+   "bbox": [
+    260.27,
+    172.12,
+    270.8,
+    186.72
+   ],
+   "centre": [
+    265.53,
+    179.42
+   ],
+   "max_wh_px": 14.6,
+   "youth": false,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "women_1_001500#0",
+   "stem": "women_1_001500",
+   "gt_index": 0,
+   "bbox": [
+    343.42,
+    158.4,
+    352.6,
+    169.88
+   ],
+   "centre": [
+    348.01,
+    164.14
+   ],
+   "max_wh_px": 11.48,
+   "youth": false,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000000#0",
+   "stem": "youth_premier_league_000000",
+   "gt_index": 0,
+   "bbox": [
+    182.0,
+    251.0,
+    191.0,
+    260.0
+   ],
+   "centre": [
+    186.5,
+    255.5
+   ],
+   "max_wh_px": 9.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000100#0",
+   "stem": "youth_premier_league_000100",
+   "gt_index": 0,
+   "bbox": [
+    166.17,
+    255.01,
+    173.81,
+    264.79
+   ],
+   "centre": [
+    169.99,
+    259.9
+   ],
+   "max_wh_px": 9.78,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000105#0",
+   "stem": "youth_premier_league_000105",
+   "gt_index": 0,
+   "bbox": [
+    251.0,
+    186.0,
+    257.0,
+    193.0
+   ],
+   "centre": [
+    254.0,
+    189.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000110#0",
+   "stem": "youth_premier_league_000110",
+   "gt_index": 0,
+   "bbox": [
+    224.0,
+    195.0,
+    229.0,
+    200.0
+   ],
+   "centre": [
+    226.5,
+    197.5
+   ],
+   "max_wh_px": 5.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000120#0",
+   "stem": "youth_premier_league_000120",
+   "gt_index": 0,
+   "bbox": [
+    114.8,
+    102.65,
+    120.78,
+    110.51
+   ],
+   "centre": [
+    117.79,
+    106.58
+   ],
+   "max_wh_px": 7.86,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000155#0",
+   "stem": "youth_premier_league_000155",
+   "gt_index": 0,
+   "bbox": [
+    221.0,
+    106.0,
+    229.0,
+    115.0
+   ],
+   "centre": [
+    225.0,
+    110.5
+   ],
+   "max_wh_px": 9.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000160#0",
+   "stem": "youth_premier_league_000160",
+   "gt_index": 0,
+   "bbox": [
+    243.38,
+    160.21,
+    251.53,
+    169.47
+   ],
+   "centre": [
+    247.45,
+    164.84
+   ],
+   "max_wh_px": 9.26,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000165#0",
+   "stem": "youth_premier_league_000165",
+   "gt_index": 0,
+   "bbox": [
+    336.96,
+    186.16,
+    345.98,
+    195.46
+   ],
+   "centre": [
+    341.47,
+    190.81
+   ],
+   "max_wh_px": 9.3,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000170#0",
+   "stem": "youth_premier_league_000170",
+   "gt_index": 0,
+   "bbox": [
+    430.0,
+    198.0,
+    438.0,
+    204.0
+   ],
+   "centre": [
+    434.0,
+    201.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000180#0",
+   "stem": "youth_premier_league_000180",
+   "gt_index": 0,
+   "bbox": [
+    488.0,
+    207.0,
+    495.0,
+    215.0
+   ],
+   "centre": [
+    491.5,
+    211.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000185#0",
+   "stem": "youth_premier_league_000185",
+   "gt_index": 0,
+   "bbox": [
+    495.0,
+    212.0,
+    501.0,
+    219.0
+   ],
+   "centre": [
+    498.0,
+    215.5
+   ],
+   "max_wh_px": 7.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000190#0",
+   "stem": "youth_premier_league_000190",
+   "gt_index": 0,
+   "bbox": [
+    497.0,
+    214.0,
+    505.0,
+    221.0
+   ],
+   "centre": [
+    501.0,
+    217.5
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000195#0",
+   "stem": "youth_premier_league_000195",
+   "gt_index": 0,
+   "bbox": [
+    511.0,
+    221.0,
+    519.0,
+    228.0
+   ],
+   "centre": [
+    515.0,
+    224.5
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000200#0",
+   "stem": "youth_premier_league_000200",
+   "gt_index": 0,
+   "bbox": [
+    535.0,
+    222.0,
+    543.0,
+    229.0
+   ],
+   "centre": [
+    539.0,
+    225.5
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000205#0",
+   "stem": "youth_premier_league_000205",
+   "gt_index": 0,
+   "bbox": [
+    572.0,
+    224.0,
+    582.0,
+    232.0
+   ],
+   "centre": [
+    577.0,
+    228.0
+   ],
+   "max_wh_px": 10.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000600#0",
+   "stem": "youth_premier_league_000600",
+   "gt_index": 0,
+   "bbox": [
+    448.73,
+    151.11,
+    456.39,
+    160.16
+   ],
+   "centre": [
+    452.56,
+    155.64
+   ],
+   "max_wh_px": 9.05,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": true,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "youth_premier_league_000675#0",
+   "stem": "youth_premier_league_000675",
+   "gt_index": 0,
+   "bbox": [
+    419.0,
+    161.0,
+    427.0,
+    169.0
+   ],
+   "centre": [
+    423.0,
+    165.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000750#0",
+   "stem": "youth_premier_league_000750",
+   "gt_index": 0,
+   "bbox": [
+    352.0,
+    167.0,
+    360.0,
+    174.0
+   ],
+   "centre": [
+    356.0,
+    170.5
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000855#0",
+   "stem": "youth_premier_league_000855",
+   "gt_index": 0,
+   "bbox": [
+    362.0,
+    164.0,
+    371.0,
+    172.0
+   ],
+   "centre": [
+    366.5,
+    168.0
+   ],
+   "max_wh_px": 9.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_000865#0",
+   "stem": "youth_premier_league_000865",
+   "gt_index": 0,
+   "bbox": [
+    402.0,
+    160.0,
+    410.0,
+    168.0
+   ],
+   "centre": [
+    406.0,
+    164.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_001020#0",
+   "stem": "youth_premier_league_001020",
+   "gt_index": 0,
+   "bbox": [
+    326.74,
+    130.13,
+    333.2,
+    138.99
+   ],
+   "centre": [
+    329.97,
+    134.56
+   ],
+   "max_wh_px": 8.86,
+   "youth": true,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "youth_premier_league_001025#0",
+   "stem": "youth_premier_league_001025",
+   "gt_index": 0,
+   "bbox": [
+    306.47,
+    97.17,
+    314.87,
+    106.02
+   ],
+   "centre": [
+    310.67,
+    101.6
+   ],
+   "max_wh_px": 8.85,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_001045#0",
+   "stem": "youth_premier_league_001045",
+   "gt_index": 0,
+   "bbox": [
+    303.27,
+    73.23,
+    309.73,
+    79.69
+   ],
+   "centre": [
+    306.5,
+    76.46
+   ],
+   "max_wh_px": 6.46,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_001050#0",
+   "stem": "youth_premier_league_001050",
+   "gt_index": 0,
+   "bbox": [
+    314.47,
+    90.67,
+    322.27,
+    99.46
+   ],
+   "centre": [
+    318.37,
+    95.06
+   ],
+   "max_wh_px": 8.79,
+   "youth": true,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "youth_premier_league_001275#0",
+   "stem": "youth_premier_league_001275",
+   "gt_index": 0,
+   "bbox": [
+    303.07,
+    88.31,
+    312.61,
+    99.37
+   ],
+   "centre": [
+    307.84,
+    93.84
+   ],
+   "max_wh_px": 11.06,
+   "youth": true,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "youth_premier_league_001350#0",
+   "stem": "youth_premier_league_001350",
+   "gt_index": 0,
+   "bbox": [
+    197.19,
+    151.7,
+    204.18,
+    161.16
+   ],
+   "centre": [
+    200.69,
+    156.43
+   ],
+   "max_wh_px": 9.46,
+   "youth": true,
+   "overlap_player": true,
+   "overlap_goalkeeper": false,
+   "overlap_either": true,
+   "centre_inside_human": true
+  },
+  {
+   "id": "youth_premier_league_001425#0",
+   "stem": "youth_premier_league_001425",
+   "gt_index": 0,
+   "bbox": [
+    138.0,
+    156.0,
+    144.0,
+    164.0
+   ],
+   "centre": [
+    141.0,
+    160.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  },
+  {
+   "id": "youth_premier_league_001500#0",
+   "stem": "youth_premier_league_001500",
+   "gt_index": 0,
+   "bbox": [
+    324.0,
+    159.0,
+    331.0,
+    167.0
+   ],
+   "centre": [
+    327.5,
+    163.0
+   ],
+   "max_wh_px": 8.0,
+   "youth": true,
+   "overlap_player": false,
+   "overlap_goalkeeper": false,
+   "overlap_either": false,
+   "centre_inside_human": false
+  }
+ ]
+}

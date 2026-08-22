@@ -1,0 +1,5414 @@
+[
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 38,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000038.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     22,
+     180,
+     46,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     234,
+     111,
+     253,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     154,
+     277,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     264,
+     129,
+     286,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     141,
+     322,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     332,
+     145,
+     349,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     429,
+     67,
+     442,
+     99
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     429,
+     104,
+     447,
+     137
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     118,
+     480,
+     151
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     595,
+     209,
+     615,
+     256
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     11,
+     113,
+     31,
+     153
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     430,
+     40,
+     445,
+     70
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     182,
+     172,
+     192,
+     180
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:08:16Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 113,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000113.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     103,
+     89,
+     121,
+     125
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     532,
+     22,
+     543,
+     48
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     145,
+     191,
+     153,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     135,
+     161,
+     151,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     182,
+     175,
+     204,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     302,
+     128,
+     318,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     99,
+     325,
+     133
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     371,
+     136,
+     391,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     407,
+     151,
+     425,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     517,
+     94,
+     532,
+     128
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     533,
+     114,
+     550,
+     148
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     525,
+     54,
+     538,
+     84
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:09:37Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 188,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000188.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     287,
+     134,
+     295,
+     143
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     74,
+     111,
+     88,
+     145
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     428,
+     53,
+     442,
+     78
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     547,
+     160,
+     566,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     461,
+     79,
+     478,
+     107
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     430,
+     128,
+     444,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     416,
+     116,
+     431,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     141,
+     370,
+     175
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     159,
+     288,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     132,
+     160,
+     153,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     72,
+     161,
+     93,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     256,
+     124,
+     273,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     260,
+     115,
+     280,
+     141
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:11:11Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 263,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000263.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     309,
+     117,
+     316,
+     125
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     165,
+     73,
+     182,
+     103
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     404,
+     165,
+     428,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     582,
+     153,
+     607,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     602,
+     98,
+     620,
+     126
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     123,
+     478,
+     159
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     461,
+     131,
+     481,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     142,
+     492,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     488,
+     198,
+     511,
+     241
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     485,
+     235,
+     502,
+     278
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     96,
+     307,
+     125
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     113,
+     300,
+     139
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     125,
+     230,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     140,
+     162,
+     170,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     115,
+     112,
+     132,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     104,
+     136,
+     121,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     56,
+     121,
+     74,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     181,
+     25,
+     220
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:13:39Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 338,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000338.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     273,
+     150,
+     281,
+     159
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     85,
+     77,
+     101,
+     107
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     465,
+     159,
+     481,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     20,
+     102,
+     40,
+     130
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     79,
+     141,
+     93,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     165,
+     163,
+     189,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     107,
+     171,
+     141
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     137,
+     272,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     266,
+     94,
+     282,
+     122
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     276,
+     100,
+     296,
+     132
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     627,
+     321,
+     642,
+     362
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     412,
+     228,
+     433,
+     274
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     496,
+     178,
+     517,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     562,
+     137,
+     580,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     626,
+     139,
+     641,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     402,
+     95,
+     418,
+     124
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     447,
+     96,
+     465,
+     128
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     448,
+     114,
+     461,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     438,
+     115,
+     455,
+     150
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:15:45Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 413,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000413.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     611,
+     286,
+     640,
+     344
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     592,
+     150,
+     617,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     524,
+     126,
+     548,
+     163
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     75,
+     398,
+     102
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     70,
+     342,
+     98
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     194,
+     75,
+     208,
+     105
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     165,
+     97,
+     183,
+     130
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     -3,
+     97,
+     8,
+     127
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     43,
+     140,
+     66,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     193,
+     208,
+     221,
+     255
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     172,
+     403,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     215,
+     85,
+     230,
+     117
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     194,
+     103,
+     217,
+     130
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     272,
+     94,
+     294,
+     129
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     334,
+     100,
+     354,
+     132
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     120,
+     258,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     357,
+     124,
+     377,
+     161
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     442,
+     136,
+     460,
+     179
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     23,
+     51,
+     43,
+     83
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:18:49Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 488,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000488.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     257,
+     224,
+     267,
+     233
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     27,
+     28,
+     49,
+     55
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     371,
+     106,
+     391,
+     138
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     29,
+     85,
+     47,
+     116
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     43,
+     160,
+     70,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     103,
+     137,
+     123,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     120,
+     58,
+     136,
+     82
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     67,
+     141,
+     92
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     84,
+     168,
+     112
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     205,
+     81,
+     225,
+     109
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     108,
+     225,
+     138
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     248,
+     71,
+     267,
+     102
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     298,
+     44,
+     311,
+     69
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     349,
+     55,
+     366,
+     82
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     292,
+     87,
+     312,
+     114
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     327,
+     99,
+     350,
+     132
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     449,
+     95,
+     466,
+     124
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     158,
+     404,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     471,
+     125,
+     498,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     601,
+     313,
+     639,
+     361
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     237,
+     196,
+     257,
+     234
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:21:37Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 563,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000563.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     512,
+     100,
+     528,
+     127
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     577,
+     280,
+     605,
+     325
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     152,
+     141,
+     174,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     71,
+     74,
+     86,
+     97
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     164,
+     88,
+     178,
+     113
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     97,
+     110,
+     123,
+     141
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     74,
+     107,
+     91,
+     137
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     54,
+     151,
+     80,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     -1,
+     183,
+     28,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     166,
+     135,
+     181,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     192,
+     126,
+     211,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     228,
+     115,
+     249,
+     137
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     289,
+     138,
+     307,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     244,
+     179,
+     266,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     273,
+     181,
+     291,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     419,
+     197,
+     442,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     237,
+     492,
+     276
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:23:35Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 638,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000638.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     342,
+     209,
+     351,
+     219
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     486,
+     97,
+     500,
+     133
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     120,
+     153,
+     141,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     41,
+     71,
+     57,
+     101
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     114,
+     114,
+     134,
+     144
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     121,
+     195,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     90,
+     205,
+     121
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     395,
+     208,
+     420,
+     249
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     340,
+     181,
+     366,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     425,
+     133,
+     445,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     453,
+     153,
+     479,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     150,
+     330,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     261,
+     156,
+     279,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     252,
+     143,
+     268,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     165,
+     204,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     104,
+     179,
+     125,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     97,
+     210,
+     117,
+     258
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     231,
+     22,
+     277
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:25:30Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 713,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000713.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     341,
+     169,
+     349,
+     178
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     251,
+     156,
+     270,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     146,
+     154,
+     158,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     267,
+     84,
+     281,
+     112
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     365,
+     95,
+     377,
+     128
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     367,
+     233,
+     392,
+     282
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     283,
+     216,
+     306,
+     264
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     302,
+     156,
+     328,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     163,
+     324,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     143,
+     346,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     350,
+     144,
+     365,
+     175
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     170,
+     392,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     575,
+     181,
+     592,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     584,
+     198,
+     605,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     506,
+     156,
+     524,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     528,
+     135,
+     549,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     430,
+     142,
+     445,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     421,
+     173,
+     446,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     420,
+     196,
+     441,
+     236
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:28:56Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 788,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000788.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     113,
+     189,
+     122,
+     197
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     240,
+     143,
+     255,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     120,
+     161,
+     140,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     163,
+     167,
+     189,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     188,
+     212,
+     213,
+     255
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     183,
+     259,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     284,
+     216,
+     310,
+     263
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     80,
+     277,
+     110
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     318,
+     91,
+     335,
+     119
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     307,
+     166,
+     318,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     175,
+     330,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     134,
+     344,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     341,
+     142,
+     354,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     346,
+     168,
+     367,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     411,
+     199,
+     428,
+     239
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     441,
+     135,
+     462,
+     168
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     444,
+     149,
+     461,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     470,
+     156,
+     493,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     502,
+     194,
+     519,
+     231
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:31:25Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 863,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000863.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     222,
+     181,
+     230,
+     190
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     93,
+     63,
+     107,
+     88
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     411,
+     131,
+     424,
+     160
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     412,
+     143,
+     427,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     390,
+     118,
+     402,
+     148
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     84,
+     478,
+     112
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     424,
+     74,
+     437,
+     98
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     105,
+     164,
+     136
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     227,
+     125,
+     243,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     152,
+     167,
+     170,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     209,
+     157,
+     232,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     210,
+     255,
+     251
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     177,
+     322,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     348,
+     166,
+     362,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     203,
+     369,
+     247
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     384,
+     182,
+     400,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     444,
+     143,
+     466,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     481,
+     172,
+     495,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     530,
+     143,
+     550,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     558,
+     137,
+     577,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     582,
+     158,
+     602,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     614,
+     206,
+     631,
+     248
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:33:35Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 938,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_000938.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     228,
+     163,
+     235,
+     171
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     52,
+     68,
+     61,
+     94
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     398,
+     127,
+     413,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     168,
+     104,
+     183,
+     134
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     116,
+     158,
+     131,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     157,
+     209,
+     175,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     237,
+     172,
+     253,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     299,
+     188,
+     315,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     264,
+     130,
+     282,
+     160
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     76,
+     370,
+     99
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     84,
+     431,
+     110
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     350,
+     116,
+     361,
+     145
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     352,
+     126,
+     366,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     137,
+     387,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     367,
+     185,
+     383,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     387,
+     160,
+     402,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     157,
+     432,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     452,
+     146,
+     469,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     480,
+     137,
+     499,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     492,
+     153,
+     513,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     595,
+     208,
+     616,
+     249
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:35:37Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1013,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001013.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     210,
+     144,
+     218,
+     151
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     325,
+     157,
+     340,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     183,
+     119,
+     203,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     250,
+     142,
+     266,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     179,
+     147,
+     194,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     179,
+     197,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     95,
+     235,
+     112,
+     281
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     35,
+     179,
+     50,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     198,
+     286,
+     244
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     363,
+     211,
+     378,
+     251
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     330,
+     135,
+     343,
+     164
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     324,
+     124,
+     335,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     330,
+     100,
+     346,
+     122
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     366,
+     104,
+     387,
+     127
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     137,
+     367,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     371,
+     177,
+     392,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     402,
+     178,
+     424,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     420,
+     163,
+     439,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     159,
+     477,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     493,
+     172,
+     516,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     574,
+     228,
+     596,
+     271
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:38:05Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1088,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001088.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     218,
+     130,
+     225,
+     137
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     289,
+     157,
+     306,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     582,
+     234,
+     607,
+     277
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     179,
+     531,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     464,
+     164,
+     482,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     221,
+     402,
+     263
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     168,
+     432,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     405,
+     185,
+     424,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     389,
+     179,
+     409,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     350,
+     131,
+     369,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     328,
+     129,
+     342,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     114,
+     298,
+     143
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     226,
+     106,
+     239,
+     133
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     217,
+     108,
+     230,
+     129
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     156,
+     122,
+     173,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     79,
+     147,
+     96,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     198,
+     142,
+     214,
+     175
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     138,
+     175,
+     157,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     65,
+     242,
+     89,
+     292
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     196,
+     257,
+     240
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:40:28Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1163,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001163.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     269,
+     144,
+     276,
+     151
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     175,
+     150,
+     190,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     237,
+     118,
+     257,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     253,
+     116,
+     268,
+     143
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     155,
+     112,
+     169,
+     141
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     142,
+     98,
+     155,
+     131
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     26,
+     118,
+     41,
+     153
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     70,
+     135,
+     86,
+     168
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     87,
+     141,
+     106,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     92,
+     161,
+     108,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     184,
+     148,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     225,
+     262,
+     268
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     122,
+     347,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     392,
+     150,
+     411,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     486,
+     174,
+     504,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     524,
+     230,
+     539,
+     276
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     532,
+     268,
+     562,
+     320
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     325,
+     156,
+     342,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     297,
+     172,
+     314,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     164,
+     308,
+     203
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:42:57Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1238,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001238.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     590,
+     135,
+     606,
+     175
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     41,
+     155,
+     57,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     -2,
+     140,
+     9,
+     167
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     -1,
+     156,
+     18,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     47,
+     132,
+     70,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     74,
+     113,
+     94,
+     144
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     98,
+     91,
+     114,
+     123
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     172,
+     125,
+     190,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     230,
+     113,
+     251,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     407,
+     159,
+     421,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     226,
+     417,
+     269
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     329,
+     238,
+     355,
+     284
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     31,
+     224,
+     54,
+     267
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     149,
+     150,
+     164,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     163,
+     206,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     117,
+     303,
+     151
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     292,
+     140,
+     306,
+     178
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:45:31Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1313,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001313.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     14,
+     1,
+     285,
+     385
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:45:42Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1388,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001388.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     324,
+     149,
+     333,
+     157
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     619,
+     139,
+     631,
+     180
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     22,
+     174,
+     39,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     63,
+     141,
+     76,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     141,
+     114,
+     154,
+     147
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     171,
+     98,
+     187,
+     127
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     310,
+     122,
+     326,
+     155
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     291,
+     130,
+     306,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     134,
+     283,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     526,
+     186,
+     545,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     341,
+     379,
+     361
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     244,
+     289,
+     293
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     191,
+     125,
+     211,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     192,
+     185,
+     211,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     175,
+     194,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     176,
+     114,
+     219
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:47:11Z"
+ },
+ {
+  "sequence": "manchester_city_v_liverpool",
+  "frame_number_1based": 1463,
+  "file": "experiments/records/experiment_M4/candidates/manchester_city_v_liverpool/manchester_city_v_liverpool_001463.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     357,
+     173,
+     365,
+     181
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     445,
+     101,
+     459,
+     135
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     260,
+     341,
+     288,
+     362
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     216,
+     218,
+     243,
+     264
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     372,
+     141,
+     388,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     235,
+     102,
+     247,
+     134
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     77,
+     190,
+     110
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     133,
+     116,
+     149,
+     152
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     103,
+     160,
+     122,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     26,
+     149,
+     51,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     3,
+     85,
+     18,
+     116
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:48:29Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 40,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000040.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1485,
+     207,
+     1524,
+     271
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     736,
+     1015,
+     787,
+     1075
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     511,
+     181,
+     530,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     566,
+     196,
+     591,
+     251
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1032,
+     218,
+     1067,
+     283
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1121,
+     280,
+     1161,
+     385
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1264,
+     307,
+     1303,
+     413
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1340,
+     618,
+     1491,
+     861
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1005,
+     579,
+     1108,
+     775
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     313,
+     212,
+     346,
+     281
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     280,
+     558,
+     376
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     319,
+     411,
+     421,
+     549
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     13,
+     406,
+     119,
+     564
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     75,
+     244,
+     119,
+     318
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:50:37Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 118,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000118.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1045,
+     604,
+     1081,
+     640
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     369,
+     174,
+     434,
+     317
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1447,
+     62,
+     1484,
+     151
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1219,
+     22,
+     1249,
+     86
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     965,
+     83,
+     1001,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     561,
+     -2,
+     590,
+     58
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     461,
+     17,
+     486,
+     81
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     357,
+     69,
+     393,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     545,
+     109,
+     591,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     70,
+     177,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     21,
+     156,
+     79,
+     291
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     438,
+     368,
+     552,
+     550
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     434,
+     496,
+     570,
+     724
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     187,
+     532,
+     339,
+     807
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1477,
+     735,
+     1627,
+     1067
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1115,
+     331,
+     1192,
+     527
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1126,
+     445,
+     1242,
+     646
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:52:49Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 196,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000196.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1341,
+     746,
+     1377,
+     788
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     609,
+     382,
+     656,
+     516
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     613,
+     172,
+     650,
+     262
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     195,
+     453,
+     289
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     79,
+     276,
+     148,
+     414
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     356,
+     275,
+     417,
+     396
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1019,
+     886,
+     1159,
+     1084
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     784,
+     587,
+     956,
+     817
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     750,
+     469,
+     850,
+     673
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     817,
+     318,
+     905,
+     471
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1633,
+     217,
+     1691,
+     316
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1414,
+     337,
+     1469,
+     491
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1672,
+     633,
+     1787,
+     927
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     615,
+     450,
+     717,
+     691
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     562,
+     446,
+     642,
+     667
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:54:28Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 274,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000274.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1210,
+     678,
+     1243,
+     711
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     56,
+     210,
+     93,
+     312
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     268,
+     311,
+     394
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     324,
+     358,
+     411,
+     516
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     565,
+     732,
+     778,
+     1031
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1124,
+     893,
+     1291,
+     1080
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1236,
+     482,
+     1343,
+     701
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1168,
+     274,
+     1239,
+     421
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1136,
+     397,
+     1215,
+     581
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     676,
+     503,
+     776,
+     701
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     781,
+     437,
+     839,
+     636
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:56:31Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 352,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000352.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     919,
+     533,
+     954,
+     558
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     645,
+     214,
+     675,
+     280
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     557,
+     393,
+     608,
+     540
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     581,
+     243,
+     618,
+     318
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     474,
+     265,
+     513,
+     339
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     253,
+     339,
+     318,
+     451
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     0,
+     479,
+     74,
+     655
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     321,
+     484,
+     404,
+     657
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     519,
+     565,
+     643,
+     747
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     782,
+     473,
+     876,
+     626
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     855,
+     395,
+     914,
+     528
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     999,
+     465,
+     1095,
+     583
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1254,
+     279,
+     1297,
+     358
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1491,
+     847,
+     1610,
+     1082
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1311,
+     336,
+     1367,
+     442
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1291,
+     388,
+     1358,
+     515
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:58:16Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 430,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000430.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     278,
+     248,
+     328,
+     365
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     193,
+     546,
+     298,
+     777
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     82,
+     320,
+     171,
+     452
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     88,
+     477,
+     172,
+     646
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     423,
+     462,
+     522,
+     658
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     733,
+     571,
+     837,
+     800
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1209,
+     406,
+     1280,
+     540
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1231,
+     441,
+     1335,
+     602
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1291,
+     456,
+     1367,
+     632
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T14:59:17Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 508,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000508.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     692,
+     661,
+     721,
+     690
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     488,
+     762,
+     604,
+     1075
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1694,
+     505,
+     1793,
+     721
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1499,
+     597,
+     1600,
+     870
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     727,
+     465,
+     832,
+     643
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     795,
+     511,
+     883,
+     674
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     675,
+     513,
+     771,
+     673
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:00:17Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 586,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000586.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     545,
+     720,
+     583,
+     763
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     181,
+     369,
+     281,
+     587
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     330,
+     331,
+     400,
+     520
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     384,
+     294,
+     487,
+     483
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     700,
+     269,
+     758,
+     428
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     382,
+     590,
+     590
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     427,
+     424,
+     564,
+     629
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1744,
+     436,
+     1823,
+     662
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1135,
+     309,
+     1236,
+     511
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     862,
+     431,
+     979,
+     641
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     781,
+     498,
+     908,
+     710
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:13:20Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 664,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000664.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     882,
+     200,
+     930,
+     320
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     556,
+     705,
+     593,
+     743
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1124,
+     657,
+     1279,
+     972
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1024,
+     332,
+     1086,
+     484
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     600,
+     306,
+     649,
+     468
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     464,
+     288,
+     526,
+     439
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     200,
+     257,
+     255,
+     397
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     105,
+     280,
+     187,
+     432
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     333,
+     381,
+     410,
+     549
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     270,
+     544,
+     410,
+     787
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:15:10Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 742,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000742.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     815,
+     509,
+     834,
+     534
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     -2,
+     475,
+     56,
+     689
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1357,
+     404,
+     1446,
+     539
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1427,
+     541,
+     1517,
+     754
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1160,
+     459,
+     1232,
+     643
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1082,
+     428,
+     1160,
+     618
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     969,
+     430,
+     1071,
+     613
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     831,
+     516,
+     892,
+     602
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     832,
+     443,
+     939,
+     594
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     473,
+     501,
+     545,
+     620
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     473,
+     578,
+     574,
+     788
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:17:27Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 820,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000820.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1868,
+     280,
+     1922,
+     692
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1753,
+     417,
+     1903,
+     860
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1644,
+     648,
+     1794,
+     1082
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1321,
+     360,
+     1456,
+     796
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1152,
+     347,
+     1309,
+     774
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1037,
+     533,
+     1283,
+     874
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     111,
+     296,
+     238,
+     575
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     87,
+     489,
+     253,
+     905
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:19:53Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 898,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000898.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     833,
+     450,
+     868,
+     484
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     740,
+     489,
+     894,
+     851
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1420,
+     294,
+     1594,
+     538
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     213,
+     711,
+     376,
+     1076
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1074,
+     544,
+     1220,
+     899
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1361,
+     691,
+     1517,
+     1079
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     836,
+     256,
+     940,
+     477
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:20:42Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 976,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_000976.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1217,
+     305,
+     1257,
+     346
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     199,
+     485,
+     292,
+     729
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     365,
+     455,
+     488,
+     675
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     521,
+     473,
+     594,
+     717
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     819,
+     479,
+     897,
+     715
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     917,
+     513,
+     1010,
+     718
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     915,
+     546,
+     1083,
+     686
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1061,
+     486,
+     1188,
+     718
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1033,
+     440,
+     1106,
+     587
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1307,
+     959,
+     1481,
+     1082
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:22:14Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1054,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001054.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     861,
+     341,
+     895,
+     373
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     448,
+     436,
+     569,
+     591
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     535,
+     413,
+     617,
+     590
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     771,
+     442,
+     839,
+     625
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     814,
+     492,
+     915,
+     692
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     -1,
+     423,
+     57,
+     616
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     47,
+     465,
+     152,
+     639
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     461,
+     367,
+     643
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     748,
+     640,
+     852,
+     918
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1257,
+     555,
+     1406,
+     770
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1705,
+     577,
+     1799,
+     789
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:23:17Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1132,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001132.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     417,
+     277,
+     516,
+     451
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     325,
+     524,
+     579
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     368,
+     480,
+     622
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     656,
+     311,
+     739,
+     567
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1237,
+     637,
+     1396,
+     1028
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     823,
+     351,
+     956,
+     600
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     840,
+     381,
+     928,
+     637
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:24:33Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1210,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001210.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     37,
+     494,
+     110,
+     726
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     1336,
+     452,
+     1480,
+     614
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1350,
+     467,
+     1440,
+     670
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1673,
+     492,
+     1761,
+     705
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     159,
+     447,
+     276,
+     607
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     456,
+     640,
+     601,
+     941
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     633,
+     551,
+     758,
+     765
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     856,
+     468,
+     907,
+     669
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     746,
+     458,
+     860,
+     634
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1096,
+     425,
+     1199,
+     646
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1139,
+     404,
+     1200,
+     628
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1194,
+     440,
+     1257,
+     579
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1205,
+     504,
+     1304,
+     709
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1178,
+     564,
+     1308,
+     783
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:27:03Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1288,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001288.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     1295,
+     587,
+     1331,
+     622
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1325,
+     415,
+     1432,
+     626
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1072,
+     617,
+     1193,
+     948
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     821,
+     375,
+     924,
+     623
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     -1,
+     521,
+     166,
+     784
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     95,
+     389,
+     200,
+     624
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     342,
+     371,
+     449,
+     614
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     149,
+     378,
+     240,
+     569
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:32:47Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1366,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001366.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     431,
+     642,
+     469,
+     676
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     344,
+     445,
+     450,
+     677
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     835,
+     255,
+     885,
+     382
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1381,
+     280,
+     1438,
+     443
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1728,
+     402,
+     1830,
+     624
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     837,
+     538,
+     931,
+     827
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:33:35Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1444,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001444.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     595,
+     558,
+     624,
+     588
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     574,
+     384,
+     655,
+     586
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     970,
+     211,
+     1012,
+     324
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1205,
+     263,
+     1266,
+     403
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     686,
+     630,
+     839,
+     968
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     969,
+     457,
+     1068,
+     715
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1120,
+     424,
+     1192,
+     600
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:34:33Z"
+ },
+ {
+  "sequence": "youth_2",
+  "frame_number_1based": 1522,
+  "file": "experiments/records/experiment_M4/candidates/youth_2/youth_2_001522.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     1708,
+     312,
+     1778,
+     432
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1765,
+     334,
+     1828,
+     457
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     1717,
+     327,
+     1764,
+     460
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1098,
+     227,
+     1132,
+     310
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1074,
+     281,
+     1130,
+     382
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     320,
+     288,
+     333,
+     302
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     676,
+     755,
+     711,
+     792
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     186,
+     356,
+     263,
+     509
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     576,
+     570,
+     668,
+     808
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1477,
+     586,
+     1630,
+     820
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1263,
+     445,
+     1338,
+     646
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     1195,
+     457,
+     1262,
+     630
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T15:36:22Z"
+ }
+]

@@ -1,0 +1,371 @@
+{
+  "track_id": 4,
+  "video": "input-videos\\Bayern Munich 3-1 Chelsea.mp4",
+  "cache": "demo_outputs\\final_e2e_demo\\cache\\tracks_b3bacf1707645184.pkl",
+  "n_appearances_total": 369,
+  "n_processed_frames": 375,
+  "first_appearance_processed_idx": 0,
+  "last_appearance_processed_idx": 374,
+  "reported_team_in_last_production_run": 2,
+  "bimodality_test": {
+    "center_distance_bgr": 47.5464750766146,
+    "separation_ratio": 5.596218583060463,
+    "minority_fraction": 0.48509485094850946,
+    "minority_runs": [
+      [
+        88,
+        90
+      ],
+      [
+        95,
+        99
+      ],
+      [
+        106,
+        109
+      ],
+      [
+        115,
+        125
+      ],
+      [
+        132,
+        133
+      ],
+      [
+        141,
+        142
+      ],
+      [
+        190,
+        190
+      ],
+      [
+        195,
+        220
+      ],
+      [
+        225,
+        235
+      ],
+      [
+        239,
+        239
+      ],
+      [
+        243,
+        243
+      ],
+      [
+        247,
+        374
+      ]
+    ],
+    "longest_minority_run_len": 128,
+    "contiguous_switch_like": true
+  },
+  "hypothesis": "TRACK_ID_CONTAMINATION",
+  "evidence": "Track 4's own chest-color history splits into two clusters 47.5 BGR-units apart (5.6x the average intra-cluster spread), with the minority mode (179/369 frames, 49%) concentrated in 12 contiguous run(s), longest 128 frames (88-374 span) -- consistent with a single sustained identity swap partway through the track, not scattered noise.",
+  "samples": [
+    {
+      "raw_frame_index": 0,
+      "processed_frame_index": 0,
+      "bbox": [
+        518.5645751953125,
+        151.05010986328125,
+        527.8687744140625,
+        173.3874969482422
+      ],
+      "bbox_size_px": [
+        9.30419921875,
+        22.337387084960938
+      ],
+      "chest_color_bgr_median": [
+        119.5,
+        92.0,
+        74.5
+      ],
+      "brightness_max_channel": 119.5
+    },
+    {
+      "raw_frame_index": 52,
+      "processed_frame_index": 26,
+      "bbox": [
+        505.0866394042969,
+        140.9664764404297,
+        513.3889770507812,
+        162.60169982910156
+      ],
+      "bbox_size_px": [
+        8.302337646484375,
+        21.635223388671875
+      ],
+      "chest_color_bgr_median": [
+        110.0,
+        102.5,
+        77.5
+      ],
+      "brightness_max_channel": 110.0
+    },
+    {
+      "raw_frame_index": 106,
+      "processed_frame_index": 53,
+      "bbox": [
+        466.8550720214844,
+        129.86367797851562,
+        475.0892028808594,
+        148.5482635498047
+      ],
+      "bbox_size_px": [
+        8.234130859375,
+        18.684585571289062
+      ],
+      "chest_color_bgr_median": [
+        100.0,
+        115.0,
+        92.5
+      ],
+      "brightness_max_channel": 115.0
+    },
+    {
+      "raw_frame_index": 158,
+      "processed_frame_index": 79,
+      "bbox": [
+        383.5700378417969,
+        107.5051498413086,
+        389.2716369628906,
+        125.97542572021484
+      ],
+      "bbox_size_px": [
+        5.70159912109375,
+        18.47027587890625
+      ],
+      "chest_color_bgr_median": [
+        99.0,
+        101.0,
+        75.0
+      ],
+      "brightness_max_channel": 101.0
+    },
+    {
+      "raw_frame_index": 210,
+      "processed_frame_index": 105,
+      "bbox": [
+        328.5736999511719,
+        90.53680419921875,
+        336.23974609375,
+        108.81378173828125
+      ],
+      "bbox_size_px": [
+        7.666046142578125,
+        18.2769775390625
+      ],
+      "chest_color_bgr_median": [
+        96.5,
+        108.0,
+        88.0
+      ],
+      "brightness_max_channel": 108.0
+    },
+    {
+      "raw_frame_index": 262,
+      "processed_frame_index": 131,
+      "bbox": [
+        367.2042236328125,
+        82.81281280517578,
+        377.6166687011719,
+        100.08706665039062
+      ],
+      "bbox_size_px": [
+        10.412445068359375,
+        17.274253845214844
+      ],
+      "chest_color_bgr_median": [
+        80.0,
+        109.0,
+        81.0
+      ],
+      "brightness_max_channel": 109.0
+    },
+    {
+      "raw_frame_index": 316,
+      "processed_frame_index": 158,
+      "bbox": [
+        351.4277648925781,
+        92.83463287353516,
+        357.6715087890625,
+        110.1946029663086
+      ],
+      "bbox_size_px": [
+        6.243743896484375,
+        17.359970092773438
+      ],
+      "chest_color_bgr_median": [
+        81.0,
+        100.0,
+        76.0
+      ],
+      "brightness_max_channel": 100.0
+    },
+    {
+      "raw_frame_index": 368,
+      "processed_frame_index": 184,
+      "bbox": [
+        316.9056701660156,
+        89.0732192993164,
+        323.01507568359375,
+        108.00690460205078
+      ],
+      "bbox_size_px": [
+        6.109405517578125,
+        18.933685302734375
+      ],
+      "chest_color_bgr_median": [
+        69.5,
+        104.0,
+        75.5
+      ],
+      "brightness_max_channel": 104.0
+    },
+    {
+      "raw_frame_index": 420,
+      "processed_frame_index": 210,
+      "bbox": [
+        353.4505310058594,
+        100.19082641601562,
+        363.8649597167969,
+        116.60179901123047
+      ],
+      "bbox_size_px": [
+        10.4144287109375,
+        16.410972595214844
+      ],
+      "chest_color_bgr_median": [
+        65.5,
+        141.5,
+        108.0
+      ],
+      "brightness_max_channel": 141.5
+    },
+    {
+      "raw_frame_index": 486,
+      "processed_frame_index": 243,
+      "bbox": [
+        393.6064758300781,
+        108.19969940185547,
+        401.9856262207031,
+        131.4420623779297
+      ],
+      "bbox_size_px": [
+        8.379150390625,
+        23.24236297607422
+      ],
+      "chest_color_bgr_median": [
+        77.0,
+        130.5,
+        102.0
+      ],
+      "brightness_max_channel": 130.5
+    },
+    {
+      "raw_frame_index": 538,
+      "processed_frame_index": 269,
+      "bbox": [
+        405.444580078125,
+        126.47998809814453,
+        412.4006652832031,
+        143.98545837402344
+      ],
+      "bbox_size_px": [
+        6.956085205078125,
+        17.505470275878906
+      ],
+      "chest_color_bgr_median": [
+        56.5,
+        126.0,
+        112.5
+      ],
+      "brightness_max_channel": 126.0
+    },
+    {
+      "raw_frame_index": 590,
+      "processed_frame_index": 295,
+      "bbox": [
+        438.0297546386719,
+        141.3685760498047,
+        448.4125061035156,
+        161.97044372558594
+      ],
+      "bbox_size_px": [
+        10.38275146484375,
+        20.60186767578125
+      ],
+      "chest_color_bgr_median": [
+        81.0,
+        117.0,
+        140.0
+      ],
+      "brightness_max_channel": 140.0
+    },
+    {
+      "raw_frame_index": 642,
+      "processed_frame_index": 321,
+      "bbox": [
+        432.2708740234375,
+        142.24574279785156,
+        438.8133239746094,
+        161.3614959716797
+      ],
+      "bbox_size_px": [
+        6.542449951171875,
+        19.115753173828125
+      ],
+      "chest_color_bgr_median": [
+        77.0,
+        117.0,
+        120.0
+      ],
+      "brightness_max_channel": 120.0
+    },
+    {
+      "raw_frame_index": 696,
+      "processed_frame_index": 348,
+      "bbox": [
+        424.6065673828125,
+        163.1565704345703,
+        432.9356994628906,
+        184.0483856201172
+      ],
+      "bbox_size_px": [
+        8.329132080078125,
+        20.891815185546875
+      ],
+      "chest_color_bgr_median": [
+        75.5,
+        109.0,
+        144.5
+      ],
+      "brightness_max_channel": 144.5
+    },
+    {
+      "raw_frame_index": 748,
+      "processed_frame_index": 374,
+      "bbox": [
+        362.0802001953125,
+        177.4151611328125,
+        373.8941345214844,
+        198.06361389160156
+      ],
+      "bbox_size_px": [
+        11.813934326171875,
+        20.648452758789062
+      ],
+      "chest_color_bgr_median": [
+        48.0,
+        122.0,
+        95.5
+      ],
+      "brightness_max_channel": 122.0
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "frozen_before_any_score": true,
+  "labels_reused_from": "experiments/post_freeze/team_assignment_v2/label_ui/labels.json",
+  "labels_sha256": "24b6d4963d32a44df48fdadd599c2936835e73fd77093c81de10ee98dd5a7bf8",
+  "population": {"positive_mixed": 10, "negative_clean": 46, "excluded_ambiguous": 1},
+  "candidate_A": {"name": "no_guard_baseline", "behavior": "always predicts CLEAN"},
+  "candidate_B": {
+    "name": "robust_jersey_change_point",
+    "roi_fractions": {"y_start": 0.15, "y_end": 0.50, "x_start": 0.25, "x_end": 0.75},
+    "quality_rejection": {
+      "min_pixels": 150,
+      "green_hue_range_opencv_0_179": [35, 85],
+      "green_min_saturation": 60,
+      "green_min_value": 60,
+      "min_non_green_fraction": 0.40
+    },
+    "descriptor": ["L_median", "a_median", "b_median", "S_median", "sin2H_median", "cos2H_median"],
+    "descriptor_dim": 6,
+    "max_observations_per_track": 15,
+    "min_regime_size": 3,
+    "separation_ratio_threshold": 3.0,
+    "max_splits_per_track": 1
+  },
+  "candidate_C": {
+    "name": "siglip_change_point",
+    "model_id": "google/siglip-base-patch16-224",
+    "isolation": "reuse_existing_siglip_env_no_redownload",
+    "crop_fraction_padding": 0.10,
+    "max_observations_per_track": 15,
+    "min_regime_size": 3,
+    "separation_ratio_threshold": 3.0,
+    "dimensionality_reduction": "none",
+    "max_splits_per_track": 1
+  },
+  "adoption_gate": {
+    "min_mixed_recall": "6/10",
+    "max_clean_false_positives": "1/46",
+    "min_one_detection_per_match": true,
+    "no_downstream_team_assignment_degradation": true
+  }
+}

@@ -1,0 +1,107 @@
+{
+ "sequence": "bayern_munich_3-1_chelsea_228",
+ "frame_range_1based": [
+  1,
+  60
+ ],
+ "coordinate_convention": "pitch coordinates in metres, local frame centred on the centre circle; axis_a / axis_b are an arbitrary orthogonal local basis (NOT globally along/across the pitch -- see reference_line_mode in the correspondences file), origin = image of the pitch centre spot as reconstructed from the circle conic",
+ "player_ground_point_convention": "bottom-centre (ground contact point) of the player bbox",
+ "fit_points_image": {
+  "axis_a(+9.15)": [
+   467.44286383755644,
+   138.47277498404625
+  ],
+  "axis_a(-9.15)": [
+   466.0549175014035,
+   209.05696721155277
+  ],
+  "axis_b(+9.15)": [
+   308.97072384997574,
+   172.28388342449998
+  ],
+  "axis_b(-9.15)": [
+   575.9292395289303,
+   174.7896944563594
+  ]
+ },
+ "fit_points_pitch_m": {
+  "axis_a(+9.15)": [
+   9.15,
+   0.0
+  ],
+  "axis_a(-9.15)": [
+   -9.15,
+   0.0
+  ],
+  "axis_b(+9.15)": [
+   0.0,
+   9.15
+  ],
+  "axis_b(-9.15)": [
+   0.0,
+   -9.15
+  ]
+ },
+ "homography_image_to_pitch": [
+  [
+   0.0014630279872646277,
+   -0.1558656136294095,
+   26.401101366976967
+  ],
+  [
+   -0.04262359570498783,
+   -0.0008381335281806502,
+   20.040154630929326
+  ],
+  [
+   -0.0008480118068222156,
+   -1.667506553528204e-05,
+   1.0
+  ]
+ ],
+ "homography_pitch_to_image": [
+  [
+   0.1261336626350184,
+   -38.90044661118335,
+   776.2408976873097
+  ],
+  [
+   -6.414599518723671,
+   -5.969636466659397,
+   288.98493000467414
+  ],
+  [
+   -1.0322050800969242e-09,
+   -0.03308758209624408,
+   1.6630802888236509
+  ]
+ ],
+ "validation": {
+  "held_out_landmark": {
+   "point": "(0,0) pitch centre",
+   "image_px": [
+    442.44998168945295,
+    173.53678894042966
+   ],
+   "reprojected_pitch_m": [
+    -3.5896307660299354e-08,
+    1.6656902022675035
+   ],
+   "error_m": 1.6657
+  },
+  "known_geometry_reconstruction": {
+   "description": "every detected circle-boundary pixel not used in fitting, reprojected to pitch space; error is deviation of its distance-from-centre from the true radius 9.15 m",
+   "n_points": 161,
+   "radius_error_m_mean": 0.0491,
+   "radius_error_m_median": 0.047,
+   "radius_error_m_p95": 0.1018,
+   "radius_error_m_max": 0.1423
+  },
+  "numerical_stability": {
+   "condition_number": 27496.62236436533,
+   "determinant": -0.003995465015798273,
+   "degenerate": false
+  }
+ },
+ "calibration_artifact_sha256": "ff0d656695a72373b6bf319660a135675761202f93fcbb9f1bb8c87dc67852fe"
+}

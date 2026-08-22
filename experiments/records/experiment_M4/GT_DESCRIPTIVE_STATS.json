@@ -1,0 +1,54 @@
+{
+ "n_frames": 60,
+ "n_objects_total": 924,
+ "per_class_total": {
+  "player": 782,
+  "goalkeeper": 31,
+  "referee": 63,
+  "ball": 48
+ },
+ "per_match": {
+  "como_2-0_sassuolo": {
+   "n_frames": 20,
+   "n_objects": 376,
+   "player": 322,
+   "goalkeeper": 14,
+   "referee": 25,
+   "ball": 15
+  },
+  "manchester_city_v_liverpool": {
+   "n_frames": 20,
+   "n_objects": 337,
+   "player": 286,
+   "goalkeeper": 8,
+   "referee": 27,
+   "ball": 16
+  },
+  "youth_2": {
+   "n_frames": 20,
+   "n_objects": 211,
+   "player": 174,
+   "goalkeeper": 9,
+   "referee": 11,
+   "ball": 17
+  }
+ },
+ "objects_per_frame": {
+  "min": 1,
+  "max": 23,
+  "mean": 15.4,
+  "median": 17.0
+ },
+ "frames_with_zero_objects": [],
+ "frames_with_zero_objects_count": 0,
+ "frames_missing_goalkeeper": 29,
+ "frames_missing_referee": 14,
+ "frames_missing_ball": 15,
+ "multi_ball_frame_count": 3,
+ "ball_count_distribution": {
+  "0": 15,
+  "1": 42,
+  "2": 3
+ },
+ "note": "descriptive only -- GT composition, not compared against any model prediction; not used to alter any threshold, subset, or ontology decision"
+}

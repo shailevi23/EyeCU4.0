@@ -1,0 +1,265 @@
+{
+ "arm": "baseline",
+ "git_head": "c5ce3e23ac382937c0cd36fb39775fa7c4cb699e",
+ "model_yaml": "/content/b2_models/yolo26s.yaml",
+ "architecture": {
+  "strides": [
+   8,
+   16,
+   32
+  ],
+  "ch": [
+   128,
+   256,
+   512
+  ],
+  "box": 32,
+  "cls": 128,
+  "params": 9950960,
+  "gflops": 51.9,
+  "cells": 10710
+ },
+ "donor": "yolo26s.pt",
+ "donor_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+ "weight_transfer": {
+  "model_yaml": "/content/b2_models/yolo26s.yaml",
+  "nc": 4,
+  "donor": "/content/yolo26s.pt",
+  "donor_sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+  "detect_layer_index": 23,
+  "total": {
+   "tensors": "696/708",
+   "tensors_pct": 98.3051,
+   "parameters": "9985962/9989058",
+   "parameters_pct": 99.969
+  },
+  "by_module": {
+   "backbone (0-10)": {
+    "tensors": "240/240",
+    "tensors_pct": 100.0,
+    "parameters": "5458760/5458760",
+    "parameters_pct": 100.0
+   },
+   "neck + new paths": {
+    "tensors": "228/228",
+    "tensors_pct": 100.0,
+    "parameters": "3586342/3586342",
+    "parameters_pct": 100.0
+   },
+   "Detect head": {
+    "tensors": "228/240",
+    "tensors_pct": 95.0,
+    "parameters": "940860/943956",
+    "parameters_pct": 99.672
+   }
+  },
+  "keys_absent_from_donor": 0,
+  "shape_mismatches": 12,
+  "shape_mismatch_detail": [
+   {
+    "key": "model.23.cv3.0.2.weight",
+    "donor": [
+     80,
+     128,
+     1,
+     1
+    ],
+    "receiver": [
+     4,
+     128,
+     1,
+     1
+    ]
+   },
+   {
+    "key": "model.23.cv3.0.2.bias",
+    "donor": [
+     80
+    ],
+    "receiver": [
+     4
+    ]
+   },
+   {
+    "key": "model.23.cv3.1.2.weight",
+    "donor": [
+     80,
+     128,
+     1,
+     1
+    ],
+    "receiver": [
+     4,
+     128,
+     1,
+     1
+    ]
+   },
+   {
+    "key": "model.23.cv3.1.2.bias",
+    "donor": [
+     80
+    ],
+    "receiver": [
+     4
+    ]
+   },
+   {
+    "key": "model.23.cv3.2.2.weight",
+    "donor": [
+     80,
+     128,
+     1,
+     1
+    ],
+    "receiver": [
+     4,
+     128,
+     1,
+     1
+    ]
+   },
+   {
+    "key": "model.23.cv3.2.2.bias",
+    "donor": [
+     80
+    ],
+    "receiver": [
+     4
+    ]
+   },
+   {
+    "key": "model.23.one2one_cv3.0.2.weight",
+    "donor": [
+     80,
+     128,
+     1,
+     1
+    ],
+    "receiver": [
+     4,
+     128,
+     1,
+     1
+    ]
+   },
+   {
+    "key": "model.23.one2one_cv3.0.2.bias",
+    "donor": [
+     80
+    ],
+    "receiver": [
+     4
+    ]
+   },
+   {
+    "key": "model.23.one2one_cv3.1.2.weight",
+    "donor": [
+     80,
+     128,
+     1,
+     1
+    ],
+    "receiver": [
+     4,
+     128,
+     1,
+     1
+    ]
+   },
+   {
+    "key": "model.23.one2one_cv3.1.2.bias",
+    "donor": [
+     80
+    ],
+    "receiver": [
+     4
+    ]
+   },
+   {
+    "key": "model.23.one2one_cv3.2.2.weight",
+    "donor": [
+     80,
+     128,
+     1,
+     1
+    ],
+    "receiver": [
+     4,
+     128,
+     1,
+     1
+    ]
+   },
+   {
+    "key": "model.23.one2one_cv3.2.2.bias",
+    "donor": [
+     80
+    ],
+    "receiver": [
+     4
+    ]
+   }
+  ]
+ },
+ "memory_probe": {
+  "baseline": {
+   "batch3_fits": true,
+   "peak_gib": 1.98
+  },
+  "B2": {
+   "batch3_fits": true,
+   "peak_gib": 4.2
+  }
+ },
+ "frozen_batch": 3,
+ "batch_in_args_yaml": 3,
+ "oom_fallback_detected": false,
+ "accumulate": 21,
+ "effective_weight_decay": 0.0004921875,
+ "gpu": "Tesla T4",
+ "vram_gib": 14.56,
+ "environment": {
+  "python": "3.12.13",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "ultralytics": "8.4.116",
+  "numpy": "2.2.6",
+  "supervision": "0.26.1"
+ },
+ "frozen_hyperparameters": {
+  "epochs": 80,
+  "patience": 0,
+  "imgsz": 960,
+  "batch": 3,
+  "optimizer": "AdamW",
+  "lr0": 0.00125,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "warmup_bias_lr": 0.0,
+  "lrf": 0.01,
+  "warmup_epochs": 3.0,
+  "warmup_momentum": 0.8,
+  "seed": 0,
+  "deterministic": true,
+  "amp": true,
+  "mosaic": 1.0,
+  "close_mosaic": 10,
+  "hsv_h": 0.015,
+  "hsv_s": 0.7,
+  "hsv_v": 0.4,
+  "fliplr": 0.5,
+  "scale": 0.5,
+  "translate": 0.1,
+  "erasing": 0.4,
+  "val": true,
+  "plots": true,
+  "save": true
+ },
+ "train_images": 823,
+ "val_images": 208,
+ "dataset": "original EyeCU baseline -- no Stage-A data",
+ "primary_readout": "FINAL EPOCH (last.pt)",
+ "started_utc": "2026-08-16T09:22:33.863189Z",
+ "ended_utc": "2026-08-16T10:44:57.575148Z"
+}

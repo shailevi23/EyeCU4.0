@@ -173,26 +173,28 @@ data/tracking_val_gt/audit/*/*
 # Vendored TrackEval: read for the protocol freeze, and the file hashes are
 # recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
 # the pinned wheel, so the bytes stay out of the repo.
-third_party/
+# Anchored to the repo root: unanchored it also swallowed models/third_party/,
+# hiding that directory's tracked provenance README.
+/third_party/
 
 !data/tracking_val_gt/mot/
 data/tracking_val_gt/mot/**
 # Vendored TrackEval: read for the protocol freeze, and the file hashes are
 # recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
 # the pinned wheel, so the bytes stay out of the repo.
-third_party/
+/third_party/
 
 !data/tracking_val_gt/mot/**/
 # Vendored TrackEval: read for the protocol freeze, and the file hashes are
 # recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
 # the pinned wheel, so the bytes stay out of the repo.
-third_party/
+/third_party/
 
 !data/tracking_val_gt/mot/**/*.txt
 # Vendored TrackEval: read for the protocol freeze, and the file hashes are
 # recorded in experiments/tracking_v2/trackeval_protocol.json. Rebuildable from
 # the pinned wheel, so the bytes stay out of the repo.
-third_party/
+/third_party/
 
 !data/tracking_val_gt/mot/**/*.ini
 
@@ -231,3 +233,38 @@ experiments/external_sources/keremberke_review/working_copy/
 experiments/external_sources/keremberke_review/repaired_export/*
 !experiments/external_sources/keremberke_review/repaired_export/EXPORT_MANIFEST.json
 experiments/external_sources/keremberke_review/repaired_export.previous/
+
+# Stage-A Colab upload staging. Temporary: everything in it is a copy of
+# something already tracked or already reproducible. Delete after the run.
+/EyeCU_StageA_inputs/
+
+# Third-party detector weights: obtain separately, see the directory README.
+models/third_party/**/*.pt
+
+# ---------------------------------------------------------------------------
+# General hygiene: caches, OS junk, IDE-local state, secrets, logs. Nothing
+# here should ever hold scientific evidence -- if a file under these patterns
+# is load-bearing, it belongs in an explicit allow-list above instead.
+# ---------------------------------------------------------------------------
+*.pyc
+*.pyo
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+.idea/
+.vscode/*.local.json
+
+.env.*
+*.key
+.claude/settings.local.json
+
+*.log
+*.tmp
+*.temp

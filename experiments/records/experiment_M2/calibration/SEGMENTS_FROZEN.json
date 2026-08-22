@@ -1,0 +1,29 @@
+{
+ "segments": [
+  {
+   "sequence": "bayern_munich_3-1_chelsea_228",
+   "frame_range_1based": [
+    1,
+    60
+   ],
+   "reference_frame_1based": 1,
+   "selection_basis": "no camera cut (mad/hcorr dual-signal check, tools/detect_broadcast_cuts.py logic) in frames 1-120; optical-flow camera-movement cumulative drift over frames 1-60 = (5.3px, 1.0px) -- effectively locked-off; visible fixed geometry: centre circle + halfway line, consistent framing observed across the entire 300-frame clip on sparse visual scan."
+  },
+  {
+   "sequence": "women_1_239",
+   "frame_range_1based": [
+    141,
+    170
+   ],
+   "reference_frame_1based": 150,
+   "selection_basis": "no camera cut in frames 111-164 and 139-171 (dual-signal check); optical-flow camera-movement cumulative drift over frames 141-170 = (0.0px, 0.0px) in the tested 30-frame window -- earlier parts of this sequence (e.g. frames 1-100) pan substantially (up to ~290px cumulative) and were rejected for that reason; visible fixed geometry: centre circle + halfway line."
+  }
+ ],
+ "excluded": [
+  {
+   "sequence": "youth_premier_league_1133",
+   "reason": "camera is fixed on a single pitch corner for the entire 300-frame clip (verified by sparse scan across the whole sequence); no centre circle, no penalty/six-yard box, no full pitch rectangle visible at any point -- only a touchline/goal-line corner junction and a 1m corner arc, too small to click reliably at this resolution and camera distance. Per M2 section 5/6, a homography was not forced on this sequence."
+  }
+ ],
+ "frozen_before_error_inspection": true
+}

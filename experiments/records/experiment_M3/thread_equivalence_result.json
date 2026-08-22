@@ -1,0 +1,22 @@
+{
+ "sequence": "bayern_munich_3-1_chelsea_228 (non-TEST)",
+ "n_frames": 40,
+ "all_record_identical": true,
+ "diffs": {
+  "human_records": {
+   "n_default": 878,
+   "n_single_thread": 878,
+   "record_identical": true
+  },
+  "ball_candidate_records": {
+   "n_default": 38,
+   "n_single_thread": 38,
+   "record_identical": true
+  },
+  "selector_records": {
+   "n_default": 40,
+   "n_single_thread": 40,
+   "record_identical": true
+  }
+ }
+}

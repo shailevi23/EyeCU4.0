@@ -1,0 +1,25 @@
+{
+ "erratum": "experiments/records/experiment_M2/experiment_M2_1_record.md",
+ "note": "The original artifacts below are PRESERVED UNCHANGED as evidence of the M2.1 defect. This file is the authoritative validity status; consult it, not the artifacts' own internal fields, before using either.",
+ "segments": {
+  "bayern_calibration.json": {
+   "validated": false,
+   "reason": "2 of its 4 fit points (axis_b) were constructed as lines through a centre point computed by tools/m2_circle_correspondences.py:conic_centre(), which took the pole of the IMAGE's own coordinate line-at-infinity (0,0,1) instead of the true pitch-plane vanishing line. Confirmed defective: the claimed image centre is 24.3px off the halfway line itself (34% of that line's own visible span) -- world points axis_a(+9.15), (0,0), axis_a(-9.15) are collinear by definition and their images are not.",
+   "withdrawn_values": ["held_out_landmark error_m = 1.6657 (not a valid independent measurement)",
+                        "the speed-error budget table derived from it (11.8 / 2.4 / 1.0 m/s)"]
+  },
+  "women_calibration.json": {
+   "validated": false,
+   "reason": "all 4 fit points were constructed as lines through the same defectively-computed centre (reference_line_mode: direction uses the centre for BOTH axes, not just axis_b) -- fully compromised, not just partially.",
+   "withdrawn_values": ["held_out_landmark error_m = 0.0 (was already flagged not independent in the M2 record; also now known to rest on the defective centre)"]
+  }
+ },
+ "repair_attempted": "bayern_munich_3-1_chelsea_228 frames 1-60 only, per M2.1 scope",
+ "repair_outcome": "NOT REPAIRED -- identifiability gate answered NO. See experiment_M2_1_record.md for the full evidence trail (halfway line and circle remain high-confidence; near touchline, far goal-line, and far box/corner edge were all measured and found too noisy or too ambiguous in family assignment to serve as the second independent line family a metric (not just affine) rectification requires).",
+ "verdict": "B -- M2 METRIC CALIBRATION NOT VALIDATED",
+ "supported_after_m2_1": {
+  "metric_world_coordinates": "experimental / not validated",
+  "metric_speed": "unsupported",
+  "metric_distance": "unsupported"
+ }
+}

@@ -1,0 +1,229 @@
+{
+  "match_id": 1,
+  "frames_processed": 375,
+  "source_fps": 25.0,
+  "effective_fps": 12.5,
+  "cache_key": "b3bacf1707645184",
+  "processing_stats": {
+    "total_frames_processed": 375,
+    "avg_processing_time": 0.00806563886006673,
+    "total_processing_time": 3.02461457252505,
+    "fps": 123.9827392906266,
+    "advanced_tracking": true
+  },
+  "advanced_tracking": true,
+  "unique_track_ids": 30,
+  "speed_distance_calibrated": false,
+  "track_statistics": {
+    "1": {
+      "track_id": 1,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 13.381187861448401,
+      "total_distance_m_UNCALIBRATED": 32.243809605704065,
+      "appearances": 374
+    },
+    "2": {
+      "track_id": 2,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 15.78954092864725,
+      "total_distance_m_UNCALIBRATED": 38.293919221110365,
+      "appearances": 375
+    },
+    "3": {
+      "track_id": 3,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 12.698983168257623,
+      "total_distance_m_UNCALIBRATED": 33.7546570784864,
+      "appearances": 375
+    },
+    "4": {
+      "track_id": 4,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 20.270564339850182,
+      "total_distance_m_UNCALIBRATED": 50.81930317585312,
+      "appearances": 369
+    },
+    "5": {
+      "track_id": 5,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 18.04866411332525,
+      "total_distance_m_UNCALIBRATED": 41.14928457642123,
+      "appearances": 373
+    },
+    "6": {
+      "track_id": 6,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 16.451769650706044,
+      "total_distance_m_UNCALIBRATED": 45.48651602550279,
+      "appearances": 347
+    },
+    "7": {
+      "track_id": 7,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 17.712271338516647,
+      "total_distance_m_UNCALIBRATED": 25.211136252336033,
+      "appearances": 236
+    },
+    "8": {
+      "track_id": 8,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 12.698983168257623,
+      "total_distance_m_UNCALIBRATED": 43.213969581083155,
+      "appearances": 375
+    },
+    "9": {
+      "track_id": 9,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 15.520989450100528,
+      "total_distance_m_UNCALIBRATED": 40.22168957367847,
+      "appearances": 366
+    },
+    "10": {
+      "track_id": 10,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 17.19494867004915,
+      "total_distance_m_UNCALIBRATED": 42.59279823715525,
+      "appearances": 373
+    },
+    "11": {
+      "track_id": 11,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 15.834701572661979,
+      "total_distance_m_UNCALIBRATED": 36.45459777725975,
+      "appearances": 375
+    },
+    "12": {
+      "track_id": 12,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 9.298222599613482,
+      "total_distance_m_UNCALIBRATED": 9.871814903356738,
+      "appearances": 111
+    },
+    "13": {
+      "track_id": 13,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 20.697556923701484,
+      "total_distance_m_UNCALIBRATED": 64.61356782127937,
+      "appearances": 370
+    },
+    "14": {
+      "track_id": 14,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 14.527648873341803,
+      "total_distance_m_UNCALIBRATED": 10.98006785122445,
+      "appearances": 111
+    },
+    "15": {
+      "track_id": 15,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 20.263884129159447,
+      "total_distance_m_UNCALIBRATED": 39.85267384527659,
+      "appearances": 294
+    },
+    "16": {
+      "track_id": 16,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 16.667874572216068,
+      "total_distance_m_UNCALIBRATED": 42.10176396720079,
+      "appearances": 375
+    },
+    "17": {
+      "track_id": 17,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 15.431543166202028,
+      "total_distance_m_UNCALIBRATED": 38.61364203507735,
+      "appearances": 375
+    },
+    "18": {
+      "track_id": 18,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 13.961485951755963,
+      "total_distance_m_UNCALIBRATED": 35.85822379465437,
+      "appearances": 356
+    },
+    "19": {
+      "track_id": 19,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 16.571610503771826,
+      "total_distance_m_UNCALIBRATED": 35.935062531273324,
+      "appearances": 374
+    },
+    "20": {
+      "track_id": 20,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 6.046693311223912,
+      "total_distance_m_UNCALIBRATED": 4.292238808263774,
+      "appearances": 75
+    },
+    "22": {
+      "track_id": 22,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 14.682381959736528,
+      "total_distance_m_UNCALIBRATED": 11.01018743225939,
+      "appearances": 112
+    },
+    "24": {
+      "track_id": 24,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 0.0,
+      "total_distance_m_UNCALIBRATED": 0.0,
+      "appearances": 14
+    },
+    "26": {
+      "track_id": 26,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 7.115124735378854,
+      "total_distance_m_UNCALIBRATED": 7.377504733200964,
+      "appearances": 91
+    },
+    "27": {
+      "track_id": 27,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 22.307499429390024,
+      "total_distance_m_UNCALIBRATED": 38.98857189958247,
+      "appearances": 250
+    },
+    "28": {
+      "track_id": 28,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 14.066062781100662,
+      "total_distance_m_UNCALIBRATED": 20.18889346065995,
+      "appearances": 231
+    },
+    "29": {
+      "track_id": 29,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 13.632545831471392,
+      "total_distance_m_UNCALIBRATED": 13.299225877518282,
+      "appearances": 137
+    },
+    "31": {
+      "track_id": 31,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 11.931884922980384,
+      "total_distance_m_UNCALIBRATED": 13.512534685095062,
+      "appearances": 117
+    },
+    "32": {
+      "track_id": 32,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 14.426538046253507,
+      "total_distance_m_UNCALIBRATED": 14.620816864689122,
+      "appearances": 67
+    },
+    "35": {
+      "track_id": 35,
+      "team": 1,
+      "max_speed_kmh_UNCALIBRATED": 2.0963137289060527,
+      "total_distance_m_UNCALIBRATED": 0.18633899812498247,
+      "appearances": 8
+    },
+    "36": {
+      "track_id": 36,
+      "team": 2,
+      "max_speed_kmh_UNCALIBRATED": 0.0,
+      "total_distance_m_UNCALIBRATED": 0.0,
+      "appearances": 3
+    }
+  }
+}

@@ -1,0 +1,4562 @@
+[
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 38,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000038.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     330,
+     132,
+     339,
+     146
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     150,
+     158,
+     161,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     542,
+     194,
+     555,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     492,
+     161,
+     503,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     458,
+     159,
+     468,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     502,
+     189,
+     511,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     409,
+     211,
+     422,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     333,
+     162,
+     344,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     316,
+     160,
+     324,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     315,
+     193,
+     325,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     183,
+     303,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     283,
+     152,
+     293,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     167,
+     263,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     246,
+     157,
+     259,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     158,
+     186,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     49,
+     170,
+     62,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     212,
+     215,
+     229,
+     242
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     213,
+     168,
+     221,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     200,
+     190,
+     213,
+     210
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     208,
+     180,
+     218,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     145,
+     199,
+     160,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     136,
+     176,
+     148,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     78,
+     170,
+     95,
+     192
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T16:35:17Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 113,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000113.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     550,
+     210,
+     568,
+     238
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     501,
+     204,
+     516,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     487,
+     168,
+     500,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     418,
+     161,
+     431,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     331,
+     172,
+     344,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     332,
+     202,
+     350,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     364,
+     240,
+     385,
+     268
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     298,
+     203,
+     310,
+     228
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     292,
+     168,
+     304,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     246,
+     155,
+     257,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     247,
+     226,
+     261,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     27,
+     180,
+     37,
+     203
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     287,
+     134,
+     295,
+     146
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     218,
+     170,
+     231,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     196,
+     178,
+     208,
+     198
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     198,
+     186,
+     214,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     162,
+     162,
+     176,
+     182
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     117,
+     161,
+     131,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     148,
+     168,
+     160,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     134,
+     170,
+     145,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     105,
+     192,
+     115,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     97,
+     196,
+     108,
+     220
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T16:38:22Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 188,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000188.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     344,
+     237,
+     352,
+     245
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     77,
+     169,
+     87,
+     191
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     259,
+     143,
+     266,
+     154
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     250,
+     196,
+     264,
+     220
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     593,
+     285,
+     609,
+     327
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     560,
+     226,
+     577,
+     254
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     504,
+     222,
+     520,
+     249
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     449,
+     172,
+     461,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     370,
+     165,
+     381,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     272,
+     176,
+     282,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     309,
+     184,
+     321,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     539,
+     267,
+     562,
+     303
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     436,
+     262,
+     454,
+     294
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     370,
+     235,
+     391,
+     267
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     337,
+     268,
+     355,
+     301
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     337,
+     243,
+     358,
+     271
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     163,
+     224,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     197,
+     193,
+     211,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     163,
+     174,
+     173,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     153,
+     173,
+     165,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     136,
+     181,
+     148,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     124,
+     190,
+     136,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     48,
+     197,
+     62,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     80,
+     211,
+     95,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     221,
+     144,
+     248
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T16:40:22Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 263,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000263.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     369,
+     215,
+     377,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     378,
+     191,
+     391,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     168,
+     393,
+     186
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     281,
+     144,
+     289,
+     158
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     446,
+     169,
+     456,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     495,
+     208,
+     509,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     496,
+     233,
+     512,
+     265
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     515,
+     281,
+     528,
+     319
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     458,
+     210,
+     469,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     206,
+     363,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     340,
+     206,
+     352,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     189,
+     337,
+     207
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     369,
+     249,
+     383,
+     281
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     362,
+     245,
+     376,
+     276
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     281,
+     202,
+     295,
+     228
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     167,
+     250,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     241,
+     194,
+     252,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     215,
+     178,
+     227,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     193,
+     176,
+     208,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     184,
+     185,
+     193,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     201,
+     199,
+     212,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     145,
+     197,
+     157,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     146,
+     219,
+     160,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     238,
+     109,
+     271
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     66,
+     167,
+     76,
+     187
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T16:48:28Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 338,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000338.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "player",
+    "bbox": [
+     578,
+     190,
+     592,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     567,
+     218,
+     585,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     558,
+     195,
+     569,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     527,
+     184,
+     542,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     523,
+     167,
+     535,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     474,
+     187,
+     483,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     452,
+     169,
+     462,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     447,
+     243,
+     467,
+     273
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     230,
+     431,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     398,
+     189,
+     411,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     366,
+     192,
+     380,
+     215
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     334,
+     145,
+     342,
+     157
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     334,
+     177,
+     344,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     165,
+     332,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     320,
+     193,
+     332,
+     215
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     298,
+     198,
+     314,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     293,
+     174,
+     305,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     278,
+     181,
+     294,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     274,
+     197,
+     289,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     258,
+     188,
+     273,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     215,
+     226,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     158,
+     236,
+     175,
+     265
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     120,
+     165,
+     133,
+     184
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T16:53:34Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 413,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000413.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     317,
+     147,
+     325,
+     159
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     93,
+     165,
+     104,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     531,
+     197,
+     548,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     520,
+     168,
+     532,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     491,
+     162,
+     499,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     504,
+     178,
+     515,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     497,
+     175,
+     510,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     503,
+     224,
+     516,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     470,
+     219,
+     482,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     437,
+     163,
+     449,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     417,
+     171,
+     426,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     384,
+     182,
+     395,
+     202
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     369,
+     179,
+     375,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     357,
+     167,
+     369,
+     184
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     373,
+     190,
+     385,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     355,
+     186,
+     366,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     326,
+     166,
+     338,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     184,
+     336,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     290,
+     168,
+     302,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     281,
+     173,
+     293,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     277,
+     181,
+     290,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     279,
+     194,
+     290,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     260,
+     204,
+     273,
+     227
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     174,
+     240,
+     188,
+     272
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T16:56:34Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 488,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000488.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     563,
+     284,
+     578,
+     323
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     174,
+     208,
+     183,
+     216
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     247,
+     143,
+     256,
+     157
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     468,
+     192,
+     478,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     175,
+     470,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     444,
+     158,
+     454,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     426,
+     174,
+     436,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     413,
+     164,
+     422,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     160,
+     384,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     382,
+     169,
+     393,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     366,
+     175,
+     378,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     334,
+     171,
+     348,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     219,
+     409,
+     250
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     227,
+     419,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     347,
+     185,
+     360,
+     210
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     322,
+     186,
+     333,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     317,
+     182,
+     328,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     188,
+     277,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     197,
+     256,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     227,
+     168,
+     241,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     208,
+     160,
+     219,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     174,
+     187,
+     189,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     116,
+     218,
+     138,
+     243
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     63,
+     251,
+     87,
+     282
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T16:58:25Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 563,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000563.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     624,
+     296,
+     640,
+     338
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     550,
+     207,
+     565,
+     235
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     547,
+     184,
+     559,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     537,
+     186,
+     549,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     533,
+     167,
+     542,
+     187
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     490,
+     167,
+     503,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     462,
+     171,
+     471,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     459,
+     174,
+     475,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     432,
+     199,
+     446,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     391,
+     192,
+     402,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     390,
+     174,
+     403,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     328,
+     169,
+     339,
+     189
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     327,
+     142,
+     336,
+     155
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     340,
+     196,
+     354,
+     222
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     304,
+     220,
+     322,
+     250
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     229,
+     238,
+     252,
+     270
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     62,
+     247,
+     69,
+     255
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     53,
+     229,
+     67,
+     258
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     77,
+     225,
+     89,
+     248
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     106,
+     159,
+     117,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     209,
+     175,
+     223,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     280,
+     181,
+     293,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     254,
+     182,
+     266,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     243,
+     160,
+     256,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     275,
+     158,
+     286,
+     175
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:00:15Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 638,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000638.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     210,
+     200,
+     217,
+     206
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     147,
+     155,
+     158,
+     174
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     321,
+     139,
+     330,
+     153
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     531,
+     168,
+     541,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     518,
+     168,
+     531,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     526,
+     187,
+     538,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     539,
+     187,
+     550,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     542,
+     204,
+     555,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     414,
+     174,
+     425,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     400,
+     170,
+     410,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     410,
+     201,
+     422,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     337,
+     195,
+     353,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     169,
+     297,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     256,
+     166,
+     267,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     247,
+     153,
+     257,
+     169
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     221,
+     156,
+     232,
+     172
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     258,
+     191,
+     270,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     166,
+     225,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     203,
+     166,
+     213,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     201,
+     173,
+     210,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     203,
+     186,
+     214,
+     208
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     178,
+     188,
+     190,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     143,
+     184,
+     155,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     192,
+     111,
+     217
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:02:12Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 713,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000713.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     393,
+     211,
+     402,
+     220
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     350,
+     141,
+     358,
+     154
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     552,
+     173,
+     561,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     519,
+     171,
+     531,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     575,
+     198,
+     590,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     573,
+     225,
+     589,
+     256
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     517,
+     199,
+     530,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     179,
+     398,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     351,
+     175,
+     362,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     399,
+     219,
+     416,
+     253
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     365,
+     220,
+     385,
+     246
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     251,
+     154,
+     263,
+     171
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     252,
+     160,
+     264,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     235,
+     163,
+     248,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     170,
+     255,
+     191
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     280,
+     186,
+     293,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     219,
+     169,
+     231,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     204,
+     179,
+     214,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     195,
+     189,
+     207,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     183,
+     194,
+     196,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     182,
+     180,
+     195,
+     204
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     156,
+     159,
+     168,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     145,
+     169,
+     159,
+     193
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:03:48Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 789,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000789.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     135,
+     252,
+     143,
+     260
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     581,
+     208,
+     594,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     527,
+     174,
+     540,
+     196
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     495,
+     173,
+     506,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     494,
+     239,
+     507,
+     271
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     443,
+     210,
+     458,
+     234
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     348,
+     141,
+     355,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     354,
+     199,
+     368,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     318,
+     187,
+     330,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     272,
+     158,
+     282,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     271,
+     165,
+     283,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     242,
+     165,
+     253,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     245,
+     179,
+     257,
+     201
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     270,
+     194,
+     281,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     216,
+     179,
+     227,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     174,
+     185,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     167,
+     179,
+     181,
+     202
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     126,
+     157,
+     137,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     135,
+     192,
+     150,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     98,
+     222,
+     115,
+     246
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     110,
+     227,
+     133,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     185,
+     232,
+     206,
+     262
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     226,
+     230,
+     242,
+     258
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:05:20Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 864,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000864.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     314,
+     241,
+     321,
+     248
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     350,
+     142,
+     357,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     610,
+     215,
+     625,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     172,
+     524,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     465,
+     176,
+     476,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     395,
+     242,
+     409,
+     277
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     377,
+     240,
+     395,
+     276
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     212,
+     323,
+     237
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     220,
+     334,
+     248
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     261,
+     261,
+     278,
+     300
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     217,
+     238,
+     238,
+     272
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     289,
+     163,
+     299,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     273,
+     160,
+     283,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     253,
+     170,
+     263,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     241,
+     167,
+     255,
+     188
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     132,
+     163,
+     142,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     210,
+     177,
+     223,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     207,
+     181,
+     218,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     225,
+     188,
+     237,
+     211
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     225,
+     204,
+     238,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     190,
+     190,
+     216
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     155,
+     200,
+     170,
+     227
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     158,
+     230,
+     172,
+     262
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     127,
+     223,
+     147,
+     255
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:07:13Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 939,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_000939.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     574,
+     311,
+     591,
+     350
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     556,
+     203,
+     567,
+     234
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     430,
+     166,
+     442,
+     183
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     422,
+     207,
+     429,
+     214
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     306,
+     143,
+     315,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     363,
+     177,
+     376,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     380,
+     202,
+     393,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     385,
+     219,
+     399,
+     239
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     232,
+     397,
+     265
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     349,
+     198,
+     361,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     280,
+     257,
+     296,
+     298
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     250,
+     225,
+     265,
+     257
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     249,
+     162,
+     260,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     166,
+     253,
+     186
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     75,
+     164,
+     86,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     223,
+     172,
+     233,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     222,
+     185,
+     233,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     211,
+     170,
+     221,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     183,
+     175,
+     193,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     179,
+     185,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     212,
+     207,
+     229,
+     237
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     201,
+     203,
+     214,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     166,
+     222,
+     184,
+     252
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     130,
+     198,
+     143,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     93,
+     203,
+     105,
+     230
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:09:08Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1014,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001014.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     619,
+     318,
+     640,
+     360
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     600,
+     188,
+     613,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     495,
+     216,
+     513,
+     245
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     467,
+     200,
+     479,
+     226
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     464,
+     174,
+     470,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     468,
+     157,
+     479,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     429,
+     161,
+     441,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     442,
+     178,
+     454,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     372,
+     176,
+     386,
+     198
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     298,
+     142,
+     307,
+     157
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     339,
+     196,
+     356,
+     225
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     328,
+     246,
+     346,
+     283
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     316,
+     199,
+     329,
+     226
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     249,
+     159,
+     257,
+     177
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     251,
+     171,
+     262,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     232,
+     174,
+     242,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     172,
+     225,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     203,
+     167,
+     213,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     193,
+     167,
+     204,
+     188
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     173,
+     190,
+     198
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     77,
+     161,
+     86,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     155,
+     194,
+     167,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     96,
+     216,
+     111,
+     245
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     230,
+     195,
+     243,
+     220
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     239,
+     223,
+     259,
+     253
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:11:44Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1089,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001089.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     516,
+     175,
+     522,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     595,
+     175,
+     611,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     512,
+     160,
+     526,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     460,
+     163,
+     471,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     520,
+     189,
+     536,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     535,
+     201,
+     551,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     405,
+     164,
+     416,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     393,
+     166,
+     403,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     394,
+     188,
+     410,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     186,
+     372,
+     211
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     279,
+     142,
+     287,
+     156
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     378,
+     237,
+     400,
+     269
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     310,
+     222,
+     328,
+     254
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     257,
+     174,
+     266,
+     191
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     255,
+     179,
+     268,
+     200
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     161,
+     243,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     214,
+     160,
+     222,
+     177
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     229,
+     189,
+     246,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     200,
+     172,
+     213,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     188,
+     180,
+     204,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     174,
+     177,
+     186,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     162,
+     203,
+     177,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     55,
+     232,
+     70,
+     262
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     49,
+     164,
+     63,
+     185
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:13:44Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1164,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001164.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "ball",
+    "bbox": [
+     577,
+     192,
+     584,
+     199
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     527,
+     171,
+     539,
+     190
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     534,
+     177,
+     546,
+     194
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     508,
+     194,
+     528,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     453,
+     158,
+     462,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     431,
+     162,
+     440,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     428,
+     174,
+     436,
+     193
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     420,
+     180,
+     432,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     395,
+     165,
+     409,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     167,
+     387,
+     184
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     215,
+     398,
+     242
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     396,
+     233,
+     414,
+     265
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     304,
+     187,
+     320,
+     209
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     272,
+     146,
+     281,
+     161
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     267,
+     163,
+     279,
+     181
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     282,
+     187,
+     294,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     198,
+     159,
+     209,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     227,
+     177,
+     237,
+     197
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     225,
+     187,
+     239,
+     210
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     236,
+     194,
+     250,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     186,
+     183,
+     201,
+     207
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     198,
+     217,
+     212,
+     246
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     114,
+     242,
+     129,
+     273
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     43,
+     172,
+     55,
+     193
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:15:21Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1239,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001239.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     574,
+     185,
+     586,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     501,
+     179,
+     514,
+     199
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     475,
+     206,
+     482,
+     213
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     466,
+     191,
+     478,
+     214
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     423,
+     167,
+     435,
+     185
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     367,
+     215,
+     380,
+     238
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     375,
+     171,
+     384,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     369,
+     179,
+     379,
+     198
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     326,
+     156,
+     335,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     312,
+     161,
+     320,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     172,
+     297,
+     189
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     280,
+     174,
+     289,
+     190
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     218,
+     151,
+     227,
+     165
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     218,
+     169,
+     227,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     138,
+     162,
+     148,
+     179
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     322,
+     240,
+     341,
+     270
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     276,
+     198,
+     287,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     265,
+     202,
+     275,
+     227
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     237,
+     204,
+     248,
+     231
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     212,
+     196,
+     224,
+     221
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     206,
+     183,
+     216,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     177,
+     191,
+     187,
+     212
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     150,
+     236,
+     165,
+     265
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     194,
+     228,
+     209,
+     255
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:17:09Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1314,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001314.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     608,
+     188,
+     622,
+     212
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     596,
+     272,
+     613,
+     311
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     466,
+     248,
+     489,
+     283
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     433,
+     181,
+     444,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     399,
+     167,
+     410,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     381,
+     175,
+     392,
+     197
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     392,
+     222,
+     400,
+     230
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     393,
+     205,
+     417,
+     229
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     372,
+     196,
+     387,
+     219
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     333,
+     231,
+     350,
+     259
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     303,
+     158,
+     311,
+     173
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     269,
+     163,
+     281,
+     180
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     273,
+     215,
+     290,
+     238
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     261,
+     224,
+     277,
+     250
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     214,
+     215,
+     233,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     236,
+     179,
+     247,
+     196
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     184,
+     152,
+     193,
+     162
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     185,
+     159,
+     198,
+     174
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     178,
+     202,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     149,
+     181,
+     167,
+     201
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     167,
+     189,
+     182,
+     209
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     160,
+     201,
+     172,
+     224
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     161,
+     208,
+     180,
+     231
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     143,
+     208,
+     157,
+     235
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     119,
+     219,
+     138,
+     245
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:19:16Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1389,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001389.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     531,
+     282,
+     553,
+     319
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     520,
+     254,
+     542,
+     288
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     435,
+     186,
+     447,
+     211
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     415,
+     175,
+     426,
+     195
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     388,
+     181,
+     400,
+     202
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     326,
+     159,
+     335,
+     176
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     370,
+     212,
+     383,
+     241
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     314,
+     212,
+     326,
+     237
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     295,
+     223,
+     310,
+     252
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     286,
+     164,
+     295,
+     182
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     263,
+     186,
+     277,
+     205
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     244,
+     214,
+     259,
+     231
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     246,
+     203,
+     260,
+     225
+    ]
+   },
+   {
+    "class": "ball",
+    "bbox": [
+     224,
+     206,
+     232,
+     213
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     212,
+     151,
+     222,
+     164
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     197,
+     157,
+     207,
+     172
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     189,
+     176,
+     201,
+     192
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     179,
+     184,
+     192,
+     203
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     165,
+     193,
+     180,
+     216
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     185,
+     207,
+     197,
+     232
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     186,
+     226,
+     201,
+     254
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     180,
+     249,
+     200,
+     282
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     142,
+     210,
+     156,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     122,
+     214,
+     139,
+     238
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:20:42Z"
+ },
+ {
+  "sequence": "como_2-0_sassuolo",
+  "frame_number_1based": 1464,
+  "file": "experiments/records/experiment_M4/candidates/como_2-0_sassuolo/como_2-0_sassuolo_001464.jpg",
+  "width": 640,
+  "height": 360,
+  "objects": [
+   {
+    "class": "referee",
+    "bbox": [
+     584,
+     292,
+     600,
+     332
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     499,
+     192,
+     509,
+     215
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     491,
+     186,
+     501,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     426,
+     185,
+     439,
+     207
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     462,
+     243,
+     484,
+     276
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     434,
+     208,
+     451,
+     236
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     401,
+     161,
+     412,
+     178
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     360,
+     167,
+     372,
+     183
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     358,
+     207,
+     374,
+     233
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     359,
+     224,
+     374,
+     252
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     301,
+     197,
+     315,
+     219
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     265,
+     148,
+     272,
+     162
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     271,
+     157,
+     280,
+     170
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     231,
+     168,
+     242,
+     186
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     252,
+     183,
+     266,
+     204
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     276,
+     205,
+     289,
+     231
+    ]
+   },
+   {
+    "class": "referee",
+    "bbox": [
+     255,
+     199,
+     266,
+     223
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     236,
+     193,
+     251,
+     217
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     195,
+     184,
+     206,
+     206
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     202,
+     186,
+     213,
+     210
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     161,
+     196,
+     175,
+     218
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     175,
+     215,
+     191,
+     240
+    ]
+   },
+   {
+    "class": "player",
+    "bbox": [
+     190,
+     238,
+     209,
+     269
+    ]
+   },
+   {
+    "class": "goalkeeper",
+    "bbox": [
+     7,
+     174,
+     22,
+     195
+    ]
+   }
+  ],
+  "saved": true,
+  "notes": "",
+  "saved_utc": "2026-08-19T17:22:06Z"
+ }
+]

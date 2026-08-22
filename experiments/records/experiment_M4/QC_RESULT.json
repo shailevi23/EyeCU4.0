@@ -1,0 +1,35 @@
+{
+ "n_frame_records": 60,
+ "n_expected_frames": 60,
+ "population_matches_final_list": true,
+ "no_duplicate_frame_records": true,
+ "total_objects": 924,
+ "per_class_counts": {
+  "referee": 63,
+  "goalkeeper": 31,
+  "player": 782,
+  "ball": 48
+ },
+ "multi_ball_frames": [
+  [
+   "manchester_city_v_liverpool",
+   38,
+   2
+  ],
+  [
+   "manchester_city_v_liverpool",
+   113,
+   2
+  ],
+  [
+   "youth_2",
+   1522,
+   2
+  ]
+ ],
+ "n_errors": 0,
+ "errors": [],
+ "n_warnings": 0,
+ "warnings": [],
+ "qc_pass": true
+}
